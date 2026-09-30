@@ -138,3 +138,13 @@ Não há APK de demonstração ou UI substituta neste módulo.
 Build medido: Actions `36725362232`, fonte `faef1ce`: compilação ARM64, testes Java
 (7/7), lint e verificações de alinhamento ELF 16 KiB passaram. O núcleo de entrada
 foi testado com ASan/UBSan. **Nenhum Joy-Con nem telefone físico foi testado.**
+
+### Preparação nativa da paleta das mãos
+
+`hand_palette.hpp/.cpp` implementa a transferência byte-exata de uma paleta
+compacta, com plano pré-calculado e sem alocação por frame. O chamador fornece o
+tamanho dos registros e dados válidos; não se assume uma ABI Horizon nem se
+fabricam poses quando o tracking falta. Ainda não há ligação JNI/renderer de mãos.
+O teste nativo usa ASan/UBSan e comparação com cópia de referência. Consulte
+[HAND-VISUALS](../../analysis/builds/52168470052900520/HAND-VISUALS.md) para medidas
+dos assets originais e limitações; esses números não são um benchmark do telefone.

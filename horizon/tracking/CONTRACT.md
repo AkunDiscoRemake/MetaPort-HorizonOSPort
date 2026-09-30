@@ -119,3 +119,16 @@ O workflow de modelos agora executa `validate_models.py`: exige os dez modelos
 fixados por hash, comparação nativa, atributos DPE e coerência de 35 constantes.
 Falhas parciais não podem ser apresentadas como evidência aceita. O status aceito
 continua explicitamente **NOT_RUNTIME_VALIDATED**, sem teste de telefone/inferência.
+
+## Preparação visual original e otimizações sem perda
+
+`hand_assets.py` prepara as duas malhas originais com índices de 16 bits,
+preservando costuras UV e até sete influências de skinning. O ensaio com os
+assets verificados confirmou 1.360 vértices de desenho, 2.314 triângulos e paleta
+compacta de 17 nós por mão, sem remover os 79 nós da hierarquia de origem.
+O validador reconstrói todos os cantos e influências dos buffers produzidos.
+
+O helper C++ `metaport::hand::PalettePlan` faz somente a seleção/cópia sem
+alocações por frame de registros já fornecidos pelo produtor. Não é a bridge,
+não produz poses e não implementa o algoritmo original de animação/skinning.
+Veja [resultados, código e critérios de integração](../../analysis/builds/52168470052900520/HAND-VISUALS.md).
