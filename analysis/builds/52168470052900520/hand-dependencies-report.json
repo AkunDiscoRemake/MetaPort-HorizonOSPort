@@ -364,7 +364,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "7c7c23cfd6122a61e15e4b88591d7fd82f4d08fb1b5b2a63cb49557ba6a80e2e",
+        "decoded_text_sha256": "9ced9362309047f4fa7c32a186c3fa3ca69d6fbd496d3c00af1722fbf5ac872a",
         "tool": "llvm-objdump-14",
         "instruction_lines": 336224,
         "unknown_or_invalid_instruction_lines": 83988,
@@ -475,6 +475,13 @@
         "vector_syntax_lines": 0,
         "vector_samples": [],
         "vector_samples_truncated": false,
+        "hvx_operand_evidence": {
+          "operand_forms": {},
+          "unretained_form_occurrences": {},
+          "instruction_windows": [],
+          "hand_kernel_identified": false,
+          "scope": "16 textual forms/opcode; 2 neighborhoods/family, +/-8 listing lines; not function boundaries or runtime activation"
+        },
         "hand_call_chain_validated": false,
         "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
         "diagnostics": "",
@@ -483,7 +490,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "cfa7659e377e0a62b053e72277601aa962ee427b36249fda722d25540d698f2d",
+        "decoded_text_sha256": "5476ccea1dbdc46019086e460197c54fdff514ff721d73d9ece9d5e45c4bcdc8",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -495,12 +502,19 @@
         "vector_syntax_lines": 0,
         "vector_samples": [],
         "vector_samples_truncated": false,
+        "hvx_operand_evidence": {
+          "operand_forms": {},
+          "unretained_form_occurrences": {},
+          "instruction_windows": [],
+          "hand_kernel_identified": false,
+          "scope": "16 textual forms/opcode; 2 neighborhoods/family, +/-8 listing lines; not function boundaries or runtime activation"
+        },
         "hand_call_chain_validated": false,
         "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "e02f0d3568f9211654f75448afe3ce966f782a0404d7b12b7fc38bade908577f",
+        "decoded_text_sha256": "49237a08bfe8c5cfe2eb182f84cc63bd4af0a458d3ff64079c52ab5afb9b47e2",
         "tool": "llvm-objdump-14",
         "instruction_lines": 345808,
         "unknown_or_invalid_instruction_lines": 50552,
@@ -733,6 +747,1219 @@
           "   60304:   \tvmem(r13+#5) = v12 } "
         ],
         "vector_samples_truncated": true,
+        "hvx_operand_evidence": {
+          "operand_forms": {
+            "vsplat": {
+              "vN = vsplat(rN)": {
+                "listing_line_occurrences": 1083,
+                "example": "   5ffb4: { \tv22 = vsplat(r5)"
+              },
+              "vN.h = vsplat(rN)": {
+                "listing_line_occurrences": 7,
+                "example": "   60f04: { \tv2.h = vsplat(r8)"
+              },
+              "vN.b = vsplat(rN)": {
+                "listing_line_occurrences": 6,
+                "example": "  1352f4:   \tv22.b = vsplat(r2)"
+              }
+            },
+            "vmem": {
+              "vN = vmem(rN+#0)": {
+                "listing_line_occurrences": 985,
+                "example": "   5fff8:   \tv8 = vmem(r6+#0)"
+              },
+              "vmem(rN+#2) = vN": {
+                "listing_line_occurrences": 102,
+                "example": "   60020:   \tvmem(r7+#2) = v22 } "
+              },
+              "vmem(rN+#7) = vN.new": {
+                "listing_line_occurrences": 39,
+                "example": "   60074:   \tvmem(r29+#7) = v31.new } "
+              },
+              "vmem(rN+#6) = vN": {
+                "listing_line_occurrences": 66,
+                "example": "   60080:   \tvmem(r29+#6) = v3 } "
+              },
+              "vmem(rN+#5) = vN.new": {
+                "listing_line_occurrences": 38,
+                "example": "   600ac:   \tvmem(r29+#5) = v1.new } "
+              },
+              "vmem(rN+#4) = vN.new": {
+                "listing_line_occurrences": 46,
+                "example": "   600b8:   \tvmem(r29+#4) = v30.new } "
+              },
+              "vmem(rN+#-1) = vN": {
+                "listing_line_occurrences": 43,
+                "example": "   600c8:   \tvmem(r2+#-1) = v25 } "
+              },
+              "vmem(rN+#1) = vN": {
+                "listing_line_occurrences": 116,
+                "example": "   600cc: { \tvmem(r11+#1) = v28 } "
+              },
+              "vmem(rN+#3) = vN.new": {
+                "listing_line_occurrences": 61,
+                "example": "   600e0:   \tvmem(r29+#3) = v5.new } "
+              },
+              "vmem(rN+#-3) = vN.new": {
+                "listing_line_occurrences": 13,
+                "example": "   600ec:   \tvmem(r2+#-3) = v31.new } "
+              },
+              "vN = vmem(rN+#2)": {
+                "listing_line_occurrences": 210,
+                "example": "   6013c:   \tv26 = vmem(r29+#2)"
+              },
+              "vN = vmem(rN+#1)": {
+                "listing_line_occurrences": 302,
+                "example": "   60150:   \tv27 = vmem(r4+#1) } "
+              },
+              "vmem(rN+#-7) = vN.new": {
+                "listing_line_occurrences": 18,
+                "example": "   60160:   \tvmem(r4+#-7) = v7.new } "
+              },
+              "vN = vmem(rN+#7)": {
+                "listing_line_occurrences": 259,
+                "example": "   6016c:   \tv0 = vmem(r29+#7)"
+              },
+              "vmem(rN+#-8) = vN.new": {
+                "listing_line_occurrences": 22,
+                "example": "   60170:   \tvmem(r4+#-8) = v9.new } "
+              },
+              "vN = vmem(rN+#6)": {
+                "listing_line_occurrences": 206,
+                "example": "   6017c:   \tv31 = vmem(r29+#6)"
+              }
+            },
+            "vadd": {
+              "vN.qf32 = vadd(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 170,
+                "example": "   600e8:   \tv31.qf32 = vadd(v0.sf,v8.sf)"
+              },
+              "vN.h = vadd(vN.h,vN.h)": {
+                "listing_line_occurrences": 47,
+                "example": "   61254:   \tv22.h = vadd(v10.h,v22.h) } "
+              },
+              "vN.qf16 = vadd(vN.qf16,vN.qf16)": {
+                "listing_line_occurrences": 24,
+                "example": "   612e4: { \tv19.qf16 = vadd(v10.qf16,v3.qf16)"
+              },
+              "vN.qf32 = vadd(vN.qf32,vN.qf32)": {
+                "listing_line_occurrences": 288,
+                "example": "   61ac4: { \tv15.qf32 = vadd(v18.qf32,v30.qf32)"
+              },
+              "vN.ub = vadd(vN.ub,vN.ub):sat": {
+                "listing_line_occurrences": 8,
+                "example": "   6286c:   \tv25.ub = vadd(v30.ub,v31.ub):sat } "
+              },
+              "vPair.uh = vadd(vPair.uh,vPair.uh):sat": {
+                "listing_line_occurrences": 2,
+                "example": "   629b4: { \tv27:26.uh = vadd(v21:20.uh,v23:22.uh):sat"
+              },
+              "vN.h = vadd(vN.h,vN.h):sat": {
+                "listing_line_occurrences": 3,
+                "example": "   63ddc:   \tv1.h = vadd(v0.h,v2.h):sat } "
+              },
+              "vN.h = vadd(vN.h,vN.h):sat }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   63de4:   \tv1.h = vadd(v1.h,v0.h):sat }  :endloop0"
+              },
+              "vPair.h = vadd(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 6,
+                "example": "   644bc: { \tv31:30.h = vadd(v12.ub,v1.ub) } "
+              },
+              "vPair.h = vadd(vPair.h,vPair.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   644d4: { \tv17:16.h = vadd(v13:12.h,v15:14.h)"
+              },
+              "vN.qf32 = vadd(vN.qf32,vN.sf)": {
+                "listing_line_occurrences": 174,
+                "example": "   6549c:   \tv14.qf32 = vadd(v11.qf32,v9.sf)"
+              },
+              "vPair.w = vadd(vN.h,vN.h)": {
+                "listing_line_occurrences": 4,
+                "example": "   66698: { \tv9:8.w = vadd(v2.h,v3.h)"
+              },
+              "vN.w = vadd(vN.w,vN.w)": {
+                "listing_line_occurrences": 641,
+                "example": "   66704:   \tv4.w = vadd(v8.w,v24.w)"
+              },
+              "vN.uh = vadd(vN.uh,vN.uh):sat": {
+                "listing_line_occurrences": 64,
+                "example": "   6f430:   \tv2.uh = vadd(v1.uh,v2.uh):sat } "
+              },
+              "vPair.w = vadd(vN.uh,vN.uh)": {
+                "listing_line_occurrences": 14,
+                "example": "   74440: { \tv5:4.w = vadd(v20.uh,v18.uh) } "
+              },
+              "vN.qf32 = vadd(vN.qf32,vN.sf) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   7e510:   \tv0.qf32 = vadd(v7.qf32,v8.sf) }  :endloop0"
+              }
+            },
+            "vxor": {
+              "vN = vxor(vN,vN)": {
+                "listing_line_occurrences": 260,
+                "example": "   60f18:   \tv0 = vxor(v0,v0)"
+              }
+            },
+            "valign": {
+              "vN = valign(vN,vN,#4)": {
+                "listing_line_occurrences": 66,
+                "example": "   60ffc: { \tv25 = valign(v23,v23,#4)"
+              },
+              "vN = valign(vN,vN,rN)": {
+                "listing_line_occurrences": 747,
+                "example": "   6439c: { \tv11 = valign(v7,v6,r7)"
+              },
+              "vN = valign(vN,vN,#1)": {
+                "listing_line_occurrences": 24,
+                "example": "   664e0: { \tv3 = valign(v0,v0,#1) } "
+              },
+              "vN = valign(vN,vN,#2)": {
+                "listing_line_occurrences": 32,
+                "example": "   6977c:   \tv7 = valign(v8,v6,#2) } "
+              },
+              "vN = valign(vN,vN,#5)": {
+                "listing_line_occurrences": 6,
+                "example": "   6b744: { \tv9 = valign(v6,v7,#5)"
+              },
+              "vN = valign(vN,vN,#0)": {
+                "listing_line_occurrences": 4,
+                "example": "   6f558:   \tv1 = valign(v0,v0,#0)"
+              }
+            },
+            "vlalign": {
+              "vN = vlalign(vN,vN,#4)": {
+                "listing_line_occurrences": 13,
+                "example": "   610ec:   \tv26 = vlalign(v22,v22,#4) } "
+              },
+              "vN = vlalign(vN,vN,#1)": {
+                "listing_line_occurrences": 2,
+                "example": "   664fc:   \tv2 = vlalign(v0,v0,#1) } "
+              },
+              "vN = vlalign(vN,vN,rN)": {
+                "listing_line_occurrences": 357,
+                "example": "   66a54:   \tv12 = vlalign(v1,v0,r6)"
+              },
+              "vN = vlalign(vN,vN,rN) }  :endloop0": {
+                "listing_line_occurrences": 2,
+                "example": "   70ce0:   \tv0 = vlalign(v0,v5,r1) }  :endloop0"
+              },
+              "vN = vlalign(vN,vN,#0)": {
+                "listing_line_occurrences": 1,
+                "example": "   ab620: { \tv12 = vlalign(v11,v11,#0) } "
+              }
+            },
+            "vshuff": {
+              "vPair = vshuff(vN,vN,rN)": {
+                "listing_line_occurrences": 907,
+                "example": "   61128:   \tv9:8 = vshuff(v9,v9,r7) } "
+              },
+              "vN.h = vshuff(vN.h)": {
+                "listing_line_occurrences": 38,
+                "example": "   61e78: { \tv28.h = vshuff(v19.h) } "
+              },
+              "vPair = vshuff(vN,vN,rN) }  :endloop0": {
+                "listing_line_occurrences": 4,
+                "example": "   62a80:   \tv7:6 = vshuff(v17,v16,r7) }  :endloop0"
+              },
+              "vshuff(vN,vN,rN)": {
+                "listing_line_occurrences": 24,
+                "example": "   df7c0:   \tvshuff(v1,v0,r28) } "
+              },
+              "vN.b = vshuff(vN.b)": {
+                "listing_line_occurrences": 6,
+                "example": "   e03b4: { \tv0.b = vshuff(v2.b) } "
+              }
+            },
+            "vunpack": {
+              "vPair.uh = vunpack(vN.ub)": {
+                "listing_line_occurrences": 48,
+                "example": "   6119c:   \tv11:10.uh = vunpack(v29.ub)"
+              },
+              "vPair.uw = vunpack(vN.uh)": {
+                "listing_line_occurrences": 28,
+                "example": "   e04c8: { \tv3:2.uw = vunpack(v3.uh) } "
+              },
+              "vPair.w = vunpack(vN.h)": {
+                "listing_line_occurrences": 24,
+                "example": "  118768: { \tv25:24.w = vunpack(v30.h) } "
+              }
+            },
+            "vand": {
+              "vN = vand(qN,rN)": {
+                "listing_line_occurrences": 204,
+                "example": "   611b0: { \tv3 = vand(q3,r3)"
+              },
+              "qN = vand(vN,rN)": {
+                "listing_line_occurrences": 334,
+                "example": "   613b0: { \tq3 = vand(v4,r3)"
+              },
+              "vN = vand(vN,vN)": {
+                "listing_line_occurrences": 297,
+                "example": "   61e1c:   \tv30 = vand(v8,v7) } "
+              },
+              "vN |= vand(qN,rN)": {
+                "listing_line_occurrences": 2,
+                "example": "   66be0: { \tv8 |= vand(q0,r0)"
+              },
+              "vN = vand(!qN,rN)": {
+                "listing_line_occurrences": 1,
+                "example": "   ddedc: { \tv8 = vand(!q0,r3)"
+              },
+              "vN = vand(qN,vN)": {
+                "listing_line_occurrences": 2,
+                "example": "   ddeec: { \tv12 = vand(q1,v8)"
+              },
+              "vN = vand(!qN,vN)": {
+                "listing_line_occurrences": 2,
+                "example": "   ddef0:   \tv13 = vand(!q1,v8) } "
+              }
+            },
+            "vcl0": {
+              "vN.uh = vcl0(vN.uh)": {
+                "listing_line_occurrences": 38,
+                "example": "   611c4:   \tv19.uh = vcl0(v10.uh)"
+              },
+              "vN.uw = vcl0(vN.uw)": {
+                "listing_line_occurrences": 6,
+                "example": "  12ff48: { \tv21.uw = vcl0(v20.uw) } "
+              }
+            },
+            "vasl": {
+              "vN.h = vasl(vN.h,vN.h)": {
+                "listing_line_occurrences": 38,
+                "example": "   61208: { \tv6.h = vasl(v6.h,v4.h)"
+              },
+              "vN.h = vasl(vN.h,rN)": {
+                "listing_line_occurrences": 40,
+                "example": "   61248: { \tv10.h = vasl(v10.h,r27)"
+              },
+              "vN.h += vasl(vN.h,rN)": {
+                "listing_line_occurrences": 4,
+                "example": "   64a2c: { \tv25.h += vasl(v26.h,r15)"
+              },
+              "vN.w = vasl(vN.w,rN)": {
+                "listing_line_occurrences": 310,
+                "example": "   72398: { \tv20.w = vasl(v12.w,r10) } "
+              },
+              "vN.w = vasl(vN.w,vN.w)": {
+                "listing_line_occurrences": 74,
+                "example": "   89b24: { \tv1.w = vasl(v6.w,v29.w)"
+              },
+              "vN.w = vasl(vN.w,rN) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   8a8a0:   \tv22.w = vasl(v23.w,r28) }  :endloop0"
+              },
+              "vN.w += vasl(vN.w,rN)": {
+                "listing_line_occurrences": 7,
+                "example": "   8ae58: { \tv30.w += vasl(v26.w,r17)"
+              }
+            },
+            "vsub": {
+              "vN.h = vsub(vN.h,vN.h)": {
+                "listing_line_occurrences": 119,
+                "example": "   61214:   \tv22.h = vsub(v3.h,v1.h)"
+              },
+              "vN.qf16 = vsub(vN.qf16,vN.qf16)": {
+                "listing_line_occurrences": 24,
+                "example": "   61290:   \tv9.qf16 = vsub(v19.qf16,v10.qf16) } "
+              },
+              "vN.qf32 = vsub(vN.qf32,vN.qf32)": {
+                "listing_line_occurrences": 60,
+                "example": "   61ad4:   \tv15.qf32 = vsub(v18.qf32,v30.qf32)"
+              },
+              "vN.w = vsub(vN.w,vN.w)": {
+                "listing_line_occurrences": 1048,
+                "example": "   61e38:   \tv9.w = vsub(v10.w,v30.w)"
+              },
+              "vPair.w = vsub(vPair.w,vPair.w)": {
+                "listing_line_occurrences": 20,
+                "example": "   6688c:   \tv13:12.w = vsub(v7:6.w,v3:2.w) } "
+              },
+              "vN.ub = vsub(vN.ub,vN.ub):sat": {
+                "listing_line_occurrences": 5,
+                "example": "   6f4c8:   \tv27.ub = vsub(v26.ub,v25.ub):sat } "
+              },
+              "vPair.w = vsub(vN.uh,vN.uh)": {
+                "listing_line_occurrences": 34,
+                "example": "   6ff38: { \tv17:16.w = vsub(v4.uh,v18.uh) } "
+              },
+              "vN.w = vsub(vN.w,vN.w) }  :endloop0": {
+                "listing_line_occurrences": 2,
+                "example": "   70234:   \tv28.w = vsub(v28.w,v10.w) }  :endloop0"
+              },
+              "vN.qf32 = vsub(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 26,
+                "example": "   86ce4: { \tv6.qf32 = vsub(v4.sf,v5.sf)"
+              },
+              "vN.qf32 = vsub(vN.qf32,vN.sf)": {
+                "listing_line_occurrences": 17,
+                "example": "   8a718: { \tv20.qf32 = vsub(v19.qf32,v14.sf)"
+              },
+              "vN.w = vsub(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 23,
+                "example": "  119570:   \tv11.w = vsub(v1.w,v29.w):sat"
+              },
+              "vN.uh = vsub(vN.uh,vN.uh):sat": {
+                "listing_line_occurrences": 1,
+                "example": "  11d298:   \tv7.uh = vsub(v28.uh,v3.uh):sat } "
+              }
+            },
+            "vlsr": {
+              "vN.uh = vlsr(vN.uh,rN)": {
+                "listing_line_occurrences": 39,
+                "example": "   61238: { \tv10.uh = vlsr(v23.uh,r25) } "
+              },
+              "vN.ub = vlsr(vN.ub,rN)": {
+                "listing_line_occurrences": 49,
+                "example": "   627dc:   \tv1.ub = vlsr(v4.ub,r3) } "
+              },
+              "vN.uw = vlsr(vN.uw,rN)": {
+                "listing_line_occurrences": 104,
+                "example": "   6fe28:   \tv19.uw = vlsr(v28.uw,r13)"
+              },
+              "vN.w = vlsr(vN.w,vN.w)": {
+                "listing_line_occurrences": 22,
+                "example": "   89b34: { \tv26.w = vlsr(v26.w,v31.w)"
+              }
+            },
+            "vmux": {
+              "vN = vmux(qN,vN,vN)": {
+                "listing_line_occurrences": 1079,
+                "example": "   61260:   \tv10 = vmux(q3,v0,v22) } "
+              },
+              "vN = vmux(qN,vN,vN) }  :endloop0": {
+                "listing_line_occurrences": 2,
+                "example": "   628ac:   \tv7 = vmux(q0,v10,v7) }  :endloop0"
+              }
+            },
+            "vmpy": {
+              "vN.qf16 = vmpy(vN.qf16,vN.hf)": {
+                "listing_line_occurrences": 32,
+                "example": "   61298: { \tv3.qf16 = vmpy(v9.qf16,v26.hf)"
+              },
+              "vPair.qf32 = vmpy(vN.qf16,vN.hf)": {
+                "listing_line_occurrences": 10,
+                "example": "   615bc: { \tv11:10.qf32 = vmpy(v16.qf16,v18.hf) } "
+              },
+              "vN.qf32 = vmpy(vN.qf32,vN.qf32)": {
+                "listing_line_occurrences": 481,
+                "example": "   61ad0: { \tv22.qf32 = vmpy(v15.qf32,v4.qf32)"
+              },
+              "vN.qf16 = vmpy(vN.qf16,vN.qf16)": {
+                "listing_line_occurrences": 4,
+                "example": "   63180: { \tv3.qf16 = vmpy(v4.qf16,v4.qf16)"
+              },
+              "vN.qf32 = vmpy(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 129,
+                "example": "   65488: { \tv11.qf32 = vmpy(v10.sf,v1.sf)"
+              },
+              "vPair.h = vmpy(vN.b,vN.b)": {
+                "listing_line_occurrences": 3,
+                "example": "   6652c: { \tv27:26.h = vmpy(v7.b,v7.b)"
+              },
+              "vPair.w += vmpy(vN.h,rN.h):sat": {
+                "listing_line_occurrences": 4,
+                "example": "   666a4: { \tv9:8.w += vmpy(v6.h,r5.h):sat"
+              },
+              "vPair.w = vmpy(vN.h,vN.h)": {
+                "listing_line_occurrences": 21,
+                "example": "   6686c: { \tv3:2.w = vmpy(v2.h,v2.h)"
+              },
+              "vPair.uh += vmpy(vN.ub,rN.ub)": {
+                "listing_line_occurrences": 6,
+                "example": "   6979c: { \tv13:12.uh += vmpy(v4.ub,r8.ub) } "
+              },
+              "vPair.uh = vmpy(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 38,
+                "example": "   6fdc4: { \tv13:12.uh = vmpy(v14.ub,v6.ub)"
+              },
+              "vPair.uw = vmpy(vN.uh,rN.uh)": {
+                "listing_line_occurrences": 2,
+                "example": "   7014c: { \tv13:12.uw = vmpy(v16.uh,r14.uh)"
+              },
+              "vPair.w = vmpy(vN.h,vN.uh)": {
+                "listing_line_occurrences": 9,
+                "example": "   70160: { \tv11:10.w = vmpy(v17.h,v12.uh)"
+              },
+              "vPair.w += vmpy(vN.h,vN.h)": {
+                "listing_line_occurrences": 18,
+                "example": "  117aec: { \tv23:22.w += vmpy(v4.h,v4.h) } "
+              },
+              "vPair.w += vmpy(vN.h,vN.uh)": {
+                "listing_line_occurrences": 4,
+                "example": "  12dedc: { \tv3:2.w += vmpy(v4.h,v6.uh)"
+              },
+              "vPair.uw += vmpy(vN.uh,rN.uh)": {
+                "listing_line_occurrences": 20,
+                "example": "  12dff8: { \tv5:4.uw += vmpy(v10.uh,r14.uh)"
+              }
+            },
+            "vdeal": {
+              "vPair = vdeal(vN,vN,rN)": {
+                "listing_line_occurrences": 183,
+                "example": "   615ac:   \tv31:30 = vdeal(v23,v3,r7) } "
+              },
+              "vN.h = vdeal(vN.h)": {
+                "listing_line_occurrences": 9,
+                "example": "   72f48: { \tv6.h = vdeal(v5.h) } "
+              },
+              "vN.b = vdeal(vN.b)": {
+                "listing_line_occurrences": 1,
+                "example": "   747a8: { \tv1.b = vdeal(v9.b) } "
+              }
+            },
+            "vzxt": {
+              "vPair.uh = vzxt(vN.ub)": {
+                "listing_line_occurrences": 12,
+                "example": "   61660:   \tv29:28.uh = vzxt(v17.ub) } "
+              },
+              "vPair.uw = vzxt(vN.uh)": {
+                "listing_line_occurrences": 24,
+                "example": "   8a644:   \tv3:2.uw = vzxt(v5.uh)"
+              }
+            },
+            "vmax": {
+              "vN.w = vmax(vN.w,vN.w)": {
+                "listing_line_occurrences": 87,
+                "example": "   61af0: { \tv26.w = vmax(v18.w,v9.w) } "
+              },
+              "vN.ub = vmax(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 50,
+                "example": "   6f440:   \tv8.ub = vmax(v5.ub,v0.ub) } "
+              },
+              "vN.uh = vmax(vN.uh,vN.uh)": {
+                "listing_line_occurrences": 1,
+                "example": "   e15cc:   \tv4.uh = vmax(v3.uh,v0.uh)"
+              },
+              "vN.sf = vmax(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 4,
+                "example": "  127efc: { \tv11.sf = vmax(v2.sf,v9.sf)"
+              }
+            },
+            "vasr": {
+              "vN.w = vasr(vN.w,rN)": {
+                "listing_line_occurrences": 88,
+                "example": "   61dec: { \tv15.w = vasr(v7.w,r9) } "
+              },
+              "vN.w = vasr(vN.w,vN.w)": {
+                "listing_line_occurrences": 56,
+                "example": "   61e54: { \tv12.w = vasr(v16.w,v24.w)"
+              },
+              "vN.h = vasr(vN.h,vN.h)": {
+                "listing_line_occurrences": 4,
+                "example": "   644c4: { \tv15.h = vasr(v31.h,v2.h) } "
+              },
+              "vN.h = vasr(vN.w,vN.w,rN)": {
+                "listing_line_occurrences": 4,
+                "example": "   6676c: { \tv30.h = vasr(v5.w,v4.w,r7)"
+              },
+              "vN.ub = vasr(vN.h,vN.h,rN):rnd:sat": {
+                "listing_line_occurrences": 4,
+                "example": "   69794:   \tv3.ub = vasr(v11.h,v10.h,r7):rnd:sat } "
+              },
+              "vN.h = vasr(vN.h,rN)": {
+                "listing_line_occurrences": 1,
+                "example": "   747a4: { \tv9.h = vasr(v8.h,r5) } "
+              },
+              "vN.w += vasr(vN.w,rN)": {
+                "listing_line_occurrences": 618,
+                "example": "   e55ac: { \tv4.w += vasr(v19.w,r13)"
+              },
+              "vN.h = vasr(vN.w,vN.w,rN):sat": {
+                "listing_line_occurrences": 100,
+                "example": "   efb44: { \tv11.h = vasr(v9.w,v5.w,r7):sat } "
+              },
+              "vN.ub = vasr(vN.h,vN.h,rN):sat": {
+                "listing_line_occurrences": 54,
+                "example": "   efb50:   \tv13.ub = vasr(v12.h,v11.h,r7):sat"
+              }
+            },
+            "vpack": {
+              "vN.h = vpack(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 124,
+                "example": "   61e70:   \tv19.h = vpack(v21.w,v12.w):sat } "
+              },
+              "vN.ub = vpack(vN.h,vN.h):sat": {
+                "listing_line_occurrences": 85,
+                "example": "   61e84: { \tv13.ub = vpack(v26.h,v28.h):sat } "
+              },
+              "vN.uh = vpack(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 155,
+                "example": "  119608:   \tv15.uh = vpack(v27.w,v10.w):sat } "
+              },
+              "vN.uh = vpack(vN.w,vN.w):sat }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "  12fd48:   \tv5.uh = vpack(v16.w,v14.w):sat }  :endloop0"
+              }
+            },
+            "vcombine": {
+              "vPair = vcombine(vN,vN)": {
+                "listing_line_occurrences": 56,
+                "example": "   627ec:   \tv7:6 = vcombine(v3,v2) } "
+              },
+              "vPair = vcombine(vN,vN) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   667a0:   \tv7:6 = vcombine(v17,v16) }  :endloop0"
+              }
+            },
+            "vpopcount": {
+              "vN.h = vpopcount(vN.h)": {
+                "listing_line_occurrences": 4,
+                "example": "   6282c: { \tv17.h = vpopcount(v9.h)"
+              }
+            },
+            "vdelta": {
+              "vN = vdelta(vN,vN)": {
+                "listing_line_occurrences": 323,
+                "example": "   628d4: { \tv7 = vdelta(v7,v20) } "
+              }
+            },
+            "vswap": {
+              "vPair = vswap(qN,vN,vN)": {
+                "listing_line_occurrences": 10,
+                "example": "   62908: { \tv9:8 = vswap(q2,v31,v30)"
+              }
+            },
+            "vrmpy": {
+              "vN.uw += vrmpy(vN.ub,rN.ub)": {
+                "listing_line_occurrences": 4527,
+                "example": "   63100: { \tv2.uw += vrmpy(v3.ub,r7.ub)"
+              },
+              "vN.uw = vrmpy(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 29,
+                "example": "   637bc: { \tv7.uw = vrmpy(v7.ub,v8.ub)"
+              },
+              "vN.uw += vrmpy(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 424,
+                "example": "   66e40: { \tv0.uw += vrmpy(v2.ub,v16.ub)"
+              },
+              "vN.w += vrmpy(vN.ub,vN.b)": {
+                "listing_line_occurrences": 196,
+                "example": "   69e48: { \tv6.w += vrmpy(v17.ub,v18.b)"
+              },
+              "vN.uw = vrmpy(vN.ub,rN.ub)": {
+                "listing_line_occurrences": 409,
+                "example": "   70220: { \tv10.uw = vrmpy(v10.ub,r9.ub)"
+              },
+              "vN.w += vrmpy(vN.ub,rN.b)": {
+                "listing_line_occurrences": 202,
+                "example": "   71448: { \tv3.w += vrmpy(v24.ub,r17.b)"
+              },
+              "vN.w = vrmpy(vN.ub,rN.b)": {
+                "listing_line_occurrences": 27,
+                "example": "   72f40: { \tv5.w = vrmpy(v31.ub,r2.b)"
+              },
+              "vN.w = vrmpy(vN.ub,vN.b)": {
+                "listing_line_occurrences": 24,
+                "example": "   e5b5c: { \tv12.w = vrmpy(v30.ub,v23.b)"
+              }
+            },
+            "vscatter": {
+              "vscatter(rN,m0,vN.h).h = vN": {
+                "listing_line_occurrences": 14,
+                "example": "   638a0: { \tvscatter(r0,m0,v28.h).h = v18 } "
+              },
+              "vscatter(rN,m0,vN.h).h = vN }  :endloop0": {
+                "listing_line_occurrences": 2,
+                "example": "   638d8:   \tvscatter(r0,m0,v28.h).h = v25 }  :endloop0"
+              },
+              "vscatter(rN,m0,vN.w).w = vN }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "  1385fc:   \tvscatter(r21,m0,v2.w).w = v0 }  :endloop0"
+              },
+              "if (qN) vscatter(rN,m0,vN.w).w = vN": {
+                "listing_line_occurrences": 1,
+                "example": "  13ddac:   \tif (q1) vscatter(r20,m0,v7.w).w = v8 } "
+              }
+            },
+            "vextract": {
+              "rN = vextract(vN,rN)": {
+                "listing_line_occurrences": 27,
+                "example": "   63dec: { \tr16 = vextract(v1,r2) } "
+              }
+            },
+            "vrdelta": {
+              "vN = vrdelta(vN,vN)": {
+                "listing_line_occurrences": 395,
+                "example": "   643d0: { \tv21 = vrdelta(v11,v13)"
+              },
+              "vN = vrdelta(vN,vN) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   de5c0:   \tv3 = vrdelta(v5,v2) }  :endloop0"
+              }
+            },
+            "vror": {
+              "vN = vror(vN,rN)": {
+                "listing_line_occurrences": 281,
+                "example": "   64490: { \tv9 = vror(v4,r13)"
+              }
+            },
+            "vgather": {
+              "if (qN) vtmp.h = vgather(rN,m0,vN.h).h": {
+                "listing_line_occurrences": 8,
+                "example": "   6496c: { \tif (q0) vtmp.h = vgather(r16,m0,v10.h).h"
+              },
+              "vtmp.h = vgather(rN,m0,vPair.w).h": {
+                "listing_line_occurrences": 6,
+                "example": "   e04d8: { \tvtmp.h = vgather(r14,m0,v5:4.w).h"
+              },
+              "if (qN) vtmp.w = vgather(rN,m0,vN.w).w": {
+                "listing_line_occurrences": 1,
+                "example": "  13da28: { \tif (q1) vtmp.w = vgather(r21,m0,v6.w).w"
+              }
+            },
+            "vmemu": {
+              "vN = vmemu(rN++#1)": {
+                "listing_line_occurrences": 93,
+                "example": "   664d4:   \tv0 = vmemu(r0++#1) } "
+              },
+              "vN = vmemu(rN+#0)": {
+                "listing_line_occurrences": 876,
+                "example": "   66e38: { \tv2 = vmemu(r24+#0) } "
+              },
+              "vN = vmemu(rN+#1)": {
+                "listing_line_occurrences": 36,
+                "example": "   7e1c4:   \tv7 = vmemu(r3+#1) } "
+              },
+              "vmemu(rN++#1) = vN": {
+                "listing_line_occurrences": 81,
+                "example": "   7e1c8: { \tvmemu(r3++#1) = v0 } "
+              },
+              "vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 156,
+                "example": "   7e550:   \tvmemu(r18+#0) = v3 } "
+              },
+              "if (p0) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 13,
+                "example": "   7e5e0:   \tif (p0) vmemu(r5+#0) = v2 } "
+              },
+              "vmemu(rN++#1) = vN }  :endloop0": {
+                "listing_line_occurrences": 16,
+                "example": "   8ae6c:   \tvmemu(r1++#1) = v31 }  :endloop0"
+              },
+              "vN = vmemu(rN++#1) }  :endloop0": {
+                "listing_line_occurrences": 5,
+                "example": "   ab5d0:   \tv2 = vmemu(r18++#1) }  :endloop0"
+              },
+              "vmemu(rN++m0) = vN": {
+                "listing_line_occurrences": 1,
+                "example": "   df1a0:   \tvmemu(r20++m0) = v0 } "
+              },
+              "if (p0) vmemu(rN++m0) = vN": {
+                "listing_line_occurrences": 2,
+                "example": "   df1a8:   \tif (p0) vmemu(r20++m0) = v1 } "
+              },
+              "if (p0) vmemu(rN+#0) = vN }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   df1b8:   \tif (p0) vmemu(r20+#0) = v3 }  :endloop0"
+              },
+              "if (!p0) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 7,
+                "example": "   e04ec:   \tif (!p0) vmemu(r3+#0) = v2 } "
+              },
+              "vN = vmemu(rN+#0) }  :endloop0": {
+                "listing_line_occurrences": 4,
+                "example": "   e2418:   \tv1 = vmemu(r10+#0) }  :endloop0"
+              },
+              "if (!p2) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 2,
+                "example": "   e2440:   \tif (!p2) vmemu(r28+#0) = v0 } "
+              },
+              "vmemu(rN+#1) = vN": {
+                "listing_line_occurrences": 55,
+                "example": "  106044: { \tvmemu(r5+#1) = v19 } "
+              },
+              "vmemu(rN+#-4) = vN": {
+                "listing_line_occurrences": 2,
+                "example": "  106290: { \tvmemu(r8+#-4) = v5 } "
+              }
+            },
+            "vnavg": {
+              "vN.b = vnavg(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 2,
+                "example": "   6651c: { \tv7.b = vnavg(v4.ub,v1.ub)"
+              }
+            },
+            "vmpa": {
+              "vPair.w += vmpa(vPair.h,rN.b)": {
+                "listing_line_occurrences": 4,
+                "example": "   666b4: { \tv9:8.w += vmpa(v5:4.h,r4.b)"
+              },
+              "vPair.h = vmpa(vPair.ub,rN.b)": {
+                "listing_line_occurrences": 6,
+                "example": "  1363f0: { \tv7:6.h = vmpa(v5:4.ub,r3.b)"
+              },
+              "vPair.w = vmpa(vPair.uh,rN.b)": {
+                "listing_line_occurrences": 8,
+                "example": "  136444: { \tv25:24.w = vmpa(v11:10.uh,r3.b)"
+              }
+            },
+            "vmpyi": {
+              "vN.w += vmpyi(vN.w,rN.b)": {
+                "listing_line_occurrences": 16,
+                "example": "   66740: { \tv5.w += vmpyi(v10.w,r2.b)"
+              }
+            },
+            "vmpyieo": {
+              "vN.w = vmpyieo(vN.h,vN.h)": {
+                "listing_line_occurrences": 8,
+                "example": "   668c8: { \tv9.w = vmpyieo(v4.h,v0.h)"
+              }
+            },
+            "vmpyie": {
+              "vN.w += vmpyie(vN.w,vN.uh)": {
+                "listing_line_occurrences": 8,
+                "example": "   668d4: { \tv9.w += vmpyie(v4.w,v0.uh)"
+              },
+              "vN.w = vmpyie(vN.w,vN.uh)": {
+                "listing_line_occurrences": 19,
+                "example": "   7238c: { \tv17.w = vmpyie(v15.w,v8.uh)"
+              },
+              "vN.w += vmpyie(vN.w,vN.h)": {
+                "listing_line_occurrences": 25,
+                "example": "   eb834:   \tv23.w += vmpyie(v27.w,v28.h)"
+              }
+            },
+            "vnot": {
+              "vN = vnot(vN)": {
+                "listing_line_occurrences": 5,
+                "example": "   66a88:   \tv3 = vnot(v19)"
+              }
+            },
+            "vdmpy": {
+              "vPair.h = vdmpy(vPair.ub,rN.b)": {
+                "listing_line_occurrences": 2,
+                "example": "   69788: { \tv11:10.h = vdmpy(v7:6.ub,r3.b) } "
+              },
+              "vN.w = vdmpy(vN.h,rN.b)": {
+                "listing_line_occurrences": 8,
+                "example": "   72f54: { \tv7.w = vdmpy(v6.h,r2.b)"
+              },
+              "vN.h = vdmpy(vN.ub,rN.b)": {
+                "listing_line_occurrences": 6,
+                "example": "   74414: { \tv17.h = vdmpy(v3.ub,r4.b)"
+              },
+              "vN.w = vdmpy(vN.h,rN.h):sat": {
+                "listing_line_occurrences": 32,
+                "example": "   df6c8: { \tv0.w = vdmpy(v0.h,r10.h):sat"
+              }
+            },
+            "vtmpy": {
+              "vPair.h += vtmpy(vPair.ub,rN.b)": {
+                "listing_line_occurrences": 2,
+                "example": "   6978c: { \tv11:10.h += vtmpy(v9:8.ub,r6.b) } "
+              }
+            },
+            "vmin": {
+              "vN.ub = vmin(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 37,
+                "example": "   6f43c: { \tv7.ub = vmin(v5.ub,v0.ub)"
+              },
+              "vN.w = vmin(vN.w,vN.w)": {
+                "listing_line_occurrences": 8,
+                "example": "   723ac:   \tv31.w = vmin(v23.w,v22.w)"
+              },
+              "vN.sf = vmin(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 2,
+                "example": "  127f0c: { \tv15.sf = vmin(v4.sf,v12.sf)"
+              }
+            },
+            "vabs": {
+              "vN.w = vabs(vN.w)": {
+                "listing_line_occurrences": 70,
+                "example": "   6ff5c:   \tv20.w = vabs(v11.w)"
+              },
+              "vN.h = vabs(vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "  147010: { \tv18.h = vabs(v15.h)"
+              }
+            },
+            "vmpye": {
+              "vN.w = vmpye(vN.w,vN.uh)": {
+                "listing_line_occurrences": 674,
+                "example": "   7017c: { \tv15.w = vmpye(v17.w,v12.uh)"
+              },
+              "vPair = vmpye(vN.w,vN.uh)": {
+                "listing_line_occurrences": 2,
+                "example": "  11d868: { \tv25:24 = vmpye(v31.w,v6.uh)"
+              }
+            },
+            "vshuffe": {
+              "vN.h = vshuffe(vN.h,vN.h)": {
+                "listing_line_occurrences": 4,
+                "example": "   73b64: { \tv24.h = vshuffe(v22.h,v20.h)"
+              },
+              "vN.b = vshuffe(vN.b,vN.b)": {
+                "listing_line_occurrences": 3,
+                "example": "   74418:   \tv14.b = vshuffe(v0.b,v4.b)"
+              }
+            },
+            "vshuffo": {
+              "vN.b = vshuffo(vN.b,vN.b)": {
+                "listing_line_occurrences": 1,
+                "example": "   73b6c: { \tv26.b = vshuffo(v25.b,v24.b)"
+              },
+              "vN.h = vshuffo(vN.h,vN.h)": {
+                "listing_line_occurrences": 1,
+                "example": "   74790:   \tv5.h = vshuffo(v2.h,v3.h)"
+              }
+            },
+            "vshuffoe": {
+              "vPair.b = vshuffoe(vN.b,vN.b)": {
+                "listing_line_occurrences": 1,
+                "example": "   7445c: { \tv11:10.b = vshuffoe(v26.b,v25.b) } "
+              }
+            },
+            "vor": {
+              "vN = vor(vN,vN)": {
+                "listing_line_occurrences": 64,
+                "example": "   7dac0:   \tv5 = vor(v3,v2)"
+              },
+              "vN = vor(vN,vN) }  :endloop0": {
+                "listing_line_occurrences": 3,
+                "example": "   ddf4c:   \tv5 = vor(v26,v27) }  :endloop0"
+              }
+            },
+            "vlut16": {
+              "vPair.h = vlut16(vN.b,vN.h,rN)": {
+                "listing_line_occurrences": 79,
+                "example": "   8a74c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } "
+              },
+              "vPair.h |= vlut16(vN.b,vN.h,rN)": {
+                "listing_line_occurrences": 79,
+                "example": "   8a754:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)"
+              }
+            },
+            "vnormamt": {
+              "vN.w = vnormamt(vN.w)": {
+                "listing_line_occurrences": 6,
+                "example": "   8b488: { \tv2.w = vnormamt(v22.w) } "
+              }
+            },
+            "vlut32": {
+              "vN.b = vlut32(vN.b,vN.b,rN)": {
+                "listing_line_occurrences": 7,
+                "example": "   e03f8:   \tv5.b = vlut32(v4.b,v0.b,r6) } "
+              },
+              "vN.b |= vlut32(vN.b,vN.b,rN)": {
+                "listing_line_occurrences": 49,
+                "example": "   e0400:   \tv5.b |= vlut32(v4.b,v0.b,r6) } "
+              }
+            },
+            "vmpyo": {
+              "vN.w += vmpyo(vN.w,vN.h):<<1:rnd:sat:shift": {
+                "listing_line_occurrences": 652,
+                "example": "   e5580: { \tv8.w += vmpyo(v7.w,v0.h):<<1:rnd:sat:shift"
+              },
+              "vPair += vmpyo(vN.w,vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "  11d874: { \tv25:24 += vmpyo(v31.w,v6.h)"
+              }
+            },
+            "vmpyio": {
+              "vN.w = vmpyio(vN.w,vN.h)": {
+                "listing_line_occurrences": 8,
+                "example": "  119240: { \tv22.w = vmpyio(v6.w,v6.h)"
+              }
+            },
+            "vsat": {
+              "vN.uh = vsat(vN.uw,vN.uw)": {
+                "listing_line_occurrences": 6,
+                "example": "  11c008:   \tv30.uh = vsat(v14.uw,v28.uw) } "
+              },
+              "vN.h = vsat(vN.w,vN.w)": {
+                "listing_line_occurrences": 3,
+                "example": "  11c234:   \tv1.h = vsat(v11.w,v10.w) } "
+              }
+            },
+            "vsxt": {
+              "vPair.h = vsxt(vN.b)": {
+                "listing_line_occurrences": 1,
+                "example": "  12dea0:   \tv5:4.h = vsxt(v4.b) } "
+              },
+              "vPair.h = vsxt(vN.b) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "  12deec:   \tv5:4.h = vsxt(v8.b) }  :endloop0"
+              }
+            },
+            "vunpacko": {
+              "vPair.w |= vunpacko(vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "  1471d8: { \tv25:24.w |= vunpacko(v29.h)"
+              }
+            }
+          },
+          "unretained_form_occurrences": {
+            "vmem": 4373,
+            "vadd": 703,
+            "vmemu": 86
+          },
+          "instruction_windows": [
+            {
+              "family": "repacking",
+              "center_listing": "   60ffc: { \tv25 = valign(v23,v23,#4)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   60fdc:   \tv23 = vmem(r2+#0) } ",
+                "   60fe0: { \tr8 = add(r8,r23)",
+                "   60fe4:   \tr24 = r0",
+                "   60fe8:   \tr26 = r1",
+                "   60fec:   \tmemw(r29+#220) = r28 } ",
+                "   60ff0: { \tif (!p2) r3 = add(r6,#0)",
+                "   60ff4:   \tv11 = vmem(r4+#0)",
+                "   60ff8:   \tmemw(r29+#252) = r8 } ",
+                "   60ffc: { \tv25 = valign(v23,v23,#4)",
+                "   61000:   \tr8 = memw(r29+#244)",
+                "   61004:   \tvmem(r5+#5) = v25.new } ",
+                "   61008: { \tloop0(0x61064,r0)",
+                "   6100c:   \tv27 = valign(v11,v11,#4)",
+                "   61010:   \tv22 = vmem(r13+#0)",
+                "   61014:   \tvmem(r29+#4) = v27.new } ",
+                "   61018: { \tr12 = add(r8,#128)",
+                "   6101c:   \tmemw(r29+#228) = r4"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "repacking",
+              "center_listing": "   6100c:   \tv27 = valign(v11,v11,#4)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   60fec:   \tmemw(r29+#220) = r28 } ",
+                "   60ff0: { \tif (!p2) r3 = add(r6,#0)",
+                "   60ff4:   \tv11 = vmem(r4+#0)",
+                "   60ff8:   \tmemw(r29+#252) = r8 } ",
+                "   60ffc: { \tv25 = valign(v23,v23,#4)",
+                "   61000:   \tr8 = memw(r29+#244)",
+                "   61004:   \tvmem(r5+#5) = v25.new } ",
+                "   61008: { \tloop0(0x61064,r0)",
+                "   6100c:   \tv27 = valign(v11,v11,#4)",
+                "   61010:   \tv22 = vmem(r13+#0)",
+                "   61014:   \tvmem(r29+#4) = v27.new } ",
+                "   61018: { \tr12 = add(r8,#128)",
+                "   6101c:   \tmemw(r29+#228) = r4",
+                "   61020:   \tmemw(r29+#224) = r2 } ",
+                "   61024: { \tr8 = add(r2,#128)",
+                "   61028:   \tv20 = valign(v22,v22,#4)",
+                "   6102c:   \tv9 = vmem(r8+#0)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "narrow_saturate",
+              "center_listing": "   6119c:   \tv11:10.uh = vunpack(v29.ub)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   6117c:   \tif (!p0) r3 = add(r29,##2048)",
+                "   61180:   \tif (p0) jump:nt 0x6160c",
+                "   61184:   \tvmem(r3+#-3) = v18 } ",
+                "   61188: { \tv29 = vlalign(v4,v16,#4)",
+                "   6118c:   \tv16.cur = vmem(r29+#4) } ",
+                "   61190: { \tv7 = valign(v9,v8,#4) } ",
+                "   61194: { \timmext(#16843008)",
+                "   61198:   \tr3 = ##16843009",
+                "   6119c:   \tv11:10.uh = vunpack(v29.ub)",
+                "   611a0:   \tv17 = vmem(r3+#-8) } ",
+                "   611a4: { \tv7:6.uh = vunpack(v7.ub)",
+                "   611a8:   \tq3 = vcmp.eq(v11.h,v0.h)",
+                "   611ac:   \tq2 = vcmp.eq(v10.h,v0.h) } ",
+                "   611b0: { \tv3 = vand(q3,r3)",
+                "   611b4:   \tr3 = add(r29,#4096)",
+                "   611b8:   \tv14 = valign(v27,v9,#4)",
+                "   611bc:   \tq0 = vcmp.eq(v7.h,v0.h) } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "narrow_saturate",
+              "center_listing": "   611a4: { \tv7:6.uh = vunpack(v7.ub)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   61184:   \tvmem(r3+#-3) = v18 } ",
+                "   61188: { \tv29 = vlalign(v4,v16,#4)",
+                "   6118c:   \tv16.cur = vmem(r29+#4) } ",
+                "   61190: { \tv7 = valign(v9,v8,#4) } ",
+                "   61194: { \timmext(#16843008)",
+                "   61198:   \tr3 = ##16843009",
+                "   6119c:   \tv11:10.uh = vunpack(v29.ub)",
+                "   611a0:   \tv17 = vmem(r3+#-8) } ",
+                "   611a4: { \tv7:6.uh = vunpack(v7.ub)",
+                "   611a8:   \tq3 = vcmp.eq(v11.h,v0.h)",
+                "   611ac:   \tq2 = vcmp.eq(v10.h,v0.h) } ",
+                "   611b0: { \tv3 = vand(q3,r3)",
+                "   611b4:   \tr3 = add(r29,#4096)",
+                "   611b8:   \tv14 = valign(v27,v9,#4)",
+                "   611bc:   \tq0 = vcmp.eq(v7.h,v0.h) } ",
+                "   611c0: { \tv27 = vlalign(v9,v8,#4)",
+                "   611c4:   \tv19.uh = vcl0(v10.uh)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "multiply_reduce",
+              "center_listing": "   61298: { \tv3.qf16 = vmpy(v9.qf16,v26.hf)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   61278:   \tq0 = vcmp.eq(v24.h,v0.h) } ",
+                "   6127c: { \tv6.h = vasl(v9.h,v8.h)",
+                "   61280:   \tv8.h = vsub(v8.h,v1.h) } ",
+                "   61284: { \tv30.uh = vcl0(v7.uh) } ",
+                "   61288: { \tv19 = vand(q1,r3)",
+                "   6128c:   \tr3 = add(r29,#4096)",
+                "   61290:   \tv9.qf16 = vsub(v19.qf16,v10.qf16) } ",
+                "   61294: { \tv23.uh = vcl0(v25.uh) } ",
+                "   61298: { \tv3.qf16 = vmpy(v9.qf16,v26.hf)",
+                "   6129c:   \tv22.h = vasl(v24.h,v31.h)",
+                "   612a0:   \tvmem(r3+#-8) = v19 } ",
+                "   612a4: { \timmext(#16843008)",
+                "   612a8:   \tr3 = ##16843009",
+                "   612ac:   \tv9.h = vasl(v25.h,v23.h)",
+                "   612b0:   \tv31.h = vsub(v31.h,v1.h) } ",
+                "   612b4: { \tv7.h = vasl(v7.h,v30.h)",
+                "   612b8:   \tv23.h = vsub(v23.h,v1.h)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "multiply_reduce",
+              "center_listing": "   613f0: { \tv23.qf16 = vmpy(v3.qf16,v26.hf)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   613d0:   \tr3 = add(r29,#4096)",
+                "   613d4:   \tv3.qf16 = vsub(v10.qf16,v25.qf16) } ",
+                "   613d8: { \tv23.uh = vlsr(v24.uh,r25)",
+                "   613dc:   \tq3 = vcmp.eq(v17.h,v0.h) } ",
+                "   613e0: { \timmext(#16843008)",
+                "   613e4:   \tr3 = ##16843009",
+                "   613e8:   \tv5.uh = vcl0(v29.uh)",
+                "   613ec:   \tvmem(r3+#-6) = v4 } ",
+                "   613f0: { \tv23.qf16 = vmpy(v3.qf16,v26.hf)",
+                "   613f4:   \tv10.h = vasl(v23.h,r27) } ",
+                "   613f8: { \tv3 = vand(q3,r3)",
+                "   613fc:   \tr3 = add(r29,#2048)",
+                "   61400:   \tv24.uh = vcl0(v17.uh)",
+                "   61404:   \tv8.h = vadd(v10.h,v31.h) } ",
+                "   61408: { \tv4.uh = vcl0(v15.uh) } ",
+                "   6140c: { \timmext(#16843008)",
+                "   61410:   \tr3 = ##16843009"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "gather_scatter",
+              "center_listing": "   638a0: { \tvscatter(r0,m0,v28.h).h = v18 } ",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   63880:   \tmemw(r1+#0) = ##512 } ",
+                "   63884: { \tif (!p0.new) r2 = #1500",
+                "   63888:   \tp0 = cmp.eq(r0,#0); if (p0.new) jump:nt 0x638ec",
+                "   6388c:   \tmemd(r29+#568) = r1:0 } ",
+                "   63890: { \tloop0(0x63898,r2)",
+                "   63894:   \tv28 = vmem(r29+#3) } ",
+                "   63898: { \tm0 = r25",
+                "   6389c:   \tv18 = vmem(r17+#0) } ",
+                "   638a0: { \tvscatter(r0,m0,v28.h).h = v18 } ",
+                "   638a4: { \tv19.cur = vmem(r17+#0)",
+                "   638a8:   \tvscatter(r0,m0,v28.h).h = v19 } ",
+                "   638ac: { \tv20.cur = vmem(r17+#0)",
+                "   638b0:   \tvscatter(r0,m0,v28.h).h = v20 } ",
+                "   638b4: { \tv21.cur = vmem(r17+#0)",
+                "   638b8:   \tvscatter(r0,m0,v28.h).h = v21 } ",
+                "   638bc: { \tv22.cur = vmem(r17+#0)",
+                "   638c0:   \tvscatter(r0,m0,v28.h).h = v22 } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "gather_scatter",
+              "center_listing": "   638a8:   \tvscatter(r0,m0,v28.h).h = v19 } ",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   63888:   \tp0 = cmp.eq(r0,#0); if (p0.new) jump:nt 0x638ec",
+                "   6388c:   \tmemd(r29+#568) = r1:0 } ",
+                "   63890: { \tloop0(0x63898,r2)",
+                "   63894:   \tv28 = vmem(r29+#3) } ",
+                "   63898: { \tm0 = r25",
+                "   6389c:   \tv18 = vmem(r17+#0) } ",
+                "   638a0: { \tvscatter(r0,m0,v28.h).h = v18 } ",
+                "   638a4: { \tv19.cur = vmem(r17+#0)",
+                "   638a8:   \tvscatter(r0,m0,v28.h).h = v19 } ",
+                "   638ac: { \tv20.cur = vmem(r17+#0)",
+                "   638b0:   \tvscatter(r0,m0,v28.h).h = v20 } ",
+                "   638b4: { \tv21.cur = vmem(r17+#0)",
+                "   638b8:   \tvscatter(r0,m0,v28.h).h = v21 } ",
+                "   638bc: { \tv22.cur = vmem(r17+#0)",
+                "   638c0:   \tvscatter(r0,m0,v28.h).h = v22 } ",
+                "   638c4: { \tv23.cur = vmem(r17+#0)",
+                "   638c8:   \tvscatter(r0,m0,v28.h).h = v23 } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "lookup",
+              "center_listing": "   8a74c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } ",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   8a72c:   \tv13 = v12 } ",
+                "   8a730: { \tv27.sf = v26.qf32 } ",
+                "   8a734: { \tv28.uw = vlsr(v27.uw,r9) } ",
+                "   8a738: { \tv16 = vand(v28,v31) } ",
+                "   8a73c: { \tv23 = vor(v16,v12)",
+                "   8a740:   \tv12 = v31 } ",
+                "   8a744: { \tv22.w = vasl(v23.w,r28) } ",
+                "   8a748: { \tif (!p0) jump:nt 0x8a8d0",
+                "   8a74c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } ",
+                "   8a750: { \tp0 = cmp.gtu(r14,#3)",
+                "   8a754:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)",
+                "   8a758:   \tv29 = vand(v20,v11)",
+                "   8a75c:   \tv11.cur = vmem(r29+#4) } ",
+                "   8a760: { \tr14 = add(r14,#-3)",
+                "   8a764:   \tv27:26.h = vlut16(v23.b,v6.h,r4)",
+                "   8a768:   \tv15 = v21",
+                "   8a76c:   \tv31.w = vsub(v10.w,v29.w) } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "lookup",
+              "center_listing": "   8a754:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   8a734: { \tv28.uw = vlsr(v27.uw,r9) } ",
+                "   8a738: { \tv16 = vand(v28,v31) } ",
+                "   8a73c: { \tv23 = vor(v16,v12)",
+                "   8a740:   \tv12 = v31 } ",
+                "   8a744: { \tv22.w = vasl(v23.w,r28) } ",
+                "   8a748: { \tif (!p0) jump:nt 0x8a8d0",
+                "   8a74c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } ",
+                "   8a750: { \tp0 = cmp.gtu(r14,#3)",
+                "   8a754:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)",
+                "   8a758:   \tv29 = vand(v20,v11)",
+                "   8a75c:   \tv11.cur = vmem(r29+#4) } ",
+                "   8a760: { \tr14 = add(r14,#-3)",
+                "   8a764:   \tv27:26.h = vlut16(v23.b,v6.h,r4)",
+                "   8a768:   \tv15 = v21",
+                "   8a76c:   \tv31.w = vsub(v10.w,v29.w) } ",
+                "   8a770: { \tv30.qf32 = vmpy(v30.qf32,v19.qf32)",
+                "   8a774:   \tv27:26.h |= vlut16(v22.b,v7.h,r4) } "
+              ],
+              "context_truncated": false
+            }
+          ],
+          "hand_kernel_identified": false,
+          "scope": "16 textual forms/opcode; 2 neighborhoods/family, +/-8 listing lines; not function boundaries or runtime activation"
+        },
         "hand_call_chain_validated": false,
         "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
         "diagnostics": "",
@@ -762,7 +1989,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "304e0ca69adbc20a5ca44722f9b55b519ff4417cf78bf55fb2d5097adf3f6303",
+        "decoded_text_sha256": "26afdf9da332807138e66aa47ba4e17668c866d02ff10ea2286a2d668def7ba8",
         "tool": "llvm-objdump-14",
         "instruction_lines": 79499,
         "unknown_or_invalid_instruction_lines": 29613,
@@ -810,6 +2037,13 @@
         "vector_syntax_lines": 0,
         "vector_samples": [],
         "vector_samples_truncated": false,
+        "hvx_operand_evidence": {
+          "operand_forms": {},
+          "unretained_form_occurrences": {},
+          "instruction_windows": [],
+          "hand_kernel_identified": false,
+          "scope": "16 textual forms/opcode; 2 neighborhoods/family, +/-8 listing lines; not function boundaries or runtime activation"
+        },
         "hand_call_chain_validated": false,
         "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
         "diagnostics": "",
@@ -818,7 +2052,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "cfa7659e377e0a62b053e72277601aa962ee427b36249fda722d25540d698f2d",
+        "decoded_text_sha256": "5476ccea1dbdc46019086e460197c54fdff514ff721d73d9ece9d5e45c4bcdc8",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -830,12 +2064,19 @@
         "vector_syntax_lines": 0,
         "vector_samples": [],
         "vector_samples_truncated": false,
+        "hvx_operand_evidence": {
+          "operand_forms": {},
+          "unretained_form_occurrences": {},
+          "instruction_windows": [],
+          "hand_kernel_identified": false,
+          "scope": "16 textual forms/opcode; 2 neighborhoods/family, +/-8 listing lines; not function boundaries or runtime activation"
+        },
         "hand_call_chain_validated": false,
         "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "1806a725c5e9a6cb716d6a5707bce6b655d6fff5c00379566079b13c1e0a0770",
+        "decoded_text_sha256": "725ca1855e36c9eb6c4320ece9b10fffe24a98d6b435d2ba5ce34f308bd4c3cd",
         "tool": "llvm-objdump-14",
         "instruction_lines": 80870,
         "unknown_or_invalid_instruction_lines": 25839,
@@ -986,6 +2227,816 @@
           "   36898:   \tv13.uw = vlsr(v12.uw,r18)"
         ],
         "vector_samples_truncated": true,
+        "hvx_operand_evidence": {
+          "operand_forms": {
+            "vsplat": {
+              "vN = vsplat(rN)": {
+                "listing_line_occurrences": 237,
+                "example": "   2cb14: { \tv6 = vsplat(r20)"
+              }
+            },
+            "vxor": {
+              "vN = vxor(vN,vN)": {
+                "listing_line_occurrences": 52,
+                "example": "   2cb1c:   \tv17 = vxor(v17,v17)"
+              }
+            },
+            "vmemu": {
+              "vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 39,
+                "example": "   2cb4c:   \tvmemu(r0+#0) = v17 } "
+              },
+              "vN = vmemu(rN++#1)": {
+                "listing_line_occurrences": 30,
+                "example": "   2cbb0:   \tv0 = vmemu(r4++#1) } "
+              },
+              "vN = vmemu(rN++#1) }  :endloop0": {
+                "listing_line_occurrences": 5,
+                "example": "   2cbf4:   \tv0 = vmemu(r4++#1) }  :endloop0"
+              },
+              "vN = vmemu(rN+#0)": {
+                "listing_line_occurrences": 96,
+                "example": "   2cc10: { \tv17 = vmemu(r2+#0) } "
+              },
+              "if (p0) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 1,
+                "example": "   2ccc4:   \tif (p0) vmemu(r5+#0) = v3 } "
+              },
+              "vN = vmemu(rN+#1)": {
+                "listing_line_occurrences": 10,
+                "example": "   37680: { \tv4 = vmemu(r0+#1) } "
+              },
+              "vmemu(rN++#1) = vN": {
+                "listing_line_occurrences": 26,
+                "example": "   37684: { \tvmemu(r0++#1) = v0 } "
+              },
+              "vN = vmemu(rN+#2)": {
+                "listing_line_occurrences": 2,
+                "example": "   3ce18:   \tv19 = vmemu(r26+#2) } "
+              },
+              "vN = vmemu(rN+#3)": {
+                "listing_line_occurrences": 2,
+                "example": "   3ce24:   \tv20 = vmemu(r26+#3) } "
+              },
+              "vN = vmemu(rN+#0) }  :endloop0": {
+                "listing_line_occurrences": 3,
+                "example": "   450b0:   \tv1 = vmemu(r6+#0) }  :endloop0"
+              },
+              "if (!p0) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 1,
+                "example": "   457bc:   \tif (!p0) vmemu(r7+#0) = v4 } "
+              },
+              "if (!p3) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 2,
+                "example": "   4a6e4:   \tif (!p3) vmemu(r0+#0) = v8 } "
+              },
+              "if (!p1) vmemu(rN+#0) = vN": {
+                "listing_line_occurrences": 5,
+                "example": "   4ab0c:   \tif (!p1) vmemu(r14+#0) = v1 } "
+              },
+              "vmemu(rN++#1) = vN }  :endloop0": {
+                "listing_line_occurrences": 3,
+                "example": "   4be84:   \tvmemu(r6++#1) = v31 }  :endloop0"
+              },
+              "vN = vmemu(rN+#4)": {
+                "listing_line_occurrences": 1,
+                "example": "   4c6fc: { \tv8 = vmemu(r7+#4) } "
+              },
+              "vN = vmemu(rN+#5)": {
+                "listing_line_occurrences": 1,
+                "example": "   4c724:   \tv9 = vmemu(r7+#5) } "
+              }
+            },
+            "vadd": {
+              "vN.qf32 = vadd(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 31,
+                "example": "   2cb58:   \tv19.qf32 = vadd(v6.sf,v17.sf)"
+              },
+              "vN.qf32 = vadd(vN.qf32,vN.sf)": {
+                "listing_line_occurrences": 48,
+                "example": "   2cbbc:   \tv4.qf32 = vadd(v1.qf32,v0.sf)"
+              },
+              "vN.w = vadd(vN.w,vN.w)": {
+                "listing_line_occurrences": 203,
+                "example": "   368a8: { \tv15.w = vadd(v14.w,v1.w)"
+              },
+              "vN.qf32 = vadd(vN.qf32,vN.qf32)": {
+                "listing_line_occurrences": 34,
+                "example": "   375e4:   \tv4.qf32 = vadd(v4.qf32,v3.qf32)"
+              },
+              "vN.w = vadd(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 53,
+                "example": "   39b98:   \tv8.w = vadd(v27.w,v5.w):sat } "
+              },
+              "vPair.w += vadd(vN.h,vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   3c98c: { \tv25:24.w += vadd(v17.h,v23.h) } "
+              },
+              "vN.uh = vadd(vN.uh,vN.uh):sat": {
+                "listing_line_occurrences": 43,
+                "example": "   44bb4:   \tv16.uh = vadd(v6.uh,v7.uh):sat } "
+              },
+              "vN.h = vadd(vN.h,vN.h):sat": {
+                "listing_line_occurrences": 1,
+                "example": "   4ab94: { \tv31.h = vadd(v31.h,v27.h):sat } "
+              },
+              "vN.h = vadd(vN.h,vN.h)": {
+                "listing_line_occurrences": 1,
+                "example": "   4ba78: { \tv17.h = vadd(v16.h,v27.h) } "
+              },
+              "vPair.w = vadd(vN.uh,vN.uh)": {
+                "listing_line_occurrences": 11,
+                "example": "   4d18c: { \tv15:14.w = vadd(v6.uh,v7.uh)"
+              },
+              "vPair.w += vadd(vN.uh,vN.uh)": {
+                "listing_line_occurrences": 4,
+                "example": "   4d5e0: { \tv3:2.w += vadd(v4.uh,v5.uh)"
+              },
+              "vN.w = vadd(vN.w,vN.w):sat }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   4dffc:   \tv14.w = vadd(v28.w,v31.w):sat }  :endloop0"
+              }
+            },
+            "vmem": {
+              "vN = vmem(rN+#0)": {
+                "listing_line_occurrences": 40,
+                "example": "   2cb98:   \tv1 = vmem(r17+#0) } "
+              },
+              "vN = vmem(rN+#1)": {
+                "listing_line_occurrences": 28,
+                "example": "   2cbc0:   \tv1 = vmem(r17+#1) } "
+              },
+              "vN.cur = vmem(rN+#2)": {
+                "listing_line_occurrences": 10,
+                "example": "   2cbe8:   \tv7.cur = vmem(r5+#2)"
+              },
+              "vmem(rN++#1) = vN": {
+                "listing_line_occurrences": 7,
+                "example": "   2cbec:   \tvmem(r5++#1) = v4 } "
+              },
+              "vmem(rN++#1) = vN.new": {
+                "listing_line_occurrences": 19,
+                "example": "   2cc04:   \tvmem(r5++#1) = v8.new } "
+              },
+              "vN.cur = vmem(rN+#0)": {
+                "listing_line_occurrences": 32,
+                "example": "   2cc3c:   \tv9.cur = vmem(r17+#0) } "
+              },
+              "vmem(rN+#0) = vN": {
+                "listing_line_occurrences": 15,
+                "example": "   2cc44:   \tvmem(r17+#0) = v5 } "
+              },
+              "vmem(rN+#0) = vN.new": {
+                "listing_line_occurrences": 11,
+                "example": "   2cc84:   \tvmem(r17+#0) = v10.new } "
+              },
+              "if (qN) vmem(rN+#0) = vN": {
+                "listing_line_occurrences": 48,
+                "example": "   2ccfc:   \tif (q1) vmem(r8+#0) = v2 } "
+              },
+              "if (!qN) vmem(rN+#0) = vN": {
+                "listing_line_occurrences": 24,
+                "example": "   2cd14:   \tif (!q2) vmem(r8+#0) = v2 } "
+              },
+              "vN = vmem(rN++#1)": {
+                "listing_line_occurrences": 35,
+                "example": "   367a0: { \tv0 = vmem(r0++#1) } "
+              },
+              "vN.cur = vmem(rN++#1)": {
+                "listing_line_occurrences": 25,
+                "example": "   367a8:   \tv1.cur = vmem(r1++#1) } "
+              },
+              "vmem(rN++#1) = vN.new }  :endloop0": {
+                "listing_line_occurrences": 9,
+                "example": "   367b0:   \tvmem(r2++#1) = v3.new }  :endloop0"
+              },
+              "vmem(rN+#5) = vN.new": {
+                "listing_line_occurrences": 4,
+                "example": "   36864:   \tvmem(r29+#5) = v27.new } "
+              },
+              "vmem(rN+#4) = vN": {
+                "listing_line_occurrences": 10,
+                "example": "   36870:   \tvmem(r29+#4) = v30 } "
+              },
+              "vmem(rN+#2) = vN": {
+                "listing_line_occurrences": 21,
+                "example": "   36878:   \tvmem(r29+#2) = v2 } "
+              }
+            },
+            "vmpy": {
+              "vN.qf32 = vmpy(vN.qf32,vN.qf32)": {
+                "listing_line_occurrences": 85,
+                "example": "   2ccac: { \tv12.qf32 = vmpy(v11.qf32,v19.qf32)"
+              },
+              "vN.qf32 = vmpy(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 38,
+                "example": "   367c4: { \tv6.qf32 = vmpy(v4.sf,v5.sf)"
+              },
+              "vPair.w += vmpy(vN.h,vN.h)": {
+                "listing_line_occurrences": 4,
+                "example": "   3b464: { \tv21:20.w += vmpy(v12.h,v12.h) } "
+              },
+              "vPair.w = vmpy(vN.h,vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   3cd20: { \tv5:4.w = vmpy(v5.h,v22.h)"
+              },
+              "vPair.w = vmpy(vN.h,vN.uh)": {
+                "listing_line_occurrences": 5,
+                "example": "   4a9a4: { \tv11:10.w = vmpy(v6.h,v7.uh)"
+              },
+              "vPair.w += vmpy(vN.h,vN.uh)": {
+                "listing_line_occurrences": 4,
+                "example": "   4c55c: { \tv3:2.w += vmpy(v4.h,v6.uh)"
+              },
+              "vPair.uw += vmpy(vN.uh,rN.uh)": {
+                "listing_line_occurrences": 20,
+                "example": "   4c678: { \tv5:4.uw += vmpy(v10.uh,r14.uh)"
+              }
+            },
+            "vlalign": {
+              "vN = vlalign(vN,vN,rN)": {
+                "listing_line_occurrences": 48,
+                "example": "   2ccdc:   \tv2 = vlalign(v3,v17,r1) } "
+              }
+            },
+            "vand": {
+              "vN = vand(qN,rN)": {
+                "listing_line_occurrences": 33,
+                "example": "   2cce0: { \tv13 = vand(q0,r26)"
+              },
+              "qN = vand(vN,rN)": {
+                "listing_line_occurrences": 29,
+                "example": "   2ccec: { \tq1 = vand(v14,r26) } "
+              },
+              "vN = vand(vN,vN)": {
+                "listing_line_occurrences": 90,
+                "example": "   368a0: { \tv14 = vand(v13,v31)"
+              }
+            },
+            "vror": {
+              "vN = vror(vN,rN)": {
+                "listing_line_occurrences": 24,
+                "example": "   2cce8: { \tv14 = vror(v13,r9) } "
+              }
+            },
+            "vsub": {
+              "vN.qf32 = vsub(vN.sf,vN.sf)": {
+                "listing_line_occurrences": 3,
+                "example": "   367e4: { \tv10.qf32 = vsub(v8.sf,v9.sf)"
+              },
+              "vN.w = vsub(vN.w,vN.w)": {
+                "listing_line_occurrences": 105,
+                "example": "   39090:   \tv5.w = vsub(v3.w,v1.w) } "
+              },
+              "vPair.w = vsub(vPair.w,vPair.w)": {
+                "listing_line_occurrences": 3,
+                "example": "   3b3b4:   \tv21:20.w = vsub(v21:20.w,v21:20.w)"
+              },
+              "vN.h = vsub(vN.h,vN.h)": {
+                "listing_line_occurrences": 15,
+                "example": "   3b45c: { \tv12.h = vsub(v10.h,v18.h)"
+              },
+              "vN.w = vsub(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 8,
+                "example": "   3cdd8: { \tv7.w = vsub(v1.w,v16.w):sat"
+              },
+              "vN.uh = vsub(vN.uh,vN.uh):sat": {
+                "listing_line_occurrences": 1,
+                "example": "   4ba38:   \tv7.uh = vsub(v28.uh,v3.uh):sat } "
+              },
+              "vN.qf32 = vsub(vN.qf32,vN.sf)": {
+                "listing_line_occurrences": 6,
+                "example": "   52618: { \tv20.qf32 = vsub(v19.qf32,v14.sf)"
+              },
+              "vN.qf32 = vsub(vN.qf32,vN.qf32)": {
+                "listing_line_occurrences": 18,
+                "example": "   52bc8: { \tv27.qf32 = vsub(v3.qf32,v26.qf32) } "
+              }
+            },
+            "vlsr": {
+              "vN.uw = vlsr(vN.uw,rN)": {
+                "listing_line_occurrences": 64,
+                "example": "   36898:   \tv13.uw = vlsr(v12.uw,r18)"
+              },
+              "vN.w = vlsr(vN.w,vN.w)": {
+                "listing_line_occurrences": 10,
+                "example": "   430e4: { \tv16.w = vlsr(v16.w,v24.w)"
+              }
+            },
+            "vasr": {
+              "vN.w = vasr(vN.w,vN.w)": {
+                "listing_line_occurrences": 20,
+                "example": "   368b0: { \tv16.w = vasr(v29.w,v15.w)"
+              },
+              "vN.w = vasr(vN.w,rN)": {
+                "listing_line_occurrences": 33,
+                "example": "   39afc:   \tv26.w = vasr(v21.w,r7) } "
+              },
+              "vN.w += vasr(vN.w,rN)": {
+                "listing_line_occurrences": 48,
+                "example": "   39ba0: { \tv23.w += vasr(v8.w,r3) } "
+              }
+            },
+            "vnot": {
+              "vN = vnot(vN)": {
+                "listing_line_occurrences": 2,
+                "example": "   368bc:   \tv17 = vnot(v16)"
+              }
+            },
+            "vmux": {
+              "vN = vmux(qN,vN,vN)": {
+                "listing_line_occurrences": 114,
+                "example": "   368d0: { \tv19 = vmux(q0,v18,v12)"
+              }
+            },
+            "vdeal": {
+              "vPair = vdeal(vN,vN,rN)": {
+                "listing_line_occurrences": 104,
+                "example": "   37604: { \tv3:2 = vdeal(v0,v6,r7) } "
+              }
+            },
+            "vasl": {
+              "vN.w = vasl(vN.w,rN)": {
+                "listing_line_occurrences": 59,
+                "example": "   3909c:   \tv7.w = vasl(v0.w,r0)"
+              },
+              "vN.w = vasl(vN.w,vN.w)": {
+                "listing_line_occurrences": 30,
+                "example": "   3ce04: { \tv7.w = vasl(v16.w,v7.w)"
+              },
+              "vN.h = vasl(vN.h,vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   42fd0: { \tv20.h = vasl(v18.h,v16.h) } "
+              },
+              "vN.w = vasl(vN.w,rN) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   527a0:   \tv22.w = vasl(v23.w,r28) }  :endloop0"
+              }
+            },
+            "vor": {
+              "vN = vor(vN,vN)": {
+                "listing_line_occurrences": 37,
+                "example": "   390ac:   \tv8 = vor(v6,v7) } "
+              },
+              "vN = vor(vN,vN) }  :endloop0": {
+                "listing_line_occurrences": 2,
+                "example": "   39ca4:   \tv10 = vor(v17,v13) }  :endloop0"
+              }
+            },
+            "vmpye": {
+              "vN.w = vmpye(vN.w,vN.uh)": {
+                "listing_line_occurrences": 68,
+                "example": "   39b7c: { \tv27.w = vmpye(v25.w,v1.uh)"
+              },
+              "vPair = vmpye(vN.w,vN.uh)": {
+                "listing_line_occurrences": 2,
+                "example": "   4c008: { \tv25:24 = vmpye(v31.w,v6.uh)"
+              }
+            },
+            "vmpyo": {
+              "vN.w += vmpyo(vN.w,vN.h):<<1:rnd:sat:shift": {
+                "listing_line_occurrences": 50,
+                "example": "   39b90: { \tv27.w += vmpyo(v25.w,v1.h):<<1:rnd:sat:shift } "
+              },
+              "vPair += vmpyo(vN.w,vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   4c014: { \tv25:24 += vmpyo(v31.w,v6.h)"
+              }
+            },
+            "vpack": {
+              "vN.uh = vpack(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 6,
+                "example": "   39bac:   \tv23.uh = vpack(v17.w,v23.w):sat"
+              },
+              "vN.h = vpack(vN.w,vN.w):sat": {
+                "listing_line_occurrences": 26,
+                "example": "   39fb4: { \tv16.h = vpack(v17.w,v16.w):sat } "
+              },
+              "vN.ub = vpack(vN.h,vN.h):sat": {
+                "listing_line_occurrences": 14,
+                "example": "   39fc0:   \tv18.ub = vpack(v31.h,v16.h):sat"
+              },
+              "vN.uh = vpack(vN.w,vN.w):sat }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   4e3c8:   \tv5.uh = vpack(v16.w,v14.w):sat }  :endloop0"
+              }
+            },
+            "vcombine": {
+              "vPair = vcombine(vN,vN)": {
+                "listing_line_occurrences": 17,
+                "example": "   3b3c4:   \tv23:22 = vcombine(v21,v20) } "
+              }
+            },
+            "vunpack": {
+              "vPair.uh = vunpack(vN.ub)": {
+                "listing_line_occurrences": 10,
+                "example": "   3b458: { \tv11:10.uh = vunpack(v11.ub) } "
+              },
+              "vPair.w = vunpack(vN.h)": {
+                "listing_line_occurrences": 10,
+                "example": "   3b64c:   \tv15:14.w = vunpack(v20.h)"
+              },
+              "vPair.uw = vunpack(vN.uh)": {
+                "listing_line_occurrences": 16,
+                "example": "   43534:   \tv13:12.uw = vunpack(v12.uh) } "
+              }
+            },
+            "vextract": {
+              "rN = vextract(vN,rN)": {
+                "listing_line_occurrences": 4,
+                "example": "   3b4c0: { \tr2 = vextract(v8,r2) } "
+              }
+            },
+            "vshuff": {
+              "vPair = vshuff(vN,vN,rN)": {
+                "listing_line_occurrences": 2,
+                "example": "   3cd3c: { \tv15:14 = vshuff(v5,v4,r0)"
+              }
+            },
+            "valign": {
+              "vN = valign(vN,vN,rN)": {
+                "listing_line_occurrences": 61,
+                "example": "   3cd44: { \tv16 = valign(v7,v9,r1)"
+              }
+            },
+            "vabs": {
+              "vN.h = vabs(vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   42f80: { \tv18.h = vabs(v15.h)"
+              },
+              "vN.w = vabs(vN.w)": {
+                "listing_line_occurrences": 6,
+                "example": "   432dc: { \tv15.w = vabs(v14.w)"
+              }
+            },
+            "vcl0": {
+              "vN.uh = vcl0(vN.uh)": {
+                "listing_line_occurrences": 2,
+                "example": "   42fa0: { \tv23.uh = vcl0(v18.uh)"
+              },
+              "vN.uw = vcl0(vN.uw)": {
+                "listing_line_occurrences": 6,
+                "example": "   43300:   \tv19.uw = vcl0(v15.uw) } "
+              }
+            },
+            "vmpyie": {
+              "vN.w = vmpyie(vN.w,vN.uh)": {
+                "listing_line_occurrences": 10,
+                "example": "   42fe0: { \tv16.w = vmpyie(v31.w,v2.uh)"
+              },
+              "vN.w += vmpyie(vN.w,vN.h)": {
+                "listing_line_occurrences": 9,
+                "example": "   4cc2c: { \tv27.w += vmpyie(v26.w,v16.h) } "
+              }
+            },
+            "vunpacko": {
+              "vPair.w |= vunpacko(vN.h)": {
+                "listing_line_occurrences": 2,
+                "example": "   43148: { \tv25:24.w |= vunpacko(v29.h)"
+              }
+            },
+            "vrdelta": {
+              "vN = vrdelta(vN,vN)": {
+                "listing_line_occurrences": 5,
+                "example": "   44b9c: { \tv12 = vrdelta(v8,v2) } "
+              }
+            },
+            "vgather": {
+              "vtmp.h = vgather(rN,m0,vPair.w).h": {
+                "listing_line_occurrences": 5,
+                "example": "   4a6d0: { \tvtmp.h = vgather(r16,m0,v3:2.w).h"
+              }
+            },
+            "vmax": {
+              "vN.w = vmax(vN.w,vN.w)": {
+                "listing_line_occurrences": 6,
+                "example": "   4a7a0:   \tv28.w = vmax(v26.w,v14.w) } "
+              }
+            },
+            "vsat": {
+              "vN.uh = vsat(vN.uw,vN.uw)": {
+                "listing_line_occurrences": 6,
+                "example": "   4a7a8:   \tv30.uh = vsat(v14.uw,v28.uw) } "
+              },
+              "vN.h = vsat(vN.w,vN.w)": {
+                "listing_line_occurrences": 3,
+                "example": "   4a9d4:   \tv1.h = vsat(v11.w,v10.w) } "
+              }
+            },
+            "vsxt": {
+              "vPair.h = vsxt(vN.b)": {
+                "listing_line_occurrences": 1,
+                "example": "   4c520:   \tv5:4.h = vsxt(v4.b) } "
+              },
+              "vPair.h = vsxt(vN.b) }  :endloop0": {
+                "listing_line_occurrences": 1,
+                "example": "   4c56c:   \tv5:4.h = vsxt(v8.b) }  :endloop0"
+              }
+            },
+            "vzxt": {
+              "vPair.uh = vzxt(vN.ub)": {
+                "listing_line_occurrences": 10,
+                "example": "   4c65c: { \tv11:10.uh = vzxt(v2.ub)"
+              },
+              "vPair.uw = vzxt(vN.uh)": {
+                "listing_line_occurrences": 4,
+                "example": "   52544:   \tv3:2.uw = vzxt(v5.uh)"
+              }
+            },
+            "vrmpy": {
+              "vN.uw += vrmpy(vN.ub,rN.ub)": {
+                "listing_line_occurrences": 36,
+                "example": "   4c93c: { \tv6.uw += vrmpy(v1.ub,r15.ub) } "
+              },
+              "vN.uw = vrmpy(vN.ub,rN.ub)": {
+                "listing_line_occurrences": 8,
+                "example": "   4cc0c: { \tv22.uw = vrmpy(v20.ub,r3.ub) } "
+              },
+              "vN.uw = vrmpy(vN.ub,vN.ub)": {
+                "listing_line_occurrences": 2,
+                "example": "   4dac0: { \tv3.uw = vrmpy(v1.ub,v2.ub)"
+              }
+            },
+            "vlut16": {
+              "vPair.h = vlut16(vN.b,vN.h,rN)": {
+                "listing_line_occurrences": 24,
+                "example": "   5264c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } "
+              },
+              "vPair.h |= vlut16(vN.b,vN.h,rN)": {
+                "listing_line_occurrences": 24,
+                "example": "   52654:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)"
+              }
+            }
+          },
+          "unretained_form_occurrences": {
+            "vmem": 322,
+            "vmemu": 14
+          },
+          "instruction_windows": [
+            {
+              "family": "multiply_reduce",
+              "center_listing": "   2ccac: { \tv12.qf32 = vmpy(v11.qf32,v19.qf32)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   2cc8c:   \tif (!p1) r2 = add(r18,#31)",
+                "   2cc90:   \tif (p1) jump:nt 0x2cd38 } ",
+                "   2cc94: { \tr3 = r18; \tr0 = r18 } ",
+                "   2cc98: { \tr7 = lsr(r2,#5)",
+                "   2cc9c:   \tr2 = memw(r30+#-592) } ",
+                "   2cca0: { \tloop0(0x2ccac,r7)",
+                "   2cca4:   \tr2 = and(r2,#127)",
+                "   2cca8:   \tr7:6 = combine(r17,r21) } ",
+                "   2ccac: { \tv12.qf32 = vmpy(v11.qf32,v19.qf32)",
+                "   2ccb0:   \tp0 = cmp.gt(r3,#31)",
+                "   2ccb4:   \tif (!p0.new) r8 = add(r2,r4)",
+                "   2ccb8:   \tv11.cur = vmem(r7+#0) } ",
+                "   2ccbc: { \tv3.sf = v12.qf32 } ",
+                "   2ccc0: { \tif (p0) jump:nt 0x2cd20",
+                "   2ccc4:   \tif (p0) vmemu(r5+#0) = v3 } ",
+                "   2ccc8: { \tr1 = and(r6,#127)",
+                "   2cccc:   \tq0 = vsetq(r4) } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "repacking",
+              "center_listing": "   2ccdc:   \tv2 = vlalign(v3,v17,r1) } ",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   2ccbc: { \tv3.sf = v12.qf32 } ",
+                "   2ccc0: { \tif (p0) jump:nt 0x2cd20",
+                "   2ccc4:   \tif (p0) vmemu(r5+#0) = v3 } ",
+                "   2ccc8: { \tr1 = and(r6,#127)",
+                "   2cccc:   \tq0 = vsetq(r4) } ",
+                "   2ccd0: { \tp0 = cmp.gtu(r8,#128)",
+                "   2ccd4:   \tr8 = and(r6,#-128)",
+                "   2ccd8:   \tif (p0.new) jump:t 0x2cd00",
+                "   2ccdc:   \tv2 = vlalign(v3,v17,r1) } ",
+                "   2cce0: { \tv13 = vand(q0,r26)",
+                "   2cce4:   \tr9 = sub(#128,r1) } ",
+                "   2cce8: { \tv14 = vror(v13,r9) } ",
+                "   2ccec: { \tq1 = vand(v14,r26) } ",
+                "   2ccf0: { \tjump 0x2cd20",
+                "   2ccf4:   \tnop",
+                "   2ccf8:   \tnop",
+                "   2ccfc:   \tif (q1) vmem(r8+#0) = v2 } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "repacking",
+              "center_listing": "   2cd10: { \tv15 = vlalign(v17,v3,r1)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   2ccf0: { \tjump 0x2cd20",
+                "   2ccf4:   \tnop",
+                "   2ccf8:   \tnop",
+                "   2ccfc:   \tif (q1) vmem(r8+#0) = v2 } ",
+                "   2cd00: { \timmext(#4294967168)",
+                "   2cd04:   \tr9 = add(r2,add(r4,##-128))",
+                "   2cd08:   \tr12 = add(r8,#128)",
+                "   2cd0c:   \tq2 = vsetq(r1) } ",
+                "   2cd10: { \tv15 = vlalign(v17,v3,r1)",
+                "   2cd14:   \tif (!q2) vmem(r8+#0) = v2 } ",
+                "   2cd18: { \tq3 = vsetq(r9) } ",
+                "   2cd1c: { \tif (q3) vmem(r12+#0) = v15 } ",
+                "   2cd20: { \tr6 = add(r6,#128)",
+                "   2cd24:   \tr4 = add(r4,#-128)",
+                "   2cd28:   \tr3 = add(r3,#-32)",
+                "   2cd2c:   \tr7 = add(r7,#128) } ",
+                "   2cd30: { \tr5 = add(r5,#128)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "multiply_reduce",
+              "center_listing": "   367c4: { \tv6.qf32 = vmpy(v4.sf,v5.sf)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   367a4: { \tv2.qf32 = vadd(v0.sf,v1.sf)",
+                "   367a8:   \tv1.cur = vmem(r1++#1) } ",
+                "   367ac: { \tv3.sf = v2.qf32",
+                "   367b0:   \tvmem(r2++#1) = v3.new }  :endloop0",
+                "   367b4: { \tjump 0x36918 } ",
+                "   367b8: { \tloop0(0x367c0,r17)",
+                "   367bc:   \tp0 = cmp.gt(r17,#0); if (!p0.new) jump:nt 0x36918 } ",
+                "   367c0: { \tv4 = vmem(r0++#1) } ",
+                "   367c4: { \tv6.qf32 = vmpy(v4.sf,v5.sf)",
+                "   367c8:   \tv5.cur = vmem(r1++#1) } ",
+                "   367cc: { \tv7.sf = v6.qf32",
+                "   367d0:   \tvmem(r2++#1) = v7.new }  :endloop0",
+                "   367d4: { \tjump 0x36918 } ",
+                "   367d8: { \tloop0(0x367e0,r17)",
+                "   367dc:   \tp0 = cmp.gt(r17,#0); if (!p0.new) jump:nt 0x36918 } ",
+                "   367e0: { \tv8 = vmem(r0++#1) } ",
+                "   367e4: { \tv10.qf32 = vsub(v8.sf,v9.sf)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "narrow_saturate",
+              "center_listing": "   368b0: { \tv16.w = vasr(v29.w,v15.w)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   36890:   \tr3:2 = combine(#32,r17) } ",
+                "   36894: { \tp0 = cmp.eq(r19,#0)",
+                "   36898:   \tv13.uw = vlsr(v12.uw,r18)",
+                "   3689c:   \tv12.cur = vmem(r17+#0) } ",
+                "   368a0: { \tv14 = vand(v13,v31)",
+                "   368a4:   \tv31.cur = vmem(r29+#3) } ",
+                "   368a8: { \tv15.w = vadd(v14.w,v1.w)",
+                "   368ac:   \tv1.cur = vmem(r29+#2) } ",
+                "   368b0: { \tv16.w = vasr(v29.w,v15.w)",
+                "   368b4:   \tv29.cur = vmem(r29+#4) } ",
+                "   368b8: { \tq0 = vcmp.gt(v4.w,v15.w)",
+                "   368bc:   \tv17 = vnot(v16)",
+                "   368c0:   \tv4.cur = vmem(r29+#1) } ",
+                "   368c4: { \tq1 = vcmp.gt(v28.w,v15.w)",
+                "   368c8:   \tv18 = vand(v12,v17)",
+                "   368cc:   \tv28.cur = vmem(r29+#5) } ",
+                "   368d0: { \tv19 = vmux(q0,v18,v12)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "narrow_saturate",
+              "center_listing": "   374b4: { \tv5.w = vasr(v16.w,v4.w)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   37494: { \tr19 = add(r19,#-1)",
+                "   37498:   \tv2.uw = vlsr(v1.uw,r18)",
+                "   3749c:   \tv1.cur = vmem(r17+#0) } ",
+                "   374a0: { \tp0 = cmp.eq(r19,#0)",
+                "   374a4:   \tv3 = vand(v2,v18)",
+                "   374a8:   \tv18.cur = vmem(r29+#4) } ",
+                "   374ac: { \tv4.w = vadd(v3.w,v25.w)",
+                "   374b0:   \tv25.cur = vmem(r29+#1) } ",
+                "   374b4: { \tv5.w = vasr(v16.w,v4.w)",
+                "   374b8:   \tv16.cur = vmem(r29+#5) } ",
+                "   374bc: { \tq0 = vcmp.gt(v23.w,v4.w)",
+                "   374c0:   \tv6 = vnot(v5)",
+                "   374c4:   \tv23.cur = vmem(r29+#2) } ",
+                "   374c8: { \tq1 = vcmp.gt(v21.w,v4.w)",
+                "   374cc:   \tv7 = vand(v1,v6)",
+                "   374d0:   \tv21.cur = vmem(r29+#3) } ",
+                "   374d4: { \tv8 = vmux(q0,v7,v1)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "gather_scatter",
+              "center_listing": "   4a6d0: { \tvtmp.h = vgather(r16,m0,v3:2.w).h",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   4a6b0:   \tv17 = vmemu(r0+#0) } ",
+                "   4a6b4: { \tr14 = add(r14,#64)",
+                "   4a6b8:   \tvmemu(r17+#0) = v14 } ",
+                "   4a6bc: { \tp3 = cmp.gtu(r14,r18)",
+                "   4a6c0:   \tv1:0.uw = vunpack(v17.uh) } ",
+                "   4a6c4: { \tv18.w = vasl(v0.w,r11) } ",
+                "   4a6c8: { \tv19.w = vasl(v1.w,r11) } ",
+                "   4a6cc: { \tv3:2 = vdeal(v19,v18,r2) } ",
+                "   4a6d0: { \tvtmp.h = vgather(r16,m0,v3:2.w).h",
+                "   4a6d4:   \tvmem(r17+#0) = vtmp.new } ",
+                "   4a6d8: { \tif (p3) r1 = add(r13,r15)",
+                "   4a6dc:   \tv8 = vmemu(r17+#0) } ",
+                "   4a6e0: { \tif (!p3) jump:nt 0x4a744",
+                "   4a6e4:   \tif (!p3) vmemu(r0+#0) = v8 } ",
+                "   4a6e8: { \tr2 = and(r28,#127)",
+                "   4a6ec:   \tq0 = vsetq(r15) } ",
+                "   4a6f0: { \tp3 = cmp.gtu(r1,#128)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "gather_scatter",
+              "center_listing": "   4a7bc: { \tvtmp.h = vgather(r16,m0,v7:6.w).h",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   4a79c: { \tv27.w = vsub(v25.w,v2.w)",
+                "   4a7a0:   \tv28.w = vmax(v26.w,v14.w) } ",
+                "   4a7a4: { \tv29.w = vmax(v27.w,v14.w)",
+                "   4a7a8:   \tv30.uh = vsat(v14.uw,v28.uw) } ",
+                "   4a7ac: { \tv31.uh = vsat(v14.uw,v29.uw) } ",
+                "   4a7b0: { \tv0.w = vasl(v30.w,r11) } ",
+                "   4a7b4: { \tv1.w = vasl(v31.w,r11) } ",
+                "   4a7b8: { \tv7:6 = vdeal(v1,v0,r2) } ",
+                "   4a7bc: { \tvtmp.h = vgather(r16,m0,v7:6.w).h",
+                "   4a7c0:   \tvmem(r17+#0) = vtmp.new } ",
+                "   4a7c4: { \tif (p3) r1 = add(r13,r15)",
+                "   4a7c8:   \tv9 = vmemu(r17+#0) } ",
+                "   4a7cc: { \tif (!p3) jump:nt 0x4a828",
+                "   4a7d0:   \tif (!p3) vmemu(r0+#0) = v9 } ",
+                "   4a7d4: { \tr2 = and(r28,#127)",
+                "   4a7d8:   \tq0 = vsetq(r15) } ",
+                "   4a7dc: { \tp3 = cmp.gtu(r1,#128)"
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "lookup",
+              "center_listing": "   5264c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } ",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   5262c:   \tv13 = v12 } ",
+                "   52630: { \tv27.sf = v26.qf32 } ",
+                "   52634: { \tv28.uw = vlsr(v27.uw,r9) } ",
+                "   52638: { \tv16 = vand(v28,v31) } ",
+                "   5263c: { \tv23 = vor(v16,v12)",
+                "   52640:   \tv12 = v31 } ",
+                "   52644: { \tv22.w = vasl(v23.w,r28) } ",
+                "   52648: { \tif (!p0) jump:nt 0x527d0",
+                "   5264c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } ",
+                "   52650: { \tp0 = cmp.gtu(r14,#3)",
+                "   52654:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)",
+                "   52658:   \tv29 = vand(v20,v11)",
+                "   5265c:   \tv11.cur = vmem(r29+#4) } ",
+                "   52660: { \tr14 = add(r14,#-3)",
+                "   52664:   \tv27:26.h = vlut16(v23.b,v6.h,r4)",
+                "   52668:   \tv15 = v21",
+                "   5266c:   \tv31.w = vsub(v10.w,v29.w) } "
+              ],
+              "context_truncated": false
+            },
+            {
+              "family": "lookup",
+              "center_listing": "   52654:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)",
+              "preceding_lines": 8,
+              "following_lines": 8,
+              "listing": [
+                "   52634: { \tv28.uw = vlsr(v27.uw,r9) } ",
+                "   52638: { \tv16 = vand(v28,v31) } ",
+                "   5263c: { \tv23 = vor(v16,v12)",
+                "   52640:   \tv12 = v31 } ",
+                "   52644: { \tv22.w = vasl(v23.w,r28) } ",
+                "   52648: { \tif (!p0) jump:nt 0x527d0",
+                "   5264c:   \tv31:30.h = vlut16(v23.b,v8.h,r4) } ",
+                "   52650: { \tp0 = cmp.gtu(r14,#3)",
+                "   52654:   \tv31:30.h |= vlut16(v22.b,v9.h,r4)",
+                "   52658:   \tv29 = vand(v20,v11)",
+                "   5265c:   \tv11.cur = vmem(r29+#4) } ",
+                "   52660: { \tr14 = add(r14,#-3)",
+                "   52664:   \tv27:26.h = vlut16(v23.b,v6.h,r4)",
+                "   52668:   \tv15 = v21",
+                "   5266c:   \tv31.w = vsub(v10.w,v29.w) } ",
+                "   52670: { \tv30.qf32 = vmpy(v30.qf32,v19.qf32)",
+                "   52674:   \tv27:26.h |= vlut16(v22.b,v7.h,r4) } "
+              ],
+              "context_truncated": false
+            }
+          ],
+          "hand_kernel_identified": false,
+          "scope": "16 textual forms/opcode; 2 neighborhoods/family, +/-8 listing lines; not function boundaries or runtime activation"
+        },
         "hand_call_chain_validated": false,
         "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
         "diagnostics": "",
