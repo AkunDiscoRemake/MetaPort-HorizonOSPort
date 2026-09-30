@@ -1,5 +1,11 @@
 # Modelos compactados de mãos — continuação do port
 
+**Continuação posterior:** [atributos originais e comparação C++ independente](ATTRIBUTES-REFERENCE-VALIDATION.md).
+Os blobs MessagePack DPE31/32 foram recuperados. Os 13 avisos do leitor estrito
+agora possuem leitura Int64 independente e reprodução pública de vtable
+compartilhada; as advertências não foram apagadas nem os campos reduzidos a 32 bits.
+O texto abaixo preserva os resultados da etapa anterior.
+
 ## O que foi implementado
 
 - `horizon/tracking/ptez.py`: exploração limitada do container `etz0`, descompressão

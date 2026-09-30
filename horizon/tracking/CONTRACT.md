@@ -93,3 +93,17 @@ metadados limitados de tensores, constantes e referências de instruções, liga
 a hashes em `ptez-report.json`. Os DPE31/32 possuem dois DelegateCall para
 HexagonRpcBackend no plano forward analisado. Não há inferência nem tradução
 desses delegates para o telefone. Veja [a continuação medida](../../analysis/builds/52168470052900520/COMPRESSED-HAND-MODELS.md).
+
+## Atributos DPE e verificação independente
+
+O getter constante `get_attributes_msgpack` foi inspecionado sem execução:
+DPE31/32 declaram `[96,96]`, `use_uint8_input=false` e formato privado `v2`.
+Não confundir esse frontend com o tensor Byte quantizado do grafo compilado,
+nem conectar bytes da Camera2 sem recuperar a conversão e calibração originais.
+
+Um probe C++ com schema público verificou os dez programas e recuperou em Int64
+os 13 escalares recusados pelo limite conservador de extensão de objeto. O writer
+público FlatBuffers reproduz a vtable compartilhada que causa a advertência;
+isso não identifica o exporter privado ou valida inferência. Veja [evidências,
+constantes e testes](../../analysis/builds/52168470052900520/ATTRIBUTES-REFERENCE-VALIDATION.md).
+**O bridge de câmera/mãos continua NOT PORTED YET.**
