@@ -2,6 +2,9 @@
 
 **NOT PORTED YET. Não há APK funcional nem Home/System UI em execução.**
 
+> Registro histórico do primeiro experimento. Para o estado mais recente, veja
+> [partições montadas e segundo estágio original](GUEST-STORAGE.md).
+
 ## Resultado medido
 
 [Actions 36672348632](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/actions/runs/36672348632),

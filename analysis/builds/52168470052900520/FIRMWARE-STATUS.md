@@ -6,11 +6,12 @@ adaptado ao Android/VRBox. Estado do sistema portado: NOT PORTED YET.**
 Não foi criado um APK hospedeiro vazio para substituir esse objetivo.
 A biblioteca Android/NDK existente é infraestrutura auxiliar, não o Horizon OS.
 
-## Atualização: primeiro estágio em máquina virtual
+## Atualização: segundo estágio em máquina virtual
 
-O [experimento de boot guest](GUEST-BOOT.md) compilou um kernel público Meta
-adaptado e executou o init original no caminho normal. O init parou por falta
-de metadata/super/vbmeta no hardware virtual. **Não houve boot completo nem APK.**
+O [experimento com armazenamento guest](GUEST-STORAGE.md) montou as sete
+partições de sistema originais e executou o segundo estágio do init. O bloqueio
+atual observado é a espera pelo BootControl HAL, além de dados/hardware ausentes.
+**Não houve boot completo nem APK.**
 A fonte pública selecionada não é uma correspondência exata comprovada com o OTA.
 
 ## Resultados da análise estática

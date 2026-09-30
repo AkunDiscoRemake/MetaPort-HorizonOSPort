@@ -27,20 +27,23 @@ analisado em GitHub Actions. O pipeline já:
 5. Leu manifestos de cinco APKs e analisou bibliotecas nativas selecionadas.
 6. Produziu disassembly ARM64 amostral e `.text` completa de bibliotecas menores
    selecionadas, dependências, símbolos e evidências do protocolo Binder original.
-7. Compilou o kernel público Meta com adaptação virtual e **executou o primeiro
-   estágio do init original em QEMU**, no caminho de boot normal. Parou esperando
-   partições guest ainda não anexadas; não houve boot completo.
+7. Compilou o kernel público Meta com adaptação virtual e executou o init original.
+8. Construiu o armazenamento guest, **montou as sete partições originais e
+   executou o segundo estágio do init**. A execução ainda espera o BootControl HAL;
+   não houve boot completo nem abertura do Horizon.
 
 **[Estado do firmware completo e bloqueios de boot](analysis/builds/52168470052900520/FIRMWARE-STATUS.md)**
 
-**[Resultado do primeiro estágio original em guest](analysis/builds/52168470052900520/GUEST-BOOT.md)**
+**[Resultado atual: partições e segundo estágio originais](analysis/builds/52168470052900520/GUEST-STORAGE.md)**
+
+**[Resultado inicial do primeiro estágio original em guest](analysis/builds/52168470052900520/GUEST-BOOT.md)**
 
 [Mapa anterior de userspace](analysis/builds/52168470052900520/PORTING-MAP.md).
 
 Isso reúne análise de componentes originais e um primeiro experimento de boot,
 não um sistema portado funcional. DEX ainda não foi decompilado; o disassembly é amostral, não completo.
 Não houve boot completo do Android/Horizon, integração de hardware original
-ou otimização medida. O primeiro estágio executado não abriu Home/System UI.
+ou otimização medida. O segundo estágio executado não demonstra Home/System UI funcionando.
 A principal barreira observada é a dependência em serviços/UIDs/capacidades de
 sistema, IPC e interfaces vendor que um APK comum não recebe.
 

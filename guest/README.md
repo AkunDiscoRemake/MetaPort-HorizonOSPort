@@ -15,21 +15,28 @@ or phone access. No Quest firmware should ever be flashed onto the Infinix.
    Add virtual-device support missing from the unchanged firmware kernel; disable
    toolchain-dependent CFI/LTO/SCS for this experimental distro-LLVM build. This
    changes security/performance properties and is not a production configuration.
-3. Verify the fixed OTA ZIP hash and reconstruct only boot/vendor_boot, validating
+3. Verify the fixed OTA ZIP hash and reconstruct boot/vendor_boot, the seven logical filesystems and vbmeta images, validating
    payload operation and partition hashes. Inventory bounded CPIO ramdisks without
    extracting their paths on the runner. Hash equality is not signature verification.
 4. Concatenate original vendor+generic ramdisk bytes without replacing `/init`.
    Vendor bootconfig is not yet appended; physical Qualcomm DTBs are not used.
    Explicit guest cmdline selects eureka hardware identity, slot `_a` and normal boot;
    it does not assert AVB success, unlock the phone, or replace original init.
-5. Probe this original initramfs with the adapted kernel for at most 60 seconds.
-   **No Android system disks are attached.** Full Android boot is not expected or
-   claimed. Console markers distinguish kernel execution and original first-stage
+5. Build a disposable GPT disk with original filesystem bytes in Android LP
+   metadata, original vbmeta blocks and a fresh empty metadata filesystem. Derive
+   vbmeta digest/size handoff parameters without disabling guest verification.
+   This is not a hardware trust anchor or rollback implementation.
+6. Probe this original initramfs with the adapted kernel and disk for at most
+   180 seconds. Writes use a temporary QEMU snapshot; no host devices are attached.
+   Full Android/Horizon boot is not claimed. Console markers distinguish kernel execution and original first-stage
    init, rather than treating QEMU startup or a successful workflow as a working OS.
 
 The workflow publishes `analysis/builds/52168470052900520/guest-report.json` even
 when compilation fails. Firmware images and source/build trees stay runner-local.
-No successful compilation or guest execution should be inferred from these scripts.
+Measured results, including original second-stage execution and outstanding
+BootControl/data/hardware blockers, are recorded in
+[the storage experiment report](../analysis/builds/52168470052900520/GUEST-STORAGE.md).
+A successful workflow alone is not evidence of full Android boot.
 
 ## Local tests
 
@@ -38,7 +45,8 @@ python3 -m unittest discover -s guest/tests -v
 ```
 
 Optional `lz4==4.4.4` enables the LZ4 fixture; Actions installs it. Subsequent work
-requires the actual probe results, original fstab/partition mapping, a guest block
-layout, hardware-service adaptation, graphics and IPC bridges. It also requires
+requires BootControl/slot-state and data-storage adaptation, original hardware-service
+adaptation, graphics and IPC bridges. A system-disk layout now exists, but userdata,
+TEE functionality and physical hardware integration do not. It also requires
 an Android-hosted emulator and performance validation; none is supplied by this
 kernel probe.
