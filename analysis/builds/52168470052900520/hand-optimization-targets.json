@@ -1,0 +1,796 @@
+{
+  "engine_sha256": "10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe",
+  "groups": {
+    "inference": {
+      "matched_count": 1771,
+      "selected": [
+        {
+          "address": 2234001,
+          "text": "NSt6__ndk110__function6__funcIZN6nimble15DPEHandTracking15DPETorchModelV19loadModelERNS_13basic_istreamIcNS_11char_traitsIcEEEERKNS3_14DPEModelParamsEE3$_0NS_9allocatorISD_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 90604,
+          "text": "Output tensor first dim size should be batchSize={} but got {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 91301,
+          "text": "newFrame size must match batch * heads * headDim: expected {}, got {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 91514,
+          "text": "Key cache batch mismatch: expected {}, got {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 95154,
+          "text": "[EVENT] {}: Hexagon ref count changed from {} to {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 102069,
+          "text": "HexagonMemTest returned {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 102642,
+          "text": "[MGDebug] Invalid iBatch index: {} >= {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 102683,
+          "text": "[MGDebug] Invalid iBatch index for state activations: {} >= {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 104609,
+          "text": "batchLoadTreeContext fails: Insufficient GraphNode slots: free = {} < needed = {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 105616,
+          "text": "Can't init boltNN model {} due to {}: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 105657,
+          "text": "Failed to load BoltNN model: {} due to {}: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 105746,
+          "text": "Failed to run boltNN inference due to {}: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 109623,
+          "text": "HexagonGetPmu returned error: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 112330,
+          "text": "Creating CNNVizardHandBboxDetector with batchSize {} stackSize {} nnWH:{}x{}, outputNo:{}, isPtl: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 117588,
+          "text": "hexagon_hta_nn_teardown failed: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 131226,
+          "text": "QuantizedLazy",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 132853,
+          "text": "hexagon_setDspPriority",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 133182,
+          "text": "Error::DelegateInvalidCompatibility",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 136613,
+          "text": "hexagon_mapIonMemory",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 136755,
+          "text": "executorch::HexagonRpcMemory",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 138563,
+          "text": "HexagonRpcBackend::destroy",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 138590,
+          "text": "hexagon_nnFlatbuffersDestroy",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 138619,
+          "text": "hexagonNNFlatbuffersDestroy",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 138678,
+          "text": "hexagon_nnDestroy",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 138696,
+          "text": "hexagon_nnOssQnnDestroy",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 139980,
+          "text": "batchify",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 143493,
+          "text": "fbgemm_pack_quantized_matrix",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 144418,
+          "text": "aten::_batch_norm_impl_index",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 144687,
+          "text": "quantized_index",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 146719,
+          "text": "QuantizedSoftmax",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 147708,
+          "text": "hexagon_nnExecuteEx",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 149203,
+          "text": "CALL_DELEGATE execute failed at instruction %zu: 0x%x",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 150628,
+          "text": "Missing symbol: hexagon_hta_nn_execute_new",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 151285,
+          "text": "quantized::conv",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 153510,
+          "text": "DELEGATE_CALL index %u >= num delegates %zu at instruction %zu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 154422,
+          "text": "Failed to allocate delegates array of size %zu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 156985,
+          "text": "quantize_tensor_per_channel_float_qparams_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157175,
+          "text": "batch_norm_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157370,
+          "text": "quantize_tensor_per_channel_affine_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157444,
+          "text": "lt_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157465,
+          "text": "gt_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157486,
+          "text": "cat_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157508,
+          "text": "eq_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157529,
+          "text": "ne_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157550,
+          "text": "le_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157571,
+          "text": "ge_out_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157592,
+          "text": "cat_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157610,
+          "text": "masked_fill_impl_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157641,
+          "text": "equal_quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 157661,
+          "text": "masked_fill__quantized_cpu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 158006,
+          "text": "hexagon_deinitializePmu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 158304,
+          "text": "quantized::linear_relu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 158467,
+          "text": "quantized::conv1d_relu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 158526,
+          "text": "QuantizedConv2dRelu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 158546,
+          "text": "QuantizedConv1dRelu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 158566,
+          "text": "QuantizedFCRelu",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 163240,
+          "text": "batchLoadTreeContext",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 164347,
+          "text": "use_uint8_input",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 164363,
+          "text": "has_int8_input",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 164411,
+          "text": "aten::quantized_gru.input",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 164714,
+          "text": "Missing symbol: hexagon_hta_nn_get_memory_layout",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 165334,
+          "text": "max_quantized_unary_out",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 165358,
+          "text": "min_quantized_unary_out",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 165580,
+          "text": "batch_norm_cpu_out",
+          "hand_context_in_string": false
+        }
+      ],
+      "truncated": true
+    },
+    "memory": {
+      "matched_count": 26,
+      "selected": [
+        {
+          "address": 139554,
+          "text": "HPSTensor {} requires a preallocated buffer of size {} or size 0 to have allocations managed internally",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 225897,
+          "text": "_fake_quantize_per_tensor_affine_cachemask_tensor_qparams",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 261512,
+          "text": "(preallocated) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 389863,
+          "text": "In ~ImagePyramidPoolAllocatorBoltCv, and someone else holds a reference to the memory pool",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 450195,
+          "text": "memory_planned_buffer_size",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 549453,
+          "text": "Invalid memory pool code %d",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 556368,
+          "text": "third-party/protobuf/3.20.3/protobuf/src/google/protobuf/io/zero_copy_stream.cc",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 556906,
+          "text": "third-party/protobuf/3.20.3/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 562678,
+          "text": "ExecutionPlan input supposed to preallocated but has nullptr for data",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 606307,
+          "text": "basic_.getTrigger( static_cast<uint32_t>(AECPreAllocatedTriggerID::luxIndex), output.luxIndex) != OK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 606408,
+          "text": "setTrigger( static_cast<uint32_t>(AECPreAllocatedTriggerID::luxIndex), luxIndex) != OK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 606495,
+          "text": "basic_->getTrigger( static_cast<uint32_t>(AECPreAllocatedTriggerID::luxIndex), luxIndex) != OK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 614089,
+          "text": "basic_->setTrigger( static_cast<uint32_t>(AECPreAllocatedTriggerID::targetIndexDelta), targetIndexDelta) != OK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 614576,
+          "text": "basic_.getLuma( static_cast<uint32_t>(AECPreAllocateLumaID::averageLuma), output.averageLuma) != OK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 615473,
+          "text": "basic_->setTrigger( static_cast<uint32_t>( AECPreAllocatedTriggerID::maxTartetIndexDelta), maxTargetIndexDelta_) != OK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 618009,
+          "text": "Releasing memory pool resources from Bolt SDK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 618055,
+          "text": "Acquiring memory pool resources from Bolt SDK",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 625398,
+          "text": "Key cache must be 4D tensor [batch, heads, seq_len, head_dim], got {}D",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 692887,
+          "text": "Expect: hexagon_hta_nn_set_config_params_f( id_, HTA_NN_CONFIG_PREALLOC_BUF_GROUP_COUNT, &numBufGroupToPrealloc, sizeof(numBufGroupToPrealloc)) == 0",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 720496,
+          "text": "Output %zu is memory planned, or is a constant. Cannot override the existing data pointer.",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 729206,
+          "text": "Output tensor index: {} is already memory planned and allocating. Output address cannot be overridden.",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 735058,
+          "text": "{}: {}boltFreeMemory() called after boltStop(); memory pool already torn down, ignoring.",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 840102,
+          "text": "(inputImage.width() * inputImage.height()) / (resizeFactor * resizeFactor) <= preallocatedMemory.resizeImageMemory.size()",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 858657,
+          "text": "!outputTensorMeta->is_memory_planned()",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 1157352,
+          "text": "HexagonDelegatedProgram expects at most 2 memory planned buffers, method ",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 1291583,
+          "text": "NSt6__ndk120__shared_ptr_emplaceIN13planepipeline18PlaneGeometryFloorEN5Eigen17aligned_allocatorIS2_EEEE",
+          "hand_context_in_string": false
+        }
+      ],
+      "truncated": false
+    },
+    "temporal": {
+      "matched_count": 615,
+      "selected": [
+        {
+          "address": 217399,
+          "text": "hand pose filters",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 293938,
+          "text": "debug.handtracking.ptDeformationMode.noFilter",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 379854,
+          "text": "HandTrackingPoseFilterEnum",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 1721298,
+          "text": "NIMBLE:SurfaceInputs:SKB:SurfaceKeyboardPredictor",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 1724450,
+          "text": "NIMBLE:SurfaceInputs:STP:SurfNetPredictor",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 1724797,
+          "text": "NIMBLE:SurfaceInputs:STP:SurfaceTouchpadPredictor",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 2233448,
+          "text": "N6nimble15DPEHandTracking12DPEPredictorE",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 2233489,
+          "text": "N6nimble15DPEHandTracking21DPEPredictorInterfaceE",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 2233552,
+          "text": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 2258053,
+          "text": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+          "hand_context_in_string": true
+        },
+        {
+          "address": 86948,
+          "text": "ts = {}. Reset smooth world. Reason: {}{}{}{}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 91825,
+          "text": "Only integer downsampling supported, got {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 99813,
+          "text": "{}: {}Unknown filter type {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 107797,
+          "text": "Exceeded maximimum smoothing offset, resetting transform. delta trans: {} delta rot: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 112888,
+          "text": "DFD currently not supported on Android! model: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 115754,
+          "text": "Failed to open schedule file: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 116194,
+          "text": "ForceOn filter mode requested but no filter is available for HPSMode: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 116463,
+          "text": "Timed schedule enabled. Duration: {} Period: {}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 121562,
+          "text": "Overriding rate downsampler config: always ON, target FPS {:.1f}",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 133146,
+          "text": "affinity",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 133155,
+          "text": "ro.ovr.timewarpCpuAffinity",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 134657,
+          "text": "HandPrototypeTracking - Invalid scheduling entry",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 134902,
+          "text": "T_smoothWorldFromOdometry",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 140548,
+          "text": "attitude_filter_omega_in_body",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 163289,
+          "text": "android/content/Context",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 171046,
+          "text": "binder_status_t aidl::android::frameworks::stats::AnnotationValue::writeToParcel(AParcel *) const",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 171144,
+          "text": "binder_status_t aidl::android::frameworks::stats::VendorAtomValue::writeToParcel(AParcel *) const",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 173825,
+          "text": "Horizontal sample ratio is too high for the given region of interest",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 173894,
+          "text": "Vertical sample ratio is too high for the given region of interest",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 176953,
+          "text": "diffusion_schedule.pt",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 179443,
+          "text": "alphabetPrediction.numel() >= tokenCount",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 186605,
+          "text": "PredictionDisagreement",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 188778,
+          "text": "android.frameworks.stats.IStats/default",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 190537,
+          "text": "FilterSystem::propagateInit",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 190565,
+          "text": "FilterSystem::updateInit",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 193200,
+          "text": "selftracked_controller.controller_transition_pose_smoother.calculate_old_weight",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 194199,
+          "text": "roiHeight",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 196211,
+          "text": "AnchorJumpDueToSmootherReset",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 196884,
+          "text": "Either useMockDetector or detectionPredictor must be set",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 198695,
+          "text": "predictNet",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 199835,
+          "text": "predictedWorldFromObject",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 200891,
+          "text": "surfaceTypingLandmarkPredictions->dtype() == torch::kFloat",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 201077,
+          "text": "visibilityPrediction->dtype() == torch::kFloat",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 201124,
+          "text": "encoderVisibilityPrediction->dtype() == torch::kFloat",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 201178,
+          "text": "pinchPrediction->dtype() == torch::kFloat",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 210319,
+          "text": "[MGDebug] Predictor returned empty results",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 210894,
+          "text": "centroid_weights",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 211485,
+          "text": "AnchorSmootherOffsets",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 211566,
+          "text": "Scheduling scheduleLoadSubmapSets with {} sets",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 211613,
+          "text": "Inline scheduleLoadSubmapSets with {} sets",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 212149,
+          "text": "android.frameworks.stats.IStats",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 212534,
+          "text": "smooth_l1_loss",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 220280,
+          "text": "predictHeatmaps",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 221093,
+          "text": "Smoothing not supported with nonstandard sampling ratios",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 222511,
+          "text": "surface_typing_landmark_predictions",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 224775,
+          "text": "centroid_means",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 227371,
+          "text": "downsampleBaseImage.size() == numPools",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 230495,
+          "text": "Meroitic_Hieroglyphs",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 233929,
+          "text": "modifiersPrediction.numel() >= numModifierValues",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 245381,
+          "text": "DPEPredictorImpl constructor, extraction of heatmap regression methods",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 246571,
+          "text": "PredictionInSeconds",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 247291,
+          "text": "data.numCentroids",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 248401,
+          "text": "predictedBlobs",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 250001,
+          "text": "oculus_anchor_smoother_linear_speed_dead_zone_m_s",
+          "hand_context_in_string": false
+        }
+      ],
+      "truncated": true
+    }
+  },
+  "all_optimizations_found": false,
+  "runtime_validated": false,
+  "scope": "String leads, including generic dependencies; call-chain validation required"
+}
