@@ -1,7 +1,7 @@
 {
   "build": "52168470052900520",
-  "source_commit": "9fca1374cd925bae5ca23aac1a5ff6fc20167a46",
-  "workflow_run": "36776931816",
+  "source_commit": "5e88321a2abb18ab5f430f9eaab68943cade5edf",
+  "workflow_run": "36777260117",
   "source_image_sha256": "682ada7a17804df126ac9989149c04d8a2f6e722b3830648940dd9ee06736a09",
   "firmware_executed": false,
   "hand_tracking_ported": false,
@@ -46,6 +46,12 @@
       "path": "/etc/handtracking/runtime/common/defaultfbx_L.msgpack",
       "sha256": "b2bbddd2495ce8bad80f25e07cd2ffc630452d09da1bf384d144500e151b7422",
       "size": 187811,
+      "roundtrip_validation": {
+        "all_corners_equal": true,
+        "all_influences_equal": true,
+        "source_vertex_identity_preserved": true,
+        "runtime_equivalence_established": false
+      },
       "geometry": {
         "source_vertices": 1159,
         "draw_vertices": 1360,
@@ -133,6 +139,8 @@
           75,
           76
         ],
+        "palette_bones": 17,
+        "skinning_index_space": "compact_palette",
         "index_bits": 16,
         "vertex_stride_bytes": 32,
         "influence_histogram": {
@@ -154,6 +162,10 @@
         "animation_mapping_validated": false,
         "renderer_integrated": false,
         "streams": {
+          "bone_palette": {
+            "size_bytes": 68,
+            "sha256": "8ad158c2fab521e6981c1310ba6398000beaf0dd68f473623c5273a16236ecc2"
+          },
           "vertices": {
             "size_bytes": 43520,
             "sha256": "a77a88fc3aa319d97dc8efd83caf65886517828fa886ab41f0ec699cc11d4f93"
@@ -172,7 +184,7 @@
           },
           "skinning_weights": {
             "size_bytes": 23848,
-            "sha256": "22d2af6a8ebfb00203b214866aa650d6d330ff529bd09c681430690bfd233cd4"
+            "sha256": "975cf38c512d4abad49a0178d3553c98437e1feff00765c5cc5b209e5ca0c296"
           }
         }
       },
@@ -894,6 +906,12 @@
       "path": "/etc/handtracking/runtime/common/defaultfbx_R.msgpack",
       "sha256": "baef26268d95901b78e7cc22d073685d4aff9b319aeea09a4b75bb5967c52fe8",
       "size": 187811,
+      "roundtrip_validation": {
+        "all_corners_equal": true,
+        "all_influences_equal": true,
+        "source_vertex_identity_preserved": true,
+        "runtime_equivalence_established": false
+      },
       "geometry": {
         "source_vertices": 1159,
         "draw_vertices": 1360,
@@ -981,6 +999,8 @@
           75,
           76
         ],
+        "palette_bones": 17,
+        "skinning_index_space": "compact_palette",
         "index_bits": 16,
         "vertex_stride_bytes": 32,
         "influence_histogram": {
@@ -1002,6 +1022,10 @@
         "animation_mapping_validated": false,
         "renderer_integrated": false,
         "streams": {
+          "bone_palette": {
+            "size_bytes": 68,
+            "sha256": "8ad158c2fab521e6981c1310ba6398000beaf0dd68f473623c5273a16236ecc2"
+          },
           "vertices": {
             "size_bytes": 43520,
             "sha256": "c43355d85c6093c2997495348cbe70f98d1cc919fdaa4821af55e28f4c7e337a"
@@ -1020,7 +1044,7 @@
           },
           "skinning_weights": {
             "size_bytes": 23848,
-            "sha256": "22d2af6a8ebfb00203b214866aa650d6d330ff529bd09c681430690bfd233cd4"
+            "sha256": "975cf38c512d4abad49a0178d3553c98437e1feff00765c5cc5b209e5ca0c296"
           }
         }
       },
