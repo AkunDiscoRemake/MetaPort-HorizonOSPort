@@ -132,3 +132,10 @@ O helper C++ `metaport::hand::PalettePlan` faz somente a seleção/cópia sem
 alocações por frame de registros já fornecidos pelo produtor. Não é a bridge,
 não produz poses e não implementa o algoritmo original de animação/skinning.
 Veja [resultados, código e critérios de integração](../../analysis/builds/52168470052900520/HAND-VISUALS.md).
+
+## Otimizações originais, não melhorias próprias
+
+Veja [inventário com endereços e limites](../../analysis/builds/52168470052900520/HAND-ORIGINAL-OPTIMIZATIONS.md).
+A regra original de atualização condicional de float4 de material foi isolada em
+`hand_material.cpp`, inclusive FCMEQ/UMINP ARM64. Ainda sem conexão com o objeto
+privado do VrShell. Não representa todas as otimizações nem tracking funcionando.

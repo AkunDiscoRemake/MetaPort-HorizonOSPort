@@ -51,6 +51,13 @@ jobs:
             port/android/adapters/src/main/cpp/hand_palette.cpp \
             -o local-analysis/native-tests/hand_palette_test
           local-analysis/native-tests/hand_palette_test
+      - name: Test original hand material update rule
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_material_test.cpp \
+            port/android/adapters/src/main/cpp/hand_material.cpp \
+            -o local-analysis/native-tests/hand_material_test
+          local-analysis/native-tests/hand_material_test
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |
