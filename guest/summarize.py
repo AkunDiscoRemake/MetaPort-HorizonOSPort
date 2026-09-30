@@ -12,6 +12,7 @@ report={'source':json.loads(Path('guest/kernel/source.json').read_text()),
         'workflow_run':os.environ['GITHUB_RUN_ID'],'project_commit':os.environ['GITHUB_SHA'],
         'build_step_outcome':os.environ.get('BUILD_OUTCOME','unknown'),
         'ramdisk_step_outcome':os.environ.get('RAMDISK_OUTCOME','unknown'),
+        'storage_step_outcome':os.environ.get('STORAGE_OUTCOME','unknown'),
         'probe_step_outcome':os.environ.get('PROBE_OUTCOME','unknown'),
         'kernel_cache_hit':os.environ.get('KERNEL_CACHE_HIT')=='true',
         'port_status':'NOT PORTED YET','physical_phone_tested':False,
@@ -21,6 +22,6 @@ config=root/'kernel-out/.config'
 if config.exists():
     keys=('CONFIG_VIRTIO','CONFIG_SERIAL_AMBA','CONFIG_ANDROID_BINDER','CONFIG_SECURITY_SELINUX','CONFIG_LOCALVERSION','CONFIG_LTO','CONFIG_CFI')
     report['selected_build_config']=[l for l in config.read_text().splitlines() if any(k in l for k in keys)]
-for name,path in [('ramdisk',root/'ramdisks/ramdisk-report.json'),('probe',root/'probe/probe-report.json')]:
+for name,path in [('storage',root/'storage/storage-report.json'),('ramdisk',root/'ramdisks/ramdisk-report.json'),('probe',root/'probe/probe-report.json')]:
     if path.exists(): report[name]=json.loads(path.read_text())
 (report_dir/'guest-report.json').write_text(json.dumps(report,indent=2)+'\n')

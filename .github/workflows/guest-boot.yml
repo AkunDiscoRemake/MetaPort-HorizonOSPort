@@ -22,7 +22,7 @@ jobs:
       - name: Install isolated build and emulation tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip
+          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip e2fsprogs gdisk
           python3 -m pip install lz4==4.4.4
           mkdir -p "$GUEST_WORK"
       - name: Test bounded parsers and probe classification
@@ -53,13 +53,20 @@ jobs:
             'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$GUEST_WORK/firmware.zip"
           echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $GUEST_WORK/firmware.zip" | sha256sum --check --strict
           python3 - <<'PY'
-          import os
+          import os, json
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
           root=Path(os.environ['GUEST_WORK'])
-          reconstruct(root/'firmware.zip',root/'images',selected={'boot','vendor_boot'})
+          from guest.storage import LOGICAL
+          report=reconstruct(root/'firmware.zip',root/'images',selected=set(LOGICAL)|{'boot','vendor_boot','vbmeta','vbmeta_system'})
+          (root/'reconstruction.json').write_text(json.dumps(report))
           PY
           python3 -m guest.prepare_boot --images "$GUEST_WORK/images" --output "$GUEST_WORK/ramdisks"
+      - name: Assemble disposable GPT and Android logical partitions
+        id: storage
+        run: |
+          python3 -m guest.storage --images "$GUEST_WORK/images" --reconstruction "$GUEST_WORK/reconstruction.json" --output "$GUEST_WORK/storage"
+          sgdisk --verify "$GUEST_WORK/storage/guest-disk.raw"
       - name: Compile official Quest kernel with virtual hardware delta
         id: build
         if: (success() || steps.ramdisk.outcome == 'failure') && steps.kernel-cache.outputs.cache-hit != 'true'
@@ -69,18 +76,20 @@ jobs:
           code=$?
           tail -n 60 "$GUEST_WORK/build.log"
           exit "$code"
-      - name: Probe original init on adapted kernel (no system disks or network)
+      - name: Probe original init with original system images (no network)
         id: probe
         if: success() && (steps.build.outcome == 'success' || steps.kernel-cache.outputs.cache-hit == 'true') && steps.ramdisk.outcome == 'success'
         run: |
           python3 -m guest.probe --kernel "$GUEST_WORK/kernel-out/arch/arm64/boot/Image" \
-            --initrd "$GUEST_WORK/ramdisks/original-initrd" --output "$GUEST_WORK/probe"
+            --initrd "$GUEST_WORK/ramdisks/original-initrd" --output "$GUEST_WORK/probe" \
+            --disk "$GUEST_WORK/storage/guest-disk.raw"
       - name: Summarize measured outcomes even on failure
         if: always()
         env:
           KERNEL_CACHE_HIT: ${{ steps.kernel-cache.outputs.cache-hit }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           RAMDISK_OUTCOME: ${{ steps.ramdisk.outcome }}
+          STORAGE_OUTCOME: ${{ steps.storage.outcome }}
           PROBE_OUTCOME: ${{ steps.probe.outcome }}
         run: python3 -m guest.summarize
       - name: Publish report only to session branch
