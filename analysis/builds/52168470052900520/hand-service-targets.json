@@ -1,14 +1,6 @@
 {
-  "matched_count": 381,
+  "matched_count": 288,
   "selected": [
-    {
-      "address": 470364,
-      "text": "handedness"
-    },
-    {
-      "address": 470591,
-      "text": "NoHand"
-    },
     {
       "address": 470598,
       "text": "HandTrackingExtraSensors"
@@ -18,20 +10,8 @@
       "text": "[HANDTRACKINGGLUE] stopCapability"
     },
     {
-      "address": 470811,
-      "text": "hand_stop_capability"
-    },
-    {
       "address": 474081,
       "text": "[SurfaceInputs] HandTrackingService::startSurfaceKeyboard. T: %f %f %f, R: %f %f %f %f"
-    },
-    {
-      "address": 475969,
-      "text": "handCapStart"
-    },
-    {
-      "address": 475982,
-      "text": "handCapResume"
     },
     {
       "address": 475996,
@@ -54,24 +34,12 @@
       "text": "!backgroundPriority_.has_value()"
     },
     {
-      "address": 480101,
-      "text": "evFlagHandle_.get() < 0"
-    },
-    {
       "address": 480161,
       "text": "[DevChoice] Moved hand tracking camera threads to %s"
     },
     {
       "address": 480582,
       "text": "      Likely Off-Hand Orn:  "
-    },
-    {
-      "address": 480617,
-      "text": "persist.device_config.constellation_native.oculus_input_tracking_use_lowpass_for_ct_in_hand"
-    },
-    {
-      "address": 482494,
-      "text": "FlushAndDisableTracing(%lu) done, success=%d"
     },
     {
       "address": 483104,
@@ -86,48 +54,16 @@
       "text": "hand"
     },
     {
-      "address": 483676,
-      "text": "HandleRequest: failed to serialize version"
-    },
-    {
-      "address": 484355,
-      "text": ") must be smaller than the number of fds in the handle: "
-    },
-    {
-      "address": 484561,
-      "text": "persist.vendor.ovr.tracking.hand_thread_pri"
-    },
-    {
       "address": 488406,
       "text": "affinity"
-    },
-    {
-      "address": 489047,
-      "text": "HandleRequest: Invalid RPC protocol using Reflect V2: %u"
-    },
-    {
-      "address": 490036,
-      "text": "handleSelftrackedStatus called for unpaired device %016lx"
     },
     {
       "address": 490244,
       "text": "[HANDTRACKINGGLUE] setup"
     },
     {
-      "address": 490717,
-      "text": "StateHandler config: transitionTimeout=%lldms, maxTimeouts=%zu"
-    },
-    {
-      "address": 490887,
-      "text": "inHandFromCT"
-    },
-    {
       "address": 492977,
       "text": "[HANDTRACKING] Controller %lx in hand: %s, valid: %s"
-    },
-    {
-      "address": 493119,
-      "text": "registerPrescriptionLensInsertDetectionStateCallback - handle or callback missing"
     },
     {
       "address": 493454,
@@ -142,32 +78,12 @@
       "text": "syncbossWorkerPriority"
     },
     {
-      "address": 494942,
-      "text": "hand_start_capability"
-    },
-    {
-      "address": 498508,
-      "text": "handExposureControl"
-    },
-    {
       "address": 499831,
       "text": "Scheduling delayed transition to SLEEP in %lldms"
     },
     {
-      "address": 501222,
-      "text": "Failed to set SIGUSR2 handler."
-    },
-    {
       "address": 501273,
       "text": "cameraStreamerPriority"
-    },
-    {
-      "address": 501549,
-      "text": "SendFileDescriptors: SerializeAtOffset fdInfo.Handle failed, serverId %u, clientId %u"
-    },
-    {
-      "address": 503103,
-      "text": "persist.vendor.ovr.tracking.usectinhandflag"
     },
     {
       "address": 505059,
@@ -178,10 +94,6 @@
       "text": "[HandTracking] setMicrogestureMode(%d, %d)"
     },
     {
-      "address": 509853,
-      "text": "InHand: {} "
-    },
-    {
       "address": 509898,
       "text": "controllerWorkerPriority"
     },
@@ -190,32 +102,12 @@
       "text": "[HANDTRACKINGGLUE] tearDown"
     },
     {
-      "address": 511445,
-      "text": "handCapSuspend"
-    },
-    {
-      "address": 511460,
-      "text": "hand_setup"
-    },
-    {
       "address": 514548,
       "text": "!computePriority_.has_value()"
     },
     {
       "address": 514578,
       "text": "graphicsCriticalPriority missing from config file"
-    },
-    {
-      "address": 515361,
-      "text": "Failed to register remote with unknown model %d (handedness %s)"
-    },
-    {
-      "address": 515697,
-      "text": "IOBT handleStateChange: fidelity OFF, skipping (alwaysUseMediumHigh=%d)"
-    },
-    {
-      "address": 519050,
-      "text": "inHand"
     },
     {
       "address": 519127,
@@ -228,22 +120,6 @@
     {
       "address": 520487,
       "text": "[HANDTRACKINGGLUE] suspendCapability"
-    },
-    {
-      "address": 521243,
-      "text": "StateHandler setState powerState=%s"
-    },
-    {
-      "address": 522932,
-      "text": "Failed to create native handle for ImageBuffer"
-    },
-    {
-      "address": 523503,
-      "text": "InHandUpdateCallback"
-    },
-    {
-      "address": 523524,
-      "text": "predictions_handled"
     },
     {
       "address": 523838,
@@ -262,52 +138,8 @@
       "text": "%s: Failed to set task profile for thread %d, priority: %d, err: %d"
     },
     {
-      "address": 524344,
-      "text": "HandleRequest: failed to serialize flags"
-    },
-    {
-      "address": 525487,
-      "text": "HandCam"
-    },
-    {
-      "address": 525843,
-      "text": "Clearing StateHandler transition queue"
-    },
-    {
-      "address": 527210,
-      "text": "android.hardware.common.NativeHandle"
-    },
-    {
       "address": 528720,
       "text": "elevatedPriority missing from config file"
-    },
-    {
-      "address": 529005,
-      "text": "SendBinders: SerializeAtOffset fdInfo.Handle failed, serverId %u, clientId %u"
-    },
-    {
-      "address": 530116,
-      "text": "hand_resume_capability"
-    },
-    {
-      "address": 530139,
-      "text": "hand_sleep_to_standby"
-    },
-    {
-      "address": 530965,
-      "text": "StateHandler"
-    },
-    {
-      "address": 531132,
-      "text": "neverProvenInHand"
-    },
-    {
-      "address": 532466,
-      "text": "PERFETTO_CHECK(g_handler == nullptr)"
-    },
-    {
-      "address": 532919,
-      "text": "[SurfaceTouchpadService] handleZoomEvent: callback is null"
     },
     {
       "address": 533099,
@@ -322,44 +154,16 @@
       "text": "!graphicsCriticalPriority_.has_value()"
     },
     {
-      "address": 533573,
-      "text": "CheckRpcHandlerPermissions: one-way RPC silently dropped, permission denied for %s from client %u"
-    },
-    {
-      "address": 534206,
-      "text": "std::handle<>"
-    },
-    {
       "address": 534799,
       "text": "[HANDTRACKINGGLUE] resumeCapability"
-    },
-    {
-      "address": 534835,
-      "text": "hand_teardown"
     },
     {
       "address": 535294,
       "text": "      In-Hand From CT:      "
     },
     {
-      "address": 536495,
-      "text": "handle_ == nullptr"
-    },
-    {
-      "address": 537744,
-      "text": "Failed to set SIGTERM handler."
-    },
-    {
       "address": 537775,
       "text": "Failed to set %s thread priority for tid %u"
-    },
-    {
-      "address": 538048,
-      "text": "SendResponse: Failed to serialize serverHandlerStartTimestamp: %s"
-    },
-    {
-      "address": 538114,
-      "text": "HandleRequest: failed to serialize hash"
     },
     {
       "address": 539080,
@@ -370,64 +174,12 @@
       "text": "[HANDTRACKINGGLUE] Ignoring thread pri override"
     },
     {
-      "address": 546142,
-      "text": "Failed to get readonly shared memory handle"
-    },
-    {
-      "address": 546646,
-      "text": "[SurfaceTouchpadService] setActiveHand(%d)"
-    },
-    {
-      "address": 546796,
-      "text": "ControllerInHand"
-    },
-    {
-      "address": 547397,
-      "text": "SendResponse: Failed to serialize serverHandlerCpuTimeNs: %s"
-    },
-    {
-      "address": 547505,
-      "text": "SendSurfaces: SerializeAtOffset handle failed, serverId %u, clientId %u"
-    },
-    {
-      "address": 549329,
-      "text": "isControllerInHand"
-    },
-    {
       "address": 551505,
       "text": "horizonos.perception.handtracking.HandTrackingState"
     },
     {
-      "address": 551698,
-      "text": "Failed to set SIGHUP handler."
-    },
-    {
-      "address": 552243,
-      "text": "ipc_GetClientStateHandle"
-    },
-    {
-      "address": 553217,
-      "text": "mDesc->handle is null"
-    },
-    {
-      "address": 553296,
-      "text": "handleStateChange"
-    },
-    {
-      "address": 553624,
-      "text": "persist.vendor.ovr.tracking.newcontrollersinhand"
-    },
-    {
       "address": 556511,
       "text": "motionStreamerPriority"
-    },
-    {
-      "address": 557112,
-      "text": "You must call REGISTER_RPC_HANDLER before InitServerInternal"
-    },
-    {
-      "address": 557739,
-      "text": "hand_standby_to_running"
     },
     {
       "address": 559393,
@@ -450,10 +202,6 @@
       "text": "%s: Failed to set affinity for thread %d, priority: %d, err: %d"
     },
     {
-      "address": 562586,
-      "text": " Handedness: %s"
-    },
-    {
       "address": 563635,
       "text": "use_obj_track_cpuset"
     },
@@ -462,24 +210,8 @@
       "text": "  Device:%016lx (Handedness: %d), Controller In Hand: %i, Confident: %i, Using Hybrid CT In-Hand Status: %i, Last Active Signal: "
     },
     {
-      "address": 564116,
-      "text": "persist.vendor.ovr.tracking.use_hybrid_ct_in_hand"
-    },
-    {
-      "address": 564338,
-      "text": "(sLibraryHandle) != nullptr"
-    },
-    {
-      "address": 565879,
-      "text": "FlushAndCloneSession(%lu) started, success=%d"
-    },
-    {
       "address": 566566,
       "text": "horizonos.perception.handtracking.IHandTrackingControl"
-    },
-    {
-      "address": 566683,
-      "text": "Failed to set SIGABRT handler."
     },
     {
       "address": 566714,
@@ -502,16 +234,284 @@
       "text": "headsetPosePriority"
     },
     {
-      "address": 571054,
-      "text": "HandleRequestImpl: one-way RPC silently dropped, request type verification failed for %s from client %u"
-    },
-    {
-      "address": 571888,
-      "text": "NoHandSecond"
-    },
-    {
       "address": 571991,
       "text": "[HANDTRACKINGGLUE] startCapability"
+    },
+    {
+      "address": 572026,
+      "text": "HandTrackingGlue"
+    },
+    {
+      "address": 574491,
+      "text": "handTrackingFidelityStatus"
+    },
+    {
+      "address": 574518,
+      "text": "horizonos.perception.handtracking.HandGestureState"
+    },
+    {
+      "address": 574753,
+      "text": "backgroundPriority"
+    },
+    {
+      "address": 574772,
+      "text": "latencyCriticalPriority missing from config file"
+    },
+    {
+      "address": 574922,
+      "text": "TrackingApiGlue registering HandTrackingGlue"
+    },
+    {
+      "address": 576055,
+      "text": "wake_affine_controller"
+    },
+    {
+      "address": 576325,
+      "text": "trackingPolicy"
+    },
+    {
+      "address": 578805,
+      "text": "!latencyCriticalPriority_.has_value()"
+    },
+    {
+      "address": 580353,
+      "text": "[HANDTRACKINGGLUE] standbyToSleep"
+    },
+    {
+      "address": 580387,
+      "text": "[HANDTRACKINGGLUE] HandCam thread priority: %s/%d (sysprop override=%d)"
+    },
+    {
+      "address": 583030,
+      "text": "horizonos.perception.handtracking.HandPinchState"
+    },
+    {
+      "address": 584488,
+      "text": "[HANDTRACKINGGLUE] handleMuxModeNotification"
+    },
+    {
+      "address": 584533,
+      "text": "HandTrackingStream"
+    },
+    {
+      "address": 584726,
+      "text": "wake_affine_iot"
+    },
+    {
+      "address": 587537,
+      "text": "[HandTracking] Permission check failed: %s"
+    },
+    {
+      "address": 587762,
+      "text": "computePriority"
+    },
+    {
+      "address": 587778,
+      "text": "!elevatedPriority_.has_value()"
+    },
+    {
+      "address": 588038,
+      "text": "TrackingApiGlue registering HandTrackingService"
+    },
+    {
+      "address": 589024,
+      "text": "WAKE_AFFINE"
+    },
+    {
+      "address": 589422,
+      "text": "[HANDTRACKINGGLUE] sleepToStandby"
+    },
+    {
+      "address": 592482,
+      "text": "normalPriority"
+    },
+    {
+      "address": 596305,
+      "text": "controllerStreamerPriority"
+    },
+    {
+      "address": 597978,
+      "text": "TrackingDataPostProcessor: New controllers default in-hand: %s"
+    },
+    {
+      "address": 601046,
+      "text": "normalPriority missing from config file"
+    },
+    {
+      "address": 601086,
+      "text": "setPriorityReturnErr"
+    },
+    {
+      "address": 602419,
+      "text": "HzosExt: failed to write WAKE_AFFINE to %s: %s"
+    },
+    {
+      "address": 606306,
+      "text": "isochronousPriority"
+    },
+    {
+      "address": 610361,
+      "text": "  %s Hand is %s"
+    },
+    {
+      "address": 610385,
+      "text": "horizonos.perception.handtracking.IHandTrackingOutput"
+    },
+    {
+      "address": 610748,
+      "text": "cameraWorkerPriority"
+    },
+    {
+      "address": 610769,
+      "text": "computePriority missing from config file"
+    },
+    {
+      "address": 611100,
+      "text": "HandTrackingSensors"
+    },
+    {
+      "address": 615218,
+      "text": "handTrackingPoseUpdate"
+    },
+    {
+      "address": 615241,
+      "text": "horizonos.perception.handtracking.IHandTrackingCallback"
+    },
+    {
+      "address": 615468,
+      "text": "%s: Failed to set %s priority for thread %d, priority: %d, err: %d"
+    },
+    {
+      "address": 615772,
+      "text": "HandTrackingState"
+    },
+    {
+      "address": 618936,
+      "text": "hand"
+    },
+    {
+      "address": 619176,
+      "text": "objectTrackingPolicy"
+    },
+    {
+      "address": 635947,
+      "text": "horizonos.permission.HAND_TRACKING"
+    },
+    {
+      "address": 635982,
+      "text": "persist.ovr.tracking.handtracking.use_pal"
+    },
+    {
+      "address": 637606,
+      "text": "/odm/etc/thread_priority.cfg"
+    },
+    {
+      "address": 469976,
+      "text": "ipc_SetClientEventBufferSize"
+    },
+    {
+      "address": 470425,
+      "text": "exiting haptic socket thread"
+    },
+    {
+      "address": 472365,
+      "text": "Byte size calculation and serialization were inconsistent.  This may indicate a bug in protocol buffers or it may be caused by concurrent modification of "
+    },
+    {
+      "address": 473235,
+      "text": "PERFETTO_CHECK(target_buffer > 0)"
+    },
+    {
+      "address": 473308,
+      "text": "Startup buffer reservations exhausted, dropping data source"
+    },
+    {
+      "address": 473496,
+      "text": "Buffer id allocation failed"
+    },
+    {
+      "address": 473524,
+      "text": "FreeBuffers"
+    },
+    {
+      "address": 474046,
+      "text": "failed to mmap MemoryBroker memory"
+    },
+    {
+      "address": 475326,
+      "text": "ipcCPUBufferCreateInfo"
+    },
+    {
+      "address": 475692,
+      "text": "Unexpected number of buffered haptic samples."
+    },
+    {
+      "address": 477018,
+      "text": "CHECK failed: backup_bytes_ == 0 && buffer_.get() != NULL: "
+    },
+    {
+      "address": 477148,
+      "text": "FastHexToBuffer() wants non-negative integers, not "
+    },
+    {
+      "address": 477322,
+      "text": "imageMetadataBuffers == streamTypeToBuffers->second.end()"
+    },
+    {
+      "address": 477392,
+      "text": "Failed to allocate GraphicBuffer"
+    },
+    {
+      "address": 477538,
+      "text": "PERFETTO_CHECK(task_runner_->RunsTasksOnCurrentThread())"
+    },
+    {
+      "address": 477660,
+      "text": "Configured tracing session %lu, #sources:%zu, duration:%d ms%s, #buffers:%d, total buffer size:%zu KB, total sessions:%zu, uid:%d session name: \"%s\""
+    },
+    {
+      "address": 478415,
+      "text": "[SurfaceTouchpadService] Stopping move worker thread"
+    },
+    {
+      "address": 478468,
+      "text": "[SurfaceTouchpadService] Stopping scroll worker thread"
+    },
+    {
+      "address": 479333,
+      "text": "ipc_BufferStreamDestroy"
+    },
+    {
+      "address": 479658,
+      "text": "getAttachmentAuthBufferSizes"
+    },
+    {
+      "address": 480545,
+      "text": "Buffered"
+    },
+    {
+      "address": 482043,
+      "text": "sharedMemoryProvider_.init(\"ImageBuffer\") == false"
+    },
+    {
+      "address": 482359,
+      "text": "ReadBuffers"
+    },
+    {
+      "address": 484032,
+      "text": "ipc_GetClientEventBufferSize"
+    },
+    {
+      "address": 484061,
+      "text": "ipcBufferPoolCreateInfo"
+    },
+    {
+      "address": 484085,
+      "text": "bufferPools"
+    },
+    {
+      "address": 484412,
+      "text": "starting Nosepad motion thread"
     }
   ],
   "truncated": true,
