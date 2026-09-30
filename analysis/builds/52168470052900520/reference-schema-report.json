@@ -1,0 +1,121 @@
+{
+  "status": "INDEPENDENT_PUBLIC_SCHEMA_COMPARISON_NOT_RUNTIME_VALIDATION",
+  "schema_commit": "4b9d44206a99c1ce39315487599971b257a02ed8",
+  "flatc_version": "flatc version 1.12.0",
+  "model_executed": false,
+  "models": [
+    {
+      "path": "/etc/handtracking/runtime/dpe/DPEV31MG.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {},
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/dpe/DPEV32MG.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {},
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV30.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 5,
+        "kernel_size": 7,
+        "hidden_dim": 384,
+        "left_context": 60,
+        "featurizer_version": 4
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV31.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 5,
+        "kernel_size": 7,
+        "hidden_dim": 384,
+        "left_context": 60,
+        "featurizer_version": 4
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV32.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 5,
+        "kernel_size": 7,
+        "hidden_dim": 384,
+        "left_context": 80,
+        "featurizer_version": 4
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV30.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31_Day0.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV32.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV32_Day0.ptez",
+      "public_schema_verifier_passed": true,
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "status": "COMPARISON_COMPLETE"
+    }
+  ]
+}
