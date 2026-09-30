@@ -45,6 +45,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          # Refresh while the checkout is clean, before copying generated reports.
+          # Queued runs may start from a commit older than a previous report.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
           for name in hand-dependencies-report; do
             if [ -f "$WORK/reports/$name.json" ]; then
@@ -58,8 +63,15 @@ jobs:
             git commit -m 'Record original hand service and DSP dependency evidence [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            published=0
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+                published=1
+                break
+              fi
+            done
+            test "$published" = 1
           fi
       - uses: actions/upload-artifact@v4
         if: always()
