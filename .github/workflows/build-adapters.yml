@@ -65,6 +65,20 @@ jobs:
             port/android/adapters/src/main/cpp/hand_arena_layout.cpp \
             -o local-analysis/native-tests/hand_arena_layout_test
           local-analysis/native-tests/hand_arena_layout_test
+      - name: Test observed unsigned reduction on host and emulated ARM64 NEON
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_u8_reduce_test.cpp \
+            port/android/adapters/src/main/cpp/hand_u8_reduce.cpp \
+            -o local-analysis/native-tests/hand_u8_reduce_test
+          local-analysis/native-tests/hand_u8_reduce_test
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends g++-aarch64-linux-gnu qemu-user
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_u8_reduce_test.cpp \
+            port/android/adapters/src/main/cpp/hand_u8_reduce.cpp \
+            -o local-analysis/native-tests/hand_u8_reduce_arm64
+          qemu-aarch64 local-analysis/native-tests/hand_u8_reduce_arm64
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |

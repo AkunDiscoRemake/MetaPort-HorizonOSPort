@@ -207,3 +207,39 @@ inclusive segmentos que incluem o cabeçalho ELF.
 
 Build Android **36787628516** passou com a aritmética de arenas incorporada.
 Ainda sem validação física, alocador original no MediaTek ou execução dos modelos.
+
+## 7. Operandos DSP e primeira redução inteira adaptada para ARM64
+
+Run **36791887928**, confirmado novamente em **36792806075**:
+`hvx_decoder_probe.hvx_operand_evidence` preserva tipos, sinais, imediatos e
+forma de par de registradores. Normalizar nomes de registradores NÃO preserva
+alias/dependências; janelas +/-8 linhas não delimitam kernels ou pacotes completos.
+
+No skeleton, `.uw = vrmpy(.ub,.ub)` aparece em `0x637bc` (29 ocorrências textuais)
+e `.uw += vrmpy(.ub,.ub)` em `0x66e40` (424). No pacote QNN, a primeira forma
+aparece em `0x4dac0` (2). São endereços da view ELF byte-exata; caminho ativo dos
+modelos de mãos continua não validado. Formas signed, scalar-register, saturadas,
+lookup e QFloat são distintas e não foram substituídas por esta implementação.
+
+**`hand_u8_reduce.{hpp,cpp}`** adapta somente a redução unsigned vetor-vetor:
+cada grupo de quatro bytes produz um acumulador de 32 bits, com atribuição ou
+soma módulo 2^32. Baseline ARM64 NEON faz multiplicação alargada, somas de pares
+alargadas e soma final de pares; não exige a extensão opcional dotprod. Os 128
+bytes da API são uma escolha explícita deste helper, não medição do HVX ativo.
+Não há heap, quantização, execução de tensor, substituição de kernel, bridge
+HexagonRpcBackend nem ganho de desempenho medido.
+
+Referência pública de semântica: QEMU v9.0.0,
+[`target/hexagon/imported/mmvec/ext.idef`](https://github.com/qemu/qemu/blob/v9.0.0/target/hexagon/imported/mmvec/ext.idef),
+`vrmpyubv` / `vrmpyubv_acc`, linhas 732–744; SHA-256
+`96162f9008587e2f97f1893c0632da7f9a0780e6a1dc2219cc905dac22c51717`.
+Esse arquivo de referência é Copyright Qualcomm Innovation Center 2019–2023,
+GPL-2.0-or-later, e não foi incorporado ao repositório. A implementação MetaPort
+é código próprio GPL-3.0-only; isso não relicencia os binários originais.
+
+Teste local host passou com ASan/UBSan: todos os 65536 pares de bytes, posições
+variadas, 4096 vetores determinísticos e overflow, comparados com fórmula
+independente em uint64. A CI agora também compila e executa **o nosso backend
+ARM64 NEON** sob qemu-aarch64. A inclusão da etapa não significa que já passou;
+resultado da primeira execução ainda pendente. Não é execução do DSP original
+nem teste físico no X6873.
