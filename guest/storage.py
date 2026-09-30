@@ -14,6 +14,7 @@ import struct
 import subprocess
 import uuid
 import zlib
+from guest.avb_boot import parameters
 
 MIB=1024*1024
 MAX_DISK=8*1024*MIB
@@ -145,6 +146,9 @@ def build(images,reconstruction,output):
             'metadata_origin':'Fresh disposable empty ext4; not headset userdata or secrets',
             'original_partition_bytes_modified':False,'avb_disabled':False,
             'original_disk_geometry_reproduced':False,'slot':'_a','phone_modified':False}
+    avb=parameters(images)
+    report['avb_boot_parameters']=avb
+    (output/'avb-boot.json').write_text(json.dumps(avb,indent=2)+'\n')
     (output/'storage-report.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 

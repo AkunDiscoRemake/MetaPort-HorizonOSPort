@@ -43,7 +43,11 @@ def probe(kernel,initrd,output,disk=None):
         disk=Path(disk).resolve()
         if not disk.is_file() or disk.stat().st_size>8*1024**3:
             raise ValueError('Expected bounded regular guest disk image')
+        avb=json.loads((disk.parent/'avb-boot.json').read_text())
+        if avb['hash_alg']!='sha256' or not re.fullmatch('[0-9a-f]{64}',avb['digest']) or not 0<avb['size']<=16*1024*1024:
+            raise ValueError('Invalid bounded vbmeta boot parameters')
         args[-1]+=' androidboot.boot_devices=a000000.virtio_mmio'
+        args[-1]+=f" androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size={avb['size']} androidboot.vbmeta.digest={avb['digest']}"
         args+=['-drive',f'if=none,id=guestdisk,file={disk},format=raw,snapshot=on',
                '-device','virtio-blk-device,drive=guestdisk,bus=virtio-mmio-bus.0']
     log=output/'guest-console.log'
