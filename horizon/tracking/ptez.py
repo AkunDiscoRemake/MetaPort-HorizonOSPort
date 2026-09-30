@@ -91,6 +91,9 @@ def inspect(images,reconstruction,output):
         with tempfile.TemporaryDirectory() as temp:
             path=Path(temp)/'model';dump_entry(image,entry,path)
             result,raw=inspect_container(path.read_bytes())
+            if raw is not None:
+                from horizon.tracking.pte_constants import inspect_attributes
+                result['serialized_attributes']=inspect_attributes(raw,result['pte_header']['root_offset'])
             report['models'].append({'path':entry['path'],**result})
             # Decoded proprietary models remain runner-local, never in Git/artifacts.
             if raw is not None: (output/(Path(entry['path']).stem+'.pte')).write_bytes(raw)

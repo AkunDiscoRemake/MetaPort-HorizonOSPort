@@ -77,6 +77,15 @@ class View:
                 # Keep the rest of the metadata, but never narrow a scalar to make
                 # a private layout fit this public reference schema.
                 result.update(kind='SCALAR_LAYOUT_UNRESOLVED',error=str(error),payload_offset=payload)
+                try:
+                    vt=payload-self.read('i',payload)
+                    size=self.read('H',vt);obj_size=self.read('H',vt+2)
+                    result['layout_evidence']={'vtable_offset':vt,'vtable_bytes':size,
+                        'object_bytes':obj_size,'expected_scalar_bytes':struct.calcsize('<'+fmt),
+                        'vtable_prefix_hex':self.data[vt:vt+min(size,32)].hex(),
+                        'payload_window_hex':self.data[payload:payload+32].hex()}
+                except ValueError:
+                    pass
                 return result
             if tag==3 and value not in (0,1): raise ValueError('Invalid Boolean scalar')
             if tag==4 and not math.isfinite(value): raise ValueError('Nonfinite scalar metadata')
