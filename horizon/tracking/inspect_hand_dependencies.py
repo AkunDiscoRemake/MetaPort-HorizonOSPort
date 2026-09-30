@@ -31,6 +31,42 @@ def elf_identity(data):
             'machine': machine, 'architecture': {183: 'AArch64', 164: 'Hexagon'}.get(machine, 'OTHER')}
 
 
+def executable_section_view(data):
+    """Analysis-only ELF32 section view over original executable PT_LOAD bytes.
+
+    Some DSP files have no usable section table. Preserve payload/VA/flags; append
+    synthetic section metadata, never flash/load this derivative as firmware.
+    """
+    identity=elf_identity(data)
+    if identity != {'bits':32,'byte_order':'little','machine':164,'architecture':'Hexagon'}:
+        raise ValueError('Section view only supports verified little-endian Hexagon ELF32')
+    phoff=struct.unpack_from('<I',data,28)[0]
+    phsize,count=struct.unpack_from('<HH',data,42)
+    if phsize!=32 or not 0<count<=128 or phoff+phsize*count>len(data):
+        raise ValueError('Program header bounds')
+    segments=[]
+    for i in range(count):
+        kind,offset,va,physical,size,memsize,flags,alignment=struct.unpack_from('<8I',data,phoff+i*32)
+        if kind!=1: continue
+        if offset+size>len(data) or size>memsize or va+memsize>1<<32:
+            raise ValueError('Segment bounds')
+        if flags&1 and size: segments.append((offset,va,size))
+    if not segments: raise ValueError('No executable file-backed load segments')
+    names=bytearray(b'\0'); descriptors=[]
+    for i,(offset,va,size) in enumerate(segments):
+        name_offset=len(names);names.extend(f'.metaport_exec{i}\0'.encode())
+        descriptors.append((name_offset,1,6,va,offset,size,0,0,4,0))
+    string_name=len(names);names.extend(b'.shstrtab\0')
+    view=bytearray(data);view.extend(b'\0'*((-len(view))%4))
+    string_offset=len(view);view.extend(names);view.extend(b'\0'*((-len(view))%4))
+    shoff=len(view); view.extend(bytes(40))
+    for descriptor in descriptors: view.extend(struct.pack('<10I',*descriptor))
+    view.extend(struct.pack('<10I',string_name,3,0,0,string_offset,len(names),0,0,1,0))
+    struct.pack_into('<I',view,32,shoff)
+    struct.pack_into('<HHH',view,46,40,len(segments)+2,len(segments)+1)
+    return bytes(view)
+
+
 def text_evidence(raw):
     if len(raw) > 1024*1024:
         return {'status': 'TEXT_SIZE_LIMIT'}
@@ -109,7 +145,19 @@ def inspect(images, reconstruction, output, disassemble=False):
                             '--demangle', '--no-show-raw-insn', str(local)], max_output=64*1024*1024)
                         row['disassembly']=disassembly_summary(assembly)
                         row['disassembly']['diagnostics']=diagnostics
-                        row['status']='DISASSEMBLED_NOT_VALIDATED'
+                        if not row['disassembly']['instruction_lines']:
+                            # Empty successful objdump output is NOT successful decoding.
+                            row['original_section_disassembly']=row['disassembly']
+                            view=executable_section_view(data)
+                            view_path=Path(temp)/'hexagon-section-view.elf';view_path.write_bytes(view)
+                            assembly, diagnostics=command(['llvm-objdump-14','--disassemble',
+                                '--demangle','--no-show-raw-insn',str(view_path)],max_output=64*1024*1024)
+                            row['disassembly']=disassembly_summary(assembly)
+                            row['disassembly']['diagnostics']=diagnostics
+                            row['disassembly']['synthetic_section_view']=True
+                            row['disassembly']['view_sha256']=hashlib.sha256(view).hexdigest()
+                            row['disassembly']['payload_bytes_unchanged']=True
+                        row['status']='DISASSEMBLED_NOT_VALIDATED' if row['disassembly']['instruction_lines'] else 'NO_DECODED_INSTRUCTIONS'
 
                 else:
                     row.update(text_evidence(data))
