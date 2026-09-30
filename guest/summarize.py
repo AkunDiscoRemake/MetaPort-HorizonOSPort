@@ -13,6 +13,7 @@ report={'source':json.loads(Path('guest/kernel/source.json').read_text()),
         'build_step_outcome':os.environ.get('BUILD_OUTCOME','unknown'),
         'ramdisk_step_outcome':os.environ.get('RAMDISK_OUTCOME','unknown'),
         'probe_step_outcome':os.environ.get('PROBE_OUTCOME','unknown'),
+        'kernel_cache_hit':os.environ.get('KERNEL_CACHE_HIT')=='true',
         'port_status':'NOT PORTED YET','physical_phone_tested':False,
         'build_log_tail':'\n'.join(build_log.read_text(errors='replace').splitlines()[-120:]) if build_log.exists() else None}
 if image.exists(): report['kernel_image']={'sha256':hashlib.sha256(image.read_bytes()).hexdigest(),'size_bytes':image.stat().st_size}

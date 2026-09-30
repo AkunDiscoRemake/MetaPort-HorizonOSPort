@@ -29,7 +29,16 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -q
           python3 -m unittest discover -s guest/tests -v
+      - name: Cache compiled experimental kernel (no proprietary firmware)
+        id: kernel-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.GUEST_WORK }}/kernel-out/arch/arm64/boot/Image
+            ${{ env.GUEST_WORK }}/kernel-out/.config
+          key: guest-image-ubuntu22-llvm14-${{ hashFiles('guest/kernel/**') }}
       - name: Obtain pinned official kernel source (not exact OTA source match)
+        if: steps.kernel-cache.outputs.cache-hit != 'true'
         run: |
           commit=$(python3 -c 'import json;print(json.load(open("guest/kernel/source.json"))["commit"])')
           curl --fail --location --retry 3 --max-time 600 --proto '=https' --proto-redir '=https' \
@@ -53,7 +62,7 @@ jobs:
           python3 -m guest.prepare_boot --images "$GUEST_WORK/images" --output "$GUEST_WORK/ramdisks"
       - name: Compile official Quest kernel with virtual hardware delta
         id: build
-        if: success() || steps.ramdisk.outcome == 'failure'
+        if: (success() || steps.ramdisk.outcome == 'failure') && steps.kernel-cache.outputs.cache-hit != 'true'
         run: |
           set +e
           bash guest/kernel/build.sh "$GUEST_WORK/kernel-src" "$GUEST_WORK/kernel-out" guest/kernel/virt.config > "$GUEST_WORK/build.log" 2>&1
@@ -62,13 +71,14 @@ jobs:
           exit "$code"
       - name: Probe original init on adapted kernel (no system disks or network)
         id: probe
-        if: success() && steps.build.outcome == 'success' && steps.ramdisk.outcome == 'success'
+        if: success() && (steps.build.outcome == 'success' || steps.kernel-cache.outputs.cache-hit == 'true') && steps.ramdisk.outcome == 'success'
         run: |
           python3 -m guest.probe --kernel "$GUEST_WORK/kernel-out/arch/arm64/boot/Image" \
             --initrd "$GUEST_WORK/ramdisks/original-initrd" --output "$GUEST_WORK/probe"
       - name: Summarize measured outcomes even on failure
         if: always()
         env:
+          KERNEL_CACHE_HIT: ${{ steps.kernel-cache.outputs.cache-hit }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           RAMDISK_OUTCOME: ${{ steps.ramdisk.outcome }}
           PROBE_OUTCOME: ${{ steps.probe.outcome }}

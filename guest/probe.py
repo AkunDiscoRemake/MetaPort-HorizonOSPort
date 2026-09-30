@@ -29,7 +29,7 @@ def probe(kernel,initrd,output):
     kernel=Path(kernel).resolve(); initrd=Path(initrd).resolve(); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
     args=['qemu-system-aarch64','-nodefaults','-no-user-config','-machine','virt,gic-version=3',
-          '-accel','tcg','-cpu','cortex-a76','-smp','2','-m','1024',
+          '-accel','tcg','-cpu','cortex-a72','-smp','2','-m','1024',
           '-display','none','-serial','stdio','-monitor','none','-nic','none',
           '-no-reboot','-sandbox','on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny',
           '-kernel',str(kernel),'-initrd',str(initrd),
@@ -60,4 +60,5 @@ def probe(kernel,initrd,output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--kernel',required=True);p.add_argument('--initrd',required=True);p.add_argument('--output',required=True)
-    a=p.parse_args();probe(a.kernel,a.initrd,a.output)
+    a=p.parse_args(); result=probe(a.kernel,a.initrd,a.output)
+    if not result['kernel_console_observed']: raise SystemExit(1)
