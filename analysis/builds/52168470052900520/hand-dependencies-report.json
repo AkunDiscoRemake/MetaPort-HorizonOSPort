@@ -239,6 +239,2435 @@
       "status": "ELF_METADATA_ONLY"
     },
     {
+      "partition": "system",
+      "path": "/system/etc/task_profiles.json",
+      "size_bytes": 14024,
+      "sha256": "c79220d6933c4ee76173213230a6014cb1906859bdaef4959a111d0e53832a3e",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 51,
+      "context_lines": 211,
+      "lines": [
+        {
+          "line": 3,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 4,
+          "excerpt": "      \"Name\": \"LowCapacityCPUs\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 5,
+          "excerpt": "      \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 6,
+          "excerpt": "      \"File\": \"background/cpus\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 7,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 8,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 9,
+          "excerpt": "      \"Name\": \"HighCapacityCPUs\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 10,
+          "excerpt": "      \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 11,
+          "excerpt": "      \"File\": \"foreground/cpus\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 12,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 13,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 14,
+          "excerpt": "      \"Name\": \"MaxCapacityCPUs\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 15,
+          "excerpt": "      \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 16,
+          "excerpt": "      \"File\": \"top-app/cpus\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 17,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 59,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 60,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 61,
+          "excerpt": "      \"Name\": \"UClampMin\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 62,
+          "excerpt": "      \"Controller\": \"cpu\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 63,
+          "excerpt": "      \"File\": \"cpu.uclamp.min\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 64,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 65,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 66,
+          "excerpt": "      \"Name\": \"UClampMax\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 67,
+          "excerpt": "      \"Controller\": \"cpu\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 68,
+          "excerpt": "      \"File\": \"cpu.uclamp.max\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 69,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 70,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 71,
+          "excerpt": "      \"Name\": \"UClampLatencySensitive\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 72,
+          "excerpt": "      \"Controller\": \"cpu\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 73,
+          "excerpt": "      \"File\": \"cpu.uclamp.latency_sensitive\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 74,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 75,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 231,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 232,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 233,
+          "excerpt": "            \"Name\": \"UClampLatencySensitive\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 234,
+          "excerpt": "            \"Value\": \"1\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 235,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 244,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 245,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 246,
+          "excerpt": "            \"Name\": \"UClampLatencySensitive\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 247,
+          "excerpt": "            \"Value\": \"0\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 248,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 258,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 259,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 260,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 261,
+          "excerpt": "            \"Path\": \"\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 262,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 271,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 272,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 273,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 274,
+          "excerpt": "            \"Path\": \"system/background\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 275,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 284,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 285,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 286,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 287,
+          "excerpt": "            \"Path\": \"system\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 288,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 297,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 298,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 299,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 300,
+          "excerpt": "            \"Path\": \"system/performance\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 301,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 310,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 311,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 312,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 313,
+          "excerpt": "            \"Path\": \"application/background\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 314,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 323,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 324,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 325,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 326,
+          "excerpt": "            \"Path\": \"application\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 327,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 336,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 337,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 338,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 339,
+          "excerpt": "            \"Path\": \"application/performance\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 340,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 350,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 351,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 352,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 353,
+          "excerpt": "            \"Path\": \"background\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 354,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 363,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 364,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 365,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 366,
+          "excerpt": "            \"Path\": \"\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 367,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 376,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 377,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 378,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 379,
+          "excerpt": "            \"Path\": \"foreground\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 380,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 389,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 390,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 391,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 392,
+          "excerpt": "            \"Path\": \"top-app\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 393,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 403,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 404,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 405,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 406,
+          "excerpt": "            \"Path\": \"system-background\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 407,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 416,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 417,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 418,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 419,
+          "excerpt": "            \"Path\": \"restricted\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 420,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 430,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 431,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 432,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 433,
+          "excerpt": "            \"Path\": \"camera-daemon\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 434,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 443,
+          "excerpt": "          \"Params\" :",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 444,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 445,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 446,
+          "excerpt": "            \"Path\": \"compositor\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 447,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 451,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 452,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 453,
+          "excerpt": "      \"Name\": \"LowIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 454,
+          "excerpt": "      \"Actions\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 455,
+          "excerpt": "        {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 464,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 465,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 466,
+          "excerpt": "      \"Name\": \"NormalIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 467,
+          "excerpt": "      \"Actions\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 468,
+          "excerpt": "        {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 477,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 478,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 479,
+          "excerpt": "      \"Name\": \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 480,
+          "excerpt": "      \"Actions\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 481,
+          "excerpt": "        {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 490,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 491,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 492,
+          "excerpt": "      \"Name\": \"MaxIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 493,
+          "excerpt": "      \"Actions\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 494,
+          "excerpt": "        {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 535,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 536,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 537,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 538,
+          "excerpt": "            \"Path\": \"system-background\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 539,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 548,
+          "excerpt": "          \"Params\":",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 549,
+          "excerpt": "          {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 550,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 551,
+          "excerpt": "            \"Path\": \"system-background\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 552,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 647,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 648,
+          "excerpt": "      \"Name\": \"SCHED_SP_BACKGROUND\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 649,
+          "excerpt": "      \"Profiles\": [ \"HighEnergySaving\", \"LowIoPriority\", \"TimerSlackHigh\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 650,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 651,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 652,
+          "excerpt": "      \"Name\": \"SCHED_SP_FOREGROUND\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 653,
+          "excerpt": "      \"Profiles\": [ \"HighPerformance\", \"HighIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 654,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 655,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 656,
+          "excerpt": "      \"Name\": \"SCHED_SP_TOP_APP\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 657,
+          "excerpt": "      \"Profiles\": [ \"MaxPerformance\", \"MaxIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 658,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 659,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 660,
+          "excerpt": "      \"Name\": \"SCHED_SP_SYSTEM\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 661,
+          "excerpt": "      \"Profiles\": [ \"ServicePerformance\", \"LowIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 662,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 663,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 664,
+          "excerpt": "      \"Name\": \"SCHED_SP_COMPUTE\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 665,
+          "excerpt": "      \"Profiles\": [ \"HighPerformance\", \"ProcessCapacityHigh\", \"LowIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 666,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 667,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 668,
+          "excerpt": "      \"Name\": \"SCHED_SP_RT_APP\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 669,
+          "excerpt": "      \"Profiles\": [ \"RealtimePerformance\", \"MaxIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 670,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 671,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 674,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 675,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 676,
+          "excerpt": "      \"Name\": \"CPUSET_SP_DEFAULT\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 677,
+          "excerpt": "      \"Profiles\": [ \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 678,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 679,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 680,
+          "excerpt": "      \"Name\": \"CPUSET_SP_BACKGROUND\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 681,
+          "excerpt": "      \"Profiles\": [ \"HighEnergySaving\", \"ProcessCapacityLow\", \"LowIoPriority\", \"TimerSlackHigh\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 682,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 683,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 684,
+          "excerpt": "      \"Name\": \"CPUSET_SP_FOREGROUND\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 685,
+          "excerpt": "      \"Profiles\": [ \"HighPerformance\", \"ProcessCapacityHigh\", \"HighIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 686,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 687,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 688,
+          "excerpt": "      \"Name\": \"CPUSET_SP_TOP_APP\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 689,
+          "excerpt": "      \"Profiles\": [ \"MaxPerformance\", \"ProcessCapacityMax\", \"MaxIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 690,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 691,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 692,
+          "excerpt": "      \"Name\": \"CPUSET_SP_SYSTEM\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 693,
+          "excerpt": "      \"Profiles\": [ \"ServiceCapacityLow\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 694,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 695,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 696,
+          "excerpt": "      \"Name\": \"CPUSET_SP_RESTRICTED\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 697,
+          "excerpt": "      \"Profiles\": [ \"ServiceCapacityRestricted\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 698,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 699,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 700,
+          "excerpt": "      \"Name\": \"CPUSET_SP_COMPOSITOR\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 701,
+          "excerpt": "      \"Profiles\": [ \"MaxPerformance\", \"CompositorCapacity\", \"MaxIoPriority\", \"TimerSlackNormal\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 702,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 703,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 704,
+          "excerpt": "      \"Name\": \"Dex2OatBootComplete\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 705,
+          "excerpt": "      \"Profiles\": [ \"Dex2oatPerformance\", \"LowIoPriority\", \"TimerSlackHigh\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 706,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 707,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 711,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 712,
+          "excerpt": "      \"Name\": \"OtaProfiles\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 713,
+          "excerpt": "      \"Profiles\": [ \"ServiceCapacityLow\", \"LowIoPriority\", \"HighEnergySaving\" ]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 714,
+          "excerpt": "    }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 715,
+          "excerpt": "  ]",
+          "line_truncated": false,
+          "keyword_match": false
+        }
+      ],
+      "truncated": false,
+      "runtime_activation_proved": false,
+      "task_profiles": {
+        "definitions": {},
+        "referenced_attributes": [],
+        "unresolved_profile_names": [],
+        "unresolved_attribute_names": [],
+        "runtime_applied": false,
+        "phone_compatible": false,
+        "scope": "Single-file profile and aggregate definitions; cross-file precedence and privileged application not validated"
+      }
+    },
+    {
+      "partition": "system",
+      "path": "/system/etc/cgroups.json",
+      "size_bytes": 944,
+      "sha256": "c0f85908a58f7f4c7c84ca9bbc62ce361c47f40cdab048cecb7f80419494b934",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 2,
+      "context_lines": 6,
+      "lines": [
+        {
+          "line": 23,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 24,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 25,
+          "excerpt": "      \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 26,
+          "excerpt": "      \"Path\": \"/dev/cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 27,
+          "excerpt": "      \"Mode\": \"0755\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 28,
+          "excerpt": "      \"UID\": \"system\",",
+          "line_truncated": false,
+          "keyword_match": false
+        }
+      ],
+      "truncated": false,
+      "runtime_activation_proved": false
+    },
+    {
+      "partition": "vendor",
+      "path": "/etc/task_profiles.json",
+      "size_bytes": 12937,
+      "sha256": "d8fc4688a228518554d695224478350070f77b06a3229e555943ec55778437e8",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 36,
+      "context_lines": 169,
+      "lines": [
+        {
+          "line": 145,
+          "excerpt": "          \"Name\": \"SetAttribute\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 146,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 147,
+          "excerpt": "            \"Name\": \"UClampLatencySensitive\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 148,
+          "excerpt": "            \"Value\": \"1\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 149,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 157,
+          "excerpt": "          \"Name\": \"SetAttribute\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 158,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 159,
+          "excerpt": "            \"Name\": \"UClampLatencySensitive\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 160,
+          "excerpt": "            \"Value\": \"0\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 161,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 169,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 170,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 171,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 172,
+          "excerpt": "            \"Path\": \"system/performance\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 173,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 181,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 182,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 183,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 184,
+          "excerpt": "            \"Path\": \"application/performance\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 185,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 193,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 194,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 195,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 196,
+          "excerpt": "            \"Path\": \"foreground\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 197,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 205,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 206,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 207,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 208,
+          "excerpt": "            \"Path\": \"top-app\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 209,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 217,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 218,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 219,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 220,
+          "excerpt": "            \"Path\": \"immersive\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 221,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 229,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 230,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 231,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 232,
+          "excerpt": "            \"Path\": \"camera-daemon\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 233,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 241,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 242,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 243,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 244,
+          "excerpt": "            \"Path\": \"compositor\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 245,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 266,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 267,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 268,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 269,
+          "excerpt": "            \"Path\": \"media\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 270,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 300,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 301,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 302,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 303,
+          "excerpt": "            \"Path\": \"dev_opt_in\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 304,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 325,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 326,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 327,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 328,
+          "excerpt": "            \"Path\": \"sensorservice\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 329,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 345,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 346,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 347,
+          "excerpt": "      \"Name\": \"trackingPolicy\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 348,
+          "excerpt": "      \"Actions\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 349,
+          "excerpt": "        {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 350,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 351,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 352,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 353,
+          "excerpt": "            \"Path\": \"tracking\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 354,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 355,
+          "excerpt": "        },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 375,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 376,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 377,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 378,
+          "excerpt": "            \"Path\": \"mrsystem\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 379,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 395,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 396,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 397,
+          "excerpt": "      \"Name\": \"objectTrackingPolicy\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 398,
+          "excerpt": "      \"Actions\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 399,
+          "excerpt": "        {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 400,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 401,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 402,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 403,
+          "excerpt": "            \"Path\": \"object_tracking\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 404,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 405,
+          "excerpt": "        },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 418,
+          "excerpt": "          \"Name\": \"JoinCgroup\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 419,
+          "excerpt": "          \"Params\": {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 420,
+          "excerpt": "            \"Controller\": \"cpuset\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 421,
+          "excerpt": "            \"Path\": \"syncboss_events\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 422,
+          "excerpt": "          }",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 541,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 542,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 543,
+          "excerpt": "      \"Name\": \"CPUSET_SP_RESTRICTED_PANEL\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 544,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 545,
+          "excerpt": "        \"HighEnergySaving\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 546,
+          "excerpt": "        \"ProcessCapacityLow\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 547,
+          "excerpt": "        \"LowIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 548,
+          "excerpt": "        \"TimerSlackMediumHigh\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 549,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 550,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 551,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 552,
+          "excerpt": "      \"Name\": \"CPUSET_SP_COMPOSITOR\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 553,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 554,
+          "excerpt": "        \"MaxPerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 555,
+          "excerpt": "        \"CompositorCapacity\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 556,
+          "excerpt": "        \"MaxIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 557,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 558,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 568,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 569,
+          "excerpt": "        \"SoftRealtimePerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 570,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 571,
+          "excerpt": "        \"TimerSlackSoftRealtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 572,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 576,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 577,
+          "excerpt": "        \"XrPerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 578,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 579,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 580,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 585,
+          "excerpt": "        \"MaxPerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 586,
+          "excerpt": "        \"ProcessCapacityMax\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 587,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 588,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 589,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 594,
+          "excerpt": "        \"ImmersivePerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 595,
+          "excerpt": "        \"ImmersiveCapacity\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 596,
+          "excerpt": "        \"MaxIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 597,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 598,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 599,
+          "excerpt": "    },",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 600,
+          "excerpt": "    {",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 601,
+          "excerpt": "      \"Name\": \"CPUSET_SP_CUSTOM_PROFILE_IMMERSIVE\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 602,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 603,
+          "excerpt": "        \"ImmersivePerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 604,
+          "excerpt": "        \"ImmersiveCapacity\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 605,
+          "excerpt": "        \"MaxIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 606,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 607,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 611,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 612,
+          "excerpt": "        \"PresencePerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 613,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 614,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 615,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 619,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 620,
+          "excerpt": "        \"CompositorCapacity\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 621,
+          "excerpt": "        \"MaxIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 622,
+          "excerpt": "        \"TimerSlackNormal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 623,
+          "excerpt": "      ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 627,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 628,
+          "excerpt": "        \"ProcessCapacityHigh\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 629,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 630,
+          "excerpt": "        \"TimerSlackNormal\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 631,
+          "excerpt": "        \"ForegroundLow\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 636,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 637,
+          "excerpt": "        \"ProcessCapacityHigh\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 638,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 639,
+          "excerpt": "        \"TimerSlackNormal\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 640,
+          "excerpt": "        \"ForegroundMedium\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 645,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 646,
+          "excerpt": "        \"ProcessCapacityHigh\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 647,
+          "excerpt": "        \"HighIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 648,
+          "excerpt": "        \"TimerSlackNormal\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 649,
+          "excerpt": "        \"ForegroundHigh\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 654,
+          "excerpt": "      \"Profiles\": [",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 655,
+          "excerpt": "        \"Dex2oatPerformance\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 656,
+          "excerpt": "        \"LowIoPriority\",",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 657,
+          "excerpt": "        \"TimerSlackHigh\",",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 658,
+          "excerpt": "        \"ProcessCapacityLow\"",
+          "line_truncated": false,
+          "keyword_match": false
+        }
+      ],
+      "truncated": false,
+      "runtime_activation_proved": false,
+      "task_profiles": {
+        "definitions": {
+          "objectTrackingPolicy": {
+            "Name": "objectTrackingPolicy",
+            "Actions": [
+              {
+                "Name": "JoinCgroup",
+                "Params": {
+                  "Controller": "cpuset",
+                  "Path": "object_tracking"
+                }
+              },
+              {
+                "Name": "HzosExt",
+                "Params": {
+                  "Flags": "ALLOW_RT"
+                }
+              }
+            ]
+          },
+          "trackingPolicy": {
+            "Name": "trackingPolicy",
+            "Actions": [
+              {
+                "Name": "JoinCgroup",
+                "Params": {
+                  "Controller": "cpuset",
+                  "Path": "tracking"
+                }
+              },
+              {
+                "Name": "JoinCgroup",
+                "Params": {
+                  "Controller": "cpu",
+                  "Path": "xr"
+                }
+              },
+              {
+                "Name": "HzosExt",
+                "Params": {
+                  "Flags": "ALLOW_RT"
+                }
+              }
+            ]
+          }
+        },
+        "referenced_attributes": [],
+        "unresolved_profile_names": [],
+        "unresolved_attribute_names": [],
+        "runtime_applied": false,
+        "phone_compatible": false,
+        "scope": "Single-file profile and aggregate definitions; cross-file precedence and privileged application not validated"
+      }
+    },
+    {
+      "partition": "vendor",
+      "path": "/etc/cgroups.json",
+      "size_bytes": 367,
+      "sha256": "ae6dcb12a6a99b9e94743a376f7914b48078169b8e12788343712c7e243e89ab",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 0,
+      "context_lines": 0,
+      "lines": [],
+      "truncated": false,
+      "runtime_activation_proved": false
+    },
+    {
       "partition": "vendor",
       "path": "/lib64/libhexagon.so",
       "size_bytes": 197592,
@@ -364,7 +2793,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "9ced9362309047f4fa7c32a186c3fa3ca69d6fbd496d3c00af1722fbf5ac872a",
+        "decoded_text_sha256": "ebd92c3618fddd915712eb9ba5d022d640de31ee67cca96de0e4df4b2dcad0f3",
         "tool": "llvm-objdump-14",
         "instruction_lines": 336224,
         "unknown_or_invalid_instruction_lines": 83988,
@@ -490,7 +2919,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "5476ccea1dbdc46019086e460197c54fdff514ff721d73d9ece9d5e45c4bcdc8",
+        "decoded_text_sha256": "fc769e0d3c8219f004165bc737cd54e85e458c7216d3cce02d729ea23e45c019",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -514,7 +2943,7 @@
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "49237a08bfe8c5cfe2eb182f84cc63bd4af0a458d3ff64079c52ab5afb9b47e2",
+        "decoded_text_sha256": "e7132365bb8027a10011ee3f8331bb987d608d9aef7925876cbcc9ec1d5c4389",
         "tool": "llvm-objdump-14",
         "instruction_lines": 345808,
         "unknown_or_invalid_instruction_lines": 50552,
@@ -1989,7 +4418,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "26afdf9da332807138e66aa47ba4e17668c866d02ff10ea2286a2d668def7ba8",
+        "decoded_text_sha256": "b30a7dd1dc449852d8fa250247d96adcf2e1cc00cd117c9cedcce0e203ede62e",
         "tool": "llvm-objdump-14",
         "instruction_lines": 79499,
         "unknown_or_invalid_instruction_lines": 29613,
@@ -2052,7 +4481,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "5476ccea1dbdc46019086e460197c54fdff514ff721d73d9ece9d5e45c4bcdc8",
+        "decoded_text_sha256": "fc769e0d3c8219f004165bc737cd54e85e458c7216d3cce02d729ea23e45c019",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -2076,7 +4505,7 @@
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "725ca1855e36c9eb6c4320ece9b10fffe24a98d6b435d2ba5ce34f308bd4c3cd",
+        "decoded_text_sha256": "2df51241e2b169c9071cae43f307243ea5260d83173c0e521d6cc4b6377a42be",
         "tool": "llvm-objdump-14",
         "instruction_lines": 80870,
         "unknown_or_invalid_instruction_lines": 25839,
