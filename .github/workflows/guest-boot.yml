@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 55
     env:
-      GUEST_WORK: ${{ runner.temp }}/guest
+      GUEST_WORK: ${{ github.workspace }}/local-analysis/guest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -95,5 +95,5 @@ jobs:
         if: always()
         with:
           name: guest-boot-reports-no-firmware
-          path: ${{ runner.temp }}/guest/reports/*.json
+          path: ${{ env.GUEST_WORK }}/reports/*.json
           retention-days: 7
