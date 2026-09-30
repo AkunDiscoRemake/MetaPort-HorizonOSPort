@@ -1,6 +1,6 @@
 --- a/drivers/of/platform.c
 +++ b/drivers/of/platform.c
-@@ -144,6 +144,22 @@
+@@ -144,6 +144,23 @@
  	dev->dev.fwnode = &np->fwnode;
  	dev->dev.parent = parent ? : &platform_bus;
  
@@ -12,7 +12,8 @@
 +	if (!bus_id && of_machine_is_compatible("metaport,virt") &&
 +	    of_device_is_compatible(np, "virtio,mmio") &&
 +	    of_property_read_bool(np, "metaport,boot-controller-alias") &&
-+	    np->parent && !strcmp(np->parent->full_name, "/soc") &&
++	    np->parent && of_node_name_eq(np->parent, "soc") &&
++	    np->parent->parent && !np->parent->parent->parent &&
 +	    !of_address_to_resource(np, 0, &temp_res) &&
 +	    temp_res.start == 0x0a000000 && resource_size(&temp_res) == 0x200) {
 +		bus_id = "1d84000.ufshc";
