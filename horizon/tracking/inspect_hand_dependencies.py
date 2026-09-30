@@ -9,13 +9,15 @@ import struct
 import tempfile
 from horizon.tracking.inspect_original import BUILD, digest
 from horizon.tracking.hvx_evidence import HvxEvidence
+from horizon.tracking.task_profile_evidence import select_profiles
 from tools.scan_partitions import command, dump_entry
 
 PATHS = {
     'odm': ('/etc/trackingservice.cfg', '/etc/init/odm.trackingservice.rc',
             '/etc/init/apex.trackingservice.rc', '/lib64/libhzos_trackinghost.meta.so',
             '/lib64/libtrackingvendorutils.so'),
-    'vendor': ('/lib64/libhexagon.so', '/lib64/libhexagon_shim.so',
+    'system': ('/system/etc/task_profiles.json','/system/etc/cgroups.json'),
+    'vendor': ('/etc/task_profiles.json','/etc/cgroups.json','/lib64/libhexagon.so', '/lib64/libhexagon_shim.so',
                '/lib64/libcdsprpc.so', '/lib64/libadsprpc.so',
                '/lib/rfsa/adsp/libhexagon_skel.so',
                '/lib/rfsa/adsp/libQnnBoltnnOpPackageV69.so'),
@@ -187,6 +189,9 @@ def inspect(images, reconstruction, output, disassemble=False):
 
                 else:
                     row.update(text_evidence(data))
+                    if path.endswith('/task_profiles.json'):
+                        if len(data)>1024*1024: raise ValueError('Profile size limit')
+                        row['task_profiles']=select_profiles(json.loads(data))
     Path(output).write_text(json.dumps(result, indent=2)+'\n')
     return result
 
