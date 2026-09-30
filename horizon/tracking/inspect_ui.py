@@ -6,7 +6,8 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
-from tools.scan_partitions import dump_entry, command
+import zipfile
+from tools.scan_partitions import dump_entry, command, elf_report
 from horizon.tracking.inspect_original import digest, BUILD
 
 APKS = ['/priv-app/VrShell/VrShell.apk', '/priv-app/MetaSystemUI/MetaSystemUI.apk']
@@ -55,6 +56,14 @@ def inspect(images, reconstruction, jadx, output):
         with tempfile.TemporaryDirectory(dir=output) as temp:
             root=Path(temp);apk=root/'original.apk';dump_entry(image,entries[path],apk)
             manifest,_=command(['aapt','dump','xmltree',str(apk),'AndroidManifest.xml'],max_output=4*1024*1024)
+            native=[]
+            with zipfile.ZipFile(apk) as archive:
+                name='lib/arm64-v8a/libshell.so'
+                if name in archive.namelist():
+                    entry=archive.getinfo(name)
+                    if entry.file_size>128*1024*1024: raise ValueError('Native library size limit')
+                    library=root/'libshell.so';library.write_bytes(archive.read(entry))
+                    native.append({'apk_member':name,**elf_report(library,deep=False)})
             env=dict(os.environ,JAVA_OPTS='-Xmx4g')
             with (root/'jadx.log').open('w') as log:
                 try:
@@ -66,7 +75,7 @@ def inspect(images, reconstruction, jadx, output):
                 except subprocess.TimeoutExpired:
                     status='TIMED_OUT_PARTIAL_OUTPUT';code=None
             item={'path':path,'sha256':digest(apk),'manifest':manifest,'decompiler_status':status,
-                  'exit_code':code,**summarize_sources(root/'generated'),
+                  'native_libraries':native,'exit_code':code,**summarize_sources(root/'generated'),
                   'log_tail':'\n'.join((root/'jadx.log').read_text(errors='replace').splitlines()[-40:])}
             report['applications'].append(item)
             (output/'ui-decompilation.json').write_text(json.dumps(report,indent=2)+'\n')
