@@ -26,6 +26,10 @@ or phone access. No Quest firmware should ever be flashed onto the Infinix.
    metadata, original vbmeta blocks and a fresh empty metadata filesystem. Derive
    vbmeta digest/size handoff parameters without disabling guest verification.
    This is not a hardware trust anchor or rollback implementation.
+The layout also includes fresh `misc` and two copies of the original boot image
+   as boot_a/boot_b. This does not implement bootloader slot selection or report
+   successful boot. `dtb.py` places the emulated virtio controller under a simple
+   soc bus to match original bootdevice path construction, not to emulate UFS ioctls.
 6. Probe this original initramfs with the adapted kernel and disk for at most
    180 seconds. Writes use a temporary QEMU snapshot; no host devices are attached.
    Full Android/Horizon boot is not claimed. Console markers distinguish kernel execution and original first-stage

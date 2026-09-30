@@ -47,6 +47,13 @@ ou otimização medida. O segundo estágio executado não demonstra Home/System 
 A principal barreira observada é a dependência em serviços/UIDs/capacidades de
 sistema, IPC e interfaces vendor que um APK comum não recebe.
 
+## APK, Cardboard e Store Meta
+
+[Estado da integração e dependências verificadas](analysis/builds/52168470052900520/APK-AND-META-SERVICES.md).
+Os manifests originais da Store e autenticação foram inspecionados; isso não é
+login nem acesso à loja. O teste com DT/disco adaptados ainda espera o BootControl HAL.
+Não há APK funcional, conexão a conta Meta ou desempenho VR comprovado.
+
 ## Ferramentas
 
 Python 3.10+ em Linux. Inventário, inspeção e reconstrução usam a biblioteca padrão.

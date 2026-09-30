@@ -2,7 +2,10 @@
 
 **NOT PORTED YET: não há Home/System UI funcional nem APK pronto.**
 
-## Evidência mais recente
+> Este registro documenta o primeiro layout de armazenamento. Para o teste posterior
+> com DT adaptado, misc e slots boot, veja [APK e serviços Meta](APK-AND-META-SERVICES.md).
+
+## Evidência desta etapa
 
 [Actions 36673917473](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/actions/runs/36673917473),
 código `087fea4`, relatório publicado em `af8b2ea`: `guest-report.json`.
