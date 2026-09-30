@@ -107,7 +107,25 @@ def copy_verified(stream,path,offset,expected):
         raise ValueError('Reconstruction hash mismatch while copying '+path.name)
 
 
-def build(images,reconstruction,output,diagnostics=False):
+
+def physical_layout(evidence,super_size,userdata_mib=0):
+    """Optional blank guest userdata; original fs_mgr/vold owns formatting/keys.
+
+    Append after existing roles so their GPT indexes/offsets do not change.
+    Never substitute unencrypted ext4 for the original encryption policy.
+    """
+    if type(userdata_mib) is not int or (userdata_mib and not 128<=userdata_mib<=1024):
+        raise ValueError('Guest userdata must be disabled or 128..1024 MiB')
+    physical={'super':super_size,'metadata':64*MIB,'misc':4*MIB,
+              'boot_a':align(evidence['boot']['size_bytes']),
+              'boot_b':align(evidence['boot']['size_bytes']),
+              'vbmeta_a':align(evidence['vbmeta']['size_bytes']),
+              'vbmeta_system_a':align(evidence['vbmeta_system']['size_bytes'])}
+    if userdata_mib:physical['userdata']=userdata_mib*MIB
+    return physical
+
+
+def build(images,reconstruction,output,diagnostics=False,userdata_mib=0):
     images=Path(images); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
     if any(output.iterdir()): raise ValueError('Use an empty output directory')
@@ -122,11 +140,7 @@ def build(images,reconstruction,output,diagnostics=False):
     with fresh.open('xb') as stream: stream.truncate(64*MIB)
     subprocess.run(['mkfs.ext4','-q','-F','-L','metadata',str(fresh)],check=True)
     fresh_info={'size_bytes':fresh.stat().st_size,'sha256':hashlib.sha256(fresh.read_bytes()).hexdigest()}
-    physical={'super':super_size,'metadata':64*MIB,'misc':4*MIB,
-              'boot_a':align(evidence['boot']['size_bytes']),
-              'boot_b':align(evidence['boot']['size_bytes']),
-              'vbmeta_a':align(evidence['vbmeta']['size_bytes']),
-              'vbmeta_system_a':align(evidence['vbmeta_system']['size_bytes'])}
+    physical=physical_layout(evidence,super_size,userdata_mib)
     headers,parts,total=gpt(physical)
     locations={p['name']:p['offset'] for p in parts}
     label_rules=[]
@@ -148,6 +162,8 @@ def build(images,reconstruction,output,diagnostics=False):
     target=output/'guest-disk.raw'
     try:
         with target.open('xb') as disk:
+            # A new exclusive sparse file reads as zero in unwritten regions,
+            # including optional userdata. No headset data or keys are copied.
             disk.truncate(total)
             for offset,data in headers: disk.seek(offset);disk.write(data)
             disk.seek(locations['super']);disk.write(prefix)
@@ -164,6 +180,10 @@ def build(images,reconstruction,output,diagnostics=False):
             'lp_version':'10.0','lp_metadata_sha256':hashlib.sha256(prefix).hexdigest(),
             'source_images':{n:evidence[n] for n in (*LOGICAL,'vbmeta','vbmeta_system','boot')},
             'fresh_metadata_image':fresh_info,
+            'userdata':{'present':bool(userdata_mib),'size_bytes':userdata_mib*MIB,
+                        'origin':'Fresh zero-filled sparse guest partition' if userdata_mib else 'NOT_PROVIDED',
+                        'preformatted':False,'encryption_policy_modified':False,
+                        'mount_tested_by_builder':False,'contains_phone_or_headset_data':False},
             'misc_origin':'Fresh zero-initialized guest storage; original HAL must initialize its own state',
             'boot_slots':'Both contain the same verified original boot image; no guest bootloader slot-selection implementation',
             'metadata_origin':'Fresh disposable empty ext4; not headset userdata or secrets',
@@ -180,4 +200,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for option in ('images','reconstruction','output'):p.add_argument('--'+option,required=True)
     p.add_argument('--diagnostics',action='store_true')
-    a=p.parse_args();build(a.images,a.reconstruction,a.output,a.diagnostics)
+    p.add_argument('--userdata-mib',type=int,default=0,help='Optional blank disposable guest userdata (128..1024 MiB); original encryption unchanged')
+    a=p.parse_args();build(a.images,a.reconstruction,a.output,a.diagnostics,a.userdata_mib)

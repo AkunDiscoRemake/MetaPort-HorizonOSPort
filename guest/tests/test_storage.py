@@ -2,7 +2,7 @@ import hashlib
 import struct
 import unittest
 import zlib
-from guest.storage import lp_metadata,gpt,MIB,META_MAX
+from guest.storage import lp_metadata,gpt,MIB,META_MAX,physical_layout
 
 
 class StorageTests(unittest.TestCase):
@@ -33,3 +33,22 @@ class StorageTests(unittest.TestCase):
     def test_reject_unbounded_or_unaligned(self):
         for sizes in ({'system':1},{'../escape':4096},{'system':9*1024*MIB},{}):
             with self.assertRaises(ValueError):lp_metadata(sizes)
+
+    def test_userdata_appended_without_moving_existing_roles(self):
+        evidence={name:{'size_bytes':4096} for name in ('boot','vbmeta','vbmeta_system')}
+        old=physical_layout(evidence,4*MIB)
+        new=physical_layout(evidence,4*MIB,1024)
+        self.assertNotIn('userdata',old)
+        self.assertEqual(new['userdata'],1024*MIB)
+        _,before,_=gpt(old);chunks,after,total=gpt(new)
+        self.assertEqual(before,after[:-1])
+        self.assertEqual(after[-1]['name'],'userdata')
+        self.assertEqual(after[-1]['offset']%MIB,0)
+        self.assertLess(after[-1]['offset']+after[-1]['size_bytes'],total-33*512)
+        self.assertEqual(dict(chunks)[1024],dict(chunks)[total-33*512])
+
+    def test_userdata_limits(self):
+        evidence={name:{'size_bytes':4096} for name in ('boot','vbmeta','vbmeta_system')}
+        for size in (-1,1,127,1025,True,128.0,'128'):
+            with self.assertRaises(ValueError):physical_layout(evidence,4*MIB,size)
+        self.assertEqual(physical_layout(evidence,4*MIB,128)['userdata'],128*MIB)
