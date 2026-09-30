@@ -8,7 +8,7 @@ mkdir -p "$out"
 export PATH="/usr/lib/llvm-14/bin:$PATH"
 args=("O=$out" ARCH=arm64 LLVM=1 LLVM_IAS=1
       CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-
-      CLANG_TRIPLE=aarch64-linux-gnu-)
+      CLANG_TRIPLE=aarch64-linux-gnu- REAL_CC=clang)
 # Follow Meta's documented two-defconfig merge, then apply a separate guest delta.
 KCONFIG_CONFIG="$out/.config" "$src/scripts/kconfig/merge_config.sh" -m -O "$out" \
   "$src/arch/arm64/configs/vendor/oculus_anorak_defconfig" \
