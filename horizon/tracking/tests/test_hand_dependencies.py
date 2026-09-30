@@ -74,3 +74,9 @@ class Dependencies(unittest.TestCase):
     def test_section_view_rejects_wrong_machine(self):
         data=bytearray(64);data[:6]=b'\x7fELF\x02\x01';struct.pack_into('<H',data,18,183)
         with self.assertRaises(ValueError): executable_section_view(data)
+
+    def test_small_priority_config_keeps_unnamed_numeric_fields(self):
+        r=text_evidence(b'[normalPriority]\n0\n1\n2\n3\n',include_all=True)
+        self.assertEqual(len(r['lines']),5)
+        self.assertEqual(r['selection_mode'],'bounded_full_config')
+        self.assertFalse(r['runtime_activation_proved'])

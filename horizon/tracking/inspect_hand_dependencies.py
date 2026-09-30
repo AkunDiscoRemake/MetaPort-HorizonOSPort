@@ -13,7 +13,7 @@ from horizon.tracking.task_profile_evidence import select_profiles
 from tools.scan_partitions import command, dump_entry
 
 PATHS = {
-    'odm': ('/etc/trackingservice.cfg', '/etc/init/odm.trackingservice.rc',
+    'odm': ('/etc/trackingservice.cfg', '/etc/thread_priority.cfg', '/etc/init/odm.trackingservice.rc',
             '/etc/init/apex.trackingservice.rc', '/lib64/libhzos_trackinghost.meta.so',
             '/lib64/libtrackingvendorutils.so'),
     'system': ('/system/etc/task_profiles.json','/system/etc/cgroups.json'),
@@ -78,7 +78,7 @@ def executable_section_view(data):
     return bytes(view)
 
 
-def text_evidence(raw):
+def text_evidence(raw, include_all=False):
     if len(raw) > 1024*1024:
         return {'status': 'TEXT_SIZE_LIMIT'}
     try:
@@ -90,9 +90,11 @@ def text_evidence(raw):
     lines = text.splitlines()
     matches = {i for i, line in enumerate(lines) if PATTERN.search(line)}
     context = sorted({j for i in matches for j in range(max(0,i-2),min(len(lines),i+3))})
+    if include_all: context=list(range(len(lines)))
     rows = [{'line': i+1, 'excerpt': lines[i][:1024], 'line_truncated': len(lines[i])>1024,
              'keyword_match': i in matches} for i in context]
     return {'status': 'TEXT_CANDIDATES_ONLY', 'matched_lines': len(matches),
+            'selection_mode':'bounded_full_config' if include_all else 'keyword_context',
             'context_lines': len(rows), 'lines': rows[:256], 'truncated': len(rows)>256,
             'runtime_activation_proved': False}
 
@@ -188,7 +190,7 @@ def inspect(images, reconstruction, output, disassemble=False):
 
 
                 else:
-                    row.update(text_evidence(data))
+                    row.update(text_evidence(data, include_all=path=='/etc/thread_priority.cfg'))
                     if path.endswith('/task_profiles.json'):
                         if len(data)>1024*1024: raise ValueError('Profile size limit')
                         row['task_profiles']=select_profiles(json.loads(data))
