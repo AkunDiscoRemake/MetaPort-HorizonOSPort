@@ -1,82 +1,89 @@
 # MetaPort — Horizon OS → Android + VRBox
 
-**Estado: NOT PORTED YET. Não há um Horizon OS executável neste repositório.**
+**NOT PORTED YET. Ainda não há APK do Horizon OS funcionando.**
 
-O objetivo é portar componentes reais do Horizon OS, preservando arquitetura e
-comportamento onde tecnicamente possível. **Escopo atualizado: todas as versões**,
-conforme nova autorização informada pelo solicitante. Ver [política vigente](analysis/SCOPE.md).
-Essa declaração não autentica imagens nem comprova direitos de redistribuição.
+Objetivo: portar componentes originais, preservando arquitetura e comportamento,
+sem UI falsa, launcher substituto ou runtime simulado apresentado como funcional.
 
-O checkout inicial continha somente um README. Não foram fornecidos fontes,
-imagens, binários, interfaces extraídas ou hardware alvo. Não foram realizadas
-engenharia reversa, integração Android ou validação em dispositivo. Não existem
-launcher, UI substituta, compositor de demonstração ou poses sintéticas.
+## Escopo e alvo
 
-## O que existe
+- **Todas as versões**, conforme nova autorização informada pelo solicitante.
+  [Política vigente](analysis/SCOPE.md). Não há verificação independente dessa
+  autorização ou comprovação de direitos de redistribuição.
+- **Infinix GT30 Pro X6873 / XOS 16.2**, conforme relato do usuário.
+- **APK comum**, bootloader bloqueado, sem root, desbloqueio ou flash.
+- Nenhum teste físico no telefone; API/ABI/capacidades efetivas ainda não medidas.
 
-- Inventário local de arquivos com tamanho e SHA-256, sem executar os componentes.
-- Identificação de versão/build explícita, sem autenticação automática.
-- Referência de proveniência obrigatória e estado de versão `UNVERIFIED` explícito.
-- Rejeição de diretório vazio, symlinks e arquivos especiais.
-- Testes automatizados e plano de investigação em [analysis/PLAN.md](analysis/PLAN.md).
+## Trabalho realizado
 
-Isso é infraestrutura de análise, **não implementação do sistema portado**.
+O pacote Quest 3 da build `52168470052900520`, fixado por SHA-256, foi baixado e
+analisado em GitHub Actions. O pipeline já:
 
-## Inventário local
+1. Inventariou o OTA e leu seu manifesto FULL com 29 partições.
+2. Reconstruiu `system`, `system_ext`, `vendor`, `product` e `odm`, conferindo os
+   hashes de cada operação e de cada imagem final.
+3. Inventariou filesystems ext4 sem mount e inspecionou três APEX Meta.
+4. Localizou System UI, VrShell, VrDriver, tracking, compositor e o caminho OpenXR.
+5. Leu manifestos de cinco APKs e analisou bibliotecas nativas selecionadas.
+6. Produziu amostras de disassembly ARM64, dependências e símbolos dinâmicos reais.
 
-Requer Python 3.10+ em Linux; não requer dependências externas.
-Use somente uma cópia local, estável durante a análise e com origem registrada. Não a modifique durante o inventário; a ferramenta não é
-uma sandbox para árvores alteradas por terceiros nem um verificador de autenticidade.
+**[Mapa de portabilidade e resultados](analysis/builds/52168470052900520/PORTING-MAP.md)**
+
+Isso é análise técnica de componentes originais, não implementação do sistema
+portado. DEX ainda não foi decompilado; o disassembly é amostral, não completo.
+Não houve boot, execução de firmware, integração de hardware ou otimização medida.
+A principal barreira observada é a dependência em serviços/UIDs/capacidades de
+sistema, IPC e interfaces vendor que um APK comum não recebe.
+
+## Ferramentas
+
+Python 3.10+ em Linux. Inventário, inspeção e reconstrução usam a biblioteca padrão.
+Análise de filesystem/ELF/APK requer ferramentas **do host**:
+`debugfs`/`mke2fs` (e2fsprogs), `readelf`, `aarch64-linux-gnu-objdump` e `aapt`.
+Nunca executar programas extraídos do guest.
 
 ```sh
-mkdir -p artifacts/v2.4 local-analysis/v2.4
-# Colocar os artefatos autorizados em artifacts/v2.4 antes de executar.
-python3 tools/inventory.py \
-  --version v2.4 \
-  --artifacts artifacts/v2.4 \
-  --provenance 'Referência ao registro local de aquisição e identificação da build' \
-  > local-analysis/v2.4/inventory.json
 python3 -m unittest discover -s tests -v
+
+# Quando o ZIP fixado já estiver disponível localmente:
+mkdir -p local-analysis
+python3 -m tools.inspect_ota --manifest \
+  artifacts/incoming/q3_52168470052900520.zip \
+  --output local-analysis/ota-report.json
+python3 -m tools.reconstruct_ota \
+  artifacts/incoming/q3_52168470052900520.zip \
+  --directory local-analysis/images \
+  --report local-analysis/reconstruction.json
+python3 -m tools.scan_partitions \
+  --images local-analysis/images \
+  --reconstruction-report local-analysis/reconstruction.json \
+  --output local-analysis/static-analysis.json
 ```
 
-Para v2.7, usar diretórios e argumento correspondentes. A saída deve ficar **fora**
-da árvore inventariada. Erros resultam em código de saída não zero; não consumir
-um relatório sem verificar o resultado do comando. A ferramenta de inventário não extrai imagens,
-não baixa firmware e não confirma que a declaração de versão é verdadeira. Hashes
-identificam bytes, não autorização ou autenticidade. Não rotular uma versão desconhecida como uma versão conhecida.
+A reconstrução exige diretório de saída vazio e espaço livre para ZIP + imagens.
+Não aceita operações delta, desconhecidas, sobreposição/gaps ou hashes divergentes.
+Arquivos malformados e formatos não suportados não devem ser tratados como sucesso.
+A análise usa limites de tamanho e subprocessos com timeout, mas não constitui uma
+sandbox geral: executá-la em ambiente isolado e descartável, como o runner.
 
-`artifacts/` e `local-analysis/` ficam fora do Git. Não adicionar firmware, chaves,
-credenciais, dados pessoais ou assets proprietários ao histórico por padrão.
+`tools/inventory.py` produz SHA-256 e proveniência para outras coleções locais.
+`tools/device_probe.py` faz um preflight ADB opcional e somente leitura do telefone;
+não é um APK, não instala nada e não comprova compatibilidade XR.
 
-## Insumos necessários para iniciar o port
+## GitHub Actions e armazenamento
 
-1. Artefatos reais v2.4 e/ou v2.7, identificação exata da build e evidência de origem.
-2. Smartphone alvo: modelo, SoC/GPU, ABI, Android, câmeras, sensores, suporte ARCore.
-3. Modalidade de implantação: APK não privilegiado, instalação privilegiada ou
-   imagem Android modificada; disponibilidade de bootloader desbloqueável e root.
-4. Modelo óptico do VRBox/Cardboard e disponibilidade física das câmeras durante uso.
-5. Dispositivo original ou registros de referência para validação comportamental.
+`.github/workflows/fetch-firmware.yml` baixa apenas o pacote fixado, verifica hashes,
+reconstrói imagens, analisa arquivos e publica relatórios nesta branch. Não instala
+firmware no celular. A execução pode falhar por rede, cota ou limite do parser.
+Relatórios são publicados mesmo quando etapas posteriores falham; sempre conferir
+os estados individuais e a execução de origem, não apenas a existência do JSON.
 
-Um APK comum não pode substituir boot, HALs e serviços privilegiados do Android.
-A viabilidade e o alcance de cada modalidade dependem das dependências reais do OS.
-ARCore não garante equivalência com tracking de headset, e câmeras de smartphone
-não garantem cobertura, sincronização, profundidade ou latência equivalentes.
-Recursos indisponíveis devem ser reportados como indisponíveis, nunca inventados.
+Firmware, imagens e arquivos temporários **não entram no Git**. `artifacts/` e
+`local-analysis/` são ignorados. O workflow atual não publica novos artifacts de
+firmware: só relatórios (retenção de sete dias). Os artifacts de firmware das
+primeiras execuções tinham retenção de um dia. O `.gitignore` não é armazenamento
+remoto e não transfere arquivos do telefone.
 
-## Alvo definido
-
-**Infinix GT30 Pro X6873 / XOS 16.2**, conforme informado pelo usuário. Implantação
-exclusivamente em **APK comum**, sem root, flash ou desbloqueio do bootloader.
-Ver [decisão de implantação e pesquisa de artefatos](analysis/APK-DEPLOYMENT.md).
-Emulação de componentes originais será avaliada; não há emulador implementado.
-
-`tools/device_probe.py` fornece uma coleta ADB opcional, somente leitura, para
-preflight do aparelho. Não é o APK MetaPort e não comprova compatibilidade XR.
-
-## Inspeção real do pacote candidato
-
-O workflow já inspecionou o OTA no runner: manifesto FULL, 29 partições, cerca de
-3,74 GB de tamanhos declarados e nenhuma dependência de imagem-base observada.
-Ver [resultados e limites](analysis/v2.4/FINDINGS.md). Ainda não há confirmação do
-canal estável, imagens reconstruídas, disassembly de componentes ou APK funcional.
-A ferramenta de manifesto e a suíte de 24 testes são código executado, não um port.
+Resultados históricos em `analysis/v2.4/` precedem a ampliação de escopo.
+O número comercial/canal da build permanece incerto; hashes não autenticam assinaturas.
+Nenhuma outra versão é baixada automaticamente e não há seleção de “latest”.

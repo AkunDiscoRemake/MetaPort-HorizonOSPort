@@ -1,8 +1,10 @@
-# Horizon OS v2.4
+# Candidato originalmente classificado como Horizon OS v2.4
 
-**NOT PORTED YET** — nenhum artefato fornecido ou analisado.
+A identificação comercial/canal da build `52168470052900520` continua não confirmada.
+A análise avançou sob a [autorização ampliada informada pelo usuário](../SCOPE.md).
 
-Identificação da build: pendente. Proveniência: pendente. Contratos/ABI: não identificados.
+O relatório `quest3-candidate-metadata.json` contém as primeiras verificações de OTA.
+Resultados atuais de reconstrução, bibliotecas, APKs e disassembly estão em
+[analysis/builds/52168470052900520](../builds/52168470052900520/PORTING-MAP.md).
 
-Manter inventários e dados extraídos em `local-analysis/v2.4/`, fora do Git.
-Só iniciar RE após revisão de escopo conforme [plano](../PLAN.md).
+**NOT PORTED YET.** Não há um APK do sistema portado nem boot validado.
