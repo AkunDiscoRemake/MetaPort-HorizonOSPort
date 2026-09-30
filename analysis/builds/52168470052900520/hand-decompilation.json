@@ -1,0 +1,8 @@
+{
+  "tool": "Ghidra 11.3.2",
+  "scope": "At most 24 selected exported hand/gesture/skeleton functions; not full library recovery",
+  "program_sha256": "10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe",
+  "firmware_executed": false,
+  "original_source_recovered": false,
+  "functions": []
+}
