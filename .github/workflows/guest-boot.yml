@@ -22,7 +22,7 @@ jobs:
       - name: Install isolated build and emulation tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip e2fsprogs gdisk
+          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip e2fsprogs gdisk binutils-aarch64-linux-gnu aapt
           python3 -m pip install lz4==4.4.4
           mkdir -p "$GUEST_WORK"
       - name: Test bounded parsers and probe classification
@@ -62,6 +62,9 @@ jobs:
           (root/'reconstruction.json').write_text(json.dumps(report))
           PY
           python3 -m guest.prepare_boot --images "$GUEST_WORK/images" --output "$GUEST_WORK/ramdisks"
+      - name: Inspect original boot HAL and account Store manifests offline
+        run: |
+          python3 -m guest.inspect_services --images "$GUEST_WORK/images" --output "$GUEST_WORK/integration-report.json"
       - name: Assemble disposable GPT and Android logical partitions
         id: storage
         run: |
