@@ -6,6 +6,28 @@
   "abi_validated": false,
   "input_conversion_ported": false,
   "scope": "At most 32 functions; pointer windows may cross vtable boundaries; indirect calls unresolved",
+  "factory_log_strings": [
+    {
+      "elf_address": 764266,
+      "ascii_prefix": "Initializing DPETorchModelV2 with: {}...",
+      "nul_terminated": true
+    },
+    {
+      "elf_address": 764307,
+      "ascii_prefix": "Initializing DPETorchModelV1 with: {}...",
+      "nul_terminated": true
+    },
+    {
+      "elf_address": 665955,
+      "ascii_prefix": "Finish initializing DPETorchModelV2",
+      "nul_terminated": true
+    },
+    {
+      "elf_address": 675831,
+      "ascii_prefix": "Finish initializing DPETorchModelV1",
+      "nul_terminated": true
+    }
+  ],
   "incoming_constructor_calls": [
     {
       "target_elf_address": 23208608,
@@ -4183,6 +4205,440 @@
           "computed": false,
           "ghidra_destinations": [
             "02744710"
+          ]
+        }
+      ]
+    },
+    {
+      "ghidra_address": "01717b90",
+      "elf_address": 23165840,
+      "name": "FUN_01717b90",
+      "selection_evidence": "Alternative constructor in observed FUN_0170dc50 factory",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* WARNING: Globals starting with \u0027_\u0027 overlap smaller symbols at the same address */\n\nvoid FUN_01717b90(undefined2 *param_1,ulong *param_2)\n\n{\n  undefined *puVar1;\n  ulong uVar2;\n  ulong uVar3;\n  ulong uVar4;\n  long lVar5;\n  ulong uVar6;\n  undefined8 *puVar7;\n  long *plVar8;\n  bool bVar9;\n  undefined1 *puVar10;\n  undefined8 uVar11;\n  undefined8 *puVar12;\n  ulong *puVar13;\n  uint uVar14;\n  undefined8 *puVar15;\n  undefined8 uStack_1b0;\n  ulong uStack_1a8;\n  long lStack_1a0;\n  undefined1 auStack_198 [8];\n  ulong uStack_190;\n  undefined8 *puStack_188;\n  byte bStack_180;\n  undefined1 auStack_17b [11];\n  undefined8 uStack_170;\n  ulong uStack_160;\n  ulong uStack_158;\n  long *plStack_150;\n  ulong uStack_148;\n  undefined8 uStack_140;\n  undefined8 uStack_138;\n  ulong uStack_130;\n  undefined8 uStack_128;\n  undefined8 uStack_120;\n  undefined8 uStack_118;\n  undefined8 uStack_110;\n  undefined8 uStack_108;\n  undefined8 uStack_100;\n  undefined8 uStack_f8;\n  undefined8 uStack_f0;\n  undefined8 uStack_e8;\n  undefined8 uStack_e0;\n  undefined8 uStack_d8;\n  undefined8 uStack_d0;\n  undefined8 uStack_c8;\n  undefined8 uStack_c0;\n  undefined8 uStack_b8;\n  undefined8 uStack_b0;\n  undefined8 uStack_a8;\n  undefined8 uStack_a0;\n  undefined8 uStack_98;\n  undefined8 uStack_90;\n  undefined8 uStack_88;\n  undefined8 uStack_80;\n  undefined8 uStack_78;\n  long lStack_68;\n  \n  lVar5 \u003d tpidr_el0;\n  lStack_68 \u003d *(long *)(lVar5 + 0x28);\n  *(undefined8 *)(param_1 + 0x14) \u003d 0;\n  *(undefined8 *)(param_1 + 8) \u003d 0;\n  *(undefined8 *)(param_1 + 4) \u003d 0;\n  *(undefined8 *)(param_1 + 0x1c) \u003d 0;\n  *(undefined8 *)(param_1 + 0x20) \u003d 0;\n  *param_1 \u003d 0xff00;\n  *(undefined4 *)(param_1 + 0x18) \u003d 0x3f800000;\n  *(undefined8 *)(param_1 + 0x10) \u003d 0;\n  *(undefined8 *)(param_1 + 0xc) \u003d 0;\n                    /* try { // try from 01717bec to 01717bf3 has its CatchHandler @ 01718178 */\n  puVar10 \u003d (undefined1 *)FUN_02753418(0x1e0);\n  *(undefined8 *)(param_1 + 0x50) \u003d 0;\n  *(undefined8 *)(param_1 + 0x4c) \u003d 0;\n  puVar10[0x168] \u003d 0;\n  *puVar10 \u003d 0xff;\n  puVar10[0x78] \u003d 0xff;\n  puVar10[0xf0] \u003d 0xff;\n  param_1[0x2c] \u003d 0x33f;\n  *(undefined4 *)(param_1 + 0x2e) \u003d 0x3f000000;\n  *(undefined8 *)(param_1 + 0x30) \u003d 0;\n  *(undefined1 *)(param_1 + 0x34) \u003d 0;\n  param_1[0x94] \u003d 1;\n  *(undefined1 *)(param_1 + 0x95) \u003d 0;\n  *(undefined4 *)(param_1 + 0x96) \u003d 0;\n  *(undefined1 *)(param_1 + 0x98) \u003d 1;\n  *(undefined1 **)(param_1 + 0x24) \u003d puVar10;\n  *(undefined8 *)(param_1 + 0x28) \u003d 0;\n  *(undefined8 *)(param_1 + 0x3c) \u003d 4;\n  *(undefined8 *)(param_1 + 0x38) \u003d 4;\n  *(undefined8 *)(param_1 + 0x40) \u003d 0;\n  *(undefined8 *)(param_1 + 0x44) \u003d 0;\n  *(undefined8 *)(param_1 + 0x58) \u003d 0;\n  *(undefined8 *)(param_1 + 0x54) \u003d 0;\n  *(undefined8 *)(param_1 + 0x60) \u003d 0;\n  *(undefined8 *)(param_1 + 0x5c) \u003d 0;\n  *(undefined8 *)(param_1 + 0x68) \u003d 0;\n  *(undefined8 *)(param_1 + 100) \u003d 0;\n  *(undefined8 *)(param_1 + 0x70) \u003d 0;\n  *(undefined8 *)(param_1 + 0x6c) \u003d 0;\n  *(undefined8 *)(param_1 + 0x78) \u003d 0;\n  *(undefined8 *)(param_1 + 0x74) \u003d 0;\n  *(undefined8 *)(param_1 + 0x80) \u003d 0;\n  *(undefined8 *)(param_1 + 0x7c) \u003d 0;\n  puVar1 \u003d PTR_DAT_02822328 + 0x10;\n  *(undefined4 *)(param_1 + 0x9a) \u003d 0;\n  *(undefined **)(param_1 + 0x9c) \u003d puVar1;\n  *(undefined8 *)(param_1 + 0x88) \u003d 0;\n  *(undefined8 *)(param_1 + 0x84) \u003d 0;\n  *(undefined8 *)(param_1 + 0x90) \u003d 0;\n  *(undefined8 *)(param_1 + 0x8c) \u003d 0;\n                    /* try { // try from 01717c78 to 01717c7f has its CatchHandler @ 01718164 */\n  puVar10 \u003d (undefined1 *)FUN_02753418(0x280);\n  *puVar10 \u003d 0xff;\n  puVar10[0xa0] \u003d 0xff;\n  puVar10[0x140] \u003d 0xff;\n  puVar10[0x1e0] \u003d 0;\n  param_1[0xa8] \u003d 0x33f;\n  *(undefined1 **)(param_1 + 0xa0) \u003d puVar10;\n  *(undefined8 *)(param_1 + 0xa4) \u003d 0;\n  *(undefined8 *)(param_1 + 0xd0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xcc) \u003d 0;\n  *(undefined8 *)(param_1 + 0xb0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xac) \u003d 0;\n  *(undefined8 *)(param_1 + 0xb8) \u003d 0;\n  *(undefined8 *)(param_1 + 0xb4) \u003d 0;\n  *(undefined8 *)(param_1 + 0xc0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xbc) \u003d 0;\n  *(undefined8 *)(param_1 + 200) \u003d 0;\n  *(undefined8 *)(param_1 + 0xc4) \u003d 0;\n  puVar1 \u003d PTR_DAT_028202c0;\n  *(undefined4 *)(param_1 + 0xaa) \u003d 0x3f000000;\n  *(undefined **)(param_1 + 0x104) \u003d puVar1;\n  *(undefined **)(param_1 + 0x108) \u003d puVar1;\n  *(undefined **)(param_1 + 0x10c) \u003d puVar1;\n  *(undefined **)(param_1 + 0x110) \u003d puVar1;\n  *(undefined **)(param_1 + 0x114) \u003d puVar1;\n  *(undefined8 *)(param_1 + 0x130) \u003d 0;\n  *(undefined8 *)(param_1 + 0xd4) \u003d 0;\n  *(undefined **)(param_1 + 0xd8) \u003d puVar1;\n  *(undefined **)(param_1 + 0xdc) \u003d puVar1;\n  *(undefined **)(param_1 + 0xe0) \u003d puVar1;\n  *(undefined **)(param_1 + 0xe4) \u003d puVar1;\n  *(undefined **)(param_1 + 0xe8) \u003d puVar1;\n  *(undefined **)(param_1 + 0xec) \u003d puVar1;\n  *(undefined **)(param_1 + 0xf0) \u003d puVar1;\n  *(undefined **)(param_1 + 0xf4) \u003d puVar1;\n  *(undefined **)(param_1 + 0xf8) \u003d puVar1;\n  *(undefined **)(param_1 + 0xfc) \u003d puVar1;\n  *(undefined **)(param_1 + 0x100) \u003d puVar1;\n  *(undefined8 *)(param_1 + 0x11c) \u003d 0;\n  *(undefined8 *)(param_1 + 0x118) \u003d 0;\n  *(undefined8 *)(param_1 + 0x124) \u003d 0;\n  *(undefined8 *)(param_1 + 0x120) \u003d 0;\n  *(undefined8 *)(param_1 + 300) \u003d 0;\n  *(undefined8 *)(param_1 + 0x128) \u003d 0;\n  *(undefined **)(param_1 + 0x134) \u003d PTR_DAT_028214c0 + 0x10;\n  lStack_1a0 \u003d 0;\n  uStack_1b0 \u003d 0;\n  uStack_1a8 \u003d 0;\n  if ((*param_2 \u0026 1) \u003d\u003d 0) {\n    uStack_158 \u003d param_2[1];\n    uStack_160 \u003d *param_2;\n    plStack_150 \u003d (long *)param_2[2];\n  }\n  else {\n                    /* try { // try from 01717d28 to 01717d2f has its CatchHandler @ 017180b4 */\n    FUN_008f3460(\u0026uStack_160,param_2[2],param_2[1]);\n  }\n  auStack_198[0] \u003d 8;\n                    /* try { // try from 01717d38 to 01717d4f has its CatchHandler @ 01718188 */\n  uVar11 \u003d FUN_01339200(auStack_198);\n  FUN_00bf1960(\u0026uStack_1b0,\u0026uStack_160,uVar11);\n  if ((uStack_160 \u0026 1) !\u003d 0) {\n    free(plStack_150);\n  }\n                    /* try { // try from 01717d60 to 01717d6f has its CatchHandler @ 01718148 */\n  FUN_00bf16a0(\u0026uStack_160,\u0026uStack_1b0,0);\n  if (1 \u003c (uint)uStack_160) {\n    if (2 \u003c (*(uint *)(PTR_DAT_02824560 + 0x10) \u0026 0xf)) {\n      FUN_016ddeb0(PTR_DAT_02824560,3,\u0026DAT_00119045,0x18,\u0026uStack_1b0);\n    }\n    uStack_148 \u003d 0;\n    plStack_150 \u003d (long *)0x0;\n    uStack_138 \u003d 0;\n    uStack_140 \u003d 0;\n    uStack_158 \u003d 0;\n    uStack_160 \u003d 0;\n    uStack_128 \u003d 0;\n    uStack_130 \u003d 0;\n    uStack_118 \u003d 0;\n    uStack_120 \u003d 0;\n    uStack_108 \u003d 0;\n    uStack_110 \u003d 0;\n    uStack_f8 \u003d 0;\n    uStack_100 \u003d 0;\n    uStack_e8 \u003d 0;\n    uStack_f0 \u003d 0;\n    uStack_d8 \u003d 0;\n    uStack_e0 \u003d 0;\n    uStack_c8 \u003d 0;\n    uStack_d0 \u003d 0;\n    uStack_b8 \u003d 0;\n    uStack_c0 \u003d 0;\n    uStack_a8 \u003d 0;\n    uStack_b0 \u003d 0;\n    uStack_98 \u003d 0;\n    uStack_a0 \u003d 0;\n    uStack_88 \u003d 0;\n    uStack_90 \u003d 0;\n    uStack_78 \u003d 0;\n    uStack_80 \u003d 0;\n                    /* try { // try from 01717db8 to 01717dc3 has its CatchHandler @ 01718144 */\n    FUN_00bf4bd0(auStack_198,\u0026uStack_1b0);\n                    /* try { // try from 01717dc4 to 01717dd3 has its CatchHandler @ 01718114 */\n    FUN_00bf5020(\u0026uStack_160,auStack_198,8);\n    if ((bStack_180 \u0026 1) !\u003d 0) {\n      free(uStack_170);\n    }\n    if (((ulong)auStack_198 \u0026 1) !\u003d 0) {\n      free(puStack_188);\n    }\n                    /* try { // try from 01717df4 to 01717e07 has its CatchHandler @ 017180c4 */\n    FUN_01718660(param_1,\u0026uStack_160,param_2);\n    FUN_00977f70(\u0026uStack_108);\n    if ((uStack_130 \u0026 1) !\u003d 0) {\n      free(uStack_120);\n    }\n    if ((uStack_148 \u0026 1) !\u003d 0) {\n      free(uStack_138);\n    }\n    plVar8 \u003d plStack_150;\n    plStack_150 \u003d (long *)0x0;\n    if (plVar8 !\u003d (long *)0x0) {\n      (**(code **)(*plVar8 + 8))();\n    }\n    if ((uStack_1b0 \u0026 1) !\u003d 0) {\n      free(lStack_1a0);\n    }\n    if (*(long *)(lVar5 + 0x28) \u003d\u003d lStack_68) {\n      return;\n    }\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  puVar12 \u003d (undefined8 *)aligned_alloc(0x10,0x90);\n                    /* try { // try from 01718000 to 01718007 has its CatchHandler @ 0171801c */\n  if ((puVar12 \u003d\u003d (undefined8 *)0x0) \u0026\u0026\n     (puVar12 \u003d (undefined8 *)FUN_02744978(0x90), puVar12 \u003d\u003d (undefined8 *)0x0)) {\n                    /* WARNING: Subroutine does not return */\n    FUN_02744710();\n  }\n  uVar6 \u003d uStack_1b0;\n  puVar12[1] \u003d 0;\n  *puVar12 \u003d 0;\n  puVar12[3] \u003d 0;\n  puVar12[2] \u003d 0;\n  puVar15 \u003d puVar12 + 0x10;\n  puVar12[0x11] \u003d 0;\n  *puVar15 \u003d 0;\n  uVar3 \u003d uStack_1b0 \u003e\u003e 1 \u0026 0x7f;\n  if ((uStack_1b0 \u0026 1) !\u003d 0) {\n    uVar3 \u003d uStack_1a8;\n  }\n  uVar2 \u003d uVar3 + 0x1c;\n  puVar12[5] \u003d 0;\n  puVar12[4] \u003d 0;\n  puVar12[7] \u003d 0;\n  puVar12[6] \u003d 0;\n  auStack_198 \u003d (undefined1  [8])0x0;\n  uStack_190 \u003d 0;\n  puStack_188 \u003d (undefined8 *)0x0;\n  puVar12[9] \u003d 0;\n  puVar12[8] \u003d 0;\n  puVar12[0xb] \u003d 0;\n  puVar12[10] \u003d 0;\n  puVar12[0xd] \u003d 0;\n  puVar12[0xc] \u003d 0;\n  puVar12[0xf] \u003d 0;\n  puVar12[0xe] \u003d 0;\n  if (uVar2 \u003c 0xfffffffffffffff8) {\n    if (uVar2 \u003c 0x17) {\n      uVar14 \u003d ((uint)uVar2 \u0026 0xff) \u003c\u003c 1;\n      auStack_198._1_7_ \u003d 0;\n      auStack_198[0] \u003d (byte)uVar14;\n    }\n    else {\n      uVar4 \u003d 0x1a;\n      if ((uVar2 | 7) !\u003d 0x17) {\n        uVar4 \u003d (uVar2 | 7) + 1;\n      }\n                    /* try { // try from 01717f24 to 01717f2b has its CatchHandler @ 0171806c */\n      puStack_188 \u003d (undefined8 *)FUN_02753418(uVar4);\n      auStack_198 \u003d (undefined1  [8])(uVar4 | 1);\n      uVar14 \u003d SUB84(auStack_198,0) \u0026 0xff;\n      uStack_190 \u003d uVar2;\n    }\n    puVar7 \u003d puStack_188;\n    bVar9 \u003d (uVar14 \u0026 1) \u003d\u003d 0;\n    puVar12 \u003d puStack_188;\n    if (bVar9) {\n      puVar12 \u003d (undefined8 *)(auStack_198 + 1);\n    }\n    puVar12[1] \u003d CONCAT44(_DAT_0021f139,_UNK_0021f135);\n    *puVar12 \u003d _DAT_0021f12d;\n    puVar10 \u003d auStack_17b;\n    if (!bVar9) {\n      puVar10 \u003d (undefined1 *)((long)puVar7 + 0x1c);\n    }\n    *(undefined8 *)((long)puVar12 + 0x14) \u003d _UNK_0021f141;\n    *(ulong *)((long)puVar12 + 0xc) \u003d CONCAT44(_UNK_0021f13d,_DAT_0021f139);\n    if (uVar3 !\u003d 0) {\n      lVar5 \u003d lStack_1a0;\n      if ((uVar6 \u0026 1) \u003d\u003d 0) {\n        lVar5 \u003d (long)\u0026uStack_1b0 + 1;\n      }\n      memmove(puVar10,lVar5,uVar3);\n    }\n    puVar10[uVar3] \u003d 0;\n                    /* try { // try from 01717fa8 to 01717fbb has its CatchHandler @ 01718054 */\n    puVar13 \u003d (ulong *)FUN_00973eb8(auStack_198,\u0026DAT_00129ead,0xe);\n    uStack_158 \u003d puVar13[1];\n    uStack_160 \u003d *puVar13;\n    plStack_150 \u003d (long *)puVar13[2];\n    puVar13[1] \u003d 0;\n    puVar13[2] \u003d 0;\n    *puVar13 \u003d 0;\n                    /* try { // try from 01717fd8 to 01717fff has its CatchHandler @ 01718020 */\n    FUN_00c381bc(puVar15,\u0026uStack_160);\n                    /* WARNING: Subroutine does not return */\n    FUN_0083e648(puVar15,PTR_DAT_02820278,PTR_FUN_02820268);\n  }\n                    /* try { // try from 01718014 to 0171801b has its CatchHandler @ 0171806c */\n                    /* WARNING: Subroutine does not return */\n  FUN_00eff830(auStack_198);\n}\n\n",
+      "pcode_available": true,
+      "pcode_ops_visited": 3109,
+      "pcode_call_sites_sample": [
+        {
+          "ghidra_address": "01717bf0",
+          "computed": false,
+          "target_varnode": "(ram, 0x2753418, 8)"
+        },
+        {
+          "ghidra_address": "01717c7c",
+          "computed": false,
+          "target_varnode": "(ram, 0x2753418, 8)"
+        },
+        {
+          "ghidra_address": "01717d2c",
+          "computed": false,
+          "target_varnode": "(ram, 0x8f3460, 8)"
+        },
+        {
+          "ghidra_address": "01717d3c",
+          "computed": false,
+          "target_varnode": "(ram, 0x1339200, 8)"
+        },
+        {
+          "ghidra_address": "01717d4c",
+          "computed": false,
+          "target_varnode": "(ram, 0xbf1960, 8)"
+        },
+        {
+          "ghidra_address": "01717d5c",
+          "computed": false,
+          "target_varnode": "(ram, 0x7c27c0, 8)"
+        },
+        {
+          "ghidra_address": "01717d6c",
+          "computed": false,
+          "target_varnode": "(ram, 0xbf16a0, 8)"
+        },
+        {
+          "ghidra_address": "01717dc0",
+          "computed": false,
+          "target_varnode": "(ram, 0xbf4bd0, 8)"
+        },
+        {
+          "ghidra_address": "01717dd0",
+          "computed": false,
+          "target_varnode": "(ram, 0xbf5020, 8)"
+        },
+        {
+          "ghidra_address": "01717de0",
+          "computed": false,
+          "target_varnode": "(ram, 0x7c27c0, 8)"
+        },
+        {
+          "ghidra_address": "01717df0",
+          "computed": false,
+          "target_varnode": "(ram, 0x7c27c0, 8)"
+        },
+        {
+          "ghidra_address": "01717e04",
+          "computed": false,
+          "target_varnode": "(ram, 0x1718660, 8)"
+        },
+        {
+          "ghidra_address": "01717e0c",
+          "computed": false,
+          "target_varnode": "(ram, 0x977f70, 8)"
+        },
+        {
+          "ghidra_address": "01717e1c",
+          "computed": false,
+          "target_varnode": "(ram, 0x7c27c0, 8)"
+        },
+        {
+          "ghidra_address": "01717e2c",
+          "computed": false,
+          "target_varnode": "(ram, 0x7c27c0, 8)"
+        },
+        {
+          "ghidra_address": "01717e44",
+          "computed": true
+        },
+        {
+          "ghidra_address": "01717e54",
+          "computed": false,
+          "target_varnode": "(ram, 0x7c27c0, 8)"
+        },
+        {
+          "ghidra_address": "01717ea4",
+          "computed": false,
+          "target_varnode": "(ram, 0x16ddeb0, 8)"
+        },
+        {
+          "ghidra_address": "01717ebc",
+          "computed": false,
+          "target_varnode": "(ram, 0x2753690, 8)"
+        },
+        {
+          "ghidra_address": "01717f28",
+          "computed": false,
+          "target_varnode": "(ram, 0x2753418, 8)"
+        },
+        {
+          "ghidra_address": "01717f40",
+          "computed": false,
+          "target_varnode": "(ram, 0x2753810, 8)"
+        },
+        {
+          "ghidra_address": "01717fa0",
+          "computed": false,
+          "target_varnode": "(ram, 0x2755040, 8)"
+        },
+        {
+          "ghidra_address": "01717fb8",
+          "computed": false,
+          "target_varnode": "(ram, 0x973eb8, 8)"
+        },
+        {
+          "ghidra_address": "01717fe0",
+          "computed": false,
+          "target_varnode": "(ram, 0xc381bc, 8)"
+        },
+        {
+          "ghidra_address": "01717ffc",
+          "computed": false,
+          "target_varnode": "(ram, 0x83e648, 8)"
+        },
+        {
+          "ghidra_address": "01718004",
+          "computed": false,
+          "target_varnode": "(ram, 0x2744978, 8)"
+        },
+        {
+          "ghidra_address": "01718010",
+          "computed": false,
+          "target_varnode": "(ram, 0x2744710, 8)"
+        },
+        {
+          "ghidra_address": "01718018",
+          "computed": false,
+          "target_varnode": "(ram, 0xeff830, 8)"
+        }
+      ],
+      "pcode_scan_truncated": false,
+      "listing_body_address_count": 1164,
+      "listing_instructions_visited": 291,
+      "listing_instruction_sample": [
+        {
+          "ghidra_address": "01717b90",
+          "mnemonic": "sub",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717b94",
+          "mnemonic": "stp",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717b98",
+          "mnemonic": "str",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717b9c",
+          "mnemonic": "stp",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717ba0",
+          "mnemonic": "stp",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717ba4",
+          "mnemonic": "stp",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717ba8",
+          "mnemonic": "stp",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bac",
+          "mnemonic": "add",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bb0",
+          "mnemonic": "mrs",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bb4",
+          "mnemonic": "movi",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bb8",
+          "mnemonic": "mov",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bbc",
+          "mnemonic": "ldr",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bc0",
+          "mnemonic": "mov",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bc4",
+          "mnemonic": "mov",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bc8",
+          "mnemonic": "stur",
+          "flow_type": "FALL_THROUGH"
+        },
+        {
+          "ghidra_address": "01717bcc",
+          "mnemonic": "mov",
+          "flow_type": "FALL_THROUGH"
+        }
+      ],
+      "listing_scan_truncated": false,
+      "call_sites_sample": [
+        {
+          "elf_address": 23165936,
+          "computed": false,
+          "ghidra_destinations": [
+            "02753418"
+          ]
+        },
+        {
+          "elf_address": 23166076,
+          "computed": false,
+          "ghidra_destinations": [
+            "02753418"
+          ]
+        },
+        {
+          "elf_address": 23166252,
+          "computed": false,
+          "ghidra_destinations": [
+            "008f3460"
+          ]
+        },
+        {
+          "elf_address": 23166268,
+          "computed": false,
+          "ghidra_destinations": [
+            "01339200"
+          ]
+        },
+        {
+          "elf_address": 23166284,
+          "computed": false,
+          "ghidra_destinations": [
+            "00bf1960"
+          ]
+        },
+        {
+          "elf_address": 23166300,
+          "computed": false,
+          "ghidra_destinations": [
+            "007c27c0"
+          ]
+        },
+        {
+          "elf_address": 23166316,
+          "computed": false,
+          "ghidra_destinations": [
+            "00bf16a0"
+          ]
+        },
+        {
+          "elf_address": 23166400,
+          "computed": false,
+          "ghidra_destinations": [
+            "00bf4bd0"
+          ]
+        },
+        {
+          "elf_address": 23166416,
+          "computed": false,
+          "ghidra_destinations": [
+            "00bf5020"
+          ]
+        },
+        {
+          "elf_address": 23166432,
+          "computed": false,
+          "ghidra_destinations": [
+            "007c27c0"
+          ]
+        },
+        {
+          "elf_address": 23166448,
+          "computed": false,
+          "ghidra_destinations": [
+            "007c27c0"
+          ]
+        },
+        {
+          "elf_address": 23166468,
+          "computed": false,
+          "ghidra_destinations": [
+            "01718660"
+          ]
+        },
+        {
+          "elf_address": 23166476,
+          "computed": false,
+          "ghidra_destinations": [
+            "00977f70"
+          ]
+        },
+        {
+          "elf_address": 23166492,
+          "computed": false,
+          "ghidra_destinations": [
+            "007c27c0"
+          ]
+        },
+        {
+          "elf_address": 23166508,
+          "computed": false,
+          "ghidra_destinations": [
+            "007c27c0"
+          ]
+        },
+        {
+          "elf_address": 23166532,
+          "computed": true,
+          "ghidra_destinations": []
+        },
+        {
+          "elf_address": 23166548,
+          "computed": false,
+          "ghidra_destinations": [
+            "007c27c0"
+          ]
+        },
+        {
+          "elf_address": 23166628,
+          "computed": false,
+          "ghidra_destinations": [
+            "016ddeb0"
+          ]
+        },
+        {
+          "elf_address": 23166652,
+          "computed": false,
+          "ghidra_destinations": [
+            "02753690"
+          ]
+        },
+        {
+          "elf_address": 23166760,
+          "computed": false,
+          "ghidra_destinations": [
+            "02753418"
+          ]
+        },
+        {
+          "elf_address": 23166784,
+          "computed": false,
+          "ghidra_destinations": [
+            "02753810"
+          ]
+        },
+        {
+          "elf_address": 23166880,
+          "computed": false,
+          "ghidra_destinations": [
+            "02755040"
+          ]
+        },
+        {
+          "elf_address": 23166904,
+          "computed": false,
+          "ghidra_destinations": [
+            "00973eb8"
+          ]
+        },
+        {
+          "elf_address": 23166944,
+          "computed": false,
+          "ghidra_destinations": [
+            "00c381bc"
+          ]
+        },
+        {
+          "elf_address": 23166972,
+          "computed": false,
+          "ghidra_destinations": [
+            "0083e648"
+          ]
+        },
+        {
+          "elf_address": 23166980,
+          "computed": false,
+          "ghidra_destinations": [
+            "02744978"
+          ]
+        },
+        {
+          "elf_address": 23166992,
+          "computed": false,
+          "ghidra_destinations": [
+            "02744710"
+          ]
+        },
+        {
+          "elf_address": 23167000,
+          "computed": false,
+          "ghidra_destinations": [
+            "00eff830"
           ]
         }
       ]
@@ -19467,590 +19923,6 @@
           "computed": false,
           "ghidra_destinations": [
             "00f0dfb0"
-          ]
-        }
-      ]
-    },
-    {
-      "ghidra_address": "023b88c8",
-      "elf_address": 36407496,
-      "name": "FUN_023b88c8",
-      "selection_evidence": "Direct input-metadata string reference: input.ndimension() \u003e 0\"\" CHECK FAILED at \"buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/quantized/cpu/qrelu.cpp\"",
-      "diagnostic": "",
-      "status": "DECOMPILED_NOT_VALIDATED",
-      "c_like": "\nvoid FUN_023b88c8(undefined8 *param_1,undefined8 *param_2)\n\n{\n  long lVar1;\n  long *plVar2;\n  undefined4 uVar3;\n  int iVar4;\n  code *pcVar5;\n  long lVar6;\n  undefined8 uVar7;\n  ulong uVar8;\n  long lVar9;\n  long lVar10;\n  uint uVar11;\n  undefined *puVar12;\n  long *plVar13;\n  long *plVar14;\n  long lVar15;\n  ulong uVar16;\n  undefined8 uVar17;\n  undefined1 auVar18 [16];\n  long *plStack_88;\n  long *plStack_80;\n  long *plStack_78;\n  long *plStack_70;\n  long lStack_68;\n  \n  lVar1 \u003d tpidr_el0;\n  lStack_68 \u003d *(long *)(lVar1 + 0x28);\n  if (((DAT_0291dd38 \u0026 1) \u003d\u003d 0) \u0026\u0026 (iVar4 \u003d FUN_00890ba4(\u0026DAT_0291dd38), iVar4 !\u003d 0)) {\n                    /* try { // try from 023b8d60 to 023b8d6b has its CatchHandler @ 023b8de4 */\n    FUN_00e7a0f0(\u0026DAT_0291d920);\n    FUN_00890ab0(\u0026DAT_0291dd38);\n  }\n  plVar14 \u003d (long *)*param_2;\n  if ((DAT_0291dd01 \u0026 0xfd) \u003d\u003d 0) {\n    if (0x2e \u003c *(ushort *)(plVar14 + 0x15)) {\n                    /* WARNING: Subroutine does not return */\n      FUN_00a4cd70();\n    }\n    if (*(ushort *)(plVar14 + 0x15) \u003d\u003d 0xd) {\n      plStack_88 \u003d plVar14;\n      if (plVar14 !\u003d \u0026DAT_02928c88) {\n        FUN_00efedc0(1,plVar14 + 1);\n      }\n      *param_1 \u003d \u0026DAT_02928c88;\n      if ((*(ushort *)((long)plVar14 + 0xad) \u003e\u003e 0xb \u0026 1) \u003d\u003d 0) {\n        lVar6 \u003d plVar14[8];\n      }\n      else {\n                    /* try { // try from 023b8c94 to 023b8cd3 has its CatchHandler @ 023b8e74 */\n        lVar6 \u003d (**(code **)(*plVar14 + 0x78))(plVar14);\n      }\n      if (lVar6 \u003c 1) {\n        uVar7 \u003d 0x29;\n        puVar12 \u003d \u0026DAT_001db5e8;\nLAB_023b8cc0:\n                    /* WARNING: Subroutine does not return */\n        FUN_0086ea90(\u0026DAT_00126aaf,\u0026DAT_0014b37f,uVar7,puVar12);\n      }\n      if (0x2e \u003c *(ushort *)(plStack_88 + 0x15)) {\n                    /* WARNING: Subroutine does not return */\n        FUN_00a4cd70();\n      }\n      if (*(ushort *)(plStack_88 + 0x15) !\u003d 0xd) {\n        uVar7 \u003d 0x2e;\n        puVar12 \u003d \u0026DAT_001db4ee;\n        goto LAB_023b8cc0;\n      }\n      plStack_78 \u003d (long *)0x0;\n                    /* try { // try from 023b8a08 to 023b8a23 has its CatchHandler @ 023b8e20 */\n      uVar3 \u003d FUN_0086c0b0(\u0026plStack_88,0);\n      FUN_0190cc20(\u0026plStack_78,\u0026plStack_88,uVar3);\n                    /* try { // try from 023b8a24 to 023b8a33 has its CatchHandler @ 023b8e10 */\n      uVar3 \u003d FUN_0085b468(\u0026plStack_78);\n      FUN_0258a91c();\n      if ((*(ushort *)((long)plStack_78 + 0xad) \u003e\u003e 0xb \u0026 1) \u003d\u003d 0) {\n        lVar6 \u003d plStack_78[8];\n      }\n      else {\n                    /* try { // try from 023b8cdc to 023b8cdf has its CatchHandler @ 023b8e00 */\n        lVar6 \u003d (**(code **)(*plStack_78 + 0x78))();\n      }\n      lVar15 \u003d 1;\n      if (1 \u003c lVar6) {\n        lVar9 \u003d 1;\n        do {\n          plVar14 \u003d plStack_78;\n          if ((*(ushort *)((long)plStack_78 + 0xad) \u003e\u003e 0xb \u0026 1) \u003d\u003d 0) {\n            uVar16 \u003d plStack_78[8];\n            lVar10 \u003d lVar9;\n            if ((long)(lVar9 + uVar16) \u003c 0 !\u003d SBORROW8(lVar9,-uVar16) || (long)uVar16 \u003c\u003d lVar9) {\n              lVar10 \u003d FUN_025efeb0(lVar9,uVar16,0);\n              uVar16 \u003d plVar14[8];\n            }\n            plVar14 \u003d plVar14 + 9;\n            if (5 \u003c uVar16) {\n              plVar14 \u003d (long *)*plVar14;\n            }\n            lVar10 \u003d plVar14[lVar10];\n          }\n          else {\n                    /* try { // try from 023b8c14 to 023b8c3b has its CatchHandler @ 023b8df8 */\n            lVar10 \u003d (**(code **)(*plStack_78 + 0x48))(plStack_78,lVar9);\n          }\n          lVar15 \u003d lVar10 * lVar15;\n          lVar9 \u003d lVar9 + 1;\n        } while (lVar6 !\u003d lVar9);\n      }\n      plStack_80 \u003d (long *)0x0;\n                    /* try { // try from 023b8a54 to 023b8a6b has its CatchHandler @ 023b8e08 */\n      iVar4 \u003d FUN_025f9220(lVar15,uVar3,0xff,0,\u0026plStack_80);\n      plVar14 \u003d plStack_80;\n      if (iVar4 !\u003d 0) {\n                    /* try { // try from 023b8ce8 to 023b8d07 has its CatchHandler @ 023b8e2c */\n                    /* WARNING: Subroutine does not return */\n        FUN_0086ea90(\u0026DAT_00126aaf,\u0026DAT_0014b37f,0x49,\u0026DAT_001db304);\n      }\n      if ((*(ushort *)((long)plStack_78 + 0xad) \u003e\u003e 0xb \u0026 1) \u003d\u003d 0) {\n        uVar16 \u003d plStack_78[8];\n        auVar18._8_8_ \u003d uVar16;\n        auVar18._0_8_ \u003d plStack_78 + 9;\n        if (5 \u003c uVar16) {\n          auVar18._0_8_ \u003d plStack_78[9];\n        }\n      }\n      else {\n                    /* try { // try from 023b8d10 to 023b8d13 has its CatchHandler @ 023b8dfc */\n        auVar18 \u003d (**(code **)(*plStack_78 + 0x58))();\n      }\n      uVar16 \u003d (ulong)*(ushort *)(plStack_88 + 0x15);\n      if (0x2e \u003c uVar16) {\n                    /* try { // try from 023b8d20 to 023b8d27 has its CatchHandler @ 023b8e38 */\n                    /* WARNING: Subroutine does not return */\n        FUN_00a4cd70(uVar16);\n      }\n                    /* try { // try from 023b8aa0 to 023b8ab3 has its CatchHandler @ 023b8e38 */\n      uVar17 \u003d FUN_008321c4(\u0026plStack_78);\n      uVar7 \u003d FUN_0085b468(\u0026plStack_78);\n                    /* try { // try from 023b8ab4 to 023b8aef has its CatchHandler @ 023b8e0c */\n      uVar8 \u003d FUN_0086c0b0(\u0026plStack_88,0);\n      FUN_0218e8ec(\u0026plStack_70,uVar17,auVar18._0_8_,auVar18._8_8_,uVar16 \u003c\u003c 0x10 | 0xc00000000ff00,\n                   uVar7,uVar8 \u0026 0xff | 0x100);\n      plVar2 \u003d plStack_70;\n      plVar13 \u003d plStack_78;\n      *param_1 \u003d plStack_70;\n      if ((*(ushort *)((long)plStack_78 + 0xad) \u003e\u003e 0xb \u0026 1) \u003d\u003d 0) {\n        uVar16 \u003d plStack_78[8];\n        if ((long)uVar16 \u003c 1) {\n          lVar6 \u003d FUN_025efeb0(0,uVar16,0);\n          uVar16 \u003d plVar13[8];\n        }\n        else {\n          lVar6 \u003d 0;\n        }\n        plVar13 \u003d plVar13 + 9;\n        if (5 \u003c uVar16) {\n          plVar13 \u003d (long *)*plVar13;\n        }\n        lVar6 \u003d plVar13[lVar6];\n      }\n      else {\n        lVar6 \u003d (**(code **)(*plStack_78 + 0x48))(plStack_78,0);\n      }\n                    /* try { // try from 023b8b24 to 023b8b5f has its CatchHandler @ 023b8e24 */\n      FUN_007dfb78(\u0026plStack_78,0xd);\n      plStack_70 \u003d plStack_78;\n      lVar9 \u003d FUN_007dfcb8(plStack_78,\u0026plStack_70);\n      FUN_007dfb78(param_1,0xd);\n      lVar10 \u003d FUN_007dfcb8(plVar2,\u0026plStack_70);\n      if ((DAT_029292d0 \u0026 1) \u003d\u003d 0) {\n                    /* try { // try from 023b8d80 to 023b8dd3 has its CatchHandler @ 023b8e24 */\n        FUN_025f8fd0(\u0026DAT_00180574);\n                    /* WARNING: Subroutine does not return */\n        FUN_0086ea90(\u0026DAT_00126aaf,\u0026DAT_0014b37f,0x5b,\u0026DAT_001db0f4);\n      }\n      if (lVar6 !\u003d 0) {\n        plVar14[0x11] \u003d lVar15;\n        plVar14[0x12] \u003d lVar9;\n        plVar14[0x1d] \u003d lVar15;\n        plVar14[0x1e] \u003d lVar10;\n      }\n      *plVar14 \u003d lVar6;\n                    /* try { // try from 023b8b80 to 023b8b87 has its CatchHandler @ 023b8e04 */\n      uVar7 \u003d FUN_007da740();\n                    /* try { // try from 023b8b88 to 023b8b8f has its CatchHandler @ 023b8e30 */\n      iVar4 \u003d FUN_025fd6b0(plVar14,uVar7);\n      if (iVar4 !\u003d 0) {\n                    /* try { // try from 023b8d30 to 023b8d4f has its CatchHandler @ 023b8e30 */\n                    /* WARNING: Subroutine does not return */\n        FUN_0086ea90(\u0026DAT_00126aaf,\u0026DAT_0014b37f,100,\u0026DAT_001db1fd);\n      }\n      FUN_025fd650(plVar14);\n      if (plStack_78 !\u003d \u0026DAT_02928c88) {\n        FUN_007d1290();\n      }\n      if (plStack_88 !\u003d \u0026DAT_02928c88) {\n        FUN_007d1290();\n      }\n      goto LAB_023b8980;\n    }\n  }\n  *param_1 \u003d \u0026DAT_02928c88;\n  if (*(short *)((long)plVar14 + 0xad) \u003c 0) {\n                    /* try { // try from 023b8c58 to 023b8c87 has its CatchHandler @ 023b8e88 */\n    uVar11 \u003d (**(code **)(*plVar14 + 0x80))(plVar14);\n  }\n  else {\n    if ((*(byte *)((long)plVar14 + 0xac) \u0026 1) \u003d\u003d 0) {\n                    /* WARNING: Subroutine does not return */\n      FUN_0086ea90(\u0026DAT_0012e146,\u0026DAT_00167a3a,0x513,\u0026DAT_0020ff94);\n    }\n    uVar11 \u003d (uint)*(ushort *)((long)plVar14 + 0xaa);\n  }\n                    /* try { // try from 023b895c to 023b897f has its CatchHandler @ 023b8e88 */\n  pcVar5 \u003d (code *)FUN_008327f4(\u0026DAT_02918148,uVar11,FUN_02389204);\n  (*pcVar5)(param_2,param_1);\nLAB_023b8980:\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d lStack_68) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n",
-      "pcode_available": true,
-      "pcode_ops_visited": 800,
-      "pcode_call_sites_sample": [
-        {
-          "ghidra_address": "023b896c",
-          "computed": false,
-          "target_varnode": "(ram, 0x8327f4, 8)"
-        },
-        {
-          "ghidra_address": "023b897c",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b89d0",
-          "computed": false,
-          "target_varnode": "(ram, 0xefedc0, 8)"
-        },
-        {
-          "ghidra_address": "023b8a10",
-          "computed": false,
-          "target_varnode": "(ram, 0x86c0b0, 8)"
-        },
-        {
-          "ghidra_address": "023b8a20",
-          "computed": false,
-          "target_varnode": "(ram, 0x190cc20, 8)"
-        },
-        {
-          "ghidra_address": "023b8a28",
-          "computed": false,
-          "target_varnode": "(ram, 0x85b468, 8)"
-        },
-        {
-          "ghidra_address": "023b8a30",
-          "computed": false,
-          "target_varnode": "(ram, 0x258a91c, 8)"
-        },
-        {
-          "ghidra_address": "023b8a68",
-          "computed": false,
-          "target_varnode": "(ram, 0x25f9220, 8)"
-        },
-        {
-          "ghidra_address": "023b8aa4",
-          "computed": false,
-          "target_varnode": "(ram, 0x8321c4, 8)"
-        },
-        {
-          "ghidra_address": "023b8ab0",
-          "computed": false,
-          "target_varnode": "(ram, 0x85b468, 8)"
-        },
-        {
-          "ghidra_address": "023b8ac0",
-          "computed": false,
-          "target_varnode": "(ram, 0x86c0b0, 8)"
-        },
-        {
-          "ghidra_address": "023b8aec",
-          "computed": false,
-          "target_varnode": "(ram, 0x218e8ec, 8)"
-        },
-        {
-          "ghidra_address": "023b8b2c",
-          "computed": false,
-          "target_varnode": "(ram, 0x7dfb78, 8)"
-        },
-        {
-          "ghidra_address": "023b8b3c",
-          "computed": false,
-          "target_varnode": "(ram, 0x7dfcb8, 8)"
-        },
-        {
-          "ghidra_address": "023b8b4c",
-          "computed": false,
-          "target_varnode": "(ram, 0x7dfb78, 8)"
-        },
-        {
-          "ghidra_address": "023b8b5c",
-          "computed": false,
-          "target_varnode": "(ram, 0x7dfcb8, 8)"
-        },
-        {
-          "ghidra_address": "023b8b80",
-          "computed": false,
-          "target_varnode": "(ram, 0x7da740, 8)"
-        },
-        {
-          "ghidra_address": "023b8b8c",
-          "computed": false,
-          "target_varnode": "(ram, 0x25fd6b0, 8)"
-        },
-        {
-          "ghidra_address": "023b8b98",
-          "computed": false,
-          "target_varnode": "(ram, 0x25fd650, 8)"
-        },
-        {
-          "ghidra_address": "023b8ba8",
-          "computed": false,
-          "target_varnode": "(ram, 0x7d1290, 8)"
-        },
-        {
-          "ghidra_address": "023b8bb8",
-          "computed": false,
-          "target_varnode": "(ram, 0x7d1290, 8)"
-        },
-        {
-          "ghidra_address": "023b8c20",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b8c38",
-          "computed": false,
-          "target_varnode": "(ram, 0x25efeb0, 8)"
-        },
-        {
-          "ghidra_address": "023b8c5c",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b8c84",
-          "computed": false,
-          "target_varnode": "(ram, 0x86ea90, 8)"
-        },
-        {
-          "ghidra_address": "023b8c88",
-          "computed": false,
-          "target_varnode": "(ram, 0xa4cd70, 8)"
-        },
-        {
-          "ghidra_address": "023b8c98",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b8cb0",
-          "computed": false,
-          "target_varnode": "(ram, 0xa4cd70, 8)"
-        },
-        {
-          "ghidra_address": "023b8cd0",
-          "computed": false,
-          "target_varnode": "(ram, 0x86ea90, 8)"
-        },
-        {
-          "ghidra_address": "023b8cdc",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b8d04",
-          "computed": false,
-          "target_varnode": "(ram, 0x86ea90, 8)"
-        },
-        {
-          "ghidra_address": "023b8d10",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b8d24",
-          "computed": false,
-          "target_varnode": "(ram, 0xa4cd70, 8)"
-        },
-        {
-          "ghidra_address": "023b8d4c",
-          "computed": false,
-          "target_varnode": "(ram, 0x86ea90, 8)"
-        },
-        {
-          "ghidra_address": "023b8d58",
-          "computed": false,
-          "target_varnode": "(ram, 0x890ba4, 8)"
-        },
-        {
-          "ghidra_address": "023b8d68",
-          "computed": false,
-          "target_varnode": "(ram, 0xe7a0f0, 8)"
-        },
-        {
-          "ghidra_address": "023b8d74",
-          "computed": false,
-          "target_varnode": "(ram, 0x890ab0, 8)"
-        },
-        {
-          "ghidra_address": "023b8d7c",
-          "computed": false,
-          "target_varnode": "(ram, 0x2753810, 8)"
-        },
-        {
-          "ghidra_address": "023b8d88",
-          "computed": false,
-          "target_varnode": "(ram, 0x25f8fd0, 8)"
-        },
-        {
-          "ghidra_address": "023b8da8",
-          "computed": false,
-          "target_varnode": "(ram, 0x86ea90, 8)"
-        },
-        {
-          "ghidra_address": "023b8dbc",
-          "computed": true
-        },
-        {
-          "ghidra_address": "023b8dd0",
-          "computed": false,
-          "target_varnode": "(ram, 0x25efeb0, 8)"
-        }
-      ],
-      "pcode_scan_truncated": false,
-      "listing_body_address_count": 1308,
-      "listing_instructions_visited": 327,
-      "listing_instruction_sample": [
-        {
-          "ghidra_address": "023b88c8",
-          "mnemonic": "sub",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88cc",
-          "mnemonic": "str",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88d0",
-          "mnemonic": "str",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88d4",
-          "mnemonic": "stp",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88d8",
-          "mnemonic": "stp",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88dc",
-          "mnemonic": "stp",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88e0",
-          "mnemonic": "stp",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88e4",
-          "mnemonic": "stp",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88e8",
-          "mnemonic": "add",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88ec",
-          "mnemonic": "mrs",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88f0",
-          "mnemonic": "mov",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88f4",
-          "mnemonic": "mov",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88f8",
-          "mnemonic": "ldr",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b88fc",
-          "mnemonic": "stur",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b8900",
-          "mnemonic": "adrp",
-          "flow_type": "FALL_THROUGH"
-        },
-        {
-          "ghidra_address": "023b8904",
-          "mnemonic": "add",
-          "flow_type": "FALL_THROUGH"
-        }
-      ],
-      "listing_scan_truncated": false,
-      "call_sites_sample": [
-        {
-          "elf_address": 36407660,
-          "computed": false,
-          "ghidra_destinations": [
-            "008327f4"
-          ]
-        },
-        {
-          "elf_address": 36407676,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36407760,
-          "computed": false,
-          "ghidra_destinations": [
-            "00efedc0"
-          ]
-        },
-        {
-          "elf_address": 36407824,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086c0b0"
-          ]
-        },
-        {
-          "elf_address": 36407840,
-          "computed": false,
-          "ghidra_destinations": [
-            "0190cc20"
-          ]
-        },
-        {
-          "elf_address": 36407848,
-          "computed": false,
-          "ghidra_destinations": [
-            "0085b468"
-          ]
-        },
-        {
-          "elf_address": 36407856,
-          "computed": false,
-          "ghidra_destinations": [
-            "0258a91c"
-          ]
-        },
-        {
-          "elf_address": 36407912,
-          "computed": false,
-          "ghidra_destinations": [
-            "025f9220"
-          ]
-        },
-        {
-          "elf_address": 36407972,
-          "computed": false,
-          "ghidra_destinations": [
-            "008321c4"
-          ]
-        },
-        {
-          "elf_address": 36407984,
-          "computed": false,
-          "ghidra_destinations": [
-            "0085b468"
-          ]
-        },
-        {
-          "elf_address": 36408000,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086c0b0"
-          ]
-        },
-        {
-          "elf_address": 36408044,
-          "computed": false,
-          "ghidra_destinations": [
-            "0218e8ec"
-          ]
-        },
-        {
-          "elf_address": 36408108,
-          "computed": false,
-          "ghidra_destinations": [
-            "007dfb78"
-          ]
-        },
-        {
-          "elf_address": 36408124,
-          "computed": false,
-          "ghidra_destinations": [
-            "007dfcb8"
-          ]
-        },
-        {
-          "elf_address": 36408140,
-          "computed": false,
-          "ghidra_destinations": [
-            "007dfb78"
-          ]
-        },
-        {
-          "elf_address": 36408156,
-          "computed": false,
-          "ghidra_destinations": [
-            "007dfcb8"
-          ]
-        },
-        {
-          "elf_address": 36408192,
-          "computed": false,
-          "ghidra_destinations": [
-            "007da740"
-          ]
-        },
-        {
-          "elf_address": 36408204,
-          "computed": false,
-          "ghidra_destinations": [
-            "025fd6b0"
-          ]
-        },
-        {
-          "elf_address": 36408216,
-          "computed": false,
-          "ghidra_destinations": [
-            "025fd650"
-          ]
-        },
-        {
-          "elf_address": 36408232,
-          "computed": false,
-          "ghidra_destinations": [
-            "007d1290"
-          ]
-        },
-        {
-          "elf_address": 36408248,
-          "computed": false,
-          "ghidra_destinations": [
-            "007d1290"
-          ]
-        },
-        {
-          "elf_address": 36408352,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36408376,
-          "computed": false,
-          "ghidra_destinations": [
-            "025efeb0"
-          ]
-        },
-        {
-          "elf_address": 36408412,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36408452,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086ea90"
-          ]
-        },
-        {
-          "elf_address": 36408456,
-          "computed": false,
-          "ghidra_destinations": [
-            "00a4cd70"
-          ]
-        },
-        {
-          "elf_address": 36408472,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36408496,
-          "computed": false,
-          "ghidra_destinations": [
-            "00a4cd70"
-          ]
-        },
-        {
-          "elf_address": 36408528,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086ea90"
-          ]
-        },
-        {
-          "elf_address": 36408540,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36408580,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086ea90"
-          ]
-        },
-        {
-          "elf_address": 36408592,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36408612,
-          "computed": false,
-          "ghidra_destinations": [
-            "00a4cd70"
-          ]
-        },
-        {
-          "elf_address": 36408652,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086ea90"
-          ]
-        },
-        {
-          "elf_address": 36408664,
-          "computed": false,
-          "ghidra_destinations": [
-            "00890ba4"
-          ]
-        },
-        {
-          "elf_address": 36408680,
-          "computed": false,
-          "ghidra_destinations": [
-            "00e7a0f0"
-          ]
-        },
-        {
-          "elf_address": 36408692,
-          "computed": false,
-          "ghidra_destinations": [
-            "00890ab0"
-          ]
-        },
-        {
-          "elf_address": 36408700,
-          "computed": false,
-          "ghidra_destinations": [
-            "02753810"
-          ]
-        },
-        {
-          "elf_address": 36408712,
-          "computed": false,
-          "ghidra_destinations": [
-            "025f8fd0"
-          ]
-        },
-        {
-          "elf_address": 36408744,
-          "computed": false,
-          "ghidra_destinations": [
-            "0086ea90"
-          ]
-        },
-        {
-          "elf_address": 36408764,
-          "computed": true,
-          "ghidra_destinations": []
-        },
-        {
-          "elf_address": 36408784,
-          "computed": false,
-          "ghidra_destinations": [
-            "025efeb0"
           ]
         }
       ]
