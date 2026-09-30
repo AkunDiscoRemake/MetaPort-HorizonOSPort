@@ -44,6 +44,13 @@ jobs:
             -Iport/android/adapters/src/main/cpp native/tests/input_router_test.cpp \
             -o local-analysis/native-tests/input_router_test
           local-analysis/native-tests/input_router_test
+      - name: Test lossless hand palette packing with sanitizers
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_palette_test.cpp \
+            port/android/adapters/src/main/cpp/hand_palette.cpp \
+            -o local-analysis/native-tests/hand_palette_test
+          local-analysis/native-tests/hand_palette_test
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |
