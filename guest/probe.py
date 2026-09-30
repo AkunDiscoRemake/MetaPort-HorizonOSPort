@@ -17,6 +17,28 @@ def child_limits():
     resource.setrlimit(resource.RLIMIT_FSIZE,(8*1024**3,8*1024**3))
 
 
+
+def security_observations(text):
+    """Preserve early startup errors rather than only the final retry loop."""
+    pattern=re.compile(r'keystore|keymint|keymaster|qsee|secureclock|sharedsecret|wrappedkey|encryptFstab|dm-default-key',re.I)
+    events=[];counts={};matched=0;omitted=0
+    for line in text.splitlines():
+        if not pattern.search(line):continue
+        matched+=1
+        signature=re.sub(r'^\s*\[[^]]+\]\s*','',line)
+        counts[signature]=counts.get(signature,0)+1
+        if counts[signature]<=3 and len(events)<160:events.append(line[:1024])
+        else:omitted+=1
+    return {'events':events,'matching_line_count':matched,'omitted_line_count':omitted,
+            'keystore_start_attempt_observed':"starting service 'keystore2'" in text,
+            'keymint_start_attempt_observed':"starting service 'vendor.keymint-qti'" in text,
+            'keystore_service_wait_observed':bool(re.search(r'Waited .* for android\.system\.keystore2\.IKeystoreService/default',text)),
+            'userdata_encryption_request_observed':bool(re.search(r'Calling: .*vdc cryptfs encryptFstab .*userdata /data',text)),
+            'keystore_registered': 'NOT_ESTABLISHED',
+            'userdata_mounted':'NOT_ESTABLISHED',
+            'root_cause':'NOT_ESTABLISHED_FROM_LOG_MATCHES'}
+
+
 def classify(text):
     lines=text.splitlines()
     block_denials=[line for line in lines if 'avc:' in line and 'denied' in line and
@@ -36,6 +58,7 @@ def classify(text):
         'zygote_start_attempt_observed':"starting service 'zygote'" in text,
         'zygote_termination_observed':bool(re.search(r"Service 'zygote'.*(?:received signal|exited with status)",text)),
         'storage_events':[line for line in lines if re.search(r'userdata|checkpoint needsCheckpoint|mount_all.*late|/data.*(?:Read-only|failed)|(?:Failed|Unable|Cannot).*userdata',line)][:80],
+        'security_startup':security_observations(text),
         'second_stage_init_observed':'init second stage started!' in text,
         'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
         'boot_events':[line for line in text.splitlines() if any(token in line for token in (

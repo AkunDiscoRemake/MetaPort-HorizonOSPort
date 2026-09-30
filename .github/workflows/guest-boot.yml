@@ -65,6 +65,10 @@ jobs:
       - name: Inspect original boot HAL and account Store manifests offline
         run: |
           python3 -m guest.inspect_services --images "$GUEST_WORK/images" --output "$GUEST_WORK/integration-report.json"
+      - name: Inspect original Keystore and encrypted-storage startup dependencies
+        run: |
+          python3 -m guest.security_contract --images "$GUEST_WORK/images" \
+            --reconstruction "$GUEST_WORK/reconstruction.json" --output "$GUEST_WORK/security-contract.json"
       - name: Assemble disposable GPT and Android logical partitions
         id: storage
         run: |
