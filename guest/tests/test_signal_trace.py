@@ -33,3 +33,14 @@ class SignalTraceTests(unittest.TestCase):
         self.assertEqual(observation['event_count'],400)
         self.assertEqual(len(observation['events']),200)
         self.assertTrue(observation['events_truncated'])
+
+    def test_late_security_signals_survive_unrelated_event_flood(self):
+        text="init: ... started service 'vendor.keymint-qti' has pid 233\n"
+        text+='signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0\n'*300
+        text+='signal_generate: sig=6 errno=0 code=-6 comm=keystore2 pid=252 grp=0 res=0\n'
+        text+='signal_generate: sig=11 errno=0 code=1 comm=android.hardwar pid=233 grp=0 res=0\n'
+        observation=signal_observations(text)
+        self.assertEqual(len(observation['events']),200)
+        self.assertEqual([s['target_pid'] for s in observation['security_generated_signals']],[252,233])
+        self.assertEqual(observation['service_pid_candidates'][233],'vendor.keymint-qti')
+        self.assertEqual(observation['security_event_count'],2)

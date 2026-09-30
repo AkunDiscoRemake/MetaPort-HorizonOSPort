@@ -49,24 +49,42 @@ def signal_trace_parameters(enabled):
 
 def signal_observations(text):
     events=[];generated=[];exits=[];total=0
+    security_events=[];security_generated=[];security_exits=[];security_count=0
+    service_pattern=re.compile(r"started service '(keystore2|vendor.keymint-qti|vendor.qseecomd|qseecom-service)' has pid (\d+)")
+    service_pids={int(pid):name for name,pid in service_pattern.findall(text)}
     pattern=re.compile(r'signal_generate: sig=(-?\d+) errno=(-?\d+) code=(-?\d+) comm=(.*?) pid=(\d+) grp=(\d+) res=(\d+)')
     exit_pattern=re.compile(r'sched_process_exit: comm=(.*?) pid=(\d+) prio=(-?\d+)')
     for line in text.splitlines():
         signal_match=pattern.search(line);exit_match=exit_pattern.search(line)
         if not signal_match and not exit_match:continue
         total+=1
-        if len(events)>=200:continue
-        events.append(line[:1024])
         if signal_match:
             sig,error,code,comm,pid,group,result=signal_match.groups()
-            generated.append({'signal':int(sig),'errno':int(error),'si_code':int(code),
-                              'target_comm':comm[:64],'target_pid':int(pid),
-                              'group':int(group),'generation_result':int(result)})
+            record={'signal':int(sig),'errno':int(error),'si_code':int(code),
+                    'target_comm':comm[:64],'target_pid':int(pid),
+                    'group':int(group),'generation_result':int(result)}
         else:
             comm,pid,priority=exit_match.groups()
-            exits.append({'comm':comm[:64],'pid':int(pid),'priority':int(priority)})
+            record={'comm':comm[:64],'pid':int(pid),'priority':int(priority)}
+        if len(events)<200:
+            events.append(line[:1024])
+            (generated if signal_match else exits).append(record)
+        # Preserve late security failures even if unrelated early SIGCHLD/exit
+        # events fill the generic sample. PID/name association is evidence only.
+        binder=re.fullmatch(r'binder:(\d+)_\d+',comm)
+        relevant=(int(pid) in service_pids or comm=='keystore2' or
+                  (binder is not None and int(binder.group(1)) in service_pids))
+        if relevant:
+            security_count+=1
+            if len(security_events)<80:
+                security_events.append(line[:1024])
+                (security_generated if signal_match else security_exits).append(record)
     return {'events':events,'event_count':total,'events_truncated':total>len(events),
             'generated_signals':generated,'process_exits':exits,
+            'security_events':security_events,'security_event_count':security_count,
+            'security_events_truncated':security_count>len(security_events),
+            'security_generated_signals':security_generated,'security_process_exits':security_exits,
+            'service_pid_candidates':service_pids,
             'trace_observed':bool(total),'fatal_cause':'NOT_ESTABLISHED_BY_SIGNAL_GENERATION'}
 
 
