@@ -28,6 +28,7 @@ def elf_identity(data):
         raise ValueError('Truncated ELF64')
     machine = struct.unpack_from('<H' if data[5] == 1 else '>H', data, 18)[0]
     return {'bits': 32 if data[4] == 1 else 64, 'byte_order': 'little' if data[5] == 1 else 'big',
+            'flags': struct.unpack_from('<I' if data[5]==1 else '>I',data,36 if data[4]==1 else 48)[0],
             'machine': machine, 'architecture': {183: 'AArch64', 164: 'Hexagon'}.get(machine, 'OTHER')}
 
 
@@ -38,7 +39,7 @@ def executable_section_view(data):
     synthetic section metadata, never flash/load this derivative as firmware.
     """
     identity=elf_identity(data)
-    if identity != {'bits':32,'byte_order':'little','machine':164,'architecture':'Hexagon'}:
+    if identity['bits']!=32 or identity['byte_order']!='little' or identity['machine']!=164:
         raise ValueError('Section view only supports verified little-endian Hexagon ELF32')
     phoff=struct.unpack_from('<I',data,28)[0]
     phsize,count=struct.unpack_from('<HH',data,42)
@@ -94,7 +95,7 @@ def text_evidence(raw):
 
 def disassembly_summary(text):
     """LLVM output evidence only; vector syntax does not prove hand-model activation."""
-    labels=[]; vectors=[]; vector_count=0; instructions=0; unknown=0
+    labels=[]; vectors=[]; samples=[]; vector_count=0; instructions=0; unknown=0
     interesting=re.compile(r'conv|gemm|matmul|quant|pool|softmax|relu|hvx|vtcm|vector',re.I)
     label_count=0
     for line in text.splitlines():
@@ -104,13 +105,14 @@ def disassembly_summary(text):
             if len(labels)<256: labels.append(label[1][:1024])
         if not re.match(r'^\s*[0-9a-fA-F]+:',line): continue
         instructions+=1
+        if len(samples)<128 and (instructions<=16 or instructions%4096==0): samples.append(line[:1024])
         if re.search(r"unknown|invalid",line,re.I): unknown+=1
         if re.search(r'\bv[0-9]+(?:\.[a-z]+)?\b',line):
             vector_count+=1
             if len(vectors)<64: vectors.append(line[:1024])
     return {'decoded_text_sha256':hashlib.sha256(text.encode()).hexdigest(),
             'tool':'llvm-objdump-14','instruction_lines':instructions,
-            'unknown_or_invalid_instruction_lines':unknown,'matching_function_labels':label_count,
+            'unknown_or_invalid_instruction_lines':unknown,'instruction_samples':samples,'matching_function_labels':label_count,
             'function_labels':labels,'function_labels_truncated':label_count>256,
             'vector_syntax_lines':vector_count,'vector_samples':vectors,
             'vector_samples_truncated':vector_count>64,
@@ -164,6 +166,18 @@ def inspect(images, reconstruction, output, disassemble=False):
                             row['disassembly']['view_sha256']=hashlib.sha256(view).hexdigest()
                             row['disassembly']['decoded_segment_bytes_unchanged']=True
                         row['status']='DISASSEMBLED_NOT_VALIDATED' if row['disassembly']['instruction_lines'] else 'NO_DECODED_INSTRUCTIONS'
+                        # LLVM 14.0.6 ELF.h: EF_HEXAGON_MACH_V69=0x69, mask=0x3ff.
+                        # HVX length is a decoder hypothesis, not measured hardware state.
+                        if row['elf']['flags'] & 0x3ff == 0x69:
+                            target=view_path if row['disassembly'].get('synthetic_section_view') else local
+                            assembly,diagnostics=command(['llvm-objdump-14','--disassemble',
+                                '--no-show-raw-insn','--mcpu=hexagonv69',
+                                '--mattr=+hvxv69,+hvx-length128b',str(target)],max_output=64*1024*1024)
+                            row['hvx_decoder_probe']=disassembly_summary(assembly)
+                            row['hvx_decoder_probe']['diagnostics']=diagnostics
+                            row['hvx_decoder_probe']['hardware_vector_length_validated']=False
+                            row['hvx_decoder_probe']['features']='hexagonv69,+hvxv69,+hvx-length128b'
+
 
                 else:
                     row.update(text_evidence(data))
