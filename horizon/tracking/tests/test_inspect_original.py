@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
-from horizon.tracking.inspect_original import model_metadata, function_candidates, string_targets
+from horizon.tracking.inspect_original import model_metadata, function_candidates, string_targets, input_string_targets
 
 
 class MetadataTests(unittest.TestCase):
@@ -48,3 +48,16 @@ class MetadataTests(unittest.TestCase):
         sections='[11] .rodata PROGBITS 00004000 000020 000010 00 A 0 0 1'
         self.assertEqual(string_targets(data,sections)[0]['address'],0x4000)
         with self.assertRaises(ValueError): string_targets(data[:33],sections)
+
+    def test_input_targets_are_bounded_complete_strings_not_generic_scales(self):
+        raw=b'input0_scale\0input{}_zero_point\0use_uint8_input\0input_format\0unrelated_scale\0'
+        sections=f'[11] .rodata PROGBITS 00004000 000020 {len(raw):06x} 00 A 0 0 1'
+        result=input_string_targets(bytes(32)+raw,sections)
+        self.assertEqual({r['text'] for r in result},
+                         {'input0_scale','input{}_zero_point','use_uint8_input','input_format'})
+        self.assertEqual(next(r['address'] for r in result if r['text']=='input0_scale'),0x4000)
+        with self.assertRaises(ValueError):input_string_targets(bytes(32)+raw[:-1],sections)
+        raw=(b'input0_scale\0'*200)+b'x'*600+b'input9_scale\0'
+        sections=f'[11] .rodata PROGBITS 00004000 000000 {len(raw):06x} 00 A 0 0 1'
+        self.assertEqual(len(input_string_targets(raw,sections)),128)
+        self.assertNotIn('input9_scale',{r['text'] for r in input_string_targets(raw,sections)})

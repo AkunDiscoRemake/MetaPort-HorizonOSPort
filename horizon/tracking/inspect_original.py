@@ -107,6 +107,23 @@ def string_targets(data, sections):
     return candidates[:256]
 
 
+
+def input_string_targets(data, sections):
+    """Select bounded, complete rodata strings for the original input conversion."""
+    section=re.search(r'\]\s+\.rodata\s+PROGBITS\s+([0-9a-f]+)\s+([0-9a-f]+)\s+([0-9a-f]+)',sections,re.I)
+    if not section: return []
+    address,offset,size=(int(x,16) for x in section.groups())
+    if offset+size>len(data) or size>8*1024*1024: raise ValueError('Invalid rodata bounds')
+    raw=data[offset:offset+size];targets=[]
+    pattern=re.compile(r'get_attributes_msgpack|input[0-9{}]+_(?:scale|zero_point|dtype)|unflatten_spec|quantiz.*input|input.*quantiz|input_format|use_uint8_input|Model uses input format|Initializing Executorch',re.I)
+    for match in re.finditer(rb'[ -~]{4,512}\x00',raw):
+        if match.start() and raw[match.start()-1]!=0: continue
+        text=match.group()[:-1].decode('ascii')
+        if pattern.search(text): targets.append({'address':address+match.start(),'text':text})
+    targets.sort(key=lambda x:(len(x['text']),x['address']))
+    return targets[:128]
+
+
 def inspect(images, reconstruction, output):
     images, output = Path(images), Path(output)
     output.mkdir(parents=True, exist_ok=True)
@@ -149,6 +166,8 @@ def inspect(images, reconstruction, output):
                         (output/Path(path).name).write_bytes(binary.read_bytes())
                         (output/(prefix+'functions.json')).write_text(json.dumps(selected))
                         (output/(prefix+'strings.json')).write_text(json.dumps(string_targets(binary.read_bytes(),item['sections'])))
+                        if not prefix:
+                            (output/'input-strings.json').write_text(json.dumps(input_string_targets(binary.read_bytes(),item['sections'])))
                         (output/(prefix+'functions.txt')).write_text('\n'.join(f'{f["address"]:x}' for f in selected)+'\n')
                 elif path in CONFIGS[partition]:
                     report['configuration'].append({**base, 'text': binary.read_text()})
