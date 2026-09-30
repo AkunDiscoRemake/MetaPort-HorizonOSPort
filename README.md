@@ -43,11 +43,26 @@ analisado em GitHub Actions. O pipeline já:
 [Mapa anterior de userspace](analysis/builds/52168470052900520/PORTING-MAP.md).
 
 Isso reúne análise de componentes originais e um primeiro experimento de boot,
-não um sistema portado funcional. DEX ainda não foi decompilado; o disassembly é amostral, não completo.
+não um sistema portado funcional. Há decompilação limitada de DEX e funções nativas,
+com erros/tipos inferidos ainda não validados; não é recuperação completa do código.
 Não houve boot completo do Android/Horizon, integração de hardware original
-ou otimização medida. O segundo estágio executado não demonstra Home/System UI funcionando.
+ou otimização de desempenho medida no telefone. O segundo estágio executado não demonstra Home/System UI funcionando.
 A principal barreira observada é a dependência em serviços/UIDs/capacidades de
 sistema, IPC e interfaces vendor que um APK comum não recebe.
+
+## Foco atual: hand tracking original
+
+- Preparação sem perda das malhas esquerda/direita, preservando UVs e até sete
+  influências por vértice; comparação integral dos buffers com os assets originais.
+- Paleta compacta de 17 nós, sem eliminar a hierarquia original de 79 nós.
+- Transferência nativa de registros da paleta sem alocação por frame, compilada no
+  AAR Android ARM64 e testada com ASan/UBSan; ainda sem bridge de poses/renderer.
+- Caminho visual original localizado em `libshell.so`, incluindo aquisição de
+  mesh por OpenXR e parâmetros do material das mãos. Não se presume que a mesh
+  do tracking seja a mesma fornecida ao VrShell.
+
+[Medidas, implementação e bloqueios de animação/renderização](analysis/builds/52168470052900520/HAND-VISUALS.md).
+**Não há hand tracking completo funcionando no telefone.**
 
 ## Diagnóstico atual do BootControl
 
