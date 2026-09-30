@@ -44,7 +44,10 @@ def signal_trace_parameters(enabled):
     # Verified against kernel/trace/{trace,trace_events}.c in the pinned kernel.
     # Trace metadata only, not registers, memory, keys, or decrypted storage.
     if type(enabled) is not bool:raise ValueError('Signal trace flag must be boolean')
-    return 'trace_event=signal:signal_generate,sched:sched_process_exit tp_printk' if enabled else ''
+    # Original init.anorak.rc sets both console/default printk levels to 6.
+    # tp_printk uses the default priority, so loglevel=8 alone stops being
+    # effective after that write. This only changes guest console visibility.
+    return 'trace_event=signal:signal_generate,sched:sched_process_exit tp_printk ignore_loglevel' if enabled else ''
 
 
 def signal_observations(text):
@@ -85,7 +88,7 @@ def signal_observations(text):
             'security_events_truncated':security_count>len(security_events),
             'security_generated_signals':security_generated,'security_process_exits':security_exits,
             'service_pid_candidates':service_pids,
-            'trace_observed':bool(total),'fatal_cause':'NOT_ESTABLISHED_BY_SIGNAL_GENERATION'}
+            'trace_observed':bool(total),'security_trace_observed':bool(security_count),'fatal_cause':'NOT_ESTABLISHED_BY_SIGNAL_GENERATION'}
 
 
 def classify(text):
