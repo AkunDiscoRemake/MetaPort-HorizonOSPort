@@ -18,3 +18,7 @@ class ServiceTargets(unittest.TestCase):
         self.assertEqual(self.scan(b'x'*600+b' hand\0')['matched_count'],0)
         with self.assertRaises(ValueError):service_targets(b'','')
         with self.assertRaises(ValueError):service_targets(b'','[ 3] .rodata PROGBITS 1000 20 30')
+
+    def test_handler_is_not_hand_tracking(self):
+        r=self.scan(b'EventHandler destructor\0HandTracking callback\0')
+        self.assertEqual(r['matched_count'],1)

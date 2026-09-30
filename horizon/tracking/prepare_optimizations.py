@@ -10,7 +10,7 @@ from tools.scan_partitions import command
 GROUPS = {
     'inference': r'quantiz|uint8|float16|int8|hexagon|boltnn|xnnpack|delegate|batch|tensor.*contigu',
     'memory': r'zero.copy|buffer.*reus|memory.plan|arena.alloc|aligned_alloc|prealloc|memory.pool|cache.*tensor',
-    'temporal': r'predict|smooth|filter|thread.pool|affinity|schedul|frame.*skip|downsampl|roi|region.of.interest',
+    'temporal': r'predict|smooth|filter|thread.pool|affinity|schedul|frame.*skip|downsampl|\broi\b|region.of.interest',
 }
 HAND = re.compile(r'handtracking|hand_tracking|handprototype|handbbox|handpose|hand[ /:_-]|\bdpe\b|dpetorch|\bskb\b|\bstp\b', re.I)
 

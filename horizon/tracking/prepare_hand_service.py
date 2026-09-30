@@ -8,8 +8,8 @@ from tools.scan_partitions import command, dump_entry
 
 SERVICE_SHA='a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945'
 SERVICE_SIZE=5384496
-PATTERN=re.compile(r'hand|trackingPolicy|wake_affine|cpuset|schedul|affinity|priority|thread|memorybroker|buffer|zero.copy|deadline|frame.*drop',re.I)
-PRIORITY=re.compile(r'hand|trackingPolicy|wake_affine|cpuset|schedul|affinity|priority',re.I)
+PATTERN=re.compile(r'hand(?:tracking|_tracking|pose|bbox|joint|skeleton)|\bhand\b|trackingPolicy|wake_affine|cpuset|schedul|affinity|priority|thread|memorybroker|buffer|zero.copy|deadline|frame.*drop',re.I)
+PRIORITY=re.compile(r'hand(?:tracking|_tracking|pose|bbox|joint|skeleton)|\bhand\b|trackingPolicy|wake_affine|cpuset|schedul|affinity|priority',re.I)
 
 
 def service_targets(data,sections):

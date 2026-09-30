@@ -33,3 +33,8 @@ class OptimizationTargets(unittest.TestCase):
         r=self.scan(b'CNNVizardHandBboxDetector batchSize\0HandPrototypeTracking scheduling\0')
         self.assertTrue(r['inference']['selected'][0]['hand_context_in_string'])
         self.assertTrue(r['temporal']['selected'][0]['hand_context_in_string'])
+
+    def test_roi_does_not_match_android(self):
+        r=self.scan(b'android/content/Context\0ROI crop\0')
+        self.assertEqual(r['temporal']['matched_count'],1)
+        self.assertEqual(r['temporal']['selected'][0]['text'],'ROI crop')
