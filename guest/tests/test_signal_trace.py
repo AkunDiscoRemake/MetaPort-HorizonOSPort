@@ -15,6 +15,7 @@ class SignalTraceTests(unittest.TestCase):
               '[91.0] sched_process_exit: comm=keystore2 pid=252 prio=120\n')
         observation=signal_observations(text)
         self.assertTrue(observation['trace_observed'])
+        self.assertTrue(observation['security_trace_observed'])
         self.assertEqual(observation['generated_signals'][0]['target_pid'],252)
         self.assertEqual(observation['generated_signals'][0]['signal'],6)
         self.assertEqual(observation['generated_signals'][0]['si_code'],-6)
@@ -26,6 +27,14 @@ class SignalTraceTests(unittest.TestCase):
         observation=signal_observations('Kernel command line: '+signal_trace_parameters(True))
         self.assertFalse(observation['trace_observed'])
         self.assertEqual(observation['generated_signals'],[])
+
+    def test_early_generic_trace_does_not_establish_security_coverage(self):
+        observation=signal_observations(
+            'sched_process_exit: comm=cryptomgr_test pid=32 prio=120\n'
+            "init: ... started service 'keystore2' has pid 251\n")
+        self.assertTrue(observation['trace_observed'])
+        self.assertFalse(observation['security_trace_observed'])
+        self.assertEqual(observation['security_event_count'],0)
 
     def test_bounded_event_report(self):
         text='\n'.join(f'signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0' for _ in range(400))

@@ -87,3 +87,20 @@ for the unavailable Keystore2 service until the probe timeout. It did **not**
 reach post-fs-data or Zygote in this run, unlike the earlier no-userdata probe.
 See [measured userdata results](../analysis/builds/52168470052900520/GUEST-USERDATA.md).
 This is not a mounted-data, full-boot or phone-compatibility claim.
+
+## Original security-service diagnostics
+
+The fixed-image read-only inspector `guest/security_contract.py` records original
+Keystore/KeyMint/QSEE init declarations, VINTF declarations and ELF dependencies.
+These are declarations, not Binder registration or hardware-compatibility results.
+
+`guest/probe.py --trace-signals` optionally captures kernel signal-generation and
+process-exit metadata. It adds `trace_event=signal:signal_generate,sched:sched_process_exit`,
+`tp_printk` and `ignore_loglevel` to this disposable guest's command line. The last
+option keeps diagnostic console output visible after the original vendor init
+changes printk levels. It does not relax SELinux/ptrace or change encryption.
+Signal generation alone is not proof of fatal delivery or root cause. Generic and
+security-correlated samples have separate bounds; missing late events do not prove
+that a service remained healthy. Console and run-duration limits still apply.
+
+See [Keystore startup evidence and capture limitations](../analysis/builds/52168470052900520/KEYSTORE-STARTUP.md).
