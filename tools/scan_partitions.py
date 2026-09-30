@@ -293,7 +293,10 @@ def inspect_apks(image, entries):
                     native = [i for i in archive.infolist() if i.filename.startswith('lib/') and i.filename.endswith('.so')]
                     result['native_libraries'] = [{'path': i.filename, 'size_bytes': i.file_size} for i in native]
                     result['native_analysis'] = []
-                    arm64 = sorted([i for i in native if i.filename.startswith('lib/arm64-v8a/')], key=lambda i: i.filename)
+                    arm64 = sorted([i for i in native if i.filename.startswith('lib/arm64-v8a/')],
+                        key=lambda i: (0 if any(token in i.filename.lower() for token in (
+                            'openxr', 'vrapi', 'vrruntime', 'vrshell', 'tracking', 'compositor')) else 1,
+                            i.filename))
                     for index, info in enumerate(arm64[:8]):
                         if not 0 < info.file_size <= 64 * 1024 * 1024:
                             result['native_analysis'].append({'path': info.filename, 'status': 'SIZE_LIMIT'})
