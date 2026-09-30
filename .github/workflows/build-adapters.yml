@@ -40,6 +40,10 @@ jobs:
             -Iport/android/adapters/src/main/cpp native/tests/sample_cache_test.cpp \
             -o local-analysis/native-tests/sample_cache_test
           local-analysis/native-tests/sample_cache_test
+          g++ -std=c++17 -Wall -Wextra -Werror -pthread -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/input_router_test.cpp \
+            -o local-analysis/native-tests/input_router_test
+          local-analysis/native-tests/input_router_test
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |
@@ -119,6 +123,7 @@ jobs:
             git commit -m 'Record Android adapter build and test result'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
               push origin HEAD:arena/01a0f02d-metaport-horizonosport
           fi
