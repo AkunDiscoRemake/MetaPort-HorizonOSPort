@@ -2,7 +2,7 @@ name: Original hand tracking and UI contracts
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/inspect_original.py, horizon/tracking/ghidra/**, horizon/tracking/tests/test_inspect_original.py, .github/workflows/hand-ui-analysis.yml]
+    paths: [horizon/tracking/inspect_original.py, horizon/tracking/ghidra/DecompileHands.java, horizon/tracking/tests/test_inspect_original.py, .github/workflows/hand-ui-analysis.yml]
   workflow_dispatch:
 permissions:
   contents: write
