@@ -627,7 +627,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "HexagonRpcBackend",
@@ -1357,7 +1358,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "HexagonRpcBackend",
@@ -2588,7 +2590,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real8",
@@ -3971,7 +3974,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real8",
@@ -4289,8 +4293,1078 @@
         "qualification": "Root structure only; not full schema or model execution validation."
       },
       "schema_candidate": {
-        "interpretation": "PUBLIC_SCHEMA_MISMATCH",
-        "error": "Field exceeds object"
+        "interpretation": "PUBLIC_SCHEMA_CANDIDATE_NOT_RUNTIME_VALIDATED",
+        "schema_reference": "pytorch/executorch v0.7.0 schema/program.fbs",
+        "schema_git_blob": "7308cc631994146e037b7a88749aa4c8e87fe93a",
+        "serialized_program_version": 0,
+        "execution_plans": [
+          {
+            "name": "forward",
+            "inputs": [
+              {
+                "value_index": 14,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  2,
+                  62
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 15,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  2,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 16,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  2
+                ],
+                "dim_order": [
+                  0
+                ]
+              },
+              {
+                "value_index": 17,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 18,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 19,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 20,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 21,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 22,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 23,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 24,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 25,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 26,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 27,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 28,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 29,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 30,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 31,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 32,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 33,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 34,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 35,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 36,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 37,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 38,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 39,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 40,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 41,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "value_index": 84,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  57
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 89,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  2,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 17,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 61,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 62,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 50,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 60,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 22,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 64,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 65,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 52,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 63,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 27,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 67,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 68,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 54,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 66,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 32,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 70,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 71,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 56,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 69,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 37,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 74,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 75,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  80,
+                  2,
+                  384
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 58,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  2
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 72,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  2,
+                  384,
+                  6
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ],
+            "operators": [
+              {
+                "name": "aten::permute_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::add",
+                "overload": "out"
+              },
+              {
+                "name": "aten::addmm",
+                "overload": "out"
+              },
+              {
+                "name": "aten::view_copy",
+                "overload": "out"
+              }
+            ],
+            "delegates": [
+              "HexagonRpcBackend"
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  14,
+                  15,
+                  18,
+                  19,
+                  21,
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75
+                ]
+              }
+            ],
+            "instruction_count": 12,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "num_layers",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1820
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "kernel_size",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1636
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "hidden_dim",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1452
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "left_context",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1260
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "featurizer_version",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1068
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "model_config_json",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 6,
+                "kind": "OPAQUE_UNION_ALTERNATIVE"
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "fblearner_id",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 6,
+                "kind": "OPAQUE_UNION_ALTERNATIVE"
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          }
+        ],
+        "all_instructions_validated": false,
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 5
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real8",
@@ -5895,7 +6969,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real16",
@@ -7500,7 +8575,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real16",
@@ -9105,7 +10181,8 @@
           }
         ],
         "all_instructions_validated": false,
-        "camera_semantics_recovered": false
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 0
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real16",
@@ -9423,8 +10500,1299 @@
         "qualification": "Root structure only; not full schema or model execution validation."
       },
       "schema_candidate": {
-        "interpretation": "PUBLIC_SCHEMA_MISMATCH",
-        "error": "Field exceeds object"
+        "interpretation": "PUBLIC_SCHEMA_CANDIDATE_NOT_RUNTIME_VALIDATED",
+        "schema_reference": "pytorch/executorch v0.7.0 schema/program.fbs",
+        "schema_git_blob": "7308cc631994146e037b7a88749aa4c8e87fe93a",
+        "serialized_program_version": 0,
+        "execution_plans": [
+          {
+            "name": "forward",
+            "inputs": [
+              {
+                "value_index": 18,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  193
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 19,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1
+                ],
+                "dim_order": [
+                  0
+                ]
+              },
+              {
+                "value_index": 20,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  2,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 21,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 22,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 23,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 24,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 25,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 26,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 27,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 28,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 29,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 30,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 31,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 32,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 33,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 34,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 35,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 36,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 37,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 38,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 39,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 40,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 41,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 42,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 43,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 44,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 45,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 46,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 47,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 48,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 49,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 50,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 51,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "value_index": 503,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  2,
+                  5
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 437,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  2,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 208,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 22,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 459,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 460,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 130,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 458,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 27,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 462,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 463,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 132,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 461,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 32,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 465,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 466,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 134,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 464,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 37,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 468,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 469,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 136,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 467,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 42,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 471,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 472,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 138,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 470,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 47,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 475,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 476,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 140,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 473,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ],
+            "operators": [
+              {
+                "name": "aten::full",
+                "overload": "out"
+              },
+              {
+                "name": "aten::arange",
+                "overload": "start_out"
+              },
+              {
+                "name": "aten::permute_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::slice_copy",
+                "overload": "Tensor_out"
+              },
+              {
+                "name": "aten::add",
+                "overload": "out"
+              },
+              {
+                "name": "aten::select_copy",
+                "overload": "int_out"
+              },
+              {
+                "name": "aten::eq",
+                "overload": "Scalar_out"
+              },
+              {
+                "name": "aten::sub",
+                "overload": "out"
+              },
+              {
+                "name": "aten::alias_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::cat",
+                "overload": "out"
+              },
+              {
+                "name": "aten::unsqueeze_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::expand_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::where",
+                "overload": "self_out"
+              },
+              {
+                "name": "aten::le",
+                "overload": "Tensor_out"
+              },
+              {
+                "name": "aten::slice_scatter",
+                "overload": "out"
+              },
+              {
+                "name": "aten::flip",
+                "overload": "out"
+              },
+              {
+                "name": "aten::index_put",
+                "overload": "out"
+              },
+              {
+                "name": "aten::addmm",
+                "overload": "out"
+              },
+              {
+                "name": "aten::_softmax",
+                "overload": "out"
+              }
+            ],
+            "delegates": [
+              "HexagonRpcBackend"
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  457,
+                  458,
+                  459,
+                  460,
+                  461,
+                  462,
+                  463,
+                  464,
+                  465,
+                  466,
+                  467,
+                  468,
+                  469,
+                  470,
+                  471,
+                  472,
+                  473,
+                  474,
+                  475,
+                  476
+                ]
+              }
+            ],
+            "instruction_count": 125,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "num_layers",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1140
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "kernel_size",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 956
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "hidden_dim",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 772
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "left_context",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 580
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "fblearner_id",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 6,
+                "kind": "OPAQUE_UNION_ALTERNATIVE"
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          }
+        ],
+        "all_instructions_validated": false,
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 4
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real16",
@@ -9742,8 +12110,1299 @@
         "qualification": "Root structure only; not full schema or model execution validation."
       },
       "schema_candidate": {
-        "interpretation": "PUBLIC_SCHEMA_MISMATCH",
-        "error": "Field exceeds object"
+        "interpretation": "PUBLIC_SCHEMA_CANDIDATE_NOT_RUNTIME_VALIDATED",
+        "schema_reference": "pytorch/executorch v0.7.0 schema/program.fbs",
+        "schema_git_blob": "7308cc631994146e037b7a88749aa4c8e87fe93a",
+        "serialized_program_version": 0,
+        "execution_plans": [
+          {
+            "name": "forward",
+            "inputs": [
+              {
+                "value_index": 18,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  193
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 19,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1
+                ],
+                "dim_order": [
+                  0
+                ]
+              },
+              {
+                "value_index": 20,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  4,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 21,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 22,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 23,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 24,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 25,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 26,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 27,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 28,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 29,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 30,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 31,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 32,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 33,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 34,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 35,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 36,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 37,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 38,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 39,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 40,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 41,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 42,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 43,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 44,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 45,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 46,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 47,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 48,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 49,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 50,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 51,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ],
+            "outputs": [
+              {
+                "value_index": 555,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  4,
+                  5
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 489,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  4,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2,
+                  3
+                ]
+              },
+              {
+                "value_index": 222,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  1,
+                  3
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 22,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 511,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 512,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 138,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 510,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 27,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 514,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 515,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 140,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 513,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 32,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 517,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 518,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 142,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 516,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 37,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 520,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 521,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 144,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 519,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 42,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 523,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 524,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 146,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 522,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 47,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  0,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 527,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 528,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  31,
+                  1,
+                  128
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              {
+                "value_index": 148,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 4,
+                "sizes": [
+                  1,
+                  1
+                ],
+                "dim_order": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "value_index": 525,
+                "kernel_union_tag": 5,
+                "kind": "Tensor",
+                "scalar_type_code": 6,
+                "sizes": [
+                  1,
+                  128,
+                  15
+                ],
+                "dim_order": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ],
+            "operators": [
+              {
+                "name": "aten::full",
+                "overload": "out"
+              },
+              {
+                "name": "aten::arange",
+                "overload": "start_out"
+              },
+              {
+                "name": "aten::permute_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::slice_copy",
+                "overload": "Tensor_out"
+              },
+              {
+                "name": "aten::add",
+                "overload": "out"
+              },
+              {
+                "name": "aten::select_copy",
+                "overload": "int_out"
+              },
+              {
+                "name": "aten::eq",
+                "overload": "Scalar_out"
+              },
+              {
+                "name": "aten::sub",
+                "overload": "out"
+              },
+              {
+                "name": "aten::alias_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::cat",
+                "overload": "out"
+              },
+              {
+                "name": "aten::unsqueeze_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::expand_copy",
+                "overload": "out"
+              },
+              {
+                "name": "aten::where",
+                "overload": "self_out"
+              },
+              {
+                "name": "aten::le",
+                "overload": "Tensor_out"
+              },
+              {
+                "name": "aten::slice_scatter",
+                "overload": "out"
+              },
+              {
+                "name": "aten::flip",
+                "overload": "out"
+              },
+              {
+                "name": "aten::index_put",
+                "overload": "out"
+              },
+              {
+                "name": "aten::addmm",
+                "overload": "out"
+              },
+              {
+                "name": "aten::_softmax",
+                "overload": "out"
+              }
+            ],
+            "delegates": [
+              "HexagonRpcBackend"
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  509,
+                  510,
+                  511,
+                  512,
+                  513,
+                  514,
+                  515,
+                  516,
+                  517,
+                  518,
+                  519,
+                  520,
+                  521,
+                  522,
+                  523,
+                  524,
+                  525,
+                  526,
+                  527,
+                  528
+                ]
+              }
+            ],
+            "instruction_count": 141,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "num_layers",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 1140
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "kernel_size",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 956
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "hidden_dim",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 772
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "left_context",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 2,
+                "kind": "SCALAR_LAYOUT_UNRESOLVED",
+                "error": "Field exceeds object",
+                "payload_offset": 580
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          },
+          {
+            "name": "fblearner_id",
+            "inputs": [],
+            "outputs": [
+              {
+                "value_index": 0,
+                "kernel_union_tag": 6,
+                "kind": "OPAQUE_UNION_ALTERNATIVE"
+              }
+            ],
+            "operators": [],
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
+          }
+        ],
+        "all_instructions_validated": false,
+        "camera_semantics_recovered": false,
+        "unresolved_scalar_count": 4
       },
       "backend_strings_sample": [
         "BoltnnOpPackage::QuantizedActivation.real16",
