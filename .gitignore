@@ -5,3 +5,9 @@ __pycache__/
 *.py[cod]
 .venv/
 /build/
+# Android/NDK build products and local SDK paths
+.gradle/
+.cxx/
+**/build/
+local.properties
+*.iml
