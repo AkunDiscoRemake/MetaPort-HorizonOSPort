@@ -2,7 +2,7 @@ name: Original compressed hand model inspection
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ptez.py, horizon/tracking/tests/test_reference_fixture.py, horizon/tracking/requirements.txt, horizon/tracking/reference_probe.cpp, horizon/tracking/compare_reference.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
+    paths: [horizon/tracking/ptez.py, horizon/tracking/validate_models.py, horizon/tracking/model-evidence-policy.json, horizon/tracking/tests/test_validate_models.py, horizon/tracking/tests/test_reference_fixture.py, horizon/tracking/requirements.txt, horizon/tracking/reference_probe.cpp, horizon/tracking/compare_reference.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -66,11 +66,15 @@ jobs:
         id: reference
         run: |
           python3 -m horizon.tracking.compare_reference --probe "$WORK/reference-probe" --directory "$WORK/reports"
+      - name: Reject incomplete or contradictory fixed-corpus evidence
+        id: validate
+        run: python3 -m horizon.tracking.validate_models --directory "$WORK/reports"
       - name: Record provenance even on analysis failure
         if: always()
         env:
           INSPECT_OUTCOME: ${{ steps.inspect.outcome }}
           REFERENCE_OUTCOME: ${{ steps.reference.outcome }}
+          VALIDATION_OUTCOME: ${{ steps.validate.outcome }}
         run: |
           mkdir -p "$WORK/reports"
           python3 - <<'PY'
@@ -81,6 +85,7 @@ jobs:
           report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
                   'inspection_step':os.environ['INSPECT_OUTCOME'],'horizon_ported':False,
                   'physical_phone_tested':False,'reference_step':os.environ['REFERENCE_OUTCOME'],
+                  'evidence_validation_step':os.environ['VALIDATION_OUTCOME'],
                   'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
           (p/'reports/model-analysis-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
@@ -91,7 +96,7 @@ jobs:
         run: |
           set -euo pipefail
           dest=analysis/builds/52168470052900520
-          for name in ptez-report model-analysis-run reference-schema-report; do
+          for name in ptez-report model-analysis-run reference-schema-report model-evidence-validation; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
@@ -114,4 +119,5 @@ jobs:
             ${{ env.WORK }}/reports/ptez-report.json
             ${{ env.WORK }}/reports/model-analysis-run.json
             ${{ env.WORK }}/reports/reference-schema-report.json
+            ${{ env.WORK }}/reports/model-evidence-validation.json
           retention-days: 7
