@@ -85,12 +85,14 @@ public final class JoyConInput implements AutoCloseable, InputManager.InputDevic
             if (side>=0 && nativeConnect(handle,id,side)) devices.put(id,side);
         }
     }
-    @Override public void onInputDeviceAdded(int id) { if (running) refresh(); }
+    @Override public void onInputDeviceAdded(int id) { mainThread();if (running) refresh(); }
     @Override public void onInputDeviceChanged(int id) {
+        mainThread();
         if (!running) return;
         nativeDisconnect(handle,id);devices.remove(id);refresh();
     }
     @Override public void onInputDeviceRemoved(int id) {
+        mainThread();
         if (!running) return;
         nativeDisconnect(handle,id);devices.remove(id);refresh();
     }

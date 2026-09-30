@@ -102,3 +102,39 @@ carregar este AAR e afirmar que o Horizon já está recebendo suas poses.
 
 Hand tracking, passthrough integrado, Vulkan, OpenXR hardware bridge, áudio/input
 originais e calibração óptica completa continuam **NOT PORTED YET**.
+
+## Joy-Cons: captura real e seleção de fonte, não enumeração Quest pronta
+
+`JoyConInput` usa `InputManager`, `KeyEvent` e `MotionEvent`, com núcleo C++/JNI.
+Reconhece o VID Nintendo `057e` e PIDs `2006` (L) / `2007` (R) informados pelo Android.
+Nome Bluetooth sozinho, Pro Controller e Switch 2 não são considerados equivalentes.
+O pareamento é feito nas configurações Android; não há acesso a HID bruto/root.
+
+- Criar/chamar/fechar na thread principal. `start()` apenas em foreground **com foco**;
+  `stop()` em perda de foco/pause e `close()` ao encerrar.
+- Encaminhar `dispatchKeyEvent` e `onGenericMotionEvent`. Eventos não reconhecidos
+  retornam false para o processamento normal do host.
+- `bind(side,keyCode,action)` permite corrigir o mapeamento enquanto parado. O padrão
+  usa keycodes **lógicos Android**, não garante correspondência com as letras físicas:
+  L: D-pad baixo→X, direita→Y, minus/select→menu, L1→grip, L2→trigger;
+  R: button A/B→A/B, plus/start→menu, R1→grip, R2→trigger. Cliques dos sticks seguem
+  THUMBL/THUMBR. Os gatilhos são digitais, nunca declarados analógicos.
+- Analógicos usam somente pares anunciados pelo driver (X/Y, RX/RY ou Z/RZ), deadzone
+  por eixo e Y convertido para cima. A escolha precisa de validação no X6873.
+- Um consumidor por frame chama `snapshot()`. Press/release breves são preservados
+  como máscaras de bordas coalescidas; isso **não é uma fila de todos os eventos**.
+- Remoção, mudança de dispositivo e pause limpam botões/analógicos e liberam ações.
+  Um segundo dispositivo do mesmo lado não substitui silenciosamente o primeiro.
+- Qualquer Joy-Con aceito solicita `JOY_CONS`; sem ambos solicita `HANDS_REQUESTED`.
+  Uma unidade apenas não cria uma segunda mão/controle. `foregroundActive=false`
+  deve impedir consumo pelo host após stop.
+
+**`HANDS_REQUESTED` não significa mãos funcionando:** o provider original ainda está
+indisponível. Orientação e posição dos Joy-Cons permanecem inválidas; acelerômetro
+não é integrado para inventar posição. O relógio dos eventos é uptime, diferente do
+BOOTTIME dos sensores. A bridge para o runtime original continua **NOT PORTED YET**.
+Não há APK de demonstração ou UI substituta neste módulo.
+
+Build medido: Actions `36725362232`, fonte `faef1ce`: compilação ARM64, testes Java
+(7/7), lint e verificações de alinhamento ELF 16 KiB passaram. O núcleo de entrada
+foi testado com ASan/UBSan. **Nenhum Joy-Con nem telefone físico foi testado.**
