@@ -25,7 +25,7 @@ def classify(text):
         'init_sigill_observed':'Attempted to kill init! exitcode=0x00000004' in text,
         'original_init_marker_observed':bool(re.search(r'init:.*(?:init first stage started|First stage mount|first_stage)',text,re.I)),
         'bootcontrol_events':[line for line in text.splitlines() if re.search(
-            r'boot-hal|bootctrl|IBootControl|libgpt|gpt-utils|boot_control|Failed to load.*boot',line,re.I)][:100],
+            r'boot-hal|bootctrl|IBootControl|libgpt|gpt-utils|boot_control|Failed to load.*boot|metaport_bootlog|misc.*(?:fail|denied)|avc:.*(?:boot|logcat|logpersist)',line,re.I)][:100],
         'second_stage_init_observed':'init second stage started!' in text,
         'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
         'boot_events':[line for line in text.splitlines() if any(token in line for token in (
@@ -42,6 +42,7 @@ def classify(text):
 def probe(kernel,initrd,output,disk=None):
     kernel=Path(kernel).resolve(); initrd=Path(initrd).resolve(); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
+    diagnostic=False
     args=['qemu-system-aarch64','-nodefaults','-no-user-config','-machine','virt,gic-version=3',
           '-accel','tcg','-cpu','max','-smp','2','-m','1024',
           '-display','none','-serial','stdio','-monitor','none','-nic','none',
@@ -58,6 +59,9 @@ def probe(kernel,initrd,output,disk=None):
             raise ValueError('Invalid bounded vbmeta boot parameters')
         args[-1]+=' androidboot.boot_devices=soc/a000000.virtio_mmio androidboot.bootdevice=a000000.virtio_mmio'
         args[-1]+=f" androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size={avb['size']} androidboot.vbmeta.digest={avb['digest']}"
+        storage=json.loads((disk.parent/'storage-report.json').read_text())
+        diagnostic=storage.get('diagnostic_init_rc',False)
+        if diagnostic: args[-1]+=' androidboot.init_rc=/metadata/metaport-diagnostics.rc'
         dtb=prepare_dtb(output/'device-tree')
         args+=['-dtb',str(dtb)]
         args+=['-drive',f'if=none,id=guestdisk,file={disk},format=raw,snapshot=on',
@@ -79,7 +83,7 @@ def probe(kernel,initrd,output,disk=None):
             try: proc.wait(timeout=0.25)
             except subprocess.TimeoutExpired: pass
     with log.open('rb') as stream: text=stream.read(8*1024*1024).decode(errors='replace')
-    result={'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
+    result={'diagnostic_init_rc':diagnostic,'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
             'guest_disk_attached':disk is not None,'disk_writes':'disposable QEMU snapshot' if disk else None,
             'console_limit_exceeded':log.stat().st_size>8*1024*1024,
             'qemu_returncode':proc.returncode,'timeout':timed_out,

@@ -68,7 +68,7 @@ jobs:
       - name: Assemble disposable GPT and Android logical partitions
         id: storage
         run: |
-          python3 -m guest.storage --images "$GUEST_WORK/images" --reconstruction "$GUEST_WORK/reconstruction.json" --output "$GUEST_WORK/storage"
+          python3 -m guest.storage --images "$GUEST_WORK/images" --reconstruction "$GUEST_WORK/reconstruction.json" --output "$GUEST_WORK/storage" --diagnostics
           sgdisk --verify "$GUEST_WORK/storage/guest-disk.raw"
       - name: Compile official Quest kernel with virtual hardware delta
         id: build

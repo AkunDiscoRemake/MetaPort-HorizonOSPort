@@ -107,7 +107,7 @@ def copy_verified(stream,path,offset,expected):
         raise ValueError('Reconstruction hash mismatch while copying '+path.name)
 
 
-def build(images,reconstruction,output):
+def build(images,reconstruction,output,diagnostics=False):
     images=Path(images); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
     if any(output.iterdir()): raise ValueError('Use an empty output directory')
@@ -121,6 +121,9 @@ def build(images,reconstruction,output):
     fresh=output/'metadata.img'
     with fresh.open('xb') as stream: stream.truncate(64*MIB)
     subprocess.run(['mkfs.ext4','-q','-F','-L','metadata',str(fresh)],check=True)
+    if diagnostics:
+        from guest.diagnostics import install
+        install(fresh,output)
     fresh_info={'size_bytes':fresh.stat().st_size,'sha256':hashlib.sha256(fresh.read_bytes()).hexdigest()}
     physical={'super':super_size,'metadata':64*MIB,'misc':4*MIB,
               'boot_a':align(evidence['boot']['size_bytes']),
@@ -144,7 +147,7 @@ def build(images,reconstruction,output):
             copy_verified(disk,fresh,locations['metadata'],fresh_info)
     except Exception:
         target.unlink(missing_ok=True);raise
-    report={'size_bytes':total,'physical_partitions':parts,'logical_partitions':logical,
+    report={'diagnostic_init_rc':diagnostics,'size_bytes':total,'physical_partitions':parts,'logical_partitions':logical,
             'lp_version':'10.0','lp_metadata_sha256':hashlib.sha256(prefix).hexdigest(),
             'source_images':{n:evidence[n] for n in (*LOGICAL,'vbmeta','vbmeta_system','boot')},
             'fresh_metadata_image':fresh_info,
@@ -163,4 +166,5 @@ def build(images,reconstruction,output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for option in ('images','reconstruction','output'):p.add_argument('--'+option,required=True)
-    a=p.parse_args();build(a.images,a.reconstruction,a.output)
+    p.add_argument('--diagnostics',action='store_true')
+    a=p.parse_args();build(a.images,a.reconstruction,a.output,a.diagnostics)
