@@ -1151,98 +1151,8 @@
         "1048: 00000000004dff54     4 FUNC    GLOBAL DEFAULT   16 _ZN4arvr7logging24hasCustomFatalLogHandlerEv",
         "1073: 00000000004a0ad8   208 FUNC    GLOBAL DEFAULT   16 memorybroker_native_getMemory"
       ],
-      "selected_functions": [
-        {
-          "address": 5111620,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging13isValidHandleEm"
-        },
-        {
-          "address": 5111628,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging18setFatalLogHandlerEPFvPKcmmEm"
-        },
-        {
-          "address": 5111632,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging18getFatalLogHandlerEv"
-        },
-        {
-          "address": 5111636,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging24hasCustomFatalLogHandlerEv"
-        },
-        {
-          "address": 5112568,
-          "size": 12,
-          "symbol": "xrlog_isValidHandle"
-        },
-        {
-          "address": 5112704,
-          "size": 60,
-          "symbol": "xrlog_setFatalLogHandler"
-        },
-        {
-          "address": 5112764,
-          "size": 24,
-          "symbol": "xrlog_getFatalLogHandler"
-        },
-        {
-          "address": 5112788,
-          "size": 32,
-          "symbol": "xrlog_hasCustomFatalLogHandler"
-        }
-      ],
-      "target_disassembly": [
-        {
-          "address": 5111620,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging13isValidHandleEm",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004dff44 <arvr::logging::isValidHandle(unsigned long)@@Base>:\n  4dff44:\t140000ed \tb\t4e02f8 <xrlog_isValidHandle@@Base>\n"
-        },
-        {
-          "address": 5111628,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging18setFatalLogHandlerEPFvPKcmmEm",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004dff4c <arvr::logging::setFatalLogHandler(void (*)(char const*, unsigned long, unsigned long), unsigned long)@@Base>:\n  4dff4c:\t1400010d \tb\t4e0380 <xrlog_setFatalLogHandler@@Base>\n"
-        },
-        {
-          "address": 5111632,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging18getFatalLogHandlerEv",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004dff50 <arvr::logging::getFatalLogHandler()@@Base>:\n  4dff50:\t1400011b \tb\t4e03bc <xrlog_getFatalLogHandler@@Base>\n"
-        },
-        {
-          "address": 5111636,
-          "size": 4,
-          "symbol": "_ZN4arvr7logging24hasCustomFatalLogHandlerEv",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004dff54 <arvr::logging::hasCustomFatalLogHandler()@@Base>:\n  4dff54:\t14000120 \tb\t4e03d4 <xrlog_hasCustomFatalLogHandler@@Base>\n"
-        },
-        {
-          "address": 5112568,
-          "size": 12,
-          "symbol": "xrlog_isValidHandle",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004e02f8 <xrlog_isValidHandle@@Base>:\n  4e02f8:\tf100001f \tcmp\tx0, #0x0\n  4e02fc:\t1a9f07e0 \tcset\tw0, ne  // ne = any\n  4e0300:\td65f03c0 \tret\n"
-        },
-        {
-          "address": 5112704,
-          "size": 60,
-          "symbol": "xrlog_setFatalLogHandler",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004e0380 <xrlog_setFatalLogHandler@@Base>:\n  4e0380:\ta9bd7bfd \tstp\tx29, x30, [sp, #-48]!\n  4e0384:\tf9000bf5 \tstr\tx21, [sp, #16]\n  4e0388:\ta9024ff4 \tstp\tx20, x19, [sp, #32]\n  4e038c:\t910003fd \tmov\tx29, sp\n  4e0390:\taa0103f3 \tmov\tx19, x1\n  4e0394:\taa0003f4 \tmov\tx20, x0\n  4e0398:\t94000026 \tbl\t4e0430 <arvr::logging::getLogBrokerConfig()@@Base>\n  4e039c:\taa0003f5 \tmov\tx21, x0\n  4e03a0:\t94006418 \tbl\t4f9400 <std::__1::mutex::lock()@plt>\n  4e03a4:\ta9034eb4 \tstp\tx20, x19, [x21, #48]\n  4e03a8:\taa1503e0 \tmov\tx0, x21\n  4e03ac:\ta9424ff4 \tldp\tx20, x19, [sp, #32]\n  4e03b0:\tf9400bf5 \tldr\tx21, [sp, #16]\n  4e03b4:\ta8c37bfd \tldp\tx29, x30, [sp], #48\n  4e03b8:\t1400644a \tb\t4f94e0 <std::__1::mutex::unlock()@plt>\n"
-        },
-        {
-          "address": 5112764,
-          "size": 24,
-          "symbol": "xrlog_getFatalLogHandler",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004e03bc <xrlog_getFatalLogHandler@@Base>:\n  4e03bc:\ta9bf7bfd \tstp\tx29, x30, [sp, #-16]!\n  4e03c0:\t910003fd \tmov\tx29, sp\n  4e03c4:\t9400001b \tbl\t4e0430 <arvr::logging::getLogBrokerConfig()@@Base>\n  4e03c8:\tf9401800 \tldr\tx0, [x0, #48]\n  4e03cc:\ta8c17bfd \tldp\tx29, x30, [sp], #16\n  4e03d0:\td65f03c0 \tret\n"
-        },
-        {
-          "address": 5112788,
-          "size": 32,
-          "symbol": "xrlog_hasCustomFatalLogHandler",
-          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000004e03d4 <xrlog_hasCustomFatalLogHandler@@Base>:\n  4e03d4:\ta9bf7bfd \tstp\tx29, x30, [sp, #-16]!\n  4e03d8:\t910003fd \tmov\tx29, sp\n  4e03dc:\t94000015 \tbl\t4e0430 <arvr::logging::getLogBrokerConfig()@@Base>\n  4e03e0:\tf9401808 \tldr\tx8, [x0, #48]\n  4e03e4:\tf100011f \tcmp\tx8, #0x0\n  4e03e8:\t1a9f07e0 \tcset\tw0, ne  // ne = any\n  4e03ec:\ta8c17bfd \tldp\tx29, x30, [sp], #16\n  4e03f0:\td65f03c0 \tret\n"
-        }
-      ],
+      "selected_functions": [],
+      "target_disassembly": [],
       "dependency_strings": [
         "      (no tracking)%s",
         "      In-Hand From CT:      ",
@@ -1784,7 +1694,8 @@
         "xrlog_isValidHandle",
         "xrlog_setFatalLogHandler",
         "~TrackingService() unexpectedly called"
-      ]
+      ],
+      "backend_strings": []
     },
     {
       "partition": "odm",
@@ -2274,8 +2185,43 @@
         "245: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND MemoryBroker_HostConnection_create@LIBHZOS_TRACKINGHOST (10)",
         "246: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND MemoryBroker_HostConnection_registerSubRegion@LIBHZOS_TRACKINGHOST (10)"
       ],
-      "selected_functions": [],
-      "target_disassembly": [],
+      "selected_functions": [
+        {
+          "address": 33317024,
+          "size": 8,
+          "symbol": "capabilityRegistryGetAbiVersion"
+        },
+        {
+          "address": 33317040,
+          "size": 732,
+          "symbol": "capabilityRegistryCreateV3"
+        },
+        {
+          "address": 33317776,
+          "size": 20,
+          "symbol": "capabilityRegistryDestroyV2"
+        }
+      ],
+      "target_disassembly": [
+        {
+          "address": 33317024,
+          "size": 8,
+          "symbol": "capabilityRegistryGetAbiVersion",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n0000000001fc60a0 <capabilityRegistryGetAbiVersion@@Base>:\n 1fc60a0:\t52800480 \tmov\tw0, #0x24                  \t// #36\n 1fc60a4:\td65f03c0 \tret\n"
+        },
+        {
+          "address": 33317040,
+          "size": 732,
+          "symbol": "capabilityRegistryCreateV3",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n0000000001fc60b0 <capabilityRegistryCreateV3@@Base>:\n 1fc60b0:\td101c3ff \tsub\tsp, sp, #0x70\n 1fc60b4:\ta9037bfd \tstp\tx29, x30, [sp, #48]\n 1fc60b8:\tf90023f7 \tstr\tx23, [sp, #64]\n 1fc60bc:\ta90557f6 \tstp\tx22, x21, [sp, #80]\n 1fc60c0:\ta9064ff4 \tstp\tx20, x19, [sp, #96]\n 1fc60c4:\t9100c3fd \tadd\tx29, sp, #0x30\n 1fc60c8:\td53bd056 \tmrs\tx22, tpidr_el0\n 1fc60cc:\tf94016c8 \tldr\tx8, [x22, #40]\n 1fc60d0:\tf81f83a8 \tstur\tx8, [x29, #-8]\n 1fc60d4:\t7100901f \tcmp\tw0, #0x24\n 1fc60d8:\t54000281 \tb.ne\t1fc6128 <capabilityRegistryCreateV3@@Base+0x78>  // b.any\n 1fc60dc:\t910023e8 \tadd\tx8, sp, #0x8\n 1fc60e0:\taa0103e0 \tmov\tx0, x1\n 1fc60e4:\t941910af \tbl\t260a3a0 <capabilityRegistryDestroyV2@@Base+0x644010>\n 1fc60e8:\t52801400 \tmov\tw0, #0xa0                  \t// #160\n 1fc60ec:\t941a34cb \tbl\t2653418 <capabilityRegistryDestroyV2@@Base+0x68d088>\n 1fc60f0:\ta940d3f5 \tldp\tx21, x20, [sp, #8]\n 1fc60f4:\taa0003f3 \tmov\tx19, x0\n 1fc60f8:\td0003837 \tadrp\tx23, 26cc000 <strcpy@plt+0x76fa0>\n 1fc60fc:\t9127c2f7 \tadd\tx23, x23, #0x9f0\n 1fc6100:\tb4000194 \tcbz\tx20, 1fc6130 <capabilityRegistryCreateV3@@Base+0x80>\n 1fc6104:\t91002281 \tadd\tx1, x20, #0x8\n 1fc6108:\t52800020 \tmov\tw0, #0x1                   \t// #1\n 1fc610c:\t97b8e32d \tbl\tdfedc0 <capabilityRegistryGetAbiVersion@@Base-0x11c72e0>\n 1fc6110:\t91002281 \tadd\tx1, x20, #0x8\n 1fc6114:\t52800020 \tmov\tw0, #0x1                   \t// #1\n 1fc6118:\tf9000277 \tstr\tx23, [x19]\n 1fc611c:\tf90013f4 \tstr\tx20, [sp, #32]\n 1fc6120:\t97b8e328 \tbl\tdfedc0 <capabilityRegistryGetAbiVersion@@Base-0x11c72e0>\n 1fc6124:\t14000005 \tb\t1fc6138 <capabilityRegistryCreateV3@@Base+0x88>\n 1fc6128:\taa1f03f3 \tmov\tx19, xzr\n 1fc612c:\t14000047 \tb\t1fc6248 <capabilityRegistryCreateV3@@Base+0x198>\n 1fc6130:\tf9000277 \tstr\tx23, [x19]\n 1fc6134:\tf90013ff \tstr\txzr, [sp, #32]\n 1fc6138:\tf9000ff5 \tstr\tx21, [sp, #24]\n 1fc613c:\t91002260 \tadd\tx0, x19, #0x8\n 1fc6140:\t910063e1 \tadd\tx1, sp, #0x18\n 1fc6144:\t97b09f83 \tbl\tbedf50 <capabilityRegistryGetAbiVersion@@Base-0x13d8150>\n 1fc6148:\tf94013f5 \tldr\tx21, [sp, #32]\n 1fc614c:\tb4000215 \tcbz\tx21, 1fc618c <capabilityRegistryCreateV3@@Base+0xdc>\n 1fc6150:\t910022a1 \tadd\tx1, x21, #0x8\n 1fc6154:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6158:\t97b8e33e \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc615c:\tb5000180 \tcbnz\tx0, 1fc618c <capabilityRegistryCreateV3@@Base+0xdc>\n 1fc6160:\taa1503f7 \tmov\tx23, x21\n 1fc6164:\taa1503e0 \tmov\tx0, x21\n 1fc6168:\tf84106e8 \tldr\tx8, [x23], #16\n 1fc616c:\tf9400908 \tldr\tx8, [x8, #16]\n 1fc6170:\td63f0100 \tblr\tx8\n 1fc6174:\tc8dffee8 \tldar\tx8, [x23]\n 1fc6178:\tb4000348 \tcbz\tx8, 1fc61e0 <capabilityRegistryCreateV3@@Base+0x130>\n 1fc617c:\t910042a1 \tadd\tx1, x21, #0x10\n 1fc6180:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6184:\t97b8e333 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc6188:\tb40002c0 \tcbz\tx0, 1fc61e0 <capabilityRegistryCreateV3@@Base+0x130>\n 1fc618c:\tb4000354 \tcbz\tx20, 1fc61f4 <capabilityRegistryCreateV3@@Base+0x144>\n 1fc6190:\t91002281 \tadd\tx1, x20, #0x8\n 1fc6194:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6198:\t97b8e32e \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc619c:\tb50002c0 \tcbnz\tx0, 1fc61f4 <capabilityRegistryCreateV3@@Base+0x144>\n 1fc61a0:\taa1403f5 \tmov\tx21, x20\n 1fc61a4:\taa1403e0 \tmov\tx0, x20\n 1fc61a8:\tf84106a8 \tldr\tx8, [x21], #16\n 1fc61ac:\tf9400908 \tldr\tx8, [x8, #16]\n 1fc61b0:\td63f0100 \tblr\tx8\n 1fc61b4:\tc8dffea8 \tldar\tx8, [x21]\n 1fc61b8:\tb40000a8 \tcbz\tx8, 1fc61cc <capabilityRegistryCreateV3@@Base+0x11c>\n 1fc61bc:\t91004281 \tadd\tx1, x20, #0x10\n 1fc61c0:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc61c4:\t97b8e323 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc61c8:\tb5000160 \tcbnz\tx0, 1fc61f4 <capabilityRegistryCreateV3@@Base+0x144>\n 1fc61cc:\tf9400288 \tldr\tx8, [x20]\n 1fc61d0:\taa1403e0 \tmov\tx0, x20\n 1fc61d4:\tf9401108 \tldr\tx8, [x8, #32]\n 1fc61d8:\td63f0100 \tblr\tx8\n 1fc61dc:\t14000006 \tb\t1fc61f4 <capabilityRegistryCreateV3@@Base+0x144>\n 1fc61e0:\tf94002a8 \tldr\tx8, [x21]\n 1fc61e4:\taa1503e0 \tmov\tx0, x21\n 1fc61e8:\tf9401108 \tldr\tx8, [x8, #32]\n 1fc61ec:\td63f0100 \tblr\tx8\n 1fc61f0:\tb5fffd14 \tcbnz\tx20, 1fc6190 <capabilityRegistryCreateV3@@Base+0xe0>\n 1fc61f4:\tf9400bf4 \tldr\tx20, [sp, #16]\n 1fc61f8:\tb4000294 \tcbz\tx20, 1fc6248 <capabilityRegistryCreateV3@@Base+0x198>\n 1fc61fc:\t91002281 \tadd\tx1, x20, #0x8\n 1fc6200:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6204:\t97b8e313 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc6208:\tb5000200 \tcbnz\tx0, 1fc6248 <capabilityRegistryCreateV3@@Base+0x198>\n 1fc620c:\taa1403f5 \tmov\tx21, x20\n 1fc6210:\taa1403e0 \tmov\tx0, x20\n 1fc6214:\tf84106a8 \tldr\tx8, [x21], #16\n 1fc6218:\tf9400908 \tldr\tx8, [x8, #16]\n 1fc621c:\td63f0100 \tblr\tx8\n 1fc6220:\tc8dffea8 \tldar\tx8, [x21]\n 1fc6224:\tb40000a8 \tcbz\tx8, 1fc6238 <capabilityRegistryCreateV3@@Base+0x188>\n 1fc6228:\t91004281 \tadd\tx1, x20, #0x10\n 1fc622c:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6230:\t97b8e308 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc6234:\tb50000a0 \tcbnz\tx0, 1fc6248 <capabilityRegistryCreateV3@@Base+0x198>\n 1fc6238:\tf9400288 \tldr\tx8, [x20]\n 1fc623c:\taa1403e0 \tmov\tx0, x20\n 1fc6240:\tf9401108 \tldr\tx8, [x8, #32]\n 1fc6244:\td63f0100 \tblr\tx8\n 1fc6248:\tf94016c8 \tldr\tx8, [x22, #40]\n 1fc624c:\tf85f83a9 \tldur\tx9, [x29, #-8]\n 1fc6250:\teb09011f \tcmp\tx8, x9\n 1fc6254:\t54000101 \tb.ne\t1fc6274 <capabilityRegistryCreateV3@@Base+0x1c4>  // b.any\n 1fc6258:\taa1303e0 \tmov\tx0, x19\n 1fc625c:\ta9464ff4 \tldp\tx20, x19, [sp, #96]\n 1fc6260:\ta94557f6 \tldp\tx22, x21, [sp, #80]\n 1fc6264:\tf94023f7 \tldr\tx23, [sp, #64]\n 1fc6268:\ta9437bfd \tldp\tx29, x30, [sp, #48]\n 1fc626c:\t9101c3ff \tadd\tsp, sp, #0x70\n 1fc6270:\td65f03c0 \tret\n 1fc6274:\t941a3567 \tbl\t2653810 <__stack_chk_fail@plt>\n 1fc6278:\tf94013f6 \tldr\tx22, [sp, #32]\n 1fc627c:\taa0003f5 \tmov\tx21, x0\n 1fc6280:\tb4000296 \tcbz\tx22, 1fc62d0 <capabilityRegistryCreateV3@@Base+0x220>\n 1fc6284:\t910022c1 \tadd\tx1, x22, #0x8\n 1fc6288:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc628c:\t97b8e2f1 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc6290:\tb5000200 \tcbnz\tx0, 1fc62d0 <capabilityRegistryCreateV3@@Base+0x220>\n 1fc6294:\taa1603f7 \tmov\tx23, x22\n 1fc6298:\taa1603e0 \tmov\tx0, x22\n 1fc629c:\tf84106e8 \tldr\tx8, [x23], #16\n 1fc62a0:\tf9400908 \tldr\tx8, [x8, #16]\n 1fc62a4:\td63f0100 \tblr\tx8\n 1fc62a8:\tc8dffee8 \tldar\tx8, [x23]\n 1fc62ac:\tb40000a8 \tcbz\tx8, 1fc62c0 <capabilityRegistryCreateV3@@Base+0x210>\n 1fc62b0:\t910042c1 \tadd\tx1, x22, #0x10\n 1fc62b4:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc62b8:\t97b8e2e6 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc62bc:\tb50000a0 \tcbnz\tx0, 1fc62d0 <capabilityRegistryCreateV3@@Base+0x220>\n 1fc62c0:\tf94002c8 \tldr\tx8, [x22]\n 1fc62c4:\taa1603e0 \tmov\tx0, x22\n 1fc62c8:\tf9401108 \tldr\tx8, [x8, #32]\n 1fc62cc:\td63f0100 \tblr\tx8\n 1fc62d0:\tb4000294 \tcbz\tx20, 1fc6320 <capabilityRegistryCreateV3@@Base+0x270>\n 1fc62d4:\t91002281 \tadd\tx1, x20, #0x8\n 1fc62d8:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc62dc:\t97b8e2dd \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc62e0:\tb5000200 \tcbnz\tx0, 1fc6320 <capabilityRegistryCreateV3@@Base+0x270>\n 1fc62e4:\taa1403f6 \tmov\tx22, x20\n 1fc62e8:\taa1403e0 \tmov\tx0, x20\n 1fc62ec:\tf84106c8 \tldr\tx8, [x22], #16\n 1fc62f0:\tf9400908 \tldr\tx8, [x8, #16]\n 1fc62f4:\td63f0100 \tblr\tx8\n 1fc62f8:\tc8dffec8 \tldar\tx8, [x22]\n 1fc62fc:\tb40000a8 \tcbz\tx8, 1fc6310 <capabilityRegistryCreateV3@@Base+0x260>\n 1fc6300:\t91004281 \tadd\tx1, x20, #0x10\n 1fc6304:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6308:\t97b8e2d2 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc630c:\tb50000a0 \tcbnz\tx0, 1fc6320 <capabilityRegistryCreateV3@@Base+0x270>\n 1fc6310:\tf9400288 \tldr\tx8, [x20]\n 1fc6314:\taa1403e0 \tmov\tx0, x20\n 1fc6318:\tf9401108 \tldr\tx8, [x8, #32]\n 1fc631c:\td63f0100 \tblr\tx8\n 1fc6320:\taa1303e0 \tmov\tx0, x19\n 1fc6324:\t979bf127 \tbl\t6c27c0 <capabilityRegistryGetAbiVersion@@Base-0x19038e0>\n 1fc6328:\t14000002 \tb\t1fc6330 <capabilityRegistryCreateV3@@Base+0x280>\n 1fc632c:\taa0003f5 \tmov\tx21, x0\n 1fc6330:\tf9400bf3 \tldr\tx19, [sp, #16]\n 1fc6334:\tb4000293 \tcbz\tx19, 1fc6384 <capabilityRegistryCreateV3@@Base+0x2d4>\n 1fc6338:\t91002261 \tadd\tx1, x19, #0x8\n 1fc633c:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc6340:\t97b8e2c4 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc6344:\tb5000200 \tcbnz\tx0, 1fc6384 <capabilityRegistryCreateV3@@Base+0x2d4>\n 1fc6348:\taa1303f4 \tmov\tx20, x19\n 1fc634c:\taa1303e0 \tmov\tx0, x19\n 1fc6350:\tf8410688 \tldr\tx8, [x20], #16\n 1fc6354:\tf9400908 \tldr\tx8, [x8, #16]\n 1fc6358:\td63f0100 \tblr\tx8\n 1fc635c:\tc8dffe88 \tldar\tx8, [x20]\n 1fc6360:\tb40000a8 \tcbz\tx8, 1fc6374 <capabilityRegistryCreateV3@@Base+0x2c4>\n 1fc6364:\t91004261 \tadd\tx1, x19, #0x10\n 1fc6368:\t92800000 \tmov\tx0, #0xffffffffffffffff    \t// #-1\n 1fc636c:\t97b8e2b9 \tbl\tdfee50 <capabilityRegistryGetAbiVersion@@Base-0x11c7250>\n 1fc6370:\tb50000a0 \tcbnz\tx0, 1fc6384 <capabilityRegistryCreateV3@@Base+0x2d4>\n 1fc6374:\tf9400268 \tldr\tx8, [x19]\n 1fc6378:\taa1303e0 \tmov\tx0, x19\n 1fc637c:\tf9401108 \tldr\tx8, [x8, #32]\n 1fc6380:\td63f0100 \tblr\tx8\n 1fc6384:\taa1503e0 \tmov\tx0, x21\n 1fc6388:\t97a6bbc4 \tbl\t975298 <capabilityRegistryGetAbiVersion@@Base-0x1650e08>\n"
+        },
+        {
+          "address": 33317776,
+          "size": 20,
+          "symbol": "capabilityRegistryDestroyV2",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n0000000001fc6390 <capabilityRegistryDestroyV2@@Base>:\n 1fc6390:\tb4000080 \tcbz\tx0, 1fc63a0 <capabilityRegistryDestroyV2@@Base+0x10>\n 1fc6394:\tf9400008 \tldr\tx8, [x0]\n 1fc6398:\tf9401901 \tldr\tx1, [x8, #48]\n 1fc639c:\td61f0020 \tbr\tx1\n 1fc63a0:\td65f03c0 \tret\n"
+        }
+      ],
       "dependency_strings": [
         "          \"fbxPath\": \"manifold://trinity.rig/tree/release/3.1/lefthandonly/lod0/trinity_lefthandonly_lod0_tris_v3.1.fbx\",",
         "          \"fbxPath\": \"manifold://trinity.rig/tree/release/3.1/righthandonly/lod0/trinity_righthandonly_lod0_tris_v3.1.fbx\",",
@@ -3777,6 +3723,520 @@
         "N8coretech17HandDummyTrackingE",
         "N8coretech19InputTrackingEngine35InputTrackingEngineFrameSetConsumerE",
         "N8coretech19InputTrackingEngineE"
+      ],
+      "backend_strings": [
+        "!!DEPRECATED!! This branch is deprecated from ExecuTorch 0.7; re-export this PTE file to ensure support on newer runtimes.",
+        "!(executorch::runtime::isIntegralType(common_type, true) && utils::scalar_to<double>(b) == 0)",
+        "!kernel_zero_point\"\" CHECK FAILED at \"xplat/caffe2/aten/src/ATen/native/quantized/cpu/XnnpackUtils.h\"",
+        "!kzp\"\" CHECK FAILED at \"xplat/caffe2/aten/src/ATen/native/quantized/cpu/XnnpackUtils.h\"",
+        "!orig_weight_and_bias_freed_\"\" CHECK FAILED at \"xplat/caffe2/aten/src/ATen/native/xnnpack/OpContext.h\"",
+        "!per_channel\"\" CHECK FAILED at \"xplat/caffe2/aten/src/ATen/native/quantized/cpu/XnnpackUtils.h\"",
+        "(HexagonIsStarted())",
+        "(executorch::runtime::isRealType(compute_type) || executorch::runtime::isComplexType(compute_type) || compute_type == ScalarType::Bool)",
+        "(hexagonMemoryAllocated_)",
+        "/arvr/projects/bolt/bolt/nn/executorch/HexagonRpcBackend.cpp",
+        "/arvr/projects/bolt/bolt/nn/executorch/HexagonRpcBackendImplDirect.cpp",
+        "/arvr/projects/bolt/bolt/nn/executorch/HexagonRpcMemory.cpp",
+        "/arvr/projects/bolt/bolt/nn/platforms/hexagon/executorch/Utils.cpp",
+        "/data/vendor/misc/dsp/HexagonTelemetrySharedFIFO",
+        "/xplat/executorch/extension/aten_util/aten_bridge.cpp",
+        "/xplat/executorch/extension/data_loader/buffer_data_loader.h",
+        "/xplat/executorch/extension/data_loader/mmap_data_loader.cpp",
+        "/xplat/executorch/extension/fb/ptez/decompression_methods/deflate.cpp",
+        "/xplat/executorch/extension/fb/ptez/ptez_data_loader.cpp",
+        "/xplat/executorch/extension/memory_allocator/malloc_memory_allocator.h",
+        "/xplat/executorch/extension/memory_allocator/memory_allocator_utils.h",
+        "/xplat/executorch/extension/pytree/aten_util/ivalue_util.cpp",
+        "/xplat/executorch/extension/tensor/tensor_accessor.h",
+        "/xplat/executorch/extension/tensor/tensor_ptr.cpp",
+        "/xplat/executorch/extension/threadpool/thread_parallel.cpp",
+        "/xplat/executorch/extension/threadpool/threadpool.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op__clone_dim_order.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op__to_dim_order_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_abs.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_add.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_addmm.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_alias_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_any.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_arange.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_atan2.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_bitwise_not.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_bmm.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_cat.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_clamp.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_clone.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_convolution.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_div.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_elu.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_expand_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_flip.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_full.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_full_like.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_gather.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_index.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_index_put.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_index_select.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_logical_not.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_max.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_maximum.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_mean.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_mm.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_mul.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_native_batch_norm.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_native_layer_norm.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_neg.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_permute_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_pow.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_relu.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_remainder.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_repeat.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_scatter.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_select_scatter.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_sigmoid.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_slice_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_slice_scatter.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_softmax.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_squeeze_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_sub.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_sum.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_to_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_transpose_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_unfold_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_unsqueeze_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_view_copy.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_where.cpp",
+        "/xplat/executorch/kernels/portable/cpu/op_zeros.cpp",
+        "/xplat/executorch/kernels/portable/cpu/pattern/bitwise_op.h",
+        "/xplat/executorch/kernels/portable/cpu/pattern/comparison_op.h",
+        "/xplat/executorch/kernels/portable/cpu/pattern/logical_op.h",
+        "/xplat/executorch/kernels/portable/cpu/pattern/unary_ufunc_realhbbf16_to_floathbf16.cpp",
+        "/xplat/executorch/kernels/portable/cpu/scalar_utils.h",
+        "/xplat/executorch/kernels/portable/cpu/util/activation_ops_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/advanced_index_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/arange_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/broadcast_indexes_range.h",
+        "/xplat/executorch/kernels/portable/cpu/util/broadcast_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/broadcast_util.h",
+        "/xplat/executorch/kernels/portable/cpu/util/copy_ops_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/delinearize_index.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/dtype_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/dtype_util.h",
+        "/xplat/executorch/kernels/portable/cpu/util/elementwise_util.h",
+        "/xplat/executorch/kernels/portable/cpu/util/index_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/kernel_ops_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/matmul_ops_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/normalization_ops_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/reduce_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/reduce_util.h",
+        "/xplat/executorch/kernels/portable/cpu/util/repeat_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/slice_util.cpp",
+        "/xplat/executorch/kernels/portable/cpu/util/transpose_util.h",
+        "/xplat/executorch/kernels/prim_ops/et_copy_index.cpp",
+        "/xplat/executorch/kernels/prim_ops/et_view.cpp",
+        "/xplat/executorch/kernels/prim_ops/register_prim_ops.cpp",
+        "/xplat/executorch/runtime/core/array_ref.h",
+        "/xplat/executorch/runtime/core/data_loader.h",
+        "/xplat/executorch/runtime/core/evalue.h",
+        "/xplat/executorch/runtime/core/exec_aten/util/dim_order_util.h",
+        "/xplat/executorch/runtime/core/exec_aten/util/scalar_type_util.h",
+        "/xplat/executorch/runtime/core/exec_aten/util/tensor_util.h",
+        "/xplat/executorch/runtime/core/exec_aten/util/tensor_util_portable.cpp",
+        "/xplat/executorch/runtime/core/freeable_buffer.h",
+        "/xplat/executorch/runtime/core/hierarchical_allocator.h",
+        "/xplat/executorch/runtime/core/memory_allocator.h",
+        "/xplat/executorch/runtime/core/portable_type/scalar.h",
+        "/xplat/executorch/runtime/core/portable_type/tensor_impl.cpp",
+        "/xplat/executorch/runtime/core/portable_type/tensor_impl.h",
+        "/xplat/executorch/runtime/core/result.h",
+        "/xplat/executorch/runtime/executor/memory_manager.h",
+        "/xplat/executorch/runtime/executor/merged_data_map.h",
+        "/xplat/executorch/runtime/executor/method.cpp",
+        "/xplat/executorch/runtime/executor/method_meta.cpp",
+        "/xplat/executorch/runtime/executor/platform_memory_allocator.h",
+        "/xplat/executorch/runtime/executor/program.cpp",
+        "/xplat/executorch/runtime/executor/program_validation.cpp",
+        "/xplat/executorch/runtime/executor/pte_data_map.cpp",
+        "/xplat/executorch/runtime/executor/tensor_parser.h",
+        "/xplat/executorch/runtime/executor/tensor_parser_exec_aten.cpp",
+        "/xplat/executorch/runtime/executor/tensor_parser_portable.cpp",
+        "/xplat/executorch/runtime/kernel/operator_registry.cpp",
+        "/xplat/executorch/schema/extended_header.cpp",
+        "Acquiring all Hexagon resources from Bolt SDK",
+        "BOLT:BoltHexagonCV",
+        "BOLT:HexagonShim",
+        "BOLT:HexagonTelemetry",
+        "BOLTNN:HexagonDelegatedProgram",
+        "BOLT_HEXAGON_LIBRARY_PATH",
+        "BOLT_HEXAGON_UNSIGNED_PD",
+        "BoltNN model failed to initialize with error: {}({})",
+        "BoltNN model failed to run with error: {}({})",
+        "BoltNN model got incorrect scalar type, got ",
+        "BoltNN model got non-tensor for input ",
+        "BoltNN model got wrong number of inputs",
+        "BoltNN model has unknown tensor type",
+        "BoltNN model was not initialized",
+        "BoltNN quantized input tensor {} has incorrect scale. Tensor q_scale {}. Bolt def scale {}. ",
+        "BoltNN quantized input tensor {} has incorrect zero point. Tensor q_zero_point {}. Bolt def zeroPoint {}. ",
+        "BoltSDK::Soc-Hexagon",
+        "Can't init boltNN model {} due to {}: {}",
+        "Cannot convert opaque data types for Executorch input/output tensors. Found type {}.",
+        "Could not create BoltNN model with HTA backend",
+        "Could not create BoltNN model with Hexagon backend",
+        "Creating CNNHandRegressionDetector for Executorch - NN size: {}x{}",
+        "Creating CNNVizardHandBboxDetector for Executorch - NN size: {}x{}",
+        "DEFAULT HexagonPool",
+        "ERROR: HexagonManager::stop() called without corresponding ::start() call.",
+        "Executorch",
+        "ExecutorchModelExecutor",
+        "Expect: HexagonRPCPersistentMemMap( buf, hwTensorDef.dataLen + kHvxVectorLength, &mappedAddr, HEXAGON_RPCMEM_CDSP_DOMAIN_ID, fd) == 0",
+        "Expect: hexagon_hta_nn_append_const_node_f( id_, constNodeIds_[i], shape[0], shape[1], shape[2], shape[3], buf, length) == 0",
+        "Expect: hexagon_hta_nn_append_node_f( id_, node.nodeId, op, padding, allInputs.back().data(), allInputs.back().size(), allOutputs.back().data(), allOutputs.back().size()) == 0",
+        "Expect: hexagon_hta_nn_config_f() == 0",
+        "Expect: hexagon_hta_nn_get_memory_layout_f(id, isOutput, index, &hwTensorDef, &qparams) == 0",
+        "Expect: hexagon_hta_nn_init_f(&id_) == 0",
+        "Expect: hexagon_hta_nn_prepare_f(id_) == 0",
+        "Expect: hexagon_hta_nn_register_tensor_f(id, &hwTensorDef) == 0",
+        "Expect: hexagon_hta_nn_set_config_params_f( 0, HTA_NN_CONFIG_API_LOG, reinterpret_cast<void*>(&htaApiLogCallback), sizeof(&htaApiLogCallback)) == 0",
+        "Expect: hexagon_hta_nn_set_config_params_f( id_, HTA_NN_CONFIG_POWER_LEVEL, &powerLevel_, sizeof(powerLevel_)) == 0",
+        "Expect: hexagon_hta_nn_set_config_params_f( id_, HTA_NN_CONFIG_PREALLOC_BUF_GROUP_COUNT, &numBufGroupToPrealloc, sizeof(numBufGroupToPrealloc)) == 0",
+        "Expect: hexagon_hta_nn_set_debug_level_f(id_, int(debugLevel)) == 0",
+        "FN2at6TensorERKS0_RKN3c1013intrusive_ptrINS_6native7xnnpack15Conv2dOpContextENS3_6detail34intrusive_target_default_null_typeIS7_EEEEE",
+        "FN2at6TensorERKS0_RKN3c1013intrusive_ptrINS_6native7xnnpack15LinearOpContextENS3_6detail34intrusive_target_default_null_typeIS7_EEEEE",
+        "Failed on RpcMemory allocation: Hexagon uninitialized.",
+        "Failed on RpcMemory deallocation: Hexagon uninitialized.",
+        "Failed to load BoltNN model: {} due to {}: {}",
+        "Failed to run boltNN inference due to {}: {}",
+        "Hexagon",
+        "Hexagon driver memory mapping failed",
+        "Hexagon revisions and ABI versions",
+        "HexagonCaptureClearFunctionToggles",
+        "HexagonCaptureDisableAllFunctions",
+        "HexagonCaptureDisableFunction",
+        "HexagonCaptureEnableFunction",
+        "HexagonCaptureEnabled",
+        "HexagonCaptureRegisterSetUseSFRPC",
+        "HexagonCaptureStart",
+        "HexagonCaptureStop",
+        "HexagonCheck(idlMask)",
+        "HexagonCheck(idlMask) == 0",
+        "HexagonCornerHarrisEdgeIndexedSlices",
+        "HexagonCornerHarrisEdgeIndexedSlicesAsync",
+        "HexagonDelegatedProgram expects at most 2 memory planned buffers, method ",
+        "HexagonEnableUnsignedPD",
+        "HexagonGetPmu returned error: {}",
+        "HexagonGetRevision",
+        "HexagonInitialize(idlMask)",
+        "HexagonInitialize(idlMask) == 0",
+        "HexagonIsStarted()",
+        "HexagonLoadLibrary()",
+        "HexagonLoadLibrary() == 0",
+        "HexagonMemMap",
+        "HexagonMemMgr",
+        "HexagonMemTest returned {}",
+        "HexagonMemUnmap",
+        "HexagonNN start count is equal or less than 0",
+        "HexagonOrb2XDescriptorsAsync",
+        "HexagonOrbDeinit",
+        "HexagonOrbDescriptorsAsync",
+        "HexagonOrbInit",
+        "HexagonOrbInit()",
+        "HexagonOrbInit() == 0",
+        "HexagonPatchDeinit",
+        "HexagonPatchInit",
+        "HexagonPatchInit()",
+        "HexagonPatchInit() == 0",
+        "HexagonPatchLineSearch",
+        "HexagonPatchSearch",
+        "HexagonPatchWarpSearch",
+        "HexagonPyramid3x3",
+        "HexagonPyramid3x3Async",
+        "HexagonRPCMemAlloc",
+        "HexagonRPCMemDeinit",
+        "HexagonRPCMemFree",
+        "HexagonRPCMemInit",
+        "HexagonRPCMemToFD",
+        "HexagonRPCPersistentMemMap",
+        "HexagonRPCPersistentMemUnmap",
+        "HexagonRpcBackend",
+        "HexagonRpcBackend: Creating implementation (compile-time config: %s)",
+        "HexagonRpcBackend::destroy",
+        "HexagonRpcBackend::execute",
+        "HexagonRpcBackend::execute::",
+        "HexagonRpcBackend::init",
+        "HexagonRpcBackendImplDirect: Destroyed model %s. RPC status: %d.",
+        "HexagonRpcBackendImplDirect: Initializing model %s.",
+        "HexagonRpcMemTest",
+        "HexagonStart()",
+        "HexagonStart() == 0",
+        "HexagonTelemetry.DspUtil",
+        "HexagonVersionCheck",
+        "In function %s(), assert failed (%s): ScalarType %d unsupported in Executorch",
+        "Initializing ExecutorchModelExecutor...",
+        "Input {} to BoltNN model has dimension {} with size {} which is greater than the size {} provided at conversion time",
+        "Invalid BoltNN backend ",
+        "MGv26ET_fakequant_executorch.pte",
+        "MIXEDREALITY: SCENE_OBJECTS: SEMANTIC_KEYPOINTS: Executorch",
+        "Missing 'forward' method in Executorch model {}.",
+        "Missing symbol: hexagon_hta_nn_append_const_node",
+        "Missing symbol: hexagon_hta_nn_append_node",
+        "Missing symbol: hexagon_hta_nn_config",
+        "Missing symbol: hexagon_hta_nn_execute_new",
+        "Missing symbol: hexagon_hta_nn_get_memory_layout",
+        "Missing symbol: hexagon_hta_nn_init",
+        "Missing symbol: hexagon_hta_nn_prepare",
+        "Missing symbol: hexagon_hta_nn_register_tensor",
+        "Missing symbol: hexagon_hta_nn_set_config_params",
+        "Missing symbol: hexagon_hta_nn_set_debug_level",
+        "Missing symbol: hexagon_hta_nn_teardown",
+        "N10executorch7runtime10DataLoaderE",
+        "N10executorch7runtime11FunctionRefIFvmEEE",
+        "N10executorch7runtime12NamedDataMapE",
+        "N10executorch7runtime15MemoryAllocatorE",
+        "N10executorch7runtime16BackendInterfaceE",
+        "N10executorch7runtime8internal10PteDataMapE",
+        "N10executorch7runtime8internal13MergedDataMapE",
+        "N10executorch7runtime8internal23PlatformMemoryAllocatorE",
+        "N10executorch9extension14MmapDataLoaderE",
+        "N10executorch9extension16BufferDataLoaderE",
+        "N10executorch9extension21MallocMemoryAllocatorE",
+        "N10executorch9extension4ptez14PtezDataLoaderE",
+        "N10executorch9extension4ptez16BaseDecompressorE",
+        "N12_GLOBAL__N_117HexagonRpcBackendE",
+        "N13scene_objects18semantic_keypoints9predictor10ExecutorchE",
+        "N2at6native7xnnpack15Conv2dOpContextE",
+        "N2at6native7xnnpack15LinearOpContextE",
+        "N2at6native7xnnpack22XNNPackConv2dOpContextE",
+        "N2at6native7xnnpack22XNNPackLinearOpContextE",
+        "N2at6native7xnnpack24TransposeConv2dOpContextE",
+        "N2at6native7xnnpack31XNNPackTransposeConv2dOpContextE",
+        "N3c1013intrusive_ptrIN2at6native7xnnpack15Conv2dOpContextENS_6detail34intrusive_target_default_null_typeIS4_EEEE",
+        "N3c1013intrusive_ptrIN2at6native7xnnpack15LinearOpContextENS_6detail34intrusive_target_default_null_typeIS4_EEEE",
+        "N3c1013intrusive_ptrIN2at6native7xnnpack24TransposeConv2dOpContextENS_6detail34intrusive_target_default_null_typeIS4_EEEE",
+        "N3c1013intrusive_ptrIN4bolt2nn13BoltNNBackendENS_6detail34intrusive_target_default_null_typeIS3_EEEE",
+        "N3c1014tagged_capsuleIN2at6native7xnnpack15Conv2dOpContextEEE",
+        "N3c1014tagged_capsuleIN2at6native7xnnpack15LinearOpContextEEE",
+        "N3c1014tagged_capsuleIN2at6native7xnnpack24TransposeConv2dOpContextEEE",
+        "N3c1014tagged_capsuleIN4bolt2nn13BoltNNBackendEEE",
+        "N3c104impl6detail31WrapFunctionIntoRuntimeFunctor_IPFN2at6TensorERKS4_RKNS_13intrusive_ptrINS3_6native7xnnpack15Conv2dOpContextENS_6detail34intrusive_target_default_null_typeISA_EEEEES4_NS_4guts8typelist8typelistIJS6_SG_EEEEE",
+        "N3c104impl6detail31WrapFunctionIntoRuntimeFunctor_IPFN2at6TensorERKS4_RKNS_13intrusive_ptrINS3_6native7xnnpack15LinearOpContextENS_6detail34intrusive_target_default_null_typeISA_EEEEES4_NS_4guts8typelist8typelistIJS6_SG_EEEEE",
+        "N4bolt10SocHexagonE",
+        "N4bolt17HexagonDumpsysLogE",
+        "N4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirectE",
+        "N4bolt2nn10executorch22IHexagonRpcBackendImplE",
+        "N4bolt2nn13BoltNNBackendE",
+        "N4bolt2nn14HexagonNNModelE",
+        "N4bolt2nn15HexagonFbsModelE",
+        "N4bolt2nn18HexagonNNModelBaseE",
+        "N4bolt2nn19HexagonFbsModelBaseE",
+        "N6nimble15DPEHandTracking12_GLOBAL__N_123ExecutorchModelExecutorE",
+        "N6nimble15SurfaceTouchpad23ExecutorchModelExecutorE",
+        "N6nimble9TextInput23ExecutorchModelExecutorE",
+        "N9neuralnet15BoltNNPredictorE",
+        "N9neuralnet19BoltNNNeuralNetworkE",
+        "N9neuralnet19ExecutorchPredictorE",
+        "N9neuralnet23ExecutorchNeuralNetworkE",
+        "NIMBLE:SurfaceInputs:SKB:ExecutorchModelExecutor",
+        "NIMBLE:SurfaceInputs:STP:ExecutorchModelExecutor",
+        "NNExecutorchBackend",
+        "NSt6__ndk110__function6__baseIFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIN10executorch7runtime11FunctionRefIFvmEEENS_9allocatorIS6_EES5_EE",
+        "NSt6__ndk110__function6__funcIZ11HexagonStopE3$_1NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ12HexagonStartE3$_1NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ13HexagonMemMapE3$_1NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ14HexagonOrbInitvE3$_0NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ15HexagonMemUnmapE3$_1NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ16HexagonOrbDeinitvE3$_0NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ16HexagonPatchInitvE3$_0NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ17HexagonPyramid3x3N3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IKjLm18446744073709551615EEENS3_IS4_Lm18446744073709551615EEE14Pyramid3x3MaskSA_PjPiPFvbPvESD_N4bolt13SchedulerReqsEE3$_0NS_9allocatorISI_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ17HexagonRpcMemTestE3$_3NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ18HexagonPatchDeinitvE3$_0NS_9allocatorIS2_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ18HexagonPatchSearchPK20DspPatchSearchParamsN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS6_IK5PatchLm18446744073709551615EEENS6_IK12SearchWindowLm18446744073709551615EEEPjNS6_I17PatchSearchResultLm18446744073709551615EEEN4bolt13SchedulerReqsEE3$_0NS_9allocatorISL_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ22HexagonPatchLineSearchN3gsl4spanIKhLm18446744073709551615EEENS3_IK11DspMatrix2fLm18446744073709551615EEENS3_IK18DspSourcePatchDataLm18446744073709551615EEENS3_IK11DspSegmentsLm18446744073709551615EEENS3_IK25DspTargetPyramidLevelDataLm18446744073709551615EEENS3_IK23DspLineSearchBatchQueryLm18446744073709551615EEEhNS3",
+        "NSt6__ndk110__function6__funcIZ22HexagonPatchWarpSearchN3gsl4spanIKhLm18446744073709551615EEENS3_IK13DspMatchQueryLm18446744073709551615EEENS3_IK13DspWarpParamsLm18446744073709551615EEENS3_IKiLm18446744073709551615EEESD_NS3_IjLm18446744073709551615EEEPK20DspPatchSearchParamsNS3_IK11dsp_image_tLm18446744073709551615EEEPjNS3_I17PatchSearchResultLm184",
+        "NSt6__ndk110__function6__funcIZ22HexagonPyramid3x3AsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IKjLm18446744073709551615EEENS3_IS4_Lm18446744073709551615EEE14Pyramid3x3MaskSA_PjPiPFvbPvESD_N4bolt13SchedulerReqsEE3$_0NS_9allocatorISI_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ26HexagonOrbDescriptorsAsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IK11DspVector2fLm18446744073709551615EEENS3_IK16DescriptorCornerLm18446744073709551615EEENS3_IKiLm18446744073709551615EEENS3_I16dsp_descriptor_tLm18446744073709551615EEENS3_IhLm18446744073709551615EEEPjN4bolt13SchedulerReqsEE3$_2NS_9allo",
+        "NSt6__ndk110__function6__funcIZ28HexagonOrb2XDescriptorsAsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IK11DspVector2fLm18446744073709551615EEENS3_IK16DescriptorCornerLm18446744073709551615EEENS3_IKiLm18446744073709551615EEENS3_I16dsp_descriptor_tLm18446744073709551615EEENS3_IhLm18446744073709551615EEEPjN4bolt13SchedulerReqsEE3$_2NS_9al",
+        "NSt6__ndk110__function6__funcIZ36HexagonCornerHarrisEdgeIndexedSlicesN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IK25dsp_indexed_image_slice_tLm18446744073709551615EEENS3_IKjLm18446744073709551615EEESB_NS3_IiLm18446744073709551615EEESC_NS3_IjLm18446744073709551615EEEibbPjN4bolt13SchedulerReqsEE3$_0NS_9allocatorISH_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZ41HexagonCornerHarrisEdgeIndexedSlicesAsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IK25dsp_indexed_image_slice_tLm18446744073709551615EEENS3_IKjLm18446744073709551615EEESB_NS3_IiLm18446744073709551615EEESC_NS3_IjLm18446744073709551615EEEibbPjPiN4bolt13SchedulerReqsEE3$_0NS_9allocatorISI_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN13face_tracking29FramesInputNeuralNetworkModelINS2_31BlendshapeCoeffsWithUncertaintyEE9loadModelERKNS_8functionIFvvEEEEUlRT_E_NS_9allocatorISD_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN13scene_objects18semantic_keypoints9predictor17TorchscriptDeviceC1ENS4_4Base7OptionsEE3$_0NS_9allocatorIS8_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN14input_tracking15EVPRTorchModuleC1ERKNS_4__fs10filesystem4pathEE3$_0NS_9allocatorIS9_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN14input_tracking16EVPR2TorchModuleC1ERKNS_4__fs10filesystem4pathEE3$_0NS_9allocatorIS9_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN14input_tracking22DefaultStarletDetectorC1EvE3$_2NS_9allocatorIS4_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN14input_tracking27DirectPoseRegressionTrackerC1EvE3$_2NS_9allocatorIS4_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN14input_tracking34DirectPoseRegressionStarletTrackerC1EvE3$_2NS_9allocatorIS4_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt16HexagonTelemetryC1EvE3$_6NS_9allocatorIS4_EEFvPhEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt16HexagonTelemetryC1EvE3$_7NS_9allocatorIS4_EEFvPhEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirect12destroyModelEPNS4_23HexagonRpcBackendHandleEE3$_0NS_9allocatorIS9_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirect12executeModelERN10executorch7runtime23BackendExecutionContextEPNS4_23HexagonRpcBackendHandleENS8_4SpanIPNS8_6EValueEEEE3$_0NS_9allocatorISH_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirect9initModelERN10executorch7runtime18BackendInitContextEPNS8_14FreeableBufferENS8_8ArrayRefINS8_11CompileSpecEEEE3$_0NS_9allocatorISG_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn12hexagonNNRunEjPKcPKNS3_6TensorEjPS6_jPcjP20dsp_runtime_config_tPjRKNS2_13SchedulerReqsEE3$_0NS_9allocatorISH_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn12hexagonNNRunEjPKcPKNS3_6TensorEjPS6_jPcjP20dsp_runtime_config_tPjRKNS2_13SchedulerReqsEE3$_1NS_9allocatorISH_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn13hexagonNNInitEPjPKcE3$_0NS_9allocatorIS7_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn13hexagonNNStopEvE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn14hexagonNNStartEvE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn15hexagonNNGetLogEjPhjE3$_0NS_9allocatorIS5_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn16hexagonNNPrepareEjPKcP20dsp_runtime_config_tPjE3$_0NS_9allocatorIS9_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn19hexagonNNGetLogSizeEjPjE3$_0NS_9allocatorIS5_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn20hexagonNNGetPerfInfoEjP10NNPerfInfojPjE3$_0NS_9allocatorIS7_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn21hexagonNNDestroyModelEjE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn21hexagonNNVersionCheckEPKcE3$_0NS_9allocatorIS6_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn22hexagonNNResetPerfInfoEjE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn22hexagonNNSetDebugLevelEjPKcjE3$_0NS_9allocatorIS6_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn23hexagonNNFlatbuffersRunEjPKcPKNS3_6TensorEjP11NNTensorDefPS6_jSA_E3$_0NS_9allocatorISC_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn23hexagonNNGetMemoryUsageEjPjE3$_0NS_9allocatorIS5_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn23hexagonNNThreadPoolInitEvE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn24hexagonNNFlatbuffersInitEPKcPhiS6_ijS5_P20dsp_runtime_config_tPjE3$_0NS_9allocatorISA_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn24hexagonNNFlatbuffersInitEPKcPhiS6_ijS5_P20dsp_runtime_config_tPjE3$_1NS_9allocatorISA_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn25hexagonNNThreadPoolDeinitEvE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn26hexagonNNFlatbuffersGetLogEPhjE3$_0NS_9allocatorIS5_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn27hexagonNNAppendConstNodesV2EjPKcPKjPKNS3_6TensorEjPKhjE3$_0NS_9allocatorISD_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn27hexagonNNFlatbuffersDestroyEjPKcE3$_0NS_9allocatorIS6_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn28hexagonNNAppendNodesByOpNameEjPKcPK9NNNodeDefjE3$_0NS_9allocatorIS9_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn28hexagonNNFlatbuffersRunDebugEjPKcPKNS3_6TensorEjP11NNTensorDefPS6_jSA_SB_jSA_E3$_0NS_9allocatorISC_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn30hexagonNNFlatbuffersGetLogSizeEPjE3$_0NS_9allocatorIS5_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn31hexagonNNAppendHTASubgraphNode2EjPKcjPK7NNInputjPK8NNOutputjiPKhjSD_jPK14NNHTAHwTensor2jSG_jE3$_0NS_9allocatorISH_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn31hexagonNNFlatbuffersGetPerfInfoEjP10NNPerfInfojE3$_0NS_9allocatorIS6_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn33hexagonNNFlatbuffersResetPerfInfoEjE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn33hexagonNNFlatbuffersSetDebugLevelEjE3$_0NS_9allocatorIS4_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4bolt2nn36hexagonNNFlatbuffersGetTotalPerfInfoEjP10NNPerfInfoE3$_0NS_9allocatorIS6_EEFivEEE",
+        "NSt6__ndk110__function6__funcIZN4vega24MotionModelInferenceBolt14loadBoltModuleEvE3$_0NS_9allocatorIS4_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN4vega24MotionModelInferenceBolt14loadBoltModuleEvE3$_1NS_9allocatorIS4_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN4vega32TravelModeClassifierModelWrapper9initModelERKNS2_35TravelModeClassifierModelParametersEE3$_0NS_9allocatorIS7_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN5torch3jit12_GLOBAL__N_114getCompileFuncIN4bolt2nn13BoltNNBackendEEENS_8functionIFvRNS_6vectorIN3c106IValueENS_9allocatorISC_EEEEEEEvEUlSG_E_NSD_ISJ_EESH_EE",
+        "NSt6__ndk110__function6__funcIZN5torch3jit12_GLOBAL__N_114getExecuteFuncIN4bolt2nn13BoltNNBackendEEENS_8functionIFvRNS_6vectorIN3c106IValueENS_9allocatorISC_EEEEEEEvEUlSG_E_NSD_ISJ_EESH_EE",
+        "NSt6__ndk110__function6__funcIZN5torch3jit12_GLOBAL__N_118getIsAvailableFuncIN4bolt2nn13BoltNNBackendEEENS_8functionIFvRNS_6vectorIN3c106IValueENS_9allocatorISC_EEEEEEEvEUlSG_E_NSD_ISJ_EESH_EE",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack15Conv2dOpContextEE12defineMethodINS2_6detail10WrapMethodIMS7_FNS_5tupleIJNS4_6TensorENS_8optionalISD_EENS_6vectorIlNS_9allocatorIlEEEESJ_SJ_lNSE_IN3c106ScalarEEESM_EEEvEEEEEPNS2_3jit8FunctionENS_12basic_stringIcNS_11char_traitsIcEENSH_IcEEEET_SY_St16initializer_listINS2_3argEEEUlRNSG",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack15Conv2dOpContextEE12defineMethodIZNS6_L26TORCH_LIBRARY_init_xnnpackERNS2_7LibraryEE3$_3EEPNS2_3jit8FunctionENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEET_SL_St16initializer_listINS2_3argEEEUlRNS_6vectorIN3c106IValueENSJ_ISS_EEEEE_NSJ_ISW_EEFvSV_EEE",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack15Conv2dOpContextEE12defineMethodIZNS8_10def_pickleIZNS6_L26TORCH_LIBRARY_init_xnnpackERNS2_7LibraryEE3$_3ZNS6_L26TORCH_LIBRARY_init_xnnpackESC_E3$_2EERS8_OT_OT0_EUlN3c1014tagged_capsuleIS7_EENS_5tupleIJNS4_6TensorENS_8optionalISO_EENS_6vectorIlNS_9allocatorIlEEEESU_SU_lNSP_INSK_6Scal",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack15LinearOpContextEE12defineMethodINS2_6detail10WrapMethodIMS7_FNS_5tupleIJNS4_6TensorENS_8optionalISD_EENSE_IN3c106ScalarEEESI_EEEvEEEEEPNS2_3jit8FunctionENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEET_SV_St16initializer_listINS2_3argEEEUlRNS_6vectorINSG_6IValueENST_IS11_",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack15LinearOpContextEE12defineMethodIZNS6_L26TORCH_LIBRARY_init_xnnpackERNS2_7LibraryEE3$_1EEPNS2_3jit8FunctionENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEET_SL_St16initializer_listINS2_3argEEEUlRNS_6vectorIN3c106IValueENSJ_ISS_EEEEE_NSJ_ISW_EEFvSV_EEE",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack15LinearOpContextEE12defineMethodIZNS8_10def_pickleIZNS6_L26TORCH_LIBRARY_init_xnnpackERNS2_7LibraryEE3$_1ZNS6_L26TORCH_LIBRARY_init_xnnpackESC_E3$_0EERS8_OT_OT0_EUlN3c1014tagged_capsuleIS7_EENS_5tupleIJNS4_6TensorENS_8optionalISO_EENSP_INSK_6ScalarEEESS_EEEE_EEPNS2_3jit8FunctionENS_1",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack24TransposeConv2dOpContextEE12defineMethodIZNS6_L26TORCH_LIBRARY_init_xnnpackERNS2_7LibraryEE3$_5EEPNS2_3jit8FunctionENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEET_SL_St16initializer_listINS2_3argEEEUlRNS_6vectorIN3c106IValueENSJ_ISS_EEEEE_NSJ_ISW_EEFvSV_EEE",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN2at6native7xnnpack24TransposeConv2dOpContextEE12defineMethodIZNS8_10def_pickleIZNS6_L26TORCH_LIBRARY_init_xnnpackERNS2_7LibraryEE3$_5ZNS6_L26TORCH_LIBRARY_init_xnnpackESC_E3$_4EERS8_OT_OT0_EUlN3c1014tagged_capsuleIS7_EENS_5tupleIJNS4_6TensorENS_8optionalISO_EENS_6vectorIlNS_9allocatorIlEEEESU_SU_SU_lNS",
+        "NSt6__ndk110__function6__funcIZN5torch6class_IN4bolt2nn13BoltNNBackendEE12defineMethodIZNS7_3defIJEEERS7_NS2_6detail5typesIvJDpT_EEENS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEESt16initializer_listINS2_3argEEEUlN3c1014tagged_capsuleIS6_EEE_EEPNS2_3jit8FunctionESL_T_SL_SO_EUlRNS_6vectorINSP_6IValueENSJ_ISY_EEEEE_NSJ_IS12_EEFvS11_EEE",
+        "NSt6__ndk110__function6__funcIZN5viper19DeepFeatureComputerILi32EE4Impl20initTorchscriptModelIKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEvRT_EUlSF_E0_NSA_ISG_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN5viper19DeepFeatureComputerILi32EE4Impl20initTorchscriptModelIKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEvRT_EUlSF_E1_NSA_ISG_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN5viper19DeepFeatureComputerILi32EE4Impl20initTorchscriptModelIKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEvRT_EUlSF_E2_NSA_ISG_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN5viper19DeepFeatureComputerILi32EE4Impl20initTorchscriptModelIKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEEEvRT_EUlSF_E_NSA_ISG_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN6nimble15DPEHandTracking15DPETorchModelV19loadModelERNS_13basic_istreamIcNS_11char_traitsIcEEEERKNS3_14DPEModelParamsEE3$_0NS_9allocatorISD_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN6nimble15SurfaceTouchpad24SurfaceTouchpadPredictor24loadModelWithMemoryHooksERKNS3_11ModelConfigEE3$_2NS_9allocatorIS8_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN6nimble20TemporalBodyTracking29BodyTrackingEncoderTorchModelC1ERKNS3_31TemporalBodyTrackingModelParamsEE3$_1NS_9allocatorIS8_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk110__function6__funcIZN6nimble9TextInput24SurfaceKeyboardPredictorC1ERKNS3_11ModelConfigEE3$_1NS_9allocatorIS8_EEFvRN4bolt2nn13BoltNNBackendEEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN10executorch7runtime7ProgramENS_9allocatorIS3_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN10executorch9extension12_GLOBAL__N_17StorageENS_9allocatorIS4_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN4bolt16HexagonTelemetryENS_9allocatorIS2_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN6nimble15DPEHandTracking12_GLOBAL__N_123ExecutorchModelExecutorENS_9allocatorIS4_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN6nimble15SurfaceTouchpad23ExecutorchModelExecutorENS_9allocatorIS3_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN6nimble9TextInput23ExecutorchModelExecutorENS_9allocatorIS3_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN9neuralnet19BoltNNNeuralNetworkENS_9allocatorIS2_EEEE",
+        "NSt6__ndk120__shared_ptr_emplaceIN9neuralnet23ExecutorchNeuralNetworkENS_9allocatorIS2_EEEE",
+        "NSt6__ndk120__shared_ptr_pointerIPfZN6nimble4util11LightTensorC1EN10executorch7runtime7etensor6TensorEbE3$_0NS_9allocatorIfEEEE",
+        "NSt6__ndk123enable_shared_from_thisIN9neuralnet19BoltNNNeuralNetworkEEE",
+        "NSt6__ndk123enable_shared_from_thisIN9neuralnet23ExecutorchNeuralNetworkEEE",
+        "NeuralNetInference:Executorch",
+        "Please update Hexagon binaries (bunnylol bolt_hexagon)",
+        "Releasing all Hexagon resources from Bolt SDK",
+        "Stream is empty or invalid for Executorch model",
+        "XNNPACK",
+        "Z11HexagonStopE3$_1",
+        "Z12HexagonStartE3$_1",
+        "Z13HexagonMemMapE3$_1",
+        "Z14HexagonOrbInitvE3$_0",
+        "Z15HexagonMemUnmapE3$_1",
+        "Z16HexagonOrbDeinitvE3$_0",
+        "Z16HexagonPatchInitvE3$_0",
+        "Z17HexagonPyramid3x3N3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS0_IKjLm18446744073709551615EEENS0_IS1_Lm18446744073709551615EEE14Pyramid3x3MaskS7_PjPiPFvbPvESA_N4bolt13SchedulerReqsEE3$_0",
+        "Z17HexagonRpcMemTestE3$_3",
+        "Z18HexagonPatchDeinitvE3$_0",
+        "Z18HexagonPatchSearchPK20DspPatchSearchParamsN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS3_IK5PatchLm18446744073709551615EEENS3_IK12SearchWindowLm18446744073709551615EEEPjNS3_I17PatchSearchResultLm18446744073709551615EEEN4bolt13SchedulerReqsEE3$_0",
+        "Z22HexagonPatchLineSearchN3gsl4spanIKhLm18446744073709551615EEENS0_IK11DspMatrix2fLm18446744073709551615EEENS0_IK18DspSourcePatchDataLm18446744073709551615EEENS0_IK11DspSegmentsLm18446744073709551615EEENS0_IK25DspTargetPyramidLevelDataLm18446744073709551615EEENS0_IK23DspLineSearchBatchQueryLm18446744073709551615EEEhNS0_IhLm18446744073709551615EEENS",
+        "Z22HexagonPatchWarpSearchN3gsl4spanIKhLm18446744073709551615EEENS0_IK13DspMatchQueryLm18446744073709551615EEENS0_IK13DspWarpParamsLm18446744073709551615EEENS0_IKiLm18446744073709551615EEESA_NS0_IjLm18446744073709551615EEEPK20DspPatchSearchParamsNS0_IK11dsp_image_tLm18446744073709551615EEEPjNS0_I17PatchSearchResultLm18446744073709551615EEENS0_I5Patc",
+        "Z22HexagonPyramid3x3AsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS0_IKjLm18446744073709551615EEENS0_IS1_Lm18446744073709551615EEE14Pyramid3x3MaskS7_PjPiPFvbPvESA_N4bolt13SchedulerReqsEE3$_0",
+        "Z26HexagonOrbDescriptorsAsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS0_IK11DspVector2fLm18446744073709551615EEENS0_IK16DescriptorCornerLm18446744073709551615EEENS0_IKiLm18446744073709551615EEENS0_I16dsp_descriptor_tLm18446744073709551615EEENS0_IhLm18446744073709551615EEEPjN4bolt13SchedulerReqsEE3$_2",
+        "Z28HexagonOrb2XDescriptorsAsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS0_IK11DspVector2fLm18446744073709551615EEENS0_IK16DescriptorCornerLm18446744073709551615EEENS0_IKiLm18446744073709551615EEENS0_I16dsp_descriptor_tLm18446744073709551615EEENS0_IhLm18446744073709551615EEEPjN4bolt13SchedulerReqsEE3$_2",
+        "Z36HexagonCornerHarrisEdgeIndexedSlicesN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS0_IK25dsp_indexed_image_slice_tLm18446744073709551615EEENS0_IKjLm18446744073709551615EEES8_NS0_IiLm18446744073709551615EEES9_NS0_IjLm18446744073709551615EEEibbPjN4bolt13SchedulerReqsEE3$_0",
+        "Z41HexagonCornerHarrisEdgeIndexedSlicesAsyncN3gsl4spanIK11dsp_image_tLm18446744073709551615EEENS0_IK25dsp_indexed_image_slice_tLm18446744073709551615EEENS0_IKjLm18446744073709551615EEES8_NS0_IiLm18446744073709551615EEES9_NS0_IjLm18446744073709551615EEEibbPjPiN4bolt13SchedulerReqsEE3$_0",
+        "ZN4bolt16HexagonTelemetryC1EvE3$_6",
+        "ZN4bolt16HexagonTelemetryC1EvE3$_7",
+        "ZN4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirect12destroyModelEPNS1_23HexagonRpcBackendHandleEE3$_0",
+        "ZN4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirect12executeModelERN10executorch7runtime23BackendExecutionContextEPNS1_23HexagonRpcBackendHandleENS5_4SpanIPNS5_6EValueEEEE3$_0",
+        "ZN4bolt2nn10executorch12_GLOBAL__N_127HexagonRpcBackendImplDirect9initModelERN10executorch7runtime18BackendInitContextEPNS5_14FreeableBufferENS5_8ArrayRefINS5_11CompileSpecEEEE3$_0",
+        "ZN4bolt2nn12hexagonNNRunEjPKcPKNS0_6TensorEjPS3_jPcjP20dsp_runtime_config_tPjRKNS_13SchedulerReqsEE3$_0",
+        "ZN4bolt2nn12hexagonNNRunEjPKcPKNS0_6TensorEjPS3_jPcjP20dsp_runtime_config_tPjRKNS_13SchedulerReqsEE3$_1",
+        "ZN4bolt2nn13hexagonNNInitEPjPKcE3$_0",
+        "ZN4bolt2nn13hexagonNNStopEvE3$_0",
+        "ZN4bolt2nn14hexagonNNStartEvE3$_0",
+        "ZN4bolt2nn15hexagonNNGetLogEjPhjE3$_0",
+        "ZN4bolt2nn16hexagonNNPrepareEjPKcP20dsp_runtime_config_tPjE3$_0",
+        "ZN4bolt2nn19hexagonNNGetLogSizeEjPjE3$_0",
+        "ZN4bolt2nn20hexagonNNGetPerfInfoEjP10NNPerfInfojPjE3$_0",
+        "ZN4bolt2nn21hexagonNNDestroyModelEjE3$_0",
+        "ZN4bolt2nn21hexagonNNVersionCheckEPKcE3$_0",
+        "ZN4bolt2nn22hexagonNNResetPerfInfoEjE3$_0",
+        "ZN4bolt2nn22hexagonNNSetDebugLevelEjPKcjE3$_0",
+        "ZN4bolt2nn23hexagonNNFlatbuffersRunEjPKcPKNS0_6TensorEjP11NNTensorDefPS3_jS7_E3$_0",
+        "ZN4bolt2nn23hexagonNNGetMemoryUsageEjPjE3$_0",
+        "ZN4bolt2nn23hexagonNNThreadPoolInitEvE3$_0",
+        "ZN4bolt2nn24hexagonNNFlatbuffersInitEPKcPhiS3_ijS2_P20dsp_runtime_config_tPjE3$_0",
+        "ZN4bolt2nn24hexagonNNFlatbuffersInitEPKcPhiS3_ijS2_P20dsp_runtime_config_tPjE3$_1",
+        "ZN4bolt2nn25hexagonNNThreadPoolDeinitEvE3$_0",
+        "ZN4bolt2nn26hexagonNNFlatbuffersGetLogEPhjE3$_0",
+        "ZN4bolt2nn27hexagonNNAppendConstNodesV2EjPKcPKjPKNS0_6TensorEjPKhjE3$_0",
+        "ZN4bolt2nn27hexagonNNFlatbuffersDestroyEjPKcE3$_0",
+        "ZN4bolt2nn28hexagonNNAppendNodesByOpNameEjPKcPK9NNNodeDefjE3$_0",
+        "ZN4bolt2nn28hexagonNNFlatbuffersRunDebugEjPKcPKNS0_6TensorEjP11NNTensorDefPS3_jS7_S8_jS7_E3$_0",
+        "ZN4bolt2nn30hexagonNNFlatbuffersGetLogSizeEPjE3$_0",
+        "ZN4bolt2nn31hexagonNNAppendHTASubgraphNode2EjPKcjPK7NNInputjPK8NNOutputjiPKhjSA_jPK14NNHTAHwTensor2jSD_jE3$_0",
+        "ZN4bolt2nn31hexagonNNFlatbuffersGetPerfInfoEjP10NNPerfInfojE3$_0",
+        "ZN4bolt2nn33hexagonNNFlatbuffersResetPerfInfoEjE3$_0",
+        "ZN4bolt2nn33hexagonNNFlatbuffersSetDebugLevelEjE3$_0",
+        "ZN4bolt2nn36hexagonNNFlatbuffersGetTotalPerfInfoEjP10NNPerfInfoE3$_0",
+        "ZN5torch3jit12_GLOBAL__N_114getCompileFuncIN4bolt2nn13BoltNNBackendEEENSt6__ndk18functionIFvRNS6_6vectorIN3c106IValueENS6_9allocatorISA_EEEEEEEvEUlSE_E_",
+        "ZN5torch3jit12_GLOBAL__N_114getExecuteFuncIN4bolt2nn13BoltNNBackendEEENSt6__ndk18functionIFvRNS6_6vectorIN3c106IValueENS6_9allocatorISA_EEEEEEEvEUlSE_E_",
+        "ZN5torch3jit12_GLOBAL__N_118getIsAvailableFuncIN4bolt2nn13BoltNNBackendEEENSt6__ndk18functionIFvRNS6_6vectorIN3c106IValueENS6_9allocatorISA_EEEEEEEvEUlSE_E_",
+        "ZN5torch6class_IN2at6native7xnnpack15Conv2dOpContextEE12defineMethodINS_6detail10WrapMethodIMS4_FNSt6__ndk15tupleIJNS1_6TensorENS9_8optionalISB_EENS9_6vectorIlNS9_9allocatorIlEEEESH_SH_lNSC_IN3c106ScalarEEESK_EEEvEEEEEPNS_3jit8FunctionENS9_12basic_stringIcNS9_11char_traitsIcEENSF_IcEEEET_SW_St16initializer_listINS_3argEEEUlRNSE_INSI_6IValueENSF_IS1",
+        "ZN5torch6class_IN2at6native7xnnpack15Conv2dOpContextEE12defineMethodIZNS3_L26TORCH_LIBRARY_init_xnnpackERNS_7LibraryEE3$_3EEPNS_3jit8FunctionENSt6__ndk112basic_stringIcNSD_11char_traitsIcEENSD_9allocatorIcEEEET_SJ_St16initializer_listINS_3argEEEUlRNSD_6vectorIN3c106IValueENSH_ISQ_EEEEE_",
+        "ZN5torch6class_IN2at6native7xnnpack15Conv2dOpContextEE12defineMethodIZNS5_10def_pickleIZNS3_L26TORCH_LIBRARY_init_xnnpackERNS_7LibraryEE3$_3ZNS3_L26TORCH_LIBRARY_init_xnnpackES9_E3$_2EERS5_OT_OT0_EUlN3c1014tagged_capsuleIS4_EENSt6__ndk15tupleIJNS1_6TensorENSK_8optionalISM_EENSK_6vectorIlNSK_9allocatorIlEEEESS_SS_lNSN_INSH_6ScalarEEESU_EEEE_EEPNS_3j",
+        "ZN5torch6class_IN2at6native7xnnpack15LinearOpContextEE12defineMethodINS_6detail10WrapMethodIMS4_FNSt6__ndk15tupleIJNS1_6TensorENS9_8optionalISB_EENSC_IN3c106ScalarEEESG_EEEvEEEEEPNS_3jit8FunctionENS9_12basic_stringIcNS9_11char_traitsIcEENS9_9allocatorIcEEEET_ST_St16initializer_listINS_3argEEEUlRNS9_6vectorINSE_6IValueENSR_ISZ_EEEEE_",
+        "ZN5torch6class_IN2at6native7xnnpack15LinearOpContextEE12defineMethodIZNS3_L26TORCH_LIBRARY_init_xnnpackERNS_7LibraryEE3$_1EEPNS_3jit8FunctionENSt6__ndk112basic_stringIcNSD_11char_traitsIcEENSD_9allocatorIcEEEET_SJ_St16initializer_listINS_3argEEEUlRNSD_6vectorIN3c106IValueENSH_ISQ_EEEEE_",
+        "ZN5torch6class_IN2at6native7xnnpack15LinearOpContextEE12defineMethodIZNS5_10def_pickleIZNS3_L26TORCH_LIBRARY_init_xnnpackERNS_7LibraryEE3$_1ZNS3_L26TORCH_LIBRARY_init_xnnpackES9_E3$_0EERS5_OT_OT0_EUlN3c1014tagged_capsuleIS4_EENSt6__ndk15tupleIJNS1_6TensorENSK_8optionalISM_EENSN_INSH_6ScalarEEESQ_EEEE_EEPNS_3jit8FunctionENSK_12basic_stringIcNSK_11ch",
+        "ZN5torch6class_IN2at6native7xnnpack24TransposeConv2dOpContextEE12defineMethodIZNS3_L26TORCH_LIBRARY_init_xnnpackERNS_7LibraryEE3$_5EEPNS_3jit8FunctionENSt6__ndk112basic_stringIcNSD_11char_traitsIcEENSD_9allocatorIcEEEET_SJ_St16initializer_listINS_3argEEEUlRNSD_6vectorIN3c106IValueENSH_ISQ_EEEEE_",
+        "ZN5torch6class_IN2at6native7xnnpack24TransposeConv2dOpContextEE12defineMethodIZNS5_10def_pickleIZNS3_L26TORCH_LIBRARY_init_xnnpackERNS_7LibraryEE3$_5ZNS3_L26TORCH_LIBRARY_init_xnnpackES9_E3$_4EERS5_OT_OT0_EUlN3c1014tagged_capsuleIS4_EENSt6__ndk15tupleIJNS1_6TensorENSK_8optionalISM_EENSK_6vectorIlNSK_9allocatorIlEEEESS_SS_SS_lNSN_INSH_6ScalarEEESU_E",
+        "ZN5torch6class_IN4bolt2nn13BoltNNBackendEE12defineMethodIZNS4_3defIJEEERS4_NS_6detail5typesIvJDpT_EEENSt6__ndk112basic_stringIcNSD_11char_traitsIcEENSD_9allocatorIcEEEESt16initializer_listINS_3argEEEUlN3c1014tagged_capsuleIS3_EEE_EEPNS_3jit8FunctionESJ_T_SJ_SM_EUlRNSD_6vectorINSN_6IValueENSH_ISW_EEEEE_",
+        "ZN6nimble4util11LightTensorC1EN10executorch7runtime7etensor6TensorEbE3$_0",
+        "[EVENT] HexagonStart",
+        "[EVENT] HexagonStop",
+        "[EVENT] {}: Hexagon ref count changed from {} to {}",
+        "arvr/libraries/object_tracking/ofi/resources/class_keyboard/executorch_non_lowered_server_model.pte",
+        "available( weight_contig, bias, output_min, output_max)\"\" CHECK FAILED at \"buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/Linear.cpp\"",
+        "b.scalar_type() == torch_to_executorch_scalar_type(a.options().dtype())",
+        "boltnn",
+        "boltnn_initialize_error",
+        "boltnn_input_scales",
+        "boltnn_parse_error",
+        "buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/quantized/cpu/XnnpackUtils.cpp",
+        "buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/AveragePooling.cpp",
+        "buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/Convolution.cpp",
+        "buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/Init.cpp",
+        "buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/Linear.cpp",
+        "buck-out/v2/art/fbsource/arvr/libraries/visioninterface/products/common/__tracker_no_eye_prod_torch_ops_template_registration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/RegisterOpContextClass.cpp",
+        "countImages <= bolt::hexagon_cv::kMaxHarrisImages",
+        "detection_torchscript_boltnn_qnn_lite_final.pt",
+        "dpe_encoder_image_backbone_boltnn_delegate",
+        "dpr_torchscript_boltnn_lite_final.pt",
+        "dpr_torchscript_boltnn_qnn_lite_final.pt",
+        "egistration__/85e90a79a4062fb1/out/aten/src/ATen/native/xnnpack/Convolution.cpp\"",
+        "environment_classifier_v{}_boltnn_int8.ptl",
+        "etz0N10executorch9extension4ptez19DeflateDecompressorE",
+        "executorch::HexagonRpcMemory",
+        "executorch::runtime::isRealHBBF16Type(t.scalar_type())",
+        "executorch::runtime::isRealHBF16Type(t.scalar_type())",
+        "executorch::runtime::tensor_is_realhbf16_type(out)",
+        "executorch_prim::add.Scalar",
+        "executorch_prim::ceil.Scalar",
+        "executorch_prim::eq.Scalar"
       ]
     },
     {
@@ -4225,6 +4685,36 @@
       ],
       "selected_functions": [
         {
+          "address": 521168,
+          "size": 100,
+          "symbol": "createControllerTrackingFbs"
+        },
+        {
+          "address": 542084,
+          "size": 100,
+          "symbol": "createInputInjectionFbs"
+        },
+        {
+          "address": 629576,
+          "size": 168,
+          "symbol": "createControllerInputFbs"
+        },
+        {
+          "address": 629744,
+          "size": 216,
+          "symbol": "destroyControllerInputFbs"
+        },
+        {
+          "address": 665232,
+          "size": 356,
+          "symbol": "createControllersFbs"
+        },
+        {
+          "address": 665588,
+          "size": 176,
+          "symbol": "destroyControllersFbs"
+        },
+        {
           "address": 736696,
           "size": 308,
           "symbol": "createHandTrackerFbs"
@@ -4233,9 +4723,55 @@
           "address": 737004,
           "size": 152,
           "symbol": "destroyHandTrackerFbs"
+        },
+        {
+          "address": 885968,
+          "size": 100,
+          "symbol": "createTrackingInjectionManagerFbs"
+        },
+        {
+          "address": 886068,
+          "size": 88,
+          "symbol": "destroyTrackingInjectionManagerFbs"
         }
       ],
       "target_disassembly": [
+        {
+          "address": 521168,
+          "size": 100,
+          "symbol": "createControllerTrackingFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n000000000007f3d0 <createControllerTrackingFbs@@Base>:\n   7f3d0:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   7f3d4:\tf9000bf3 \tstr\tx19, [sp, #16]\n   7f3d8:\t910003fd \tmov\tx29, sp\n   7f3dc:\t7100041f \tcmp\tw0, #0x1\n   7f3e0:\t540000c1 \tb.ne\t7f3f8 <createControllerTrackingFbs@@Base+0x28>  // b.any\n   7f3e4:\t52804a00 \tmov\tw0, #0x250                 \t// #592\n   7f3e8:\t9402c01a \tbl\t12f450 <operator new(unsigned long)@plt>\n   7f3ec:\taa0003f3 \tmov\tx19, x0\n   7f3f0:\t94000011 \tbl\t7f434 <createControllerTrackingFbs@@Base+0x64>\n   7f3f4:\t1400000c \tb\t7f424 <createControllerTrackingFbs@@Base+0x54>\n   7f3f8:\t2a0003e5 \tmov\tw5, w0\n   7f3fc:\td503201f \tnop\n   7f400:\t30d4f202 \tadr\tx2, 29241 <createActivityMonitorControlFbs@@Base-0x45e07>\n   7f404:\td0fffd43 \tadrp\tx3, 29000 <createActivityMonitorControlFbs@@Base-0x46048>\n   7f408:\t9130d863 \tadd\tx3, x3, #0xc36\n   7f40c:\tb0fffd44 \tadrp\tx4, 28000 <createActivityMonitorControlFbs@@Base-0x47048>\n   7f410:\t91387884 \tadd\tx4, x4, #0xe1e\n   7f414:\t52800200 \tmov\tw0, #0x10                  \t// #16\n   7f418:\t528000c1 \tmov\tw1, #0x6                   \t// #6\n   7f41c:\t9402c099 \tbl\t12f680 <__android_log_buf_print@plt>\n   7f420:\taa1f03f3 \tmov\tx19, xzr\n   7f424:\taa1303e0 \tmov\tx0, x19\n   7f428:\tf9400bf3 \tldr\tx19, [sp, #16]\n   7f42c:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   7f430:\td65f03c0 \tret\n"
+        },
+        {
+          "address": 542084,
+          "size": 100,
+          "symbol": "createInputInjectionFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n0000000000084584 <createInputInjectionFbs@@Base>:\n   84584:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   84588:\tf9000bf3 \tstr\tx19, [sp, #16]\n   8458c:\t910003fd \tmov\tx29, sp\n   84590:\t7100041f \tcmp\tw0, #0x1\n   84594:\t540000c1 \tb.ne\t845ac <createInputInjectionFbs@@Base+0x28>  // b.any\n   84598:\t52803c00 \tmov\tw0, #0x1e0                 \t// #480\n   8459c:\t9402abad \tbl\t12f450 <operator new(unsigned long)@plt>\n   845a0:\taa0003f3 \tmov\tx19, x0\n   845a4:\t94000011 \tbl\t845e8 <createInputInjectionFbs@@Base+0x64>\n   845a8:\t1400000c \tb\t845d8 <createInputInjectionFbs@@Base+0x54>\n   845ac:\t2a0003e5 \tmov\tw5, w0\n   845b0:\td503201f \tnop\n   845b4:\t30d26462 \tadr\tx2, 29241 <createActivityMonitorControlFbs@@Base-0x45e07>\n   845b8:\tb0fffd23 \tadrp\tx3, 29000 <createActivityMonitorControlFbs@@Base-0x46048>\n   845bc:\t9130d863 \tadd\tx3, x3, #0xc36\n   845c0:\td0fffd24 \tadrp\tx4, 2a000 <createActivityMonitorControlFbs@@Base-0x45048>\n   845c4:\t91037884 \tadd\tx4, x4, #0xde\n   845c8:\t52800200 \tmov\tw0, #0x10                  \t// #16\n   845cc:\t528000c1 \tmov\tw1, #0x6                   \t// #6\n   845d0:\t9402ac2c \tbl\t12f680 <__android_log_buf_print@plt>\n   845d4:\taa1f03f3 \tmov\tx19, xzr\n   845d8:\taa1303e0 \tmov\tx0, x19\n   845dc:\tf9400bf3 \tldr\tx19, [sp, #16]\n   845e0:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   845e4:\td65f03c0 \tret\n"
+        },
+        {
+          "address": 629576,
+          "size": 168,
+          "symbol": "createControllerInputFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n0000000000099b48 <createControllerInputFbs@@Base>:\n   99b48:\taa0003e4 \tmov\tx4, x0\n   99b4c:\tf10fa01f \tcmp\tx0, #0x3e8\n   99b50:\t5400006b \tb.lt\t99b5c <createControllerInputFbs@@Base+0x14>  // b.tstop\n   99b54:\taa0403e0 \tmov\tx0, x4\n   99b58:\t1400005c \tb\t99cc8 <destroyControllerInputFbs@@Base+0xd8>\n   99b5c:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   99b60:\tf9000bf3 \tstr\tx19, [sp, #16]\n   99b64:\t910003fd \tmov\tx29, sp\n   99b68:\tf100049f \tcmp\tx4, #0x1\n   99b6c:\t54000241 \tb.ne\t99bb4 <createControllerInputFbs@@Base+0x6c>  // b.any\n   99b70:\t52801d00 \tmov\tw0, #0xe8                  \t// #232\n   99b74:\t94025637 \tbl\t12f450 <operator new(unsigned long)@plt>\n   99b78:\t2a1f03e1 \tmov\tw1, wzr\n   99b7c:\t52801d02 \tmov\tw2, #0xe8                  \t// #232\n   99b80:\taa0003f3 \tmov\tx19, x0\n   99b84:\t940254e3 \tbl\t12ef10 <memset@plt>\n   99b88:\td0000508 \tadrp\tx8, 13b000 <log10@plt+0xb130>\n   99b8c:\t91002260 \tadd\tx0, x19, #0x8\n   99b90:\tf9411d08 \tldr\tx8, [x8, #568]\n   99b94:\t91004108 \tadd\tx8, x8, #0x10\n   99b98:\tf9000268 \tstr\tx8, [x19]\n   99b9c:\t940000dd \tbl\t99f10 <destroyControllerInputFbs@@Base+0x320>\n   99ba0:\td503201f \tnop\n   99ba4:\t104c6068 \tadr\tx8, 1327b0 <log10@plt+0x28e0>\n   99ba8:\t91004108 \tadd\tx8, x8, #0x10\n   99bac:\tf9000268 \tstr\tx8, [x19]\n   99bb0:\t1400000c \tb\t99be0 <createControllerInputFbs@@Base+0x98>\n   99bb4:\td503201f \tnop\n   99bb8:\t70c6af61 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   99bbc:\tf0fffc82 \tadrp\tx2, 2c000 <createActivityMonitorControlFbs@@Base-0x43048>\n   99bc0:\t9118ec42 \tadd\tx2, x2, #0x63b\n   99bc4:\tb0fffc63 \tadrp\tx3, 26000 <createActivityMonitorControlFbs@@Base-0x49048>\n   99bc8:\t91347063 \tadd\tx3, x3, #0xd1c\n   99bcc:\t528000c0 \tmov\tw0, #0x6                   \t// #6\n   99bd0:\t52800025 \tmov\tw5, #0x1                   \t// #1\n   99bd4:\t52800026 \tmov\tw6, #0x1                   \t// #1\n   99bd8:\t940256ea \tbl\t12f780 <__android_log_print@plt>\n   99bdc:\taa1f03f3 \tmov\tx19, xzr\n   99be0:\taa1303e0 \tmov\tx0, x19\n   99be4:\tf9400bf3 \tldr\tx19, [sp, #16]\n   99be8:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   99bec:\td65f03c0 \tret\n"
+        },
+        {
+          "address": 629744,
+          "size": 216,
+          "symbol": "destroyControllerInputFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n0000000000099bf0 <destroyControllerInputFbs@@Base>:\n   99bf0:\ta9bf7bfd \tstp\tx29, x30, [sp, #-16]!\n   99bf4:\t910003fd \tmov\tx29, sp\n   99bf8:\taa0003e4 \tmov\tx4, x0\n   99bfc:\tf10fa01f \tcmp\tx0, #0x3e8\n   99c00:\t5400018b \tb.lt\t99c30 <destroyControllerInputFbs@@Base+0x40>  // b.tstop\n   99c04:\tb4000281 \tcbz\tx1, 99c54 <destroyControllerInputFbs@@Base+0x64>\n   99c08:\td10fc488 \tsub\tx8, x4, #0x3f1\n   99c0c:\tb100211f \tcmn\tx8, #0x8\n   99c10:\t54000269 \tb.ls\t99c5c <destroyControllerInputFbs@@Base+0x6c>  // b.plast\n   99c14:\td10fa888 \tsub\tx8, x4, #0x3ea\n   99c18:\tf1001d1f \tcmp\tx8, #0x7\n   99c1c:\t54000342 \tb.cs\t99c84 <destroyControllerInputFbs@@Base+0x94>  // b.hs, b.nlast\n   99c20:\tb0fffca9 \tadrp\tx9, 2e000 <createActivityMonitorControlFbs@@Base-0x41048>\n   99c24:\t910c0129 \tadd\tx9, x9, #0x300\n   99c28:\tf8687928 \tldr\tx8, [x9, x8, lsl #3]\n   99c2c:\t14000005 \tb\t99c40 <destroyControllerInputFbs@@Base+0x50>\n   99c30:\tb4000121 \tcbz\tx1, 99c54 <destroyControllerInputFbs@@Base+0x64>\n   99c34:\tf100049f \tcmp\tx4, #0x1\n   99c38:\t54000341 \tb.ne\t99ca0 <destroyControllerInputFbs@@Base+0xb0>  // b.any\n   99c3c:\t52800088 \tmov\tw8, #0x4                   \t// #4\n   99c40:\tf9400029 \tldr\tx9, [x1]\n   99c44:\tf8687922 \tldr\tx2, [x9, x8, lsl #3]\n   99c48:\taa0103e0 \tmov\tx0, x1\n   99c4c:\ta8c17bfd \tldp\tx29, x30, [sp], #16\n   99c50:\td61f0040 \tbr\tx2\n   99c54:\ta8c17bfd \tldp\tx29, x30, [sp], #16\n   99c58:\td65f03c0 \tret\n   99c5c:\td503201f \tnop\n   99c60:\t70c6aa21 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   99c64:\tf0fffc82 \tadrp\tx2, 2c000 <createActivityMonitorControlFbs@@Base-0x43048>\n   99c68:\t9118ec42 \tadd\tx2, x2, #0x63b\n   99c6c:\t90fffc83 \tadrp\tx3, 29000 <createActivityMonitorControlFbs@@Base-0x46048>\n   99c70:\t910b4063 \tadd\tx3, x3, #0x2d0\n   99c74:\taa1f03e0 \tmov\tx0, xzr\n   99c78:\t52807e05 \tmov\tw5, #0x3f0                 \t// #1008\n   99c7c:\t52807d46 \tmov\tw6, #0x3ea                 \t// #1002\n   99c80:\t940256ec \tbl\t12f830 <__android_log_assert@plt>\n   99c84:\td503201f \tnop\n   99c88:\t70c6a8e1 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   99c8c:\t90fffc82 \tadrp\tx2, 29000 <createActivityMonitorControlFbs@@Base-0x46048>\n   99c90:\t910bb042 \tadd\tx2, x2, #0x2ec\n   99c94:\taa1f03e0 \tmov\tx0, xzr\n   99c98:\taa0403e3 \tmov\tx3, x4\n   99c9c:\t940256e5 \tbl\t12f830 <__android_log_assert@plt>\n   99ca0:\td503201f \tnop\n   99ca4:\t70c6a801 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   99ca8:\tf0fffc82 \tadrp\tx2, 2c000 <createActivityMonitorControlFbs@@Base-0x43048>\n   99cac:\t9118ec42 \tadd\tx2, x2, #0x63b\n   99cb0:\tb0fffc63 \tadrp\tx3, 26000 <createActivityMonitorControlFbs@@Base-0x49048>\n   99cb4:\t91347063 \tadd\tx3, x3, #0xd1c\n   99cb8:\taa1f03e0 \tmov\tx0, xzr\n   99cbc:\t52800025 \tmov\tw5, #0x1                   \t// #1\n   99cc0:\t52800026 \tmov\tw6, #0x1                   \t// #1\n   99cc4:\t940256db \tbl\t12f830 <__android_log_assert@plt>\n"
+        },
+        {
+          "address": 665232,
+          "size": 356,
+          "symbol": "createControllersFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000000a2690 <createControllersFbs@@Base>:\n   a2690:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   a2694:\ta9014ff4 \tstp\tx20, x19, [sp, #16]\n   a2698:\t910003fd \tmov\tx29, sp\n   a269c:\taa0003e4 \tmov\tx4, x0\n   a26a0:\td1002008 \tsub\tx8, x0, #0x8\n   a26a4:\tb1001d1f \tcmn\tx8, #0x7\n   a26a8:\t54000188 \tb.hi\ta26d8 <createControllersFbs@@Base+0x48>  // b.pmore\n   a26ac:\td503201f \tnop\n   a26b0:\t70c257a1 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   a26b4:\td0fffc42 \tadrp\tx2, 2c000 <createActivityMonitorControlFbs@@Base-0x43048>\n   a26b8:\t9118ec42 \tadd\tx2, x2, #0x63b\n   a26bc:\t528000c0 \tmov\tw0, #0x6                   \t// #6\n   a26c0:\taa0103e3 \tmov\tx3, x1\n   a26c4:\t528000e5 \tmov\tw5, #0x7                   \t// #7\n   a26c8:\t52800046 \tmov\tw6, #0x2                   \t// #2\n   a26cc:\t9402342d \tbl\t12f780 <__android_log_print@plt>\n   a26d0:\taa1f03f3 \tmov\tx19, xzr\n   a26d4:\t14000044 \tb\ta27e4 <createControllersFbs@@Base+0x154>\n   a26d8:\td1000888 \tsub\tx8, x4, #0x2\n   a26dc:\tf100151f \tcmp\tx8, #0x5\n   a26e0:\t540001e8 \tb.hi\ta271c <createControllersFbs@@Base+0x8c>  // b.pmore\n   a26e4:\td503201f \tnop\n   a26e8:\t10c5e289 \tadr\tx9, 2e338 <createActivityMonitorControlFbs@@Base-0x40d10>\n   a26ec:\t1000008a \tadr\tx10, a26fc <createControllersFbs@@Base+0x6c>\n   a26f0:\t3868692b \tldrb\tw11, [x9, x8]\n   a26f4:\t8b0b094a \tadd\tx10, x10, x11, lsl #2\n   a26f8:\td61f0140 \tbr\tx10\n   a26fc:\t52802400 \tmov\tw0, #0x120                 \t// #288\n   a2700:\t94023354 \tbl\t12f450 <operator new(unsigned long)@plt>\n   a2704:\taa0003f3 \tmov\tx19, x0\n   a2708:\t91002000 \tadd\tx0, x0, #0x8\n   a270c:\t94000081 \tbl\ta2910 <destroyControllersFbs@@Base+0x11c>\n   a2710:\td503201f \tnop\n   a2714:\t10480ee8 \tadr\tx8, 1328f0 <log10@plt+0x2a20>\n   a2718:\t14000031 \tb\ta27dc <createControllersFbs@@Base+0x14c>\n   a271c:\td503201f \tnop\n   a2720:\t70c25421 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   a2724:\tb0fffc22 \tadrp\tx2, 27000 <createActivityMonitorControlFbs@@Base-0x48048>\n   a2728:\t911eac42 \tadd\tx2, x2, #0x7ab\n   a272c:\t528000c0 \tmov\tw0, #0x6                   \t// #6\n   a2730:\taa0403e3 \tmov\tx3, x4\n   a2734:\t94023413 \tbl\t12f780 <__android_log_print@plt>\n   a2738:\t17ffffe6 \tb\ta26d0 <createControllersFbs@@Base+0x40>\n   a273c:\t52802500 \tmov\tw0, #0x128                 \t// #296\n   a2740:\t94023344 \tbl\t12f450 <operator new(unsigned long)@plt>\n   a2744:\taa0003f3 \tmov\tx19, x0\n   a2748:\t91002000 \tadd\tx0, x0, #0x8\n   a274c:\t94000071 \tbl\ta2910 <destroyControllersFbs@@Base+0x11c>\n   a2750:\td503201f \tnop\n   a2754:\t10480668 \tadr\tx8, 132820 <log10@plt+0x2950>\n   a2758:\t91004109 \tadd\tx9, x8, #0x10\n   a275c:\t91010108 \tadd\tx8, x8, #0x40\n   a2760:\tf9000269 \tstr\tx9, [x19]\n   a2764:\tf9009268 \tstr\tx8, [x19, #288]\n   a2768:\t1400001f \tb\ta27e4 <createControllersFbs@@Base+0x154>\n   a276c:\t52802500 \tmov\tw0, #0x128                 \t// #296\n   a2770:\t94023338 \tbl\t12f450 <operator new(unsigned long)@plt>\n   a2774:\taa0003f4 \tmov\tx20, x0\n   a2778:\t91002000 \tadd\tx0, x0, #0x8\n   a277c:\t94000065 \tbl\ta2910 <destroyControllersFbs@@Base+0x11c>\n   a2780:\tb00004c8 \tadrp\tx8, 13b000 <log10@plt+0xb130>\n   a2784:\t91048293 \tadd\tx19, x20, #0x120\n   a2788:\tf9416508 \tldr\tx8, [x8, #712]\n   a278c:\t91004109 \tadd\tx9, x8, #0x10\n   a2790:\t91010108 \tadd\tx8, x8, #0x40\n   a2794:\tf9000289 \tstr\tx9, [x20]\n   a2798:\tf9009288 \tstr\tx8, [x20, #288]\n   a279c:\t14000012 \tb\ta27e4 <createControllersFbs@@Base+0x154>\n   a27a0:\t52802400 \tmov\tw0, #0x120                 \t// #288\n   a27a4:\t9402332b \tbl\t12f450 <operator new(unsigned long)@plt>\n   a27a8:\taa0003f3 \tmov\tx19, x0\n   a27ac:\t91002000 \tadd\tx0, x0, #0x8\n   a27b0:\t94000058 \tbl\ta2910 <destroyControllersFbs@@Base+0x11c>\n   a27b4:\td503201f \tnop\n   a27b8:\t10480b88 \tadr\tx8, 132928 <log10@plt+0x2a58>\n   a27bc:\t14000008 \tb\ta27dc <createControllersFbs@@Base+0x14c>\n   a27c0:\t52802400 \tmov\tw0, #0x120                 \t// #288\n   a27c4:\t94023323 \tbl\t12f450 <operator new(unsigned long)@plt>\n   a27c8:\taa0003f3 \tmov\tx19, x0\n   a27cc:\t91002000 \tadd\tx0, x0, #0x8\n   a27d0:\t94000050 \tbl\ta2910 <destroyControllersFbs@@Base+0x11c>\n   a27d4:\td503201f \tnop\n   a27d8:\t10480c48 \tadr\tx8, 132960 <log10@plt+0x2a90>\n   a27dc:\t91004108 \tadd\tx8, x8, #0x10\n   a27e0:\tf9000268 \tstr\tx8, [x19]\n   a27e4:\taa1303e0 \tmov\tx0, x19\n   a27e8:\ta9414ff4 \tldp\tx20, x19, [sp, #16]\n   a27ec:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   a27f0:\td65f03c0 \tret\n"
+        },
+        {
+          "address": 665588,
+          "size": 176,
+          "symbol": "destroyControllersFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000000a27f4 <destroyControllersFbs@@Base>:\n   a27f4:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   a27f8:\tf9000bf3 \tstr\tx19, [sp, #16]\n   a27fc:\t910003fd \tmov\tx29, sp\n   a2800:\tb40002c1 \tcbz\tx1, a2858 <destroyControllersFbs@@Base+0x64>\n   a2804:\taa0003e4 \tmov\tx4, x0\n   a2808:\td1002008 \tsub\tx8, x0, #0x8\n   a280c:\tb1001d1f \tcmn\tx8, #0x7\n   a2810:\t540002a9 \tb.ls\ta2864 <destroyControllersFbs@@Base+0x70>  // b.plast\n   a2814:\t52800108 \tmov\tw8, #0x8                   \t// #8\n   a2818:\td1001089 \tsub\tx9, x4, #0x4\n   a281c:\taa0103f3 \tmov\tx19, x1\n   a2820:\tf100113f \tcmp\tx9, #0x4\n   a2824:\t540000e3 \tb.cc\ta2840 <destroyControllersFbs@@Base+0x4c>  // b.lo, b.ul, b.last\n   a2828:\tf100089f \tcmp\tx4, #0x2\n   a282c:\t540000a0 \tb.eq\ta2840 <destroyControllersFbs@@Base+0x4c>  // b.none\n   a2830:\tf1000c9f \tcmp\tx4, #0x3\n   a2834:\t540002a1 \tb.ne\ta2888 <destroyControllersFbs@@Base+0x94>  // b.any\n   a2838:\td1048033 \tsub\tx19, x1, #0x120\n   a283c:\t928022e8 \tmov\tx8, #0xfffffffffffffee8    \t// #-280\n   a2840:\t8b080020 \tadd\tx0, x1, x8\n   a2844:\t94000a95 \tbl\ta5298 <destroyControllersFbs@@Base+0x2aa4>\n   a2848:\taa1303e0 \tmov\tx0, x19\n   a284c:\tf9400bf3 \tldr\tx19, [sp, #16]\n   a2850:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   a2854:\t14023377 \tb\t12f630 <operator delete(void*)@plt>\n   a2858:\tf9400bf3 \tldr\tx19, [sp, #16]\n   a285c:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   a2860:\td65f03c0 \tret\n   a2864:\td503201f \tnop\n   a2868:\t70c249e1 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   a286c:\td0fffc42 \tadrp\tx2, 2c000 <createActivityMonitorControlFbs@@Base-0x43048>\n   a2870:\t9118ec42 \tadd\tx2, x2, #0x63b\n   a2874:\taa1f03e0 \tmov\tx0, xzr\n   a2878:\taa0103e3 \tmov\tx3, x1\n   a287c:\t528000e5 \tmov\tw5, #0x7                   \t// #7\n   a2880:\t52800046 \tmov\tw6, #0x2                   \t// #2\n   a2884:\t940233eb \tbl\t12f830 <__android_log_assert@plt>\n   a2888:\td503201f \tnop\n   a288c:\t70c248c1 \tadr\tx1, 271a7 <createActivityMonitorControlFbs@@Base-0x47ea1>\n   a2890:\tf0fffc42 \tadrp\tx2, 2d000 <createActivityMonitorControlFbs@@Base-0x42048>\n   a2894:\t91088042 \tadd\tx2, x2, #0x220\n   a2898:\taa1f03e0 \tmov\tx0, xzr\n   a289c:\taa0403e3 \tmov\tx3, x4\n   a28a0:\t940233e4 \tbl\t12f830 <__android_log_assert@plt>\n"
+        },
         {
           "address": 736696,
           "size": 308,
@@ -4247,6 +4783,18 @@
           "size": 152,
           "symbol": "destroyHandTrackerFbs",
           "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000000b3eec <destroyHandTrackerFbs@@Base>:\n   b3eec:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   b3ef0:\tf9000bf3 \tstr\tx19, [sp, #16]\n   b3ef4:\t910003fd \tmov\tx29, sp\n   b3ef8:\tb40001e1 \tcbz\tx1, b3f34 <destroyHandTrackerFbs@@Base+0x48>\n   b3efc:\taa0003e4 \tmov\tx4, x0\n   b3f00:\td1003c08 \tsub\tx8, x0, #0xf\n   b3f04:\tb100151f \tcmn\tx8, #0x5\n   b3f08:\t540001c9 \tb.ls\tb3f40 <destroyHandTrackerFbs@@Base+0x54>  // b.plast\n   b3f0c:\td1002c88 \tsub\tx8, x4, #0xb\n   b3f10:\tf100111f \tcmp\tx8, #0x4\n   b3f14:\t540002a2 \tb.cs\tb3f68 <destroyHandTrackerFbs@@Base+0x7c>  // b.hs, b.nlast\n   b3f18:\t91004020 \tadd\tx0, x1, #0x10\n   b3f1c:\taa0103f3 \tmov\tx19, x1\n   b3f20:\t97ffff96 \tbl\tb3d78 <destroyFaceTrackerFbs@@Base+0x3448>\n   b3f24:\taa1303e0 \tmov\tx0, x19\n   b3f28:\tf9400bf3 \tldr\tx19, [sp, #16]\n   b3f2c:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   b3f30:\t1401edc0 \tb\t12f630 <operator delete(void*)@plt>\n   b3f34:\tf9400bf3 \tldr\tx19, [sp, #16]\n   b3f38:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   b3f3c:\td65f03c0 \tret\n   b3f40:\t90fffbc1 \tadrp\tx1, 2b000 <createActivityMonitorControlFbs@@Base-0x44048>\n   b3f44:\t91049c21 \tadd\tx1, x1, #0x127\n   b3f48:\t90fffba2 \tadrp\tx2, 27000 <createActivityMonitorControlFbs@@Base-0x48048>\n   b3f4c:\t912fa842 \tadd\tx2, x2, #0xbea\n   b3f50:\tf0fffba3 \tadrp\tx3, 2a000 <createActivityMonitorControlFbs@@Base-0x45048>\n   b3f54:\t9135d463 \tadd\tx3, x3, #0xd75\n   b3f58:\taa1f03e0 \tmov\tx0, xzr\n   b3f5c:\t528001c5 \tmov\tw5, #0xe                   \t// #14\n   b3f60:\t52800166 \tmov\tw6, #0xb                   \t// #11\n   b3f64:\t9401ee33 \tbl\t12f830 <__android_log_assert@plt>\n   b3f68:\t90fffbc1 \tadrp\tx1, 2b000 <createActivityMonitorControlFbs@@Base-0x44048>\n   b3f6c:\t91049c21 \tadd\tx1, x1, #0x127\n   b3f70:\tb0fffba2 \tadrp\tx2, 28000 <createActivityMonitorControlFbs@@Base-0x47048>\n   b3f74:\t91100042 \tadd\tx2, x2, #0x400\n   b3f78:\taa1f03e0 \tmov\tx0, xzr\n   b3f7c:\taa0403e3 \tmov\tx3, x4\n   b3f80:\t9401ee2c \tbl\t12f830 <__android_log_assert@plt>\n"
+        },
+        {
+          "address": 885968,
+          "size": 100,
+          "symbol": "createTrackingInjectionManagerFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000000d84d0 <createTrackingInjectionManagerFbs@@Base>:\n   d84d0:\ta9be7bfd \tstp\tx29, x30, [sp, #-32]!\n   d84d4:\tf9000bf3 \tstr\tx19, [sp, #16]\n   d84d8:\t910003fd \tmov\tx29, sp\n   d84dc:\tf100041f \tcmp\tx0, #0x1\n   d84e0:\t540000c1 \tb.ne\td84f8 <createTrackingInjectionManagerFbs@@Base+0x28>  // b.any\n   d84e4:\t52800300 \tmov\tw0, #0x18                  \t// #24\n   d84e8:\t94015bda \tbl\t12f450 <operator new(unsigned long)@plt>\n   d84ec:\taa0003f3 \tmov\tx19, x0\n   d84f0:\t94000027 \tbl\td858c <destroyTrackingInjectionManagerFbs@@Base+0x58>\n   d84f4:\t1400000c \tb\td8524 <createTrackingInjectionManagerFbs@@Base+0x54>\n   d84f8:\td503201f \tnop\n   d84fc:\t30a96dc1 \tadr\tx1, 2b2b5 <createActivityMonitorControlFbs@@Base-0x43d93>\n   d8500:\taa0003e4 \tmov\tx4, x0\n   d8504:\tf0fffa62 \tadrp\tx2, 27000 <createActivityMonitorControlFbs@@Base-0x48048>\n   d8508:\t912fa842 \tadd\tx2, x2, #0xbea\n   d850c:\t528000c0 \tmov\tw0, #0x6                   \t// #6\n   d8510:\taa0103e3 \tmov\tx3, x1\n   d8514:\t52800025 \tmov\tw5, #0x1                   \t// #1\n   d8518:\t52800026 \tmov\tw6, #0x1                   \t// #1\n   d851c:\t94015c99 \tbl\t12f780 <__android_log_print@plt>\n   d8520:\taa1f03f3 \tmov\tx19, xzr\n   d8524:\taa1303e0 \tmov\tx0, x19\n   d8528:\tf9400bf3 \tldr\tx19, [sp, #16]\n   d852c:\ta8c27bfd \tldp\tx29, x30, [sp], #32\n   d8530:\td65f03c0 \tret\n"
+        },
+        {
+          "address": 886068,
+          "size": 88,
+          "symbol": "destroyTrackingInjectionManagerFbs",
+          "assembly": "\n<original-elf>:     file format elf64-littleaarch64\n\n\nDisassembly of section .text:\n\n00000000000d8534 <destroyTrackingInjectionManagerFbs@@Base>:\n   d8534:\ta9bf7bfd \tstp\tx29, x30, [sp, #-16]!\n   d8538:\t910003fd \tmov\tx29, sp\n   d853c:\tb4000121 \tcbz\tx1, d8560 <destroyTrackingInjectionManagerFbs@@Base+0x2c>\n   d8540:\taa0003e4 \tmov\tx4, x0\n   d8544:\tf100041f \tcmp\tx0, #0x1\n   d8548:\t54000101 \tb.ne\td8568 <destroyTrackingInjectionManagerFbs@@Base+0x34>  // b.any\n   d854c:\tf9400028 \tldr\tx8, [x1]\n   d8550:\tf9400d02 \tldr\tx2, [x8, #24]\n   d8554:\taa0103e0 \tmov\tx0, x1\n   d8558:\ta8c17bfd \tldp\tx29, x30, [sp], #16\n   d855c:\td61f0040 \tbr\tx2\n   d8560:\ta8c17bfd \tldp\tx29, x30, [sp], #16\n   d8564:\td65f03c0 \tret\n   d8568:\td503201f \tnop\n   d856c:\t30a96a41 \tadr\tx1, 2b2b5 <createActivityMonitorControlFbs@@Base-0x43d93>\n   d8570:\tf0fffa62 \tadrp\tx2, 27000 <createActivityMonitorControlFbs@@Base-0x48048>\n   d8574:\t912fa842 \tadd\tx2, x2, #0xbea\n   d8578:\taa1f03e0 \tmov\tx0, xzr\n   d857c:\taa0103e3 \tmov\tx3, x1\n   d8580:\t52800025 \tmov\tw5, #0x1                   \t// #1\n   d8584:\t52800026 \tmov\tw6, #0x1                   \t// #1\n   d8588:\t94015caa \tbl\t12f830 <__android_log_assert@plt>\n"
         }
       ],
       "dependency_strings": [
@@ -4449,7 +4997,8 @@
         "tracking_clients.interpolation.invalid_timing",
         "void OVR::OS::storage::NonTrivialStorage<std::pair<OSSDK::Sensors::v3::DeviceId, horizonos::memorybroker::SpecifierType>, 5>::setSize(std::size_t) [T = std::pair<OSSDK::Sensors::v3::DeviceId, horizonos::memorybroker::SpecifierType>, Capacity = 5]",
         "{}: Handedness for prediction {} is neither Left({}) nor Right({})."
-      ]
+      ],
+      "backend_strings": []
     },
     {
       "partition": "system_ext",
@@ -5122,7 +5671,8 @@
         "libtrackingproxy_jni.so",
         "libtrackingserviceclients.so",
         "registerTrackingProxyServices"
-      ]
+      ],
+      "backend_strings": []
     }
   ],
   "models": [
@@ -5132,8 +5682,309 @@
       "sha256": "10282731f703669daa10040612a9d48a8cb133c17050da0c1aabbc41dc287ea8",
       "size": 196371,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "85a968616e644d6f64656c83af666972"
+      "format": "MSGPACK_STRUCTURAL",
+      "magic_hex": "85a968616e644d6f64656c83af666972",
+      "structure": {
+        "kind": "map",
+        "size": 5,
+        "fields": {
+          "handModel": {
+            "kind": "map",
+            "size": 3,
+            "fields": {
+              "firstChildJoint": 0,
+              "hand": 0,
+              "joints": {
+                "kind": "array",
+                "size": 22,
+                "sample": [
+                  {
+                    "kind": "map",
+                    "size": 5,
+                    "fields": {
+                      "axis": {
+                        "kind": "array",
+                        "size": 3
+                      },
+                      "lowerLimit": -0.7872664625997166,
+                      "name": "THUMB_CMC_FE",
+                      "position": {
+                        "kind": "array",
+                        "size": 3
+                      },
+                      "upperLimit": 1.2872664625997163
+                    }
+                  },
+                  {
+                    "kind": "map",
+                    "size": 5,
+                    "fields": {
+                      "axis": {
+                        "kind": "array",
+                        "size": 3
+                      },
+                      "lowerLimit": -0.6117993877991496,
+                      "name": "THUMB_CMC_AA",
+                      "position": {
+                        "kind": "array",
+                        "size": 3
+                      },
+                      "upperLimit": 0.6117993877991496
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "poseLibrary": {
+            "kind": "array",
+            "size": 433,
+            "sample": [
+              {
+                "kind": "array",
+                "size": 2,
+                "sample": [
+                  "150625114710",
+                  {
+                    "kind": "array",
+                    "size": 22,
+                    "sample": [
+                      -0.072013,
+                      -0.283429
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "array",
+                "size": 2,
+                "sample": [
+                  "150625114729",
+                  {
+                    "kind": "array",
+                    "size": 22,
+                    "sample": [
+                      0.00487448,
+                      -0.332532
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "profilePath": "generic.handData",
+          "skinnedModel": {
+            "kind": "map",
+            "size": 7,
+            "fields": {
+              "Faces": {
+                "kind": "map",
+                "size": 3,
+                "fields": {
+                  "Indices": {
+                    "kind": "array",
+                    "size": 3088,
+                    "sample": [
+                      3,
+                      0
+                    ]
+                  },
+                  "Offsets": {
+                    "kind": "array",
+                    "size": 773,
+                    "sample": [
+                      0,
+                      4
+                    ]
+                  },
+                  "TextureIndices": {
+                    "kind": "array",
+                    "size": 3088,
+                    "sample": [
+                      0,
+                      1
+                    ]
+                  }
+                }
+              },
+              "NumberOfBones": 17,
+              "RestPositions": {
+                "kind": "array",
+                "size": 788,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      20.030170440673828,
+                      16.296916961669922
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      18.21500587463379,
+                      16.588228225708008
+                    ]
+                  }
+                ]
+              },
+              "RestVertexNormals": {
+                "kind": "array",
+                "size": 788,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.2424214631319046,
+                      0.9694689512252808
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.26573771238327026,
+                      0.9619582891464233
+                    ]
+                  }
+                ]
+              },
+              "SkinningOffsets": {
+                "kind": "array",
+                "size": 789,
+                "sample": [
+                  0,
+                  2
+                ]
+              },
+              "SkinningWeights": {
+                "kind": "array",
+                "size": 1437,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      1,
+                      0.7969570159912109
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0,
+                      0.20304299890995026
+                    ]
+                  }
+                ]
+              },
+              "TextureCoordinates": {
+                "kind": "array",
+                "size": 1128,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0.7945899963378906,
+                      0.7529320120811462
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0.7943580150604248,
+                      0.700655996799469
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "specialVertices": {
+            "kind": "map",
+            "size": 8,
+            "fields": {
+              "correspondenceVertices": {
+                "kind": "array",
+                "size": 20,
+                "sample": [
+                  32,
+                  515
+                ]
+              },
+              "fingerPadIndices": {
+                "kind": "array",
+                "size": 5,
+                "sample": [
+                  646,
+                  592
+                ]
+              },
+              "fingerTipIndices": {
+                "kind": "array",
+                "size": 5,
+                "sample": [
+                  662,
+                  601
+                ]
+              },
+              "fingernailPoints": {
+                "kind": "array",
+                "size": 5,
+                "sample": [
+                  663,
+                  602
+                ]
+              },
+              "knuckleIndices": {
+                "kind": "array",
+                "size": 5,
+                "sample": [
+                  301,
+                  87
+                ]
+              },
+              "palmCenterIndex": 260,
+              "palmColliderBaseIndices": {
+                "kind": "array",
+                "size": 5,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0,
+                      0
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      39,
+                      264
+                    ]
+                  }
+                ]
+              },
+              "palmKnucklePoints": {
+                "kind": "array",
+                "size": 5,
+                "sample": [
+                  207,
+                  210
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "partition": "odm",
@@ -5141,8 +5992,203 @@
       "sha256": "b2bbddd2495ce8bad80f25e07cd2ffc630452d09da1bf384d144500e151b7422",
       "size": 187811,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "82a8736b656c65746f6e81a5426f6e65"
+      "format": "MSGPACK_STRUCTURAL",
+      "magic_hex": "82a8736b656c65746f6e81a5426f6e65",
+      "structure": {
+        "kind": "map",
+        "size": 2,
+        "fields": {
+          "skeleton": {
+            "kind": "map",
+            "size": 1,
+            "fields": {
+              "Bones": {
+                "kind": "array",
+                "size": 79,
+                "sample": [
+                  {
+                    "kind": "map",
+                    "size": 7,
+                    "fields": {
+                      "JointType": "Limb",
+                      "Name": "b_l_wrist",
+                      "Parent": 18446744073709551615,
+                      "PreRotation": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "RestState": {
+                        "kind": "map",
+                        "size": 1
+                      },
+                      "RotationOrder": "XYZ",
+                      "TranslationOffset": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  },
+                  {
+                    "kind": "map",
+                    "size": 7,
+                    "fields": {
+                      "JointType": "Locator",
+                      "Name": "l_thumb_cmc_fe_axis_marker",
+                      "Parent": 0,
+                      "PreRotation": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "RestState": {
+                        "kind": "map",
+                        "size": 1
+                      },
+                      "RotationOrder": "XYZ",
+                      "TranslationOffset": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "skinnedmodel": {
+            "kind": "map",
+            "size": 7,
+            "fields": {
+              "Faces": {
+                "kind": "map",
+                "size": 3,
+                "fields": {
+                  "Indices": {
+                    "kind": "array",
+                    "size": 6942,
+                    "sample": [
+                      898,
+                      891
+                    ]
+                  },
+                  "Offsets": {
+                    "kind": "array",
+                    "size": 2315,
+                    "sample": [
+                      0,
+                      3
+                    ]
+                  },
+                  "TextureIndices": {
+                    "kind": "array",
+                    "size": 6942,
+                    "sample": [
+                      239,
+                      238
+                    ]
+                  }
+                }
+              },
+              "NumberOfBones": 79,
+              "RestPositions": {
+                "kind": "array",
+                "size": 1159,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      9.094382286071777,
+                      5.261370658874512
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      9.48988151550293,
+                      4.518161773681641
+                    ]
+                  }
+                ]
+              },
+              "RestVertexNormals": {
+                "kind": "array",
+                "size": 1159,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      -0.5173500180244446,
+                      0.1046874150633812
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      -0.06321944296360016,
+                      -0.6558068990707397
+                    ]
+                  }
+                ]
+              },
+              "SkinningOffsets": {
+                "kind": "array",
+                "size": 1160,
+                "sample": [
+                  0,
+                  1
+                ]
+              },
+              "SkinningWeights": {
+                "kind": "array",
+                "size": 2981,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      7,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      7,
+                      1.0
+                    ]
+                  }
+                ]
+              },
+              "TextureCoordinates": {
+                "kind": "array",
+                "size": 1360,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0.985788881778717,
+                      0.6151136159896851
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0.993375301361084,
+                      0.6113675236701965
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "partition": "odm",
@@ -5150,8 +6196,203 @@
       "sha256": "baef26268d95901b78e7cc22d073685d4aff9b319aeea09a4b75bb5967c52fe8",
       "size": 187811,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "82a8736b656c65746f6e81a5426f6e65"
+      "format": "MSGPACK_STRUCTURAL",
+      "magic_hex": "82a8736b656c65746f6e81a5426f6e65",
+      "structure": {
+        "kind": "map",
+        "size": 2,
+        "fields": {
+          "skeleton": {
+            "kind": "map",
+            "size": 1,
+            "fields": {
+              "Bones": {
+                "kind": "array",
+                "size": 79,
+                "sample": [
+                  {
+                    "kind": "map",
+                    "size": 7,
+                    "fields": {
+                      "JointType": "Limb",
+                      "Name": "b_r_wrist",
+                      "Parent": 18446744073709551615,
+                      "PreRotation": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "RestState": {
+                        "kind": "map",
+                        "size": 1
+                      },
+                      "RotationOrder": "XYZ",
+                      "TranslationOffset": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  },
+                  {
+                    "kind": "map",
+                    "size": 7,
+                    "fields": {
+                      "JointType": "Locator",
+                      "Name": "r_thumb_cmc_fe_axis_marker",
+                      "Parent": 0,
+                      "PreRotation": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "RestState": {
+                        "kind": "map",
+                        "size": 1
+                      },
+                      "RotationOrder": "XYZ",
+                      "TranslationOffset": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "skinnedmodel": {
+            "kind": "map",
+            "size": 7,
+            "fields": {
+              "Faces": {
+                "kind": "map",
+                "size": 3,
+                "fields": {
+                  "Indices": {
+                    "kind": "array",
+                    "size": 6942,
+                    "sample": [
+                      898,
+                      19
+                    ]
+                  },
+                  "Offsets": {
+                    "kind": "array",
+                    "size": 2315,
+                    "sample": [
+                      0,
+                      3
+                    ]
+                  },
+                  "TextureIndices": {
+                    "kind": "array",
+                    "size": 6942,
+                    "sample": [
+                      239,
+                      0
+                    ]
+                  }
+                }
+              },
+              "NumberOfBones": 79,
+              "RestPositions": {
+                "kind": "array",
+                "size": 1159,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      -9.094382286071777,
+                      -5.261373519897461
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      -9.48988151550293,
+                      -4.518164157867432
+                    ]
+                  }
+                ]
+              },
+              "RestVertexNormals": {
+                "kind": "array",
+                "size": 1159,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.5173500180244446,
+                      -0.10468748211860657
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.06321949511766434,
+                      0.6558067202568054
+                    ]
+                  }
+                ]
+              },
+              "SkinningOffsets": {
+                "kind": "array",
+                "size": 1160,
+                "sample": [
+                  0,
+                  1
+                ]
+              },
+              "SkinningWeights": {
+                "kind": "array",
+                "size": 2981,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      7,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      7,
+                      1.0
+                    ]
+                  }
+                ]
+              },
+              "TextureCoordinates": {
+                "kind": "array",
+                "size": 1360,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0.985788881778717,
+                      0.6151136159896851
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      0.993375301361084,
+                      0.6113675236701965
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
     },
     {
       "partition": "odm",
@@ -5159,8 +6400,196 @@
       "sha256": "62ffffddcb08a13884c1a400ea64ecd9e0c42f010c3c5ec00fc0612470a259ce",
       "size": 4827,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "9284a5626f6e6573dc001382a17294cb"
+      "format": "MSGPACK_STRUCTURAL",
+      "magic_hex": "9284a5626f6e6573dc001382a17294cb",
+      "structure": {
+        "kind": "array",
+        "size": 2,
+        "sample": [
+          {
+            "kind": "map",
+            "size": 4,
+            "fields": {
+              "bones": {
+                "kind": "array",
+                "size": 19,
+                "sample": [
+                  {
+                    "kind": "map",
+                    "size": 2,
+                    "fields": {
+                      "r": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "t": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  },
+                  {
+                    "kind": "map",
+                    "size": 2,
+                    "fields": {
+                      "r": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "t": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  }
+                ]
+              },
+              "header": {
+                "kind": "map",
+                "size": 1,
+                "fields": {
+                  "version": 1
+                }
+              },
+              "jalimits": {
+                "kind": "array",
+                "size": 22,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      -0.7853981852531433,
+                      0.7853981852531433
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      -0.7853981852531433,
+                      0.7853981852531433
+                    ]
+                  }
+                ]
+              },
+              "joints": {
+                "kind": "array",
+                "size": 22,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "kind": "map",
+            "size": 4,
+            "fields": {
+              "bones": {
+                "kind": "array",
+                "size": 19,
+                "sample": [
+                  {
+                    "kind": "map",
+                    "size": 2,
+                    "fields": {
+                      "r": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "t": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  },
+                  {
+                    "kind": "map",
+                    "size": 2,
+                    "fields": {
+                      "r": {
+                        "kind": "array",
+                        "size": 4
+                      },
+                      "t": {
+                        "kind": "array",
+                        "size": 3
+                      }
+                    }
+                  }
+                ]
+              },
+              "header": {
+                "kind": "map",
+                "size": 1,
+                "fields": {
+                  "version": 1
+                }
+              },
+              "jalimits": {
+                "kind": "array",
+                "size": 22,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      -0.7853981852531433,
+                      0.7853981852531433
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 2,
+                    "sample": [
+                      -0.7853981852531433,
+                      0.7853981852531433
+                    ]
+                  }
+                ]
+              },
+              "joints": {
+                "kind": "array",
+                "size": 22,
+                "sample": [
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "kind": "array",
+                    "size": 3,
+                    "sample": [
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
     },
     {
       "partition": "odm",
@@ -6024,8 +7453,9 @@
       "sha256": "dd14c969247279bb78a1d741a387cadb6dd46c7aac47447508cea814de8b3b50",
       "size": 4789025,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000000035c0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000000035c0000000000",
+      "header_hex": "65747a301800000000035c00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -6033,8 +7463,9 @@
       "sha256": "d4333db07519c3b953fa3b531bd3d19cb58abc65fd28f639162b62950579ab3a",
       "size": 4864293,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000080135c0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000080135c0000000000",
+      "header_hex": "65747a301800000080135c00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -6789,8 +8220,9 @@
       "sha256": "941be457b231466b326591eab5d6c27aa7871eca9d71f4a72aa589d9c9a691fa",
       "size": 11661914,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a30180000008078220100000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a30180000008078220100000000",
+      "header_hex": "65747a301800000080782201000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -7120,8 +8552,9 @@
       "sha256": "a8773b7b4f966a40014dd4a650a9eb6980aaf1c1aaf0364add42d6c012a79e0c",
       "size": 11605764,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a30180000008048220100000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a30180000008048220100000000",
+      "header_hex": "65747a301800000080482201000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -7451,8 +8884,9 @@
       "sha256": "ac0e1f83fdc72de347394371e7e63888be9e400f0a47945d782fc50b921ede2b",
       "size": 11900887,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a3018000000004d230100000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a3018000000004d230100000000",
+      "header_hex": "65747a3018000000004d2301000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -7460,8 +8894,9 @@
       "sha256": "e76502376f86c2410306a9aa1bd5bf14527f8024183a86d9adb8fe63aa00a0fb",
       "size": 2819074,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000080a63b0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000080a63b0000000000",
+      "header_hex": "65747a301800000080a63b00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -8003,8 +9438,9 @@
       "sha256": "e33f0c45da354a5d3da0e295f44130b4c3c4bdcd28bf67363cb674b7c2dc9a28",
       "size": 2458332,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000080a63b0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000080a63b0000000000",
+      "header_hex": "65747a301800000080a63b00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -8423,8 +9859,9 @@
       "sha256": "12b57ada3c20e731690bc7745a54cff24e83b36d824761877775690412d354d1",
       "size": 2831620,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000000df3b0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000000df3b0000000000",
+      "header_hex": "65747a301800000000df3b00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -8432,8 +9869,9 @@
       "sha256": "4df3529236a336fb7f45b53b954095b9955957d2ad585593fcf1f515fc1b99a4",
       "size": 2807271,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000000a63b0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000000a63b0000000000",
+      "header_hex": "65747a301800000000a63b00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
     {
       "partition": "odm",
@@ -8441,8 +9879,9 @@
       "sha256": "75054140ec02fdd86951e4ebde39ac0baaf33080564e60d4e8bc4972383a40ed",
       "size": 2815396,
       "executed": false,
-      "format": "UNKNOWN",
-      "magic_hex": "65747a301800000080de3b0000000000"
+      "format": "ETZ0_OPAQUE",
+      "magic_hex": "65747a301800000080de3b0000000000",
+      "header_hex": "65747a301800000080de3b00000000006465666c6174650000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     }
   ],
   "configuration": [
