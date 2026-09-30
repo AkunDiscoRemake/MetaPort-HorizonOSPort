@@ -49,8 +49,9 @@ jobs:
             :adapters:lintRelease --stacktrace >local-analysis/android-build/gradle.log 2>&1
           result=$?
           export BUILD_EXIT="$result"
+          set -e
           python3 - <<'PY'
-          import hashlib, json, os, pathlib, xml.etree.ElementTree as ET
+          import hashlib, json, os, pathlib, struct, zipfile, xml.etree.ElementTree as ET
           root = pathlib.Path('local-analysis/android-build')
           aar = pathlib.Path('port/android/adapters/build/outputs/aar/adapters-release.aar')
           tests = []
@@ -65,6 +66,22 @@ jobs:
                     'log_tail': '\n'.join((root/'gradle.log').read_text(errors='replace').splitlines()[-160:])}
           if aar.exists():
               result['aar']={'size_bytes':aar.stat().st_size,'sha256':hashlib.sha256(aar.read_bytes()).hexdigest()}
+              native=[]
+              with zipfile.ZipFile(aar) as archive:
+                  assert 'jni/arm64-v8a/libmetaport_adapters.so' in archive.namelist()
+                  for name in archive.namelist():
+                      if not name.endswith('.so'): continue
+                      blob=archive.read(name)
+                      assert blob[:6]==b'\x7fELF\x02\x01' and struct.unpack_from('<H',blob,18)[0]==183
+                      offset=struct.unpack_from('<Q',blob,32)[0]
+                      size,count=struct.unpack_from('<HH',blob,54)
+                      assert size==56
+                      loads=[struct.unpack_from('<IIQQQQQQ',blob,offset+i*size) for i in range(count)
+                             if struct.unpack_from('<I',blob,offset+i*size)[0]==1]
+                      assert loads and all(p[7]>=16384 and (p[2]-p[3])%16384==0 for p in loads)
+                      native.append({'path':name,'machine':'AArch64','load_segment_alignment_bytes':[p[7] for p in loads],
+                                     'sha256':hashlib.sha256(blob).hexdigest()})
+              result['native_libraries']=native
           (root/'build-report.json').write_text(json.dumps(result,indent=2)+'\n')
           print(json.dumps(result,indent=2))
           PY

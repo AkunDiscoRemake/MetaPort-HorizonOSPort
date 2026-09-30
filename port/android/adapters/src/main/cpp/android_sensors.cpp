@@ -34,6 +34,7 @@ public:
                     else ASensorEventQueue_disableSensor(queue, sensors[i]);
                 }
             }
+            active_mask = mask;
             signal.set_value(mask);
             while (mask != 0 && !stop_) {
                 const int event = ALooper_pollOnce(50, nullptr, nullptr, nullptr);
@@ -54,6 +55,7 @@ public:
             }
             for (int i=0; i<3; ++i) if (mask & (1 << i)) ASensorEventQueue_disableSensor(queue, sensors[i]);
             ASensorManager_destroyEventQueue(manager, queue);
+            active_mask = 0;
             cache.reset();
         });
         return future.get();
@@ -61,8 +63,10 @@ public:
     void stop() {
         stop_ = true;
         if (thread_.joinable()) thread_.join();
+        active_mask = 0;
         cache.reset();
     }
+    std::atomic<int> active_mask{0};
     metaport::SampleCache cache;
 private:
     std::string package_;
@@ -83,13 +87,15 @@ extern "C" JNIEXPORT jint JNICALL Java_org_metaport_port_NativeSensors_nativeSta
 }
 extern "C" JNIEXPORT void JNICALL Java_org_metaport_port_NativeSensors_nativeStop(JNIEnv*,jclass,jlong h) { sensor(h)->stop(); }
 extern "C" JNIEXPORT void JNICALL Java_org_metaport_port_NativeSensors_nativeDestroy(JNIEnv*,jclass,jlong h) { delete sensor(h); }
-extern "C" JNIEXPORT void JNICALL Java_org_metaport_port_NativeSensors_nativeRead(JNIEnv* env,jclass,jlong h,jlong now,jlong age,jlongArray meta,jfloatArray values) {
+extern "C" JNIEXPORT jint JNICALL Java_org_metaport_port_NativeSensors_nativeRead(JNIEnv* env,jclass,jlong h,jlong now,jlong age,jlongArray meta,jfloatArray values) {
     const auto samples=sensor(h)->cache.read(now,age);
+    const int mask = sensor(h)->active_mask.load();
     jlong m[9]{}; jfloat v[12]{};
     for (int i=0;i<3;++i) {
-        m[3*i]=samples[i].timestamp_ns; m[3*i+1]=samples[i].accuracy; m[3*i+2]=samples[i].observed;
+        m[3*i]=samples[i].timestamp_ns; m[3*i+1]=samples[i].accuracy; m[3*i+2]=samples[i].observed && (mask & (1 << i));
         for (int j=0;j<4;++j) v[4*i+j]=samples[i].value[j];
     }
     env->SetLongArrayRegion(meta,0,9,m);
     env->SetFloatArrayRegion(values,0,12,v);
+    return mask;
 }

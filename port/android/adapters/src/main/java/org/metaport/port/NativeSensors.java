@@ -39,8 +39,8 @@ public final class NativeSensors implements AutoCloseable {
             throw new IllegalArgumentException("Freshness limit must be <= 1 second");
         long[] metadata = new long[9];
         float[] values = new float[12];
-        nativeRead(handle, SystemClock.elapsedRealtimeNanos(), maxAgeNs, metadata, values);
-        return new Snapshot(availableMask, metadata, values);
+        int liveMask = nativeRead(handle, SystemClock.elapsedRealtimeNanos(), maxAgeNs, metadata, values);
+        return new Snapshot(liveMask, metadata, values);
     }
 
     private void requireOpen() { if (handle == 0) throw new IllegalStateException("Closed"); }
@@ -72,6 +72,6 @@ public final class NativeSensors implements AutoCloseable {
     private static native long nativeCreate(String packageName);
     private static native int nativeStart(long handle, int periodUs);
     private static native void nativeStop(long handle);
-    private static native void nativeRead(long handle, long nowNs, long maxAgeNs, long[] metadata, float[] values);
+    private static native int nativeRead(long handle, long nowNs, long maxAgeNs, long[] metadata, float[] values);
     private static native void nativeDestroy(long handle);
 }

@@ -87,3 +87,11 @@ remoto e não transfere arquivos do telefone.
 Resultados históricos em `analysis/v2.4/` precedem a ampliação de escopo.
 O número comercial/canal da build permanece incerto; hashes não autenticam assinaturas.
 Nenhuma outra versão é baixada automaticamente e não há seleção de “latest”.
+
+## Backends Android implementados
+
+Há agora um módulo [Android/NDK de adapters](port/android/README.md), sem UI ou
+Activity, com aquisição real de sensores, backend ARCore e saída EGL/GLES.
+O workflow próprio compila o AAR arm64, roda testes C++/JVM e Android lint.
+**Não é APK nem bridge Horizon concluída.** Não houve teste físico; o transporte
+MemoryBroker/Binder original ainda precisa ser ligado aos backends.
