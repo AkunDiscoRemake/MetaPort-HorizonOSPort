@@ -27,14 +27,20 @@ analisado em GitHub Actions. O pipeline já:
 5. Leu manifestos de cinco APKs e analisou bibliotecas nativas selecionadas.
 6. Produziu disassembly ARM64 amostral e `.text` completa de bibliotecas menores
    selecionadas, dependências, símbolos e evidências do protocolo Binder original.
+7. Compilou o kernel público Meta com adaptação virtual e **executou o primeiro
+   estágio do init original em QEMU**, no caminho de boot normal. Parou esperando
+   partições guest ainda não anexadas; não houve boot completo.
 
 **[Estado do firmware completo e bloqueios de boot](analysis/builds/52168470052900520/FIRMWARE-STATUS.md)**
 
+**[Resultado do primeiro estágio original em guest](analysis/builds/52168470052900520/GUEST-BOOT.md)**
+
 [Mapa anterior de userspace](analysis/builds/52168470052900520/PORTING-MAP.md).
 
-Isso é análise técnica de componentes originais, não implementação do sistema
-portado. DEX ainda não foi decompilado; o disassembly é amostral, não completo.
-Não houve boot, execução de firmware, integração de hardware ou otimização medida.
+Isso reúne análise de componentes originais e um primeiro experimento de boot,
+não um sistema portado funcional. DEX ainda não foi decompilado; o disassembly é amostral, não completo.
+Não houve boot completo do Android/Horizon, integração de hardware original
+ou otimização medida. O primeiro estágio executado não abriu Home/System UI.
 A principal barreira observada é a dependência em serviços/UIDs/capacidades de
 sistema, IPC e interfaces vendor que um APK comum não recebe.
 
@@ -43,7 +49,8 @@ sistema, IPC e interfaces vendor que um APK comum não recebe.
 Python 3.10+ em Linux. Inventário, inspeção e reconstrução usam a biblioteca padrão.
 Análise de filesystem/ELF/APK requer ferramentas **do host**:
 `debugfs`/`mke2fs` (e2fsprogs), `readelf`, `aarch64-linux-gnu-objdump` e `aapt`.
-Nunca executar programas extraídos do guest.
+Nunca executar programas extraídos diretamente no host. O teste em `guest/`
+usa emulação isolada em runner descartável, não execução nativa nem flash.
 
 ```sh
 python3 -m unittest discover -s tests -v
