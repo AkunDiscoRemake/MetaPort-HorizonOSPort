@@ -54,3 +54,12 @@ adaptation, graphics and IPC bridges. A system-disk layout now exists, but userd
 TEE functionality and physical hardware integration do not. It also requires
 an Android-hosted emulator and performance validation; none is supplied by this
 kernel probe.
+
+## Experimental diagnostics (not enabled by default)
+
+`storage.py --diagnostics` currently prepares the label-overlay experiment and an
+init configuration importing the original boot scripts. The attempt to bind the
+new labels was denied, and the direct logcat attempt was also denied by SELinux.
+Generated label entries are **not evidence of applied labels**. See
+[measured failures](../analysis/builds/52168470052900520/BOOTCONTROL-LABELS.md).
+The ordinary workflow does not select this failed overlay. SELinux/AVB remain enabled.

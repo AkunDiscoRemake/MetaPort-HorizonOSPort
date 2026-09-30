@@ -47,6 +47,13 @@ ou otimização medida. O segundo estágio executado não demonstra Home/System 
 A principal barreira observada é a dependência em serviços/UIDs/capacidades de
 sistema, IPC e interfaces vendor que um APK comum não recebe.
 
+## Diagnóstico atual do BootControl
+
+[Negação SELinux e resultado dos testes de rotulagem](analysis/builds/52168470052900520/BOOTCONTROL-LABELS.md).
+O HAL recebe `vd_device` ao acessar misc; os testes confirmaram a negação.
+A tabela corretiva foi gerada, mas sua aplicação foi recusada. O experimento
+ficou desativado por padrão; não é uma correção concluída.
+
 ## APK, Cardboard e Store Meta
 
 [Estado da integração e dependências verificadas](analysis/builds/52168470052900520/APK-AND-META-SERVICES.md).

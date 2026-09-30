@@ -34,6 +34,11 @@ def classify(text):
             'Created logical partition','__mount(','Loading SELinux policy',
             'SELinux: Loaded policy','AvbHandle','vbmeta digest','dm-verity',
             'DSU not detected','starting service'))][:180],
+        'label_overlay_mount_failed':any('mount none /metadata/vendor_file_contexts.metaport' in line and 'failed:' in line for line in text.splitlines()),
+        'bootcontrol_misc_label_denial_observed':any('avc:' in line and 'denied' in line and
+            'scontext=u:r:hal_bootctl_default:s0' in line and 'tcontext=u:object_r:vd_device:s0' in line for line in text.splitlines()),
+        'diagnostic_logger_denied_observed':any('avc:' in line and 'denied' in line and
+            'scontext=u:r:init:s0' in line and 'tcontext=u:object_r:logcat_exec:s0' in line for line in text.splitlines()),
         'kernel_panic_observed':'Kernel panic' in text,
         'android_boot_completed':False,
         'qualification':'Boot-stage evidence only; no full Android/Horizon boot claim.'
