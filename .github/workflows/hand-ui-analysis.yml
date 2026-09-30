@@ -8,7 +8,7 @@ permissions:
   contents: write
 concurrency:
   group: metaport-hand-analysis
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   analyze:
     runs-on: ubuntu-22.04

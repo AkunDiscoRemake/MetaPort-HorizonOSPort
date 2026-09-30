@@ -10,6 +10,7 @@ from tools.scan_partitions import dump_entry, command
 from horizon.tracking.inspect_original import digest, BUILD
 
 APKS = ['/priv-app/VrShell/VrShell.apk', '/priv-app/MetaSystemUI/MetaSystemUI.apk']
+INPUT_CALL = re.compile(r'nativeKeyEvent|nativeJoypadAxis|nativeOnInputDevice|nativeRequestUpdateGamepadInputMode|IHandTracking|IInputDataInjection')
 CONTRACT = re.compile(r'\bnative\b|loadLibrary\(|ServiceManager\.|getService\(|hand.?track|controller|onKeyEvent|onGenericMotionEvent|onHand|MemoryBroker', re.I)
 
 
@@ -17,16 +18,23 @@ def summarize_sources(root):
     files = sorted(Path(root).rglob('*.java'))
     if len(files) > 100000: raise ValueError('Source count limit')
     result = {'generated_java_files': len(files), 'files_with_decompiler_errors': 0,
-              'native_declarations_total': 0, 'contracts': [],
+              'native_declarations_total': 0, 'contracts': [], 'input_call_sites': [],
               'source_is_reconstructed_not_original': True, 'runtime_validated': False}
     # Prefer the original UI namespaces, not unrelated dependencies' controller names.
-    files.sort(key=lambda p: (not any(x in str(p).lower() for x in ('vrshell','systemui','handtracking')), str(p)))
+    files.sort(key=lambda p: (0 if any(x in str(p) for x in ('/com/oculus/','/com/meta/')) else 1 if 'systemui' in str(p).lower() else 2, str(p)))
     for path in files:
         if path.stat().st_size > 4*1024*1024: raise ValueError('Generated source size limit')
         text = path.read_text(errors='replace')
         failed = bool(re.search(r'JADX ERROR|Method not decompiled:', text))
         result['files_with_decompiler_errors'] += int(failed)
         result['native_declarations_total'] += len(re.findall(r'\bnative\s+[\w<>\[\].?]+\s+\w+\s*\(', text))
+        lines=text.splitlines()
+        for index,line in enumerate(lines):
+            if INPUT_CALL.search(line) and len(result['input_call_sites'])<100:
+                start=max(0,index-12);end=min(len(lines),index+13)
+                result['input_call_sites'].append({'path':str(path.relative_to(root)),
+                    'line':index+1,'start_line':start+1,'generated_sha256':digest(path),
+                    'has_decompiler_errors':failed,'context':'\n'.join(lines[start:end])})
         selected = [{'line': n, 'text': line.strip()[:1200]} for n,line in enumerate(text.splitlines(),1)
                     if CONTRACT.search(line)]
         if selected and len(result['contracts']) < 160:
