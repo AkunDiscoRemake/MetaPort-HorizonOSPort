@@ -88,6 +88,34 @@ public class DecompileHandInput extends GhidraScript {
                 row.put("references",refs);tables.add(row);
             }
         }
+        // Follow callers of the measured metadata consumer/constructor before
+        // generic quantization strings consume the remaining function budget.
+        // These are direct call references only, not resolved virtual dispatch.
+        List<Map<String,Object>> incomingCalls=new ArrayList<>();
+        int incomingSelected=0;
+        for(long target:new long[]{0x16222a0L,0x1620ce0L}) {
+            Reference[] refs=getReferencesTo(base.add(target));
+            Map<String,Object> group=new LinkedHashMap<>();
+            group.put("target_elf_address",target);group.put("reference_count",refs.length);
+            List<Map<String,Object>> callers=new ArrayList<>();int inspected=0;
+            for(Reference ref:refs) {
+                monitor.checkCancelled();
+                if(inspected++>=256) break;
+                if(!ref.getReferenceType().isCall()) continue;
+                Function caller=getFunctionContaining(ref.getFromAddress());
+                Map<String,Object> row=new LinkedHashMap<>();
+                row.put("callsite_elf_address",ref.getFromAddress().subtract(base));
+                row.put("caller",caller==null?null:caller.getName());
+                callers.add(row);
+                if(caller!=null && !caller.isExternal() && !selected.containsKey(caller.getEntryPoint())
+                   && incomingSelected<8) {
+                    select(caller,"Direct caller of observed hand metadata/executor constructor 0x"+Long.toHexString(target));
+                    incomingSelected++;
+                }
+            }
+            group.put("direct_callers",callers);group.put("reference_scan_truncated",refs.length>256);
+            incomingCalls.add(group);
+        }
         var strings=JsonParser.parseString(Files.readString(Path.of(args[0]))).getAsJsonArray();
         if(strings.size()>128) throw new IllegalArgumentException("String budget");
         List<Map<String,Object>> stringEvidence=new ArrayList<>();
@@ -180,6 +208,7 @@ public class DecompileHandInput extends GhidraScript {
         report.put("tool","Ghidra 11.3.2");report.put("firmware_executed",false);
         report.put("abi_validated",false);report.put("input_conversion_ported",false);
         report.put("scope","At most 32 functions; pointer windows may cross vtable boundaries; indirect calls unresolved");
+        report.put("incoming_constructor_calls",incomingCalls);
         report.put("pointer_windows",tables);report.put("string_references",stringEvidence);
         report.put("functions",functions);
         Files.writeString(Path.of(args[1]),new GsonBuilder().setPrettyPrinting().create().toJson(report));
