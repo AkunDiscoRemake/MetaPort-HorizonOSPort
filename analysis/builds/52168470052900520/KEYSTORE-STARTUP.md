@@ -91,6 +91,34 @@ controles de tracing. A correção de publicação foi exercitada: o bot publico
 um commit de documentação avançar a branch durante o ensaio, preservando no JSON
 o hash `b2474bf` do código efetivamente ensaiado.
 
+### Controle global de tracing encontrado
+
+Run [36773152078](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/actions/runs/36773152078)
+recuperou os arquivos adicionais. O `atrace.rc` original contém, em `on late-init`:
+
+```
+write /sys/kernel/debug/tracing/tracing_on 0
+write /sys/kernel/tracing/tracing_on 0
+```
+
+São controles do buffer **global**, distintos da prioridade do printk. O ensaio
+continuou com 110 eventos genéricos e zero eventos de segurança correlacionados.
+A declaração estática esclarece outro mecanismo de interrupção; não fornece,
+por si só, o sinal ou a causa do problema do Keystore.
+
+A próxima adaptação diagnóstica usa `ftrace.instance.metaport_signals` por
+bootconfig, com apenas os dois eventos já selecionados e buffer de 16 KiB.
+`guest/trace_bootconfig.py` cria uma cópia do initrd e acrescenta texto fixo,
+NUL/padding, tamanho LE32, soma de bytes LE32 e `#BOOTCONFIG\n`, conforme o kernel
+público fixado. Não modifica membros do cpio nem as ações originais de atrace.
+Recusa substituição do arquivo original, links e bootconfig já existente.
+
+O trailer foi lido com sucesso pelo **utilitário bootconfig compilado a partir
+desse mesmo kernel público** usando um arquivo sintético, sem firmware. Os testes
+cobrem os quatro alinhamentos, checksum, limites e preservação dos bytes originais.
+Isso valida formato/sintaxe; **o funcionamento da instância no guest ainda depende
+do próximo ensaio**, com `CONFIG_BOOTTIME_TRACING=y` exigido pelo build.
+
 ## Publicação dos resultados
 
 O run intermediário 36769961408 teve falha na etapa de publicação. O workflow

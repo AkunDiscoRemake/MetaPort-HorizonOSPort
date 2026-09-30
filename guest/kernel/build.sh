@@ -23,7 +23,8 @@ text=pathlib.Path(sys.argv[1]).read_text()
 required=['CONFIG_SERIAL_AMBA_PL011=y','CONFIG_SERIAL_AMBA_PL011_CONSOLE=y',
           'CONFIG_VIRTIO_MMIO=y','CONFIG_VIRTIO_BLK=y', 'CONFIG_BLK_DEV_INITRD=y',
           'CONFIG_RD_GZIP=y','CONFIG_RD_LZ4=y','CONFIG_ANDROID_BINDER_IPC=y',
-          'CONFIG_ANDROID_BINDERFS=y','CONFIG_SECURITY_SELINUX=y']
+          'CONFIG_ANDROID_BINDERFS=y','CONFIG_SECURITY_SELINUX=y',
+          'CONFIG_BOOT_CONFIG=y','CONFIG_BOOTTIME_TRACING=y','CONFIG_EVENT_TRACING=y']
 missing=[line for line in required if line not in text.splitlines()]
 if missing: raise SystemExit('Required guest config rejected by Kconfig: '+repr(missing))
 PY

@@ -95,12 +95,18 @@ Keystore/KeyMint/QSEE init declarations, VINTF declarations and ELF dependencies
 These are declarations, not Binder registration or hardware-compatibility results.
 
 `guest/probe.py --trace-signals` optionally captures kernel signal-generation and
-process-exit metadata. It adds `trace_event=signal:signal_generate,sched:sched_process_exit`,
-`tp_printk` and `ignore_loglevel` to this disposable guest's command line. The last
-option keeps diagnostic console output visible after the original vendor init
-changes printk levels. It does not relax SELinux/ptrace or change encryption.
-Signal generation alone is not proof of fatal delivery or root cause. Generic and
-security-correlated samples have separate bounds; missing late events do not prove
-that a service remained healthy. Console and run-duration limits still apply.
+process-exit metadata in a separate `metaport_signals` trace instance. The original
+atrace configuration turns off the global tracing buffer during late-init; raising
+console verbosity alone did not recover late security-service events.
+
+The probe now appends fixed diagnostic bootconfig to a **copy** of the original
+initrd, preserving the original ramdisk bytes and recording both hashes. It uses
+`bootconfig tp_printk ignore_loglevel` and requires `CONFIG_BOOTTIME_TRACING=y`.
+The original init actions and their global trace controls remain untouched. The
+new instance must still be verified at runtime; a valid trailer is not boot proof.
+
+This does not relax SELinux/ptrace or change encryption. Signal generation alone
+is not proof of fatal delivery or root cause. Generic and security-correlated
+samples have separate bounds. Console and run-duration limits still apply.
 
 See [Keystore startup evidence and capture limitations](../analysis/builds/52168470052900520/KEYSTORE-STARTUP.md).

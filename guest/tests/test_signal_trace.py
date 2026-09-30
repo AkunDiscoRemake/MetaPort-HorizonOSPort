@@ -7,7 +7,7 @@ class SignalTraceTests(unittest.TestCase):
     def test_opt_in_metadata_only_no_security_bypass(self):
         self.assertEqual(signal_trace_parameters(False),'')
         self.assertEqual(signal_trace_parameters(True),
-                         'trace_event=signal:signal_generate,sched:sched_process_exit tp_printk ignore_loglevel')
+                         'bootconfig tp_printk ignore_loglevel')
         with self.assertRaises(ValueError):signal_trace_parameters('yes')
 
     def test_signal_generation_is_not_registration_mount_or_root_cause(self):

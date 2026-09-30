@@ -10,6 +10,7 @@ import signal
 import subprocess
 import time
 from guest.dtb import prepare as prepare_dtb
+from guest.trace_bootconfig import append_trace_config
 
 
 def child_limits():
@@ -47,7 +48,7 @@ def signal_trace_parameters(enabled):
     # Original init.anorak.rc sets both console/default printk levels to 6.
     # tp_printk uses the default priority, so loglevel=8 alone stops being
     # effective after that write. This only changes guest console visibility.
-    return 'trace_event=signal:signal_generate,sched:sched_process_exit tp_printk ignore_loglevel' if enabled else ''
+    return 'bootconfig tp_printk ignore_loglevel' if enabled else ''
 
 
 def signal_observations(text):
@@ -135,6 +136,12 @@ def probe(kernel,initrd,output,disk=None,trace_signals=False):
     kernel=Path(kernel).resolve(); initrd=Path(initrd).resolve(); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
     diagnostic=False
+    trace_options=signal_trace_parameters(trace_signals)
+    trace_config=None
+    if trace_signals:
+        effective_initrd=output/'signal-trace-initrd'
+        trace_config=append_trace_config(initrd,effective_initrd)
+        initrd=effective_initrd.resolve()
     args=['qemu-system-aarch64','-nodefaults','-no-user-config','-machine','virt,gic-version=3',
           '-accel','tcg','-cpu','max','-smp','2','-m','1024',
           '-display','none','-serial','stdio','-monitor','none','-nic','none',
@@ -142,7 +149,6 @@ def probe(kernel,initrd,output,disk=None,trace_signals=False):
           '-kernel',str(kernel),'-initrd',str(initrd),
           '-append','console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 '
           'androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1']
-    trace_options=signal_trace_parameters(trace_signals)
     if trace_options:args[-1]+=' '+trace_options
     if disk is not None:
         disk=Path(disk).resolve()
@@ -177,7 +183,7 @@ def probe(kernel,initrd,output,disk=None,trace_signals=False):
             try: proc.wait(timeout=0.25)
             except subprocess.TimeoutExpired: pass
     with log.open('rb') as stream: text=stream.read(8*1024*1024).decode(errors='replace')
-    result={'signal_trace_requested':trace_signals,'diagnostic_init_rc':diagnostic,'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
+    result={'signal_trace_requested':trace_signals,'signal_trace_bootconfig':trace_config,'diagnostic_init_rc':diagnostic,'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
             'guest_disk_attached':disk is not None,'disk_writes':'disposable QEMU snapshot' if disk else None,
             'console_limit_exceeded':log.stat().st_size>8*1024*1024,
             'qemu_returncode':proc.returncode,'timeout':timed_out,
