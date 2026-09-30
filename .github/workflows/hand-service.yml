@@ -56,7 +56,7 @@ jobs:
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
             -import "$WORK/reports/trackingservice" -max-cpu 2 -analysisTimeoutPerFile 600 \
             -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
-            -postScript DecompileHands.java "$WORK/reports/service-functions.txt" "$WORK/reports/service-strings.json" "$WORK/reports/hand-service-decompilation.json" \
+            -postScript DecompileHands.java "$WORK/reports/service-functions.txt" "$WORK/reports/service-strings.json" "$WORK/reports/hand-service-decompilation.json" 1024 \
             -deleteProject > "$WORK/ghidra.log" 2>&1
           python3 - <<'PY'
           import json,os
