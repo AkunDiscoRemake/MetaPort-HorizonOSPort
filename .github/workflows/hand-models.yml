@@ -2,7 +2,7 @@ name: Original compressed hand model inspection
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ptez.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
+    paths: [horizon/tracking/ptez.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
   workflow_dispatch:
 permissions:
   contents: write

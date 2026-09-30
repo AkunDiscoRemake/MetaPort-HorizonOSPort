@@ -67,11 +67,16 @@ def inspect_container(blob):
         return {**base,'status':'NO_UNIQUE_VALIDATED_STREAM','candidate_count':len(successes),
                 'prefix_hex':blob[:256].hex()},None
     offset,wbits,raw,header=successes[0]
+    from horizon.tracking.pte_schema import describe
+    try:
+        schema=describe(raw,header['root_offset'])
+    except (ValueError,UnicodeError) as error:
+        schema={'interpretation':'PUBLIC_SCHEMA_MISMATCH','error':str(error)[:300]}
     strings=sorted(set(m.group().decode('ascii') for m in re.finditer(rb'[A-Za-z_][A-Za-z0-9_:. /-]{5,180}',raw)
         if re.search(rb'boltnn|backend|forward|Xnnpack|Qnn|Hexagon|aten::',m.group(),re.I)))[:256]
     return {**base,'status':'DECOMPRESSED_STRUCTURAL_ONLY','payload_offset':offset,'zlib_wbits':wbits,
             'decoded_sha256':hashlib.sha256(raw).hexdigest(),'decoded_size':len(raw),
-            'pte_header':header,'backend_strings_sample':strings},raw
+            'pte_header':header,'schema_candidate':schema,'backend_strings_sample':strings},raw
 
 
 def inspect(images,reconstruction,output):
