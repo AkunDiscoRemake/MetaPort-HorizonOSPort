@@ -27,6 +27,7 @@ def classify(text):
         'bootcontrol_events':[line for line in text.splitlines() if re.search(
             r'boot-hal|bootctrl|IBootControl|libgpt|gpt-utils|boot_control|Failed to load.*boot|metaport_bootlog|misc.*(?:fail|denied)|avc:.*(?:boot|logcat|logpersist)',line,re.I)][:100],
         'diagnostic_events':[line for line in text.splitlines() if re.search(r'metaport|init_rc|logcat|stdio_to_kmsg',line,re.I)][:80],
+        'controller_alias_observed':'MetaPort: virtio boot controller alias 1d84000.ufshc' in text,
         'second_stage_init_observed':'init second stage started!' in text,
         'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
         'boot_events':[line for line in text.splitlines() if any(token in line for token in (
@@ -63,7 +64,7 @@ def probe(kernel,initrd,output,disk=None):
         avb=json.loads((disk.parent/'avb-boot.json').read_text())
         if avb['hash_alg']!='sha256' or not re.fullmatch('[0-9a-f]{64}',avb['digest']) or not 0<avb['size']<=16*1024*1024:
             raise ValueError('Invalid bounded vbmeta boot parameters')
-        args[-1]+=' androidboot.boot_devices=soc/a000000.virtio_mmio androidboot.bootdevice=a000000.virtio_mmio'
+        args[-1]+=' androidboot.boot_devices=soc/1d84000.ufshc androidboot.bootdevice=1d84000.ufshc'
         args[-1]+=f" androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size={avb['size']} androidboot.vbmeta.digest={avb['digest']}"
         storage=json.loads((disk.parent/'storage-report.json').read_text())
         diagnostic=storage.get('diagnostic_init_rc',False)

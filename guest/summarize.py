@@ -9,6 +9,7 @@ report_dir=root/'reports'; report_dir.mkdir(parents=True,exist_ok=True)
 build_log=root/'build.log'
 image=root/'kernel-out/arch/arm64/boot/Image'
 report={'source':json.loads(Path('guest/kernel/source.json').read_text()),
+        'kernel_patch_sha256':hashlib.sha256(Path('guest/kernel/boot-controller-alias.patch').read_bytes()).hexdigest(),
         'workflow_run':os.environ['GITHUB_RUN_ID'],'project_commit':os.environ['GITHUB_SHA'],
         'build_step_outcome':os.environ.get('BUILD_OUTCOME','unknown'),
         'ramdisk_step_outcome':os.environ.get('RAMDISK_OUTCOME','unknown'),

@@ -1,0 +1,25 @@
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -144,6 +144,22 @@
+ 	dev->dev.fwnode = &np->fwnode;
+ 	dev->dev.parent = parent ? : &platform_bus;
+ 
++	/* MetaPort guest-only naming compatibility, not a Qualcomm UFS driver.
++	 * Keep actual virtio MMIO resources and compatible string unchanged.
++	 * Original ueventd rules attach partition roles through this path.
++	 * Restrict the alias to our explicit machine and boot transport.
++	 */
++	if (!bus_id && of_machine_is_compatible("metaport,virt") &&
++	    of_device_is_compatible(np, "virtio,mmio") &&
++	    of_property_read_bool(np, "metaport,boot-controller-alias") &&
++	    np->parent && !strcmp(np->parent->full_name, "/soc") &&
++	    !of_address_to_resource(np, 0, &temp_res) &&
++	    temp_res.start == 0x0a000000 && resource_size(&temp_res) == 0x200) {
++		bus_id = "1d84000.ufshc";
++		pr_info("MetaPort: virtio boot controller alias %s, MMIO 0x0a000000\n",
++			bus_id);
++	}
++
+ 	if (bus_id)
+ 		dev_set_name(&dev->dev, "%s", bus_id);
+ 	else

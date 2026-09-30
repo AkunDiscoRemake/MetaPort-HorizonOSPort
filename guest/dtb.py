@@ -13,11 +13,15 @@ def relocate_virtio(dts):
     matches=list(re.finditer(pattern,dts))
     if len(matches)!=1 or re.search(r'(?m)^\tsoc(?:@[^ ]+)? \{',dts):
         raise ValueError('Unexpected QEMU DT structure; refuse ambiguous transformation')
-    node=matches[0].group()
+    root_compatible='\tcompatible = "linux,dummy-virt";'
+    if dts.count(root_compatible)!=1:
+        raise ValueError('Unexpected root machine compatibility')
+    node=matches[0].group().replace('{\n','{\n\t\tmetaport,boot-controller-alias;\n',1)
     replacement=('\tsoc {\n\t\tcompatible = "simple-bus";\n'
                  '\t\t#address-cells = <0x02>;\n\t\t#size-cells = <0x02>;\n'
                  '\t\tranges;\n'+''.join('\t'+line+'\n' for line in node.splitlines())+'\t};')
-    return dts[:matches[0].start()]+replacement+dts[matches[0].end():]
+    result=dts[:matches[0].start()]+replacement+dts[matches[0].end():]
+    return result.replace(root_compatible,'\tcompatible = "metaport,virt", "linux,dummy-virt";')
 
 
 def prepare(output):

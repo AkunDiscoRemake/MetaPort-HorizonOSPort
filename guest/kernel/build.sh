@@ -5,6 +5,9 @@ src=$(realpath "$1")
 out=$(realpath -m "$2")
 fragment=$(realpath "$3")
 mkdir -p "$out"
+patch_dir=$(dirname "$(realpath "$0")")
+echo "$(cat "$patch_dir/platform-source.sha256")  $src/drivers/of/platform.c" | sha256sum --check --strict
+patch --batch --fuzz=0 -d "$src" -p1 < "$patch_dir/boot-controller-alias.patch"
 export PATH="/usr/lib/llvm-14/bin:$PATH"
 args=("O=$out" ARCH=arm64 LLVM=1 LLVM_IAS=1
       CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi-
