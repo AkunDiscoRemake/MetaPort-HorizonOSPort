@@ -36,7 +36,7 @@ public class DecompileHands extends GhidraScript {
         Address imageBase=currentProgram.getImageBase();
         for(String text:exports) if(!text.isBlank()) {
             Address address=imageBase.add(Long.parseUnsignedLong(text.trim(),16));
-            selected.put(address,"Defined dynamic export; ELF VA 0x"+text);
+            selected.put(address,"Explicit ELF address target; export status not asserted; VA 0x"+text);
         }
         var strings=JsonParser.parseString(Files.readString(Path.of(args[1]))).getAsJsonArray();
         if(strings.size()>256) throw new IllegalArgumentException("String limit");
@@ -78,6 +78,35 @@ public class DecompileHands extends GhidraScript {
                 if(function==null) item.put("status","NO_FUNCTION_AT_SELECTED_ADDRESS");
                 else {
                     item.put("name",function.getName());
+                    item.put("analysis_no_return",function.hasNoReturn());
+                    item.put("listing_body_address_count",function.getBody().getNumAddresses());
+                    List<Map<String,Object>> listing=new ArrayList<>();
+                    var instructions=currentProgram.getListing().getInstructions(function.getBody(),true);
+                    while(instructions.hasNext() && listing.size()<128) {
+                        monitor.checkCancelled();
+                        var instruction=instructions.next();
+                        Map<String,Object> row=new LinkedHashMap<>();
+                        row.put("elf_address",instruction.getAddress().subtract(imageBase));
+                        row.put("assembly",instruction.toString());listing.add(row);
+                    }
+                    item.put("listing_prefix",listing);
+                    item.put("listing_prefix_truncated",instructions.hasNext());
+                    List<Function> callees=new ArrayList<>(function.getCalledFunctions(monitor));
+                    callees.sort((a,b)->a.getEntryPoint().compareTo(b.getEntryPoint()));
+                    List<Map<String,Object>> calls=new ArrayList<>();
+                    for(Function callee:callees) {
+                        if(calls.size()>=64) break;
+                        Map<String,Object> row=new LinkedHashMap<>();
+                        row.put("name",callee.getName());
+                        row.put("ghidra_address",callee.getEntryPoint().toString());
+                        row.put("external",callee.isExternal());
+                        // Analyzer hints only: wrapped delete was marked noreturn in
+                        // the first renderer pass. Do not silently change prototypes.
+                        row.put("analysis_no_return",callee.hasNoReturn());calls.add(row);
+                    }
+                    item.put("direct_callees",calls);
+                    item.put("direct_callees_truncated",callees.size()>64);
+
                     DecompileResults result=decompiler.decompileFunction(function,30,monitor);
                     item.put("diagnostic",result.getErrorMessage());
                     if(result.decompileCompleted() && result.getDecompiledFunction()!=null) {
