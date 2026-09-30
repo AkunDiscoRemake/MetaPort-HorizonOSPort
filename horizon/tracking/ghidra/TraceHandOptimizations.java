@@ -47,6 +47,44 @@ public class TraceHandOptimizations extends GhidraScript {
             }
             row.put("sites",sites);row.put("sites_truncated",refs.length>128);coverage.add(row);
         }
+        // These names had no direct code references in run 36787226058.
+        // Follow a bounded RTTI-layout hypothesis to pointer slots, NOT live calls.
+        List<Map<String,Object>> rttiCandidates=new ArrayList<>();
+        Set<Long> callbackTargets=new LinkedHashSet<>();
+        for(var element:targets) {
+            var target=element.getAsJsonObject();String text=target.get("text").getAsString();
+            if(!text.contains("getHandTrackingThreadPriorityCallback") && !text.contains("DPEPredictorV2")) continue;
+            Reference[] nameRefs=getReferencesTo(base.add(target.get("address").getAsLong()));
+            for(int n=0;n<Math.min(nameRefs.length,32);n++) {
+                monitor.checkCancelled();Address nameSlot=nameRefs[n].getFromAddress();
+                var block=currentProgram.getMemory().getBlock(nameSlot);
+                if(block==null || block.isExecute() || nameSlot.getOffset()<base.getOffset()+8) continue;
+                Address hypotheticalTypeInfo=nameSlot.subtract(8);
+                Reference[] typeRefs=getReferencesTo(hypotheticalTypeInfo);
+                for(int t=0;t<Math.min(typeRefs.length,32);t++) {
+                    Address typeSlot=typeRefs[t].getFromAddress();
+                    var typeBlock=currentProgram.getMemory().getBlock(typeSlot);
+                    if(typeBlock==null || typeBlock.isExecute()) continue;
+                    for(int i=0;i<8;i++) {
+                        Address slot=typeSlot.add(8L+i*8L);
+                        if(!currentProgram.getMemory().contains(slot)) continue;
+                        for(Reference ref:getReferencesFrom(slot)) {
+                            Function f=getFunctionAt(ref.getToAddress());
+                            if(f==null || f.isExternal() || f.getName().startsWith("__cxa_")) continue;
+                            Map<String,Object> row=new LinkedHashMap<>();
+                            row.put("type_name",text);row.put("type_name_slot_elf",nameSlot.subtract(base));
+                            row.put("hypothetical_typeinfo_elf",hypotheticalTypeInfo.subtract(base));
+                            row.put("typeinfo_reference_slot_elf",typeSlot.subtract(base));
+                            row.put("pointer_slot_elf",slot.subtract(base));row.put("function",describe(f));
+                            row.put("name_references_truncated",nameRefs.length>32);
+                            row.put("type_references_truncated",typeRefs.length>32);
+                            row.put("private_abi_validated",false);rttiCandidates.add(row);
+                            if(callbackTargets.size()<8) callbackTargets.add(f.getEntryPoint().subtract(base));
+                        }
+                    }
+                }
+            }
+        }
         // Roots observed in run 36784585864. ELF VAs; no guessed object layout.
         Map<String,long[]> roots=new LinkedHashMap<>();
         roots.put("inference",new long[]{0x1853880L,0x1618660L});
@@ -56,6 +94,7 @@ public class TraceHandOptimizations extends GhidraScript {
         Map<String,Object> selections=new LinkedHashMap<>();
         for(var group:roots.entrySet()) {
             Set<Long> selected=new LinkedHashSet<>();
+            if(group.getKey().equals("temporal")) selected.addAll(callbackTargets);
             for(long root:group.getValue()) {
                 Reference[] refs=getReferencesTo(base.add(root));
                 Map<String,Object> item=new LinkedHashMap<>();
@@ -86,6 +125,8 @@ public class TraceHandOptimizations extends GhidraScript {
         Map<String,Object> report=new LinkedHashMap<>();
         report.put("program_sha256",SHA);report.put("firmware_executed",false);
         report.put("all_optimizations_found",false);report.put("string_reference_coverage",coverage);
+        report.put("rtti_pointer_candidates",rttiCandidates);
+        report.put("rtti_scope","Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 targets selected.");
         report.put("incoming_root_calls",edges);report.put("selected_elf_addresses",selections);
         report.put("limits","Direct references only; indirect dispatch and missing function boundaries remain unresolved. Caller selection capped at 16/group; references 128/string, 256/root.");
         Files.writeString(out.resolve("hand-optimization-coverage.json"),new GsonBuilder().setPrettyPrinting().create().toJson(report));
