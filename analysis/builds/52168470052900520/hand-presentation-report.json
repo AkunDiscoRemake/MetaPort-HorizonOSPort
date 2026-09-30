@@ -1,0 +1,242 @@
+{
+  "candidate_resources": [],
+  "native_contracts": [
+    {
+      "name": "lib/arm64-v8a/libopenxr_loader.so",
+      "size_bytes": 180512,
+      "sha256": "91134bd0b7ef3857f2e8e606cd6e644f4378126a06204e5f839fc7953b5a3985",
+      "status": "STATIC_STRINGS_ONLY",
+      "matching_string_count": 0,
+      "strings": [],
+      "strings_truncated": false
+    },
+    {
+      "name": "lib/arm64-v8a/libovravatar2p.so",
+      "size_bytes": 8342584,
+      "sha256": "fbe6533479d5209a8ea2b2418aeb7024bdd5b6fedfdb6ac2b212756f27525f17",
+      "status": "STATIC_STRINGS_ONLY",
+      "matching_string_count": 5,
+      "strings": [
+        {
+          "file_offset": 38189,
+          "text": "ovrAvatar2_SetCustomHandSkeleton"
+        },
+        {
+          "file_offset": 150558,
+          "text": "Cannot set custom hand skeleton, %d is not a valid side, it must be ovrAvatar2Side_Left or ovrAvatar2Side_Right"
+        },
+        {
+          "file_offset": 216611,
+          "text": "ovrAvatar2_SetCustomHandSkeleton"
+        },
+        {
+          "file_offset": 216644,
+          "text": "Client Custom Hand Skeleton"
+        },
+        {
+          "file_offset": 254225,
+          "text": "Hand skeleton must be defined before setting a custom hand pose"
+        }
+      ],
+      "strings_truncated": false
+    },
+    {
+      "name": "lib/arm64-v8a/libshell.so",
+      "size_bytes": 41235512,
+      "sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+      "status": "STATIC_STRINGS_ONLY",
+      "matching_string_count": 44,
+      "strings": [
+        {
+          "file_offset": 544562,
+          "text": "xrLocateHandJointsEXT_Right"
+        },
+        {
+          "file_offset": 546253,
+          "text": "xrLocateHandJointsEXT_Left"
+        },
+        {
+          "file_offset": 573007,
+          "text": "Unexpected number of hand skeleton joints"
+        },
+        {
+          "file_offset": 614318,
+          "text": "XR_META_hand_tracking_microgestures"
+        },
+        {
+          "file_offset": 694333,
+          "text": "CoHandRenderBehavior"
+        },
+        {
+          "file_offset": 765864,
+          "text": "arvr/apps/SystemShell/VrShell/Src/Simulation/InputVisuals/CoHandRenderBehavior.cpp"
+        },
+        {
+          "file_offset": 804239,
+          "text": "arvr/apps/hsr/modules/ghost_hands/code/source/GhostHandRenderingSystem.cpp"
+        },
+        {
+          "file_offset": 854907,
+          "text": "GhostHandRenderingSystem rendering torn down"
+        },
+        {
+          "file_offset": 867398,
+          "text": "XR_EXT_hand_interaction"
+        },
+        {
+          "file_offset": 893613,
+          "text": "XR_FB_hand_tracking_aim"
+        },
+        {
+          "file_offset": 899971,
+          "text": "HandRenderingSystem::NullHandRenderingSystem"
+        },
+        {
+          "file_offset": 900016,
+          "text": "IHandRenderingSystem"
+        },
+        {
+          "file_offset": 941721,
+          "text": "XR_FB_hand_tracking_mesh"
+        },
+        {
+          "file_offset": 941766,
+          "text": "debug_disable_hand_mesh"
+        },
+        {
+          "file_offset": 941861,
+          "text": "Failed to get hand mesh"
+        },
+        {
+          "file_offset": 975184,
+          "text": "XR_EXT_hand_tracking"
+        },
+        {
+          "file_offset": 1073442,
+          "text": "XR_EXT_hand_joints_motion_range"
+        },
+        {
+          "file_offset": 1074550,
+          "text": "ShellHandMaterial.u_opacityRange"
+        },
+        {
+          "file_offset": 1086169,
+          "text": "ShellHandMaterial.u_alphaFade"
+        },
+        {
+          "file_offset": 1086586,
+          "text": "XR_EXT_hand_tracking_data_source"
+        },
+        {
+          "file_offset": 1119039,
+          "text": "GhostHandRenderingSystem rendering already initialized"
+        },
+        {
+          "file_offset": 1121465,
+          "text": "GhostHandRenderingSystem rendering initialized"
+        },
+        {
+          "file_offset": 1206506,
+          "text": "Invalid hand index for setHandMeshData"
+        },
+        {
+          "file_offset": 1334469,
+          "text": "StringView horizon::detail::wrappedTypeName() [T = CoHandRenderBehavior]"
+        },
+        {
+          "file_offset": 1527549,
+          "text": "const char *flecs::_::type_name() [T = std::unique_ptr<CoHandRenderBehavior>]"
+        },
+        {
+          "file_offset": 1566747,
+          "text": "xrLocateHandJointsEXT"
+        },
+        {
+          "file_offset": 1567134,
+          "text": "xrDestroyHandTrackerEXT"
+        },
+        {
+          "file_offset": 1567175,
+          "text": "xrCreateHandTrackerEXT"
+        },
+        {
+          "file_offset": 1598379,
+          "text": "xrGetHandMeshFB"
+        },
+        {
+          "file_offset": 1884379,
+          "text": "xrGetHandMeshFB(handTracker, &handMesh)"
+        },
+        {
+          "file_offset": 1911401,
+          "text": "xrCreateHandTrackerEXT(session_, &handTrackerCreateInfo, &handTrackers_[1])"
+        },
+        {
+          "file_offset": 1911477,
+          "text": "xrCreateHandTrackerEXT(session_, &handTrackerCreateInfo, &handTrackers_[0])"
+        },
+        {
+          "file_offset": 1923403,
+          "text": "xrGetInstanceProcAddr( instance_, \"xrCreateHandTrackerEXT\", (PFN_xrVoidFunction*)(&xrCreateHandTrackerEXT))"
+        },
+        {
+          "file_offset": 1924592,
+          "text": "xrGetInstanceProcAddr(instance_, \"xrGetHandMeshFB\", (PFN_xrVoidFunction*)(&xrGetHandMeshFB))"
+        },
+        {
+          "file_offset": 2245292,
+          "text": "20IHandRenderingSystem"
+        },
+        {
+          "file_offset": 2245315,
+          "text": "15InterfaceSystemI20IHandRenderingSystem10BaseSystemE"
+        },
+        {
+          "file_offset": 2245369,
+          "text": "6SystemI20IHandRenderingSystem10BaseSystem20SystemInterfaceTraitE"
+        },
+        {
+          "file_offset": 2330110,
+          "text": "20CoHandRenderBehavior"
+        },
+        {
+          "file_offset": 2330133,
+          "text": "N7horizon22EcsComponentAttributeTINSt6__ndk110unique_ptrI20CoHandRenderBehaviorNS1_14default_deleteIS3_EEEEEE"
+        },
+        {
+          "file_offset": 2330485,
+          "text": "NSt6__ndk110__function6__funcIZN13Visualization19VisualizationConfig20DEFAULT_INSTANTIATORI20CoHandRenderBehaviorEENS_8functionIFvP6EntityP9ComponentEEEvEUlS8_SA_E_NS_9allocatorISD_EESB_EE"
+        },
+        {
+          "file_offset": 2330729,
+          "text": "ZN13Visualization19VisualizationConfig20DEFAULT_INSTANTIATORI20CoHandRenderBehaviorEENSt6__ndk18functionIFvP6EntityP9ComponentEEEvEUlS6_S8_E_"
+        },
+        {
+          "file_offset": 2441801,
+          "text": "6SystemIN19HandRenderingSystem23NullHandRenderingSystemE20IHandRenderingSystem18SystemDefaultTraitE"
+        },
+        {
+          "file_offset": 2441901,
+          "text": "19HandRenderingSystem"
+        },
+        {
+          "file_offset": 2441923,
+          "text": "6SystemI19HandRenderingSystem20IHandRenderingSystem18SystemDefaultTraitE"
+        }
+      ],
+      "strings_truncated": false
+    }
+  ],
+  "renderer_integrated": false,
+  "candidate_names_prove_usage": false,
+  "firmware_executed": false,
+  "members": 1111,
+  "matching_resource_count": 0,
+  "resources_truncated": false,
+  "native_bytes_scanned": 49758608,
+  "build": "52168470052900520",
+  "apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
+  "source_commit": "83e9084a334eb3b5198dfbf481986618320519ae",
+  "workflow_run": "36778223318",
+  "port_status": "NOT PORTED YET"
+}
