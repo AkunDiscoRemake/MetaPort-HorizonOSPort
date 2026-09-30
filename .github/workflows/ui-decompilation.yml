@@ -53,8 +53,12 @@ jobs:
       - name: Decompile DEX for original VrShell and MetaSystemUI, never run or install them
         id: decompile
         run: |
+          set +e
           python3 -m horizon.tracking.inspect_ui --images "$WORK/images" \
-            --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" --output "$WORK/reports"
+            --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
+          code=$?
+          tail -n 60 "$WORK/inspection.log"
+          exit "$code"
       - name: Record provenance even on analysis failure
         if: always()
         env:
@@ -65,7 +69,7 @@ jobs:
           import os,json
           from pathlib import Path
           p=Path(os.environ['WORK'])
-          log=p/'jadx.log'
+          log=p/'inspection.log'
           report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
                   'decompile_step':os.environ['DECOMPILE_OUTCOME'],'horizon_ported':False,
                   'physical_phone_tested':False,'jadx_sha256':'545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974',
