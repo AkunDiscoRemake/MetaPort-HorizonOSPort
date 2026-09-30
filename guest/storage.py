@@ -143,6 +143,7 @@ def build(images,reconstruction,output):
     report={'size_bytes':total,'physical_partitions':parts,'logical_partitions':logical,
             'lp_version':'10.0','lp_metadata_sha256':hashlib.sha256(prefix).hexdigest(),
             'source_images':{n:evidence[n] for n in (*LOGICAL,'vbmeta','vbmeta_system')},
+            'fresh_metadata_image':fresh_info,
             'metadata_origin':'Fresh disposable empty ext4; not headset userdata or secrets',
             'original_partition_bytes_modified':False,'avb_disabled':False,
             'original_disk_geometry_reproduced':False,'slot':'_a','phone_modified':False}

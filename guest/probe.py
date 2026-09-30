@@ -23,6 +23,13 @@ def classify(text):
         'original_init_exec_attempt_observed':'Run /init as init process' in text,
         'init_sigill_observed':'Attempted to kill init! exitcode=0x00000004' in text,
         'original_init_marker_observed':bool(re.search(r'init:.*(?:init first stage started|First stage mount|first_stage)',text,re.I)),
+        'second_stage_init_observed':'init second stage started!' in text,
+        'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
+        'boot_events':[line for line in text.splitlines() if any(token in line for token in (
+            'init first stage started','init second stage started','Switching root',
+            'Created logical partition','__mount(','Loading SELinux policy',
+            'SELinux: Loaded policy','AvbHandle','vbmeta digest','dm-verity',
+            'DSU not detected','starting service'))][:180],
         'kernel_panic_observed':'Kernel panic' in text,
         'android_boot_completed':False,
         'qualification':'Boot-stage evidence only; no full Android/Horizon boot claim.'
@@ -55,7 +62,7 @@ def probe(kernel,initrd,output,disk=None):
     with log.open('wb') as stream:
         proc=subprocess.Popen(args,stdin=subprocess.DEVNULL,stdout=stream,stderr=subprocess.STDOUT,
                               start_new_session=True,preexec_fn=child_limits)
-        deadline=time.monotonic()+90
+        deadline=time.monotonic()+180
         while proc.poll() is None:
             if time.monotonic()>=deadline or log.stat().st_size>8*1024*1024:
                 timed_out=time.monotonic()>=deadline

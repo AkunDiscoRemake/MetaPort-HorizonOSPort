@@ -27,3 +27,10 @@ class ProbeTests(unittest.TestCase):
         self.assertTrue(r['original_init_marker_observed'])
         self.assertTrue(r['recovery_mount_skip_observed'])
         self.assertFalse(r['android_boot_completed'])
+
+    def test_second_stage_and_mount_evidence_is_not_complete_boot(self):
+        r=classify("init: init second stage started!\ninit: Created logical partition system_a on device /dev/block/dm-0\ninit: __mount(source=/dev/block/dm-7,target=/system,type=ext4)=0: Success")
+        self.assertTrue(r['second_stage_init_observed'])
+        self.assertEqual(r['logical_partitions_created'],['system_a'])
+        self.assertEqual(len(r['boot_events']),3)
+        self.assertFalse(r['android_boot_completed'])
