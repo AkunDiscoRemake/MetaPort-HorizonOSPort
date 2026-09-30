@@ -42512,6 +42512,195 @@
       "sites_truncated": false
     }
   ],
+  "elf_pointer_functions": [
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 11894944,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_00c580a0",
+        "elf_address": 11894944
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 11894896,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_00c58070",
+        "elf_address": 11894896
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 23163200,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_01717140",
+        "elf_address": 23163200
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 23163168,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_01717120",
+        "elf_address": 23163168
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 23162448,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_01716e50",
+        "elf_address": 23162448
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 23162464,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_01716e60",
+        "elf_address": 23162464
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 23162496,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_01716e80",
+        "elf_address": 23162496
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "elf_address": 16343984,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_010963b0",
+        "elf_address": 16343984
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 8943376,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_00987710",
+        "elf_address": 8943376
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 7088080,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "free",
+        "elf_address": 7088080
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 25427824,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_0193ff70",
+        "elf_address": 25427824
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 25427888,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_0193ffb0",
+        "elf_address": 25427888
+      },
+      "selected": true,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 8943376,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_00987710",
+        "elf_address": 8943376
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 7088080,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "free",
+        "elf_address": 7088080
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 25427920,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_0193ffd0",
+        "elf_address": 25427920
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 25428352,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_01940180",
+        "elf_address": 25428352
+      },
+      "selected": false,
+      "private_abi_validated": false
+    },
+    {
+      "type_name": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "elf_address": 25428432,
+      "status": "FUNCTION_AT_POINTER_CANDIDATE",
+      "function": {
+        "name": "FUN_019401d0",
+        "elf_address": 25428432
+      },
+      "selected": false,
+      "private_abi_validated": false
+    }
+  ],
   "rtti_pointer_candidates": [],
   "rtti_scope": "Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 targets selected.",
   "incoming_root_calls": [
@@ -42651,6 +42840,14 @@
       28949312
     ],
     "temporal": [
+      11894944,
+      11894896,
+      23163200,
+      23163168,
+      8943376,
+      7088080,
+      25427824,
+      25427888,
       28447904,
       10674720,
       28313744,
