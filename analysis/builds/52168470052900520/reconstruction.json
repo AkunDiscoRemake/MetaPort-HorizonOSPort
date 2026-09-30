@@ -1,0 +1,44 @@
+{
+  "source_zip_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "partitions": {
+    "odm": {
+      "size_bytes": 295993344,
+      "sha256": "682ada7a17804df126ac9989149c04d8a2f6e722b3830648940dd9ee06736a09",
+      "sha256_match": true,
+      "operations_verified": 142,
+      "filesystem_magic": "ext4-family"
+    },
+    "product": {
+      "size_bytes": 205205504,
+      "sha256": "52949604cd27e17718217b80564ec831b0013cff2aaf1c611c4d743cfb671b9a",
+      "sha256_match": true,
+      "operations_verified": 98,
+      "filesystem_magic": "ext4-family"
+    },
+    "system": {
+      "size_bytes": 954920960,
+      "sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "sha256_match": true,
+      "operations_verified": 456,
+      "filesystem_magic": "ext4-family"
+    },
+    "system_ext": {
+      "size_bytes": 1417265152,
+      "sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+      "sha256_match": true,
+      "operations_verified": 676,
+      "filesystem_magic": "ext4-family"
+    },
+    "vendor": {
+      "size_bytes": 531582976,
+      "sha256": "c34b367c3cd22481205bbdfb11756805ddbd42c9e81ae8a89e5f44ef7867f12b",
+      "sha256_match": true,
+      "operations_verified": 254,
+      "filesystem_magic": "ext4-family"
+    }
+  },
+  "firmware_executed": false,
+  "images_mounted": false,
+  "authenticity": "UNVERIFIED",
+  "port_status": "NOT PORTED YET"
+}
