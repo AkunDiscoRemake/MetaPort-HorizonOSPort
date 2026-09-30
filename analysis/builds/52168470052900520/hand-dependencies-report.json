@@ -10,6 +10,7 @@
       "sha256": "986a04a5130ecaebae9540f4acc6663d100e720f21b7afb9b02f4c858c817499",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 3,
+      "selection_mode": "keyword_context",
       "context_lines": 7,
       "lines": [
         {
@@ -60,11 +61,482 @@
     },
     {
       "partition": "odm",
+      "path": "/etc/thread_priority.cfg",
+      "size_bytes": 1821,
+      "sha256": "44e496862b89c9bbc463be89599257b77fcbe8522e57be9f86b29bdb7432a64d",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 26,
+      "selection_mode": "bounded_full_config",
+      "context_lines": 76,
+      "lines": [
+        {
+          "line": 1,
+          "excerpt": "# Following configs are parsed by OVR:OS::Thread::PriorityFixture at construction.",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 2,
+          "excerpt": "# The fixture exists as a singleton in process where it is called; all instances",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 3,
+          "excerpt": "# use the configs in this file.",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 4,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 5,
+          "excerpt": "# 1 above the syncboss kernel thread (SYNCBOSS_DEFAULT_POLL_PRIO)",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 6,
+          "excerpt": "# so that SBEventHandler (miscfifo consumer) is given the opportunity",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 7,
+          "excerpt": "# to drain the kernel miscfifo at least as quickly as the kernel can",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 8,
+          "excerpt": "# fill it. Otherwise, the fifo can fill and messages can be dropped.",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 9,
+          "excerpt": "[syncbossWorkerPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 10,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 11,
+          "excerpt": "value = 52",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 12,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 13,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 14,
+          "excerpt": "# HMD and controller pose threads should be higher-priority than the",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 15,
+          "excerpt": "# worker threads to ensure they fire off with minimal scheduling delay.",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 16,
+          "excerpt": "[headsetPosePriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 17,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 18,
+          "excerpt": "value = 51",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 19,
+          "excerpt": "# Controller pose should be just lower than headset pose, since it takes",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 20,
+          "excerpt": "# longer to run",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 21,
+          "excerpt": "[controllerPosePriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 22,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 23,
+          "excerpt": "value = 50",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 24,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 25,
+          "excerpt": "# These threads are reponsible for camera buffer and/or data",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 26,
+          "excerpt": "# movement, so must be higher priority than any consumer thread.",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 27,
+          "excerpt": "[cameraWorkerPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 28,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 29,
+          "excerpt": "value = 48",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 30,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 31,
+          "excerpt": "# 100 = nice value -20 which is highest priority SCHED_OTHER.",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 32,
+          "excerpt": "# 140 = nice value 20 which is lowest priority SCHED_OTHER.",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 33,
+          "excerpt": "[controllerWorkerPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 34,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 35,
+          "excerpt": "value = 110",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 36,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 37,
+          "excerpt": "[motionStreamerPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 38,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 39,
+          "excerpt": "value = 101",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 40,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 41,
+          "excerpt": "[controllerStreamerPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 42,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 43,
+          "excerpt": "value = 101",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 44,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 45,
+          "excerpt": "[cameraStreamerPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 46,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 47,
+          "excerpt": "value = 100",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 48,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 49,
+          "excerpt": "[backgroundPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 50,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 51,
+          "excerpt": "value = 139",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 52,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 53,
+          "excerpt": "[computePriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 54,
+          "excerpt": "policy = \"Batch\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 55,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 56,
+          "excerpt": "[normalPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 57,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 58,
+          "excerpt": "value = 120",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 59,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 60,
+          "excerpt": "[elevatedPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 61,
+          "excerpt": "policy = \"Normal\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 62,
+          "excerpt": "value = 100",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 63,
+          "excerpt": "taskprofile = [ \"SoftRealtimePerformance\" ]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 64,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 65,
+          "excerpt": "[isochronousPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 66,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 67,
+          "excerpt": "value = 1",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 68,
+          "excerpt": "affinity = \"110000\"",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 69,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 70,
+          "excerpt": "[latencyCriticalPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 71,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 72,
+          "excerpt": "value = 48",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 73,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 74,
+          "excerpt": "[graphicsCriticalPriority]",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 75,
+          "excerpt": "policy = \"Realtime\"",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 76,
+          "excerpt": "value = 49",
+          "line_truncated": false,
+          "keyword_match": false
+        }
+      ],
+      "truncated": false,
+      "runtime_activation_proved": false
+    },
+    {
+      "partition": "odm",
       "path": "/etc/init/odm.trackingservice.rc",
       "size_bytes": 188,
       "sha256": "bc3f143605f1b264959529f4329956fa605d2f3e30bab76c953c99554d72dd26",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 2,
+      "selection_mode": "keyword_context",
       "context_lines": 8,
       "lines": [
         {
@@ -126,6 +598,7 @@
       "sha256": "47f05c914cf24abb5caaa453e9e3d86bf51971140f2a2de86596dacfc6096da1",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 2,
+      "selection_mode": "keyword_context",
       "context_lines": 9,
       "lines": [
         {
@@ -245,6 +718,7 @@
       "sha256": "c79220d6933c4ee76173213230a6014cb1906859bdaef4959a111d0e53832a3e",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 51,
+      "selection_mode": "keyword_context",
       "context_lines": 211,
       "lines": [
         {
@@ -1533,6 +2007,7 @@
       "sha256": "c0f85908a58f7f4c7c84ca9bbc62ce361c47f40cdab048cecb7f80419494b934",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 2,
+      "selection_mode": "keyword_context",
       "context_lines": 6,
       "lines": [
         {
@@ -1582,6 +2057,7 @@
       "sha256": "d8fc4688a228518554d695224478350070f77b06a3229e555943ec55778437e8",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 36,
+      "selection_mode": "keyword_context",
       "context_lines": 169,
       "lines": [
         {
@@ -2662,6 +3138,7 @@
       "sha256": "ae6dcb12a6a99b9e94743a376f7914b48078169b8e12788343712c7e243e89ab",
       "status": "TEXT_CANDIDATES_ONLY",
       "matched_lines": 0,
+      "selection_mode": "keyword_context",
       "context_lines": 0,
       "lines": [],
       "truncated": false,
@@ -2793,7 +3270,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "ebd92c3618fddd915712eb9ba5d022d640de31ee67cca96de0e4df4b2dcad0f3",
+        "decoded_text_sha256": "fbfc972bb94949490229813df5f7b062265094a81e4558c19cc80c773f5a1ac8",
         "tool": "llvm-objdump-14",
         "instruction_lines": 336224,
         "unknown_or_invalid_instruction_lines": 83988,
@@ -2919,7 +3396,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "fc769e0d3c8219f004165bc737cd54e85e458c7216d3cce02d729ea23e45c019",
+        "decoded_text_sha256": "be2c68fd28801da58f728d58872c2952247fe1da540b6cc56631c2f389cf8cab",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -2943,7 +3420,7 @@
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "e7132365bb8027a10011ee3f8331bb987d608d9aef7925876cbcc9ec1d5c4389",
+        "decoded_text_sha256": "970754a54306d7bc6e773ab60778b0594c18bd5843eb723b3e902e7ee7143512",
         "tool": "llvm-objdump-14",
         "instruction_lines": 345808,
         "unknown_or_invalid_instruction_lines": 50552,
@@ -4418,7 +4895,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "b30a7dd1dc449852d8fa250247d96adcf2e1cc00cd117c9cedcce0e203ede62e",
+        "decoded_text_sha256": "9517da190667fc90350a8845933bcc99f291f9bea264976a599bb0166eea30fd",
         "tool": "llvm-objdump-14",
         "instruction_lines": 79499,
         "unknown_or_invalid_instruction_lines": 29613,
@@ -4481,7 +4958,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "fc769e0d3c8219f004165bc737cd54e85e458c7216d3cce02d729ea23e45c019",
+        "decoded_text_sha256": "be2c68fd28801da58f728d58872c2952247fe1da540b6cc56631c2f389cf8cab",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -4505,7 +4982,7 @@
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "2df51241e2b169c9071cae43f307243ea5260d83173c0e521d6cc4b6377a42be",
+        "decoded_text_sha256": "ae92ea4d82d159642216b2867511ebbcd5eeebbb0dc2600e8110d40b0df4c146",
         "tool": "llvm-objdump-14",
         "instruction_lines": 80870,
         "unknown_or_invalid_instruction_lines": 25839,
