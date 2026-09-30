@@ -11,7 +11,7 @@ METADATA_FILES = ("META-INF/com/android/metadata", "payload_properties.txt")
 LIMIT = 1024 * 1024
 
 
-def inspect(path, expected=EXPECTED_SHA256):
+def inspect(path, expected=EXPECTED_SHA256, include_manifest=False):
     digest = hashlib.sha256()
     with open(path, "rb") as stream:
         while block := stream.read(LIMIT):
@@ -56,13 +56,19 @@ def inspect(path, expected=EXPECTED_SHA256):
                     raise ValueError("Duplicate metadata key")
                 fields[key] = value
             report["metadata"][name] = fields
+        if include_manifest:
+            from tools.payload_manifest import inspect_payload
+            info = archive.getinfo("payload.bin")
+            with archive.open(info) as stream:
+                report["payload_manifest"] = inspect_payload(
+                    stream, info.file_size, report["metadata"]["payload_properties.txt"])
         ota = report["metadata"].get(METADATA_FILES[0], {})
         report["incremental_base_declared"] = any(
             ota.get(key) for key in ("pre-build", "pre-build-incremental"))
         report["notes"] = [
             "Absence of a pre-build requirement does not prove a full image.",
             "Build fingerprints and release-keys do not alone prove a stable channel.",
-            "No payload parsing, partition extraction, disassembly or firmware execution performed."
+            "No partition extraction, disassembly or firmware execution performed."
         ]
     return report
 
@@ -71,8 +77,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("zip", type=Path)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--manifest", action="store_true", help="Inspect bounded AOSP packaging manifest")
     args = parser.parse_args()
-    report = inspect(args.zip)
+    report = inspect(args.zip, include_manifest=args.manifest)
     serialized = json.dumps(report, indent=2, ensure_ascii=True)
     args.output.write_text(serialized + "\n", encoding="utf-8")
     print(serialized)

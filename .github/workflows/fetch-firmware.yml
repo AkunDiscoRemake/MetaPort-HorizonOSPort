@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/fetch-firmware.yml
       - tools/inspect_ota.py
+      - tools/payload_manifest.py
+      - tests/test_payload_manifest.py
   workflow_dispatch:
 
 permissions:
@@ -60,7 +62,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/report"
-          python3 tools/inspect_ota.py \
+          python3 -m tools.inspect_ota --manifest \
             "$RUNNER_TEMP/firmware/q3_52168470052900520.zip" \
             --output "$RUNNER_TEMP/report/ota-report.json"
           echo 'OTA metadata report available in the inspection step logs and ota-metadata-report artifact. Stable channel and full-image status require further verification.' >> "$GITHUB_STEP_SUMMARY"
