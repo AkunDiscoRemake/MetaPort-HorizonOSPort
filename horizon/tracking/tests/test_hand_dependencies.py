@@ -37,6 +37,7 @@ class Dependencies(unittest.TestCase):
         r=disassembly_summary('00001000 <conv_kernel>:\n 1000: v0.b = vadd(v1.b,v2.b)\n 1004: jumpr r31\n')
         self.assertEqual(r['instruction_lines'],2)
         self.assertEqual(r['vector_syntax_lines'],1)
+        self.assertEqual(r['vector_operation_spellings'],{'vadd':1})
         self.assertEqual(r['function_labels'],['conv_kernel'])
         self.assertFalse(r['hand_call_chain_validated'])
 

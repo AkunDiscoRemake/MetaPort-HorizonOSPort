@@ -139,3 +139,71 @@ e `libQnnBoltnnOpPackageV69.so`. Registra máquina ELF, dependências dinâmicas
 excertos de configuração relevantes. Não executa código, não altera prioridades
 no aparelho e não supõe que um backend DSP seja carregável no processo ARM64.
 A whitelist não é o fechamento transitivo completo de todas as dependências.
+
+## 6. Call chains e backend DSP: resultados da continuação
+
+**Run 36787226058 concluído:** cobertura de referências de **2370 strings únicas**
+que casam com o scanner, não de todas as strings/código do firmware. Recuperou:
+
+- `019513a0 → 01953880`: agora há o construtor que consulta parâmetros e fornece
+  batch/stack ao logger do detector de mãos. Dois campos têm fallback 1; isso não
+  prova que os modelos em uso tenham batch 1, nem recupera o algoritmo do detector.
+- `0173c830 → 00e1ec40`: construção/carregamento chama o planejamento de arenas.
+  Não se declarou que o planejamento ocorre a cada frame ou nunca ocorre depois.
+- `01c214a0`, `00b2e220`, `01c00890 → 00b2e090`: callers do configurador de taxa;
+  permanece pendente separar as rotas compartilhadas de câmera das rotas de mãos.
+- `00b694d0 → 00b69590`: reforça o caminho de configuração, não algoritmo de filtro.
+
+Os nomes `DPEPredictorV2` e `getHandTrackingThreadPriorityCallback` não apresentaram
+referências diretas de código nesta passagem. A próxima percorre uma hipótese
+limitada de RTTI/pointers e registra os elos e candidatos. **Não define uma vtable
+privada nem converte esses ponteiros automaticamente em chamadas executáveis.**
+
+### Configuração e privilégios originais
+
+Nos arquivos verificados do serviço aparecem `task_profiles trackingPolicy`,
+`capabilities SYS_NICE`, usuário `system` e `ioprio rt 4`. O serviço APEX também
+possui `disabled`. Isso é configuração embarcada, não prova de ativação no boot.
+`wake_affine_controller = true` se refere a controller tracking no comentário;
+`use_obj_track_cpuset = true` também não comprova otimização exclusiva de mãos.
+Não copiar esses privilégios/CPU sets para um APK comum, nem tratar o índice de
+SchedulingConfig como prioridade Linux. A adaptação precisa respeitar as APIs e
+permissões efetivas do telefone, sem root/desbloqueio.
+
+### Hexagon: finalmente instruções, não só dependências
+
+Run **36789064019** publicou novo `hand-dependencies-report.json`:
+
+- `libhexagon.so` ARM64 depende de `libcdsprpc.so`; RPC depende, entre outras,
+  de `vendor.qti.hardware.dsp@1.0.so`, `libdmabufheap.so` e `libvmmem.so`.
+- `libhexagon_skel.so` e `libQnnBoltnnOpPackageV69.so` são ELF32, máquina 164,
+  flags `0x69` (V69). Não são bibliotecas ARM64 executáveis diretamente no APK.
+- O primeiro objdump devolveu **zero instruções com exit 0**. Não foi tratado como
+  recuperação bem-sucedida. Uma view ELF de análise reconstrói seções sobre cópias
+  byte-exatas dos PT_LOAD executáveis, mantendo seus VAs. Não é firmware para
+  carregar/flashear; o original permanece intocado e os hashes são registrados.
+- Com perfil explícito `hexagonv69,+hvxv69,+hvx-length128b`, aparecem **32038 e
+  3475 linhas com sintaxe de registradores vetoriais**, respectivamente. Exemplos:
+  `vsplat`, `vmem`, `vmemu`, `vxor` e `vadd` com operandos `.sf`/resultado `.qf32`.
+  Isso revela vetorização nas dependências do backend; **não prova quais kernels
+  cada modelo de mãos executa**, nem que largura 128 B esteja ativa em runtime.
+- Ainda há **50552 e 25839 linhas unknown/invalid** nesse perfil. Os segmentos
+  executáveis podem incluir dados; contagens de linhas não são número de funções,
+  otimizações, instruções válidas ou porcentagem de port concluído.
+- Não substituir `.qf32` por float ARM/NEON por adivinhação: precisam de validação
+  numérica e das regras originais de arredondamento/representação.
+
+A identificação V69 e os nomes do perfil usam a referência pública LLVM 14.0.6:
+`llvm/include/llvm/BinaryFormat/ELF.h` e `llvm/lib/Target/Hexagon/Hexagon.td`, tag
+`llvmorg-14.0.6` do repositório `llvm/llvm-project`. Nenhuma execução DSP ocorreu.
+
+### Publicação e validação
+
+Runs 36787460895 e 36788324026 falharam na etapa de publicação, não na etapa de
+inspeção. Seus resultados não foram reclassificados como sucesso. O publisher
+passou a atualizar o checkout limpo antes de copiar relatórios e tratar corridas
+de push. O run 36789064019 publicou com sucesso a view corrigida, preservando
+inclusive segmentos que incluem o cabeçalho ELF.
+
+Build Android **36787628516** passou com a aritmética de arenas incorporada.
+Ainda sem validação física, alocador original no MediaTek ou execução dos modelos.

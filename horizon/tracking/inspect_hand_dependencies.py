@@ -2,6 +2,7 @@
 """Verified hand service/config and accelerator dependency inventory. No execution."""
 import json
 import hashlib
+from collections import Counter
 from pathlib import Path
 import re
 import struct
@@ -97,7 +98,7 @@ def disassembly_summary(text):
     """LLVM output evidence only; vector syntax does not prove hand-model activation."""
     labels=[]; vectors=[]; samples=[]; vector_count=0; instructions=0; unknown=0
     interesting=re.compile(r'conv|gemm|matmul|quant|pool|softmax|relu|hvx|vtcm|vector',re.I)
-    label_count=0
+    label_count=0; operations=Counter()
     for line in text.splitlines():
         label=re.match(r'^\s*[0-9a-fA-F]+ <(.+)>:$',line)
         if label and interesting.search(label[1]):
@@ -109,11 +110,13 @@ def disassembly_summary(text):
         if re.search(r"unknown|invalid",line,re.I): unknown+=1
         if re.search(r'\bv[0-9]+(?:\.[a-z]+)?\b',line):
             vector_count+=1
+            operations.update(re.findall(r"\b(v[a-z][a-z0-9_]*)\s*\(",line))
             if len(vectors)<64: vectors.append(line[:1024])
     return {'decoded_text_sha256':hashlib.sha256(text.encode()).hexdigest(),
             'tool':'llvm-objdump-14','instruction_lines':instructions,
             'unknown_or_invalid_instruction_lines':unknown,'instruction_samples':samples,'matching_function_labels':label_count,
             'function_labels':labels,'function_labels_truncated':label_count>256,
+            'vector_operation_spellings':dict(sorted(operations.items())),
             'vector_syntax_lines':vector_count,'vector_samples':vectors,
             'vector_samples_truncated':vector_count>64,
             'hand_call_chain_validated':False,'scope':'Whole objdump text summarized; excerpts bounded, no instruction semantics validated'}
