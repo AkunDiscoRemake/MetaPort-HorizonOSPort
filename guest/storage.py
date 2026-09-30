@@ -112,7 +112,7 @@ def build(images,reconstruction,output):
     output.mkdir(parents=True,exist_ok=True)
     if any(output.iterdir()): raise ValueError('Use an empty output directory')
     evidence=json.loads(Path(reconstruction).read_text())['partitions']
-    for name in (*LOGICAL,'vbmeta','vbmeta_system'):
+    for name in (*LOGICAL,'vbmeta','vbmeta_system','boot'):
         path=images/(name+'.img')
         if not stat.S_ISREG(path.lstat().st_mode): raise ValueError('Only regular image files accepted')
         if not evidence[name]['sha256_match'] or path.stat().st_size!=evidence[name]['size_bytes']:
@@ -122,7 +122,9 @@ def build(images,reconstruction,output):
     with fresh.open('xb') as stream: stream.truncate(64*MIB)
     subprocess.run(['mkfs.ext4','-q','-F','-L','metadata',str(fresh)],check=True)
     fresh_info={'size_bytes':fresh.stat().st_size,'sha256':hashlib.sha256(fresh.read_bytes()).hexdigest()}
-    physical={'super':super_size,'metadata':64*MIB,
+    physical={'super':super_size,'metadata':64*MIB,'misc':4*MIB,
+              'boot_a':align(evidence['boot']['size_bytes']),
+              'boot_b':align(evidence['boot']['size_bytes']),
               'vbmeta_a':align(evidence['vbmeta']['size_bytes']),
               'vbmeta_system_a':align(evidence['vbmeta_system']['size_bytes'])}
     headers,parts,total=gpt(physical)
@@ -137,13 +139,17 @@ def build(images,reconstruction,output):
                 name=item['name'];copy_verified(disk,images/(name+'.img'),locations['super']+item['offset'],evidence[name])
             for name in ('vbmeta','vbmeta_system'):
                 copy_verified(disk,images/(name+'.img'),locations[name+'_a'],evidence[name])
+            for slot in ('a','b'):
+                copy_verified(disk,images/'boot.img',locations['boot_'+slot],evidence['boot'])
             copy_verified(disk,fresh,locations['metadata'],fresh_info)
     except Exception:
         target.unlink(missing_ok=True);raise
     report={'size_bytes':total,'physical_partitions':parts,'logical_partitions':logical,
             'lp_version':'10.0','lp_metadata_sha256':hashlib.sha256(prefix).hexdigest(),
-            'source_images':{n:evidence[n] for n in (*LOGICAL,'vbmeta','vbmeta_system')},
+            'source_images':{n:evidence[n] for n in (*LOGICAL,'vbmeta','vbmeta_system','boot')},
             'fresh_metadata_image':fresh_info,
+            'misc_origin':'Fresh zero-initialized guest storage; original HAL must initialize its own state',
+            'boot_slots':'Both contain the same verified original boot image; no guest bootloader slot-selection implementation',
             'metadata_origin':'Fresh disposable empty ext4; not headset userdata or secrets',
             'original_partition_bytes_modified':False,'avb_disabled':False,
             'original_disk_geometry_reproduced':False,'slot':'_a','phone_modified':False}

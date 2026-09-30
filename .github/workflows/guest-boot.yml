@@ -22,7 +22,7 @@ jobs:
       - name: Install isolated build and emulation tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip e2fsprogs gdisk binutils-aarch64-linux-gnu aapt
+          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip e2fsprogs gdisk binutils-aarch64-linux-gnu aapt device-tree-compiler
           python3 -m pip install lz4==4.4.4
           mkdir -p "$GUEST_WORK"
       - name: Test bounded parsers and probe classification

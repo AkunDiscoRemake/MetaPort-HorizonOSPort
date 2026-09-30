@@ -9,6 +9,7 @@ import resource
 import signal
 import subprocess
 import time
+from guest.dtb import prepare as prepare_dtb
 
 
 def child_limits():
@@ -55,8 +56,10 @@ def probe(kernel,initrd,output,disk=None):
         avb=json.loads((disk.parent/'avb-boot.json').read_text())
         if avb['hash_alg']!='sha256' or not re.fullmatch('[0-9a-f]{64}',avb['digest']) or not 0<avb['size']<=16*1024*1024:
             raise ValueError('Invalid bounded vbmeta boot parameters')
-        args[-1]+=' androidboot.boot_devices=a000000.virtio_mmio'
+        args[-1]+=' androidboot.boot_devices=soc/a000000.virtio_mmio androidboot.bootdevice=a000000.virtio_mmio'
         args[-1]+=f" androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size={avb['size']} androidboot.vbmeta.digest={avb['digest']}"
+        dtb=prepare_dtb(output/'device-tree')
+        args+=['-dtb',str(dtb)]
         args+=['-drive',f'if=none,id=guestdisk,file={disk},format=raw,snapshot=on',
                '-device','virtio-blk-device,drive=guestdisk,bus=virtio-mmio-bus.0']
     log=output/'guest-console.log'
@@ -76,7 +79,8 @@ def probe(kernel,initrd,output,disk=None):
             try: proc.wait(timeout=0.25)
             except subprocess.TimeoutExpired: pass
     with log.open('rb') as stream: text=stream.read(8*1024*1024).decode(errors='replace')
-    result={'guest_disk_attached':disk is not None,'disk_writes':'disposable QEMU snapshot' if disk else None,
+    result={'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
+            'guest_disk_attached':disk is not None,'disk_writes':'disposable QEMU snapshot' if disk else None,
             'console_limit_exceeded':log.stat().st_size>8*1024*1024,
             'qemu_returncode':proc.returncode,'timeout':timed_out,
             'kernel_sha256':hashlib.sha256(kernel.read_bytes()).hexdigest(),
