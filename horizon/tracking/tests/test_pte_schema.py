@@ -90,3 +90,11 @@ class SchemaTests(unittest.TestCase):
             b.reference(fields[1],payload)
             result=View(b.data).value([obj],0)
             self.assertEqual(result['serialized_value'],value)
+
+    def test_private_scalar_layout_is_not_silently_narrowed(self):
+        b=Builder();obj,fields=b.table(2);b.integer(fields[0],2)
+        payload,pfields=b.table(1);b.integer(pfields[0],123)
+        b.reference(fields[1],payload)
+        result=View(b.data).value([obj],0)
+        self.assertEqual(result['kind'],'SCALAR_LAYOUT_UNRESOLVED')
+        self.assertNotIn('serialized_value',result)

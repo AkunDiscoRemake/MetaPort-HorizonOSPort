@@ -71,7 +71,13 @@ class View:
             pos=self.field(obj,1)
             if pos is None: raise ValueError('Missing scalar union payload')
             payload=self.ref(pos);fmt={2:'q',3:'B',4:'d'}[tag]
-            value=self.scalar(payload,0,fmt)
+            try:
+                value=self.scalar(payload,0,fmt)
+            except ValueError as error:
+                # Keep the rest of the metadata, but never narrow a scalar to make
+                # a private layout fit this public reference schema.
+                result.update(kind='SCALAR_LAYOUT_UNRESOLVED',error=str(error),payload_offset=payload)
+                return result
             if tag==3 and value not in (0,1): raise ValueError('Invalid Boolean scalar')
             if tag==4 and not math.isfinite(value): raise ValueError('Nonfinite scalar metadata')
             result.update(kind={2:'Int',3:'Bool',4:'Double'}[tag],serialized_value=bool(value) if tag==3 else value)
@@ -122,4 +128,5 @@ def describe(data,root):
             'schema_reference':'pytorch/executorch v0.7.0 schema/program.fbs',
             'schema_git_blob':'7308cc631994146e037b7a88749aa4c8e87fe93a',
             'serialized_program_version':view.scalar(root,0),'execution_plans':plans,
-            'all_instructions_validated':False,'camera_semantics_recovered':False}
+            'all_instructions_validated':False,'camera_semantics_recovered':False,
+            'unresolved_scalar_count':sum(v.get('kind')=='SCALAR_LAYOUT_UNRESOLVED' for p in plans for v in p['inputs']+p['outputs'])}
