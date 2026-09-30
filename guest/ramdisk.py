@@ -50,7 +50,7 @@ def decompress(blob):
 
 def inventory(blob):
     data,compression=decompress(blob)
-    offset=0; entries=[]; configs=[]; trailers=0
+    offset=0; entries=[]; configs=[]; trailers=0; archive_open=False
     while offset<len(data):
         # Multiple padded newc archives are permitted; never follow paths or symlinks.
         if data[offset]==0:
@@ -72,7 +72,8 @@ def inventory(blob):
         offset=(start+size+3)&~3
         if name=='TRAILER!!!':
             if size: raise ValueError('Nonempty CPIO trailer')
-            trailers+=1; continue
+            trailers+=1; archive_open=False; continue
+        archive_open=True
         path=PurePosixPath(name)
         if path.is_absolute() or '..' in path.parts: raise ValueError('Unsafe CPIO path')
         normalized=str(path)
@@ -86,6 +87,6 @@ def inventory(blob):
             path.name.startswith('fstab.') or path.suffix=='.rc' or path.name in ('prop.default','default.prop')):
             text=content.decode('utf-8','replace')
             configs.append({'path':normalized,'sha256':entry['sha256'], 'text':text})
-    if trailers==0: raise ValueError('Missing CPIO trailer')
+    if trailers==0 or archive_open: raise ValueError('Missing CPIO trailer')
     return {'compression':compression,'unpacked_size_bytes':len(data),'archive_trailers':trailers,
             'entries':entries,'configuration':configs,'executed':False}

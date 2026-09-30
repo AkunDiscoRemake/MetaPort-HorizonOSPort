@@ -15,3 +15,9 @@ class ProbeTests(unittest.TestCase):
 
     def test_empty_output_is_not_success(self):
         self.assertFalse(classify('')['kernel_console_observed'])
+
+    def test_exec_attempt_is_not_first_stage_start(self):
+        r=classify('Run /init as init process\nKernel panic - not syncing: Attempted to kill init! exitcode=0x00000004')
+        self.assertTrue(r['original_init_exec_attempt_observed'])
+        self.assertTrue(r['init_sigill_observed'])
+        self.assertFalse(r['original_init_marker_observed'])

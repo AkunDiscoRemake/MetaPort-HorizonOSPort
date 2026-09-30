@@ -18,6 +18,8 @@ def child_limits():
 def classify(text):
     return {
         'kernel_console_observed':bool(re.search(r'Booting Linux on physical CPU|Linux version [0-9]',text)),
+        'original_init_exec_attempt_observed':'Run /init as init process' in text,
+        'init_sigill_observed':'Attempted to kill init! exitcode=0x00000004' in text,
         'original_init_marker_observed':bool(re.search(r'init:.*(?:init first stage started|First stage mount|first_stage)',text,re.I)),
         'kernel_panic_observed':'Kernel panic' in text,
         'android_boot_completed':False,
@@ -29,7 +31,7 @@ def probe(kernel,initrd,output):
     kernel=Path(kernel).resolve(); initrd=Path(initrd).resolve(); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
     args=['qemu-system-aarch64','-nodefaults','-no-user-config','-machine','virt,gic-version=3',
-          '-accel','tcg','-cpu','cortex-a72','-smp','2','-m','1024',
+          '-accel','tcg','-cpu','max','-smp','2','-m','1024',
           '-display','none','-serial','stdio','-monitor','none','-nic','none',
           '-no-reboot','-sandbox','on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny',
           '-kernel',str(kernel),'-initrd',str(initrd),

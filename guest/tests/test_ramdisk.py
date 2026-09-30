@@ -41,6 +41,10 @@ class RamdiskTests(unittest.TestCase):
         blob=record('a')+record('TRAILER!!!')+bytes(512)+record('b')+record('TRAILER!!!')
         self.assertEqual(inventory(blob)['archive_trailers'],2)
 
+    def test_each_concatenated_archive_requires_trailer(self):
+        with self.assertRaises(ValueError):
+            inventory(record('a')+record('TRAILER!!!')+record('b'))
+
     def test_lz4_legacy(self):
         try: import lz4.block
         except ImportError: self.skipTest('Optional lz4 package not installed')
