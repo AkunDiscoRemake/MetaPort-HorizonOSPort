@@ -12,7 +12,7 @@ GROUPS = {
     'memory': r'zero.copy|buffer.*reus|memory.plan|arena.alloc|aligned_alloc|prealloc|memory.pool|cache.*tensor',
     'temporal': r'predict|smooth|filter|thread.pool|affinity|schedul|frame.*skip|downsampl|roi|region.of.interest',
 }
-HAND = re.compile(r'handtracking|hand_tracking|hand[ /:_-]|\bdpe\b|dpetorch|\bskb\b|\bstp\b', re.I)
+HAND = re.compile(r'handtracking|hand_tracking|handprototype|handbbox|handpose|hand[ /:_-]|\bdpe\b|dpetorch|\bskb\b|\bstp\b', re.I)
 
 
 def scan(data, sections):
@@ -35,7 +35,9 @@ def scan(data, sections):
     result = {}
     for name, rows in groups.items():
         rows.sort(key=lambda row: (not row['hand_context_in_string'], row['address']))
-        result[name] = {'matched_count': len(rows), 'selected': rows[:64],
+        if len(rows) > 8192:
+            raise ValueError('Optimization candidate limit exceeded; no complete inventory emitted')
+        result[name] = {'matched_count': len(rows), 'candidates': rows, 'selected': rows[:64],
                         'truncated': len(rows) > 64}
     return result
 
@@ -48,11 +50,15 @@ def prepare(output):
         raise ValueError('Wrong engine; refusing fixed function addresses')
     sections, _ = command(['readelf', '-SW', str(binary)])
     groups = scan(data, sections)
+    all_targets = {}
     for name, group in groups.items():
+        for row in group['candidates']:
+            all_targets.setdefault(row['address'], row)
         (output/f'{name}-strings.json').write_text(json.dumps(group['selected'], indent=2)+'\n')
         # Observed V1 load/configure helper; V2 executor. Not exported ABI entries.
         addresses = (0x1618660, 0x162bee0) if name == 'inference' else ()
         (output/f'{name}-functions.txt').write_text(''.join(f'{address:x}\n' for address in addresses))
+    (output/'optimization-all-strings.json').write_text(json.dumps(list(all_targets.values()), indent=2)+'\n')
     report = {'engine_sha256': ENGINE_SHA, 'groups': groups, 'all_optimizations_found': False,
               'runtime_validated': False, 'scope': 'String leads, including generic dependencies; call-chain validation required'}
     (output/'hand-optimization-targets.json').write_text(json.dumps(report, indent=2)+'\n')

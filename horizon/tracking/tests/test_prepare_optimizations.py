@@ -23,6 +23,13 @@ class OptimizationTargets(unittest.TestCase):
         self.assertEqual(r['matched_count'], 70)
         self.assertEqual(len(r['selected']), 64)
         self.assertTrue(r['truncated'])
+        self.assertEqual(len(r['candidates']), 70)
+        self.assertEqual(r['candidates'][64]['address'],0x100000+64*13)
 
     def test_no_suffix_of_overlong_string(self):
         self.assertEqual(self.scan(b'x'*600+b' quantization\0')['inference']['matched_count'], 0)
+
+    def test_camelcase_hand_detector_and_scheduler_context(self):
+        r=self.scan(b'CNNVizardHandBboxDetector batchSize\0HandPrototypeTracking scheduling\0')
+        self.assertTrue(r['inference']['selected'][0]['hand_context_in_string'])
+        self.assertTrue(r['temporal']['selected'][0]['hand_context_in_string'])

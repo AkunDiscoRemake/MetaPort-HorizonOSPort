@@ -2,7 +2,7 @@ name: Original hand optimization disassembly
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/prepare_optimizations.py, horizon/tracking/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
+    paths: [horizon/tracking/ghidra/TraceHandOptimizations.java, horizon/tracking/prepare_optimizations.py, horizon/tracking/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -57,6 +57,7 @@ jobs:
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
             -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
             -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -postScript TraceHandOptimizations.java "$WORK/reports/optimization-all-strings.json" "$WORK/reports" \
             -postScript DecompileHands.java "$WORK/reports/inference-functions.txt" "$WORK/reports/inference-strings.json" "$WORK/reports/hand-optimization-inference.json" \
             -postScript DecompileHands.java "$WORK/reports/memory-functions.txt" "$WORK/reports/memory-strings.json" "$WORK/reports/hand-optimization-memory.json" \
             -postScript DecompileHands.java "$WORK/reports/temporal-functions.txt" "$WORK/reports/temporal-strings.json" "$WORK/reports/hand-optimization-temporal.json" \
@@ -95,7 +96,7 @@ jobs:
         run: |
           set -euo pipefail
           dest=analysis/builds/52168470052900520
-          for name in hand-optimization-targets hand-optimization-inference hand-optimization-memory hand-optimization-temporal hand-optimization-run; do
+          for name in hand-optimization-targets hand-optimization-coverage hand-optimization-inference hand-optimization-memory hand-optimization-temporal hand-optimization-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
