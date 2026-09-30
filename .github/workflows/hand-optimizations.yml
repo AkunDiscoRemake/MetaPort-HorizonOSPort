@@ -2,7 +2,7 @@ name: Original hand optimization disassembly
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ghidra/TraceHandOptimizations.java, horizon/tracking/prepare_optimizations.py, horizon/tracking/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
+    paths: [horizon/tracking/elf_pointer_evidence.py, horizon/tracking/tests/test_elf_pointer_evidence.py, horizon/tracking/ghidra/TraceHandOptimizations.java, horizon/tracking/prepare_optimizations.py, horizon/tracking/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m unittest horizon.tracking.tests.test_prepare_optimizations -v
+          python3 -m unittest horizon.tracking.tests.test_prepare_optimizations horizon.tracking.tests.test_elf_pointer_evidence -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -44,6 +44,7 @@ jobs:
           prepare(root/'images',root/'reconstruction.json',root/'reports')
           PY
           python3 -m horizon.tracking.prepare_optimizations "$WORK/reports"
+          python3 -m horizon.tracking.elf_pointer_evidence "$WORK/reports"
       - name: Install pinned static decompiler
         run: |
           curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
@@ -101,7 +102,7 @@ jobs:
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
-          for name in hand-optimization-targets hand-optimization-coverage hand-optimization-inference hand-optimization-memory hand-optimization-temporal hand-optimization-run; do
+          for name in hand-optimization-targets hand-optimization-elf-pointers hand-optimization-coverage hand-optimization-inference hand-optimization-memory hand-optimization-temporal hand-optimization-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"

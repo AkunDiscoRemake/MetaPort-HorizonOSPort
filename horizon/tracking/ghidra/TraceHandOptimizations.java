@@ -51,6 +51,35 @@ public class TraceHandOptimizations extends GhidraScript {
         // Follow a bounded RTTI-layout hypothesis to pointer slots, NOT live calls.
         List<Map<String,Object>> rttiCandidates=new ArrayList<>();
         Set<Long> callbackTargets=new LinkedHashSet<>();
+        List<Map<String,Object>> elfPointerFunctions=new ArrayList<>();
+        Path pointerFile=out.resolve("hand-optimization-elf-pointers.json");
+        if(Files.exists(pointerFile)) {
+            var pointerReport=JsonParser.parseString(Files.readString(pointerFile)).getAsJsonObject();
+            if(!SHA.equals(pointerReport.get("engine_sha256").getAsString())) throw new IllegalStateException("Pointer evidence hash mismatch");
+            for(var targetElement:pointerReport.getAsJsonArray("targets")) {
+                var target=targetElement.getAsJsonObject();Set<Long> perType=new LinkedHashSet<>();
+                for(var pathElement:target.getAsJsonArray("paths")) {
+                    for(var candidate:pathElement.getAsJsonObject().getAsJsonArray("executable_pointer_candidates")) {
+                        monitor.checkCancelled();
+                        long elf=candidate.getAsJsonObject().get("target_elf").getAsLong();
+                        Address address=base.add(elf);var block=currentProgram.getMemory().getBlock(address);
+                        if(block==null || !block.isExecute() || (elf&3)!=0) continue;
+                        Function f=getFunctionAt(address);
+                        if(f==null && getFunctionContaining(address)==null) {
+                            disassemble(address);f=createFunction(address,null);
+                        }
+                        Map<String,Object> row=new LinkedHashMap<>();
+                        row.put("type_name",target.get("text").getAsString());row.put("elf_address",elf);
+                        row.put("status",f==null?"NO_FUNCTION_AT_CANDIDATE":"FUNCTION_AT_POINTER_CANDIDATE");
+                        if(f!=null) row.put("function",describe(f));
+                        boolean chosen=f!=null && !f.isExternal() && !f.getName().startsWith("__cxa_") && perType.size()<4;
+                        if(chosen) {perType.add(elf);callbackTargets.add(elf);}
+                        row.put("selected",chosen);row.put("private_abi_validated",false);elfPointerFunctions.add(row);
+                    }
+                }
+            }
+        }
+
         for(var element:targets) {
             var target=element.getAsJsonObject();String text=target.get("text").getAsString();
             if(!text.contains("getHandTrackingThreadPriorityCallback") && !text.contains("DPEPredictorV2")) continue;
@@ -125,6 +154,7 @@ public class TraceHandOptimizations extends GhidraScript {
         Map<String,Object> report=new LinkedHashMap<>();
         report.put("program_sha256",SHA);report.put("firmware_executed",false);
         report.put("all_optimizations_found",false);report.put("string_reference_coverage",coverage);
+        report.put("elf_pointer_functions",elfPointerFunctions);
         report.put("rtti_pointer_candidates",rttiCandidates);
         report.put("rtti_scope","Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 targets selected.");
         report.put("incoming_root_calls",edges);report.put("selected_elf_addresses",selections);
