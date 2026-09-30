@@ -731,7 +731,177 @@
         "qnn_spill_fill_buffer_size_delegate_0",
         "qnn_spill_fill_buffer_size_delegate_1",
         "qnn_version"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "SERIALIZED_ATTRIBUTES_RECOVERED",
+        "evidence": {
+          "method": "get_attributes_msgpack",
+          "getter_executed": false,
+          "instruction_count": 0,
+          "bytes": 1366,
+          "sha256": "fc20fbe8394b88325989cebfe40d3c038a3bcb7c08b4012e4733a29ea87cabf8",
+          "storage": "segment",
+          "segment_index": 0,
+          "constant_index": 9,
+          "file_offset": 49312,
+          "segment_size": 35958
+        },
+        "attributes": {
+          "sigma_scales": {
+            "MixedV_GT_SKEL": [
+              1.2340517563969693,
+              1.2563977169552445,
+              1.171368099731509,
+              1.0653756415158078,
+              1.101355083484034,
+              1.6315929214252818,
+              1.1460441567764177,
+              1.2350339654627398,
+              1.7051350646473047,
+              1.2715770362593903,
+              1.3021450559358898,
+              1.7347628812738771,
+              1.2768030977273654,
+              1.2754539450127245,
+              1.7314902834950199,
+              1.1072216748015,
+              1.1451057458703586,
+              1.7076003969687292,
+              1.0883158502830357,
+              1.0976320124345076,
+              1.5936230779334042,
+              1.322048089024329
+            ],
+            "SingleV_GT_SKEL": [
+              1.230737705513304,
+              1.2743484442155113,
+              1.1897836569647129,
+              1.075059847251211,
+              1.1114491678923863,
+              1.8388949034492932,
+              1.1299252069510477,
+              1.2247807881874497,
+              1.82846766304261,
+              1.2503239887687942,
+              1.3093472028561235,
+              1.8601497672842775,
+              1.247812177373348,
+              1.2743570997545473,
+              1.862232067181086,
+              1.0714638963242922,
+              1.1293718344751642,
+              1.8458907522949755,
+              1.0558020749229566,
+              1.0894895533351734,
+              1.7180028117420756,
+              1.3438528440855795
+            ],
+            "MultiV_GT_SKEL": [
+              1.2359134958250961,
+              1.2436920554512119,
+              1.1607166962835447,
+              1.062235202144907,
+              1.1013426006671636,
+              1.633888713914202,
+              1.1528972450541792,
+              1.2395014517577867,
+              1.7078013421027864,
+              1.2684363830051142,
+              1.2909820834991133,
+              1.7390945561577176,
+              1.2775457965936838,
+              1.26982381513276,
+              1.737201115719866,
+              1.1106178960116528,
+              1.144975706705465,
+              1.712381703392381,
+              1.0919671046371031,
+              1.0983942593262812,
+              1.5991316930454833,
+              1.3220117797245803
+            ],
+            "MultiV_Use_PredS": [
+              1.1568319493207107,
+              1.1738139090988893,
+              1.0730324953326105,
+              1.030927502029747,
+              1.0628282921427774,
+              1.7769274981700356,
+              1.1469453751492293,
+              1.2190045573412063,
+              1.611417828282647,
+              1.360231788544513,
+              1.2595650174156128,
+              1.6325916092311008,
+              1.295420897582802,
+              1.1757604801366326,
+              1.6584949518282617,
+              1.2052669090224857,
+              1.0992848307367185,
+              1.6890069479628138,
+              1.1678584520899662,
+              1.09869878696381,
+              1.5428523905634741,
+              1.293572365621672
+            ],
+            "MixedV_Use_PredS": [
+              1.1540044867115506,
+              1.1832211452700752,
+              1.0817079312163036,
+              1.0335615527691597,
+              1.0630099362094085,
+              1.7853325026791786,
+              1.1390285303232184,
+              1.2138795492430716,
+              1.6262014665539561,
+              1.3577359657408319,
+              1.2649452301479815,
+              1.649224423105273,
+              1.2920793486693558,
+              1.1795361692378754,
+              1.6727241258567942,
+              1.2000451748997425,
+              1.0997154758715564,
+              1.7003291654224084,
+              1.1627159959246178,
+              1.0974738537244717,
+              1.5560050961005976,
+              1.2965697301914203
+            ],
+            "SingleV_Use_PredS": [
+              1.1550657902679584,
+              1.1883991901807727,
+              1.0970421059829518,
+              1.040645157638895,
+              1.0595621608210815,
+              1.9529843196893264,
+              1.1206988139033804,
+              1.2008412731775873,
+              1.6590069193961023,
+              1.299724182953157,
+              1.2473248062632853,
+              1.725934524669851,
+              1.243668850468886,
+              1.1712072307643708,
+              1.7783446490735573,
+              1.145455451580787,
+              1.0825298229560587,
+              1.8101500874694407,
+              1.1147082411295421,
+              1.076200922902945,
+              1.6332483173762264,
+              1.3002460949572408
+            ]
+          },
+          "image_size": [
+            96,
+            96
+          ],
+          "use_uint8_input": false,
+          "input_format": "v2"
+        },
+        "semantics_validated_on_camera": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/dpe/DPEV32MG.ptez",
@@ -1466,7 +1636,177 @@
         "qnn_spill_fill_buffer_size_delegate_0",
         "qnn_spill_fill_buffer_size_delegate_1",
         "qnn_version"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "SERIALIZED_ATTRIBUTES_RECOVERED",
+        "evidence": {
+          "method": "get_attributes_msgpack",
+          "getter_executed": false,
+          "instruction_count": 0,
+          "bytes": 1366,
+          "sha256": "99007c3f93a5879e874e8a80e71c886b62cf3be37df68aba205ebb79d22af37d",
+          "storage": "segment",
+          "segment_index": 0,
+          "constant_index": 9,
+          "file_offset": 49312,
+          "segment_size": 35958
+        },
+        "attributes": {
+          "sigma_scales": {
+            "MixedV_GT_SKEL": [
+              1.2424370816588415,
+              1.2668167512549136,
+              1.1986321227550416,
+              1.0922420223263523,
+              1.1287907727456759,
+              1.6007540022320252,
+              1.210265475506599,
+              1.2554218793710514,
+              1.7082370601907717,
+              1.2772338547161985,
+              1.320898085369352,
+              1.7390172404654272,
+              1.3056670847501024,
+              1.311610450571344,
+              1.7298013085211292,
+              1.1057575281836907,
+              1.1585980979142794,
+              1.6984412478940725,
+              1.0995382539998002,
+              1.1230096766056195,
+              1.6238648118076855,
+              1.3387758819530946
+            ],
+            "SingleV_GT_SKEL": [
+              1.2314711500628674,
+              1.2577173798129504,
+              1.1965698967348042,
+              1.0937264797393027,
+              1.1460016808661737,
+              1.8580373328388562,
+              1.1821798950883888,
+              1.244485935396482,
+              1.8774101678191297,
+              1.2364956827364633,
+              1.299128420912563,
+              1.9199717076942162,
+              1.2825580243548602,
+              1.3044604822033958,
+              1.9259498510013289,
+              1.078555655651602,
+              1.1449732293940043,
+              1.9062549244208395,
+              1.0719182743369764,
+              1.1189192041390386,
+              1.8123117025626574,
+              1.369594548948625
+            ],
+            "MultiV_GT_SKEL": [
+              1.2569669834305195,
+              1.269370144417286,
+              1.201208681397667,
+              1.088336301663355,
+              1.1309284802163282,
+              1.6061182828609404,
+              1.2192249334668739,
+              1.2666815109263858,
+              1.7245392026349369,
+              1.2868193753835806,
+              1.3259114304623931,
+              1.7539589764869672,
+              1.314101886063034,
+              1.3149345260482344,
+              1.7413939940949257,
+              1.113477758239137,
+              1.1600250922172213,
+              1.7050310978676477,
+              1.1095480202229657,
+              1.1287117585527784,
+              1.6365664647083984,
+              1.3463313086733355
+            ],
+            "MultiV_Use_PredS": [
+              1.073912088129112,
+              1.0959648938449873,
+              1.014650024867647,
+              0.9693917781060086,
+              1.0038681452198677,
+              1.605415202193502,
+              1.0434586152334597,
+              1.112714664759877,
+              1.4287387138527665,
+              1.2432383352112975,
+              1.1495639461783138,
+              1.4468239033873955,
+              1.1797450660828719,
+              1.0778491823719039,
+              1.4576951149503634,
+              1.099346355481634,
+              1.010046458687824,
+              1.46099010345615,
+              1.071045114351236,
+              1.0253376596398127,
+              1.3748232371949443,
+              1.1808466006790097
+            ],
+            "MixedV_Use_PredS": [
+              1.061945851385855,
+              1.093649117479004,
+              1.0111767859091025,
+              0.9724645845868705,
+              1.0031447312248498,
+              1.6041083400535632,
+              1.0289828140915882,
+              1.1006083871726158,
+              1.423960455316217,
+              1.2302818339142896,
+              1.1450296054014641,
+              1.4444507879286732,
+              1.1676996179598687,
+              1.07267629425735,
+              1.4568211786423726,
+              1.0870291746040255,
+              1.0068640798159412,
+              1.4615267992101482,
+              1.0627241478467755,
+              1.020324003491393,
+              1.374084495910232,
+              1.1754701655605206
+            ],
+            "SingleV_Use_PredS": [
+              1.0495794854727456,
+              1.0590433893239704,
+              0.9929646903690528,
+              0.96121214895193,
+              0.9926335067283434,
+              1.7106377064445384,
+              0.9841252922841672,
+              1.0749994723093532,
+              1.4237296149449483,
+              1.140814780503916,
+              1.0944880990887669,
+              1.4534981741406157,
+              1.099725830956709,
+              1.037603326085901,
+              1.4899411742910802,
+              1.0190301374731903,
+              0.9747574395777346,
+              1.5186903018002418,
+              1.0017730838703311,
+              0.985967840237148,
+              1.3968631044468014,
+              1.1514819853809168
+            ]
+          },
+          "image_size": [
+            96,
+            96
+          ],
+          "use_uint8_input": false,
+          "input_format": "v2"
+        },
+        "semantics_validated_on_camera": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_keyboard/SKBV30.ptez",
@@ -2850,7 +3190,12 @@
         "boltnn_reshape_size_copy_tensor_120",
         "boltnn_reshape_size_copy_tensor_121",
         "boltnn_reshape_size_copy_tensor_124"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_keyboard/SKBV31.ptez",
@@ -4234,7 +4579,12 @@
         "boltnn_reshape_size_copy_tensor_120",
         "boltnn_reshape_size_copy_tensor_121",
         "boltnn_reshape_size_copy_tensor_124"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_keyboard/SKBV32.ptez",
@@ -5241,7 +5591,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1820
+                "payload_offset": 1820,
+                "layout_evidence": {
+                  "vtable_offset": 7966,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "fee7ffff0500000000000000b4e4ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -5260,7 +5618,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1636
+                "payload_offset": 1636,
+                "layout_evidence": {
+                  "vtable_offset": 7966,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "46e7ffff0700000000000000fce3ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -5279,7 +5645,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1452
+                "payload_offset": 1452,
+                "layout_evidence": {
+                  "vtable_offset": 7966,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "8ee6ffff800100000000000044e3ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -5298,7 +5672,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1260
+                "payload_offset": 1260,
+                "layout_evidence": {
+                  "vtable_offset": 7966,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "cee5ffff50000000000000000000000088e2ffff080000000c00000001000000"
+                }
               }
             ],
             "operators": [],
@@ -5317,7 +5699,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1068
+                "payload_offset": 1068,
+                "layout_evidence": {
+                  "vtable_offset": 7966,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "0ee5ffff0400000000000000c4e1ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -5623,7 +6013,12 @@
         "boltnn_reshape_size_copy_tensor_120",
         "boltnn_reshape_size_copy_tensor_121",
         "boltnn_reshape_size_copy_tensor_124"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_touchpad/STPV30.ptez",
@@ -7229,7 +7624,12 @@
         "boltnn_quantized_mul_tensor_10",
         "boltnn_quantized_mul_tensor_11",
         "boltnn_quantized_mul_tensor_12"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_touchpad/STPV31.ptez",
@@ -8835,7 +9235,12 @@
         "boltnn_quantized_mul_tensor_10",
         "boltnn_quantized_mul_tensor_11",
         "boltnn_quantized_mul_tensor_12"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_touchpad/STPV31_Day0.ptez",
@@ -10441,7 +10846,12 @@
         "boltnn_quantized_mul_tensor_10",
         "boltnn_quantized_mul_tensor_11",
         "boltnn_quantized_mul_tensor_12"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_touchpad/STPV32.ptez",
@@ -11705,7 +12115,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1140
+                "payload_offset": 1140,
+                "layout_evidence": {
+                  "vtable_offset": 32162,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "d286ffff06000000000000002c83ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -11724,7 +12142,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 956
+                "payload_offset": 956,
+                "layout_evidence": {
+                  "vtable_offset": 32162,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "1a86ffff10000000000000007482ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -11743,7 +12169,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 772
+                "payload_offset": 772,
+                "layout_evidence": {
+                  "vtable_offset": 32162,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "6285ffff8000000000000000bc81ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -11762,7 +12196,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 580
+                "payload_offset": 580,
+                "layout_evidence": {
+                  "vtable_offset": 32162,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "a284ffff1f00000000000000000000000081ffff080000000c00000001000000"
+                }
               }
             ],
             "operators": [],
@@ -12051,7 +12493,12 @@
         "boltnn_quantized_mul_tensor_10",
         "boltnn_quantized_mul_tensor_11",
         "boltnn_quantized_mul_tensor_12"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     },
     {
       "path": "/etc/handtracking/runtime/surface_touchpad/STPV32_Day0.ptez",
@@ -13315,7 +13762,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 1140
+                "payload_offset": 1140,
+                "layout_evidence": {
+                  "vtable_offset": 35386,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "3a7affff06000000000000009476ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -13334,7 +13789,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 956
+                "payload_offset": 956,
+                "layout_evidence": {
+                  "vtable_offset": 35386,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "8279ffff1000000000000000dc75ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -13353,7 +13816,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 772
+                "payload_offset": 772,
+                "layout_evidence": {
+                  "vtable_offset": 35386,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "ca78ffff80000000000000002475ffff080000000c0000000100000024000000"
+                }
               }
             ],
             "operators": [],
@@ -13372,7 +13843,15 @@
                 "kernel_union_tag": 2,
                 "kind": "SCALAR_LAYOUT_UNRESOLVED",
                 "error": "Field exceeds object",
-                "payload_offset": 580
+                "payload_offset": 580,
+                "layout_evidence": {
+                  "vtable_offset": 35386,
+                  "vtable_bytes": 6,
+                  "object_bytes": 8,
+                  "expected_scalar_bytes": 8,
+                  "vtable_prefix_hex": "060008000400",
+                  "payload_window_hex": "0a78ffff1f00000000000000000000006874ffff080000000c00000001000000"
+                }
               }
             ],
             "operators": [],
@@ -13661,7 +14140,12 @@
         "boltnn_quantized_mul_tensor_10",
         "boltnn_quantized_mul_tensor_11",
         "boltnn_quantized_mul_tensor_12"
-      ]
+      ],
+      "serialized_attributes": {
+        "status": "ATTRIBUTES_NOT_RECOVERED",
+        "error": "Missing or ambiguous metadata getter",
+        "getter_executed": false
+      }
     }
   ]
 }
