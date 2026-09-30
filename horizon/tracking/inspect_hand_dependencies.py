@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Verified hand service/config and accelerator dependency inventory. No execution."""
 import json
+import hashlib
 from pathlib import Path
 import re
 import struct
@@ -17,7 +18,7 @@ PATHS = {
                '/lib/rfsa/adsp/libhexagon_skel.so',
                '/lib/rfsa/adsp/libQnnBoltnnOpPackageV69.so'),
 }
-PATTERN = re.compile(r'hand|\bdpe\b|microgesture|schedul|affinity|thread|priority|batch|pool|predict|downsampl|quant|hexagon|fastrpc|cdsprpc', re.I)
+PATTERN = re.compile(r'hand|tracking|wakeup|uclamp|cpuset|\bdpe\b|microgesture|schedul|affinity|thread|priority|batch|pool|predict|downsampl|quant|hexagon|fastrpc|cdsprpc', re.I)
 
 
 def elf_identity(data):
@@ -39,13 +40,41 @@ def text_evidence(raw):
         return {'status': 'NOT_UTF8'}
     if '\x00' in text:
         return {'status': 'BINARY_OR_NUL_TEXT'}
-    rows = [{'line': i, 'excerpt': line[:1024], 'line_truncated': len(line)>1024}
-            for i, line in enumerate(text.splitlines(), 1) if PATTERN.search(line)]
-    return {'status': 'TEXT_CANDIDATES_ONLY', 'matched_lines': len(rows),
-            'lines': rows[:256], 'truncated': len(rows)>256, 'runtime_activation_proved': False}
+    lines = text.splitlines()
+    matches = {i for i, line in enumerate(lines) if PATTERN.search(line)}
+    context = sorted({j for i in matches for j in range(max(0,i-2),min(len(lines),i+3))})
+    rows = [{'line': i+1, 'excerpt': lines[i][:1024], 'line_truncated': len(lines[i])>1024,
+             'keyword_match': i in matches} for i in context]
+    return {'status': 'TEXT_CANDIDATES_ONLY', 'matched_lines': len(matches),
+            'context_lines': len(rows), 'lines': rows[:256], 'truncated': len(rows)>256,
+            'runtime_activation_proved': False}
 
 
-def inspect(images, reconstruction, output):
+def disassembly_summary(text):
+    """LLVM output evidence only; vector syntax does not prove hand-model activation."""
+    labels=[]; vectors=[]; vector_count=0; instructions=0
+    interesting=re.compile(r'conv|gemm|matmul|quant|pool|softmax|relu|hvx|vtcm|vector',re.I)
+    label_count=0
+    for line in text.splitlines():
+        label=re.match(r'^\s*[0-9a-fA-F]+ <(.+)>:$',line)
+        if label and interesting.search(label[1]):
+            label_count+=1
+            if len(labels)<256: labels.append(label[1][:1024])
+        if not re.match(r'^\s*[0-9a-fA-F]+:',line): continue
+        instructions+=1
+        if re.search(r'\bv[0-9]+(?:\.[a-z]+)?\b',line):
+            vector_count+=1
+            if len(vectors)<64: vectors.append(line[:1024])
+    return {'decoded_text_sha256':hashlib.sha256(text.encode()).hexdigest(),
+            'instruction_lines':instructions,'matching_function_labels':label_count,
+            'function_labels':labels,'function_labels_truncated':label_count>256,
+            'vector_syntax_lines':vector_count,'vector_samples':vectors,
+            'vector_samples_truncated':vector_count>64,
+            'hand_call_chain_validated':False,'scope':'Whole objdump text summarized; excerpts bounded, no instruction semantics validated'}
+
+
+
+def inspect(images, reconstruction, output, disassemble=False):
     recon = json.loads(Path(reconstruction).read_text())['partitions']
     inventory = json.loads(Path(f'analysis/builds/{BUILD}/static-analysis.json').read_text())['partitions']
     result = {'firmware_executed': False, 'all_dependencies_found': False,
@@ -73,6 +102,13 @@ def inspect(images, reconstruction, output):
                     row['dynamic_read_diagnostics']=diagnostics
                     row['needed']=re.findall(r'\(NEEDED\).*?\[(.*?)\]',dynamic)
                     row['status']='ELF_METADATA_ONLY'
+                    if disassemble and row['elf']['machine']==164:
+                        assembly, diagnostics = command(['llvm-objdump-14', '--disassemble',
+                            '--demangle', '--no-show-raw-insn', str(local)], max_output=64*1024*1024)
+                        row['disassembly']=disassembly_summary(assembly)
+                        row['disassembly']['diagnostics']=diagnostics
+                        row['status']='DISASSEMBLED_NOT_VALIDATED'
+
                 else:
                     row.update(text_evidence(data))
     Path(output).write_text(json.dumps(result, indent=2)+'\n')
@@ -83,4 +119,5 @@ if __name__ == '__main__':
     import argparse
     p=argparse.ArgumentParser(description=__doc__)
     for arg in ('images','reconstruction','output'): p.add_argument('--'+arg,required=True,type=Path)
-    a=p.parse_args(); inspect(a.images,a.reconstruction,a.output)
+    p.add_argument('--disassemble',action='store_true')
+    a=p.parse_args(); inspect(a.images,a.reconstruction,a.output,a.disassemble)

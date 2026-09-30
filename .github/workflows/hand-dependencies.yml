@@ -22,7 +22,7 @@ jobs:
       - name: Prepare verified original engine, no execution
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends e2fsprogs binutils
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils llvm-14
           python3 -m unittest horizon.tracking.tests.test_hand_dependencies -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
@@ -37,7 +37,7 @@ jobs:
           root=Path(os.environ['WORK'])
           result=reconstruct(root/'firmware.zip',root/'images',selected={'odm','vendor'})
           (root/'reconstruction.json').write_text(json.dumps(result))
-          inspect(root/'images',root/'reconstruction.json',root/'reports/hand-dependencies-report.json')
+          inspect(root/'images',root/'reconstruction.json',root/'reports/hand-dependencies-report.json',disassemble=True)
           PY
       - name: Publish evidence only, never proprietary binaries
         if: success() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
