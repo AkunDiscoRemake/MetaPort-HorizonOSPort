@@ -6,6 +6,7 @@ This reference is NOT established as the exact private firmware schema.
 Unknown union alternatives stay opaque. No operators/delegates are loaded.
 """
 import struct
+import math
 
 
 class View:
@@ -66,7 +67,15 @@ class View:
         if not 0<=index<len(values): raise ValueError('EValue index out of range')
         obj=values[index];tag=self.scalar(obj,0,'B')
         result={'value_index':index,'kernel_union_tag':tag}
-        if tag==5: # KernelTypes.Tensor in the pinned public schema.
+        if tag in (2,3,4):
+            pos=self.field(obj,1)
+            if pos is None: raise ValueError('Missing scalar union payload')
+            payload=self.ref(pos);fmt={2:'q',3:'B',4:'d'}[tag]
+            value=self.scalar(payload,0,fmt)
+            if tag==3 and value not in (0,1): raise ValueError('Invalid Boolean scalar')
+            if tag==4 and not math.isfinite(value): raise ValueError('Nonfinite scalar metadata')
+            result.update(kind={2:'Int',3:'Bool',4:'Double'}[tag],serialized_value=bool(value) if tag==3 else value)
+        elif tag==5: # KernelTypes.Tensor in the pinned public schema.
             pos=self.field(obj,1)
             if pos is None: raise ValueError('Missing tensor union payload')
             tensor=self.ref(pos)

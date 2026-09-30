@@ -79,3 +79,14 @@ class SchemaTests(unittest.TestCase):
         view.cells=249999
         with self.assertRaisesRegex(ValueError,'Aggregate traversal'):
             view.vector(root,1);view.vector(root,1)
+
+    def test_scalar_constants_without_evaluating_getter(self):
+        for tag,fmt,value in [(2,'q',-128),(3,'B',1),(4,'d',0.125)]:
+            b=Builder();obj,fields=b.table(2);b.integer(fields[0],tag)
+            payload,pfields=b.table(1);b.data+=bytes(4)
+            vt=payload-struct.unpack_from('<i',b.data,payload)[0]
+            struct.pack_into('<H',b.data,vt+2,12)
+            struct.pack_into('<'+fmt,b.data,pfields[0],value)
+            b.reference(fields[1],payload)
+            result=View(b.data).value([obj],0)
+            self.assertEqual(result['serialized_value'],value)
