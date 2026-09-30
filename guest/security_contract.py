@@ -16,9 +16,11 @@ from tools.scan_partitions import command,dump_entry,elf_report
 BUILD='52168470052900520'
 CONFIGS={
     'system':{'/system/etc/init/hw/init.rc','/system/etc/init/keystore2.rc',
+              '/system/etc/init/atrace.rc','/system/etc/init/perfetto.rc',
+              '/system/etc/init/oculus.perfetto.rc',
               '/system/etc/init/vold.rc','/system/etc/init/gatekeeperd.rc',
               '/system/etc/vintf/manifest/android.system.keystore2-service.xml'},
-    'vendor':{'/etc/init/android.hardware.security.keymint-service-qti.rc',
+    'vendor':{'/bin/init.insmod.sh','/etc/init/android.hardware.security.keymint-service-qti.rc',
               '/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc',
               '/etc/init/qseecomd.rc','/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc',
               '/etc/vintf/manifest/android.hardware.security.keymint-service-qti.xml'},

@@ -7,7 +7,7 @@ Os testes rodam no guest descartável, sem rede e sem dados pessoais.
 ## Contratos recuperados e ligados a hashes
 
 `guest/security_contract.py` verifica tamanho e SHA-256 das imagens system/vendor
-contra a reconstrução da OTA fixa. Extrai dez configurações e doze ELF selecionados,
+contra a reconstrução da OTA fixa. O primeiro ensaio extraiu dez configurações e doze ELF selecionados,
 com hashes, dependências, amostras de símbolos/strings e declarações de init.
 O parser de init registra texto e blocos: **não executa comandos, não resolve
 imports/propriedades e não implementa toda a gramática de init**.
@@ -71,13 +71,25 @@ write /proc/sys/kernel/printk "6 6 1 7"
 Ela coloca tanto o nível de console quanto o nível padrão de mensagem em 6.
 No kernel público fixado, `output_printk()` usa `printk("%s", ...)`, sem prioridade
 explícita. `suppress_message_printing()` filtra mensagens cujo nível é maior ou
-igual ao nível de console. Portanto, essa configuração explica por que a captura
-inicial perde a visibilidade do trace depois do ajuste original de printk.
+igual ao nível de console. Essa configuração é um mecanismo capaz de esconder o trace. Contudo, o ensaio
+seguinte demonstrou que removê-la como fator de filtragem **não é suficiente**;
+a causa completa da interrupção ainda não está estabelecida.
 
 A opção diagnóstica agora inclui `ignore_loglevel`, verificada no código do kernel
 fixado. Isso altera **somente a visibilidade do console do guest**; não concede
 permissões ao Keystore, não remove a política original nem muda a criptografia.
-O teste com essa correção ainda precisa ser confrontado com seu relatório final.
+Run [36771732131](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/actions/runs/36771732131),
+source `b2474bf`, confirmou a mensagem do kernel `debug: ignoring loglevel setting.`,
+mas ainda registrou apenas 110 eventos genéricos, sem eventos correlacionados aos
+serviços de segurança. O último trace era de 55 s; Keystore iniciou posteriormente
+e houve outra negação ao crash_dump64 aos 94 s. **O sinal e a causa continuam
+não estabelecidos.** Não se pode chamar essa captura de cobertura completa.
+
+A inspeção foi ampliada para as configurações originais de atrace/Perfetto e para
+`init.insmod.sh`, sem executar ou alterar esses arquivos, para investigar outros
+controles de tracing. A correção de publicação foi exercitada: o bot publicou após
+um commit de documentação avançar a branch durante o ensaio, preservando no JSON
+o hash `b2474bf` do código efetivamente ensaiado.
 
 ## Publicação dos resultados
 

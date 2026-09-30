@@ -8,6 +8,7 @@ import ghidra.program.model.address.Address;
 import ghidra.program.model.listing.Function;
 import ghidra.program.model.listing.Instruction;
 import ghidra.program.model.symbol.Reference;
+import ghidra.program.model.pcode.PcodeOp;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonElement;
@@ -42,6 +43,13 @@ public class DecompileHandInput extends GhidraScript {
         // NOT Ghidra's relocated addresses or an invented C++ object layout.
         select(discover(base.add(0x1620ce0L)),"Observed model-executor construction");
         select(discover(base.add(0x16222a0L)),"Observed DPE attribute consumer");
+        // Direct callees named in the previously recovered FUN_0172bee0 C-like
+        // output. Selection evidence only: no assumed signature or live call.
+        // These are ELF VAs after subtracting the observed 0x100000 image base.
+        for(long address:new long[]{0x1654a90L,0x16556c0L,0xa9c4e0L,
+                                    0x8a6600L,0x6d4dc0L,0x164fd20L,0xe6a5d0L})
+            select(discover(base.add(address)),
+                   "Observed FUN_0172bee0 pseudo-C callee; call edge and ABI unvalidated");
         List<Map<String,Object>> tables=new ArrayList<>();
         // Constructor assigns these address points to its two interfaces.
         // Read adjacent slots only as evidence, never as a callable ABI.
@@ -112,10 +120,42 @@ public class DecompileHandInput extends GhidraScript {
                     if(code.length()<=200000) {row.put("status","DECOMPILED_NOT_VALIDATED");row.put("c_like",code);}
                     else row.put("status","OUTPUT_LIMIT");
                 } else row.put("status","DECOMPILATION_FAILED");
+                // Listing-level bodies may be incomplete after bounded analysis.
+                // Preserve independent decompiler P-code evidence instead of
+                // interpreting an empty listing call sample as absence of calls.
+                List<Map<String,Object>> pcodeCalls=new ArrayList<>();int pcodeVisited=0;
+                boolean pcodeTruncated=false;
+                if(result.getHighFunction()!=null) {
+                    var ops=result.getHighFunction().getPcodeOps();
+                    while(ops.hasNext() && pcodeVisited<50000 && pcodeCalls.size()<256) {
+                        var op=ops.next();pcodeVisited++;
+                        if(op.getOpcode()!=PcodeOp.CALL && op.getOpcode()!=PcodeOp.CALLIND) continue;
+                        Map<String,Object> call=new LinkedHashMap<>();
+                        call.put("ghidra_address",op.getSeqnum().getTarget().toString());
+                        call.put("computed",op.getOpcode()==PcodeOp.CALLIND);
+                        if(op.getOpcode()==PcodeOp.CALL && op.getNumInputs()>0)
+                            call.put("target_varnode",op.getInput(0).toString());
+                        pcodeCalls.add(call);
+                    }
+                    pcodeTruncated=ops.hasNext();
+                }
+                row.put("pcode_available",result.getHighFunction()!=null);
+                row.put("pcode_ops_visited",pcodeVisited);
+                row.put("pcode_call_sites_sample",pcodeCalls);
+                row.put("pcode_scan_truncated",pcodeTruncated);
+                row.put("listing_body_address_count",function.getBody().getNumAddresses());
+                List<Map<String,Object>> listingSample=new ArrayList<>();
                 List<Map<String,Object>> calls=new ArrayList<>();int visited=0;
                 var instructions=currentProgram.getListing().getInstructions(function.getBody(),true);
-                while(instructions.hasNext() && visited++<20000 && calls.size()<256) {
-                    Instruction instruction=instructions.next();
+                while(instructions.hasNext() && visited<20000 && calls.size()<256) {
+                    Instruction instruction=instructions.next();visited++;
+                    if(listingSample.size()<16) {
+                        Map<String,Object> sample=new LinkedHashMap<>();
+                        sample.put("ghidra_address",instruction.getAddress().toString());
+                        sample.put("mnemonic",instruction.getMnemonicString());
+                        sample.put("flow_type",instruction.getFlowType().toString());
+                        listingSample.add(sample);
+                    }
                     if(!instruction.getFlowType().isCall()) continue;
                     Map<String,Object> call=new LinkedHashMap<>();
                     call.put("elf_address",instruction.getAddress().subtract(base));
@@ -125,6 +165,9 @@ public class DecompileHandInput extends GhidraScript {
                         if(ref.getReferenceType().isCall()) destinations.add(ref.getToAddress().toString());
                     call.put("ghidra_destinations",destinations);calls.add(call);
                 }
+                row.put("listing_instructions_visited",visited);
+                row.put("listing_instruction_sample",listingSample);
+                row.put("listing_scan_truncated",instructions.hasNext());
                 row.put("call_sites_sample",calls);functions.add(row);
             }
         } finally {decompiler.dispose();}
