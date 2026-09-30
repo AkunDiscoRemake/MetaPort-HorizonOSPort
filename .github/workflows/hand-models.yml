@@ -2,7 +2,7 @@ name: Original compressed hand model inspection
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ptez.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
+    paths: [horizon/tracking/ptez.py, horizon/tracking/reference_probe.cpp, horizon/tracking/compare_reference.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -22,10 +22,22 @@ jobs:
       - name: Install host-only parsers and test metadata inspection
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt flatbuffers-compiler libflatbuffers-dev g++
           python3 -m pip install msgpack==1.1.0
           python3 -m unittest discover -s horizon/tracking/tests -v
           mkdir -p "$WORK/reports"
+      - name: Build independent public-schema verifier, not a model runtime
+        run: |
+          mkdir -p "$WORK/schema"
+          base=https://raw.githubusercontent.com/pytorch/executorch/4b9d44206a99c1ce39315487599971b257a02ed8/schema
+          for name in program scalar_type; do
+            curl --fail --location --retry 3 --max-time 60 --max-filesize 1048576 \
+              --proto '=https' --proto-redir '=https' "$base/$name.fbs" -o "$WORK/schema/$name.fbs"
+          done
+          echo "4f944f0d6b58fde322d0d4052d7a06f3a59f9a4d1266e677c459eb1089d12b22  $WORK/schema/program.fbs" | sha256sum --check --strict
+          echo "9cfdae7d02d850c6141e2abfb7998c599aba2abbffcb014971cdb989c02e7b81  $WORK/schema/scalar_type.fbs" | sha256sum --check --strict
+          flatc --cpp -o "$WORK/schema" "$WORK/schema/scalar_type.fbs" "$WORK/schema/program.fbs"
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -I"$WORK/schema" horizon/tracking/reference_probe.cpp -o "$WORK/reference-probe"
       - name: Obtain fixed verified OTA and original images
         run: |
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
@@ -49,10 +61,15 @@ jobs:
           code=$?
           tail -n 60 "$WORK/inspection.log"
           exit "$code"
+      - name: Compare with official generated accessors and structural verifier
+        id: reference
+        run: |
+          python3 -m horizon.tracking.compare_reference --probe "$WORK/reference-probe" --directory "$WORK/reports"
       - name: Record provenance even on analysis failure
         if: always()
         env:
           INSPECT_OUTCOME: ${{ steps.inspect.outcome }}
+          REFERENCE_OUTCOME: ${{ steps.reference.outcome }}
         run: |
           mkdir -p "$WORK/reports"
           python3 - <<'PY'
@@ -62,7 +79,7 @@ jobs:
           log=p/'inspection.log'
           report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
                   'inspection_step':os.environ['INSPECT_OUTCOME'],'horizon_ported':False,
-                  'physical_phone_tested':False,
+                  'physical_phone_tested':False,'reference_step':os.environ['REFERENCE_OUTCOME'],
                   'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
           (p/'reports/model-analysis-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
@@ -73,7 +90,7 @@ jobs:
         run: |
           set -euo pipefail
           dest=analysis/builds/52168470052900520
-          for name in ptez-report model-analysis-run; do
+          for name in ptez-report model-analysis-run reference-schema-report; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
@@ -95,4 +112,5 @@ jobs:
           path: |
             ${{ env.WORK }}/reports/ptez-report.json
             ${{ env.WORK }}/reports/model-analysis-run.json
+            ${{ env.WORK }}/reports/reference-schema-report.json
           retention-days: 7
