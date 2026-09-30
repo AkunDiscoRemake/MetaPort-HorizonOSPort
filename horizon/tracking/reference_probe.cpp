@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <set>
 #include <vector>
 
 int main(int argc, char** argv) {
@@ -22,16 +23,21 @@ int main(int argc, char** argv) {
   flatbuffers::Verifier verifier(bytes.data(), static_cast<size_t>(program_size), 64, 100000);
   const bool verified = executorch_flatbuffer::VerifyProgramBuffer(verifier);
   std::cout << "{\"public_schema_verifier_passed\":" << (verified ? "true" : "false")
-            << ",\"model_executed\":false,\"int_getters\":{";
+            << ",\"flatbuffers_runtime_version\":\"" << FLATBUFFERS_VERSION_MAJOR << '.'
+            << FLATBUFFERS_VERSION_MINOR << '.' << FLATBUFFERS_VERSION_REVISION
+            << "\",\"model_executed\":false,\"int_getters\":{";
   bool first = true;
+  std::set<std::string> seen;
   if (verified) {
     const auto* plans = executorch_flatbuffer::GetProgram(bytes.data())->execution_plan();
-    if (plans && plans->size() <= 128) for (const auto* plan : *plans) {
+    if (plans && plans->size() > 128) return 3;
+    if (plans) for (const auto* plan : *plans) {
       if (!plan->name() || plan->name()->size() > 128) continue;
       const auto name = plan->name()->str();
       // Fixed names only: no firmware-controlled JSON escaping or arbitrary dumps.
       if (name != "num_layers" && name != "kernel_size" && name != "hidden_dim" &&
           name != "left_context" && name != "featurizer_version") continue;
+      if (!seen.insert(name).second) return 3;
       if ((plan->inputs() && plan->inputs()->size()) ||
           (plan->delegates() && plan->delegates()->size())) continue;
       bool executable = false;

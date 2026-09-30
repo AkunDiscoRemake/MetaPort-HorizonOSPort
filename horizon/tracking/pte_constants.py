@@ -38,6 +38,9 @@ def tensor_bytes(data,view,root,tensor,header):
     size=sizes[0]
     buffers=view.tables(root,2,10000)
     if buffers:
+        segment_field=view.field(root,5)
+        if segment_field is not None and view.vector(view.ref(segment_field),1,'Q',100000):
+            raise ValueError('Ambiguous inline and segment constant storage')
         if index>=len(buffers): raise ValueError('Constant buffer index')
         raw=bytes(view.vector(buffers[index],0,'B',MAX_METADATA))
         if size>len(raw): raise ValueError('Constant tensor exceeds inline buffer')

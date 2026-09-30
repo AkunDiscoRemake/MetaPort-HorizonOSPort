@@ -2,7 +2,7 @@ name: Original compressed hand model inspection
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ptez.py, horizon/tracking/reference_probe.cpp, horizon/tracking/compare_reference.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
+    paths: [horizon/tracking/ptez.py, horizon/tracking/tests/test_reference_fixture.py, horizon/tracking/requirements.txt, horizon/tracking/reference_probe.cpp, horizon/tracking/compare_reference.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt flatbuffers-compiler libflatbuffers-dev g++
-          python3 -m pip install msgpack==1.1.0
+          python3 -m pip install -r horizon/tracking/requirements.txt
           python3 -m unittest discover -s horizon/tracking/tests -v
           mkdir -p "$WORK/reports"
       - name: Build independent public-schema verifier, not a model runtime
@@ -38,6 +38,7 @@ jobs:
           echo "9cfdae7d02d850c6141e2abfb7998c599aba2abbffcb014971cdb989c02e7b81  $WORK/schema/scalar_type.fbs" | sha256sum --check --strict
           flatc --cpp -o "$WORK/schema" "$WORK/schema/scalar_type.fbs" "$WORK/schema/program.fbs"
           g++ -std=c++17 -O2 -Wall -Wextra -Werror -I"$WORK/schema" horizon/tracking/reference_probe.cpp -o "$WORK/reference-probe"
+          METAPORT_REFERENCE_PROBE="$WORK/reference-probe" python3 -m unittest horizon.tracking.tests.test_reference_fixture -v
       - name: Obtain fixed verified OTA and original images
         run: |
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \

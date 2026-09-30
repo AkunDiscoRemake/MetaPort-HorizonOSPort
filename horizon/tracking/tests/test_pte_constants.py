@@ -80,6 +80,18 @@ class ConstantTests(unittest.TestCase):
         struct.pack_into('<Q',b.data,16,len(b.data))
         with self.assertRaisesRegex(ValueError,'executable instructions'):serialized_getter(b.data,root[0])
 
+    def test_external_allocation_and_ambiguous_storage_rejected(self):
+        b,root,plan,tensor,raw=fixture(True)
+        extra=b.table(3);b.ref(tensor,9,extra[0]);b.scalar(extra,2,1,'B')
+        struct.pack_into('<Q',b.data,16,len(b.data))
+        with self.assertRaisesRegex(ValueError,'External'):serialized_getter(b.data,root[0])
+        b,root,plan,tensor,raw=fixture();b.scalar(tensor,6,4)
+        with self.assertRaisesRegex(ValueError,'Mutable'):serialized_getter(b.data,root[0])
+        b,root,plan,tensor,raw=fixture(True)
+        offsets=b.table(2);b.ref(root,5,offsets[0]);b.ref(offsets,1,b.vector([0,8],'Q'))
+        struct.pack_into('<Q',b.data,16,len(b.data))
+        with self.assertRaisesRegex(ValueError,'Ambiguous'):serialized_getter(b.data,root[0])
+
     def test_segment_and_header_bounds(self):
         b,root,plan,tensor,raw=fixture()
         with self.assertRaises(ValueError):serialized_getter(b.data[:-1],root[0])
