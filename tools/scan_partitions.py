@@ -14,16 +14,17 @@ import resource
 import stat
 import subprocess
 import tempfile
+import zipfile
 
 MAX_FILES = 30000
 MAX_DIRECTORIES = 5000
 MAX_BINARY = 16 * 1024 * 1024
-MAX_ELF_PER_PARTITION = 16
-INTEREST = re.compile(r'openxr|vrapi|vrservice|tracking|compositor|surfaceflinger|timewarp|oculus|horizon', re.I)
+MAX_ELF_PER_PARTITION = 24
+INTEREST = re.compile(r'openxr|vrapi|vrservice|tracking|compositor|surfaceflinger|timewarp|oculus|horizon|hzos|xrapp|surfaceforge', re.I)
 
 
 def limits():
-    resource.setrlimit(resource.RLIMIT_FSIZE, (16 * 1024 * 1024, 16 * 1024 * 1024))
+    resource.setrlimit(resource.RLIMIT_FSIZE, (128 * 1024 * 1024, 128 * 1024 * 1024))
     resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
 
 
@@ -109,7 +110,7 @@ def elf_report(binary):
     return result
 
 
-def scan(image, filesystem):
+def scan(image, filesystem, include_apex=True):
     if filesystem != 'ext4-family':
         return {'status': 'UNSUPPORTED_FILESYSTEM', 'filesystem': filesystem,
                 'firmware_executed': False}
@@ -118,7 +119,11 @@ def scan(image, filesystem):
                   0 < (e['size_bytes'] or 0) <= MAX_BINARY and
                   INTEREST.search(e['path']) and
                   (e['path'].endswith('.so') or '/bin/' in e['path'])]
-    chosen = candidates[:MAX_ELF_PER_PARTITION]
+    def priority(entry):
+        path = entry['path']
+        core = any(token in path for token in ('libopenxr', 'libvrapi', 'libhzos', 'libxrapp', 'libsurfaceforge', 'trackingservice', 'composer-service', 'surfaceflinger'))
+        return (0 if core else 1, 0 if '/lib64/' in path else 1, path)
+    chosen = sorted(candidates, key=priority)[:MAX_ELF_PER_PARTITION]
     reports = []
     for entry in chosen:
         with tempfile.TemporaryDirectory() as temp:
@@ -134,12 +139,115 @@ def scan(image, filesystem):
                 reports.append(report)
             except (ValueError, subprocess.TimeoutExpired, OSError) as exc:
                 reports.append({'path': entry['path'], 'status': 'ANALYSIS_FAILED', 'error': str(exc)})
-    return {'status': 'INVENTORIED', 'filesystem': filesystem,
+    report = {'status': 'INVENTORIED', 'filesystem': filesystem,
             'file_count': len(entries), 'kinds': dict(Counter(e['kind'] for e in entries)),
             'entries': entries, 'candidate_elf_count': len(candidates),
             'selected_elf_count': len(chosen), 'elf_analysis': reports,
-            'selection_policy': 'lexicographic first 16 matching filenames; not an exhaustive dependency analysis',
+            'selection_policy': 'up to 24; prioritize XR/tracking/compositor and lib64; not exhaustive',
             'firmware_executed': False, 'images_mounted': False}
+    report['configuration'] = inspect_configs(image, entries)
+    if include_apex:
+        report['meta_apex'] = inspect_apex(image, entries)
+    return report
+
+
+def dump_entry(image, entry, destination):
+    if not 0 < (entry['size_bytes'] or 0) <= 128 * 1024 * 1024:
+        raise ValueError('Dump exceeds limit')
+    command(['debugfs', '-R', f'dump <{entry["inode"]}> {destination}', str(image)])
+    if not destination.is_file() or destination.stat().st_size != entry['size_bytes']:
+        raise ValueError('Dump size mismatch')
+
+
+def inspect_configs(image, entries):
+    results = []
+    selected = [e for e in entries if e['kind'] == 'file' and
+                0 < (e['size_bytes'] or 0) <= 256 * 1024 and
+                (e['path'].endswith('/build.prop') or
+                 ('/etc/init/' in e['path'] and e['path'].endswith('.rc')))]
+    for entry in selected[:160]:
+        try:
+            with tempfile.TemporaryDirectory() as temp:
+                target = Path(temp) / 'config'
+                dump_entry(image, entry, target)
+                raw = target.read_bytes()
+                text = raw.decode('utf-8', 'strict')
+            # Report only build identity properties or service declaration blocks,
+            # not arbitrary scripts, secrets, property triggers or device actions.
+            result = {'path': entry['path'], 'sha256': hashlib.sha256(raw).hexdigest()}
+            if entry['path'].endswith('/build.prop'):
+                prefixes = ('ro.build.', 'ro.system.build.', 'ro.product.build.',
+                            'ro.vendor.build.', 'ro.odm.build.', 'ro.system_ext.build.')
+                result['build_properties'] = {k: v for line in text.splitlines()
+                    if '=' in line for k, v in [line.split('=', 1)] if k.startswith(prefixes)}
+            else:
+                services = []
+                current = None
+                for line in text.splitlines():
+                    clean = line.strip()
+                    if not clean or clean.startswith('#'):
+                        continue
+                    if not line[0].isspace():
+                        current = None
+                        if clean.startswith('service '):
+                            tokens = clean.split()
+                            current = {'name': tokens[1], 'command': tokens[2:], 'options': []}
+                            services.append(current)
+                    elif current is not None and clean.split()[0] in (
+                        'class', 'user', 'group', 'capabilities', 'seclabel',
+                        'interface', 'disabled', 'oneshot', 'socket', 'file'):
+                        current['options'].append(clean)
+                result['services'] = services
+            results.append(result)
+        except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
+            results.append({'path': entry['path'], 'status': 'CONFIG_FAILED', 'error': str(exc)})
+    return results
+
+
+def inspect_apex(image, entries):
+    results = []
+    selected = [e for e in entries if e['kind'] == 'file' and
+                '/apex/com.meta.' in e['path'] and e['path'].endswith('.apex')]
+    for entry in selected[:8]:
+        result = {'path': entry['path']}
+        try:
+            with tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                container = root / 'module.apex'
+                dump_entry(image, entry, container)
+                result['sha256'] = hashlib.sha256(container.read_bytes()).hexdigest()
+                with zipfile.ZipFile(container) as archive:
+                    names = archive.namelist()
+                    if len(names) != len(set(names)):
+                        raise ValueError('Duplicate APEX ZIP entries')
+                    info = archive.getinfo('apex_payload.img')
+                    if not 0 < info.file_size <= 512 * 1024 * 1024:
+                        raise ValueError('APEX image exceeds limit')
+                    payload = root / 'apex.img'
+                    count = 0
+                    digest = hashlib.sha256()
+                    with archive.open(info) as source, payload.open('xb') as target:
+                        while chunk := source.read(1024 * 1024):
+                            count += len(chunk)
+                            if count > info.file_size:
+                                raise ValueError('APEX image size overflow')
+                            target.write(chunk)
+                            digest.update(chunk)
+                    if count != info.file_size:
+                        raise ValueError('Truncated APEX payload')
+                    result['payload_sha256'] = digest.hexdigest()
+                    result['payload_size_bytes'] = count
+                with payload.open('rb') as stream:
+                    prefix = stream.read(4096)
+                filesystem = ('ext4-family' if prefix[1080:1082] == b'\x53\xef' else
+                              'erofs' if prefix[1024:1028] == b'\xe2\xe1\xf5\xe0' else 'UNKNOWN')
+                result['inventory'] = scan(payload, filesystem, include_apex=False)
+                result['status'] = 'PAYLOAD_INSPECTED'
+                result['signature_verified'] = False
+        except (ValueError, KeyError, OSError, subprocess.TimeoutExpired, zipfile.BadZipFile) as exc:
+            result.update(status='APEX_ANALYSIS_FAILED', error=str(exc))
+        results.append(result)
+    return results
 
 
 def main():
