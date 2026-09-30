@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Infinix",
+  "model": "GT30 Pro",
+  "model_code": "X6873",
+  "reported_os": "XOS 16.2",
+  "source": "user_report",
+  "deployment": "unprivileged_apk",
+  "bootloader": "locked_user_report",
+  "root_allowed": false,
+  "flash_allowed": false,
+  "bootloader_unlock_allowed": false,
+  "android_api": null,
+  "abis": null,
+  "arcore_support": "UNVERIFIED",
+  "gpu_backend": "UNVERIFIED",
+  "port_status": "NOT PORTED YET"
+}

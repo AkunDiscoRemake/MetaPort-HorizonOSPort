@@ -1,0 +1,7 @@
+# Local system images, extracted components and generated evidence
+/artifacts/
+/local-analysis/
+__pycache__/
+*.py[cod]
+.venv/
+/build/
