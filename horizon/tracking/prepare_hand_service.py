@@ -40,7 +40,10 @@ def prepare(images,reconstruction,output):
     sections,_=command(['readelf','-SW',str(binary)])
     report=service_targets(binary.read_bytes(),sections)
     report['program_sha256']=SERVICE_SHA
-    (output/'service-functions.txt').write_text('')
+    # Direct callees recovered in run 36791709535, with Ghidra base removed.
+    # Scheduler parsing, hand-camera policy application, FMQ creation, state routing.
+    helpers=(0x4ddd84,0x4de4c0,0x219b10,0x4a4574,0x21b044,0x27cc2c)
+    (output/'service-functions.txt').write_text(''.join(f'{address:x}\n' for address in helpers))
     (output/'service-strings.json').write_text(json.dumps(report['selected'],indent=2)+'\n')
     (output/'hand-service-targets.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
