@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Verified hand service/config and accelerator dependency inventory. No execution."""
-import hashlib
 import json
 from pathlib import Path
 import re
@@ -68,8 +67,10 @@ def inspect(images, reconstruction, output):
                 data = local.read_bytes()
                 if data.startswith(b'\x7fELF'):
                     row['elf'] = elf_identity(data)
-                    dynamic, code = command(['readelf', '-dW', str(local)], max_output=1024*1024)
-                    row['dynamic_read_exit_code']=code
+                    dynamic, diagnostics = command(['readelf', '-dW', str(local)], max_output=1024*1024)
+                    # command raises on nonzero exit; second return value is stderr.
+                    row['dynamic_read_exit_code']=0
+                    row['dynamic_read_diagnostics']=diagnostics
                     row['needed']=re.findall(r'\(NEEDED\).*?\[(.*?)\]',dynamic)
                     row['status']='ELF_METADATA_ONLY'
                 else:
