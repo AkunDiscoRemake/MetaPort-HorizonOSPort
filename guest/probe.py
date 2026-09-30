@@ -18,6 +18,9 @@ def child_limits():
 
 
 def classify(text):
+    lines=text.splitlines()
+    block_denials=[line for line in lines if 'avc:' in line and 'denied' in line and
+        'scontext=u:r:hal_bootctl_default:s0' in line and 'tcontext=u:object_r:vd_device:s0' in line]
     return {
         'kernel_console_observed':bool(re.search(r'Booting Linux on physical CPU|Linux version [0-9]',text)),
         'recovery_mount_skip_observed':'First stage mount skipped (recovery mode)' in text,
@@ -28,6 +31,11 @@ def classify(text):
             r'boot-hal|bootctrl|IBootControl|libgpt|gpt-utils|boot_control|Failed to load.*boot|metaport_bootlog|misc.*(?:fail|denied)|avc:.*(?:boot|logcat|logpersist)',line,re.I)][:100],
         'diagnostic_events':[line for line in text.splitlines() if re.search(r'metaport|init_rc|logcat|stdio_to_kmsg',line,re.I)][:80],
         'controller_alias_observed':'MetaPort: virtio boot controller alias 1d84000.ufshc' in text,
+        'bootcontrol_hidl12_client_observed':'Using HIDL version 1.2 of IBootControl' in text,
+        'post_fs_data_observed':bool(re.search(r'action=post-fs-data|processing action \(post-fs-data\)',text)),
+        'zygote_start_attempt_observed':"starting service 'zygote'" in text,
+        'zygote_termination_observed':bool(re.search(r"Service 'zygote'.*(?:received signal|exited with status)",text)),
+        'storage_events':[line for line in lines if re.search(r'userdata|checkpoint needsCheckpoint|mount_all.*late|/data.*(?:Read-only|failed)|(?:Failed|Unable|Cannot).*userdata',line)][:80],
         'second_stage_init_observed':'init second stage started!' in text,
         'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
         'boot_events':[line for line in text.splitlines() if any(token in line for token in (
@@ -36,8 +44,9 @@ def classify(text):
             'SELinux: Loaded policy','AvbHandle','vbmeta digest','dm-verity',
             'DSU not detected','starting service'))][:180],
         'label_overlay_mount_failed':any('mount none /metadata/vendor_file_contexts.metaport' in line and 'failed:' in line for line in text.splitlines()),
-        'bootcontrol_misc_label_denial_observed':any('avc:' in line and 'denied' in line and
-            'scontext=u:r:hal_bootctl_default:s0' in line and 'tcontext=u:object_r:vd_device:s0' in line for line in text.splitlines()),
+        # vda3 is misc in the generated GPT; whole-disk vda is a distinct role.
+        'bootcontrol_misc_label_denial_observed':any(re.search(r'(?:path="/dev/block/vda3"|name="vda3")',line) for line in block_denials),
+        'bootcontrol_disk_label_denial_observed':any(re.search(r'(?:path="/dev/block/vda"|name="vda")',line) for line in block_denials),
         'diagnostic_logger_denied_observed':any('avc:' in line and 'denied' in line and
             'scontext=u:r:init:s0' in line and 'tcontext=u:object_r:logcat_exec:s0' in line for line in text.splitlines()),
         'kernel_panic_observed':'Kernel panic' in text,

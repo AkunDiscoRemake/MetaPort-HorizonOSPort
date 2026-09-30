@@ -34,3 +34,15 @@ class ProbeTests(unittest.TestCase):
         self.assertEqual(r['logical_partitions_created'],['system_a'])
         self.assertEqual(len(r['boot_events']),3)
         self.assertFalse(r['android_boot_completed'])
+
+    def test_whole_disk_denial_is_not_misc_and_hidl_is_not_full_boot(self):
+        text=('avc: denied { read write } name="vda" scontext=u:r:hal_bootctl_default:s0 tcontext=u:object_r:vd_device:s0\n'
+              'update_verifier: Using HIDL version 1.2 of IBootControl\n'
+              "init: starting service 'zygote'...\ninit: Service 'zygote' (pid 1) received signal 6")
+        r=classify(text)
+        self.assertFalse(r['bootcontrol_misc_label_denial_observed'])
+        self.assertTrue(r['bootcontrol_disk_label_denial_observed'])
+        self.assertTrue(r['bootcontrol_hidl12_client_observed'])
+        self.assertTrue(r['zygote_start_attempt_observed'])
+        self.assertTrue(r['zygote_termination_observed'])
+        self.assertFalse(r['android_boot_completed'])
