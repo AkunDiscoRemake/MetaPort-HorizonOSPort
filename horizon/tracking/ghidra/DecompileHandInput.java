@@ -43,6 +43,25 @@ public class DecompileHandInput extends GhidraScript {
         // NOT Ghidra's relocated addresses or an invented C++ object layout.
         select(discover(base.add(0x1620ce0L)),"Observed model-executor construction");
         select(discover(base.add(0x16222a0L)),"Observed DPE attribute consumer");
+        // Alternative constructor called by the same factory in run 36779332456.
+        // The selector's meaning and backend portability are not established.
+        select(discover(base.add(0x1617b90L)),"Alternative constructor in observed FUN_0170dc50 factory");
+        List<Map<String,Object>> factoryStrings=new ArrayList<>();
+        for(long offset:new long[]{0xba96aL,0xba993L,0xa2963L,0xa4ff7L}) {
+            StringBuilder text=new StringBuilder();boolean terminated=false;
+            for(int i=0;i<256;i++) {
+                Address address=base.add(offset+i);
+                if(!currentProgram.getMemory().contains(address)) break;
+                int value=getByte(address)&0xff;
+                if(value==0) {terminated=true;break;}
+                if(value<32 || value>126) break;
+                text.append((char)value);
+            }
+            Map<String,Object> row=new LinkedHashMap<>();
+            row.put("elf_address",offset);row.put("ascii_prefix",text.toString());
+            row.put("nul_terminated",terminated);factoryStrings.add(row);
+        }
+
         // Direct callees named in the previously recovered FUN_0172bee0 C-like
         // output. Selection evidence only: no assumed signature or live call.
         // These are ELF VAs after subtracting the observed 0x100000 image base.
@@ -208,6 +227,7 @@ public class DecompileHandInput extends GhidraScript {
         report.put("tool","Ghidra 11.3.2");report.put("firmware_executed",false);
         report.put("abi_validated",false);report.put("input_conversion_ported",false);
         report.put("scope","At most 32 functions; pointer windows may cross vtable boundaries; indirect calls unresolved");
+        report.put("factory_log_strings",factoryStrings);
         report.put("incoming_constructor_calls",incomingCalls);
         report.put("pointer_windows",tables);report.put("string_references",stringEvidence);
         report.put("functions",functions);
