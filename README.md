@@ -127,3 +127,10 @@ Activity, com aquisição real de sensores, backend ARCore e saída EGL/GLES.
 O workflow próprio compila o AAR arm64, roda testes C++/JVM e Android lint.
 **Não é APK nem bridge Horizon concluída.** Não houve teste físico; o transporte
 MemoryBroker/Binder original ainda precisa ser ligado aos backends.
+
+## Licença
+
+O código próprio do MetaPort está sob **GNU GPLv3 (GPL-3.0-only)** — texto completo
+em [LICENSE](LICENSE). Componentes proprietários, fontes externas e evidências
+extraídas mantêm os direitos e licenças aplicáveis; consulte [NOTICE.md](NOTICE.md).
+Esta licença não concede direitos sobre o firmware da Meta nem torna o port pronto.
