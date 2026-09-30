@@ -21,3 +21,9 @@ class ProbeTests(unittest.TestCase):
         self.assertTrue(r['original_init_exec_attempt_observed'])
         self.assertTrue(r['init_sigill_observed'])
         self.assertFalse(r['original_init_marker_observed'])
+
+    def test_recovery_is_distinguished(self):
+        r=classify('init: init first stage started!\ninit: First stage mount skipped (recovery mode)')
+        self.assertTrue(r['original_init_marker_observed'])
+        self.assertTrue(r['recovery_mount_skip_observed'])
+        self.assertFalse(r['android_boot_completed'])

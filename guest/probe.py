@@ -18,6 +18,7 @@ def child_limits():
 def classify(text):
     return {
         'kernel_console_observed':bool(re.search(r'Booting Linux on physical CPU|Linux version [0-9]',text)),
+        'recovery_mount_skip_observed':'First stage mount skipped (recovery mode)' in text,
         'original_init_exec_attempt_observed':'Run /init as init process' in text,
         'init_sigill_observed':'Attempted to kill init! exitcode=0x00000004' in text,
         'original_init_marker_observed':bool(re.search(r'init:.*(?:init first stage started|First stage mount|first_stage)',text,re.I)),
@@ -35,7 +36,8 @@ def probe(kernel,initrd,output):
           '-display','none','-serial','stdio','-monitor','none','-nic','none',
           '-no-reboot','-sandbox','on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny',
           '-kernel',str(kernel),'-initrd',str(initrd),
-          '-append','console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1']
+          '-append','console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 '
+          'androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1']
     log=output/'guest-console.log'
     timed_out=False
     with log.open('wb') as stream:
@@ -53,9 +55,9 @@ def probe(kernel,initrd,output):
             'kernel_sha256':hashlib.sha256(kernel.read_bytes()).hexdigest(),
             'initrd_sha256':hashlib.sha256(initrd.read_bytes()).hexdigest(),
             'network_enabled':False,'kvm_used':False,'phone_modified':False,
-            'command':args,'console_tail':'\n'.join(text.splitlines()[-300:]),**classify(text)}
+            'command':args,'console_head':'\n'.join(text.splitlines()[:100]),'console_tail':'\n'.join(text.splitlines()[-300:]),**classify(text)}
     (output/'probe-report.json').write_text(json.dumps(result,indent=2)+'\n')
-    print(json.dumps({k:v for k,v in result.items() if k!='console_tail'},indent=2))
+    print(json.dumps({k:v for k,v in result.items() if k not in ('console_tail','console_head')},indent=2))
     return result
 
 

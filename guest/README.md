@@ -20,6 +20,8 @@ or phone access. No Quest firmware should ever be flashed onto the Infinix.
    extracting their paths on the runner. Hash equality is not signature verification.
 4. Concatenate original vendor+generic ramdisk bytes without replacing `/init`.
    Vendor bootconfig is not yet appended; physical Qualcomm DTBs are not used.
+   Explicit guest cmdline selects eureka hardware identity, slot `_a` and normal boot;
+   it does not assert AVB success, unlock the phone, or replace original init.
 5. Probe this original initramfs with the adapted kernel for at most 60 seconds.
    **No Android system disks are attached.** Full Android boot is not expected or
    claimed. Console markers distinguish kernel execution and original first-stage
