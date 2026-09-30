@@ -125,7 +125,7 @@ O pareamento é feito nas configurações Android; não há acesso a HID bruto/r
   como máscaras de bordas coalescidas; isso **não é uma fila de todos os eventos**.
 - Remoção, mudança de dispositivo e pause limpam botões/analógicos e liberam ações.
   Um segundo dispositivo do mesmo lado não substitui silenciosamente o primeiro.
-- Qualquer Joy-Con aceito solicita `JOY_CONS`; sem ambos solicita `HANDS_REQUESTED`.
+- Qualquer Joy-Con aceito solicita `JOY_CONS`; sem nenhum solicita `HANDS_REQUESTED`.
   Uma unidade apenas não cria uma segunda mão/controle. `foregroundActive=false`
   deve impedir consumo pelo host após stop.
 

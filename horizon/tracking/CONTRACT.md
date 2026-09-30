@@ -74,3 +74,14 @@ captura estática. **Isso não é teste de conformidade em runtime.**
 O serviço é `oculus.internal.tracking.IMemoryBrokerService/default`, VINTF AIDL v2.
 Restam os valores numéricos dos enums, semântica dos campos/poses, regras de
 sincronização, lifecycle e execução no guest. Não foi implementado servidor falso.
+
+## Nova inspeção de engine, modelos, UI e clients
+
+O engine de 41 MB e os clients foram analisados com Ghidra; 24 funções de cada
+biblioteca foram reconstruídas como C-like não validado. O registry anuncia ABI 36
+e a factory HandTracker seleciona versões 11–14. Não foram inferidos headers de
+vtable nem implementado um provider falso a partir desses números.
+
+Há também decompilação DEX de VrShell/MetaSystemUI, evidências dos call sites de
+entrada e um backend Android/C++ de Joy-Cons ainda não ligado ao runtime privado.
+Ver [resultados medidos e bloqueios](../../analysis/builds/52168470052900520/HANDS-UI-INPUT.md).
