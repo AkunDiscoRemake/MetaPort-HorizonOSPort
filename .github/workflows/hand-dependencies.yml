@@ -2,7 +2,7 @@ name: Original hand service and DSP dependencies
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/inspect_hand_dependencies.py, horizon/tracking/tests/test_hand_dependencies.py, .github/workflows/hand-dependencies.yml]
+    paths: [horizon/tracking/hvx_evidence.py, horizon/tracking/tests/test_hvx_evidence.py, horizon/tracking/inspect_hand_dependencies.py, horizon/tracking/tests/test_hand_dependencies.py, .github/workflows/hand-dependencies.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils llvm-14
-          python3 -m unittest horizon.tracking.tests.test_hand_dependencies -v
+          python3 -m unittest horizon.tracking.tests.test_hand_dependencies horizon.tracking.tests.test_hvx_evidence -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \

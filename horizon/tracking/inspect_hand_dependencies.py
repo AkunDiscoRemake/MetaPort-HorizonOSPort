@@ -8,6 +8,7 @@ import re
 import struct
 import tempfile
 from horizon.tracking.inspect_original import BUILD, digest
+from horizon.tracking.hvx_evidence import HvxEvidence
 from tools.scan_partitions import command, dump_entry
 
 PATHS = {
@@ -98,13 +99,14 @@ def disassembly_summary(text):
     """LLVM output evidence only; vector syntax does not prove hand-model activation."""
     labels=[]; vectors=[]; samples=[]; vector_count=0; instructions=0; unknown=0
     interesting=re.compile(r'conv|gemm|matmul|quant|pool|softmax|relu|hvx|vtcm|vector',re.I)
-    label_count=0; operations=Counter()
+    label_count=0; operations=Counter(); hvx=HvxEvidence()
     for line in text.splitlines():
         label=re.match(r'^\s*[0-9a-fA-F]+ <(.+)>:$',line)
         if label and interesting.search(label[1]):
             label_count+=1
             if len(labels)<256: labels.append(label[1][:1024])
         if not re.match(r'^\s*[0-9a-fA-F]+:',line): continue
+        hvx.feed(line)
         instructions+=1
         if len(samples)<128 and (instructions<=16 or instructions%4096==0): samples.append(line[:1024])
         if re.search(r"unknown|invalid",line,re.I): unknown+=1
@@ -119,6 +121,7 @@ def disassembly_summary(text):
             'vector_operation_spellings':dict(sorted(operations.items())),
             'vector_syntax_lines':vector_count,'vector_samples':vectors,
             'vector_samples_truncated':vector_count>64,
+            'hvx_operand_evidence':hvx.report(),
             'hand_call_chain_validated':False,'scope':'Whole objdump text summarized; excerpts bounded, no instruction semantics validated'}
 
 
