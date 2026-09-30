@@ -10,6 +10,7 @@ on:
       - tools/payload_manifest.py
       - tools/reconstruct_ota.py
       - tools/scan_partitions.py
+      - tools/boot_metadata.py
       - tests/**
       - analysis/SCOPE.json
   workflow_dispatch:
@@ -76,11 +77,11 @@ jobs:
             "$RUNNER_TEMP/firmware/q3_52168470052900520.zip" \
             --output "$RUNNER_TEMP/report/ota-report.json"
           echo 'OTA metadata report available in the inspection step logs and ota-metadata-report artifact. Stable channel and full-image status require further verification.' >> "$GITHUB_STEP_SUMMARY"
-      - name: Reconstruct selected userspace partitions and verify all output hashes
+      - name: Reconstruct all declared firmware partitions and verify all hashes
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m tools.reconstruct_ota \
+          python3 -m tools.reconstruct_ota --all-partitions \
             "$RUNNER_TEMP/firmware/q3_52168470052900520.zip" \
             --directory "$RUNNER_TEMP/images" \
             --report "$RUNNER_TEMP/report/reconstruction.json"

@@ -20,7 +20,7 @@ MAX_FILES = 30000
 MAX_DIRECTORIES = 5000
 MAX_BINARY = 16 * 1024 * 1024
 MAX_ELF_PER_PARTITION = 24
-INTEREST = re.compile(r'openxr|vrapi|vrservice|tracking|compositor|surfaceflinger|timewarp|oculus|horizon|hzos|xrapp|surfaceforge|mrservice|sensoremulator', re.I)
+INTEREST = re.compile(r'openxr|vrapi|vrservice|tracking|compositor|surfaceflinger|timewarp|oculus|horizon|hzos|xrapp|surfaceforge|mrservice|sensoremulator|memorybroker', re.I)
 
 
 def limits():
@@ -83,7 +83,7 @@ def list_ext4(image):
     return sorted(entries, key=lambda entry: entry['path'])
 
 
-def elf_report(binary):
+def elf_report(binary, deep=False):
     data = binary.read_bytes()
     if not data.startswith(b'\x7fELF'):
         return {'format': 'NOT_ELF'}
@@ -112,12 +112,22 @@ def elf_report(binary):
     match = re.search(r'\]\s+\.text\s+PROGBITS\s+([0-9a-fA-F]+)\s+[0-9a-fA-F]+\s+([0-9a-fA-F]+)', sections)
     if result['machine'] == 'AArch64' and match:
         start, size = int(match.group(1), 16), int(match.group(2), 16)
-        stop = start + min(size, 4096)
+        stop = start + (size if deep and size <= 256 * 1024 else min(size, 4096))
         assembly, _ = command(['aarch64-linux-gnu-objdump', '-d',
                               f'--start-address={start}', f'--stop-address={stop}', str(binary)])
-        result.update(disassembly_status='BOUNDED_TEXT_SAMPLE',
+        result.update(disassembly_status='COMPLETE_TEXT_SECTION' if deep and stop-start==size else 'BOUNDED_TEXT_SAMPLE',
                       disassembly_start=start, disassembly_stop=stop,
                       disassembly=assembly.replace(str(binary), '<analyzed-elf>'))
+    if deep:
+        result['contract_strings'] = sorted(set(
+            match.group().decode('ascii') for match in re.finditer(rb'[ -~]{5,512}', data)
+            if re.search(rb'memorybroker|IMemoryBroker|SharedMemory|/dev/|libvrapi|libopenxr|com\.oculus|oculus\.internal', match.group(), re.I)
+        ))[:512]
+        try:
+            rodata, _ = command(['readelf', '-x', '.rodata', str(binary)], max_output=512*1024)
+            result['rodata_hex'] = rodata
+        except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
+            result['rodata_status'] = str(exc)
     return result
 
 
@@ -132,8 +142,9 @@ def scan(image, filesystem, include_apex=True):
                   (e['path'].endswith('.so') or '/bin/' in e['path'])]
     def priority(entry):
         path = entry['path']
-        core = any(token in path for token in ('libopenxr', 'libvrapi', 'libhzos', 'libxrapp', 'libsurfaceforge', 'trackingservice', 'composer-service', 'surfaceflinger'))
-        return (0 if core else 1, 0 if '/lib64/' in path else 1, path)
+        core = any(token in path for token in ('libmemorybroker', 'memorybrokerservice', 'libopenxr', 'libvrapi', 'libhzos', 'libxrapp', 'libsurfaceforge', 'trackingservice', 'composer-service', 'surfaceflinger'))
+        priority = 0 if 'memorybroker' in path else 1 if core else 2
+        return (priority, 0 if '/lib64/' in path else 1, path)
     chosen = sorted(candidates, key=priority)[:MAX_ELF_PER_PARTITION]
     reports = []
     for entry in chosen:
@@ -145,7 +156,7 @@ def scan(image, filesystem, include_apex=True):
                 reports.append({'path': entry['path'], 'status': 'DUMP_FAILED'})
                 continue
             try:
-                report = elf_report(binary)
+                report = elf_report(binary, deep=('memorybroker' in entry['path'] or 'libhzos_tracking' in entry['path']))
                 report['path'] = entry['path']
                 reports.append(report)
             except (ValueError, subprocess.TimeoutExpired, OSError) as exc:
@@ -175,7 +186,7 @@ def inspect_configs(image, entries):
     results = []
     selected = [e for e in entries if e['kind'] == 'file' and
                 0 < (e['size_bytes'] or 0) <= 256 * 1024 and
-                (e['path'].endswith('/build.prop') or 'active_runtime.' in e['path'] or
+                (e['path'].endswith('/memorybroker_manifest.xml') or e['path'].endswith('/build.prop') or 'active_runtime.' in e['path'] or
                  ('/etc/init/' in e['path'] and e['path'].endswith('.rc')))]
     for entry in selected[:160]:
         try:
@@ -187,7 +198,13 @@ def inspect_configs(image, entries):
             # Report only build identity properties or service declaration blocks,
             # not arbitrary scripts, secrets, property triggers or device actions.
             result = {'path': entry['path'], 'sha256': hashlib.sha256(raw).hexdigest()}
-            if 'active_runtime.' in entry['path']:
+            if entry['path'].endswith('/memorybroker_manifest.xml'):
+                import xml.etree.ElementTree as ET
+                tree = ET.fromstring(text)
+                result['vintf_hal'] = [{'format': h.get('format'), 'name': h.findtext('name'),
+                                       'version': h.findtext('version'), 'fqname': h.findtext('fqname')}
+                                      for h in tree.findall('hal')]
+            elif 'active_runtime.' in entry['path']:
                 manifest = json.loads(text)
                 result['openxr_runtime_manifest'] = manifest
             elif entry['path'].endswith('/build.prop'):
@@ -312,7 +329,7 @@ def inspect_apks(image, entries):
                         if size != info.file_size:
                             raise ValueError('APK library truncated')
                         try:
-                            native_result = elf_report(binary)
+                            native_result = elf_report(binary, deep=info.filename.endswith('/libopenxr_forwardloader.so'))
                             native_result['path'] = info.filename
                             result['native_analysis'].append(native_result)
                         except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
@@ -338,7 +355,13 @@ def main():
         if not re.fullmatch(r'[A-Za-z0-9_-]+', name):
             raise ValueError('Invalid partition name')
         try:
-            report['partitions'][name] = scan(args.images / (name + '.img'), data['filesystem_magic'])
+            image = args.images / (name + '.img')
+            report['partitions'][name] = scan(image, data['filesystem_magic'])
+            if data['filesystem_magic'] == 'UNKNOWN':
+                from tools.boot_metadata import inspect_image
+                report['partitions'][name]['image_metadata'] = inspect_image(image)
+                report['partitions'][name]['filesystem_status'] = report['partitions'][name]['status']
+                report['partitions'][name]['status'] = 'RAW_IMAGE_METADATA'
         except (ValueError, subprocess.TimeoutExpired, OSError) as exc:
             report['partitions'][name] = {'status': 'SCAN_FAILED', 'error': str(exc)}
         print(name, report['partitions'][name]['status'], flush=True)

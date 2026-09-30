@@ -74,3 +74,27 @@ class ReconstructionTests(unittest.TestCase):
     def test_unknown_operation(self):
         with self.assertRaisesRegex(ValueError, 'Unsupported'):
             decode_operation(4, b'x', 4096)
+
+    def test_all_partition_selection_with_local_fixture(self):
+        import struct
+        import zipfile
+        from unittest.mock import patch
+        from tools.reconstruct_ota import reconstruct
+        blob, part, data = self.fixture(kind=0)
+        # Re-encode two independent partitions, with the second operation offset adjusted.
+        new = integer(1, 4096) + message(2, hashlib.sha256(data).digest())
+        manifest = b''
+        for index,name in enumerate((b'boot',b'system')):
+            extent=integer(1,0)+integer(2,1)
+            operation=(integer(1,0)+integer(2,index*len(blob))+integer(3,len(blob))+
+                       message(6,extent)+message(8,hashlib.sha256(blob).digest()))
+            manifest+=message(13,message(1,name)+message(7,new)+message(8,operation))
+        payload=struct.pack('>4sQQI',b'CrAU',2,len(manifest),0)+manifest+blob+blob
+        archive=self.out.parent/'ota.zip'
+        with zipfile.ZipFile(archive,'w') as z: z.writestr('payload.bin',payload)
+        validated={'sha256':'fixture', 'payload_manifest':{'payload_minor':0,'partial_update_declared':False,
+                   'block_size':4096,'partitions':[{'name':n,'new_size_bytes':4096} for n in ('boot','system')]}}
+        with patch('tools.reconstruct_ota.inspect',return_value=validated):
+            r=reconstruct(archive,self.out.parent/'images',selected=None)
+        self.assertEqual(set(r['partitions']),{'boot','system'})
+        self.assertTrue(all(p['sha256_match'] for p in r['partitions'].values()))

@@ -129,8 +129,8 @@ def reconstruct(zip_path, destination, selected=DEFAULT_PARTITIONS):
     destination.mkdir(parents=True, exist_ok=True)
     if destination.is_symlink() or any(destination.iterdir()):
         raise ValueError('Use an empty real output directory')
-    selected = set(selected)
     known = {p['name']: p for p in manifest_report['partitions']}
+    selected = set(known) if selected is None else set(selected)
     if not selected or not selected <= known.keys():
         raise ValueError('Unknown or empty partition selection')
     if sum(known[n]['new_size_bytes'] or MAX_TOTAL + 1 for n in selected) > MAX_TOTAL:
@@ -157,8 +157,9 @@ def main():
     parser.add_argument('zip', type=Path)
     parser.add_argument('--directory', required=True, type=Path)
     parser.add_argument('--report', required=True, type=Path)
+    parser.add_argument('--all-partitions', action='store_true', help='Reconstruct every partition declared in this FULL payload')
     args = parser.parse_args()
-    result = reconstruct(args.zip, args.directory)
+    result = reconstruct(args.zip, args.directory, None if args.all_partitions else DEFAULT_PARTITIONS)
     args.report.write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result, indent=2))
 
