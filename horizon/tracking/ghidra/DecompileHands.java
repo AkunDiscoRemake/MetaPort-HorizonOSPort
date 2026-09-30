@@ -29,7 +29,9 @@ public class DecompileHands extends GhidraScript {
     }
     @Override public void run() throws Exception {
         String[] args=getScriptArgs();
-        if(args.length!=3) throw new IllegalArgumentException("addresses-file strings-json output-json");
+        if(args.length!=3 && args.length!=4) throw new IllegalArgumentException("addresses-file strings-json output-json [listing-limit]");
+        int listingLimit=args.length==4?Integer.parseInt(args[3]):128;
+        if(listingLimit<1 || listingLimit>4096) throw new IllegalArgumentException("Listing limit outside 1..4096");
         List<String> exports=Files.readAllLines(Path.of(args[0]));
         if(exports.size()>24) throw new IllegalArgumentException("Export limit");
         // Android ET_DYN symbols/rodata use base-zero ELF VAs; Ghidra rebases the import.
@@ -82,13 +84,14 @@ public class DecompileHands extends GhidraScript {
                     item.put("listing_body_address_count",function.getBody().getNumAddresses());
                     List<Map<String,Object>> listing=new ArrayList<>();
                     var instructions=currentProgram.getListing().getInstructions(function.getBody(),true);
-                    while(instructions.hasNext() && listing.size()<128) {
+                    while(instructions.hasNext() && listing.size()<listingLimit) {
                         monitor.checkCancelled();
                         var instruction=instructions.next();
                         Map<String,Object> row=new LinkedHashMap<>();
                         row.put("elf_address",instruction.getAddress().subtract(imageBase));
                         row.put("assembly",instruction.toString());listing.add(row);
                     }
+                    item.put("listing_limit",listingLimit);
                     item.put("listing_prefix",listing);
                     item.put("listing_prefix_truncated",instructions.hasNext());
                     List<Function> callees=new ArrayList<>(function.getCalledFunctions(monitor));
