@@ -73,3 +73,9 @@ class SchemaTests(unittest.TestCase):
         self.assertFalse(r['control_flow_evaluated'])
         b.integer(ca[0],99)
         with self.assertRaises(ValueError):describe(b.data,root)
+
+    def test_repeated_aliases_cannot_bypass_global_budget(self):
+        b,root,p=fixture();view=View(b.data)
+        view.cells=249999
+        with self.assertRaisesRegex(ValueError,'Aggregate traversal'):
+            view.vector(root,1);view.vector(root,1)

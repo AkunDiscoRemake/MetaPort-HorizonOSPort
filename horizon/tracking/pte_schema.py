@@ -9,7 +9,11 @@ import struct
 
 
 class View:
-    def __init__(self,data): self.data=data
+    def __init__(self,data):
+        self.data=data;self.cells=0;self.string_bytes=0
+    def charge(self,count):
+        self.cells+=count
+        if self.cells>250000: raise ValueError('Aggregate traversal budget exceeded')
     def read(self,fmt,offset):
         size=struct.calcsize('<'+fmt)
         if offset<0 or offset+size>len(self.data): raise ValueError('Out-of-bounds scalar')
@@ -38,12 +42,14 @@ class View:
         if pos is None: return []
         start=self.ref(pos);count=self.read('I',start);size=struct.calcsize('<'+fmt)
         if count>limit or start+4+count*size>len(self.data): raise ValueError('Vector bounds/limit')
+        self.charge(count)
         return [self.read(fmt,start+4+i*size) for i in range(count)]
     def tables(self,table,index,limit=4096):
         pos=self.field(table,index)
         if pos is None: return []
         start=self.ref(pos);count=self.read('I',start)
         if count>limit or start+4+count*4>len(self.data): raise ValueError('Table vector bounds/limit')
+        self.charge(count)
         return [self.ref(start+4+i*4) for i in range(count)]
     def string(self,table,index):
         pos=self.field(table,index)
@@ -51,6 +57,8 @@ class View:
         start=self.ref(pos);size=self.read('I',start)
         if size>512 or start+4+size>=len(self.data) or self.data[start+4+size]!=0:
             raise ValueError('String bounds/termination')
+        self.string_bytes+=size
+        if self.string_bytes>1024*1024: raise ValueError('Aggregate string budget exceeded')
         text=self.data[start+4:start+4+size].decode('utf-8')
         if any(ord(c)<32 for c in text): raise ValueError('Control characters in identifier')
         return text
