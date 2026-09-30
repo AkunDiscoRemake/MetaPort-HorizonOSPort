@@ -121,9 +121,6 @@ def build(images,reconstruction,output,diagnostics=False):
     fresh=output/'metadata.img'
     with fresh.open('xb') as stream: stream.truncate(64*MIB)
     subprocess.run(['mkfs.ext4','-q','-F','-L','metadata',str(fresh)],check=True)
-    if diagnostics:
-        from guest.diagnostics import install
-        install(fresh,output)
     fresh_info={'size_bytes':fresh.stat().st_size,'sha256':hashlib.sha256(fresh.read_bytes()).hexdigest()}
     physical={'super':super_size,'metadata':64*MIB,'misc':4*MIB,
               'boot_a':align(evidence['boot']['size_bytes']),
@@ -132,6 +129,22 @@ def build(images,reconstruction,output,diagnostics=False):
               'vbmeta_system_a':align(evidence['vbmeta_system']['size_bytes'])}
     headers,parts,total=gpt(physical)
     locations={p['name']:p['offset'] for p in parts}
+    label_rules=[]
+    if diagnostics:
+        from guest.diagnostics import install
+        from guest.labels import adapt
+        original=(images.parent/'vendor_file_contexts.original').read_text()
+        overlay,label_rules=adapt(original,parts)
+        path=output/'vendor_file_contexts.metaport';path.write_text(overlay)
+        context=(images.parent/'contexts-file-label.txt').read_text().strip()
+        if not re.fullmatch(r'u:object_r:[a-z0-9_]+:s0',context):raise ValueError('Invalid file label')
+        for request in (f'write "{path}" /vendor_file_contexts.metaport',
+                        f'ea_set /vendor_file_contexts.metaport security.selinux {context}'):
+            subprocess.run(['debugfs','-w','-R',request,str(fresh)],check=True,capture_output=True,timeout=30)
+        readback=subprocess.run(['debugfs','-R','cat /vendor_file_contexts.metaport',str(fresh)],check=True,capture_output=True,timeout=30)
+        if readback.stdout!=path.read_bytes():raise ValueError('Label overlay readback mismatch')
+        install(fresh,output,label_overlay=True)
+        fresh_info['sha256']=hashlib.sha256(fresh.read_bytes()).hexdigest()
     target=output/'guest-disk.raw'
     try:
         with target.open('xb') as disk:
@@ -147,7 +160,7 @@ def build(images,reconstruction,output,diagnostics=False):
             copy_verified(disk,fresh,locations['metadata'],fresh_info)
     except Exception:
         target.unlink(missing_ok=True);raise
-    report={'diagnostic_init_rc':diagnostics,'size_bytes':total,'physical_partitions':parts,'logical_partitions':logical,
+    report={'guest_label_overlay':label_rules,'diagnostic_logger_started_by_config':False,'diagnostic_init_rc':diagnostics,'size_bytes':total,'physical_partitions':parts,'logical_partitions':logical,
             'lp_version':'10.0','lp_metadata_sha256':hashlib.sha256(prefix).hexdigest(),
             'source_images':{n:evidence[n] for n in (*LOGICAL,'vbmeta','vbmeta_system','boot')},
             'fresh_metadata_image':fresh_info,

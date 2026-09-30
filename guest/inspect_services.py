@@ -62,6 +62,12 @@ def inspect(images,output):
                     result['boot_hal'].append({'path':path,**report})
                 elif path in POLICY.get(partition,set()):
                     raw=binary.read_bytes()
+                    if partition=='vendor':
+                        (Path(output).parent/'vendor_file_contexts.original').write_bytes(raw)
+                        attrs,_=command(['debugfs','-R',f'ea_list <{entry["inode"]}>',str(image)])
+                        label=re.search(r'u:object_r:[a-z0-9_]+:s0',attrs)
+                        if not label:raise ValueError('Missing original contexts-file SELinux label')
+                        (Path(output).parent/'contexts-file-label.txt').write_text(label.group())
                     result['device_label_rules'].append({'path':path,'sha256':hashlib.sha256(raw).hexdigest(),
                         'rules':[line for line in raw.decode().splitlines() if re.search(r'/dev/block|misc_block_device|vd_device|boot_block_device',line)]})
                 elif path in CONFIG:
