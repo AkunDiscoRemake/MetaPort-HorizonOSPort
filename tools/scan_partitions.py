@@ -20,7 +20,7 @@ MAX_FILES = 30000
 MAX_DIRECTORIES = 5000
 MAX_BINARY = 16 * 1024 * 1024
 MAX_ELF_PER_PARTITION = 24
-INTEREST = re.compile(r'openxr|vrapi|vrservice|tracking|compositor|surfaceflinger|timewarp|oculus|horizon|hzos|xrapp|surfaceforge', re.I)
+INTEREST = re.compile(r'openxr|vrapi|vrservice|tracking|compositor|surfaceflinger|timewarp|oculus|horizon|hzos|xrapp|surfaceforge|mrservice|sensoremulator', re.I)
 
 
 def limits():
@@ -92,10 +92,21 @@ def elf_report(binary):
     machine = re.search(r'^\s*Machine:\s*(.+)$', headers, re.M)
     needed = re.findall(r'\(NEEDED\).*?\[(.*?)\]', headers)
     interpreter = re.search(r'Requesting program interpreter:\s*([^\]]+)', headers)
+    symbols, _ = command(['readelf', '--dyn-syms', '-W', str(binary)])
+    exported = []
+    imported = []
+    for line in symbols.splitlines():
+        columns = line.split()
+        if len(columns) >= 8 and columns[0].endswith(':') and columns[0][:-1].isdigit():
+            (imported if columns[6] == 'UND' else exported).append(columns[7])
     result = {'format': 'ELF', 'sha256': hashlib.sha256(data).hexdigest(),
               'size_bytes': len(data), 'machine': machine.group(1) if machine else None,
               'needed': needed, 'interpreter': interpreter.group(1) if interpreter else None,
               'headers': headers, 'sections': sections,
+              'exported_dynamic_symbols_count': len(exported),
+              'imported_dynamic_symbols_count': len(imported),
+              'exported_dynamic_symbols_sample': exported[:1024],
+              'imported_dynamic_symbols_sample': imported[:1024],
               'disassembly_status': 'NOT_PERFORMED'}
     # Bounded sample, not full disassembly or recovery of program semantics.
     match = re.search(r'\]\s+\.text\s+PROGBITS\s+([0-9a-fA-F]+)\s+[0-9a-fA-F]+\s+([0-9a-fA-F]+)', sections)
@@ -146,6 +157,7 @@ def scan(image, filesystem, include_apex=True):
             'selection_policy': 'up to 24; prioritize XR/tracking/compositor and lib64; not exhaustive',
             'firmware_executed': False, 'images_mounted': False}
     report['configuration'] = inspect_configs(image, entries)
+    report['apk_analysis'] = inspect_apks(image, entries)
     if include_apex:
         report['meta_apex'] = inspect_apex(image, entries)
     return report
@@ -163,7 +175,7 @@ def inspect_configs(image, entries):
     results = []
     selected = [e for e in entries if e['kind'] == 'file' and
                 0 < (e['size_bytes'] or 0) <= 256 * 1024 and
-                (e['path'].endswith('/build.prop') or
+                (e['path'].endswith('/build.prop') or 'active_runtime.' in e['path'] or
                  ('/etc/init/' in e['path'] and e['path'].endswith('.rc')))]
     for entry in selected[:160]:
         try:
@@ -175,7 +187,10 @@ def inspect_configs(image, entries):
             # Report only build identity properties or service declaration blocks,
             # not arbitrary scripts, secrets, property triggers or device actions.
             result = {'path': entry['path'], 'sha256': hashlib.sha256(raw).hexdigest()}
-            if entry['path'].endswith('/build.prop'):
+            if 'active_runtime.' in entry['path']:
+                manifest = json.loads(text)
+                result['openxr_runtime_manifest'] = manifest
+            elif entry['path'].endswith('/build.prop'):
                 prefixes = ('ro.build.', 'ro.system.build.', 'ro.product.build.',
                             'ro.vendor.build.', 'ro.odm.build.', 'ro.system_ext.build.')
                 result['build_properties'] = {k: v for line in text.splitlines()
@@ -246,6 +261,64 @@ def inspect_apex(image, entries):
                 result['signature_verified'] = False
         except (ValueError, KeyError, OSError, subprocess.TimeoutExpired, zipfile.BadZipFile) as exc:
             result.update(status='APEX_ANALYSIS_FAILED', error=str(exc))
+        results.append(result)
+    return results
+
+
+def inspect_apks(image, entries):
+    selected = [e for e in entries if e['kind'] == 'file' and
+                e['path'].rsplit('/', 1)[-1] in (
+                    'VrDriver.apk', 'VrShell.apk', 'MetaSystemUI.apk',
+                    'SystemActivities.apk', 'PresenceService.apk')]
+    results = []
+    for entry in selected[:8]:
+        result = {'path': entry['path'], 'firmware_executed': False}
+        try:
+            with tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                apk = root / 'package.apk'
+                dump_entry(image, entry, apk)
+                result['sha256'] = hashlib.sha256(apk.read_bytes()).hexdigest()
+                try:
+                    manifest, _ = command(['aapt', 'dump', 'xmltree', str(apk), 'AndroidManifest.xml'])
+                    result['android_manifest_xmltree'] = manifest
+                except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
+                    result['manifest_status'] = 'PARSE_FAILED'
+                    result['manifest_error'] = str(exc)
+                with zipfile.ZipFile(apk) as archive:
+                    names = archive.namelist()
+                    if len(names) != len(set(names)):
+                        raise ValueError('Duplicate APK entries')
+                    result['dex_entries'] = [n for n in names if re.fullmatch(r'classes[0-9]*\.dex', n)]
+                    native = [i for i in archive.infolist() if i.filename.startswith('lib/') and i.filename.endswith('.so')]
+                    result['native_libraries'] = [{'path': i.filename, 'size_bytes': i.file_size} for i in native]
+                    result['native_analysis'] = []
+                    arm64 = sorted([i for i in native if i.filename.startswith('lib/arm64-v8a/')], key=lambda i: i.filename)
+                    for index, info in enumerate(arm64[:8]):
+                        if not 0 < info.file_size <= 64 * 1024 * 1024:
+                            result['native_analysis'].append({'path': info.filename, 'status': 'SIZE_LIMIT'})
+                            continue
+                        binary = root / f'lib{index}.so'
+                        with archive.open(info) as source, binary.open('xb') as target:
+                            size = 0
+                            while chunk := source.read(1024 * 1024):
+                                size += len(chunk)
+                                if size > info.file_size:
+                                    raise ValueError('APK library size exceeded')
+                                target.write(chunk)
+                        if size != info.file_size:
+                            raise ValueError('APK library truncated')
+                        try:
+                            native_result = elf_report(binary)
+                            native_result['path'] = info.filename
+                            result['native_analysis'].append(native_result)
+                        except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
+                            result['native_analysis'].append({'path': info.filename, 'status': 'ANALYSIS_FAILED', 'error': str(exc)})
+                result['status'] = 'APK_STATIC_INSPECTION'
+                result['signature_verified'] = False
+                result['dex_decompiled'] = False
+        except (ValueError, OSError, KeyError, subprocess.TimeoutExpired, zipfile.BadZipFile) as exc:
+            result.update(status='APK_ANALYSIS_FAILED', error=str(exc))
         results.append(result)
     return results
 
