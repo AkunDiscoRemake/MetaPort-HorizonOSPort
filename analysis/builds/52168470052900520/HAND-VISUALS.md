@@ -68,8 +68,11 @@ A classe não gera poses, não conhece a ABI original, não decide a ordem de
 quaternions nem assume matrizes 3x4/4x4. O tamanho de registro é explícito.
 Ela precisa receber dados válidos de uma **bridge original ainda não implementada**.
 Não há conexão JNI ou renderer de mãos pronta. O código foi incluído no build C++
-do AAR, mas a validação Android dessa alteração deve ser conferida no respectivo
-relatório de build, não inferida do teste no host.
+do AAR. Run [36777379110](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/actions/runs/36777379110),
+source `19a3ce3`, concluiu build Android ARM64, testes nativos com sanitizadores,
+sete testes Java e lint. `analysis/android-build/build-report.json` registra
+`gradle_exit_code=0`, mas também `horizon_integration=NOT PORTED YET` e ausência
+de teste físico. Um AAR compilado não é um APK Horizon funcional.
 
 O teste nativo usa AddressSanitizer/UBSan e compara todos os 255 subconjuntos não
 vazios de uma hierarquia de oito registros, em quatro tamanhos de registro, além
@@ -91,6 +94,59 @@ A análise nativa foi ampliada para procurar consumidores de `PreRotation`,
 `TranslationOffset`, `RestState`, `SkinningWeights` e arquivos `defaultfbx`, além
 da preparação de tensores. A decompilação é evidência estática, não uma assinatura
 C++ válida ou animação já portada.
+
+## Caminho visual encontrado no VrShell original
+
+Run [36778223318](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/actions/runs/36778223318)
+inspecionou o APK verificado. O relatório `hand-presentation-report.json` localizou
+em `libshell.so` (SHA-256
+`2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0`):
+
+- referências a `xrCreateHandTrackerEXT`, `xrLocateHandJointsEXT`,
+  `xrDestroyHandTrackerEXT` e `xrGetHandMeshFB`;
+- nomes das extensões de tracking, mesh, aim, motion range, data source e
+  microgestures; a presença dos nomes não comprova suporte no telefone;
+- `CoHandRenderBehavior`, `IHandRenderingSystem`, `HandRenderingSystem` e
+  `GhostHandRenderingSystem`, com caminhos de arquivos-fonte compilados;
+- parâmetros `ShellHandMaterial.u_opacityRange` e `ShellHandMaterial.u_alphaFade`;
+- mensagens de erro de aquisição de mesh e quantidade inesperada de joints.
+
+**Consequência importante:** não está estabelecido que as malhas FBX de tracking
+preparadas acima sejam exatamente as malhas que o VrShell recebe por OpenXR.
+Não se deve substituí-las silenciosamente nem declarar seu renderer portado.
+A identificação do caminho OpenXR orienta a próxima bridge e a recuperação das
+regras originais de apresentação, opacidade e transições.
+
+Nenhum membro ZIP casou com o filtro de nomes de recursos de mãos/shaders/animacões.
+Isso não prova ausência desses recursos: podem estar embutidos, ter outros nomes
+ou vir de componentes externos. `libovravatar2p.so` também contém contratos de
+skeleton/pose de mãos customizados, que não foram confundidos com tracking real.
+
+`prepare_hand_render.py` agora prepara apenas o renderer de hash fixo para
+Ghidra e converte offsets de arquivo em VAs ELF através dos segmentos PT_LOAD,
+sem somar o image base duas vezes. A decompilação específica do renderer está em
+ensaio; strings não são implementação recuperada nem reprodução das animações.
+
+### Recuperação nativa mais completa, sem ocultar falha de validação
+
+Run 36777058920 produziu 32 funções de entrada e quatro consumidores visuais
+(`hand-input-visuals.json`). A análise automática ainda atingiu o limite de 900 s,
+portanto não é análise completa. Contudo, os corpos do listing já contêm centenas
+ou milhares de bytes e chamadas reais, em vez dos corpos de um endereço da
+passagem anterior. `FUN_008b9ce0` lê campos de geometria/skinning; `FUN_00ade360`
+referencia a biblioteca de poses; as outras duas funções referenciam RotationOrder.
+
+O antigo teste do workflow rejeita esse relatório porque exige uma descrição
+textual de candidato sem DataReference, enquanto a nova passagem recuperou as
+DataReferences. O novo validador usa identidade/endereço e correspondência aos
+candidatos de ponteiro, não esse texto. Validou localmente o relatório real:
+32 funções e nove candidatos de ponteiro decompilados. A conclusão histórica do
+run permanece **failure**, não foi reescrita como sucesso.
+
+Outro cuidado: a função encontrada por `use_uint8_input` que exige uint8 inclui
+`BodyTrackingEncoderTorchModel loaded`. Isso não autoriza mudar o atributo false
+do DPE de mãos. A seleção seguinte prioriza callers diretos dos construtores de
+mãos antes de referências genéricas de quantização/outros modelos.
 
 ## Bloqueios restantes e critérios de integração
 
