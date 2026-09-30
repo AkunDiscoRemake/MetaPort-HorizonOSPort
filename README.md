@@ -29,8 +29,10 @@ analisado em GitHub Actions. O pipeline já:
    selecionadas, dependências, símbolos e evidências do protocolo Binder original.
 7. Compilou o kernel público Meta com adaptação virtual e executou o init original.
 8. Construiu o armazenamento guest, **montou as sete partições originais e
-   executou o segundo estágio do init**. A execução ainda espera o BootControl HAL;
-   não houve boot completo nem abertura do Horizon.
+   executou o segundo estágio do init**. Ensaios anteriores alcançaram post-fs-data,
+   sem boot completo. O ensaio atual com userdata descartável espera o Keystore
+   durante o provisionamento criptográfico; não abre o Horizon.
+   [Resultado do ensaio com userdata](analysis/builds/52168470052900520/GUEST-USERDATA.md).
 
 **[Estado do firmware completo e bloqueios de boot](analysis/builds/52168470052900520/FIRMWARE-STATUS.md)**
 

@@ -107,3 +107,15 @@ público FlatBuffers reproduz a vtable compartilhada que causa a advertência;
 isso não identifica o exporter privado ou valida inferência. Veja [evidências,
 constantes e testes](../../analysis/builds/52168470052900520/ATTRIBUTES-REFERENCE-VALIDATION.md).
 **O bridge de câmera/mãos continua NOT PORTED YET.**
+
+## Rastreamento focado do executor
+
+A passagem focada resolveu ponteiros candidatos em memória relocada e produziu
+11 reconstruções C-like de construtores, ciclo de vida e despacho de tensores.
+Não foram convertidas em headers ABI ou em código de câmera por suposição.
+Veja [métodos candidatos e limitações](../../analysis/builds/52168470052900520/INPUT-EXECUTOR-TRACE.md).
+
+O workflow de modelos agora executa `validate_models.py`: exige os dez modelos
+fixados por hash, comparação nativa, atributos DPE e coerência de 35 constantes.
+Falhas parciais não podem ser apresentadas como evidência aceita. O status aceito
+continua explicitamente **NOT_RUNTIME_VALIDATED**, sem teste de telefone/inferência.

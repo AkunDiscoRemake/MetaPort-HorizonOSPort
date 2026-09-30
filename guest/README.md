@@ -50,8 +50,8 @@ python3 -m unittest discover -s guest/tests -v
 
 Optional `lz4==4.4.4` enables the LZ4 fixture; Actions installs it. Subsequent work
 requires BootControl/slot-state and data-storage adaptation, original hardware-service
-adaptation, graphics and IPC bridges. A system-disk layout now exists, but userdata,
-TEE functionality and physical hardware integration do not. It also requires
+adaptation, graphics and IPC bridges. A system-disk layout now exists, including optional blank userdata. Filesystem/encryption provisioning,
+TEE functionality and physical hardware integration are not working. It also requires
 an Android-hosted emulator and performance validation; none is supplied by this
 kernel probe.
 
@@ -74,3 +74,16 @@ match without a policy overlay. Run 36719412359 activated the alias, reached
 post-fs-data and observed an original client obtaining HIDL BootControl 1.2.
 Whole-disk access denials, missing writable data and restarting services remain.
 See [measured results and limits](../analysis/builds/52168470052900520/BOOT-CONTROLLER-ALIAS.md).
+
+## Optional fresh userdata experiment
+
+`guest/storage.py --userdata-mib 1024` appends a blank 1 GiB guest partition,
+without moving the existing GPT roles or preformatting an unencrypted replacement.
+The original fs_mgr/vold and encryption policy remain responsible for provisioning.
+The workflow now selects this experiment; the builder default remains disabled.
+
+Run 36761552459 reached the original `cryptfs encryptFstab` request and then waited
+for the unavailable Keystore2 service until the probe timeout. It did **not**
+reach post-fs-data or Zygote in this run, unlike the earlier no-userdata probe.
+See [measured userdata results](../analysis/builds/52168470052900520/GUEST-USERDATA.md).
+This is not a mounted-data, full-boot or phone-compatibility claim.
