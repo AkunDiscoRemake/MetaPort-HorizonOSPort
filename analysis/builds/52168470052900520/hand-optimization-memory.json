@@ -240,6 +240,1303 @@
   ],
   "functions": [
     {
+      "ghidra_address": "00e1e6a0",
+      "elf_address": 13756064,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0xd1e6a0",
+      "name": "FUN_00e1e6a0",
+      "analysis_no_return": false,
+      "listing_body_address_count": 820,
+      "listing_prefix": [
+        {
+          "elf_address": 13756064,
+          "assembly": "sub sp,sp,#0x180"
+        },
+        {
+          "elf_address": 13756068,
+          "assembly": "stp x29,x30,[sp, #0x130]"
+        },
+        {
+          "elf_address": 13756072,
+          "assembly": "stp x28,x25,[sp, #0x140]"
+        },
+        {
+          "elf_address": 13756076,
+          "assembly": "stp x24,x23,[sp, #0x150]"
+        },
+        {
+          "elf_address": 13756080,
+          "assembly": "stp x22,x21,[sp, #0x160]"
+        },
+        {
+          "elf_address": 13756084,
+          "assembly": "stp x20,x19,[sp, #0x170]"
+        },
+        {
+          "elf_address": 13756088,
+          "assembly": "add x29,sp,#0x130"
+        },
+        {
+          "elf_address": 13756092,
+          "assembly": "mrs x25,tpidr_el0"
+        },
+        {
+          "elf_address": 13756096,
+          "assembly": "mov x21,x0"
+        },
+        {
+          "elf_address": 13756100,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 13756104,
+          "assembly": "ldr x8,[x25, #0x28]"
+        },
+        {
+          "elf_address": 13756108,
+          "assembly": "mov x20,x0"
+        },
+        {
+          "elf_address": 13756112,
+          "assembly": "mov x22,x2"
+        },
+        {
+          "elf_address": 13756116,
+          "assembly": "mov x23,x1"
+        },
+        {
+          "elf_address": 13756120,
+          "assembly": "mov x19,x0"
+        },
+        {
+          "elf_address": 13756124,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 13756128,
+          "assembly": "adrp x8,0x278b000"
+        },
+        {
+          "elf_address": 13756132,
+          "assembly": "add x8,x8,#0xb70"
+        },
+        {
+          "elf_address": 13756136,
+          "assembly": "strb wzr,[x0]"
+        },
+        {
+          "elf_address": 13756140,
+          "assembly": "strb wzr,[x20, #0x88]!"
+        },
+        {
+          "elf_address": 13756144,
+          "assembly": "strb wzr,[x0, #0x60]"
+        },
+        {
+          "elf_address": 13756148,
+          "assembly": "strb wzr,[x0, #0x80]"
+        },
+        {
+          "elf_address": 13756152,
+          "assembly": "strb wzr,[x0, #0xa0]"
+        },
+        {
+          "elf_address": 13756156,
+          "assembly": "str x8,[x21, #0xc8]!"
+        },
+        {
+          "elf_address": 13756160,
+          "assembly": "orr x8,xzr,#-0x100000000"
+        },
+        {
+          "elf_address": 13756164,
+          "assembly": "stp xzr,x8,[x0, #0xe0]"
+        },
+        {
+          "elf_address": 13756168,
+          "assembly": "mov w8,#0x3f800000"
+        },
+        {
+          "elf_address": 13756172,
+          "assembly": "str w8,[x0, #0x158]"
+        },
+        {
+          "elf_address": 13756176,
+          "assembly": "mov w8,#0x2"
+        },
+        {
+          "elf_address": 13756180,
+          "assembly": "strb wzr,[x0, #0x78]"
+        },
+        {
+          "elf_address": 13756184,
+          "assembly": "str xzr,[x0, #0x150]"
+        },
+        {
+          "elf_address": 13756188,
+          "assembly": "str w8,[sp, #0x6c]"
+        },
+        {
+          "elf_address": 13756192,
+          "assembly": "stp xzr,xzr,[x0, #0x68]"
+        },
+        {
+          "elf_address": 13756196,
+          "assembly": "stur q0,[x0, #0xa8]"
+        },
+        {
+          "elf_address": 13756200,
+          "assembly": "stur q0,[x0, #0xb8]"
+        },
+        {
+          "elf_address": 13756204,
+          "assembly": "stp xzr,xzr,[x0, #0xd0]"
+        },
+        {
+          "elf_address": 13756208,
+          "assembly": "stp q0,q0,[x0, #0xf0]"
+        },
+        {
+          "elf_address": 13756212,
+          "assembly": "stp q0,q0,[x0, #0x110]"
+        },
+        {
+          "elf_address": 13756216,
+          "assembly": "stp q0,q0,[x0, #0x130]"
+        },
+        {
+          "elf_address": 13756220,
+          "assembly": "stp q0,q0,[x29, #-0x50]"
+        },
+        {
+          "elf_address": 13756224,
+          "assembly": "mov w0,#0x20"
+        },
+        {
+          "elf_address": 13756228,
+          "assembly": "bl 0x02753418"
+        },
+        {
+          "elf_address": 13756232,
+          "assembly": "adrp x8,0x2824000"
+        },
+        {
+          "elf_address": 13756236,
+          "assembly": "mov x24,x0"
+        },
+        {
+          "elf_address": 13756240,
+          "assembly": "ldr x8,[x8, #0x5f0]"
+        },
+        {
+          "elf_address": 13756244,
+          "assembly": "add x8,x8,#0x10"
+        },
+        {
+          "elf_address": 13756248,
+          "assembly": "str x8,[x0]"
+        },
+        {
+          "elf_address": 13756252,
+          "assembly": "str xzr,[x0, #0x8]!"
+        },
+        {
+          "elf_address": 13756256,
+          "assembly": "adrp x1,0x172000"
+        },
+        {
+          "elf_address": 13756260,
+          "assembly": "add x1,x1,#0x1c4"
+        },
+        {
+          "elf_address": 13756264,
+          "assembly": "mov w2,#0x7"
+        },
+        {
+          "elf_address": 13756268,
+          "assembly": "mov w3,#0x18"
+        },
+        {
+          "elf_address": 13756272,
+          "assembly": "mov w4,#0x8"
+        },
+        {
+          "elf_address": 13756276,
+          "assembly": "bl 0x027535d0"
+        },
+        {
+          "elf_address": 13756280,
+          "assembly": "adrp x8,0x2824000"
+        },
+        {
+          "elf_address": 13756284,
+          "assembly": "mov w0,#0x8000"
+        },
+        {
+          "elf_address": 13756288,
+          "assembly": "ldr x8,[x8, #0x5e8]"
+        },
+        {
+          "elf_address": 13756292,
+          "assembly": "add x8,x8,#0x10"
+        },
+        {
+          "elf_address": 13756296,
+          "assembly": "str x8,[x24]"
+        },
+        {
+          "elf_address": 13756300,
+          "assembly": "mov w8,#0x8000"
+        },
+        {
+          "elf_address": 13756304,
+          "assembly": "str x8,[x24, #0x18]"
+        },
+        {
+          "elf_address": 13756308,
+          "assembly": "bl 0x027535c0"
+        },
+        {
+          "elf_address": 13756312,
+          "assembly": "adrp x8,0x10b000"
+        },
+        {
+          "elf_address": 13756316,
+          "assembly": "mov w9,#0x1"
+        },
+        {
+          "elf_address": 13756320,
+          "assembly": "stur x24,[x29, #-0x50]"
+        },
+        {
+          "elf_address": 13756324,
+          "assembly": "ldr q0,[x8, #0x9a0]"
+        },
+        {
+          "elf_address": 13756328,
+          "assembly": "ldrb w8,[x23]"
+        },
+        {
+          "elf_address": 13756332,
+          "assembly": "str x0,[x24, #0x10]"
+        },
+        {
+          "elf_address": 13756336,
+          "assembly": "sturb w9,[x29, #-0x38]"
+        },
+        {
+          "elf_address": 13756340,
+          "assembly": "str xzr,[sp, #0xd0]"
+        },
+        {
+          "elf_address": 13756344,
+          "assembly": "stur q0,[x29, #-0x48]"
+        },
+        {
+          "elf_address": 13756348,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 13756352,
+          "assembly": "stp q0,q0,[sp, #0x70]"
+        },
+        {
+          "elf_address": 13756356,
+          "assembly": "stp q0,q0,[sp, #0x90]"
+        },
+        {
+          "elf_address": 13756360,
+          "assembly": "stp q0,q0,[sp, #0xb0]"
+        },
+        {
+          "elf_address": 13756364,
+          "assembly": "tbz w8,#0x0,0x00e1e8cc"
+        },
+        {
+          "elf_address": 13756368,
+          "assembly": "ldr x0,[x23, #0x10]"
+        },
+        {
+          "elf_address": 13756372,
+          "assembly": "add x8,sp,#0x70"
+        },
+        {
+          "elf_address": 13756376,
+          "assembly": "sub x1,x29,#0x50"
+        },
+        {
+          "elf_address": 13756380,
+          "assembly": "add x2,sp,#0x6c"
+        },
+        {
+          "elf_address": 13756384,
+          "assembly": "bl 0x00e1dd10"
+        },
+        {
+          "elf_address": 13756388,
+          "assembly": "ldrb w8,[sp, #0xd0]"
+        },
+        {
+          "elf_address": 13756392,
+          "assembly": "tbz w8,#0x0,0x00e1e8d4"
+        },
+        {
+          "elf_address": 13756396,
+          "assembly": "ldrb w8,[x19, #0x60]"
+        },
+        {
+          "elf_address": 13756400,
+          "assembly": "cmp w8,#0x1"
+        },
+        {
+          "elf_address": 13756404,
+          "assembly": "b.eq 0x00e1e9c4"
+        },
+        {
+          "elf_address": 13756408,
+          "assembly": "ldr w8,[sp, #0x88]"
+        },
+        {
+          "elf_address": 13756412,
+          "assembly": "str w8,[x19, #0x18]"
+        },
+        {
+          "elf_address": 13756416,
+          "assembly": "ldur q0,[sp, #0x78]"
+        },
+        {
+          "elf_address": 13756420,
+          "assembly": "ldp x8,x9,[sp, #0x90]"
+        },
+        {
+          "elf_address": 13756424,
+          "assembly": "stur q0,[x19, #0x8]"
+        },
+        {
+          "elf_address": 13756428,
+          "assembly": "stp x8,x9,[x19, #0x20]"
+        },
+        {
+          "elf_address": 13756432,
+          "assembly": "adrp x8,0x2824000"
+        },
+        {
+          "elf_address": 13756436,
+          "assembly": "ldr x8,[x8, #0x5c8]"
+        },
+        {
+          "elf_address": 13756440,
+          "assembly": "ldr q0,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 13756444,
+          "assembly": "str xzr,[sp, #0x90]"
+        },
+        {
+          "elf_address": 13756448,
+          "assembly": "stp xzr,xzr,[sp, #0x78]"
+        },
+        {
+          "elf_address": 13756452,
+          "assembly": "str xzr,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 13756456,
+          "assembly": "add x8,x8,#0x10"
+        },
+        {
+          "elf_address": 13756460,
+          "assembly": "str x8,[x19]"
+        },
+        {
+          "elf_address": 13756464,
+          "assembly": "ldr x8,[sp, #0xb0]"
+        },
+        {
+          "elf_address": 13756468,
+          "assembly": "str q0,[x19, #0x30]"
+        },
+        {
+          "elf_address": 13756472,
+          "assembly": "ldr q0,[sp, #0xc0]"
+        },
+        {
+          "elf_address": 13756476,
+          "assembly": "stp xzr,xzr,[sp, #0xc0]"
+        },
+        {
+          "elf_address": 13756480,
+          "assembly": "str x8,[x19, #0x40]"
+        },
+        {
+          "elf_address": 13756484,
+          "assembly": "ldr w8,[sp, #0xb8]"
+        },
+        {
+          "elf_address": 13756488,
+          "assembly": "str w8,[x19, #0x48]"
+        },
+        {
+          "elf_address": 13756492,
+          "assembly": "mov w8,#0xffffffff"
+        },
+        {
+          "elf_address": 13756496,
+          "assembly": "str w8,[sp, #0x88]"
+        },
+        {
+          "elf_address": 13756500,
+          "assembly": "mov w8,#0x1"
+        },
+        {
+          "elf_address": 13756504,
+          "assembly": "str q0,[x19, #0x50]"
+        },
+        {
+          "elf_address": 13756508,
+          "assembly": "strb w8,[x19, #0x60]"
+        },
+        {
+          "elf_address": 13756512,
+          "assembly": "mov x0,x19"
+        },
+        {
+          "elf_address": 13756516,
+          "assembly": "mov x1,x19"
+        },
+        {
+          "elf_address": 13756520,
+          "assembly": "mov x2,x22"
+        },
+        {
+          "elf_address": 13756524,
+          "assembly": "bl 0x00e1ec40"
+        },
+        {
+          "elf_address": 13756528,
+          "assembly": "ldrb w8,[sp, #0xd0]"
+        },
+        {
+          "elf_address": 13756532,
+          "assembly": "cmp w8,#0x1"
+        },
+        {
+          "elf_address": 13756536,
+          "assembly": "b.ne 0x00e1e884"
+        },
+        {
+          "elf_address": 13756540,
+          "assembly": "add x0,sp,#0x70"
+        },
+        {
+          "elf_address": 13756544,
+          "assembly": "bl 0x00e1ebb0"
+        },
+        {
+          "elf_address": 13756548,
+          "assembly": "ldur x0,[x29, #-0x50]"
+        },
+        {
+          "elf_address": 13756552,
+          "assembly": "stur xzr,[x29, #-0x50]"
+        },
+        {
+          "elf_address": 13756556,
+          "assembly": "cbz x0,0x00e1e89c"
+        },
+        {
+          "elf_address": 13756560,
+          "assembly": "ldr x8,[x0]"
+        },
+        {
+          "elf_address": 13756564,
+          "assembly": "ldr x8,[x8, #0x8]"
+        },
+        {
+          "elf_address": 13756568,
+          "assembly": "blr x8"
+        },
+        {
+          "elf_address": 13756572,
+          "assembly": "ldr x8,[x25, #0x28]"
+        }
+      ],
+      "listing_prefix_truncated": true,
+      "direct_callees": [
+        {
+          "name": "FUN_007ebe30",
+          "ghidra_address": "007ebe30",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0083e648",
+          "ghidra_address": "0083e648",
+          "external": false,
+          "analysis_no_return": true
+        },
+        {
+          "name": "FUN_00973eb8",
+          "ghidra_address": "00973eb8",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0097a438",
+          "ghidra_address": "0097a438",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00a14724",
+          "ghidra_address": "00a14724",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00c06a30",
+          "ghidra_address": "00c06a30",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00c381bc",
+          "ghidra_address": "00c381bc",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00e1dd10",
+          "ghidra_address": "00e1dd10",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00e1ebb0",
+          "ghidra_address": "00e1ebb0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00e1ec40",
+          "ghidra_address": "00e1ec40",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0173cfc0",
+          "ghidra_address": "0173cfc0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_02753418",
+          "ghidra_address": "02753418",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "malloc",
+          "ghidra_address": "027535c0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__strncpy_chk2",
+          "ghidra_address": "027535d0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "02753810",
+          "external": false,
+          "analysis_no_return": true
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* WARNING: Globals starting with \u0027_\u0027 overlap smaller symbols at the same address */\n\nvoid FUN_00e1e6a0(long *param_1,byte *param_2,undefined8 param_3)\n\n{\n  uint uVar1;\n  byte bVar2;\n  long lVar3;\n  long lVar4;\n  long lVar5;\n  long *plVar6;\n  long lVar7;\n  byte *pbVar8;\n  undefined8 uVar9;\n  undefined8 *puVar10;\n  byte bStack_180;\n  undefined1 auStack_17f [7];\n  ulong uStack_178;\n  undefined1 *puStack_170;\n  undefined1 auStack_168 [24];\n  undefined8 uStack_150;\n  undefined8 uStack_148;\n  undefined8 uStack_140;\n  undefined8 uStack_130;\n  undefined8 uStack_128;\n  undefined8 uStack_120;\n  undefined4 uStack_114;\n  undefined8 uStack_110;\n  long lStack_108;\n  long lStack_100;\n  undefined8 uStack_f8;\n  long lStack_f0;\n  long lStack_e8;\n  long lStack_e0;\n  long lStack_d8;\n  long lStack_d0;\n  undefined8 uStack_c8;\n  long lStack_c0;\n  long lStack_b8;\n  ulong uStack_b0;\n  long *plStack_a0;\n  undefined8 uStack_98;\n  undefined8 uStack_90;\n  undefined8 uStack_88;\n  undefined8 uStack_80;\n  undefined8 uStack_78;\n  ulong uStack_70;\n  undefined8 uStack_68;\n  long lStack_58;\n  \n  lVar3 \u003d tpidr_el0;\n  lStack_58 \u003d *(long *)(lVar3 + 0x28);\n  *(undefined1 *)param_1 \u003d 0;\n  *(undefined1 *)(param_1 + 0x11) \u003d 0;\n  *(undefined1 *)(param_1 + 0xc) \u003d 0;\n  *(undefined1 *)(param_1 + 0x10) \u003d 0;\n  *(undefined1 *)(param_1 + 0x14) \u003d 0;\n  param_1[0x19] \u003d (long)\u0026DAT_0278bb70;\n  param_1[0x1c] \u003d 0;\n  param_1[0x1d] \u003d -0x100000000;\n  *(undefined4 *)(param_1 + 0x2b) \u003d 0x3f800000;\n  *(undefined1 *)(param_1 + 0xf) \u003d 0;\n  param_1[0x2a] \u003d 0;\n  uStack_114 \u003d 2;\n  param_1[0xd] \u003d 0;\n  param_1[0xe] \u003d 0;\n  param_1[0x16] \u003d 0;\n  param_1[0x15] \u003d 0;\n  param_1[0x18] \u003d 0;\n  param_1[0x17] \u003d 0;\n  param_1[0x1a] \u003d 0;\n  param_1[0x1b] \u003d 0;\n  param_1[0x1f] \u003d 0;\n  param_1[0x1e] \u003d 0;\n  param_1[0x21] \u003d 0;\n  param_1[0x20] \u003d 0;\n  param_1[0x23] \u003d 0;\n  param_1[0x22] \u003d 0;\n  param_1[0x25] \u003d 0;\n  param_1[0x24] \u003d 0;\n  param_1[0x27] \u003d 0;\n  param_1[0x26] \u003d 0;\n  param_1[0x29] \u003d 0;\n  param_1[0x28] \u003d 0;\n  uStack_98 \u003d 0;\n  plStack_a0 \u003d (long *)0x0;\n  uStack_88 \u003d 0;\n  uStack_90 \u003d 0;\n                    /* try { // try from 00e1e740 to 00e1e747 has its CatchHandler @ 00e1eaa8 */\n  plVar6 \u003d (long *)FUN_02753418(0x20);\n  *plVar6 \u003d (long)(PTR_DAT_028245f0 + 0x10);\n  plVar6[1] \u003d 0;\n                    /* try { // try from 00e1e760 to 00e1e777 has its CatchHandler @ 00e1eab0 */\n  __strncpy_chk2(plVar6 + 1,\u0026DAT_001721c4,7,0x18,8);\n  *plVar6 \u003d (long)(PTR_DAT_028245e8 + 0x10);\n  plVar6[3] \u003d 0x8000;\n  lVar7 \u003d malloc(0x8000);\n  uStack_90 \u003d _UNK_0010b9a8;\n  uStack_98 \u003d _DAT_0010b9a0;\n  bVar2 \u003d *param_2;\n  plVar6[2] \u003d lVar7;\n  uStack_88 \u003d CONCAT71(uStack_88._1_7_,1);\n  uStack_b0 \u003d 0;\n  lStack_108 \u003d 0;\n  uStack_110 \u003d 0;\n  uStack_f8 \u003d 0;\n  lStack_100 \u003d 0;\n  lStack_e8 \u003d 0;\n  lStack_f0 \u003d 0;\n  lStack_d8 \u003d 0;\n  lStack_e0 \u003d 0;\n  uStack_c8 \u003d 0;\n  lStack_d0 \u003d 0;\n  lStack_b8 \u003d 0;\n  lStack_c0 \u003d 0;\n  if ((bVar2 \u0026 1) \u003d\u003d 0) {\n    pbVar8 \u003d param_2 + 1;\n  }\n  else {\n    pbVar8 \u003d *(byte **)(param_2 + 0x10);\n  }\n                    /* try { // try from 00e1e7d4 to 00e1e7e3 has its CatchHandler @ 00e1ea88 */\n  plStack_a0 \u003d plVar6;\n  FUN_00e1dd10(\u0026uStack_110,pbVar8,\u0026plStack_a0,\u0026uStack_114);\n  if ((uStack_b0 \u0026 1) \u003d\u003d 0) {\n    uVar9 \u003d FUN_00a14724(0x10);\n                    /* try { // try from 00e1e8e4 to 00e1e8f3 has its CatchHandler @ 00e1ea58 */\n    FUN_0097a438(auStack_168,\u0026DAT_0021972a,param_2);\n                    /* try { // try from 00e1e8f4 to 00e1e907 has its CatchHandler @ 00e1ea40 */\n    puVar10 \u003d (undefined8 *)FUN_00973eb8(auStack_168,\u0026DAT_0021dbc6,2);\n    uStack_148 \u003d puVar10[1];\n    uStack_150 \u003d *puVar10;\n    uStack_140 \u003d puVar10[2];\n    puVar10[1] \u003d 0;\n    puVar10[2] \u003d 0;\n    *puVar10 \u003d 0;\n    uVar1 \u003d 0;\n    if ((char)uStack_b0 \u003d\u003d \u0027\\0\u0027) {\n      uVar1 \u003d (uint)uStack_110;\n    }\n    uStack_80 \u003d FUN_0173cfc0((ulong)uVar1);\n    uStack_78 \u003d 0;\n    uStack_68 \u003d 0;\n                    /* try { // try from 00e1e940 to 00e1e95f has its CatchHandler @ 00e1ea08 */\n    uStack_70 \u003d (ulong)uVar1;\n    FUN_007ebe30(\u0026bStack_180,\u0026DAT_001bd238,0xb,0x2c,\u0026uStack_80);\n    if ((bStack_180 \u0026 1) \u003d\u003d 0) {\n      puStack_170 \u003d auStack_17f;\n      uStack_178 \u003d (ulong)(bStack_180 \u003e\u003e 1);\n    }\n                    /* try { // try from 00e1e978 to 00e1e97f has its CatchHandler @ 00e1e9ec */\n    puVar10 \u003d (undefined8 *)FUN_00973eb8(\u0026uStack_150,puStack_170,uStack_178);\n    uStack_128 \u003d puVar10[1];\n    uStack_130 \u003d *puVar10;\n    uStack_120 \u003d puVar10[2];\n    puVar10[1] \u003d 0;\n    puVar10[2] \u003d 0;\n    *puVar10 \u003d 0;\n                    /* try { // try from 00e1e99c to 00e1e9c3 has its CatchHandler @ 00e1e9d4 */\n    FUN_00c381bc(uVar9,\u0026uStack_130);\n                    /* WARNING: Subroutine does not return */\n    FUN_0083e648(uVar9,PTR_DAT_02820278,PTR_FUN_02820268);\n  }\n  if ((char)param_1[0xc] \u003d\u003d \u0027\\x01\u0027) {\n    FUN_00e1ebb0(param_1);\n    *(undefined1 *)(param_1 + 0xc) \u003d 0;\n  }\n  lVar5 \u003d lStack_b8;\n  lVar4 \u003d lStack_c0;\n  lVar7 \u003d lStack_e0;\n  *(undefined4 *)(param_1 + 3) \u003d (undefined4)uStack_f8;\n  param_1[2] \u003d lStack_100;\n  param_1[1] \u003d lStack_108;\n  param_1[4] \u003d lStack_f0;\n  param_1[5] \u003d lStack_e8;\n  lStack_f0 \u003d 0;\n  lStack_108 \u003d 0;\n  lStack_100 \u003d 0;\n  lStack_e0 \u003d 0;\n  *param_1 \u003d (long)(PTR_DAT_028245c8 + 0x10);\n  param_1[7] \u003d lStack_d8;\n  param_1[6] \u003d lVar7;\n  lStack_c0 \u003d 0;\n  lStack_b8 \u003d 0;\n  param_1[8] \u003d lStack_d0;\n  *(undefined4 *)(param_1 + 9) \u003d (undefined4)uStack_c8;\n  uStack_f8 \u003d CONCAT44(uStack_f8._4_4_,0xffffffff);\n  param_1[0xb] \u003d lVar5;\n  param_1[10] \u003d lVar4;\n  *(undefined1 *)(param_1 + 0xc) \u003d 1;\n                    /* try { // try from 00e1e860 to 00e1e86f has its CatchHandler @ 00e1ea6c */\n  FUN_00e1ec40(param_1,param_1,param_3);\n  if ((char)uStack_b0 \u003d\u003d \u0027\\x01\u0027) {\n    FUN_00e1ebb0(\u0026uStack_110);\n  }\n  plVar6 \u003d plStack_a0;\n  plStack_a0 \u003d (long *)0x0;\n  if (plVar6 !\u003d (long *)0x0) {\n    (**(code **)(*plVar6 + 8))();\n  }\n  if (*(long *)(lVar3 + 0x28) \u003d\u003d lStack_58) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "0173c830",
+      "elf_address": 23316528,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x163c830",
+      "name": "FUN_0173c830",
+      "analysis_no_return": false,
+      "listing_body_address_count": 576,
+      "listing_prefix": [
+        {
+          "elf_address": 23316528,
+          "assembly": "sub sp,sp,#0x1a0"
+        },
+        {
+          "elf_address": 23316532,
+          "assembly": "stp x29,x30,[sp, #0x140]"
+        },
+        {
+          "elf_address": 23316536,
+          "assembly": "stp x28,x27,[sp, #0x150]"
+        },
+        {
+          "elf_address": 23316540,
+          "assembly": "stp x26,x25,[sp, #0x160]"
+        },
+        {
+          "elf_address": 23316544,
+          "assembly": "stp x24,x23,[sp, #0x170]"
+        },
+        {
+          "elf_address": 23316548,
+          "assembly": "stp x22,x21,[sp, #0x180]"
+        },
+        {
+          "elf_address": 23316552,
+          "assembly": "stp x20,x19,[sp, #0x190]"
+        },
+        {
+          "elf_address": 23316556,
+          "assembly": "add x29,sp,#0x140"
+        },
+        {
+          "elf_address": 23316560,
+          "assembly": "mrs x26,tpidr_el0"
+        },
+        {
+          "elf_address": 23316564,
+          "assembly": "mov x21,x0"
+        },
+        {
+          "elf_address": 23316568,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 23316572,
+          "assembly": "ldr x8,[x26, #0x28]"
+        },
+        {
+          "elf_address": 23316576,
+          "assembly": "mov x20,x0"
+        },
+        {
+          "elf_address": 23316580,
+          "assembly": "mov x22,x3"
+        },
+        {
+          "elf_address": 23316584,
+          "assembly": "mov x23,x2"
+        },
+        {
+          "elf_address": 23316588,
+          "assembly": "mov x24,x1"
+        },
+        {
+          "elf_address": 23316592,
+          "assembly": "mov x19,x0"
+        },
+        {
+          "elf_address": 23316596,
+          "assembly": "add x27,sp,#0x40"
+        },
+        {
+          "elf_address": 23316600,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 23316604,
+          "assembly": "adrp x8,0x278b000"
+        },
+        {
+          "elf_address": 23316608,
+          "assembly": "add x8,x8,#0xb70"
+        },
+        {
+          "elf_address": 23316612,
+          "assembly": "strb wzr,[x0]"
+        },
+        {
+          "elf_address": 23316616,
+          "assembly": "strb wzr,[x0, #0x60]"
+        },
+        {
+          "elf_address": 23316620,
+          "assembly": "strb wzr,[x20, #0x88]!"
+        },
+        {
+          "elf_address": 23316624,
+          "assembly": "str x8,[x21, #0xc8]!"
+        },
+        {
+          "elf_address": 23316628,
+          "assembly": "orr x8,xzr,#-0x100000000"
+        },
+        {
+          "elf_address": 23316632,
+          "assembly": "stp xzr,x8,[x0, #0xe0]"
+        },
+        {
+          "elf_address": 23316636,
+          "assembly": "mov w8,#0x3f800000"
+        },
+        {
+          "elf_address": 23316640,
+          "assembly": "strb wzr,[x0, #0x80]"
+        },
+        {
+          "elf_address": 23316644,
+          "assembly": "strb wzr,[x0, #0xa0]"
+        },
+        {
+          "elf_address": 23316648,
+          "assembly": "stur q0,[x0, #0xa8]"
+        },
+        {
+          "elf_address": 23316652,
+          "assembly": "strb wzr,[x0, #0x78]"
+        },
+        {
+          "elf_address": 23316656,
+          "assembly": "str xzr,[x0, #0x150]"
+        },
+        {
+          "elf_address": 23316660,
+          "assembly": "str w8,[x0, #0x158]"
+        },
+        {
+          "elf_address": 23316664,
+          "assembly": "stp xzr,xzr,[x0, #0x68]"
+        },
+        {
+          "elf_address": 23316668,
+          "assembly": "stur q0,[x0, #0xb8]"
+        },
+        {
+          "elf_address": 23316672,
+          "assembly": "stp xzr,xzr,[x0, #0xd0]"
+        },
+        {
+          "elf_address": 23316676,
+          "assembly": "stp q0,q0,[x0, #0xf0]"
+        },
+        {
+          "elf_address": 23316680,
+          "assembly": "stp q0,q0,[x0, #0x110]"
+        },
+        {
+          "elf_address": 23316684,
+          "assembly": "stp q0,q0,[x0, #0x130]"
+        },
+        {
+          "elf_address": 23316688,
+          "assembly": "stp q0,q0,[x27, #0x70]"
+        },
+        {
+          "elf_address": 23316692,
+          "assembly": "mov w0,#0x20"
+        },
+        {
+          "elf_address": 23316696,
+          "assembly": "bl 0x02753418"
+        },
+        {
+          "elf_address": 23316700,
+          "assembly": "mov x25,x0"
+        },
+        {
+          "elf_address": 23316704,
+          "assembly": "bl 0x0173e000"
+        },
+        {
+          "elf_address": 23316708,
+          "assembly": "adrp x8,0x10b000"
+        },
+        {
+          "elf_address": 23316712,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 23316716,
+          "assembly": "mov w9,#0x1"
+        },
+        {
+          "elf_address": 23316720,
+          "assembly": "ldr q1,[x8, #0x9a0]"
+        },
+        {
+          "elf_address": 23316724,
+          "assembly": "stur x25,[x29, #-0x90]"
+        },
+        {
+          "elf_address": 23316728,
+          "assembly": "str xzr,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 23316732,
+          "assembly": "sturb w9,[x29, #-0x78]"
+        },
+        {
+          "elf_address": 23316736,
+          "assembly": "stur q1,[x27, #0x78]"
+        },
+        {
+          "elf_address": 23316740,
+          "assembly": "str q0,[x27, #0x50]"
+        },
+        {
+          "elf_address": 23316744,
+          "assembly": "str q0,[sp, #0x40]"
+        },
+        {
+          "elf_address": 23316748,
+          "assembly": "stp q0,q0,[sp, #0x50]"
+        },
+        {
+          "elf_address": 23316752,
+          "assembly": "stp q0,q0,[sp, #0x70]"
+        },
+        {
+          "elf_address": 23316756,
+          "assembly": "add x8,sp,#0x40"
+        },
+        {
+          "elf_address": 23316760,
+          "assembly": "sub x2,x29,#0x90"
+        },
+        {
+          "elf_address": 23316764,
+          "assembly": "mov x0,x24"
+        },
+        {
+          "elf_address": 23316768,
+          "assembly": "mov x1,x23"
+        },
+        {
+          "elf_address": 23316772,
+          "assembly": "bl 0x0173d580"
+        },
+        {
+          "elf_address": 23316776,
+          "assembly": "ldrb w8,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 23316780,
+          "assembly": "tbz w8,#0x0,0x0173c9c8"
+        },
+        {
+          "elf_address": 23316784,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 23316788,
+          "assembly": "stp q0,q0,[x27, #0x90]"
+        },
+        {
+          "elf_address": 23316792,
+          "assembly": "stp q0,q0,[x27, #0xb0]"
+        },
+        {
+          "elf_address": 23316796,
+          "assembly": "stp q0,q0,[x27, #0xd0]"
+        },
+        {
+          "elf_address": 23316800,
+          "assembly": "add x0,sp,#0x40"
+        },
+        {
+          "elf_address": 23316804,
+          "assembly": "bl 0x0173d3f0"
+        },
+        {
+          "elf_address": 23316808,
+          "assembly": "sub x0,x29,#0x70"
+        },
+        {
+          "elf_address": 23316812,
+          "assembly": "add x1,sp,#0x40"
+        },
+        {
+          "elf_address": 23316816,
+          "assembly": "bl 0x00e1e310"
+        },
+        {
+          "elf_address": 23316820,
+          "assembly": "sub x1,x29,#0x70"
+        },
+        {
+          "elf_address": 23316824,
+          "assembly": "mov x0,x19"
+        },
+        {
+          "elf_address": 23316828,
+          "assembly": "mov x2,x22"
+        },
+        {
+          "elf_address": 23316832,
+          "assembly": "bl 0x00e1ec40"
+        },
+        {
+          "elf_address": 23316836,
+          "assembly": "sub x0,x29,#0x70"
+        },
+        {
+          "elf_address": 23316840,
+          "assembly": "bl 0x00e1ebb0"
+        },
+        {
+          "elf_address": 23316844,
+          "assembly": "ldrb w8,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 23316848,
+          "assembly": "cmp w8,#0x1"
+        },
+        {
+          "elf_address": 23316852,
+          "assembly": "b.ne 0x0173c980"
+        },
+        {
+          "elf_address": 23316856,
+          "assembly": "add x0,sp,#0x40"
+        },
+        {
+          "elf_address": 23316860,
+          "assembly": "bl 0x00e1ebb0"
+        },
+        {
+          "elf_address": 23316864,
+          "assembly": "ldur x0,[x29, #-0x90]"
+        },
+        {
+          "elf_address": 23316868,
+          "assembly": "stur xzr,[x29, #-0x90]"
+        },
+        {
+          "elf_address": 23316872,
+          "assembly": "cbz x0,0x0173c998"
+        },
+        {
+          "elf_address": 23316876,
+          "assembly": "ldr x8,[x0]"
+        },
+        {
+          "elf_address": 23316880,
+          "assembly": "ldr x8,[x8, #0x8]"
+        },
+        {
+          "elf_address": 23316884,
+          "assembly": "blr x8"
+        },
+        {
+          "elf_address": 23316888,
+          "assembly": "ldr x8,[x26, #0x28]"
+        },
+        {
+          "elf_address": 23316892,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 23316896,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 23316900,
+          "assembly": "b.ne 0x0173ca6c"
+        },
+        {
+          "elf_address": 23316904,
+          "assembly": "ldp x20,x19,[sp, #0x190]"
+        },
+        {
+          "elf_address": 23316908,
+          "assembly": "ldp x22,x21,[sp, #0x180]"
+        },
+        {
+          "elf_address": 23316912,
+          "assembly": "ldp x24,x23,[sp, #0x170]"
+        },
+        {
+          "elf_address": 23316916,
+          "assembly": "ldp x26,x25,[sp, #0x160]"
+        },
+        {
+          "elf_address": 23316920,
+          "assembly": "ldp x28,x27,[sp, #0x150]"
+        },
+        {
+          "elf_address": 23316924,
+          "assembly": "ldp x29,x30,[sp, #0x140]"
+        },
+        {
+          "elf_address": 23316928,
+          "assembly": "add sp,sp,#0x1a0"
+        },
+        {
+          "elf_address": 23316932,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 23316936,
+          "assembly": "mov w0,#0x10"
+        },
+        {
+          "elf_address": 23316940,
+          "assembly": "bl 0x00a14724"
+        },
+        {
+          "elf_address": 23316944,
+          "assembly": "ldrb w8,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 23316948,
+          "assembly": "mov x23,x0"
+        },
+        {
+          "elf_address": 23316952,
+          "assembly": "cmp w8,#0x0"
+        },
+        {
+          "elf_address": 23316956,
+          "assembly": "ldr w9,[sp, #0x40]"
+        },
+        {
+          "elf_address": 23316960,
+          "assembly": "csel w22,wzr,w9,ne"
+        },
+        {
+          "elf_address": 23316964,
+          "assembly": "mov w0,w22"
+        },
+        {
+          "elf_address": 23316968,
+          "assembly": "bl 0x0173cfc0"
+        },
+        {
+          "elf_address": 23316972,
+          "assembly": "stp x0,xzr,[x29, #-0x70]"
+        },
+        {
+          "elf_address": 23316976,
+          "assembly": "stp x22,xzr,[x29, #-0x60]"
+        },
+        {
+          "elf_address": 23316980,
+          "assembly": "adrp x0,0x1bd000"
+        },
+        {
+          "elf_address": 23316984,
+          "assembly": "add x0,x0,#0x238"
+        },
+        {
+          "elf_address": 23316988,
+          "assembly": "add x8,sp,#0x8"
+        },
+        {
+          "elf_address": 23316992,
+          "assembly": "sub x3,x29,#0x70"
+        },
+        {
+          "elf_address": 23316996,
+          "assembly": "mov w1,#0xb"
+        },
+        {
+          "elf_address": 23317000,
+          "assembly": "mov w2,#0x2c"
+        },
+        {
+          "elf_address": 23317004,
+          "assembly": "bl 0x007ebe30"
+        },
+        {
+          "elf_address": 23317008,
+          "assembly": "adrp x2,0x21c000"
+        },
+        {
+          "elf_address": 23317012,
+          "assembly": "add x2,x2,#0xde"
+        },
+        {
+          "elf_address": 23317016,
+          "assembly": "add x0,sp,#0x8"
+        },
+        {
+          "elf_address": 23317020,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 23317024,
+          "assembly": "mov w3,#0x24"
+        },
+        {
+          "elf_address": 23317028,
+          "assembly": "bl 0x00978ccc"
+        },
+        {
+          "elf_address": 23317032,
+          "assembly": "ldr q0,[x0]"
+        },
+        {
+          "elf_address": 23317036,
+          "assembly": "mov w24,#0x1"
+        }
+      ],
+      "listing_prefix_truncated": true,
+      "direct_callees": [
+        {
+          "name": "FUN_007ebe30",
+          "ghidra_address": "007ebe30",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0083e648",
+          "ghidra_address": "0083e648",
+          "external": false,
+          "analysis_no_return": true
+        },
+        {
+          "name": "FUN_00978ccc",
+          "ghidra_address": "00978ccc",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00a14724",
+          "ghidra_address": "00a14724",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00c381bc",
+          "ghidra_address": "00c381bc",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00e1e310",
+          "ghidra_address": "00e1e310",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00e1ebb0",
+          "ghidra_address": "00e1ebb0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_00e1ec40",
+          "ghidra_address": "00e1ec40",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0173cfc0",
+          "ghidra_address": "0173cfc0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0173d3f0",
+          "ghidra_address": "0173d3f0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0173d580",
+          "ghidra_address": "0173d580",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_0173e000",
+          "ghidra_address": "0173e000",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_02753418",
+          "ghidra_address": "02753418",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "02753810",
+          "external": false,
+          "analysis_no_return": true
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* WARNING: Globals starting with \u0027_\u0027 overlap smaller symbols at the same address */\n\nvoid FUN_0173c830(undefined1 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)\n\n{\n  uint uVar1;\n  long lVar2;\n  long *plVar3;\n  undefined8 uVar4;\n  undefined8 *puVar5;\n  undefined1 auStack_198 [24];\n  undefined8 uStack_180;\n  undefined8 uStack_178;\n  undefined8 uStack_170;\n  undefined8 uStack_160;\n  undefined8 uStack_158;\n  undefined8 uStack_150;\n  undefined8 uStack_148;\n  undefined8 uStack_140;\n  undefined8 uStack_138;\n  undefined8 uStack_130;\n  undefined8 uStack_128;\n  undefined8 uStack_120;\n  undefined8 uStack_118;\n  undefined8 uStack_110;\n  undefined8 uStack_108;\n  ulong uStack_100;\n  long *plStack_f0;\n  undefined8 uStack_e8;\n  undefined8 uStack_e0;\n  undefined8 uStack_d8;\n  undefined8 uStack_d0;\n  undefined8 uStack_c8;\n  ulong uStack_c0;\n  undefined8 uStack_b8;\n  undefined8 uStack_b0;\n  undefined8 uStack_a8;\n  undefined8 uStack_a0;\n  undefined8 uStack_98;\n  undefined8 uStack_90;\n  undefined8 uStack_88;\n  undefined8 uStack_80;\n  undefined8 uStack_78;\n  long lStack_68;\n  \n  lVar2 \u003d tpidr_el0;\n  lStack_68 \u003d *(long *)(lVar2 + 0x28);\n  *param_1 \u003d 0;\n  param_1[0x60] \u003d 0;\n  param_1[0x88] \u003d 0;\n  *(undefined **)(param_1 + 200) \u003d \u0026DAT_0278bb70;\n  *(undefined8 *)(param_1 + 0xe0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xe8) \u003d 0xffffffff00000000;\n  param_1[0x80] \u003d 0;\n  param_1[0xa0] \u003d 0;\n  *(undefined8 *)(param_1 + 0xb0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xa8) \u003d 0;\n  param_1[0x78] \u003d 0;\n  *(undefined8 *)(param_1 + 0x150) \u003d 0;\n  *(undefined4 *)(param_1 + 0x158) \u003d 0x3f800000;\n  *(undefined8 *)(param_1 + 0x68) \u003d 0;\n  *(undefined8 *)(param_1 + 0x70) \u003d 0;\n  *(undefined8 *)(param_1 + 0xc0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xb8) \u003d 0;\n  *(undefined8 *)(param_1 + 0xd0) \u003d 0;\n  *(undefined8 *)(param_1 + 0xd8) \u003d 0;\n  *(undefined8 *)(param_1 + 0xf8) \u003d 0;\n  *(undefined8 *)(param_1 + 0xf0) \u003d 0;\n  *(undefined8 *)(param_1 + 0x108) \u003d 0;\n  *(undefined8 *)(param_1 + 0x100) \u003d 0;\n  *(undefined8 *)(param_1 + 0x118) \u003d 0;\n  *(undefined8 *)(param_1 + 0x110) \u003d 0;\n  *(undefined8 *)(param_1 + 0x128) \u003d 0;\n  *(undefined8 *)(param_1 + 0x120) \u003d 0;\n  *(undefined8 *)(param_1 + 0x138) \u003d 0;\n  *(undefined8 *)(param_1 + 0x130) \u003d 0;\n  *(undefined8 *)(param_1 + 0x148) \u003d 0;\n  *(undefined8 *)(param_1 + 0x140) \u003d 0;\n  uStack_e8 \u003d 0;\n  plStack_f0 \u003d (long *)0x0;\n  uStack_d8 \u003d 0;\n  uStack_e0 \u003d 0;\n                    /* try { // try from 0173c8d4 to 0173c8db has its CatchHandler @ 0173cc1c */\n  plVar3 \u003d (long *)FUN_02753418(0x20);\n                    /* try { // try from 0173c8dc to 0173c8e3 has its CatchHandler @ 0173cc0c */\n  FUN_0173e000();\n  uStack_100 \u003d 0;\n  uStack_d8 \u003d CONCAT71(uStack_d8._1_7_,1);\n  uStack_e0 \u003d _UNK_0010b9a8;\n  uStack_e8 \u003d _DAT_0010b9a0;\n  uStack_108 \u003d 0;\n  uStack_110 \u003d 0;\n  uStack_158 \u003d 0;\n  uStack_160 \u003d 0;\n  uStack_148 \u003d 0;\n  uStack_150 \u003d 0;\n  uStack_138 \u003d 0;\n  uStack_140 \u003d 0;\n  uStack_128 \u003d 0;\n  uStack_130 \u003d 0;\n  uStack_118 \u003d 0;\n  uStack_120 \u003d 0;\n                    /* try { // try from 0173c914 to 0173c927 has its CatchHandler @ 0173cc04 */\n  plStack_f0 \u003d plVar3;\n  FUN_0173d580(\u0026uStack_160,param_2,param_3,\u0026plStack_f0);\n  if ((uStack_100 \u0026 1) \u003d\u003d 0) {\n    uVar4 \u003d FUN_00a14724(0x10);\n    uVar1 \u003d 0;\n    if ((char)uStack_100 \u003d\u003d \u0027\\0\u0027) {\n      uVar1 \u003d (uint)uStack_160;\n    }\n    uStack_d0 \u003d FUN_0173cfc0((ulong)uVar1);\n    uStack_c8 \u003d 0;\n    uStack_b8 \u003d 0;\n                    /* try { // try from 0173c9f4 to 0173ca0f has its CatchHandler @ 0173cabc */\n    uStack_c0 \u003d (ulong)uVar1;\n    FUN_007ebe30(auStack_198,\u0026DAT_001bd238,0xb,0x2c,\u0026uStack_d0);\n                    /* try { // try from 0173ca10 to 0173ca27 has its CatchHandler @ 0173caa4 */\n    puVar5 \u003d (undefined8 *)FUN_00978ccc(auStack_198,0,\u0026DAT_0021c0de,0x24);\n    uStack_178 \u003d puVar5[1];\n    uStack_180 \u003d *puVar5;\n    uStack_170 \u003d puVar5[2];\n    puVar5[1] \u003d 0;\n    puVar5[2] \u003d 0;\n    *puVar5 \u003d 0;\n                    /* try { // try from 0173ca44 to 0173ca6b has its CatchHandler @ 0173ca70 */\n    FUN_00c381bc(uVar4,\u0026uStack_180);\n                    /* WARNING: Subroutine does not return */\n    FUN_0083e648(uVar4,PTR_DAT_02820278,PTR_FUN_02820268);\n  }\n  uStack_c8 \u003d 0;\n  uStack_d0 \u003d 0;\n  uStack_b8 \u003d 0;\n  uStack_c0 \u003d 0;\n  uStack_a8 \u003d 0;\n  uStack_b0 \u003d 0;\n  uStack_98 \u003d 0;\n  uStack_a0 \u003d 0;\n  uStack_88 \u003d 0;\n  uStack_90 \u003d 0;\n  uStack_78 \u003d 0;\n  uStack_80 \u003d 0;\n                    /* try { // try from 0173c940 to 0173c947 has its CatchHandler @ 0173cae0 */\n  FUN_0173d3f0(\u0026uStack_160);\n  FUN_00e1e310(\u0026uStack_d0,\u0026uStack_160);\n                    /* try { // try from 0173c954 to 0173c963 has its CatchHandler @ 0173cad0 */\n  FUN_00e1ec40(param_1,\u0026uStack_d0,param_4);\n  FUN_00e1ebb0(\u0026uStack_d0);\n  if ((char)uStack_100 \u003d\u003d \u0027\\x01\u0027) {\n    FUN_00e1ebb0(\u0026uStack_160);\n  }\n  plVar3 \u003d plStack_f0;\n  plStack_f0 \u003d (long *)0x0;\n  if (plVar3 !\u003d (long *)0x0) {\n    (**(code **)(*plVar3 + 8))();\n  }\n  if (*(long *)(lVar2 + 0x28) \u003d\u003d lStack_68) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "01c9bb40",
+      "elf_address": 28949312,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1b9bb40",
+      "name": "FUN_01c9bb40",
+      "analysis_no_return": false,
+      "listing_body_address_count": 36,
+      "listing_prefix": [
+        {
+          "elf_address": 28949312,
+          "assembly": "stp x29,x30,[sp, #-0x20]!"
+        },
+        {
+          "elf_address": 28949316,
+          "assembly": "str x19,[sp, #0x10]"
+        },
+        {
+          "elf_address": 28949320,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 28949324,
+          "assembly": "mov x19,x0"
+        },
+        {
+          "elf_address": 28949328,
+          "assembly": "bl 0x01c9b9b0"
+        },
+        {
+          "elf_address": 28949332,
+          "assembly": "mov x0,x19"
+        },
+        {
+          "elf_address": 28949336,
+          "assembly": "ldr x19,[sp, #0x10]"
+        },
+        {
+          "elf_address": 28949340,
+          "assembly": "ldp x29,x30,[sp], #0x20"
+        },
+        {
+          "elf_address": 28949344,
+          "assembly": "b 0x007c27c0"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "free",
+          "ghidra_address": "007c27c0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "FUN_01c9b9b0",
+          "ghidra_address": "01c9b9b0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_01c9bb40(undefined8 param_1)\n\n{\n  FUN_01c9b9b0();\n  free(param_1);\n  return;\n}\n\n"
+    },
+    {
       "ghidra_address": "014fd0c0",
       "elf_address": 20959424,
       "selection_evidence": "Direct reference to string: HPSTensor {} requires a preallocated buffer of size {} or size 0 to have allocations managed internally",
@@ -9993,1563 +11290,6 @@
       "diagnostic": "",
       "status": "DECOMPILED_NOT_VALIDATED",
       "c_like": "\nundefined8 FUN_024fcdc0(long param_1,long *param_2,int *param_3)\n\n{\n  uint uVar1;\n  ulong uVar2;\n  ulong uVar3;\n  ulong uVar4;\n  byte bVar5;\n  long lVar6;\n  bool bVar7;\n  ulong *puVar8;\n  undefined8 uVar9;\n  byte *pbVar10;\n  byte *pbVar11;\n  ulong uVar12;\n  undefined1 uStack_79;\n  undefined1 auStack_78 [48];\n  long lStack_48;\n  \n  lVar6 \u003d tpidr_el0;\n  lStack_48 \u003d *(long *)(lVar6 + 0x28);\n  puVar8 \u003d *(ulong **)(param_1 + 8);\n  if (puVar8 \u003d\u003d (ulong *)0x0) {\n    FUN_02501930(auStack_78,3,\u0026DAT_00187f6a,0x8d);\n                    /* try { // try from 024fced4 to 024fcee7 has its CatchHandler @ 024fcf08 */\n    uVar9 \u003d FUN_01bd3320(auStack_78,\u0026DAT_0021d0db);\n                    /* try { // try from 024fcee8 to 024fceef has its CatchHandler @ 024fcf04 */\n    FUN_02501750(\u0026uStack_79,uVar9);\n    FUN_01f596f0(auStack_78);\n    puVar8 \u003d *(ulong **)(param_1 + 8);\n  }\n  bVar7 \u003d ((byte)*puVar8 \u0026 1) !\u003d 0;\n  uVar12 \u003d (*puVar8 \u0026 0xfffffffffffffffe) - 1;\n  uVar2 \u003d (ulong)(byte)((byte)*puVar8 \u003e\u003e 1);\n  if (bVar7) {\n    uVar2 \u003d puVar8[1];\n  }\n  uVar3 \u003d 0x16;\n  if (bVar7) {\n    uVar3 \u003d uVar12;\n  }\n  uVar4 \u003d 0x16;\n  if ((*puVar8 \u0026 1) !\u003d 0) {\n    uVar4 \u003d uVar12;\n  }\n  if (uVar3 \u003c\u003d uVar2) {\n    uVar4 \u003d uVar2 \u003c\u003c 1;\n  }\n  uVar12 \u003d uVar2 + 0x7fffffff;\n  if (uVar4 \u003c\u003d uVar2 + 0x7fffffff) {\n    uVar12 \u003d uVar4;\n  }\n  if (uVar12 \u003c 0x11) {\n    uVar12 \u003d 0x10;\n  }\n  FUN_009cd83c(puVar8,uVar12,0);\n  pbVar10 \u003d *(byte **)(param_1 + 8);\n  pbVar11 \u003d *(byte **)(pbVar10 + 0x10);\n  if ((*pbVar10 \u0026 1) \u003d\u003d 0) {\n    pbVar11 \u003d pbVar10 + 1;\n  }\n  *param_2 \u003d (long)(pbVar11 + uVar2);\n  bVar5 \u003d **(byte **)(param_1 + 8);\n  uVar1 \u003d (uint)(bVar5 \u003e\u003e 1);\n  if ((bVar5 \u0026 1) !\u003d 0) {\n    uVar1 \u003d *(uint *)(*(byte **)(param_1 + 8) + 8);\n  }\n  *param_3 \u003d uVar1 - (int)uVar2;\n  if (*(long *)(lVar6 + 0x28) \u003d\u003d lStack_48) {\n    return 1;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
-    },
-    {
-      "ghidra_address": "01877090",
-      "elf_address": 24604816,
-      "selection_evidence": "Direct reference to string: ExecutionPlan input supposed to preallocated but has nullptr for data",
-      "name": "FUN_01877090",
-      "analysis_no_return": false,
-      "listing_body_address_count": 284,
-      "listing_prefix": [
-        {
-          "elf_address": 24604816,
-          "assembly": "stp x29,x30,[sp, #-0x30]!"
-        },
-        {
-          "elf_address": 24604820,
-          "assembly": "str x21,[sp, #0x10]"
-        },
-        {
-          "elf_address": 24604824,
-          "assembly": "stp x20,x19,[sp, #0x20]"
-        },
-        {
-          "elf_address": 24604828,
-          "assembly": "mov x29,sp"
-        },
-        {
-          "elf_address": 24604832,
-          "assembly": "mov x20,x0"
-        },
-        {
-          "elf_address": 24604836,
-          "assembly": "ldr x0,[x0]"
-        },
-        {
-          "elf_address": 24604840,
-          "assembly": "mov x19,x1"
-        },
-        {
-          "elf_address": 24604844,
-          "assembly": "ldr x8,[x0, #0x18]"
-        },
-        {
-          "elf_address": 24604848,
-          "assembly": "cbz x8,0x01877108"
-        },
-        {
-          "elf_address": 24604852,
-          "assembly": "ldr x8,[x19]"
-        },
-        {
-          "elf_address": 24604856,
-          "assembly": "ldr x8,[x8, #0x18]"
-        },
-        {
-          "elf_address": 24604860,
-          "assembly": "cbz x8,0x01877100"
-        },
-        {
-          "elf_address": 24604864,
-          "assembly": "ldr x0,[x20]"
-        },
-        {
-          "elf_address": 24604868,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24604872,
-          "assembly": "mov x21,x0"
-        },
-        {
-          "elf_address": 24604876,
-          "assembly": "ldr x0,[x19]"
-        },
-        {
-          "elf_address": 24604880,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24604884,
-          "assembly": "cmp x21,x0"
-        },
-        {
-          "elf_address": 24604888,
-          "assembly": "b.ne 0x0187714c"
-        },
-        {
-          "elf_address": 24604892,
-          "assembly": "ldr x8,[x20]"
-        },
-        {
-          "elf_address": 24604896,
-          "assembly": "ldr x0,[x19]"
-        },
-        {
-          "elf_address": 24604900,
-          "assembly": "ldr x20,[x8, #0x18]"
-        },
-        {
-          "elf_address": 24604904,
-          "assembly": "ldr x19,[x0, #0x18]"
-        },
-        {
-          "elf_address": 24604908,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24604912,
-          "assembly": "mov x2,x0"
-        },
-        {
-          "elf_address": 24604916,
-          "assembly": "mov x0,x20"
-        },
-        {
-          "elf_address": 24604920,
-          "assembly": "mov x1,x19"
-        },
-        {
-          "elf_address": 24604924,
-          "assembly": "bl 0x02754ef0"
-        },
-        {
-          "elf_address": 24604928,
-          "assembly": "mov w0,wzr"
-        },
-        {
-          "elf_address": 24604932,
-          "assembly": "b 0x0187719c"
-        },
-        {
-          "elf_address": 24604936,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24604940,
-          "assembly": "cbnz x0,0x0187711c"
-        },
-        {
-          "elf_address": 24604944,
-          "assembly": "ldr x0,[x19]"
-        },
-        {
-          "elf_address": 24604948,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24604952,
-          "assembly": "cbz x0,0x018770b4"
-        },
-        {
-          "elf_address": 24604956,
-          "assembly": "bl 0x00b9ec80"
-        },
-        {
-          "elf_address": 24604960,
-          "assembly": "mov x1,x0"
-        },
-        {
-          "elf_address": 24604964,
-          "assembly": "adrp x2,0x152000"
-        },
-        {
-          "elf_address": 24604968,
-          "assembly": "add x2,x2,#0xe9c"
-        },
-        {
-          "elf_address": 24604972,
-          "assembly": "adrp x3,0x189000"
-        },
-        {
-          "elf_address": 24604976,
-          "assembly": "add x3,x3,#0x312"
-        },
-        {
-          "elf_address": 24604980,
-          "assembly": "adrp x5,0x189000"
-        },
-        {
-          "elf_address": 24604984,
-          "assembly": "add x5,x5,#0x5f6"
-        },
-        {
-          "elf_address": 24604988,
-          "assembly": "mov w0,#0x2"
-        },
-        {
-          "elf_address": 24604992,
-          "assembly": "mov w4,#0xac"
-        },
-        {
-          "elf_address": 24604996,
-          "assembly": "bl 0x00b9ef20"
-        },
-        {
-          "elf_address": 24605000,
-          "assembly": "b 0x01877198"
-        },
-        {
-          "elf_address": 24605004,
-          "assembly": "bl 0x00b9ec80"
-        },
-        {
-          "elf_address": 24605008,
-          "assembly": "mov x21,x0"
-        },
-        {
-          "elf_address": 24605012,
-          "assembly": "ldr x0,[x20]"
-        },
-        {
-          "elf_address": 24605016,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24605020,
-          "assembly": "mov x20,x0"
-        },
-        {
-          "elf_address": 24605024,
-          "assembly": "ldr x0,[x19]"
-        },
-        {
-          "elf_address": 24605028,
-          "assembly": "bl 0x01877440"
-        },
-        {
-          "elf_address": 24605032,
-          "assembly": "mov x7,x0"
-        },
-        {
-          "elf_address": 24605036,
-          "assembly": "adrp x2,0x152000"
-        },
-        {
-          "elf_address": 24605040,
-          "assembly": "add x2,x2,#0xe9c"
-        },
-        {
-          "elf_address": 24605044,
-          "assembly": "adrp x3,0x189000"
-        },
-        {
-          "elf_address": 24605048,
-          "assembly": "add x3,x3,#0x312"
-        },
-        {
-          "elf_address": 24605052,
-          "assembly": "adrp x5,0x126000"
-        },
-        {
-          "elf_address": 24605056,
-          "assembly": "add x5,x5,#0x3f6"
-        },
-        {
-          "elf_address": 24605060,
-          "assembly": "mov w0,#0x2"
-        },
-        {
-          "elf_address": 24605064,
-          "assembly": "mov x1,x21"
-        },
-        {
-          "elf_address": 24605068,
-          "assembly": "mov w4,#0xb4"
-        },
-        {
-          "elf_address": 24605072,
-          "assembly": "mov x6,x20"
-        },
-        {
-          "elf_address": 24605076,
-          "assembly": "bl 0x00b9ef20"
-        },
-        {
-          "elf_address": 24605080,
-          "assembly": "mov w0,#0x12"
-        },
-        {
-          "elf_address": 24605084,
-          "assembly": "ldp x20,x19,[sp, #0x20]"
-        },
-        {
-          "elf_address": 24605088,
-          "assembly": "ldr x21,[sp, #0x10]"
-        },
-        {
-          "elf_address": 24605092,
-          "assembly": "ldp x29,x30,[sp], #0x30"
-        },
-        {
-          "elf_address": 24605096,
-          "assembly": "ret"
-        }
-      ],
-      "listing_prefix_truncated": false,
-      "direct_callees": [
-        {
-          "name": "FUN_00b9ec80",
-          "ghidra_address": "00b9ec80",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_00b9ef20",
-          "ghidra_address": "00b9ef20",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_01877440",
-          "ghidra_address": "01877440",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "memcpy",
-          "ghidra_address": "02754ef0",
-          "external": false,
-          "analysis_no_return": false
-        }
-      ],
-      "direct_callees_truncated": false,
-      "diagnostic": "",
-      "status": "DECOMPILED_NOT_VALIDATED",
-      "c_like": "\nundefined8 FUN_01877090(long *param_1,long *param_2)\n\n{\n  long lVar1;\n  long lVar2;\n  undefined8 uVar3;\n  undefined8 uVar4;\n  undefined8 uVar5;\n  \n  if ((*(long *)(*param_1 + 0x18) \u003d\u003d 0) \u0026\u0026\n     ((lVar1 \u003d FUN_01877440(), lVar1 !\u003d 0 || (lVar1 \u003d FUN_01877440(*param_2), lVar1 !\u003d 0)))) {\n    uVar3 \u003d FUN_00b9ec80();\n    FUN_00b9ef20(2,uVar3,\u0026DAT_00152e9c,\u0026DAT_00189312,0xac,\u0026DAT_001895f6);\nLAB_01877198:\n    uVar3 \u003d 0x12;\n  }\n  else {\n    if (*(long *)(*param_2 + 0x18) !\u003d 0) {\n      lVar1 \u003d FUN_01877440(*param_1);\n      lVar2 \u003d FUN_01877440(*param_2);\n      if (lVar1 !\u003d lVar2) {\n        uVar3 \u003d FUN_00b9ec80();\n        uVar4 \u003d FUN_01877440(*param_1);\n        uVar5 \u003d FUN_01877440(*param_2);\n        FUN_00b9ef20(2,uVar3,\u0026DAT_00152e9c,\u0026DAT_00189312,0xb4,\u0026DAT_001263f6,uVar4,uVar5);\n        goto LAB_01877198;\n      }\n      uVar5 \u003d *(undefined8 *)(*param_1 + 0x18);\n      uVar4 \u003d *(undefined8 *)(*param_2 + 0x18);\n      uVar3 \u003d FUN_01877440();\n      memcpy(uVar5,uVar4,uVar3);\n    }\n    uVar3 \u003d 0;\n  }\n  return uVar3;\n}\n\n"
-    },
-    {
-      "ghidra_address": "02088b90",
-      "elf_address": 33065872,
-      "selection_evidence": "Direct reference to string: basic_.getTrigger( static_cast\u003cuint32_t\u003e(AECPreAllocatedTriggerID::luxIndex), output.luxIndex) !\u003d OK",
-      "name": "FUN_02088b90",
-      "analysis_no_return": false,
-      "listing_body_address_count": 2492,
-      "listing_prefix": [
-        {
-          "elf_address": 33065872,
-          "assembly": "stp x29,x30,[sp, #-0x50]!"
-        },
-        {
-          "elf_address": 33065876,
-          "assembly": "stp x28,x25,[sp, #0x10]"
-        },
-        {
-          "elf_address": 33065880,
-          "assembly": "mov x29,sp"
-        },
-        {
-          "elf_address": 33065884,
-          "assembly": "stp x24,x23,[sp, #0x20]"
-        },
-        {
-          "elf_address": 33065888,
-          "assembly": "stp x22,x21,[sp, #0x30]"
-        },
-        {
-          "elf_address": 33065892,
-          "assembly": "stp x20,x19,[sp, #0x40]"
-        },
-        {
-          "elf_address": 33065896,
-          "assembly": "sub sp,sp,#0x1f0"
-        },
-        {
-          "elf_address": 33065900,
-          "assembly": "mrs x25,tpidr_el0"
-        },
-        {
-          "elf_address": 33065904,
-          "assembly": "mov x20,x0"
-        },
-        {
-          "elf_address": 33065908,
-          "assembly": "mov w9,#0x1328"
-        },
-        {
-          "elf_address": 33065912,
-          "assembly": "ldr x8,[x25, #0x28]"
-        },
-        {
-          "elf_address": 33065916,
-          "assembly": "mov x19,x1"
-        },
-        {
-          "elf_address": 33065920,
-          "assembly": "add x1,x20,x9"
-        },
-        {
-          "elf_address": 33065924,
-          "assembly": "stur x8,[x29, #-0x8]"
-        },
-        {
-          "elf_address": 33065928,
-          "assembly": "mov w8,#0x1270"
-        },
-        {
-          "elf_address": 33065932,
-          "assembly": "add x0,x0,x8"
-        },
-        {
-          "elf_address": 33065936,
-          "assembly": "bl 0x0209c7a0"
-        },
-        {
-          "elf_address": 33065940,
-          "assembly": "tst w0,#0xffff"
-        },
-        {
-          "elf_address": 33065944,
-          "assembly": "b.ne 0x02089294"
-        },
-        {
-          "elf_address": 33065948,
-          "assembly": "ldr s0,[x20, #0x1328]"
-        },
-        {
-          "elf_address": 33065952,
-          "assembly": "mov w8,#0x13c8"
-        },
-        {
-          "elf_address": 33065956,
-          "assembly": "mov w9,#0x1330"
-        },
-        {
-          "elf_address": 33065960,
-          "assembly": "mov w10,#0x13cc"
-        },
-        {
-          "elf_address": 33065964,
-          "assembly": "add x0,x20,x9"
-        },
-        {
-          "elf_address": 33065968,
-          "assembly": "str s0,[x20, #0x13c8]"
-        },
-        {
-          "elf_address": 33065972,
-          "assembly": "add x1,x20,x8"
-        },
-        {
-          "elf_address": 33065976,
-          "assembly": "add x2,x20,x10"
-        },
-        {
-          "elf_address": 33065980,
-          "assembly": "bl 0x02093100"
-        },
-        {
-          "elf_address": 33065984,
-          "assembly": "tst w0,#0xffff"
-        },
-        {
-          "elf_address": 33065988,
-          "assembly": "b.ne 0x020892bc"
-        },
-        {
-          "elf_address": 33065992,
-          "assembly": "ldr s0,[x20, #0x13cc]"
-        },
-        {
-          "elf_address": 33065996,
-          "assembly": "mov w8,#0x1518"
-        },
-        {
-          "elf_address": 33066000,
-          "assembly": "mov w9,#0x13d8"
-        },
-        {
-          "elf_address": 33066004,
-          "assembly": "mov w23,#0x1520"
-        },
-        {
-          "elf_address": 33066008,
-          "assembly": "add x0,x20,x9"
-        },
-        {
-          "elf_address": 33066012,
-          "assembly": "str s0,[x20, #0x1518]"
-        },
-        {
-          "elf_address": 33066016,
-          "assembly": "add x1,x20,x8"
-        },
-        {
-          "elf_address": 33066020,
-          "assembly": "add x2,x20,x23"
-        },
-        {
-          "elf_address": 33066024,
-          "assembly": "bl 0x020986b0"
-        },
-        {
-          "elf_address": 33066028,
-          "assembly": "tst w0,#0xffff"
-        },
-        {
-          "elf_address": 33066032,
-          "assembly": "b.ne 0x020892e4"
-        },
-        {
-          "elf_address": 33066036,
-          "assembly": "ldr x8,[x20, #0x1130]"
-        },
-        {
-          "elf_address": 33066040,
-          "assembly": "mov w22,#0x13d0"
-        },
-        {
-          "elf_address": 33066044,
-          "assembly": "add x21,x20,#0x1a8"
-        },
-        {
-          "elf_address": 33066048,
-          "assembly": "ldr s0,[x20, #0x1530]"
-        },
-        {
-          "elf_address": 33066052,
-          "assembly": "stp xzr,xzr,[x29, #-0x48]"
-        },
-        {
-          "elf_address": 33066056,
-          "assembly": "sub x24,x29,#0x78"
-        },
-        {
-          "elf_address": 33066060,
-          "assembly": "sub x1,x29,#0x60"
-        },
-        {
-          "elf_address": 33066064,
-          "assembly": "mov x0,x21"
-        },
-        {
-          "elf_address": 33066068,
-          "assembly": "stur x8,[x29, #-0x60]"
-        },
-        {
-          "elf_address": 33066072,
-          "assembly": "ldrb w8,[x20, x22, LSL ]"
-        },
-        {
-          "elf_address": 33066076,
-          "assembly": "stur s0,[x29, #-0x58]"
-        },
-        {
-          "elf_address": 33066080,
-          "assembly": "ldr q0,[x20,x23]"
-        },
-        {
-          "elf_address": 33066084,
-          "assembly": "sturb w8,[x29, #-0x44]"
-        },
-        {
-          "elf_address": 33066088,
-          "assembly": "ldr w8,[x20, #0x1534]"
-        },
-        {
-          "elf_address": 33066092,
-          "assembly": "stur w8,[x29, #-0x40]"
-        },
-        {
-          "elf_address": 33066096,
-          "assembly": "stur q0,[x24, #0x24]"
-        },
-        {
-          "elf_address": 33066100,
-          "assembly": "bl 0x02091ec0"
-        },
-        {
-          "elf_address": 33066104,
-          "assembly": "tst w0,#0xffff"
-        },
-        {
-          "elf_address": 33066108,
-          "assembly": "b.ne 0x02089314"
-        },
-        {
-          "elf_address": 33066112,
-          "assembly": "ldr q0,[x20,x23]"
-        },
-        {
-          "elf_address": 33066116,
-          "assembly": "str q0,[x19]"
-        },
-        {
-          "elf_address": 33066120,
-          "assembly": "ldr x8,[x20, #0x220]"
-        },
-        {
-          "elf_address": 33066124,
-          "assembly": "ldp x8,x9,[x8, #0x10]"
-        },
-        {
-          "elf_address": 33066128,
-          "assembly": "sub x8,x9,x8"
-        },
-        {
-          "elf_address": 33066132,
-          "assembly": "asr x9,x8,#0x3"
-        },
-        {
-          "elf_address": 33066136,
-          "assembly": "orr x8,xzr,#-0x5555555555555556"
-        },
-        {
-          "elf_address": 33066140,
-          "assembly": "movk x8,#0xaaab"
-        },
-        {
-          "elf_address": 33066144,
-          "assembly": "mul x9,x9,x8"
-        },
-        {
-          "elf_address": 33066148,
-          "assembly": "cmp x9,#0x1"
-        },
-        {
-          "elf_address": 33066152,
-          "assembly": "b.ls 0x02089360"
-        },
-        {
-          "elf_address": 33066156,
-          "assembly": "ldr s0,[x20, #0x22c]"
-        },
-        {
-          "elf_address": 33066160,
-          "assembly": "str s0,[x19, #0x10]"
-        },
-        {
-          "elf_address": 33066164,
-          "assembly": "ldr x9,[x20, #0x220]"
-        },
-        {
-          "elf_address": 33066168,
-          "assembly": "ldp x9,x10,[x9, #0x28]"
-        },
-        {
-          "elf_address": 33066172,
-          "assembly": "sub x9,x10,x9"
-        },
-        {
-          "elf_address": 33066176,
-          "assembly": "asr x9,x9,#0x3"
-        },
-        {
-          "elf_address": 33066180,
-          "assembly": "mul x8,x9,x8"
-        },
-        {
-          "elf_address": 33066184,
-          "assembly": "cmp x8,#0x1"
-        },
-        {
-          "elf_address": 33066188,
-          "assembly": "b.ls 0x020893a0"
-        },
-        {
-          "elf_address": 33066192,
-          "assembly": "ldr s0,[x20, #0x62c]"
-        },
-        {
-          "elf_address": 33066196,
-          "assembly": "adrp x9,0x2828000"
-        },
-        {
-          "elf_address": 33066200,
-          "assembly": "str s0,[x19, #0x14]"
-        },
-        {
-          "elf_address": 33066204,
-          "assembly": "ldrb w8,[x20, x22, LSL ]"
-        },
-        {
-          "elf_address": 33066208,
-          "assembly": "strb w8,[x19, #0x18]"
-        },
-        {
-          "elf_address": 33066212,
-          "assembly": "ldrb w8,[x20, #0x14]"
-        },
-        {
-          "elf_address": 33066216,
-          "assembly": "ldr x9,[x9, #0x190]"
-        },
-        {
-          "elf_address": 33066220,
-          "assembly": "strb w8,[x19, #0x19]"
-        },
-        {
-          "elf_address": 33066224,
-          "assembly": "ldr w8,[x9]"
-        },
-        {
-          "elf_address": 33066228,
-          "assembly": "cmp w8,#0x3"
-        },
-        {
-          "elf_address": 33066232,
-          "assembly": "b.cc 0x02089170"
-        },
-        {
-          "elf_address": 33066236,
-          "assembly": "mov w8,#0x10"
-        },
-        {
-          "elf_address": 33066240,
-          "assembly": "mov x9,#0x6f43"
-        },
-        {
-          "elf_address": 33066244,
-          "assembly": "sturb wzr,[x29, #-0x6f]"
-        },
-        {
-          "elf_address": 33066248,
-          "assembly": "sturb w8,[x29, #-0x78]"
-        },
-        {
-          "elf_address": 33066252,
-          "assembly": "movk x9,#0x6572, LSL #16"
-        },
-        {
-          "elf_address": 33066256,
-          "assembly": "movk x9,#0x6950, LSL #32"
-        },
-        {
-          "elf_address": 33066260,
-          "assembly": "strb w8,[sp, #0x28]"
-        },
-        {
-          "elf_address": 33066264,
-          "assembly": "mov x8,#0x5643"
-        },
-        {
-          "elf_address": 33066268,
-          "assembly": "movk x8,#0x412d, LSL #16"
-        },
-        {
-          "elf_address": 33066272,
-          "assembly": "movk x8,#0x4345, LSL #32"
-        },
-        {
-          "elf_address": 33066276,
-          "assembly": "movk x9,#0x203a, LSL #48"
-        },
-        {
-          "elf_address": 33066280,
-          "assembly": "strb wzr,[sp, #0x31]"
-        },
-        {
-          "elf_address": 33066284,
-          "assembly": "movk x8,#0x203a, LSL #48"
-        },
-        {
-          "elf_address": 33066288,
-          "assembly": "stur x9,[x24, #0x1]"
-        },
-        {
-          "elf_address": 33066292,
-          "assembly": "stur x8,[sp, #0x29]"
-        },
-        {
-          "elf_address": 33066296,
-          "assembly": "adrp x1,0x15e000"
-        },
-        {
-          "elf_address": 33066300,
-          "assembly": "add x1,x1,#0x43a"
-        },
-        {
-          "elf_address": 33066304,
-          "assembly": "add x0,sp,#0x28"
-        },
-        {
-          "elf_address": 33066308,
-          "assembly": "mov w2,#0x3"
-        },
-        {
-          "elf_address": 33066312,
-          "assembly": "bl 0x00973eb8"
-        },
-        {
-          "elf_address": 33066316,
-          "assembly": "ldr q0,[x0]"
-        },
-        {
-          "elf_address": 33066320,
-          "assembly": "ldr x8,[x0, #0x10]"
-        },
-        {
-          "elf_address": 33066324,
-          "assembly": "str x8,[sp, #0x50]"
-        },
-        {
-          "elf_address": 33066328,
-          "assembly": "str q0,[sp, #0x40]"
-        },
-        {
-          "elf_address": 33066332,
-          "assembly": "stp xzr,xzr,[x0, #0x8]"
-        },
-        {
-          "elf_address": 33066336,
-          "assembly": "str xzr,[x0]"
-        },
-        {
-          "elf_address": 33066340,
-          "assembly": "sub x0,x29,#0x20"
-        },
-        {
-          "elf_address": 33066344,
-          "assembly": "ldr w1,[x21]"
-        },
-        {
-          "elf_address": 33066348,
-          "assembly": "stur wzr,[x24, #0x5f]"
-        },
-        {
-          "elf_address": 33066352,
-          "assembly": "sub x21,x29,#0x20"
-        },
-        {
-          "elf_address": 33066356,
-          "assembly": "stur xzr,[x29, #-0x20]"
-        },
-        {
-          "elf_address": 33066360,
-          "assembly": "bl 0x009795d0"
-        },
-        {
-          "elf_address": 33066364,
-          "assembly": "sub x21,x0,x21"
-        },
-        {
-          "elf_address": 33066368,
-          "assembly": "cmn x21,#0x8"
-        },
-        {
-          "elf_address": 33066372,
-          "assembly": "b.cs 0x020894c0"
-        },
-        {
-          "elf_address": 33066376,
-          "assembly": "cmp x21,#0x16"
-        },
-        {
-          "elf_address": 33066380,
-          "assembly": "b.hi 0x020894c8"
-        }
-      ],
-      "listing_prefix_truncated": true,
-      "direct_callees": [
-        {
-          "name": "free",
-          "ghidra_address": "007c27c0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_00973eb8",
-          "ghidra_address": "00973eb8",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_009795d0",
-          "ghidra_address": "009795d0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_00eff830",
-          "ghidra_address": "00eff830",
-          "external": false,
-          "analysis_no_return": true
-        },
-        {
-          "name": "FUN_02084010",
-          "ghidra_address": "02084010",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_02091ec0",
-          "ghidra_address": "02091ec0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_02093100",
-          "ghidra_address": "02093100",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_020986b0",
-          "ghidra_address": "020986b0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_0209c7a0",
-          "ghidra_address": "0209c7a0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_02753418",
-          "ghidra_address": "02753418",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "strlen",
-          "ghidra_address": "02753520",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "__stack_chk_fail",
-          "ghidra_address": "02753810",
-          "external": false,
-          "analysis_no_return": true
-        },
-        {
-          "name": "__strrchr_chk",
-          "ghidra_address": "02753da0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "__android_log_print",
-          "ghidra_address": "02754120",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "memcpy",
-          "ghidra_address": "02754ef0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "memmove",
-          "ghidra_address": "02755040",
-          "external": false,
-          "analysis_no_return": false
-        }
-      ],
-      "direct_callees_truncated": false,
-      "diagnostic": "",
-      "status": "DECOMPILED_NOT_VALIDATED",
-      "c_like": "\n/* WARNING: Type propagation algorithm not settling */\n\nvoid FUN_02088b90(long param_1,float *param_2)\n\n{\n  long lVar1;\n  uint uVar2;\n  ulong *puVar3;\n  byte *pbVar4;\n  long lVar5;\n  undefined8 uVar6;\n  ulong uVar7;\n  undefined *puVar8;\n  uint uVar9;\n  uint uVar10;\n  ulong uVar11;\n  ulong uVar12;\n  undefined6 *puVar13;\n  ulong uVar14;\n  undefined8 uStack_230;\n  ulong uStack_228;\n  ulong uStack_220;\n  byte bStack_218;\n  undefined8 uStack_217;\n  undefined1 uStack_20f;\n  undefined8 uStack_208;\n  ulong uStack_200;\n  ulong uStack_1f8;\n  ulong uStack_1f0;\n  ulong uStack_1e0;\n  ulong uStack_1d8;\n  ulong uStack_1d0;\n  ulong uStack_1c0;\n  ulong uStack_1b8;\n  ulong uStack_1b0;\n  ulong uStack_1a0;\n  ulong uStack_198;\n  ulong uStack_190;\n  ulong uStack_180;\n  ulong uStack_178;\n  ulong uStack_170;\n  ulong uStack_160;\n  ulong uStack_158;\n  ulong uStack_150;\n  ulong uStack_140;\n  ulong uStack_138;\n  ulong uStack_130;\n  ulong uStack_120;\n  ulong uStack_118;\n  ulong uStack_110;\n  undefined8 uStack_100;\n  ulong uStack_f8;\n  ulong uStack_f0;\n  undefined8 uStack_e0;\n  ulong uStack_d8;\n  ulong uStack_d0;\n  byte bStack_c8;\n  undefined8 uStack_c7;\n  undefined1 uStack_bf;\n  undefined8 uStack_b8;\n  undefined8 uStack_b0;\n  undefined4 uStack_a8;\n  undefined4 uStack_a4;\n  undefined4 uStack_a0;\n  undefined4 uStack_9c;\n  undefined4 uStack_98;\n  uint uStack_94;\n  ulong uStack_90;\n  byte bStack_88;\n  undefined6 uStack_87;\n  undefined1 uStack_81;\n  undefined1 uStack_80;\n  undefined2 uStack_7f;\n  undefined1 uStack_7d;\n  undefined8 uStack_78;\n  byte bStack_70;\n  undefined6 uStack_6f;\n  undefined4 uStack_69;\n  undefined5 uStack_65;\n  undefined6 *puStack_60;\n  long lStack_58;\n  \n  lVar1 \u003d tpidr_el0;\n  lStack_58 \u003d *(long *)(lVar1 + 0x28);\n  uVar2 \u003d FUN_0209c7a0(param_1 + 0x1270,param_1 + 0x1328);\n  if ((uVar2 \u0026 0xffff) \u003d\u003d 0) {\n    *(undefined4 *)(param_1 + 0x13c8) \u003d *(undefined4 *)(param_1 + 0x1328);\n    uVar2 \u003d FUN_02093100(param_1 + 0x1330,param_1 + 0x13c8,param_1 + 0x13cc);\n    if ((uVar2 \u0026 0xffff) !\u003d 0) {\n      puVar8 \u003d \u0026DAT_00196114;\n      uVar6 \u003d 0xee;\n      goto LAB_02089308;\n    }\n    *(undefined4 *)(param_1 + 0x1518) \u003d *(undefined4 *)(param_1 + 0x13cc);\n    uVar2 \u003d FUN_020986b0(param_1 + 0x13d8,param_1 + 0x1518,param_1 + 0x1520);\n    if ((uVar2 \u0026 0xffff) !\u003d 0) {\n      puVar8 \u003d \u0026DAT_0019617d;\n      uVar6 \u003d 0xf2;\n      goto LAB_02089308;\n    }\n    uStack_b0 \u003d *(ulong *)(param_1 + 0x1130);\n    uStack_a8 \u003d *(undefined4 *)(param_1 + 0x1530);\n    uStack_94 \u003d (uint)*(byte *)(param_1 + 0x13d0);\n    uStack_90 \u003d (ulong)*(uint *)(param_1 + 0x1534);\n    uStack_9c \u003d (undefined4)*(undefined8 *)(param_1 + 0x1528);\n    uStack_98 \u003d (undefined4)((ulong)*(undefined8 *)(param_1 + 0x1528) \u003e\u003e 0x20);\n    uStack_a4 \u003d (undefined4)*(undefined8 *)(param_1 + 0x1520);\n    uStack_a0 \u003d (undefined4)((ulong)*(undefined8 *)(param_1 + 0x1520) \u003e\u003e 0x20);\n    uVar2 \u003d FUN_02091ec0((undefined4 *)(param_1 + 0x1a8),\u0026uStack_b0);\n    if ((uVar2 \u0026 0xffff) \u003d\u003d 0) {\n      uVar6 \u003d *(undefined8 *)(param_1 + 0x1520);\n      *(undefined8 *)(param_2 + 2) \u003d *(undefined8 *)(param_1 + 0x1528);\n      *(undefined8 *)param_2 \u003d uVar6;\n      if ((ulong)((*(long *)(*(long *)(param_1 + 0x220) + 0x18) -\n                   *(long *)(*(long *)(param_1 + 0x220) + 0x10) \u003e\u003e 3) * -0x5555555555555555) \u003c 2) {\n        FUN_02084010(\u0026DAT_00153bb5,\u0026DAT_00148dac,0x3a,\u0026DAT_001ce6b9);\n        puVar8 \u003d \u0026DAT_00194063;\n        uVar6 \u003d 0x1bc;\n      }\n      else {\n        param_2[4] \u003d *(float *)(param_1 + 0x22c);\n        if (1 \u003c (ulong)((*(long *)(*(long *)(param_1 + 0x220) + 0x30) -\n                         *(long *)(*(long *)(param_1 + 0x220) + 0x28) \u003e\u003e 3) * -0x5555555555555555))\n        {\n          param_2[5] \u003d *(float *)(param_1 + 0x62c);\n          *(undefined1 *)(param_2 + 6) \u003d *(undefined1 *)(param_1 + 0x13d0);\n          puVar8 \u003d PTR_DAT_02828190;\n          *(undefined1 *)((long)param_2 + 0x19) \u003d *(undefined1 *)(param_1 + 0x14);\n          if (2 \u003c *(uint *)puVar8) {\n            uStack_bf \u003d 0;\n            bStack_c8 \u003d 0x10;\n            bStack_218 \u003d 0x10;\n            uStack_20f \u003d 0;\n            uStack_c7 \u003d 0x203a695065726f43;\n            uStack_217 \u003d 0x203a4345412d5643;\n                    /* try { // try from 02088d38 to 02088d4b has its CatchHandler @ 02089788 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026bStack_218,\u0026DAT_0015e43a,3);\n            uStack_1f8 \u003d puVar3[1];\n            uStack_200 \u003d *puVar3;\n            uStack_1f0 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            *puVar3 \u003d 0;\n            bStack_70 \u003d 0;\n            uStack_6f \u003d 0;\n            uStack_69 \u003d 0;\n            pbVar4 \u003d (byte *)FUN_009795d0(\u0026bStack_70,*(undefined4 *)(param_1 + 0x1a8));\n            uVar11 \u003d (long)pbVar4 - (long)\u0026bStack_70;\n            if (0xfffffffffffffff7 \u003c uVar11) {\n                    /* try { // try from 020894c0 to 020894e3 has its CatchHandler @ 0208955c */\n                    /* WARNING: Subroutine does not return */\n              FUN_00eff830(\u0026uStack_230);\n            }\n            if (uVar11 \u003c 0x17) {\n              uStack_230 \u003d CONCAT71(uStack_230._1_7_,(char)((int)uVar11 \u003c\u003c 1));\n              uVar12 \u003d (ulong)\u0026uStack_230 | 1;\n            }\n            else {\n              uVar7 \u003d 0x1a;\n              if ((uVar11 | 7) !\u003d 0x17) {\n                uVar7 \u003d (uVar11 | 7) + 1;\n              }\n              uVar12 \u003d FUN_02753418(uVar7);\n              uStack_230 \u003d uVar7 | 1;\n              uStack_228 \u003d uVar11;\n              uStack_220 \u003d uVar12;\n            }\n            if (pbVar4 !\u003d \u0026bStack_70) {\n              memcpy(uVar12,\u0026bStack_70,uVar11);\n            }\n            *(undefined1 *)(uVar12 + uVar11) \u003d 0;\n            uVar11 \u003d uStack_228;\n            uVar7 \u003d uStack_220;\n            if ((uStack_230 \u0026 1) \u003d\u003d 0) {\n              uVar11 \u003d uStack_230 \u003e\u003e 1 \u0026 0x7f;\n              uVar7 \u003d (long)\u0026uStack_230 + 1;\n            }\n                    /* try { // try from 02088ddc to 02088de3 has its CatchHandler @ 02089778 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_200,uVar7,uVar11);\n            uStack_1d8 \u003d puVar3[1];\n            uStack_1e0 \u003d *puVar3;\n            uStack_1d0 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            *puVar3 \u003d 0;\n                    /* try { // try from 02088dfc to 02088e0f has its CatchHandler @ 02089768 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1e0,\u0026DAT_0021dbc6,2);\n            uStack_1b8 \u003d puVar3[1];\n            uStack_1c0 \u003d *puVar3;\n            uStack_1b0 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            *puVar3 \u003d 0;\n                    /* try { // try from 02088e28 to 02088e5b has its CatchHandler @ 02089798 */\n            lVar5 \u003d __strrchr_chk(\u0026DAT_0015286f,0x2f,0x34);\n            if (lVar5 \u003d\u003d 0) {\n              puVar8 \u003d \u0026DAT_0015286f;\n            }\n            else {\n              puVar8 \u003d (undefined *)(lVar5 + 1);\n            }\n            uVar6 \u003d strlen(puVar8);\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1c0,puVar8,uVar6);\n            uStack_198 \u003d puVar3[1];\n            uStack_1a0 \u003d *puVar3;\n            uStack_190 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            *puVar3 \u003d 0;\n                    /* try { // try from 02088e74 to 02088e87 has its CatchHandler @ 02089758 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1a0,\u0026DAT_0021dbc6,2);\n            uStack_178 \u003d puVar3[1];\n            uStack_180 \u003d *puVar3;\n            uStack_170 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            *puVar3 \u003d 0;\n            uStack_80 \u003d 0;\n            uStack_7f \u003d 0;\n            bStack_88 \u003d 0;\n            uStack_87 \u003d 0;\n            uStack_81 \u003d 0;\n            pbVar4 \u003d (byte *)FUN_009795d0(\u0026bStack_88,0x1cc);\n            uVar11 \u003d (long)pbVar4 - (long)\u0026bStack_88;\n            if (0xfffffffffffffff7 \u003c uVar11) {\n                    /* try { // try from 02089508 to 0208952b has its CatchHandler @ 0208954c */\n                    /* WARNING: Subroutine does not return */\n              FUN_00eff830(\u0026bStack_70);\n            }\n            if (uVar11 \u003c 0x17) {\n              bStack_70 \u003d (byte)((int)uVar11 \u003c\u003c 1);\n              puVar13 \u003d (undefined6 *)((ulong)\u0026bStack_70 | 1);\n            }\n            else {\n              lVar5 \u003d 0x1a;\n              if ((uVar11 | 7) !\u003d 0x17) {\n                lVar5 \u003d (uVar11 | 7) + 1;\n              }\n              puVar13 \u003d (undefined6 *)FUN_02753418(lVar5);\n              uStack_69._1_3_ \u003d (undefined3)uVar11;\n              uStack_65 \u003d (undefined5)(uVar11 \u003e\u003e 0x18);\n              bStack_70 \u003d (byte)lVar5 | 1;\n              uStack_6f \u003d (undefined6)((ulong)lVar5 \u003e\u003e 8);\n              uStack_69._0_1_ \u003d (undefined1)((ulong)lVar5 \u003e\u003e 0x38);\n              puStack_60 \u003d puVar13;\n            }\n            if (pbVar4 !\u003d \u0026bStack_88) {\n              memcpy(puVar13,\u0026bStack_88,uVar11);\n            }\n            *(undefined1 *)((long)puVar13 + uVar11) \u003d 0;\n            uVar11 \u003d CONCAT53(uStack_65,uStack_69._1_3_);\n            puVar13 \u003d puStack_60;\n            if ((bStack_70 \u0026 1) \u003d\u003d 0) {\n              uVar11 \u003d (ulong)(bStack_70 \u003e\u003e 1);\n              puVar13 \u003d \u0026uStack_6f;\n            }\n                    /* try { // try from 02088f18 to 02088f1f has its CatchHandler @ 02089748 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_180,puVar13,uVar11);\n            uStack_158 \u003d puVar3[1];\n            uStack_160 \u003d *puVar3;\n            uStack_150 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            *puVar3 \u003d 0;\n                    /* try { // try from 02088f38 to 02088f4b has its CatchHandler @ 02089738 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_160,\u0026DAT_0021dbc6,2);\n            uStack_138 \u003d puVar3[1];\n            uStack_140 \u003d *puVar3;\n            uStack_130 \u003d puVar3[2];\n            *puVar3 \u003d 0;\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            uStack_7f \u003d 0x7475;\n            bStack_88 \u003d 0x14;\n            uStack_7d \u003d 0;\n            uStack_87 \u003d (undefined6)DAT_0012812c;\n            uStack_81 \u003d (undefined1)((ulong)DAT_0012812c \u003e\u003e 0x30);\n            uStack_80 \u003d (undefined1)((ulong)DAT_0012812c \u003e\u003e 0x38);\n                    /* try { // try from 02088f8c to 02088f9b has its CatchHandler @ 02089728 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_140,(ulong)\u0026bStack_88 | 1,10);\n            uStack_118 \u003d puVar3[1];\n            uStack_120 \u003d *puVar3;\n            uStack_110 \u003d puVar3[2];\n            *puVar3 \u003d 0;\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n                    /* try { // try from 02088fb4 to 02088fc7 has its CatchHandler @ 02089718 */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026uStack_120,\u0026DAT_0021dbc6,2);\n            uStack_f8 \u003d puVar3[1];\n            uStack_100 \u003d *puVar3;\n            *puVar3 \u003d 0;\n            uStack_f0 \u003d puVar3[2];\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            uVar11 \u003d uStack_f0;\n            if ((uStack_100 \u0026 1) \u003d\u003d 0) {\n              uVar11 \u003d (long)\u0026uStack_100 + 1;\n            }\n            uVar7 \u003d strlen(uVar11);\n            if (0xfffffffffffffff7 \u003c uVar7) {\n                    /* try { // try from 02089544 to 0208954b has its CatchHandler @ 0208956c */\n                    /* WARNING: Subroutine does not return */\n              FUN_00eff830(\u0026uStack_e0);\n            }\n            if (uVar7 \u003c 0x17) {\n              uStack_e0 \u003d CONCAT71(uStack_e0._1_7_,(char)((int)uVar7 \u003c\u003c 1));\n              uVar14 \u003d (ulong)\u0026uStack_e0 | 1;\n              if (uVar7 !\u003d 0) goto LAB_0208904c;\n            }\n            else {\n              uVar12 \u003d 0x1a;\n              if ((uVar7 | 7) !\u003d 0x17) {\n                uVar12 \u003d (uVar7 | 7) + 1;\n              }\n                    /* try { // try from 02089034 to 0208903b has its CatchHandler @ 0208956c */\n              uVar14 \u003d FUN_02753418(uVar12);\n              uStack_e0 \u003d uVar12 | 1;\n              uStack_d8 \u003d uVar7;\n              uStack_d0 \u003d uVar14;\nLAB_0208904c:\n              memmove(uVar14,uVar11,uVar7);\n            }\n            *(undefined1 *)(uVar14 + uVar7) \u003d 0;\n            uVar11 \u003d uStack_d8;\n            uVar7 \u003d uStack_d0;\n            if ((uStack_e0 \u0026 1) \u003d\u003d 0) {\n              uVar11 \u003d uStack_e0 \u003e\u003e 1 \u0026 0x7f;\n              uVar7 \u003d (long)\u0026uStack_e0 + 1;\n            }\n                    /* try { // try from 0208907c to 02089083 has its CatchHandler @ 0208961c */\n            puVar3 \u003d (ulong *)FUN_00973eb8(\u0026bStack_c8,uVar7,uVar11);\n            uStack_b0 \u003d *puVar3;\n            uVar11 \u003d puVar3[2];\n            uStack_a0 \u003d (undefined4)uVar11;\n            uStack_9c \u003d (undefined4)(uVar11 \u003e\u003e 0x20);\n            uStack_a8 \u003d (undefined4)puVar3[1];\n            uStack_a4 \u003d (undefined4)(puVar3[1] \u003e\u003e 0x20);\n            *puVar3 \u003d 0;\n            puVar3[1] \u003d 0;\n            puVar3[2] \u003d 0;\n            if ((uStack_b0 \u0026 1) \u003d\u003d 0) {\n              uVar11 \u003d (long)\u0026uStack_b0 + 1;\n            }\n                    /* try { // try from 020890d8 to 020890e7 has its CatchHandler @ 0208957c */\n            __android_log_print((double)*(ulong *)(param_1 + 0x1130),(double)*param_2,\n                                (double)param_2[1],(double)param_2[4],(double)param_2[5],3,uVar11,\n                                \u0026DAT_00197935,*(undefined1 *)(param_2 + 6));\n            if ((uStack_b0 \u0026 1) !\u003d 0) {\n              free(CONCAT44(uStack_9c,uStack_a0));\n            }\n            if ((uStack_e0 \u0026 1) !\u003d 0) {\n              free(uStack_d0);\n            }\n            if ((uStack_100 \u0026 1) !\u003d 0) {\n              free(uStack_f0);\n            }\n            if ((uStack_120 \u0026 1) !\u003d 0) {\n              free(uStack_110);\n            }\n            if ((bStack_88 \u0026 1) !\u003d 0) {\n              free(uStack_78);\n            }\n            if ((uStack_140 \u0026 1) !\u003d 0) {\n              free(uStack_130);\n            }\n            if ((uStack_160 \u0026 1) !\u003d 0) {\n              free(uStack_150);\n            }\n            if ((bStack_70 \u0026 1) !\u003d 0) {\n              free(puStack_60);\n            }\n            if ((uStack_180 \u0026 1) !\u003d 0) {\n              free(uStack_170);\n            }\n            if ((uStack_1a0 \u0026 1) !\u003d 0) {\n              free(uStack_190);\n            }\n            if ((uStack_1c0 \u0026 1) !\u003d 0) {\n              free(uStack_1b0);\n            }\n            if ((uStack_1e0 \u0026 1) !\u003d 0) {\n              free(uStack_1d0);\n            }\n            if ((uStack_230 \u0026 1) !\u003d 0) {\n              free(uStack_220);\n            }\n            if ((uStack_200 \u0026 1) !\u003d 0) {\n              free(uStack_1f0);\n            }\n            if ((bStack_218 \u0026 1) !\u003d 0) {\n              free(uStack_208);\n            }\n            if ((bStack_c8 \u0026 1) !\u003d 0) {\n              free(uStack_b8);\n            }\n          }\n          uVar2 \u003d 0;\n          goto LAB_02089174;\n        }\n        FUN_02084010(\u0026DAT_00153bb5,\u0026DAT_0018a8b8,0x5e,\u0026DAT_001ce6e5);\n        puVar8 \u003d \u0026DAT_001960b0;\n        uVar6 \u003d 0x1c1;\n      }\n      FUN_02084010(\u0026DAT_0015286f,\u0026DAT_0012812c,uVar6,puVar8);\n      FUN_02084010(\u0026DAT_0015286f,\u0026DAT_00176370,0xf6,\u0026DAT_001941e5);\n      uVar2 \u003d 5;\n    }\n    else {\n      FUN_02084010(\u0026DAT_0015286f,\u0026DAT_001899dc,0x1ae,\u0026DAT_00195fa4);\n      FUN_02084010(\u0026DAT_0015286f,\u0026DAT_00176370,0xf4,\u0026DAT_00196d48);\n    }\n  }\n  else {\n    puVar8 \u003d \u0026DAT_001961b7;\n    uVar6 \u003d 0xea;\nLAB_02089308:\n    FUN_02084010(\u0026DAT_0015286f,\u0026DAT_00176370,uVar6,puVar8);\n  }\n  uVar10 \u003d *(uint *)(param_1 + 0x112c);\n  uVar9 \u003d uVar10;\n  if (0x3f \u003c uVar10) {\n    uVar9 \u003d 0x40;\n  }\n  puVar3 \u003d (ulong *)(param_1 + 0x1d0);\n  if (uVar10 !\u003d 0) {\n    uVar10 \u003d *(uint *)(param_1 + 0x1128);\n    do {\n      puVar3 \u003d (ulong *)(param_1 + 0x728 + (ulong)(uVar10 \u0026 0x3f) * 0x28);\n      if (*puVar3 \u003c *(ulong *)(param_1 + 0x1130)) break;\n      uVar9 \u003d uVar9 - 1;\n      uVar10 \u003d uVar10 - 1;\n      puVar3 \u003d (ulong *)(param_1 + 0x1d0);\n    } while (uVar9 !\u003d 0);\n  }\n  uVar6 \u003d *(undefined8 *)((long)puVar3 + 0xc);\n  *(undefined8 *)(param_2 + 2) \u003d *(undefined8 *)((long)puVar3 + 0x14);\n  *(undefined8 *)param_2 \u003d uVar6;\n  if ((ulong)((*(long *)(*(long *)(param_1 + 0x220) + 0x18) -\n               *(long *)(*(long *)(param_1 + 0x220) + 0x10) \u003e\u003e 3) * -0x5555555555555555) \u003c 2) {\n    FUN_02084010(\u0026DAT_00153bb5,\u0026DAT_00148dac,0x3a,\u0026DAT_001ce6b9);\n  }\n  else {\n    param_2[4] \u003d *(float *)(param_1 + 0x22c);\n  }\nLAB_02089174:\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d lStack_58) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail(uVar2);\n}\n\n"
-    },
-    {
-      "ghidra_address": "0208f980",
-      "elf_address": 33094016,
-      "selection_evidence": "Direct reference to string: setTrigger( static_cast\u003cuint32_t\u003e(AECPreAllocatedTriggerID::luxIndex), luxIndex) !\u003d OK",
-      "name": "FUN_0208f980",
-      "analysis_no_return": false,
-      "listing_body_address_count": 3536,
-      "listing_prefix": [
-        {
-          "elf_address": 33094016,
-          "assembly": "stp d9,d8,[sp, #-0x70]!"
-        },
-        {
-          "elf_address": 33094020,
-          "assembly": "stp x29,x30,[sp, #0x10]"
-        },
-        {
-          "elf_address": 33094024,
-          "assembly": "add x29,sp,#0x10"
-        },
-        {
-          "elf_address": 33094028,
-          "assembly": "stp x28,x27,[sp, #0x20]"
-        },
-        {
-          "elf_address": 33094032,
-          "assembly": "stp x26,x25,[sp, #0x30]"
-        },
-        {
-          "elf_address": 33094036,
-          "assembly": "stp x24,x23,[sp, #0x40]"
-        },
-        {
-          "elf_address": 33094040,
-          "assembly": "stp x22,x21,[sp, #0x50]"
-        },
-        {
-          "elf_address": 33094044,
-          "assembly": "stp x20,x19,[sp, #0x60]"
-        },
-        {
-          "elf_address": 33094048,
-          "assembly": "sub sp,sp,#0x1d0"
-        },
-        {
-          "elf_address": 33094052,
-          "assembly": "mrs x24,tpidr_el0"
-        },
-        {
-          "elf_address": 33094056,
-          "assembly": "adrp x26,0x2828000"
-        },
-        {
-          "elf_address": 33094060,
-          "assembly": "fcmp s0,#0.0"
-        },
-        {
-          "elf_address": 33094064,
-          "assembly": "ldr x8,[x24, #0x28]"
-        },
-        {
-          "elf_address": 33094068,
-          "assembly": "mov x19,x0"
-        },
-        {
-          "elf_address": 33094072,
-          "assembly": "sub x25,x29,#0x78"
-        },
-        {
-          "elf_address": 33094076,
-          "assembly": "stur x8,[x29, #-0x18]"
-        },
-        {
-          "elf_address": 33094080,
-          "assembly": "ldr x26,[x26, #0x190]"
-        },
-        {
-          "elf_address": 33094084,
-          "assembly": "b.le 0x0208fa30"
-        },
-        {
-          "elf_address": 33094088,
-          "assembly": "mov x27,x19"
-        },
-        {
-          "elf_address": 33094092,
-          "assembly": "ldr x9,[x27, #0x50]!"
-        },
-        {
-          "elf_address": 33094096,
-          "assembly": "ldr x8,[x27, #0xf38]"
-        },
-        {
-          "elf_address": 33094100,
-          "assembly": "cmp x8,x9"
-        },
-        {
-          "elf_address": 33094104,
-          "assembly": "b.eq 0x0208fa8c"
-        },
-        {
-          "elf_address": 33094108,
-          "assembly": "ldr w10,[x19, #0xf84]"
-        },
-        {
-          "elf_address": 33094112,
-          "assembly": "mov w9,#0x40"
-        },
-        {
-          "elf_address": 33094116,
-          "assembly": "add x27,x19,#0x28"
-        },
-        {
-          "elf_address": 33094120,
-          "assembly": "cmp w10,#0x40"
-        },
-        {
-          "elf_address": 33094124,
-          "assembly": "csel w9,w10,w9,cc"
-        },
-        {
-          "elf_address": 33094128,
-          "assembly": "cbz w10,0x0208fa8c"
-        },
-        {
-          "elf_address": 33094132,
-          "assembly": "ldr w10,[x19, #0xf80]"
-        },
-        {
-          "elf_address": 33094136,
-          "assembly": "add x11,x19,#0x580"
-        },
-        {
-          "elf_address": 33094140,
-          "assembly": "ldr w12,[x19, #0x10b8]"
-        },
-        {
-          "elf_address": 33094144,
-          "assembly": "cbz w12,0x0208fa44"
-        },
-        {
-          "elf_address": 33094148,
-          "assembly": "mov w13,#0x28"
-        },
-        {
-          "elf_address": 33094152,
-          "assembly": "and w14,w10,#0x3f"
-        },
-        {
-          "elf_address": 33094156,
-          "assembly": "umaddl x14,w14,w13,x11"
-        },
-        {
-          "elf_address": 33094160,
-          "assembly": "ldr x15,[x14]"
-        },
-        {
-          "elf_address": 33094164,
-          "assembly": "add x15,x15,x12"
-        },
-        {
-          "elf_address": 33094168,
-          "assembly": "cmp x15,x8"
-        },
-        {
-          "elf_address": 33094172,
-          "assembly": "b.ls 0x0208fa88"
-        },
-        {
-          "elf_address": 33094176,
-          "assembly": "sub w10,w10,#0x1"
-        },
-        {
-          "elf_address": 33094180,
-          "assembly": "subs w9,w9,#0x1"
-        },
-        {
-          "elf_address": 33094184,
-          "assembly": "b.ne 0x0208fa08"
-        },
-        {
-          "elf_address": 33094188,
-          "assembly": "b 0x0208fa8c"
-        },
-        {
-          "elf_address": 33094192,
-          "assembly": "mov w8,#0xc000"
-        },
-        {
-          "elf_address": 33094196,
-          "assembly": "movk w8,#0x4479, LSL #16"
-        },
-        {
-          "elf_address": 33094200,
-          "assembly": "fmov s8,w8"
-        },
-        {
-          "elf_address": 33094204,
-          "assembly": "ldr w8,[x26]"
-        },
-        {
-          "elf_address": 33094208,
-          "assembly": "b 0x0208faf0"
-        },
-        {
-          "elf_address": 33094212,
-          "assembly": "ldr x12,[x19, #0x78]"
-        },
-        {
-          "elf_address": 33094216,
-          "assembly": "mov w13,#0x28"
-        },
-        {
-          "elf_address": 33094220,
-          "assembly": "ldr w12,[x12, #0x8]"
-        },
-        {
-          "elf_address": 33094224,
-          "assembly": "nop"
-        },
-        {
-          "elf_address": 33094228,
-          "assembly": "nop"
-        },
-        {
-          "elf_address": 33094232,
-          "assembly": "nop"
-        },
-        {
-          "elf_address": 33094236,
-          "assembly": "nop"
-        },
-        {
-          "elf_address": 33094240,
-          "assembly": "and w14,w10,#0x3f"
-        },
-        {
-          "elf_address": 33094244,
-          "assembly": "umaddl x14,w14,w13,x11"
-        },
-        {
-          "elf_address": 33094248,
-          "assembly": "ldr x15,[x14]"
-        },
-        {
-          "elf_address": 33094252,
-          "assembly": "add x15,x15,x12"
-        },
-        {
-          "elf_address": 33094256,
-          "assembly": "cmp x15,x8"
-        },
-        {
-          "elf_address": 33094260,
-          "assembly": "b.ls 0x0208fa88"
-        },
-        {
-          "elf_address": 33094264,
-          "assembly": "sub w9,w9,#0x1"
-        },
-        {
-          "elf_address": 33094268,
-          "assembly": "sub w10,w10,#0x1"
-        },
-        {
-          "elf_address": 33094272,
-          "assembly": "cbnz w9,0x0208fa60"
-        },
-        {
-          "elf_address": 33094276,
-          "assembly": "b 0x0208fa8c"
-        },
-        {
-          "elf_address": 33094280,
-          "assembly": "mov x27,x14"
-        },
-        {
-          "elf_address": 33094284,
-          "assembly": "ldr s1,[x27, #0x14]"
-        },
-        {
-          "elf_address": 33094288,
-          "assembly": "mov w8,#0xb717"
-        },
-        {
-          "elf_address": 33094292,
-          "assembly": "fmov s9,s0"
-        },
-        {
-          "elf_address": 33094296,
-          "assembly": "ldr s2,[x19, #0xf90]"
-        },
-        {
-          "elf_address": 33094300,
-          "assembly": "movk w8,#0x38d1, LSL #16"
-        },
-        {
-          "elf_address": 33094304,
-          "assembly": "fadd s8,s1,s2"
-        },
-        {
-          "elf_address": 33094308,
-          "assembly": "fmov s1,w8"
-        },
-        {
-          "elf_address": 33094312,
-          "assembly": "fmaxnm s0,s0,s1"
-        },
-        {
-          "elf_address": 33094316,
-          "assembly": "bl 0x02754220"
-        },
-        {
-          "elf_address": 33094320,
-          "assembly": "fmov s1,0xc1a00000"
-        },
-        {
-          "elf_address": 33094324,
-          "assembly": "ldr w8,[x27, #0x20]"
-        },
-        {
-          "elf_address": 33094328,
-          "assembly": "fmadd s8,s0,s1,s8"
-        },
-        {
-          "elf_address": 33094332,
-          "assembly": "cmp w8,#0x1"
-        },
-        {
-          "elf_address": 33094336,
-          "assembly": "b.ne 0x0208fae4"
-        },
-        {
-          "elf_address": 33094340,
-          "assembly": "mov w8,#0xb717"
-        },
-        {
-          "elf_address": 33094344,
-          "assembly": "ldr s0,[x19, #0x10c4]"
-        },
-        {
-          "elf_address": 33094348,
-          "assembly": "movk w8,#0x38d1, LSL #16"
-        },
-        {
-          "elf_address": 33094352,
-          "assembly": "fmov s1,w8"
-        },
-        {
-          "elf_address": 33094356,
-          "assembly": "fmaxnm s0,s0,s1"
-        },
-        {
-          "elf_address": 33094360,
-          "assembly": "bl 0x02754220"
-        },
-        {
-          "elf_address": 33094364,
-          "assembly": "fmov s1,0x41a00000"
-        },
-        {
-          "elf_address": 33094368,
-          "assembly": "fmadd s8,s0,s1,s8"
-        },
-        {
-          "elf_address": 33094372,
-          "assembly": "ldr w8,[x26]"
-        },
-        {
-          "elf_address": 33094376,
-          "assembly": "cmp w8,#0x4"
-        },
-        {
-          "elf_address": 33094380,
-          "assembly": "b.cs 0x0208fe1c"
-        },
-        {
-          "elf_address": 33094384,
-          "assembly": "cmp w8,#0x3"
-        },
-        {
-          "elf_address": 33094388,
-          "assembly": "b.cc 0x02090268"
-        },
-        {
-          "elf_address": 33094392,
-          "assembly": "mov w8,#0x10"
-        },
-        {
-          "elf_address": 33094396,
-          "assembly": "mov x9,#0x6f43"
-        },
-        {
-          "elf_address": 33094400,
-          "assembly": "sturb wzr,[x29, #-0x6f]"
-        },
-        {
-          "elf_address": 33094404,
-          "assembly": "sturb w8,[x29, #-0x78]"
-        },
-        {
-          "elf_address": 33094408,
-          "assembly": "movk x9,#0x6572, LSL #16"
-        },
-        {
-          "elf_address": 33094412,
-          "assembly": "movk x9,#0x6950, LSL #32"
-        },
-        {
-          "elf_address": 33094416,
-          "assembly": "strb w8,[sp, #0x18]"
-        },
-        {
-          "elf_address": 33094420,
-          "assembly": "mov x8,#0x5643"
-        },
-        {
-          "elf_address": 33094424,
-          "assembly": "movk x8,#0x412d, LSL #16"
-        },
-        {
-          "elf_address": 33094428,
-          "assembly": "movk x8,#0x4345, LSL #32"
-        },
-        {
-          "elf_address": 33094432,
-          "assembly": "movk x9,#0x203a, LSL #48"
-        },
-        {
-          "elf_address": 33094436,
-          "assembly": "strb wzr,[sp, #0x21]"
-        },
-        {
-          "elf_address": 33094440,
-          "assembly": "movk x8,#0x203a, LSL #48"
-        },
-        {
-          "elf_address": 33094444,
-          "assembly": "stur x9,[x25, #0x1]"
-        },
-        {
-          "elf_address": 33094448,
-          "assembly": "stur x8,[sp, #0x19]"
-        },
-        {
-          "elf_address": 33094452,
-          "assembly": "adrp x1,0x15e000"
-        },
-        {
-          "elf_address": 33094456,
-          "assembly": "add x1,x1,#0x43a"
-        },
-        {
-          "elf_address": 33094460,
-          "assembly": "add x0,sp,#0x18"
-        },
-        {
-          "elf_address": 33094464,
-          "assembly": "mov w2,#0x3"
-        },
-        {
-          "elf_address": 33094468,
-          "assembly": "bl 0x00973eb8"
-        },
-        {
-          "elf_address": 33094472,
-          "assembly": "ldr q0,[x0]"
-        },
-        {
-          "elf_address": 33094476,
-          "assembly": "sub x20,x29,#0x30"
-        },
-        {
-          "elf_address": 33094480,
-          "assembly": "ldr x8,[x0, #0x10]"
-        },
-        {
-          "elf_address": 33094484,
-          "assembly": "str x8,[sp, #0x40]"
-        },
-        {
-          "elf_address": 33094488,
-          "assembly": "str q0,[sp, #0x30]"
-        },
-        {
-          "elf_address": 33094492,
-          "assembly": "stp xzr,xzr,[x0, #0x8]"
-        },
-        {
-          "elf_address": 33094496,
-          "assembly": "str xzr,[x0]"
-        },
-        {
-          "elf_address": 33094500,
-          "assembly": "sub x0,x29,#0x30"
-        },
-        {
-          "elf_address": 33094504,
-          "assembly": "ldr w1,[x19]"
-        },
-        {
-          "elf_address": 33094508,
-          "assembly": "stur wzr,[x25, #0x4f]"
-        },
-        {
-          "elf_address": 33094512,
-          "assembly": "stur xzr,[x29, #-0x30]"
-        },
-        {
-          "elf_address": 33094516,
-          "assembly": "bl 0x009795d0"
-        },
-        {
-          "elf_address": 33094520,
-          "assembly": "sub x20,x0,x20"
-        },
-        {
-          "elf_address": 33094524,
-          "assembly": "cmn x20,#0x8"
-        }
-      ],
-      "listing_prefix_truncated": true,
-      "direct_callees": [
-        {
-          "name": "free",
-          "ghidra_address": "007c27c0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_00973eb8",
-          "ghidra_address": "00973eb8",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_009795d0",
-          "ghidra_address": "009795d0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_00eff830",
-          "ghidra_address": "00eff830",
-          "external": false,
-          "analysis_no_return": true
-        },
-        {
-          "name": "FUN_02084010",
-          "ghidra_address": "02084010",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "FUN_02753418",
-          "ghidra_address": "02753418",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "strlen",
-          "ghidra_address": "02753520",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "__stack_chk_fail",
-          "ghidra_address": "02753810",
-          "external": false,
-          "analysis_no_return": true
-        },
-        {
-          "name": "__strrchr_chk",
-          "ghidra_address": "02753da0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "__android_log_print",
-          "ghidra_address": "02754120",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "log2f",
-          "ghidra_address": "02754220",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "memcpy",
-          "ghidra_address": "02754ef0",
-          "external": false,
-          "analysis_no_return": false
-        },
-        {
-          "name": "memmove",
-          "ghidra_address": "02755040",
-          "external": false,
-          "analysis_no_return": false
-        }
-      ],
-      "direct_callees_truncated": false,
-      "diagnostic": "",
-      "status": "DECOMPILED_NOT_VALIDATED",
-      "c_like": "\n/* WARNING: Type propagation algorithm not settling */\n/* WARNING: Globals starting with \u0027_\u0027 overlap smaller symbols at the same address */\n\nvoid FUN_0208f980(float param_1,undefined4 *param_2)\n\n{\n  long lVar1;\n  ulong *puVar2;\n  byte *pbVar3;\n  long lVar4;\n  undefined8 uVar5;\n  ulong uVar6;\n  ulong *puVar7;\n  ulong uVar8;\n  uint uVar9;\n  uint uVar10;\n  undefined *puVar11;\n  undefined *puVar12;\n  ulong uVar13;\n  undefined6 *puVar14;\n  ulong uVar15;\n  undefined4 uVar16;\n  float fVar17;\n  float fVar18;\n  float fVar19;\n  undefined8 uStack_240;\n  ulong uStack_238;\n  ulong uStack_230;\n  byte bStack_228;\n  undefined8 uStack_227;\n  undefined1 uStack_21f;\n  undefined8 uStack_218;\n  ulong uStack_210;\n  ulong uStack_208;\n  ulong uStack_200;\n  ulong uStack_1f0;\n  ulong uStack_1e8;\n  ulong uStack_1e0;\n  ulong uStack_1d0;\n  ulong uStack_1c8;\n  ulong uStack_1c0;\n  ulong uStack_1b0;\n  ulong uStack_1a8;\n  ulong uStack_1a0;\n  ulong uStack_190;\n  ulong uStack_188;\n  ulong uStack_180;\n  ulong uStack_170;\n  ulong uStack_168;\n  ulong uStack_160;\n  ulong uStack_150;\n  ulong uStack_148;\n  ulong uStack_140;\n  ulong uStack_130;\n  ulong uStack_128;\n  ulong uStack_120;\n  undefined8 uStack_110;\n  ulong uStack_108;\n  ulong uStack_100;\n  undefined8 uStack_f0;\n  ulong uStack_e8;\n  ulong uStack_e0;\n  byte bStack_d8;\n  undefined8 uStack_d7;\n  undefined1 uStack_cf;\n  undefined8 uStack_c8;\n  undefined8 uStack_c0;\n  ulong uStack_b8;\n  ulong uStack_b0;\n  byte bStack_a8;\n  undefined6 uStack_a7;\n  undefined1 uStack_a1;\n  undefined1 uStack_a0;\n  undefined2 uStack_9f;\n  undefined5 uStack_9d;\n  undefined1 uStack_98;\n  undefined2 uStack_97;\n  undefined5 uStack_95;\n  byte bStack_90;\n  undefined6 uStack_8f;\n  undefined4 uStack_89;\n  undefined5 uStack_85;\n  undefined6 *puStack_80;\n  long lStack_78;\n  \n  puVar11 \u003d PTR_DAT_02828190;\n  lVar1 \u003d tpidr_el0;\n  lStack_78 \u003d *(long *)(lVar1 + 0x28);\n  if (param_1 \u003d\u003d 0.0 || param_1 \u003c 0.0 !\u003d NAN(param_1)) {\n    fVar19 \u003d 999.0;\nLAB_0208fa3c:\n    uVar9 \u003d *(uint *)puVar11;\n  }\n  else {\n    uVar8 \u003d *(ulong *)(param_2 + 0x3e2);\n    puVar2 \u003d (ulong *)(param_2 + 0x14);\n    if (uVar8 !\u003d *(ulong *)(param_2 + 0x14)) {\n      uVar10 \u003d param_2[0x3e1];\n      puVar7 \u003d (ulong *)(param_2 + 10);\n      uVar9 \u003d uVar10;\n      if (0x3f \u003c uVar10) {\n        uVar9 \u003d 0x40;\n      }\n      puVar2 \u003d puVar7;\n      if (uVar10 !\u003d 0) {\n        uVar10 \u003d param_2[0x3e0];\n        if (param_2[0x42e] \u003d\u003d 0) {\n          do {\n            puVar2 \u003d (ulong *)(param_2 + (ulong)(uVar10 \u0026 0x3f) * 10 + 0x160);\n            if (*(ulong *)(param_2 + (ulong)(uVar10 \u0026 0x3f) * 10 + 0x160) +\n                (ulong)*(uint *)(*(long *)(param_2 + 0x1e) + 8) \u003c\u003d uVar8) break;\n            uVar9 \u003d uVar9 - 1;\n            uVar10 \u003d uVar10 - 1;\n            puVar2 \u003d puVar7;\n          } while (uVar9 !\u003d 0);\n        }\n        else {\n          do {\n            puVar2 \u003d (ulong *)(param_2 + (ulong)(uVar10 \u0026 0x3f) * 10 + 0x160);\n            if (*(ulong *)(param_2 + (ulong)(uVar10 \u0026 0x3f) * 10 + 0x160) +\n                (ulong)(uint)param_2[0x42e] \u003c\u003d uVar8) break;\n            uVar10 \u003d uVar10 - 1;\n            uVar9 \u003d uVar9 - 1;\n            puVar2 \u003d puVar7;\n          } while (uVar9 !\u003d 0);\n        }\n      }\n    }\n    fVar17 \u003d *(float *)((long)puVar2 + 0x14);\n    fVar18 \u003d (float)param_2[0x3e4];\n    fVar19 \u003d param_1;\n    if (param_1 \u003c\u003d 0.0001) {\n      fVar19 \u003d 0.0001;\n    }\n    uVar16 \u003d log2f(fVar19);\n    fVar19 \u003d (float)NEON_fmadd(uVar16,0xc1a00000,fVar17 + fVar18);\n    if ((int)puVar2[4] \u003d\u003d 1) {\n      fVar17 \u003d (float)param_2[0x431];\n      if ((float)param_2[0x431] \u003c\u003d 0.0001) {\n        fVar17 \u003d 0.0001;\n      }\n      uVar16 \u003d log2f(fVar17);\n      fVar19 \u003d (float)NEON_fmadd(uVar16,0x41a00000,fVar19);\n    }\n    uVar9 \u003d *(uint *)puVar11;\n    if (3 \u003c uVar9) {\n      uStack_cf \u003d 0;\n      bStack_d8 \u003d 0x10;\n      bStack_228 \u003d 0x10;\n      uStack_21f \u003d 0;\n      uStack_d7 \u003d 0x203a695065726f43;\n      uStack_227 \u003d 0x203a4345412d5643;\n                    /* try { // try from 0208fe58 to 0208fe6b has its CatchHandler @ 020907b0 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026bStack_228,\u0026DAT_0015e43a,3);\n      uStack_208 \u003d puVar7[1];\n      uStack_210 \u003d *puVar7;\n      uStack_200 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n      bStack_90 \u003d 0;\n      uStack_8f \u003d 0;\n      uStack_89 \u003d 0;\n      pbVar3 \u003d (byte *)FUN_009795d0(\u0026bStack_90,*param_2);\n      uVar8 \u003d (long)pbVar3 - (long)\u0026bStack_90;\n      if (0xfffffffffffffff7 \u003c uVar8) {\n                    /* try { // try from 020906c4 to 020906e7 has its CatchHandler @ 02090754 */\n                    /* WARNING: Subroutine does not return */\n        FUN_00eff830(\u0026uStack_240);\n      }\n      if (uVar8 \u003c 0x17) {\n        uStack_240 \u003d CONCAT71(uStack_240._1_7_,(char)((int)uVar8 \u003c\u003c 1));\n        uVar13 \u003d (ulong)\u0026uStack_240 | 1;\n      }\n      else {\n        uVar6 \u003d 0x1a;\n        if ((uVar8 | 7) !\u003d 0x17) {\n          uVar6 \u003d (uVar8 | 7) + 1;\n        }\n        uVar13 \u003d FUN_02753418(uVar6);\n        uStack_240 \u003d uVar6 | 1;\n        uStack_238 \u003d uVar8;\n        uStack_230 \u003d uVar13;\n      }\n      if (pbVar3 !\u003d \u0026bStack_90) {\n        memcpy(uVar13,\u0026bStack_90,uVar8);\n      }\n      *(undefined1 *)(uVar13 + uVar8) \u003d 0;\n      uVar8 \u003d uStack_238;\n      uVar6 \u003d uStack_230;\n      if ((uStack_240 \u0026 1) \u003d\u003d 0) {\n        uVar8 \u003d uStack_240 \u003e\u003e 1 \u0026 0x7f;\n        uVar6 \u003d (long)\u0026uStack_240 + 1;\n      }\n                    /* try { // try from 0208fefc to 0208ff03 has its CatchHandler @ 020907ac */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_210,uVar6,uVar8);\n      uStack_1e8 \u003d puVar7[1];\n      uStack_1f0 \u003d *puVar7;\n      uStack_1e0 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n                    /* try { // try from 0208ff1c to 0208ff2f has its CatchHandler @ 020907a8 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1f0,\u0026DAT_0021dbc6,2);\n      uStack_1c8 \u003d puVar7[1];\n      uStack_1d0 \u003d *puVar7;\n      uStack_1c0 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n                    /* try { // try from 0208ff48 to 0208ff7b has its CatchHandler @ 020909c0 */\n      lVar4 \u003d __strrchr_chk(\u0026DAT_00153bb5,0x2f,0x35);\n      if (lVar4 \u003d\u003d 0) {\n        puVar12 \u003d \u0026DAT_00153bb5;\n      }\n      else {\n        puVar12 \u003d (undefined *)(lVar4 + 1);\n      }\n      uVar5 \u003d strlen(puVar12);\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1d0,puVar12,uVar5);\n      uStack_1a8 \u003d puVar7[1];\n      uStack_1b0 \u003d *puVar7;\n      uStack_1a0 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n                    /* try { // try from 0208ff94 to 0208ffa7 has its CatchHandler @ 020907a4 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1b0,\u0026DAT_0021dbc6,2);\n      uStack_188 \u003d puVar7[1];\n      uStack_190 \u003d *puVar7;\n      uStack_180 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n      uStack_a0 \u003d 0;\n      uStack_9f \u003d 0;\n      bStack_a8 \u003d 0;\n      uStack_a7 \u003d 0;\n      uStack_a1 \u003d 0;\n      pbVar3 \u003d (byte *)FUN_009795d0(\u0026bStack_a8,0x13d);\n      uVar8 \u003d (long)pbVar3 - (long)\u0026bStack_a8;\n      if (0xfffffffffffffff7 \u003c uVar8) {\n                    /* try { // try from 0209070c to 0209072f has its CatchHandler @ 02090750 */\n                    /* WARNING: Subroutine does not return */\n        FUN_00eff830(\u0026bStack_90);\n      }\n      if (uVar8 \u003c 0x17) {\n        bStack_90 \u003d (byte)((int)uVar8 \u003c\u003c 1);\n        puVar14 \u003d (undefined6 *)((ulong)\u0026bStack_90 | 1);\n      }\n      else {\n        lVar4 \u003d 0x1a;\n        if ((uVar8 | 7) !\u003d 0x17) {\n          lVar4 \u003d (uVar8 | 7) + 1;\n        }\n        puVar14 \u003d (undefined6 *)FUN_02753418(lVar4);\n        uStack_89._1_3_ \u003d (undefined3)uVar8;\n        uStack_85 \u003d (undefined5)(uVar8 \u003e\u003e 0x18);\n        bStack_90 \u003d (byte)lVar4 | 1;\n        uStack_8f \u003d (undefined6)((ulong)lVar4 \u003e\u003e 8);\n        uStack_89._0_1_ \u003d (undefined1)((ulong)lVar4 \u003e\u003e 0x38);\n        puStack_80 \u003d puVar14;\n      }\n      if (pbVar3 !\u003d \u0026bStack_a8) {\n        memcpy(puVar14,\u0026bStack_a8,uVar8);\n      }\n      *(undefined1 *)((long)puVar14 + uVar8) \u003d 0;\n      uVar8 \u003d CONCAT53(uStack_85,uStack_89._1_3_);\n      puVar14 \u003d puStack_80;\n      if ((bStack_90 \u0026 1) \u003d\u003d 0) {\n        uVar8 \u003d (ulong)(bStack_90 \u003e\u003e 1);\n        puVar14 \u003d \u0026uStack_8f;\n      }\n                    /* try { // try from 02090038 to 0209003f has its CatchHandler @ 020907a0 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_190,puVar14,uVar8);\n      uStack_168 \u003d puVar7[1];\n      uStack_170 \u003d *puVar7;\n      uStack_160 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n                    /* try { // try from 02090058 to 0209006b has its CatchHandler @ 0209079c */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_170,\u0026DAT_0021dbc6,2);\n      uStack_148 \u003d puVar7[1];\n      uStack_150 \u003d *puVar7;\n      uStack_140 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n      bStack_a8 \u003d 0x22;\n      uStack_97 \u003d 0x78;\n      uStack_9f \u003d (undefined2)_UNK_001236c0;\n      uStack_9d \u003d (undefined5)((ulong)_UNK_001236c0 \u003e\u003e 0x10);\n      uStack_98 \u003d (undefined1)((ulong)_UNK_001236c0 \u003e\u003e 0x38);\n      uStack_a7 \u003d (undefined6)_DAT_001236b8;\n      uStack_a1 \u003d (undefined1)((ulong)_DAT_001236b8 \u003e\u003e 0x30);\n      uStack_a0 \u003d (undefined1)((ulong)_DAT_001236b8 \u003e\u003e 0x38);\n                    /* try { // try from 020900a8 to 020900b7 has its CatchHandler @ 02090798 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_150,(ulong)\u0026bStack_a8 | 1,0x11);\n      uStack_128 \u003d puVar7[1];\n      uStack_130 \u003d *puVar7;\n      uStack_120 \u003d puVar7[2];\n      *puVar7 \u003d 0;\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n                    /* try { // try from 020900d0 to 020900e3 has its CatchHandler @ 02090794 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026uStack_130,\u0026DAT_0021dbc6,2);\n      uStack_108 \u003d puVar7[1];\n      uStack_110 \u003d *puVar7;\n      *puVar7 \u003d 0;\n      uStack_100 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      uVar8 \u003d uStack_100;\n      if ((uStack_110 \u0026 1) \u003d\u003d 0) {\n        uVar8 \u003d (long)\u0026uStack_110 + 1;\n      }\n      uVar6 \u003d strlen(uVar8);\n      if (0xfffffffffffffff7 \u003c uVar6) {\n                    /* try { // try from 02090748 to 0209074f has its CatchHandler @ 02090778 */\n                    /* WARNING: Subroutine does not return */\n        FUN_00eff830(\u0026uStack_f0);\n      }\n      if (uVar6 \u003c 0x17) {\n        uStack_f0 \u003d CONCAT71(uStack_f0._1_7_,(char)((int)uVar6 \u003c\u003c 1));\n        uVar15 \u003d (ulong)\u0026uStack_f0 | 1;\n        if (uVar6 !\u003d 0) goto LAB_020903e4;\n      }\n      else {\n        uVar13 \u003d 0x1a;\n        if ((uVar6 | 7) !\u003d 0x17) {\n          uVar13 \u003d (uVar6 | 7) + 1;\n        }\n                    /* try { // try from 020903cc to 020903d3 has its CatchHandler @ 02090778 */\n        uVar15 \u003d FUN_02753418(uVar13);\n        uStack_f0 \u003d uVar13 | 1;\n        uStack_e8 \u003d uVar6;\n        uStack_e0 \u003d uVar15;\nLAB_020903e4:\n        memmove(uVar15,uVar8,uVar6);\n      }\n      *(undefined1 *)(uVar15 + uVar6) \u003d 0;\n      uVar8 \u003d uStack_e8;\n      uVar6 \u003d uStack_e0;\n      if ((uStack_f0 \u0026 1) \u003d\u003d 0) {\n        uVar8 \u003d uStack_f0 \u003e\u003e 1 \u0026 0x7f;\n        uVar6 \u003d (long)\u0026uStack_f0 + 1;\n      }\n                    /* try { // try from 02090414 to 0209041b has its CatchHandler @ 02090790 */\n      puVar7 \u003d (ulong *)FUN_00973eb8(\u0026bStack_d8,uVar6,uVar8);\n      uStack_b8 \u003d puVar7[1];\n      uStack_c0 \u003d *puVar7;\n      uStack_b0 \u003d puVar7[2];\n      puVar7[1] \u003d 0;\n      puVar7[2] \u003d 0;\n      *puVar7 \u003d 0;\n      uVar8 \u003d uStack_b0;\n      if ((uStack_c0 \u0026 1) \u003d\u003d 0) {\n        uVar8 \u003d (long)\u0026uStack_c0 + 1;\n      }\n                    /* try { // try from 0209045c to 0209046b has its CatchHandler @ 0209078c */\n      __android_log_print((double)*(float *)((long)puVar2 + 0x14),(double)(float)param_2[0x3e4],\n                          (double)param_1,3,uVar8,\u0026DAT_00197bcb);\n      if ((uStack_c0 \u0026 1) !\u003d 0) {\n        free(uStack_b0);\n      }\n      if ((uStack_f0 \u0026 1) !\u003d 0) {\n        free(uStack_e0);\n      }\n      if ((uStack_110 \u0026 1) !\u003d 0) {\n        free(uStack_100);\n      }\n      if ((uStack_130 \u0026 1) !\u003d 0) {\n        free(uStack_120);\n      }\n      if ((bStack_a8 \u0026 1) !\u003d 0) {\n        free(CONCAT53(uStack_95,CONCAT21(uStack_97,uStack_98)));\n      }\n      if ((uStack_150 \u0026 1) !\u003d 0) {\n        free(uStack_140);\n      }\n      if ((uStack_170 \u0026 1) !\u003d 0) {\n        free(uStack_160);\n      }\n      if ((bStack_90 \u0026 1) !\u003d 0) {\n        free(puStack_80);\n      }\n      if ((uStack_190 \u0026 1) !\u003d 0) {\n        free(uStack_180);\n      }\n      if ((uStack_1b0 \u0026 1) !\u003d 0) {\n        free(uStack_1a0);\n      }\n      if ((uStack_1d0 \u0026 1) !\u003d 0) {\n        free(uStack_1c0);\n      }\n      if ((uStack_1f0 \u0026 1) !\u003d 0) {\n        free(uStack_1e0);\n      }\n      if ((uStack_240 \u0026 1) !\u003d 0) {\n        free(uStack_230);\n      }\n      if ((uStack_210 \u0026 1) !\u003d 0) {\n        free(uStack_200);\n      }\n      if ((bStack_228 \u0026 1) !\u003d 0) {\n        free(uStack_218);\n      }\n      if ((bStack_d8 \u0026 1) !\u003d 0) {\n        free(uStack_c8);\n      }\n      goto LAB_0208fa3c;\n    }\n  }\n  if (uVar9 \u003c 3) goto LAB_02090268;\n  uStack_cf \u003d 0;\n  bStack_d8 \u003d 0x10;\n  bStack_228 \u003d 0x10;\n  uStack_21f \u003d 0;\n  uStack_d7 \u003d 0x203a695065726f43;\n  uStack_227 \u003d 0x203a4345412d5643;\n                    /* try { // try from 0208fb34 to 0208fb47 has its CatchHandler @ 020909c4 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026bStack_228,\u0026DAT_0015e43a,3);\n  uStack_208 \u003d puVar2[1];\n  uStack_210 \u003d *puVar2;\n  uStack_200 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n  bStack_90 \u003d 0;\n  uStack_8f \u003d 0;\n  uStack_89 \u003d 0;\n  pbVar3 \u003d (byte *)FUN_009795d0(\u0026bStack_90,*param_2);\n  uVar8 \u003d (long)pbVar3 - (long)\u0026bStack_90;\n  if (0xfffffffffffffff7 \u003c uVar8) {\n                    /* try { // try from 02090638 to 0209065b has its CatchHandler @ 02090768 */\n                    /* WARNING: Subroutine does not return */\n    FUN_00eff830(\u0026uStack_240);\n  }\n  if (uVar8 \u003c 0x17) {\n    uStack_240 \u003d CONCAT71(uStack_240._1_7_,(char)((int)uVar8 \u003c\u003c 1));\n    uVar13 \u003d (ulong)\u0026uStack_240 | 1;\n  }\n  else {\n    uVar6 \u003d 0x1a;\n    if ((uVar8 | 7) !\u003d 0x17) {\n      uVar6 \u003d (uVar8 | 7) + 1;\n    }\n    uVar13 \u003d FUN_02753418(uVar6);\n    uStack_240 \u003d uVar6 | 1;\n    uStack_238 \u003d uVar8;\n    uStack_230 \u003d uVar13;\n  }\n  if (pbVar3 !\u003d \u0026bStack_90) {\n    memcpy(uVar13,\u0026bStack_90,uVar8);\n  }\n  *(undefined1 *)(uVar13 + uVar8) \u003d 0;\n  uVar8 \u003d uStack_238;\n  uVar6 \u003d uStack_230;\n  if ((uStack_240 \u0026 1) \u003d\u003d 0) {\n    uVar8 \u003d uStack_240 \u003e\u003e 1 \u0026 0x7f;\n    uVar6 \u003d (long)\u0026uStack_240 + 1;\n  }\n                    /* try { // try from 0208fbd8 to 0208fbdf has its CatchHandler @ 020909b0 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_210,uVar6,uVar8);\n  uStack_1e8 \u003d puVar2[1];\n  uStack_1f0 \u003d *puVar2;\n  uStack_1e0 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n                    /* try { // try from 0208fbf8 to 0208fc0b has its CatchHandler @ 020909a0 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1f0,\u0026DAT_0021dbc6,2);\n  uStack_1c8 \u003d puVar2[1];\n  uStack_1d0 \u003d *puVar2;\n  uStack_1c0 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n                    /* try { // try from 0208fc24 to 0208fc57 has its CatchHandler @ 020909d4 */\n  lVar4 \u003d __strrchr_chk(\u0026DAT_00153bb5,0x2f,0x35);\n  if (lVar4 \u003d\u003d 0) {\n    puVar11 \u003d \u0026DAT_00153bb5;\n  }\n  else {\n    puVar11 \u003d (undefined *)(lVar4 + 1);\n  }\n  uVar5 \u003d strlen(puVar11);\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1d0,puVar11,uVar5);\n  uStack_1a8 \u003d puVar2[1];\n  uStack_1b0 \u003d *puVar2;\n  uStack_1a0 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n                    /* try { // try from 0208fc70 to 0208fc83 has its CatchHandler @ 02090990 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_1b0,\u0026DAT_0021dbc6,2);\n  uStack_188 \u003d puVar2[1];\n  uStack_190 \u003d *puVar2;\n  uStack_180 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n  uStack_a0 \u003d 0;\n  uStack_9f \u003d 0;\n  bStack_a8 \u003d 0;\n  uStack_a7 \u003d 0;\n  uStack_a1 \u003d 0;\n  pbVar3 \u003d (byte *)FUN_009795d0(\u0026bStack_a8,0x13f);\n  uVar8 \u003d (long)pbVar3 - (long)\u0026bStack_a8;\n  if (0xfffffffffffffff7 \u003c uVar8) {\n                    /* try { // try from 02090680 to 020906a3 has its CatchHandler @ 02090758 */\n                    /* WARNING: Subroutine does not return */\n    FUN_00eff830(\u0026bStack_90);\n  }\n  if (uVar8 \u003c 0x17) {\n    bStack_90 \u003d (byte)((int)uVar8 \u003c\u003c 1);\n    puVar14 \u003d (undefined6 *)((ulong)\u0026bStack_90 | 1);\n  }\n  else {\n    lVar4 \u003d 0x1a;\n    if ((uVar8 | 7) !\u003d 0x17) {\n      lVar4 \u003d (uVar8 | 7) + 1;\n    }\n    puVar14 \u003d (undefined6 *)FUN_02753418(lVar4);\n    uStack_89._1_3_ \u003d (undefined3)uVar8;\n    uStack_85 \u003d (undefined5)(uVar8 \u003e\u003e 0x18);\n    bStack_90 \u003d (byte)lVar4 | 1;\n    uStack_8f \u003d (undefined6)((ulong)lVar4 \u003e\u003e 8);\n    uStack_89._0_1_ \u003d (undefined1)((ulong)lVar4 \u003e\u003e 0x38);\n    puStack_80 \u003d puVar14;\n  }\n  if (pbVar3 !\u003d \u0026bStack_a8) {\n    memcpy(puVar14,\u0026bStack_a8,uVar8);\n  }\n  *(undefined1 *)((long)puVar14 + uVar8) \u003d 0;\n  uVar8 \u003d CONCAT53(uStack_85,uStack_89._1_3_);\n  puVar14 \u003d puStack_80;\n  if ((bStack_90 \u0026 1) \u003d\u003d 0) {\n    uVar8 \u003d (ulong)(bStack_90 \u003e\u003e 1);\n    puVar14 \u003d \u0026uStack_8f;\n  }\n                    /* try { // try from 0208fd14 to 0208fd1b has its CatchHandler @ 02090980 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_190,puVar14,uVar8);\n  uStack_168 \u003d puVar2[1];\n  uStack_170 \u003d *puVar2;\n  uStack_160 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n                    /* try { // try from 0208fd34 to 0208fd47 has its CatchHandler @ 02090970 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_170,\u0026DAT_0021dbc6,2);\n  uStack_148 \u003d puVar2[1];\n  uStack_150 \u003d *puVar2;\n  uStack_140 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  *puVar2 \u003d 0;\n  bStack_a8 \u003d 0x22;\n  uStack_97 \u003d 0x78;\n  uStack_9f \u003d (undefined2)_UNK_001236c0;\n  uStack_9d \u003d (undefined5)((ulong)_UNK_001236c0 \u003e\u003e 0x10);\n  uStack_98 \u003d (undefined1)((ulong)_UNK_001236c0 \u003e\u003e 0x38);\n  uStack_a7 \u003d (undefined6)_DAT_001236b8;\n  uStack_a1 \u003d (undefined1)((ulong)_DAT_001236b8 \u003e\u003e 0x30);\n  uStack_a0 \u003d (undefined1)((ulong)_DAT_001236b8 \u003e\u003e 0x38);\n                    /* try { // try from 0208fd84 to 0208fd93 has its CatchHandler @ 02090960 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_150,(ulong)\u0026bStack_a8 | 1,0x11);\n  uStack_128 \u003d puVar2[1];\n  uStack_130 \u003d *puVar2;\n  uStack_120 \u003d puVar2[2];\n  *puVar2 \u003d 0;\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n                    /* try { // try from 0208fdac to 0208fdbf has its CatchHandler @ 02090950 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026uStack_130,\u0026DAT_0021dbc6,2);\n  uStack_108 \u003d puVar2[1];\n  uStack_110 \u003d *puVar2;\n  *puVar2 \u003d 0;\n  uStack_100 \u003d puVar2[2];\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  uVar8 \u003d uStack_100;\n  if ((uStack_110 \u0026 1) \u003d\u003d 0) {\n    uVar8 \u003d (long)\u0026uStack_110 + 1;\n  }\n  uVar6 \u003d strlen(uVar8);\n  if (0xfffffffffffffff7 \u003c uVar6) {\n                    /* try { // try from 020906bc to 020906c3 has its CatchHandler @ 0209077c */\n                    /* WARNING: Subroutine does not return */\n    FUN_00eff830(\u0026uStack_f0);\n  }\n  if (uVar6 \u003c 0x17) {\n    uStack_f0 \u003d CONCAT71(uStack_f0._1_7_,(char)((int)uVar6 \u003c\u003c 1));\n    uVar15 \u003d (ulong)\u0026uStack_f0 | 1;\n    if (uVar6 !\u003d 0) goto LAB_02090168;\n  }\n  else {\n    uVar13 \u003d 0x1a;\n    if ((uVar6 | 7) !\u003d 0x17) {\n      uVar13 \u003d (uVar6 | 7) + 1;\n    }\n                    /* try { // try from 02090150 to 02090157 has its CatchHandler @ 0209077c */\n    uVar15 \u003d FUN_02753418(uVar13);\n    uStack_f0 \u003d uVar13 | 1;\n    uStack_e8 \u003d uVar6;\n    uStack_e0 \u003d uVar15;\nLAB_02090168:\n    memmove(uVar15,uVar8,uVar6);\n  }\n  *(undefined1 *)(uVar15 + uVar6) \u003d 0;\n  uVar8 \u003d uStack_e8;\n  uVar6 \u003d uStack_e0;\n  if ((uStack_f0 \u0026 1) \u003d\u003d 0) {\n    uVar8 \u003d uStack_f0 \u003e\u003e 1 \u0026 0x7f;\n    uVar6 \u003d (long)\u0026uStack_f0 + 1;\n  }\n                    /* try { // try from 02090198 to 0209019f has its CatchHandler @ 02090854 */\n  puVar2 \u003d (ulong *)FUN_00973eb8(\u0026bStack_d8,uVar6,uVar8);\n  uStack_b8 \u003d puVar2[1];\n  uStack_c0 \u003d *puVar2;\n  uStack_b0 \u003d puVar2[2];\n  *puVar2 \u003d 0;\n  puVar2[1] \u003d 0;\n  puVar2[2] \u003d 0;\n  uVar8 \u003d uStack_b0;\n  if ((uStack_c0 \u0026 1) \u003d\u003d 0) {\n    uVar8 \u003d (long)\u0026uStack_c0 + 1;\n  }\n                    /* try { // try from 020901d0 to 020901df has its CatchHandler @ 020907b4 */\n  __android_log_print((double)fVar19,3,uVar8,\u0026DAT_001979d7);\n  if ((uStack_c0 \u0026 1) !\u003d 0) {\n    free(uStack_b0);\n  }\n  if ((uStack_f0 \u0026 1) !\u003d 0) {\n    free(uStack_e0);\n  }\n  if ((uStack_110 \u0026 1) !\u003d 0) {\n    free(uStack_100);\n  }\n  if ((uStack_130 \u0026 1) !\u003d 0) {\n    free(uStack_120);\n  }\n  if ((bStack_a8 \u0026 1) !\u003d 0) {\n    free(CONCAT53(uStack_95,CONCAT21(uStack_97,uStack_98)));\n  }\n  if ((uStack_150 \u0026 1) !\u003d 0) {\n    free(uStack_140);\n  }\n  if ((uStack_170 \u0026 1) !\u003d 0) {\n    free(uStack_160);\n  }\n  if ((bStack_90 \u0026 1) !\u003d 0) {\n    free(puStack_80);\n  }\n  if ((uStack_190 \u0026 1) !\u003d 0) {\n    free(uStack_180);\n  }\n  if ((uStack_1b0 \u0026 1) !\u003d 0) {\n    free(uStack_1a0);\n  }\n  if ((uStack_1d0 \u0026 1) !\u003d 0) {\n    free(uStack_1c0);\n  }\n  if ((uStack_1f0 \u0026 1) !\u003d 0) {\n    free(uStack_1e0);\n  }\n  if ((uStack_240 \u0026 1) !\u003d 0) {\n    free(uStack_230);\n  }\n  if ((uStack_210 \u0026 1) !\u003d 0) {\n    free(uStack_200);\n  }\n  if ((bStack_228 \u0026 1) !\u003d 0) {\n    free(uStack_218);\n  }\n  if ((bStack_d8 \u0026 1) !\u003d 0) {\n    free(uStack_c8);\n  }\nLAB_02090268:\n  if ((ulong)((*(long *)(*(long *)(param_2 + 0x1e) + 0x18) -\n               *(long *)(*(long *)(param_2 + 0x1e) + 0x10) \u003e\u003e 3) * -0x5555555555555555) \u003c 2) {\n    FUN_02084010(\u0026DAT_00153bb5,\u0026DAT_00148da1,0x47,\u0026DAT_001ce6b9);\n    FUN_02084010(\u0026DAT_00153bb5,\u0026DAT_001236b8,0x143,\u0026DAT_001940c8);\n    uVar5 \u003d 5;\n  }\n  else {\n    uVar5 \u003d 0;\n    param_2[0x21] \u003d fVar19;\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d lStack_78) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail(uVar5);\n}\n\n"
     }
   ]
 }
