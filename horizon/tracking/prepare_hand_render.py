@@ -61,7 +61,10 @@ def prepare(images,reconstruction,output):
     output.mkdir(parents=True,exist_ok=True)
     (output/'libshell.so').write_bytes(blob)
     (output/'render-strings.json').write_text(json.dumps(targets,indent=2)+'\n')
-    (output/'render-functions.txt').write_text('')
+    # Callees observed in renderer run 36778979923; ELF VAs (Ghidra base removed).
+    # These are NOT exports or validated C++ entry-point declarations.
+    helpers=(0x9bac58,0x9428e4,0x9bad24,0x9b9ed8,0x14377c4,0xcc3b5c)
+    (output/'render-functions.txt').write_text(''.join(f'{address:x}\n' for address in helpers))
     return targets
 
 
