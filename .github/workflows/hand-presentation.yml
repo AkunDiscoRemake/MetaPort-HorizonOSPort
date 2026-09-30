@@ -1,0 +1,69 @@
+name: Original hand presentation resources
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [horizon/tracking/hand_presentation.py, horizon/tracking/tests/test_hand_presentation.py, .github/workflows/hand-presentation.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-hand-presentation
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/hand-presentation
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Prepare verified original hand assets, no execution
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils
+          python3 -m unittest horizon.tracking.tests.test_hand_presentation -v
+          mkdir -p "$WORK/reports" "$WORK/project"
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          from horizon.tracking.hand_presentation import inspect
+          root=Path(os.environ['WORK'])
+          result=reconstruct(root/'firmware.zip',root/'images',selected={'system_ext'})
+          (root/'reconstruction.json').write_text(json.dumps(result))
+          inspect(root/'images',root/'reconstruction.json',root/'reports')
+          PY
+      - name: Publish evidence only, never proprietary binaries
+        if: success() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          dest=analysis/builds/52168470052900520
+          for name in hand-presentation-report; do
+            if [ -f "$WORK/reports/$name.json" ]; then
+              cp "$WORK/reports/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original hand presentation contract evidence [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-hand-presentation-no-binaries
+          path: ${{ env.WORK }}/reports/hand-presentation-report.json
+          retention-days: 7
