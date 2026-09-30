@@ -9,17 +9,50 @@
       "size_bytes": 631,
       "sha256": "986a04a5130ecaebae9540f4acc6663d100e720f21b7afb9b02f4c858c817499",
       "status": "TEXT_CANDIDATES_ONLY",
-      "matched_lines": 2,
+      "matched_lines": 3,
+      "context_lines": 7,
       "lines": [
+        {
+          "line": 12,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 13,
+          "excerpt": "[perf]",
+          "line_truncated": false,
+          "keyword_match": false
+        },
         {
           "line": 14,
           "excerpt": "# Also hints wake the CtrlTracking thread wakes as the same core as",
-          "line_truncated": false
+          "line_truncated": false,
+          "keyword_match": true
         },
         {
           "line": 15,
           "excerpt": "# SBEventHandler and IOTmotion threads",
-          "line_truncated": false
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 16,
+          "excerpt": "wake_affine_controller = true",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 17,
+          "excerpt": "# Enables dev cores",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 18,
+          "excerpt": "use_obj_track_cpuset = true",
+          "line_truncated": false,
+          "keyword_match": true
         }
       ],
       "truncated": false,
@@ -31,8 +64,58 @@
       "size_bytes": 188,
       "sha256": "bc3f143605f1b264959529f4329956fa605d2f3e30bab76c953c99554d72dd26",
       "status": "TEXT_CANDIDATES_ONLY",
-      "matched_lines": 0,
-      "lines": [],
+      "matched_lines": 2,
+      "context_lines": 8,
+      "lines": [
+        {
+          "line": 1,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 2,
+          "excerpt": "service trackingservice /odm/bin/trackingservice",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 3,
+          "excerpt": "    class hal",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 4,
+          "excerpt": "    user system",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 5,
+          "excerpt": "    group system uhid inet audio",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 6,
+          "excerpt": "    capabilities SYS_NICE",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 7,
+          "excerpt": "    task_profiles trackingPolicy",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 8,
+          "excerpt": "    ioprio rt 4",
+          "line_truncated": false,
+          "keyword_match": false
+        }
+      ],
       "truncated": false,
       "runtime_activation_proved": false
     },
@@ -42,8 +125,64 @@
       "size_bytes": 218,
       "sha256": "47f05c914cf24abb5caaa453e9e3d86bf51971140f2a2de86596dacfc6096da1",
       "status": "TEXT_CANDIDATES_ONLY",
-      "matched_lines": 0,
-      "lines": [],
+      "matched_lines": 2,
+      "context_lines": 9,
+      "lines": [
+        {
+          "line": 1,
+          "excerpt": "",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 2,
+          "excerpt": "service trackingserviceapex /apex/com.meta.xr/bin/trackingservice",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 3,
+          "excerpt": "    class hal",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 4,
+          "excerpt": "    user system",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 5,
+          "excerpt": "    group system uhid inet audio",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 6,
+          "excerpt": "    capabilities SYS_NICE",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 7,
+          "excerpt": "    task_profiles trackingPolicy",
+          "line_truncated": false,
+          "keyword_match": true
+        },
+        {
+          "line": 8,
+          "excerpt": "    ioprio rt 4",
+          "line_truncated": false,
+          "keyword_match": false
+        },
+        {
+          "line": 9,
+          "excerpt": "    disabled",
+          "line_truncated": false,
+          "keyword_match": false
+        }
+      ],
       "truncated": false,
       "runtime_activation_proved": false
     },
@@ -58,7 +197,8 @@
         "machine": 183,
         "architecture": "AArch64"
       },
-      "dynamic_read_exit_code": "",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "",
       "needed": [
         "libbinder_ndk.so",
         "liblog.so",
@@ -82,7 +222,8 @@
         "machine": 183,
         "architecture": "AArch64"
       },
-      "dynamic_read_exit_code": "",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "",
       "needed": [
         "libcutils.so",
         "liblog.so",
@@ -106,7 +247,8 @@
         "machine": 183,
         "architecture": "AArch64"
       },
-      "dynamic_read_exit_code": "",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "",
       "needed": [
         "libcdsprpc.so",
         "liblog.so",
@@ -126,7 +268,8 @@
         "machine": 183,
         "architecture": "AArch64"
       },
-      "dynamic_read_exit_code": "",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "",
       "needed": [
         "libbinder_ndk.so",
         "libdl.so",
@@ -146,7 +289,8 @@
         "machine": 183,
         "architecture": "AArch64"
       },
-      "dynamic_read_exit_code": "",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "",
       "needed": [
         "libhidlbase.so",
         "libhardware.so",
@@ -174,7 +318,8 @@
         "machine": 183,
         "architecture": "AArch64"
       },
-      "dynamic_read_exit_code": "",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "",
       "needed": [
         "libhidlbase.so",
         "libhardware.so",
@@ -202,14 +347,28 @@
         "machine": 164,
         "architecture": "Hexagon"
       },
-      "dynamic_read_exit_code": "readelf: Error: no .dynamic section in the dynamic segment\n",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "readelf: Error: no .dynamic section in the dynamic segment\n",
       "needed": [
         "libc.so",
         "libc++.so.1",
         "libc++abi.so.1",
         "libgcc.so"
       ],
-      "status": "ELF_METADATA_ONLY"
+      "status": "DISASSEMBLED_NOT_VALIDATED",
+      "disassembly": {
+        "decoded_text_sha256": "5fc026900fa06a8c8e8dd7346ee3a01e63b7410c8a531ab256fb489f95308b91",
+        "instruction_lines": 0,
+        "matching_function_labels": 0,
+        "function_labels": [],
+        "function_labels_truncated": false,
+        "vector_syntax_lines": 0,
+        "vector_samples": [],
+        "vector_samples_truncated": false,
+        "hand_call_chain_validated": false,
+        "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
+        "diagnostics": ""
+      }
     },
     {
       "partition": "vendor",
@@ -222,14 +381,28 @@
         "machine": 164,
         "architecture": "Hexagon"
       },
-      "dynamic_read_exit_code": "readelf: Error: no .dynamic section in the dynamic segment\n",
+      "dynamic_read_exit_code": 0,
+      "dynamic_read_diagnostics": "readelf: Error: no .dynamic section in the dynamic segment\n",
       "needed": [
         "libc.so",
         "libc++.so.1",
         "libc++abi.so.1",
         "libgcc.so"
       ],
-      "status": "ELF_METADATA_ONLY"
+      "status": "DISASSEMBLED_NOT_VALIDATED",
+      "disassembly": {
+        "decoded_text_sha256": "5fc026900fa06a8c8e8dd7346ee3a01e63b7410c8a531ab256fb489f95308b91",
+        "instruction_lines": 0,
+        "matching_function_labels": 0,
+        "function_labels": [],
+        "function_labels_truncated": false,
+        "vector_syntax_lines": 0,
+        "vector_samples": [],
+        "vector_samples_truncated": false,
+        "hand_call_chain_validated": false,
+        "scope": "Whole objdump text summarized; excerpts bounded, no instruction semantics validated",
+        "diagnostics": ""
+      }
     }
   ]
 }
