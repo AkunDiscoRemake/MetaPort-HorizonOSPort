@@ -22,6 +22,16 @@ public class DecompileHandInput extends GhidraScript {
         if(function!=null && !function.isExternal() && selected.size()<32)
             selected.putIfAbsent(function.getEntryPoint(),reason);
     }
+    private Function discover(Address address) throws Exception {
+        var block=currentProgram.getMemory().getBlock(address);
+        if(block==null || !block.isExecute() || (address.getOffset()&3)!=0) return null;
+        Function function=getFunctionAt(address);
+        if(function==null && getFunctionContaining(address)==null) {
+            // Static disassembly only; never invoke the pointed-to code.
+            disassemble(address);function=createFunction(address,null);
+        }
+        return function;
+    }
     @Override public void run() throws Exception {
         String[] args=getScriptArgs();
         if(args.length!=2) throw new IllegalArgumentException("input-strings.json output.json");
@@ -30,8 +40,8 @@ public class DecompileHandInput extends GhidraScript {
         Address base=currentProgram.getImageBase();
         // Constructors previously observed in hand-decompilation.json. ELF VAs,
         // NOT Ghidra's relocated addresses or an invented C++ object layout.
-        select(getFunctionAt(base.add(0x1620ce0L)),"Observed model-executor construction");
-        select(getFunctionAt(base.add(0x16222a0L)),"Observed DPE attribute consumer");
+        select(discover(base.add(0x1620ce0L)),"Observed model-executor construction");
+        select(discover(base.add(0x16222a0L)),"Observed DPE attribute consumer");
         List<Map<String,Object>> tables=new ArrayList<>();
         // Constructor assigns these address points to its two interfaces.
         // Read adjacent slots only as evidence, never as a callable ABI.
@@ -52,6 +62,17 @@ public class DecompileHandInput extends GhidraScript {
                     target.put("function",function==null?null:function.getName());refs.add(target);
                     select(function,"Pointer reference at observed address point 0x"+Long.toHexString(table)+" + "+index*8);
                 }
+                // Some headless analyses leave no DataReference at a vtable slot.
+                // Read the pointer from Ghidra's already-relocated memory, not
+                // from the ELF file. Do NOT add imageBase a second time.
+                long pointer=currentProgram.getMemory().getLong(slot);
+                Address candidate=toAddr(pointer);
+                Function pointed=discover(candidate);
+                row.put("relocated_memory_candidate",candidate.toString());
+                row.put("candidate_function",pointed==null?null:pointed.getName());
+                row.put("candidate_abi_validated",false);
+                select(pointed,"Executable pointer candidate in relocated memory at 0x"+
+                       Long.toHexString(table)+" + "+index*8+"; not a validated ABI");
                 row.put("references",refs);tables.add(row);
             }
         }
