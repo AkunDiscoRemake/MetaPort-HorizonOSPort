@@ -15,7 +15,7 @@ class BootTests(unittest.TestCase):
     def test_v4_boot_and_embedded_config(self):
         kernel = bytearray(64)
         kernel[56:60] = b'ARM\x64'
-        kernel += b'Linux version fixture-only\0'
+        kernel += b'Linux version 5.10.0-fixture-only\0'
         kernel += b'IKCFG_ST' + gzip.compress(b'CONFIG_ARCH_QCOM=y\n# CONFIG_VIRTIO is not set\nUNRELATED=x\n') + b'IKCFG_ED'
         packed = gzip.compress(kernel)
         header = bytearray(4096)
@@ -24,7 +24,7 @@ class BootTests(unittest.TestCase):
         struct.pack_into('<I', header, 40, 4)
         self.path.write_bytes(header + packed + bytes(4096-len(packed)))
         r = inspect_image(self.path)
-        self.assertEqual(r['kernel']['linux_version_banner'], 'Linux version fixture-only')
+        self.assertEqual(r['kernel']['linux_version_banner'], 'Linux version 5.10.0-fixture-only')
         self.assertEqual(r['kernel']['selected_config'], {'CONFIG_ARCH_QCOM':'y', 'CONFIG_VIRTIO':'not set'})
         self.assertFalse(r['boot_tested'])
 
@@ -54,6 +54,11 @@ class BootTests(unittest.TestCase):
     def test_gzip_limits(self):
         for data in (gzip.compress(b'x'*2000),b'not gzip'):
             with self.assertRaises(ValueError): bounded_gzip(data,100)
+
+    def test_banner_format_string_is_not_a_version(self):
+        blob=bytearray(64); blob[56:60]=b'ARM\x64'
+        blob+=b'Linux version %s (%s)\0'
+        self.assertIsNone(kernel_identity(blob)['linux_version_banner'])
 
     def test_unknown_kernel_not_bootable_claim(self):
         self.assertEqual(kernel_identity(b'unknown')['status'],'UNSUPPORTED_KERNEL_ENCODING')

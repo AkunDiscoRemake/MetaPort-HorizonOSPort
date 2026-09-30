@@ -35,7 +35,7 @@ def kernel_identity(blob):
         report['compression'] = 'UNKNOWN'
         report['status'] = 'UNSUPPORTED_KERNEL_ENCODING'
         return report
-    version = re.search(rb'Linux version [^\x00\r\n]{1,512}', blob)
+    version = re.search(rb'Linux version [0-9][^\x00\r\n]{1,511}', blob)
     report['linux_version_banner'] = version.group().decode('ascii', 'replace') if version else None
     report['uncompressed_size_bytes'] = len(blob)
     start = blob.find(b'IKCFG_ST')
