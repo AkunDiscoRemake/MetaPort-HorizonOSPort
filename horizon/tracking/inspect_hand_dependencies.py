@@ -52,7 +52,7 @@ def text_evidence(raw):
 
 def disassembly_summary(text):
     """LLVM output evidence only; vector syntax does not prove hand-model activation."""
-    labels=[]; vectors=[]; vector_count=0; instructions=0
+    labels=[]; vectors=[]; vector_count=0; instructions=0; unknown=0
     interesting=re.compile(r'conv|gemm|matmul|quant|pool|softmax|relu|hvx|vtcm|vector',re.I)
     label_count=0
     for line in text.splitlines():
@@ -62,11 +62,13 @@ def disassembly_summary(text):
             if len(labels)<256: labels.append(label[1][:1024])
         if not re.match(r'^\s*[0-9a-fA-F]+:',line): continue
         instructions+=1
+        if re.search(r"unknown|invalid",line,re.I): unknown+=1
         if re.search(r'\bv[0-9]+(?:\.[a-z]+)?\b',line):
             vector_count+=1
             if len(vectors)<64: vectors.append(line[:1024])
     return {'decoded_text_sha256':hashlib.sha256(text.encode()).hexdigest(),
-            'instruction_lines':instructions,'matching_function_labels':label_count,
+            'tool':'llvm-objdump-14','instruction_lines':instructions,
+            'unknown_or_invalid_instruction_lines':unknown,'matching_function_labels':label_count,
             'function_labels':labels,'function_labels_truncated':label_count>256,
             'vector_syntax_lines':vector_count,'vector_samples':vectors,
             'vector_samples_truncated':vector_count>64,
