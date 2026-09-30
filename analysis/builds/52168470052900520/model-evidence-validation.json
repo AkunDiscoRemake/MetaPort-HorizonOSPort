@@ -1,0 +1,10 @@
+{
+  "status": "FIXED_CORPUS_EVIDENCE_ACCEPTED_NOT_RUNTIME_VALIDATED",
+  "build": "52168470052900520",
+  "model_count": 10,
+  "scalar_count": 35,
+  "strict_extent_warnings": 13,
+  "models_executed": false,
+  "camera_conversion_validated": false,
+  "horizon_ported": false
+}
