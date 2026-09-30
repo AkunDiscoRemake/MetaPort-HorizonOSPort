@@ -75,3 +75,11 @@ Emulação de componentes originais será avaliada; não há emulador implementa
 
 `tools/device_probe.py` fornece uma coleta ADB opcional, somente leitura, para
 preflight do aparelho. Não é o APK MetaPort e não comprova compatibilidade XR.
+
+## Inspeção real do pacote candidato
+
+O workflow já inspecionou o OTA no runner: manifesto FULL, 29 partições, cerca de
+3,74 GB de tamanhos declarados e nenhuma dependência de imagem-base observada.
+Ver [resultados e limites](analysis/v2.4/FINDINGS.md). Ainda não há confirmação do
+canal estável, imagens reconstruídas, disassembly de componentes ou APK funcional.
+A ferramenta de manifesto e a suíte de 24 testes são código executado, não um port.
