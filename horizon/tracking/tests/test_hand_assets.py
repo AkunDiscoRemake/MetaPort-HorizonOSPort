@@ -92,3 +92,12 @@ class HandAssetTests(unittest.TestCase):
         for key in ('vertices','indices','vertex_sources','skinning_offsets','skinning_weights'):
             bad=dict(streams);data=bytearray(bad[key]);data[0]^=1;bad[key]=bytes(data)
             with self.assertRaises(ValueError):validate_streams(a,bad,summary)
+
+    def test_signed_zero_corruption_and_empty_offsets_are_rejected(self):
+        from horizon.tracking.hand_assets import validate_streams
+        a=fixture();streams,summary=compile_mesh(a)
+        corrupt=bytearray(streams['vertices']);corrupt[3]^=0x80
+        streams['vertices']=bytes(corrupt)
+        with self.assertRaises(ValueError):validate_streams(a,streams,summary)
+        a['skinnedmodel']['Faces']['Offsets']=[]
+        with self.assertRaises(ValueError):compile_mesh(a)

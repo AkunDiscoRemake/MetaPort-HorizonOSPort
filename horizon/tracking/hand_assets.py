@@ -83,7 +83,7 @@ def f32(value):
 
 
 def offsets(values, count, end):
-    if not isinstance(values, list) or len(values) != count+1:
+    if count < 1 or end < 0 or not isinstance(values, list) or len(values) != count+1:
         raise ValueError('Offset count')
     for x in values: integer(x, end+1)
     if values[0] != 0 or values[-1] != end or any(a > b for a,b in zip(values,values[1:])):
@@ -194,7 +194,9 @@ def validate_streams(asset, streams, summary):
         if sources[index]!=vertex: raise ValueError('Source identity changed')
         actual=struct.unpack_from('<8f',streams['vertices'],32*index)
         expected=mesh['RestPositions'][vertex]+mesh['RestVertexNormals'][vertex]+mesh['TextureCoordinates'][mesh['Faces']['TextureIndices'][n]]
-        if tuple(expected)!=actual: raise ValueError('Corner geometry changed')
+        # Numeric == hides signed-zero changes. Compare decoded double representations.
+        if any(struct.pack('<d',float(a)) != struct.pack('<d',b) for a,b in zip(expected,actual)):
+            raise ValueError('Corner geometry changed')
     if tuple(mesh['SkinningOffsets'])!=unpack('skinning_offsets','I',4):
         raise ValueError('Skinning offsets changed')
     weights=streams['skinning_weights']
@@ -202,7 +204,8 @@ def validate_streams(asset, streams, summary):
     for n,(bone,weight) in enumerate(mesh['SkinningWeights']):
         index,value=struct.unpack_from('<If',weights,n*8)
         integer(index,len(palette))
-        if palette[index]!=bone or value!=weight:raise ValueError('Skinning influence changed')
+        if palette[index]!=bone or struct.pack('<d',value)!=struct.pack('<d',float(weight)):
+            raise ValueError('Skinning influence changed')
     return {'all_corners_equal':True,'all_influences_equal':True,
             'source_vertex_identity_preserved':True,'runtime_equivalence_established':False}
 
