@@ -1,9 +1,9 @@
 {
-  "source_commit": "2432dedb7329890e9359fc486feacf81cc0c8ce2",
-  "run_id": "36727073713",
+  "source_commit": "2dd150e2ade0584a41dd365f75679112cc90bb98",
+  "run_id": "36728364524",
   "decompile_step": "success",
   "horizon_ported": false,
   "physical_phone_tested": false,
   "jadx_sha256": "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974",
-  "tool_log_tail": null
+  "tool_log_tail": ""
 }
