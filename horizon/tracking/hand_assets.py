@@ -131,12 +131,16 @@ def compile_mesh(asset):
         raise ValueError('Only original triangles; no guessed triangulation')
     weights = mesh['SkinningWeights']
     skin_offsets = offsets(mesh['SkinningOffsets'],len(positions),len(weights))
+    # Keep hierarchy intact; only compact the palette addressed by skin weights.
+    palette = sorted({integer(item[0],len(bones)) for item in weights
+                      if isinstance(item,list) and len(item)==2})
+    palette_index = {bone:index for index,bone in enumerate(palette)}
     packed_weights = bytearray(); sums = []; influence_counts = []
     for item in weights:
         if not isinstance(item,list) or len(item) != 2: raise ValueError('Influence shape')
         bone, weight = integer(item[0],len(bones)), number(item[1])
         if weight < 0: raise ValueError('Negative skin weight')
-        packed_weights += struct.pack('<I',bone)+f32(weight)
+        packed_weights += struct.pack('<I',palette_index[bone])+f32(weight)
     for a,b in zip(skin_offsets,skin_offsets[1:]):
         if a == b: raise ValueError('Unweighted vertex')
         sums.append(math.fsum(w[1] for w in weights[a:b])); influence_counts.append(b-a)
@@ -150,13 +154,15 @@ def compile_mesh(asset):
             for value in positions[vertex]+normals[vertex]+uv[texture]: packed_vertices += f32(value)
         corners.append(unique[key])
     fmt = 'H' if len(unique) <= 65536 else 'I'
-    streams = {'vertices': bytes(packed_vertices),
+    streams = {'bone_palette':struct.pack('<'+'I'*len(palette),*palette),
+               'vertices': bytes(packed_vertices),
                'indices': struct.pack('<'+fmt*len(corners),*corners),
                'vertex_sources': struct.pack('<'+'I'*len(sources),*sources),
                'skinning_offsets': struct.pack('<'+'I'*len(skin_offsets),*skin_offsets),
                'skinning_weights': bytes(packed_weights)}
     summary = {'source_vertices':len(positions),'draw_vertices':len(unique),'corners':len(corners),
                'triangles':len(corners)//3,'bones':len(bones),'hierarchy_order':order,
+               'palette_bones':len(palette),'skinning_index_space':'compact_palette',
                'index_bits':16 if fmt=='H' else 32,'vertex_stride_bytes':32,
                'influence_histogram':dict(sorted(Counter(influence_counts).items())),
                'max_weight_sum_error':max(abs(s-1) for s in sums),
@@ -166,6 +172,39 @@ def compile_mesh(asset):
                'animation_mapping_validated':False,'renderer_integrated':False,
                'streams':{k:{'size_bytes':len(v),'sha256':hashlib.sha256(v).hexdigest()} for k,v in streams.items()}}
     return streams, summary
+
+
+def validate_streams(asset, streams, summary):
+    """Independent decode/compare of all corners and influences, not runtime proof."""
+    mesh=asset['skinnedmodel']; corners=mesh['Faces']['Indices']
+    if summary['index_bits'] not in (16,32): raise ValueError('Index representation')
+    fmt='H' if summary['index_bits']==16 else 'I'
+    def unpack(name,code,width):
+        data=streams[name]
+        if len(data)%width: raise ValueError('Stream alignment')
+        return struct.unpack('<'+code*(len(data)//width),data)
+    indices=unpack('indices',fmt,summary['index_bits']//8)
+    sources=unpack('vertex_sources','I',4); palette=unpack('bone_palette','I',4)
+    if len(indices)!=len(corners) or len(streams['vertices'])!=32*len(sources):
+        raise ValueError('Stream counts')
+    if len(sources)!=summary['draw_vertices'] or len(palette)!=summary['palette_bones']:
+        raise ValueError('Summary counts')
+    for n,index in enumerate(indices):
+        integer(index,len(sources));vertex=corners[n]
+        if sources[index]!=vertex: raise ValueError('Source identity changed')
+        actual=struct.unpack_from('<8f',streams['vertices'],32*index)
+        expected=mesh['RestPositions'][vertex]+mesh['RestVertexNormals'][vertex]+mesh['TextureCoordinates'][mesh['Faces']['TextureIndices'][n]]
+        if tuple(expected)!=actual: raise ValueError('Corner geometry changed')
+    if tuple(mesh['SkinningOffsets'])!=unpack('skinning_offsets','I',4):
+        raise ValueError('Skinning offsets changed')
+    weights=streams['skinning_weights']
+    if len(weights)!=8*len(mesh['SkinningWeights']):raise ValueError('Influence count changed')
+    for n,(bone,weight) in enumerate(mesh['SkinningWeights']):
+        index,value=struct.unpack_from('<If',weights,n*8)
+        integer(index,len(palette))
+        if palette[index]!=bone or value!=weight:raise ValueError('Skinning influence changed')
+    return {'all_corners_equal':True,'all_influences_equal':True,
+            'source_vertex_identity_preserved':True,'runtime_equivalence_established':False}
 
 
 def inspect(images, reconstruction, output):
@@ -188,6 +227,7 @@ def inspect(images, reconstruction, output):
             obj=decode(path.read_bytes()); item=dict(row)
             if 'skinnedmodel' in obj:
                 streams, details=compile_mesh(obj)
+                item['roundtrip_validation']=validate_streams(obj,streams,details)
                 # Buffers are local only; workflow publishes summary JSON, not these assets.
                 for name,data in streams.items(): (output/(Path(row['path']).stem+'.'+name+'.bin')).write_bytes(data)
                 item['geometry']=details

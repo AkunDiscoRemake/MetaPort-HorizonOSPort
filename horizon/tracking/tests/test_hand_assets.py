@@ -72,3 +72,23 @@ class HandAssetTests(unittest.TestCase):
         for raw in (b'\x82\xa1a\x01\xa1a\x02',msgpack.packb(float('inf')),
                     msgpack.packb(msgpack.ExtType(1,b'x')),b'x'*(512*1024+1)):
             with self.assertRaises((ValueError,msgpack.UnpackException)):decode(raw)
+
+    def test_palette_compaction_keeps_original_bone_identity(self):
+        from horizon.tracking.hand_assets import validate_streams
+        a=fixture();root=a['skeleton']['Bones'][0]
+        child=copy.deepcopy(root);child.update(Name='child',Parent=0)
+        a['skeleton']['Bones'].append(child);a['skinnedmodel']['NumberOfBones']=2
+        a['skinnedmodel']['SkinningWeights']=[[1,1.]]*3
+        streams,summary=compile_mesh(a)
+        self.assertEqual(summary['palette_bones'],1)
+        self.assertEqual(streams['bone_palette'],struct.pack('<I',1))
+        self.assertTrue(validate_streams(a,streams,summary)['all_influences_equal'])
+        streams['bone_palette']=struct.pack('<I',0)
+        with self.assertRaises(ValueError):validate_streams(a,streams,summary)
+
+    def test_roundtrip_detects_corrupt_corner_and_offset_streams(self):
+        from horizon.tracking.hand_assets import validate_streams
+        a=fixture();streams,summary=compile_mesh(a)
+        for key in ('vertices','indices','vertex_sources','skinning_offsets','skinning_weights'):
+            bad=dict(streams);data=bytearray(bad[key]);data[0]^=1;bad[key]=bytes(data)
+            with self.assertRaises(ValueError):validate_streams(a,bad,summary)
