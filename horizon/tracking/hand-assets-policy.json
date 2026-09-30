@@ -1,0 +1,25 @@
+{
+  "build": "52168470052900520",
+  "assets": [
+    {
+      "path": "/etc/handtracking/runtime/common/defaultProfile.msgpack",
+      "sha256": "10282731f703669daa10040612a9d48a8cb133c17050da0c1aabbc41dc287ea8",
+      "size": 196371
+    },
+    {
+      "path": "/etc/handtracking/runtime/common/defaultfbx_L.msgpack",
+      "sha256": "b2bbddd2495ce8bad80f25e07cd2ffc630452d09da1bf384d144500e151b7422",
+      "size": 187811
+    },
+    {
+      "path": "/etc/handtracking/runtime/common/defaultfbx_R.msgpack",
+      "sha256": "baef26268d95901b78e7cc22d073685d4aff9b319aeea09a4b75bb5967c52fe8",
+      "size": 187811
+    },
+    {
+      "path": "/etc/handtracking/runtime/common/defaultfbx_restSkeletons.msgpack",
+      "sha256": "62ffffddcb08a13884c1a400ea64ecd9e0c42f010c3c5ec00fc0612470a259ce",
+      "size": 4827
+    }
+  ]
+}
