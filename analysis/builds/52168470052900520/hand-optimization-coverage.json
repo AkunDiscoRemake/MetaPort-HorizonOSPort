@@ -42512,6 +42512,8 @@
       "sites_truncated": false
     }
   ],
+  "rtti_pointer_candidates": [],
+  "rtti_scope": "Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 targets selected.",
   "incoming_root_calls": [
     {
       "group": "inference",
