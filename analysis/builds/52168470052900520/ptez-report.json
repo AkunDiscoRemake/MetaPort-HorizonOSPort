@@ -471,7 +471,45 @@
             "delegates": [
               "HexagonRpcBackend",
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  8,
+                  24,
+                  25,
+                  26
+                ]
+              },
+              {
+                "delegate_index": 1,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  11,
+                  19,
+                  142,
+                  144,
+                  24,
+                  25,
+                  161,
+                  164,
+                  171,
+                  172,
+                  173,
+                  174,
+                  175,
+                  176,
+                  177,
+                  178,
+                  179
+                ]
+              }
+            ],
+            "instruction_count": 43,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "get_attributes_msgpack",
@@ -491,7 +529,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_scale",
@@ -504,7 +546,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_zp",
@@ -517,7 +563,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_quant_min",
@@ -530,7 +580,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_quant_max",
@@ -543,7 +597,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_dtype",
@@ -556,7 +614,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -1134,7 +1196,45 @@
             "delegates": [
               "HexagonRpcBackend",
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  8,
+                  24,
+                  25,
+                  26
+                ]
+              },
+              {
+                "delegate_index": 1,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  11,
+                  19,
+                  142,
+                  144,
+                  24,
+                  25,
+                  161,
+                  164,
+                  171,
+                  172,
+                  173,
+                  174,
+                  175,
+                  176,
+                  177,
+                  178,
+                  179
+                ]
+              }
+            ],
+            "instruction_count": 43,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "get_attributes_msgpack",
@@ -1154,7 +1254,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_scale",
@@ -1167,7 +1271,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_zp",
@@ -1180,7 +1288,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_quant_min",
@@ -1193,7 +1305,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_quant_max",
@@ -1206,7 +1322,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "input0_dtype",
@@ -1219,7 +1339,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -2282,7 +2406,51 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  14,
+                  15,
+                  18,
+                  19,
+                  21,
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75
+                ]
+              }
+            ],
+            "instruction_count": 12,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -2295,7 +2463,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -2308,7 +2480,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -2321,7 +2497,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -2334,7 +2514,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "featurizer_version",
@@ -2347,7 +2531,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "model_config_json",
@@ -2360,7 +2548,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -2373,7 +2565,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -3588,7 +3784,51 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  14,
+                  15,
+                  18,
+                  19,
+                  21,
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75
+                ]
+              }
+            ],
+            "instruction_count": 12,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -3601,7 +3841,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -3614,7 +3858,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -3627,7 +3875,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -3640,7 +3892,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "featurizer_version",
@@ -3653,7 +3909,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "model_config_json",
@@ -3666,7 +3926,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -3679,7 +3943,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -4894,7 +5162,51 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  14,
+                  15,
+                  18,
+                  19,
+                  21,
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75
+                ]
+              }
+            ],
+            "instruction_count": 12,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -4907,7 +5219,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -4920,7 +5236,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -4933,7 +5253,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -4946,7 +5270,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "featurizer_version",
@@ -4959,7 +5287,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "model_config_json",
@@ -4972,7 +5304,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -4985,7 +5321,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -6452,7 +6792,56 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  457,
+                  458,
+                  459,
+                  460,
+                  461,
+                  462,
+                  463,
+                  464,
+                  465,
+                  466,
+                  467,
+                  468,
+                  469,
+                  470,
+                  471,
+                  472,
+                  473,
+                  474,
+                  475,
+                  476
+                ]
+              }
+            ],
+            "instruction_count": 125,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -6465,7 +6854,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -6478,7 +6871,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -6491,7 +6888,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -6504,7 +6905,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -6517,7 +6922,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -7984,7 +8393,56 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  457,
+                  458,
+                  459,
+                  460,
+                  461,
+                  462,
+                  463,
+                  464,
+                  465,
+                  466,
+                  467,
+                  468,
+                  469,
+                  470,
+                  471,
+                  472,
+                  473,
+                  474,
+                  475,
+                  476
+                ]
+              }
+            ],
+            "instruction_count": 125,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -7997,7 +8455,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -8010,7 +8472,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -8023,7 +8489,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -8036,7 +8506,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -8049,7 +8523,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -9516,7 +9994,56 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  509,
+                  510,
+                  511,
+                  512,
+                  513,
+                  514,
+                  515,
+                  516,
+                  517,
+                  518,
+                  519,
+                  520,
+                  521,
+                  522,
+                  523,
+                  524,
+                  525,
+                  526,
+                  527,
+                  528
+                ]
+              }
+            ],
+            "instruction_count": 141,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -9529,7 +10056,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -9542,7 +10073,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -9555,7 +10090,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -9568,7 +10107,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -9581,7 +10124,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -11048,7 +11595,56 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  457,
+                  458,
+                  459,
+                  460,
+                  461,
+                  462,
+                  463,
+                  464,
+                  465,
+                  466,
+                  467,
+                  468,
+                  469,
+                  470,
+                  471,
+                  472,
+                  473,
+                  474,
+                  475,
+                  476
+                ]
+              }
+            ],
+            "instruction_count": 125,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -11061,7 +11657,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -11074,7 +11674,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -11087,7 +11691,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -11100,7 +11708,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -11113,7 +11725,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
@@ -12580,7 +13196,56 @@
             ],
             "delegates": [
               "HexagonRpcBackend"
-            ]
+            ],
+            "delegate_call_sites": [
+              {
+                "delegate_index": 0,
+                "backend": "HexagonRpcBackend",
+                "argument_value_indices": [
+                  23,
+                  24,
+                  26,
+                  28,
+                  29,
+                  31,
+                  33,
+                  34,
+                  36,
+                  38,
+                  39,
+                  41,
+                  43,
+                  44,
+                  46,
+                  48,
+                  49,
+                  51,
+                  509,
+                  510,
+                  511,
+                  512,
+                  513,
+                  514,
+                  515,
+                  516,
+                  517,
+                  518,
+                  519,
+                  520,
+                  521,
+                  522,
+                  523,
+                  524,
+                  525,
+                  526,
+                  527,
+                  528
+                ]
+              }
+            ],
+            "instruction_count": 141,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "num_layers",
@@ -12593,7 +13258,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "kernel_size",
@@ -12606,7 +13275,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "hidden_dim",
@@ -12619,7 +13292,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "left_context",
@@ -12632,7 +13309,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           },
           {
             "name": "fblearner_id",
@@ -12645,7 +13326,11 @@
               }
             ],
             "operators": [],
-            "delegates": []
+            "delegates": [],
+            "delegate_call_sites": [],
+            "instruction_count": 0,
+            "other_instruction_count": 0,
+            "control_flow_evaluated": false
           }
         ],
         "all_instructions_validated": false,
