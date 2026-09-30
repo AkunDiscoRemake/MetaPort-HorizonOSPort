@@ -37,7 +37,7 @@ def probe(kernel,initrd,output,disk=None):
           '-display','none','-serial','stdio','-monitor','none','-nic','none',
           '-no-reboot','-sandbox','on,obsolete=deny,elevateprivileges=deny,spawn=deny,resourcecontrol=deny',
           '-kernel',str(kernel),'-initrd',str(initrd),
-          '-append','console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 '
+          '-append','console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 '
           'androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1']
     if disk is not None:
         disk=Path(disk).resolve()
