@@ -31,9 +31,28 @@ def digest(path):
     return h.hexdigest()
 
 
-def model_metadata(path):
+def model_metadata(path, suffix=""):
     result = {'executed': False, 'format': 'UNKNOWN', 'magic_hex': path.read_bytes()[:16].hex()}
+    if suffix=='.msgpack':
+        import msgpack
+        raw=path.read_bytes()
+        if len(raw)>512*1024: raise ValueError('MessagePack size limit')
+        obj=msgpack.unpackb(raw,raw=False,strict_map_key=False,max_array_len=100000,
+            max_map_len=10000,max_str_len=256*1024,max_bin_len=256*1024,max_ext_len=256*1024)
+        def shape(value,depth=0):
+            if isinstance(value,dict):
+                return {'kind':'map','size':len(value),'fields':{str(k):shape(v,depth+1) for k,v in list(value.items())[:40]} } if depth<4 else {'kind':'map','size':len(value)}
+            if isinstance(value,(list,tuple)):
+                return {'kind':'array','size':len(value),'sample':[shape(v,depth+1) for v in value[:2]]} if depth<4 else {'kind':'array','size':len(value)}
+            if isinstance(value,bytes): return {'kind':'bytes','size':len(value)}
+            if isinstance(value,str): return value[:256]
+            return value
+        result.update(format='MSGPACK_STRUCTURAL',structure=shape(obj))
+        return result
     if not zipfile.is_zipfile(path):
+        # Opaque private etz0 wrapper: header observation, not a working decoder.
+        if path.read_bytes()[:4]==b'etz0':
+            result.update(format='ETZ0_OPAQUE',header_hex=path.read_bytes()[:64].hex())
         return result
     with zipfile.ZipFile(path) as archive:
         entries = archive.infolist()
@@ -63,7 +82,7 @@ def function_candidates(symbols, limit=24):
     for line in symbols.splitlines():
         fields = line.split()
         if len(fields) < 8 or fields[3] != 'FUNC' or fields[6] == 'UND': continue
-        if not re.search(r'hand|skeleton|gesture', fields[7], re.I): continue
+        if not re.search(r'hand(?:track|pose|joint|skeleton|state|data|model|gesture|input|detect|landmark)|skeleton|gesture|^capabilityRegistry', fields[7], re.I): continue
         try: address, size = int(fields[1], 16), int(fields[2], 0)
         except ValueError: continue
         if not address or not 0 < size <= 32768: continue
@@ -72,6 +91,20 @@ def function_candidates(symbols, limit=24):
     candidates.sort(key=lambda x: (not bool(re.search('pose|joint|update|process|predict', x['symbol'], re.I)), x['address']))
     unique = {x['address']: x for x in reversed(candidates)}
     return sorted(unique.values(), key=lambda x: (not bool(re.search('pose|joint|update|process|predict', x['symbol'], re.I)), x['address']))[:limit]
+
+
+def string_targets(data, sections):
+    section=re.search(r'\]\s+\.rodata\s+PROGBITS\s+([0-9a-f]+)\s+([0-9a-f]+)\s+([0-9a-f]+)',sections,re.I)
+    if not section: return []
+    address, offset, size=(int(x,16) for x in section.groups())
+    if offset+size>len(data) or size>8*1024*1024: raise ValueError('Invalid rodata bounds')
+    candidates=[]
+    for match in re.finditer(rb'[ -~]{8,400}',data[offset:offset+size]):
+        text=match.group().decode('ascii')
+        if re.search(r'handtracking|HandTracking|HandTracker|HandPose|HandSkeleton|hand tracking|hand pose',text):
+            candidates.append({'address':address+match.start(),'text':text})
+    candidates.sort(key=lambda x: (not bool(re.search(r'HandTracking|HandPose|HandTracker',x['text'])),len(x['text']),x['address']))
+    return candidates[:256]
 
 
 def inspect(images, reconstruction, output):
@@ -108,11 +141,13 @@ def inspect(images, reconstruction, output):
                         item['target_disassembly'].append({**func, 'assembly': asm.replace(str(binary), '<original-elf>')})
                     item['dependency_strings'] = sorted(set(m.group().decode('ascii') for m in
                         re.finditer(rb'[ -~]{5,350}', binary.read_bytes()) if INTEREST.search(m.group().decode('ascii'))))[:1500]
+                    item['backend_strings']=sorted(set(m.group().decode('ascii') for m in re.finditer(rb'[ -~]{5,350}',binary.read_bytes()) if re.search(rb'boltnn|libQnn|QnnHtp|Hexagon|XNNPACK|executorch',m.group(),re.I)))[:512]
                     report['elf'].append({**base, **item})
                     if path == '/lib64/libtrackingengines.so':
                         # Runner-local input for pinned Ghidra; never uploaded as firmware.
                         (output/'libtrackingengines.so').write_bytes(binary.read_bytes())
                         (output/'functions.json').write_text(json.dumps(selected))
+                        (output/'strings.json').write_text(json.dumps(string_targets(binary.read_bytes(),item['sections'])))
                         (output/'functions.txt').write_text('\n'.join(f'{f["address"]:x}' for f in selected)+'\n')
                 elif path in CONFIGS[partition]:
                     report['configuration'].append({**base, 'text': binary.read_text()})
@@ -123,7 +158,7 @@ def inspect(images, reconstruction, output):
                                    if e.filename.endswith(('.dex', '.so'))]
                     report['ui'].append({**base, 'manifest': manifest, 'code_members': members, 'executed': False})
                 else:
-                    report['models'].append({**base, **model_metadata(binary)})
+                    report['models'].append({**base, **model_metadata(binary,Path(path).suffix)})
     (output/'hand-ui-report.json').write_text(json.dumps(report, indent=2)+'\n')
 
 

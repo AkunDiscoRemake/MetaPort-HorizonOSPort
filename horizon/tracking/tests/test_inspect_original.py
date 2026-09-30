@@ -3,7 +3,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
-from horizon.tracking.inspect_original import model_metadata, function_candidates
+from horizon.tracking.inspect_original import model_metadata, function_candidates, string_targets
 
 
 class MetadataTests(unittest.TestCase):
@@ -39,3 +39,12 @@ class MetadataTests(unittest.TestCase):
               '4: 00003000 12 OBJECT GLOBAL DEFAULT 12 HandPoseData\n')
         self.assertEqual(function_candidates(text),[{'address':4096,'size':80,'symbol':'HandPoseUpdate'}])
         self.assertEqual(function_candidates(text,limit=0),[])
+
+    def test_stripped_library_registry_and_string_virtual_addresses(self):
+        text=('1: 00001000 80 FUNC GLOBAL DEFAULT 12 capabilityRegistryCreateV3\n'
+              '2: 00002000 80 FUNC GLOBAL DEFAULT 12 logging_isValidHandle\n')
+        self.assertEqual(len(function_candidates(text)),1)
+        data=b'\0'*32+b'HandTrackingPose\0'
+        sections='[11] .rodata PROGBITS 00004000 000020 000010 00 A 0 0 1'
+        self.assertEqual(string_targets(data,sections)[0]['address'],0x4000)
+        with self.assertRaises(ValueError): string_targets(data[:33],sections)

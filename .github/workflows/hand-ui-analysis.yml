@@ -2,7 +2,7 @@ name: Original hand tracking and UI contracts
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/inspect_original.py, horizon/tracking/ghidra/**, horizon/tracking/tests/**, .github/workflows/hand-ui-analysis.yml]
+    paths: [horizon/tracking/inspect_original.py, horizon/tracking/ghidra/**, horizon/tracking/tests/test_inspect_original.py, .github/workflows/hand-ui-analysis.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,6 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
+          python3 -m pip install msgpack==1.1.0
           python3 -m unittest discover -s horizon/tracking/tests -v
           mkdir -p "$WORK/reports"
       - name: Obtain fixed verified OTA and original images
@@ -59,9 +60,9 @@ jobs:
         run: |
           mkdir -p "$WORK/project"
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Hands \
-            -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 600 \
+            -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
             -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
-            -postScript DecompileHands.java "$WORK/reports/functions.txt" "$WORK/reports/hand-decompilation.json" \
+            -postScript DecompileHands.java "$WORK/reports/functions.txt" "$WORK/reports/strings.json" "$WORK/reports/hand-decompilation.json" \
             -deleteProject > "$WORK/ghidra.log" 2>&1
           test -f "$WORK/reports/hand-decompilation.json"
       - name: Record provenance even on analysis failure
