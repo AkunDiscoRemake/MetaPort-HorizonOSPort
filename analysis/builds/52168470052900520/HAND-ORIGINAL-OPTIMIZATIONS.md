@@ -74,3 +74,68 @@ Ainda falta provar ativação por call chain, condições e frequência por fram
 recuperar implementações fora do engine, validar ABI, portar dependências de
 hardware e medir qualidade/latência no telefone. Relatórios novos são publicados
 pelo workflow; não alteram retroativamente estes níveis de comprovação.
+
+## 5. Resultado da primeira busca ampliada e continuação
+
+Run **36784585864** concluiu: 72 seleções / **71 funções distintas**, todas com
+C-like recuperado, não ABI validada. O scan achou 1771 strings candidatas de
+inferência, 26 de memória e 615 temporais; os grupos 1 e 3 foram truncados para a
+seleção inicial. Esses números são candidatos, não número de otimizações.
+
+A continuação preserva **todos os candidatos que o scanner reconhece** (limite
+explícito de 8192/grupo), inclusive além da primeira página. O novo script
+`TraceHandOptimizations.java` registra referências diretas desses candidatos e
+callers dos alvos abaixo, antes de escolher funções para decompilar. Não resolve
+automaticamente despacho virtual; ausência de referência não prova código morto.
+
+### Novas observações concretas, sem confundir infraestrutura com otimização
+
+- `FUN_0193ffd0`: valida índice de scheduling de HandPrototypeTracking (0–7;
+  fora disso usa 4) e chama callback. **Não são valores de prioridade Linux**;
+  não se deve passar 4 para `setpriority` ou requisitar scheduler privilegiado.
+- `FUN_00b2e090`: configuração de downsampler de taxa com flags, duração/período,
+  conversão por `1e9` e ramo que combina taxa com duração/período. Ainda não é o
+  algoritmo por frame, nem foi demonstrado que todo caminho de mãos o ativa.
+- `FUN_00b69590`, encontrado por “hand pose filters”, serializa configuração.
+  **Não recuperamos um filtro temporal executável só por achar essa string.**
+- `FUN_01953880`, encontrado por `CNNVizardHandBboxDetector`, é formatação/log de
+  parâmetros, não o detector em si. A próxima passagem prioriza seus callers.
+- `FUN_01718660`: carregamento V1 com helpers `0171c420`, `0171c680`, `0171c820`;
+  selecionados para aprofundar metadados/conversões, sem chamá-los de fallback CPU.
+
+### Layout de memória planejada: 16 e 128 bytes
+
+Em `FUN_00e1ec40` (VA ELF `0xd1ec40` do engine verificado), o C-like mostra:
+
+- acumulador arredondado por `(total + tamanho + 0xf) & ~0xf`;
+- outro ramo, condicionado pelo tipo observado, arredondando por
+  `(total + tamanho + 0x7f) & ~0x7f`;
+- alocação do primeiro bloco com argumento de alinhamento `0x10`;
+- alocação indireta do outro bloco com argumentos `0x19, 1, tamanho`;
+- reservas de vetores condicionadas à capacidade disponível.
+
+**Não é prova de zero-copy ou de zero alocação por frame.** Esse caminho também
+libera/recria arenas; ainda falta confirmar frequência e lifetime pelos callers.
+A associação ao componente Hexagon vem de referências recuperadas, não valida
+uma assinatura da chamada indireta nem um allocator compatível com MediaTek.
+
+`hand_arena_layout.{hpp,cpp}` isola as duas regras de alinhamento sem alocar,
+sem inventar layout privado e sem substituir o allocator original. Rejeição de
+overflow e contador desalinhado é proteção própria do MetaPort, separada da regra
+original observada. Testes ASan/UBSan: 2002 blocos acumulados, fronteiras e falhas
+sem modificar saída. Ainda não conectado ao executor; não implica ganho medido.
+
+### Estado da implementação anterior
+
+Build Android **36784585834** passou (`gradle_exit_code=0`) com a regra SIMD de
+material incorporada. Compilação ARM64 não substitui teste físico da função nem
+integração do renderer. Continua ausente a bridge privada de poses/materiais.
+
+### Dependências fora do engine
+
+Novo workflow `hand-dependencies.yml` inspeciona, em ODM/vendor verificados,
+configuração e init do serviço, tracking host/vendorutils, bibliotecas RPC/Hexagon
+e `libQnnBoltnnOpPackageV69.so`. Registra máquina ELF, dependências dinâmicas e
+excertos de configuração relevantes. Não executa código, não altera prioridades
+no aparelho e não supõe que um backend DSP seja carregável no processo ARM64.
+A whitelist não é o fechamento transitivo completo de todas as dependências.

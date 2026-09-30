@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22.1)
 project(metaport_adapters LANGUAGES CXX)
-add_library(metaport_adapters SHARED android_sensors.cpp egl_output.cpp input_router_jni.cpp hand_palette.cpp hand_material.cpp)
+add_library(metaport_adapters SHARED android_sensors.cpp egl_output.cpp input_router_jni.cpp hand_palette.cpp hand_material.cpp hand_arena_layout.cpp)
 target_compile_features(metaport_adapters PRIVATE cxx_std_17)
 target_compile_options(metaport_adapters PRIVATE -Wall -Wextra -Werror)
 # Compatible ELF segment alignment for Android devices with 16 KiB pages.

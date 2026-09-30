@@ -58,6 +58,13 @@ jobs:
             port/android/adapters/src/main/cpp/hand_material.cpp \
             -o local-analysis/native-tests/hand_material_test
           local-analysis/native-tests/hand_material_test
+      - name: Test observed planned arena alignment
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_arena_layout_test.cpp \
+            port/android/adapters/src/main/cpp/hand_arena_layout.cpp \
+            -o local-analysis/native-tests/hand_arena_layout_test
+          local-analysis/native-tests/hand_arena_layout_test
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |

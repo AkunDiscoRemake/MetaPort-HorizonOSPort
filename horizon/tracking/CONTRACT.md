@@ -139,3 +139,7 @@ Veja [inventário com endereços e limites](../../analysis/builds/52168470052900
 A regra original de atualização condicional de float4 de material foi isolada em
 `hand_material.cpp`, inclusive FCMEQ/UMINP ARM64. Ainda sem conexão com o objeto
 privado do VrShell. Não representa todas as otimizações nem tracking funcionando.
+
+A continuação inclui o layout aritmético de arenas de 16/128 bytes observado no
+engine em `hand_arena_layout.cpp`. Isso não implementa o allocator RPC nem evita
+as alocações originais. Callers, lifetime e backend no telefone continuam pendentes.
