@@ -2,11 +2,10 @@
 
 **Estado: NOT PORTED YET. Não há um Horizon OS executável neste repositório.**
 
-O objetivo é portar componentes reais das versões **v2.4 e v2.7**, preservando
-arquitetura e comportamento onde tecnicamente possível. Nenhuma outra versão está
-no escopo, inclusive builds de versão desconhecida, betas e builds internas.
-A autorização informada pelo solicitante refere-se exclusivamente a essas versões;
-ela não identifica a versão de um arquivo nem estabelece direitos de redistribuição.
+O objetivo é portar componentes reais do Horizon OS, preservando arquitetura e
+comportamento onde tecnicamente possível. **Escopo atualizado: todas as versões**,
+conforme nova autorização informada pelo solicitante. Ver [política vigente](analysis/SCOPE.md).
+Essa declaração não autentica imagens nem comprova direitos de redistribuição.
 
 O checkout inicial continha somente um README. Não foram fornecidos fontes,
 imagens, binários, interfaces extraídas ou hardware alvo. Não foram realizadas
@@ -16,7 +15,7 @@ launcher, UI substituta, compositor de demonstração ou poses sintéticas.
 ## O que existe
 
 - Inventário local de arquivos com tamanho e SHA-256, sem executar os componentes.
-- Restrição do parâmetro de versão a `v2.4` ou `v2.7`.
+- Identificação de versão/build explícita, sem autenticação automática.
 - Referência de proveniência obrigatória e estado de versão `UNVERIFIED` explícito.
 - Rejeição de diretório vazio, symlinks e arquivos especiais.
 - Testes automatizados e plano de investigação em [analysis/PLAN.md](analysis/PLAN.md).
@@ -26,8 +25,7 @@ Isso é infraestrutura de análise, **não implementação do sistema portado**.
 ## Inventário local
 
 Requer Python 3.10+ em Linux; não requer dependências externas.
-Use somente uma cópia estável, local e previamente identificada como pertencente
-às versões autorizadas. Não a modifique durante o inventário; a ferramenta não é
+Use somente uma cópia local, estável durante a análise e com origem registrada. Não a modifique durante o inventário; a ferramenta não é
 uma sandbox para árvores alteradas por terceiros nem um verificador de autenticidade.
 
 ```sh
@@ -43,10 +41,9 @@ python3 -m unittest discover -s tests -v
 
 Para v2.7, usar diretórios e argumento correspondentes. A saída deve ficar **fora**
 da árvore inventariada. Erros resultam em código de saída não zero; não consumir
-um relatório sem verificar o resultado do comando. A ferramenta não extrai imagens,
+um relatório sem verificar o resultado do comando. A ferramenta de inventário não extrai imagens,
 não baixa firmware e não confirma que a declaração de versão é verdadeira. Hashes
-identificam bytes, não autorização ou autenticidade. Não processar artefatos de
-versão desconhecida com uma etiqueta autorizada para contornar o escopo.
+identificam bytes, não autorização ou autenticidade. Não rotular uma versão desconhecida como uma versão conhecida.
 
 `artifacts/` e `local-analysis/` ficam fora do Git. Não adicionar firmware, chaves,
 credenciais, dados pessoais ou assets proprietários ao histórico por padrão.

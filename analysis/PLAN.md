@@ -1,5 +1,7 @@
 # Plano de portabilidade baseado em evidências
 
+> Atualização: a restrição de versões/canal abaixo foi substituída por [SCOPE.md](SCOPE.md). Resultados antigos permanecem históricos.
+
 ## Gate de escopo
 
 Antes de extrair ou analisar componentes, confrontar a versão declarada com

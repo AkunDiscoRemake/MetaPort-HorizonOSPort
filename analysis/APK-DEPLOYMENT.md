@@ -1,5 +1,7 @@
 # Alvo: APK não privilegiado no Infinix X6873
 
+> Atualização: a restrição de versões/canal abaixo foi substituída por [SCOPE.md](SCOPE.md). Resultados antigos permanecem históricos.
+
 ## Restrições confirmadas pelo solicitante
 
 GT30 Pro, X6873, XOS 16.2; bootloader bloqueado. Sem desbloqueio, root, flash,

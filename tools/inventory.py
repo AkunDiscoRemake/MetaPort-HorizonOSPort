@@ -11,12 +11,15 @@ from pathlib import Path
 import stat
 import sys
 
-ALLOWED_VERSIONS = ("v2.4", "v2.7")
+def validate_version(version):
+    # Scope is now all versions, as reported by the requester. Preserve identity
+    # uncertainty rather than inventing a commercial version for a build number.
+    if not version.strip() or len(version) > 128 or any(ord(c) < 32 for c in version):
+        raise ValueError("Version/build label must be nonempty, printable and <=128 characters")
 
 
 def inventory(root, version, provenance):
-    if version not in ALLOWED_VERSIONS:
-        raise ValueError("Out of scope: only v2.4 and v2.7 are allowed")
+    validate_version(version)
     if not provenance.strip():
         raise ValueError("A provenance reference is required")
     root = Path(root)
@@ -63,7 +66,7 @@ def inventory(root, version, provenance):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", required=True, choices=ALLOWED_VERSIONS)
+    parser.add_argument("--version", required=True, help="Declared version or build identity; not automatically verified")
     parser.add_argument("--artifacts", required=True, type=Path)
     parser.add_argument("--provenance", required=True,
                         help="Reference to local acquisition/build evidence; not a credential")

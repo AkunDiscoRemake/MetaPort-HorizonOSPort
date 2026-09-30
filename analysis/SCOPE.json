@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "scope": "all_horizon_os_versions",
+  "basis": "requester_report",
+  "requester_statement": "conversei com a meta, GG RECEBI AUTORIZAÇÃO A TODAS AS VERSÕES",
+  "independently_verified": false,
+  "analysis_allowed_under_project_scope": true,
+  "redistribution_rights_verified": false,
+  "deployment": "unprivileged_apk",
+  "root_flash_unlock_allowed": false,
+  "previous_v2_4_v2_7_restriction_superseded": true
+}

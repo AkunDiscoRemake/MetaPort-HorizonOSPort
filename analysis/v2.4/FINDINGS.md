@@ -1,5 +1,7 @@
 # Resultados observados — candidato Quest 3
 
+> Atualização: a restrição de versões/canal abaixo foi substituída por [SCOPE.md](../SCOPE.md). Resultados antigos permanecem históricos.
+
 **NOT PORTED YET. Versão autorizada/canal estável ainda UNVERIFIED.**
 
 Inspeção executada no GitHub Actions, run `36664095473`, código `536f518`.

@@ -26,8 +26,12 @@ class InventoryTests(unittest.TestCase):
             self.assertEqual(entry["sha256"], hashlib.sha256(data).hexdigest())
             self.assertEqual(entry["size_bytes"], len(data))
 
-    def test_reject_other_versions(self):
-        for version in ("v2.3", "v2.5", "v2.6", "v2.8", "unknown", "v2.7-beta", ""):
+    def test_expanded_scope_keeps_identity_unverified(self):
+        for version in ("v2.3", "v2.8", "unknown", "v2.7-beta", "52168470052900520"):
+            self.assertEqual(inventory(self.root, version, "fixture")["version_verification"], "UNVERIFIED")
+
+    def test_invalid_version_label(self):
+        for version in ("", " ", "x\ny", "x" * 129):
             with self.assertRaises(ValueError):
                 inventory(self.root, version, "fixture")
 
@@ -61,8 +65,8 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual([e["path"] for e in first["files"]],
                          ["nested/a.bin", "sample.bin"])
 
-    def test_cli_out_of_scope_no_report(self):
-        result = subprocess.run([sys.executable, "tools/inventory.py", "--version", "v2.8",
+    def test_cli_invalid_label_no_report(self):
+        result = subprocess.run([sys.executable, "tools/inventory.py", "--version", "",
                                  "--artifacts", str(self.root), "--provenance", "fixture"],
                                 capture_output=True, text=True)
         self.assertNotEqual(result.returncode, 0)

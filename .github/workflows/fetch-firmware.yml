@@ -1,4 +1,4 @@
-name: Fetch firmware candidate
+name: Analyze firmware candidate
 
 on:
   push:
@@ -8,7 +8,10 @@ on:
       - .github/workflows/fetch-firmware.yml
       - tools/inspect_ota.py
       - tools/payload_manifest.py
-      - tests/test_payload_manifest.py
+      - tools/reconstruct_ota.py
+      - tools/scan_partitions.py
+      - tests/**
+      - analysis/SCOPE.json
   workflow_dispatch:
 
 permissions:
@@ -25,7 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
+      - name: Install host parsers (never guest executables)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils binutils-aarch64-linux-gnu
+      - name: Check declared analysis scope
+        run: |
+          python3 -c "import json; s=json.load(open('analysis/SCOPE.json')); assert s['analysis_allowed_under_project_scope'] and s['scope']=='all_horizon_os_versions'"
       - name: Test inspection tools
         run: python3 -m unittest discover -s tests -v
       - name: Download fixed candidate (no extraction or execution)
@@ -54,7 +64,7 @@ jobs:
           {
             echo '### Firmware candidate downloaded; catalog SHA-256 matched'
             echo 'Version/channel and authenticity remain UNVERIFIED.'
-            echo 'Temporary artifact retention: 1 day. Not committed to Git.'
+            echo 'Firmware is runner-local only. Only analysis reports are published.'
             echo "Size: $(stat --format=%s q3_52168470052900520.zip) bytes"
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Inspect OTA metadata only
@@ -66,32 +76,56 @@ jobs:
             "$RUNNER_TEMP/firmware/q3_52168470052900520.zip" \
             --output "$RUNNER_TEMP/report/ota-report.json"
           echo 'OTA metadata report available in the inspection step logs and ota-metadata-report artifact. Stable channel and full-image status require further verification.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Reconstruct selected userspace partitions and verify all output hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m tools.reconstruct_ota \
+            "$RUNNER_TEMP/firmware/q3_52168470052900520.zip" \
+            --directory "$RUNNER_TEMP/images" \
+            --report "$RUNNER_TEMP/report/reconstruction.json"
+      - name: Inventory files and inspect selected ELF dependencies and instructions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m tools.scan_partitions \
+            --images "$RUNNER_TEMP/images" \
+            --reconstruction-report "$RUNNER_TEMP/report/reconstruction.json" \
+            --output "$RUNNER_TEMP/report/static-analysis.json"
       - name: Publish metadata report to session branch (never firmware)
-        if: github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p analysis/v2.4
-          cp "$RUNNER_TEMP/report/ota-report.json" analysis/v2.4/quest3-candidate-metadata.json
+          if [ -f "$RUNNER_TEMP/report/ota-report.json" ]; then
+            cp "$RUNNER_TEMP/report/ota-report.json" analysis/v2.4/quest3-candidate-metadata.json
+            git add -- analysis/v2.4/quest3-candidate-metadata.json
+          fi
+          dest=analysis/builds/52168470052900520
+          mkdir -p "$dest"
+          for name in reconstruction static-analysis; do
+            if [ -f "$RUNNER_TEMP/report/$name.json" ]; then
+              cp "$RUNNER_TEMP/report/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- analysis/v2.4/quest3-candidate-metadata.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Record candidate OTA metadata (version and channel unverified)'
-            git push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            git commit -m 'Record verified reconstruction and static analysis results'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
+              push origin HEAD:arena/01a0f02d-metaport-horizonosport
           fi
-      - name: Store small metadata report
+      - name: Store analysis reports (no firmware)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ota-metadata-report
-          path: ${{ runner.temp }}/report/ota-report.json
+          path: ${{ runner.temp }}/report/*.json
           if-no-files-found: error
           retention-days: 7
-      - name: Store verified bytes temporarily
-        uses: actions/upload-artifact@v4
-        with:
-          name: quest3-52168470052900520-candidate
-          path: ${{ runner.temp }}/firmware/
-          if-no-files-found: error
-          compression-level: 0
-          retention-days: 1
