@@ -76,8 +76,9 @@ no console do kernel, não de uma sessão de logcat funcional.
 - `guest/probe.py`: passa a separar negações do HAL/logger e falha de mount de sucesso.
 - **O workflow voltou ao modo sem `--diagnostics` por padrão.** O experimento falho
   continua disponível explicitamente para pesquisa; não é apresentado como correção.
-  A remoção do flag e os novos classificadores foram testados localmente; não houve
-  outro boot Actions após o último experimento listado nesta página.
+  Na revisão 0469727, a remoção do flag e os classificadores tinham somente teste
+  local. Os ensaios posteriores de compatibilidade de nomes estão registrados em
+  [BOOT-CONTROLLER-ALIAS.md](BOOT-CONTROLLER-ALIAS.md).
 
 ## Próxima decisão técnica
 

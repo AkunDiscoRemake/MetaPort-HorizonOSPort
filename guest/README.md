@@ -63,3 +63,14 @@ new labels was denied, and the direct logcat attempt was also denied by SELinux.
 Generated label entries are **not evidence of applied labels**. See
 [measured failures](../analysis/builds/52168470052900520/BOOTCONTROL-LABELS.md).
 The ordinary workflow does not select this failed overlay. SELinux/AVB remain enabled.
+
+## Boot-controller namespace compatibility
+
+The pinned kernel now applies `kernel/boot-controller-alias.patch` after an exact
+source-file hash check. Only the explicitly marked virtio MMIO controller under
+`/soc` on `metaport,virt` gets the platform name `1d84000.ufshc`. Resources and
+protocol remain virtio, not UFS. This lets original ueventd partition-role rules
+match without a policy overlay. Run 36719412359 activated the alias, reached
+post-fs-data and observed an original client obtaining HIDL BootControl 1.2.
+Whole-disk access denials, missing writable data and restarting services remain.
+See [measured results and limits](../analysis/builds/52168470052900520/BOOT-CONTROLLER-ALIAS.md).
