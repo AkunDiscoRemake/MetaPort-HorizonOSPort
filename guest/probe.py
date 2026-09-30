@@ -26,6 +26,7 @@ def classify(text):
         'original_init_marker_observed':bool(re.search(r'init:.*(?:init first stage started|First stage mount|first_stage)',text,re.I)),
         'bootcontrol_events':[line for line in text.splitlines() if re.search(
             r'boot-hal|bootctrl|IBootControl|libgpt|gpt-utils|boot_control|Failed to load.*boot|metaport_bootlog|misc.*(?:fail|denied)|avc:.*(?:boot|logcat|logpersist)',line,re.I)][:100],
+        'diagnostic_events':[line for line in text.splitlines() if re.search(r'metaport|init_rc|logcat|stdio_to_kmsg',line,re.I)][:80],
         'second_stage_init_observed':'init second stage started!' in text,
         'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
         'boot_events':[line for line in text.splitlines() if any(token in line for token in (

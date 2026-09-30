@@ -21,10 +21,10 @@ service metaport_bootlog /system/bin/logcat -b main -b system -b crash -v thread
     user logd
     group log
     disabled
-    oneshot
+    restart_period 5
     stdio_to_kmsg
 
-on property:init.svc.logd=running
+on init
     start metaport_bootlog
 '''
 

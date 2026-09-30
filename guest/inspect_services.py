@@ -21,6 +21,7 @@ CONFIG={
     '/etc/vintf/manifest/android.hardware.boot@1.2.xml',
     '/etc/init/hw/init.anorak.rc',
 }
+POLICY={'system':{'/system/etc/selinux/plat_file_contexts'},'vendor':{'/etc/selinux/vendor_file_contexts'}}
 APKS={'/app/Store/Store.apk','/priv-app/DeviceAuthServer/DeviceAuthServer.apk',
       '/app/AccountsCenterPWA/AccountsCenterPWA.apk'}
 
@@ -36,8 +37,8 @@ def inspect(images,output):
     reconstruction=json.loads(Path(images).parent.joinpath('reconstruction.json').read_text())['partitions']
     result={'firmware_build':'52168470052900520','firmware_executed_by_this_inspector':False,
             'meta_servers_contacted':False,'login_tested':False,'store_functional':False,
-            'boot_hal':[],'configuration':[],'applications':[]}
-    for partition,paths in [('vendor',BOOT_ELF|CONFIG),('system_ext',APKS)]:
+            'boot_hal':[],'configuration':[],'applications':[],'device_label_rules':[]}
+    for partition,paths in [('vendor',BOOT_ELF|CONFIG|POLICY['vendor']),('system',POLICY['system']),('system_ext',APKS)]:
         image=Path(images)/(partition+'.img')
         with image.open('rb') as stream:
             digest=hashlib.file_digest(stream,'sha256').hexdigest() if hasattr(hashlib,'file_digest') else None
@@ -59,6 +60,10 @@ def inspect(images,output):
                         re.finditer(rb'[ -~]{5,300}',binary.read_bytes()) if re.search(
                             rb'/dev/|/sys/|bootctrl|bootdevice|slot|gpt|partition|failed|error|misc|ufshc',m.group(),re.I)))[:200]
                     result['boot_hal'].append({'path':path,**report})
+                elif path in POLICY.get(partition,set()):
+                    raw=binary.read_bytes()
+                    result['device_label_rules'].append({'path':path,'sha256':hashlib.sha256(raw).hexdigest(),
+                        'rules':[line for line in raw.decode().splitlines() if re.search(r'/dev/block|misc_block_device|vd_device|boot_block_device',line)]})
                 elif path in CONFIG:
                     if binary.stat().st_size>256*1024:raise ValueError('Oversized config')
                     raw=binary.read_bytes()
