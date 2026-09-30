@@ -82,7 +82,7 @@ def function_candidates(symbols, limit=24):
     for line in symbols.splitlines():
         fields = line.split()
         if len(fields) < 8 or fields[3] != 'FUNC' or fields[6] == 'UND': continue
-        if not re.search(r'hand(?:track|pose|joint|skeleton|state|data|model|gesture|input|detect|landmark)|skeleton|gesture|^capabilityRegistry', fields[7], re.I): continue
+        if not re.search(r'hand(?:track|pose|joint|skeleton|state|data|model|gesture|input|detect|landmark)|skeleton|gesture|^capabilityRegistry|^(?:create|destroy)(?:InputInjection|ControllerInput|Controllers|ControllerTracking|TrackingInjectionManager)Fbs', fields[7], re.I): continue
         try: address, size = int(fields[1], 16), int(fields[2], 0)
         except ValueError: continue
         if not address or not 0 < size <= 32768: continue
@@ -143,12 +143,13 @@ def inspect(images, reconstruction, output):
                         re.finditer(rb'[ -~]{5,350}', binary.read_bytes()) if INTEREST.search(m.group().decode('ascii'))))[:1500]
                     item['backend_strings']=sorted(set(m.group().decode('ascii') for m in re.finditer(rb'[ -~]{5,350}',binary.read_bytes()) if re.search(rb'boltnn|libQnn|QnnHtp|Hexagon|XNNPACK|executorch',m.group(),re.I)))[:512]
                     report['elf'].append({**base, **item})
-                    if path == '/lib64/libtrackingengines.so':
+                    if path in ('/lib64/libtrackingengines.so','/lib64/libtrackingserviceclients.so'):
+                        prefix='client-' if 'trackingserviceclients' in path else ''
                         # Runner-local input for pinned Ghidra; never uploaded as firmware.
-                        (output/'libtrackingengines.so').write_bytes(binary.read_bytes())
-                        (output/'functions.json').write_text(json.dumps(selected))
-                        (output/'strings.json').write_text(json.dumps(string_targets(binary.read_bytes(),item['sections'])))
-                        (output/'functions.txt').write_text('\n'.join(f'{f["address"]:x}' for f in selected)+'\n')
+                        (output/Path(path).name).write_bytes(binary.read_bytes())
+                        (output/(prefix+'functions.json')).write_text(json.dumps(selected))
+                        (output/(prefix+'strings.json')).write_text(json.dumps(string_targets(binary.read_bytes(),item['sections'])))
+                        (output/(prefix+'functions.txt')).write_text('\n'.join(f'{f["address"]:x}' for f in selected)+'\n')
                 elif path in CONFIGS[partition]:
                     report['configuration'].append({**base, 'text': binary.read_text()})
                 elif path.endswith('.apk'):

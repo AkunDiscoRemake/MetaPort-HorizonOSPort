@@ -65,6 +65,12 @@ jobs:
             -postScript DecompileHands.java "$WORK/reports/functions.txt" "$WORK/reports/strings.json" "$WORK/reports/hand-decompilation.json" \
             -deleteProject > "$WORK/ghidra.log" 2>&1
           test -f "$WORK/reports/hand-decompilation.json"
+          "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Clients \
+            -import "$WORK/reports/libtrackingserviceclients.so" -max-cpu 2 -analysisTimeoutPerFile 300 \
+            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -postScript DecompileHands.java "$WORK/reports/client-functions.txt" "$WORK/reports/client-strings.json" "$WORK/reports/hand-client-decompilation.json" \
+            -deleteProject >> "$WORK/ghidra.log" 2>&1
+          test -f "$WORK/reports/hand-client-decompilation.json"
       - name: Record provenance even on analysis failure
         if: always()
         env:
@@ -89,7 +95,7 @@ jobs:
         run: |
           set -euo pipefail
           dest=analysis/builds/52168470052900520
-          for name in hand-ui-report hand-decompilation hand-analysis-run; do
+          for name in hand-ui-report hand-decompilation hand-client-decompilation hand-analysis-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
