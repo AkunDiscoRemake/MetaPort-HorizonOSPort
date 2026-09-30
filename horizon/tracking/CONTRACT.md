@@ -62,3 +62,15 @@ Não gerar um header ABI definitivo a partir só dessas leituras.
 
 A interface Java/C++ interna do MetaPort não deve ser instalada como substituta de
 `libhzos_trackinghost.meta.so`. Nenhum símbolo original foi exportado como stub.
+
+## Atualização: transporte AIDL parcialmente recuperado
+
+O disassembly completo da `.text` de `memorybrokerservice-aidl-V2-ndk.so` e o VINTF
+permitiram registrar serviço, quatro códigos de transação e ordem de serialização
+parcial de `MemoryAllocation` em [abi/52168470052900520.json](abi/52168470052900520.json).
+Cada call site está ligado ao SHA-256 do ELF e verificado por testes contra a
+captura estática. **Isso não é teste de conformidade em runtime.**
+
+O serviço é `oculus.internal.tracking.IMemoryBrokerService/default`, VINTF AIDL v2.
+Restam os valores numéricos dos enums, semântica dos campos/poses, regras de
+sincronização, lifecycle e execução no guest. Não foi implementado servidor falso.

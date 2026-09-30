@@ -20,14 +20,17 @@ O pacote Quest 3 da build `52168470052900520`, fixado por SHA-256, foi baixado e
 analisado em GitHub Actions. O pipeline já:
 
 1. Inventariou o OTA e leu seu manifesto FULL com 29 partições.
-2. Reconstruiu `system`, `system_ext`, `vendor`, `product` e `odm`, conferindo os
-   hashes de cada operação e de cada imagem final.
+2. Reconstruiu todas as **29 partições do OTA**, conferindo os hashes de cada
+   operação e de cada imagem final (3,74 GB).
 3. Inventariou filesystems ext4 sem mount e inspecionou três APEX Meta.
 4. Localizou System UI, VrShell, VrDriver, tracking, compositor e o caminho OpenXR.
 5. Leu manifestos de cinco APKs e analisou bibliotecas nativas selecionadas.
-6. Produziu amostras de disassembly ARM64, dependências e símbolos dinâmicos reais.
+6. Produziu disassembly ARM64 amostral e `.text` completa de bibliotecas menores
+   selecionadas, dependências, símbolos e evidências do protocolo Binder original.
 
-**[Mapa de portabilidade e resultados](analysis/builds/52168470052900520/PORTING-MAP.md)**
+**[Estado do firmware completo e bloqueios de boot](analysis/builds/52168470052900520/FIRMWARE-STATUS.md)**
+
+[Mapa anterior de userspace](analysis/builds/52168470052900520/PORTING-MAP.md).
 
 Isso é análise técnica de componentes originais, não implementação do sistema
 portado. DEX ainda não foi decompilado; o disassembly é amostral, não completo.
@@ -50,7 +53,7 @@ mkdir -p local-analysis
 python3 -m tools.inspect_ota --manifest \
   artifacts/incoming/q3_52168470052900520.zip \
   --output local-analysis/ota-report.json
-python3 -m tools.reconstruct_ota \
+python3 -m tools.reconstruct_ota --all-partitions \
   artifacts/incoming/q3_52168470052900520.zip \
   --directory local-analysis/images \
   --report local-analysis/reconstruction.json
