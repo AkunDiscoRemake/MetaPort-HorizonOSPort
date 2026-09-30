@@ -6,6 +6,7 @@ on:
       - arena/01a0f02d-metaport-horizonosport
     paths:
       - .github/workflows/fetch-firmware.yml
+      - tools/inspect_ota.py
   workflow_dispatch:
 
 permissions:
@@ -20,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test inspection tools
+        run: python3 -m unittest discover -s tests -v
       - name: Download fixed candidate (no extraction or execution)
         shell: bash
         run: |
@@ -49,6 +55,22 @@ jobs:
             echo 'Temporary artifact retention: 1 day. Not committed to Git.'
             echo "Size: $(stat --format=%s q3_52168470052900520.zip) bytes"
           } >> "$GITHUB_STEP_SUMMARY"
+      - name: Inspect OTA metadata only
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/report"
+          python3 tools/inspect_ota.py \
+            "$RUNNER_TEMP/firmware/q3_52168470052900520.zip" \
+            --output "$RUNNER_TEMP/report/ota-report.json"
+          echo 'OTA metadata report available in the inspection step logs and ota-metadata-report artifact. Stable channel and full-image status require further verification.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Store small metadata report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ota-metadata-report
+          path: ${{ runner.temp }}/report/ota-report.json
+          if-no-files-found: error
+          retention-days: 7
       - name: Store verified bytes temporarily
         uses: actions/upload-artifact@v4
         with:
