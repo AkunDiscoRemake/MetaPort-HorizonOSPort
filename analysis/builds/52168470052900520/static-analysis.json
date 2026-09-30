@@ -81,7 +81,7 @@
           "stored_size_bytes": 42897920,
           "stored_sha256": "1ebce8efb8be90e29705bffeb1cbf4e9d954bab3104ec0a248282d4fcd7e25d5",
           "compression": "none_arm64_image",
-          "linux_version_banner": "Linux version %s (%s)",
+          "linux_version_banner": "Linux version 5.10.240-g69827d40d782 (twsvcscm@fdda-bd2e-0004-0000.twshared19185.01.kcm1.tw.fbinfra.net) (Android (8508608, based on r450784e) clang version 14.0.7 (https://android.googlesource.com/toolchain/llvm-project 4c603efb0cca074e9238af8b4106c30add4418f6), LLD 14.0.7) #1 SMP PREEMPT Mon Jun 15 20:55:10 PDT 2026",
           "uncompressed_size_bytes": 42897920,
           "embedded_config": "FOUND",
           "selected_config": {
