@@ -52,12 +52,18 @@ def executable_section_view(data):
             raise ValueError('Segment bounds')
         if flags&1 and size: segments.append((offset,va,size))
     if not segments: raise ValueError('No executable file-backed load segments')
+    if sum(size for _,_,size in segments)>128*1024*1024:
+        raise ValueError('Executable section view size limit')
     names=bytearray(b'\0'); descriptors=[]
+    view=bytearray(data);view.extend(b'\0'*((-len(view))%4))
     for i,(offset,va,size) in enumerate(segments):
         name_offset=len(names);names.extend(f'.metaport_exec{i}\0'.encode())
-        descriptors.append((name_offset,1,6,va,offset,size,0,0,4,0))
+        # A load segment may include the ELF header that we patch below. Decode
+        # a byte-exact copy instead, keeping even those original bytes intact.
+        copied_offset=len(view);view.extend(data[offset:offset+size])
+        view.extend(b'\0'*((-len(view))%4))
+        descriptors.append((name_offset,1,6,va,copied_offset,size,0,0,4,0))
     string_name=len(names);names.extend(b'.shstrtab\0')
-    view=bytearray(data);view.extend(b'\0'*((-len(view))%4))
     string_offset=len(view);view.extend(names);view.extend(b'\0'*((-len(view))%4))
     shoff=len(view); view.extend(bytes(40))
     for descriptor in descriptors: view.extend(struct.pack('<10I',*descriptor))
@@ -156,7 +162,7 @@ def inspect(images, reconstruction, output, disassemble=False):
                             row['disassembly']['diagnostics']=diagnostics
                             row['disassembly']['synthetic_section_view']=True
                             row['disassembly']['view_sha256']=hashlib.sha256(view).hexdigest()
-                            row['disassembly']['payload_bytes_unchanged']=True
+                            row['disassembly']['decoded_segment_bytes_unchanged']=True
                         row['status']='DISASSEMBLED_NOT_VALIDATED' if row['disassembly']['instruction_lines'] else 'NO_DECODED_INSTRUCTIONS'
 
                 else:

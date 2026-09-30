@@ -59,7 +59,14 @@ class Dependencies(unittest.TestCase):
         self.assertGreaterEqual(shoff,100)
         self.assertEqual(struct.unpack_from('<HHH',view,46),(40,3,2))
         entry=struct.unpack_from('<10I',view,shoff+40)
-        self.assertEqual(entry[1:6],(1,6,0x1000,84,16))
+        self.assertEqual(entry[1:4],(1,6,0x1000))
+        self.assertEqual(view[entry[4]:entry[4]+entry[5]],data[84:100])
+        # Executable segment spanning the original ELF header is also preserved.
+        struct.pack_into('<8I',data,52,1,0,0,0,100,100,5,4)
+        full=executable_section_view(data)
+        table=struct.unpack_from('<I',full,32)[0]
+        copied=struct.unpack_from('<10I',full,table+40)
+        self.assertEqual(full[copied[4]:copied[4]+copied[5]],data)
         struct.pack_into('<I',data,52+16,1000)
         with self.assertRaises(ValueError): executable_section_view(data)
 
