@@ -78,9 +78,28 @@ def describe(data,root):
         inputs=view.vector(plan,3,'i',256);outputs=view.vector(plan,4,'i',256)
         operators=[{'name':view.string(t,0),'overload':view.string(t,1)} for t in view.tables(plan,6)]
         delegates=[view.string(t,0) for t in view.tables(plan,7,256)]
+        calls=[];unknown=0;instruction_count=0
+        for chain in view.tables(plan,5,256):
+            for instruction in view.tables(chain,2,16384):
+                instruction_count+=1
+                if instruction_count>16384: raise ValueError('Instruction limit')
+                tag=view.scalar(instruction,0,'B')
+                if tag not in (1,2):
+                    unknown+=1
+                    continue
+                pos=view.field(instruction,1)
+                if pos is None: raise ValueError('Missing instruction payload')
+                payload=view.ref(pos);index=view.scalar(payload,0,'i')
+                registry=operators if tag==1 else delegates
+                if not 0<=index<len(registry): raise ValueError('Instruction registry index')
+                args=view.vector(payload,1,'i',4096)
+                if any(i<0 or i>=len(values) for i in args): raise ValueError('Instruction argument index')
+                if tag==2: calls.append({'delegate_index':index,'backend':delegates[index],'argument_value_indices':args})
         plans.append({'name':view.string(plan,0),'inputs':[view.value(values,i) for i in inputs],
                       'outputs':[view.value(values,i) for i in outputs],
-                      'operators':operators,'delegates':delegates})
+                      'operators':operators,'delegates':delegates,'delegate_call_sites':calls,
+                      'instruction_count':instruction_count,'other_instruction_count':unknown,
+                      'control_flow_evaluated':False})
     if not plans or any(not p['name'] for p in plans): raise ValueError('Missing execution plan/name')
     return {'interpretation':'PUBLIC_SCHEMA_CANDIDATE_NOT_RUNTIME_VALIDATED',
             'schema_reference':'pytorch/executorch v0.7.0 schema/program.fbs',

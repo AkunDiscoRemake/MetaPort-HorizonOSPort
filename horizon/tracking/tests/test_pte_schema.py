@@ -58,3 +58,18 @@ class SchemaTests(unittest.TestCase):
         with self.assertRaises(ValueError):describe(b.data,root)
         b,root,p=fixture();b.integer(p[0],0x7fffffff)
         with self.assertRaises(ValueError):describe(b.data,root)
+
+    def test_delegate_instruction_references_not_just_strings(self):
+        b,root,p=fixture()
+        cv=b.vector([0]);b.reference(p[5],cv)
+        chain,ch=b.table(3);b.reference(cv+4,chain)
+        b.reference(ch[0],b.vector([0]));b.reference(ch[1],b.vector([0]))
+        iv=b.vector([0]);b.reference(ch[2],iv)
+        instruction,ins=b.table(2);b.reference(iv+4,instruction);b.integer(ins[0],2)
+        call,ca=b.table(2);b.reference(ins[1],call);b.integer(ca[0],0)
+        b.reference(ca[1],b.vector([0]))
+        r=describe(b.data,root)['execution_plans'][0]
+        self.assertEqual(r['delegate_call_sites'][0]['backend'],'ExampleBackend')
+        self.assertFalse(r['control_flow_evaluated'])
+        b.integer(ca[0],99)
+        with self.assertRaises(ValueError):describe(b.data,root)
