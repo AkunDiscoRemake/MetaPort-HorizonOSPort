@@ -103,7 +103,9 @@ Os containers TorchScript foram inspecionados com `pickletools`, **sem unpickle,
 importação ou execução**. Há referências ao backend privado **BoltNN**. A biblioteca
 contém também strings de ExecuTorch, kernels CPU/XNNPACK e integração Hexagon. A
 presença dessas strings não prova que cada modelo tem fallback CPU ou funciona no
-MediaTek do Infinix. Os arquivos `etz0` continuam opacos, não decodificados.
+MediaTek do Infinix. Naquele ensaio os arquivos `etz0` ficaram opacos. A continuação recuperou os dez
+containers e inspecionou seus planos, tensores e referências a delegates; ver
+[COMPRESSED-HAND-MODELS.md](COMPRESSED-HAND-MODELS.md).
 
 MessagePack foi decodificado estruturalmente, com limites:
 

@@ -85,3 +85,11 @@ vtable nem implementado um provider falso a partir desses números.
 Há também decompilação DEX de VrShell/MetaSystemUI, evidências dos call sites de
 entrada e um backend Android/C++ de Joy-Cons ainda não ligado ao runtime privado.
 Ver [resultados medidos e bloqueios](../../analysis/builds/52168470052900520/HANDS-UI-INPUT.md).
+
+## Containers e planos dos modelos originais
+
+O decoder offline recuperou dez programas ET12 a partir de etz0/deflate. Há agora
+metadados limitados de tensores, constantes e referências de instruções, ligados
+a hashes em `ptez-report.json`. Os DPE31/32 possuem dois DelegateCall para
+HexagonRpcBackend no plano forward analisado. Não há inferência nem tradução
+desses delegates para o telefone. Veja [a continuação medida](../../analysis/builds/52168470052900520/COMPRESSED-HAND-MODELS.md).
