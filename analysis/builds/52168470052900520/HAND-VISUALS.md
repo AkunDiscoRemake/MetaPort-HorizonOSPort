@@ -124,8 +124,9 @@ skeleton/pose de mãos customizados, que não foram confundidos com tracking rea
 
 `prepare_hand_render.py` agora prepara apenas o renderer de hash fixo para
 Ghidra e converte offsets de arquivo em VAs ELF através dos segmentos PT_LOAD,
-sem somar o image base duas vezes. A decompilação específica do renderer está em
-ensaio; strings não são implementação recuperada nem reprodução das animações.
+sem somar o image base duas vezes. A primeira decompilação específica do renderer concluiu com 22 funções;
+[fluxos recuperados e limites do decompilador](HAND-RENDERER-TRACE.md).
+Isso ainda não é renderer executável nem reprodução validada das animações.
 
 ### Recuperação nativa mais completa, sem ocultar falha de validação
 
