@@ -89,7 +89,7 @@ jobs:
         run: |
           python3 -m guest.probe --kernel "$GUEST_WORK/kernel-out/arch/arm64/boot/Image" \
             --initrd "$GUEST_WORK/ramdisks/original-initrd" --output "$GUEST_WORK/probe" \
-            --disk "$GUEST_WORK/storage/guest-disk.raw"
+            --disk "$GUEST_WORK/storage/guest-disk.raw" --trace-signals
       - name: Summarize measured outcomes even on failure
         if: always()
         env:

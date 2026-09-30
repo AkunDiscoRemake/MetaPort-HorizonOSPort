@@ -39,6 +39,37 @@ def security_observations(text):
             'root_cause':'NOT_ESTABLISHED_FROM_LOG_MATCHES'}
 
 
+
+def signal_trace_parameters(enabled):
+    # Verified against kernel/trace/{trace,trace_events}.c in the pinned kernel.
+    # Trace metadata only, not registers, memory, keys, or decrypted storage.
+    if type(enabled) is not bool:raise ValueError('Signal trace flag must be boolean')
+    return 'trace_event=signal:signal_generate,sched:sched_process_exit tp_printk' if enabled else ''
+
+
+def signal_observations(text):
+    events=[];generated=[];exits=[];total=0
+    pattern=re.compile(r'signal_generate: sig=(-?\d+) errno=(-?\d+) code=(-?\d+) comm=(.*?) pid=(\d+) grp=(\d+) res=(\d+)')
+    exit_pattern=re.compile(r'sched_process_exit: comm=(.*?) pid=(\d+) prio=(-?\d+)')
+    for line in text.splitlines():
+        signal_match=pattern.search(line);exit_match=exit_pattern.search(line)
+        if not signal_match and not exit_match:continue
+        total+=1
+        if len(events)>=200:continue
+        events.append(line[:1024])
+        if signal_match:
+            sig,error,code,comm,pid,group,result=signal_match.groups()
+            generated.append({'signal':int(sig),'errno':int(error),'si_code':int(code),
+                              'target_comm':comm[:64],'target_pid':int(pid),
+                              'group':int(group),'generation_result':int(result)})
+        else:
+            comm,pid,priority=exit_match.groups()
+            exits.append({'comm':comm[:64],'pid':int(pid),'priority':int(priority)})
+    return {'events':events,'event_count':total,'events_truncated':total>len(events),
+            'generated_signals':generated,'process_exits':exits,
+            'trace_observed':bool(total),'fatal_cause':'NOT_ESTABLISHED_BY_SIGNAL_GENERATION'}
+
+
 def classify(text):
     lines=text.splitlines()
     block_denials=[line for line in lines if 'avc:' in line and 'denied' in line and
@@ -59,6 +90,7 @@ def classify(text):
         'zygote_termination_observed':bool(re.search(r"Service 'zygote'.*(?:received signal|exited with status)",text)),
         'storage_events':[line for line in lines if re.search(r'userdata|checkpoint needsCheckpoint|mount_all.*late|/data.*(?:Read-only|failed)|(?:Failed|Unable|Cannot).*userdata',line)][:80],
         'security_startup':security_observations(text),
+        'signal_trace':signal_observations(text),
         'second_stage_init_observed':'init second stage started!' in text,
         'logical_partitions_created':re.findall(r'Created logical partition ([A-Za-z0-9_]+) on device',text),
         'boot_events':[line for line in text.splitlines() if any(token in line for token in (
@@ -78,7 +110,7 @@ def classify(text):
     }
 
 
-def probe(kernel,initrd,output,disk=None):
+def probe(kernel,initrd,output,disk=None,trace_signals=False):
     kernel=Path(kernel).resolve(); initrd=Path(initrd).resolve(); output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
     diagnostic=False
@@ -89,6 +121,8 @@ def probe(kernel,initrd,output,disk=None):
           '-kernel',str(kernel),'-initrd',str(initrd),
           '-append','console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 '
           'androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1']
+    trace_options=signal_trace_parameters(trace_signals)
+    if trace_options:args[-1]+=' '+trace_options
     if disk is not None:
         disk=Path(disk).resolve()
         if not disk.is_file() or disk.stat().st_size>8*1024**3:
@@ -122,7 +156,7 @@ def probe(kernel,initrd,output,disk=None):
             try: proc.wait(timeout=0.25)
             except subprocess.TimeoutExpired: pass
     with log.open('rb') as stream: text=stream.read(8*1024*1024).decode(errors='replace')
-    result={'diagnostic_init_rc':diagnostic,'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
+    result={'signal_trace_requested':trace_signals,'diagnostic_init_rc':diagnostic,'guest_dtb_sha256':hashlib.sha256(dtb.read_bytes()).hexdigest() if disk else None,
             'guest_disk_attached':disk is not None,'disk_writes':'disposable QEMU snapshot' if disk else None,
             'console_limit_exceeded':log.stat().st_size>8*1024*1024,
             'qemu_returncode':proc.returncode,'timeout':timed_out,
@@ -139,5 +173,6 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--kernel',required=True);p.add_argument('--initrd',required=True);p.add_argument('--output',required=True)
     p.add_argument('--disk')
-    a=p.parse_args(); result=probe(a.kernel,a.initrd,a.output,a.disk)
+    p.add_argument('--trace-signals',action='store_true',help='Guest-kernel signal/lifecycle tracepoints; no ptrace or policy relaxation')
+    a=p.parse_args(); result=probe(a.kernel,a.initrd,a.output,a.disk,a.trace_signals)
     if not result['kernel_console_observed']: raise SystemExit(1)

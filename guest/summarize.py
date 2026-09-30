@@ -21,7 +21,7 @@ report={'source':json.loads(Path('guest/kernel/source.json').read_text()),
 if image.exists(): report['kernel_image']={'sha256':hashlib.sha256(image.read_bytes()).hexdigest(),'size_bytes':image.stat().st_size}
 config=root/'kernel-out/.config'
 if config.exists():
-    keys=('CONFIG_VIRTIO','CONFIG_SERIAL_AMBA','CONFIG_ANDROID_BINDER','CONFIG_SECURITY_SELINUX','CONFIG_LOCALVERSION','CONFIG_LTO','CONFIG_CFI')
+    keys=('CONFIG_VIRTIO','CONFIG_SERIAL_AMBA','CONFIG_ANDROID_BINDER','CONFIG_SECURITY_SELINUX','CONFIG_LOCALVERSION','CONFIG_LTO','CONFIG_CFI','CONFIG_FTRACE','CONFIG_TRACING','CONFIG_EVENT_TRACING','CONFIG_TRACEPOINTS','CONFIG_TP_PRINTK')
     report['selected_build_config']=[l for l in config.read_text().splitlines() if any(k in l for k in keys)]
 for name,path in [('security_contract',root/'security-contract.json'),('integration',root/'integration-report.json'),('storage',root/'storage/storage-report.json'),('ramdisk',root/'ramdisks/ramdisk-report.json'),('probe',root/'probe/probe-report.json')]:
     if path.exists(): report[name]=json.loads(path.read_text())
