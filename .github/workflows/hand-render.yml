@@ -1,0 +1,112 @@
+name: Original hand renderer decompilation
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [horizon/tracking/prepare_hand_render.py, horizon/tracking/tests/test_prepare_hand_render.py, .github/workflows/hand-render.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-hand-render
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/hand-render
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Prepare verified original engine, no execution
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils
+          python3 -m unittest horizon.tracking.tests.test_prepare_hand_render -v
+          mkdir -p "$WORK/reports" "$WORK/project"
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          from horizon.tracking.prepare_hand_render import prepare
+          root=Path(os.environ['WORK'])
+          result=reconstruct(root/'firmware.zip',root/'images',selected={'system_ext'})
+          (root/'reconstruction.json').write_text(json.dumps(result))
+          prepare(root/'images',root/'reconstruction.json',root/'reports')
+          PY
+      - name: Install pinned static decompiler
+        run: |
+          curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
+            --proto '=https' --proto-redir '=https' \
+            'https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3.2_build/ghidra_11.3.2_PUBLIC_20250415.zip' -o "$WORK/ghidra.zip"
+          echo "99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2  $WORK/ghidra.zip" | sha256sum --check --strict
+          unzip -q "$WORK/ghidra.zip" -d "$WORK"
+      - name: Recover original hand mesh acquisition and rendering functions
+        id: decompile
+        run: |
+          "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
+            -import "$WORK/reports/libshell.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
+            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -postScript DecompileHands.java "$WORK/reports/render-functions.txt" "$WORK/reports/render-strings.json" "$WORK/reports/hand-render-decompilation.json" \
+            -deleteProject > "$WORK/ghidra.log" 2>&1
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          report=json.loads((Path(os.environ['WORK'])/'reports/hand-render-decompilation.json').read_text())
+          assert report['program_sha256'].lower() == '2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0'
+          assert report['functions'], 'No renderer function references recovered'
+          assert any(f['status']=='DECOMPILED_NOT_VALIDATED' for f in report['functions'])
+          PY
+      - name: Record measured outcome
+        if: always()
+        env:
+          OUTCOME: ${{ steps.decompile.outcome }}
+        run: |
+          mkdir -p "$WORK/reports"
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ['WORK']);log=p/'ghidra.log'
+          result={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
+                  'decompile_step':os.environ['OUTCOME'],'horizon_ported':False,'firmware_executed':False,
+                  'analysis_timeout_seconds':900,'renderer_ported':False,'private_abi_validated':False,
+                  'log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-80:]) if log.exists() else None}
+          (p/'reports/hand-render-run.json').write_text(json.dumps(result,indent=2)+'\n')
+          PY
+      - name: Publish evidence only, never proprietary binaries
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          dest=analysis/builds/52168470052900520
+          for name in hand-render-decompilation hand-render-run; do
+            if [ -f "$WORK/reports/$name.json" ]; then
+              cp "$WORK/reports/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original hand renderer evidence [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-hand-renderer-no-binaries
+          path: ${{ env.WORK }}/reports/hand-render-*.json
+          retention-days: 7
