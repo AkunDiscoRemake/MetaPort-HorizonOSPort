@@ -11,8 +11,8 @@
     "host_target": "unprivileged Android APK; no phone flashing"
   },
   "kernel_patch_sha256": "162cec13022fa0f4a18362d65a2590a104ba9ffdd0f78ee4d72e3adb23ed165e",
-  "workflow_run": "36768832018",
-  "project_commit": "46eb1b48d83541a2c2f05a77383fa49fbbcf08c9",
+  "workflow_run": "36770339459",
+  "project_commit": "81206a762290d958806e56846a21eb2c070d2ad1",
   "build_step_outcome": "skipped",
   "ramdisk_step_outcome": "success",
   "storage_step_outcome": "success",
@@ -28,6 +28,7 @@
   "selected_build_config": [
     "CONFIG_LOCALVERSION=\"-metaport-guest\"",
     "# CONFIG_LOCALVERSION_AUTO is not set",
+    "CONFIG_TRACEPOINTS=y",
     "CONFIG_LTO_NONE=y",
     "# CONFIG_LTO_CLANG_FULL is not set",
     "# CONFIG_LTO_CLANG_THIN is not set",
@@ -61,7 +62,12 @@
     "CONFIG_SECURITY_SELINUX_AVC_STATS=y",
     "CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=0",
     "CONFIG_SECURITY_SELINUX_SIDTAB_HASH_BITS=9",
-    "CONFIG_SECURITY_SELINUX_SID2STR_CACHE_SIZE=256"
+    "CONFIG_SECURITY_SELINUX_SID2STR_CACHE_SIZE=256",
+    "CONFIG_EVENT_TRACING=y",
+    "CONFIG_TRACING=y",
+    "CONFIG_TRACING_SUPPORT=y",
+    "CONFIG_FTRACE=y",
+    "# CONFIG_FTRACE_SYSCALLS is not set"
   ],
   "security_contract": {
     "build": "52168470052900520",
@@ -7498,7 +7504,7 @@
     },
     "fresh_metadata_image": {
       "size_bytes": 67108864,
-      "sha256": "557fd741160026415df9996d5532c64ad9e27fb82ff31290d8b9846dfca720ac"
+      "sha256": "9129f8c2d4dde3e251004efe0d665014d7654f477ec2b02ee367f43ccd7e6cfb"
     },
     "userdata": {
       "present": true,
@@ -13566,8 +13572,9 @@
     "note": "Raw vendor+generic ramdisks only. No fstab/SELinux/userdata modification. Probe is not a production bootloader."
   },
   "probe": {
+    "signal_trace_requested": true,
     "diagnostic_init_rc": false,
-    "guest_dtb_sha256": "714ad298af32e6bfa13ee43e788d82e5e9423cc71182da9ac8dadb67e1b9916b",
+    "guest_dtb_sha256": "d57783ad23816c21fa094c0d3e3c38f2c50420fbcb6ef84ed4372756cc37a4a4",
     "guest_disk_attached": true,
     "disk_writes": "disposable QEMU snapshot",
     "console_limit_exceeded": false,
@@ -13608,7 +13615,7 @@
       "-initrd",
       "/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/local-analysis/guest/ramdisks/original-initrd",
       "-append",
-      "console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1 androidboot.boot_devices=soc/1d84000.ufshc androidboot.bootdevice=1d84000.ufshc androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size=8768 androidboot.vbmeta.digest=f5c659fe96a70b767ab1838646c6803db835c00d7f5cfb2345e8c3ace629c8bf",
+      "console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1 trace_event=signal:signal_generate,sched:sched_process_exit tp_printk androidboot.boot_devices=soc/1d84000.ufshc androidboot.bootdevice=1d84000.ufshc androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size=8768 androidboot.vbmeta.digest=f5c659fe96a70b767ab1838646c6803db835c00d7f5cfb2345e8c3ace629c8bf",
       "-dtb",
       "/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/local-analysis/guest/probe/device-tree/guest.dtb",
       "-drive",
@@ -13616,24 +13623,24 @@
       "-device",
       "virtio-blk-device,drive=guestdisk,bus=virtio-mmio-bus.0"
     ],
-    "console_head": "[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x000f0510]\n[    0.000000] Linux version 5.10.240-metaport-guest+ (runner@runnervm3p1d5) (Ubuntu clang version 14.0.0-1ubuntu1.1, Ubuntu LLD 14.0.0) #1 SMP PREEMPT Wed Sep 30 13:12:08 UTC 2026\n[    0.000000] Machine model: metaport,virt\n[    0.000000] earlycon: pl11 at MMIO 0x0000000009000000 (options '')\n[    0.000000] printk: bootconsole [pl11] enabled\n[    0.000000] efi: UEFI not found.\n[    0.000000] Zone ranges:\n[    0.000000]   DMA      [mem 0x0000000040000000-0x000000007fffffff]\n[    0.000000]   DMA32    empty\n[    0.000000]   Normal   empty\n[    0.000000] Movable zone start for each node\n[    0.000000] Early memory node ranges\n[    0.000000]   node   0: [mem 0x0000000040000000-0x000000007fffffff]\n[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]\n[    0.000000] On node 0 totalpages: 262144\n[    0.000000]   DMA zone: 4096 pages used for memmap\n[    0.000000]   DMA zone: 0 pages reserved\n[    0.000000]   DMA zone: 262144 pages, LIFO batch:63\n[    0.000000] cma: Reserved 16 MiB at 0x000000007dc00000\n[    0.000000] psci: probing for conduit method from DT.\n[    0.000000] psci: PSCIv0.2 detected in firmware.\n[    0.000000] psci: Using standard PSCI v0.2 function IDs\n[    0.000000] psci: Trusted OS migration not required\n[    0.000000] percpu: Embedded 32 pages/cpu s92312 r8192 d30568 u131072\n[    0.000000] pcpu-alloc: s92312 r8192 d30568 u131072 alloc=32*4096\n[    0.000000] pcpu-alloc: [0] 0 [0] 1 \n[    0.000000] Detected PIPT I-cache on CPU0\n[    0.000000] CPU features: detected: GIC system register CPU interface\n[    0.000000] CPU features: kernel page table isolation forced ON by KASLR\n[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)\n[    0.000000] CPU features: detected: Spectre-v2\n[    0.000000] CPU features: detected: Spectre-v4\n[    0.000000] CPU features: detected: Address authentication (architected algorithm)\n[    0.000000] CPU features: detected: Branch Target Identification\n[    0.000000] alternatives: patching kernel code\n[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 258048\n[    0.000000] Kernel command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1 androidboot.boot_devices=soc/1d84000.ufshc androidboot.bootdevice=1d84000.ufshc androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size=8768 androidboot.vbmeta.digest=f5c659fe96a70b767ab1838646c6803db835c00d7f5cfb2345e8c3ace629c8bf\n[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)\n[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)\n[    0.000000] mem auto-init: stack:all(zero), heap alloc:on, heap free:off\n[    0.000000] Memory: 961288K/1048576K available (13696K kernel code, 1972K rwdata, 9536K rodata, 768K init, 1565K bss, 70904K reserved, 16384K cma-reserved)\n[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1\n[    0.000000] rcu: Preemptible hierarchical RCU implementation.\n[    0.000000] rcu: \tRCU event tracing is enabled.\n[    0.000000] rcu: \tRCU dyntick-idle grace-period acceleration is enabled.\n[    0.000000] rcu: \tRCU restricting CPUs from NR_CPUS=6 to nr_cpu_ids=2.\n[    0.000000] rcu: \tRCU priority boosting: priority 1 delay 500 ms.\n[    0.000000] \tTrampoline variant of Tasks RCU enabled.\n[    0.000000] \tTracing variant of Tasks RCU enabled.\n[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 30 jiffies.\n[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2\n[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0\n[    0.000000] GICv3: 224 SPIs implemented\n[    0.000000] GICv3: 0 Extended SPIs implemented\n[    0.000000] GICv3: Distributor has no Range Selector support\n[    0.000000] GICv3: 16 PPIs implemented\n[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x00000000080a0000\n[    0.000000] ITS [mem 0x08080000-0x0809ffff]\n[    0.000000] ITS@0x0000000008080000: allocated 8192 Devices @420c0000 (indirect, esz 8, psz 64K, shr 1)\n[    0.000000] ITS@0x0000000008080000: allocated 8192 Interrupt Collections @420d0000 (flat, esz 8, psz 64K, shr 1)\n[    0.000000] GICv3: using LPI property table @0x00000000420e0000\n[    0.000000] GICv3: CPU0: using allocated LPI pending table @0x00000000420f0000\n[    0.000000] rcu: \tOffload RCU callbacks from CPUs: (none).\n[    0.000000] kfence: initialized - using 524288 bytes for 63 objects at 0x(____ptrval____)-0x(____ptrval____)\n[    0.000000] arch_timer: cp15 timer(s) running at 62.50MHz (virt).\n[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns\n[    0.000130] sched_clock: 56 bits at 62MHz, resolution 16ns, wraps every 4398046511096ns\n[    0.001657] random: crng init done\n[    0.013828] Calibrating delay loop (skipped), value calculated using timer frequency.. 125.20 BogoMIPS (lpj=208333)\n[    0.017727] pid_max: default: 32768 minimum: 301\n[    0.024922] LSM: Security Framework initializing\n[    0.027767] SELinux:  Initializing.\n[    0.032067] Mount-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)\n[    0.032560] Mountpoint-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)\n[    0.074821] /cpus/cpu-map: empty cluster\n[    0.095825] rcu: Hierarchical SRCU implementation.\n[    0.115750] Platform MSI: its@8080000 domain created\n[    0.116891] PCI/MSI: /intc@8000000/its@8080000 domain created\n[    0.118153] EFI services will not be available.\n[    0.121252] smp: Bringing up secondary CPUs ...\n[    0.140281] Detected PIPT I-cache on CPU1\n[    0.143094] GICv3: CPU1: found redistributor 1 region 0:0x00000000080c0000\n[    0.143950] GICv3: CPU1: using allocated LPI pending table @0x0000000042100000\n[    0.146431] CPU1: Booted secondary processor 0x0000000001 [0x000f0510]\n[    0.151940] smp: Brought up 1 node, 2 CPUs\n[    0.153795] SMP: Total of 2 processors activated.\n[    0.154199] CPU features: detected: Privileged Access Never\n[    0.154542] CPU features: detected: LSE atomic instructions\n[    0.154842] CPU features: detected: User Access Override\n[    0.155202] CPU features: detected: 32-bit EL0 Support\n[    0.155524] CPU features: detected: Common not Private translations\n[    0.155845] CPU features: detected: Scalable Vector Extension\n[    0.156475] CPU features: detected: CRC32 instructions\n[    0.156780] CPU features: detected: Speculative Store Bypassing Safe (SSBS)\n[    0.157113] CPU features: detected: Speculation barrier (SB)\n[    0.157401] CPU features: detected: Generic authentication (architected algorithm)\n[    0.157787] CPU features: detected: Random Number Generator\n[    0.158123] CPU features: detected: TLB range maintenance instructions\n[    0.158444] CPU features: detected: RCpc load-acquire (LDAPR)\n[    0.332762] SVE: maximum available vector length 256 bytes per vector",
-    "console_tail": "[   59.999790] pwm_tach_fan: disagrees about version of symbol module_layout\n[   60.020921] syncboss_spi: disagrees about version of symbol module_layout\n[   60.035767] syncboss_direct_channel: disagrees about version of symbol module_layout\n[   60.045267] miscfifo: disagrees about version of symbol module_layout\n[   60.061448] miscfifo: disagrees about version of symbol module_layout\n[   60.072399] syncboss_timesync: disagrees about version of symbol module_layout\n[   60.087667] vd6281_adapter: disagrees about version of symbol module_layout\n[   60.105679] ak09973: disagrees about version of symbol module_layout\n[   60.127901] as5510: disagrees about version of symbol module_layout\n[   60.153623] usbvdm: disagrees about version of symbol module_layout\n[   60.165674] usbvdm: disagrees about version of symbol module_layout\n[   60.180354] nautilus: disagrees about version of symbol module_layout\n[   60.191960] usbvdm: disagrees about version of symbol module_layout\n[   60.202281] sensorlock: disagrees about version of symbol module_layout\n[   60.209316] sgm62110_regulator: disagrees about version of symbol module_layout\n[   60.218831] snd_soc_ak4333: disagrees about version of symbol module_layout\n[   60.231837] snd_soc_max98388: disagrees about version of symbol module_layout\n[   60.242928] usbvdm: disagrees about version of symbol module_layout\n[   60.255125] usbvdm: disagrees about version of symbol module_layout\n[   60.266627] usbvdm: disagrees about version of symbol module_layout\n[   60.285994] virtual_sensor: disagrees about version of symbol module_layout\n[   76.062386] init: [libfs_mgr] Skipping '/dev/block/bootdevice/by-name/spunvm' during mount_all\n[   76.068035] init: Unable to set property 'ro.boottime.init.mount_all.early' from uid:0 gid:0 pid:1: Read-only property was already set\n[   76.073766] init: Command 'mount_all /vendor/etc/fstab.${ro.hardware} --early' action=fs (/vendor/etc/init/hw/init.anorak.rc:38) took 20163ms and succeeded\n[   76.075677] init: Service 'insmod_sh' (pid 230) exited with status 0 oneshot service took 24.447001 seconds in background\n[   76.076642] init: Sending signal 9 to service 'insmod_sh' (pid 230) process group...\n[   76.079236] libprocessgroup: Successfully killed process cgroup uid 0 pid 230 in 1ms\n[   76.098000] init: waitpid(230) returned 230\n[   76.099427] init: processing action (fs) from (/system/etc/init/logd.rc:29)\n[   76.108306] init: processing action (fs) from (/system/etc/init/wifi.rc:25)\n[   76.116707] init: processing action (fs) from (/vendor/etc/init/android.hardware.light-service.anorak.rc:35)\n[   76.125449] init: processing action (post-fs) from (/system/etc/init/hw/init.rc:564)\n[   76.134423] init: starting service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)'...\n[   76.259335] init: ... started service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' has pid 247\n[   76.263670] init: SVC_EXEC service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' pid 247 (uid 1000 gid 1000+0 context default) started; waiting...\n[   76.272205] init: Command 'exec - system system -- /system/bin/vdc checkpoint markBootAttempt' action=post-fs (/system/etc/init/hw/init.rc:565) took 145ms and succeeded\n[   76.701045] cutils-trace: Error opening trace file: No such file or directory (2)\n[   76.725941] vdc: Waited 0ms for vold\n[   76.788810] init: Service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' (pid 247) exited with status 0 waiting took 0.621000 seconds\n[   76.790110] init: Sending signal 9 to service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' (pid 247) process group...\n[   76.795968] libprocessgroup: Successfully killed process cgroup uid 1000 pid 247 in 2ms\n[   76.809088] init: waitpid(247) returned 247\n[   76.852065] selinux: SELinux:  Could not stat /sys/kernel/debug: No such file or directory.\n[   76.855023] init: Command 'chown system cache /cache' action=post-fs (/system/etc/init/hw/init.rc:580) took 1ms and failed: lchown() failed: Read-only file system\n[   76.858554] init: Command 'chmod 0770 /cache' action=post-fs (/system/etc/init/hw/init.rc:581) took 1ms and failed: fchmodat() failed: Read-only file system\n[   76.978268] init: Command 'restorecon_recursive /metadata' action=post-fs (/system/etc/init/hw/init.rc:617) took 75ms and succeeded\n[   77.033315] init: Command 'mkdir /metadata/vold' action=post-fs (/system/etc/init/hw/init.rc:618) took 53ms and succeeded\n[   77.186182] init: starting service 'aconfigd'...\n[   77.195042] init: Created socket '/dev/socket/aconfigd', mode 660, user 1000, group 1000\n[   77.348417] init: ... started service 'aconfigd' has pid 248\n[   77.349293] init: SVC_EXEC service 'aconfigd' pid 248 (uid 1000 gid 1000+0 context default) started; waiting...\n[   77.351188] init: Command 'exec_start aconfigd' action=post-fs (/system/etc/init/hw/init.rc:642) took 170ms and succeeded\n[   77.796572] init: Service 'aconfigd' (pid 248) exited with status 0 waiting took 0.559000 seconds\n[   77.797720] init: Sending signal 9 to service 'aconfigd' (pid 248) process group...\n[   77.845411] libprocessgroup: Successfully killed process cgroup uid 1000 pid 248 in 45ms\n[   77.857632] init: Killed 1 additional processes from a oneshot process group for service 'aconfigd'. This is new behavior, previously child processes would not be killed in this case.\n[   77.876142] init: waitpid(248) returned 248\n[   77.876904] init: Untracked pid 249 received signal 9\n[   77.878368] init: Untracked pid 249 did not have an associated service entry and will not be reaped\n[   77.879309] init: waitpid(249) returned 249\n[   77.881672] init: processing action (post-fs) from (/vendor/etc/init/hw/init.eureka.rc:3)\n[   77.884349] init: start_waiting_for_property(\"vendor.all.modules.ready\", \"1\"): already set\n[   82.896474] init: wait for '/sys/devices/platform/vendor/vendor:oculus,nautilus/nautilus/enable' timed out and took 5009ms\n[   82.899681] init: Command 'wait /sys/devices/platform/vendor/vendor:oculus,nautilus/nautilus/enable' action=post-fs (/vendor/etc/init/hw/init.eureka.rc:9) took 5013ms and failed: wait_for_file() failed\n[   82.911509] init: processing action (post-fs) from (/vendor/etc/init/hw/init.anorak.rc:40)\n[   82.916826] init: processing action (post-fs) from (/system/etc/init/gsid.rc:8)\n[   82.955565] init: processing action (post-fs) from (/system/etc/init/recovery-refresh.rc:1)\n[   82.963649] init: starting service 'exec 2 (/system/bin/recovery-refresh)'...\n[   83.092582] init: ... started service 'exec 2 (/system/bin/recovery-refresh)' has pid 250\n[   83.097101] init: Command 'exec_background - system log -- /system/bin/recovery-refresh' action=post-fs (/system/etc/init/recovery-refresh.rc:2) took 139ms and succeeded\n[   83.099894] init: processing action (late-fs) from (/system/etc/init/hw/init.rc:644)\n[   83.121521] init: starting service 'system_suspend'...\n[   83.370200] init: ... started service 'system_suspend' has pid 251\n[   83.385565] init: starting service 'keystore2'...\n[   83.625718] init: ... started service 'keystore2' has pid 252\n[   83.661657] init: starting service 'vendor.atrace-hal-1-0'...\n[   84.050303] init: ... started service 'vendor.atrace-hal-1-0' has pid 253\n[   84.072827] init: starting service 'vendor.boot-hal-1-2'...\n[   84.406364] init: ... started service 'vendor.boot-hal-1-2' has pid 254\n[   84.425183] init: starting service 'gatekeeper-1-0'...\n[   84.629472] init: ... started service 'gatekeeper-1-0' has pid 255\n[   84.662294] init: service 'vendor.keymint-qti' requested start, but it is already running (flags: 4)\n[   84.681189] init: Command 'class_start early_hal' action=late-fs (/system/etc/init/hw/init.rc:651) took 1558ms and succeeded\n[   84.683177] init: Service 'exec 2 (/system/bin/recovery-refresh)' (pid 250) exited with status 254 oneshot service took 1.689000 seconds in background\n[   84.685361] init: Sending signal 9 to service 'exec 2 (/system/bin/recovery-refresh)' (pid 250) process group...\n[   84.689065] libprocessgroup: Successfully killed process cgroup uid 1000 pid 250 in 2ms\n[   84.734818] init: waitpid(250) returned 250\n[   84.755059] init: starting service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)'...\n[   85.496374] servicemanager: getDeviceHalManifest: Reading VINTF information.\n[   85.592167] init: ... started service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' has pid 256\n[   85.648177] init: SVC_EXEC service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' pid 256 (uid 0 gid 0+0 context default) started; waiting...\n[   85.649794] init: Command 'exec -- /system/bin/fsverity_init --load-verified-keys' action=late-fs (/system/etc/init/hw/init.rc:654) took 913ms and succeeded\n[   85.915897] servicemanager: getDeviceHalManifest: Successfully processed VINTF information\n[   85.917131] servicemanager: getFrameworkHalManifest: Reading VINTF information.\n[   86.102808] servicemanager: getFrameworkHalManifest: Successfully processed VINTF information\n[   86.201400] servicemanager: Found android.system.suspend.ISystemSuspend/default in framework VINTF manifest.\n[   86.732686] init: Service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' (pid 256) exited with status 0 waiting took 1.739000 seconds\n[   86.733587] init: Sending signal 9 to service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' (pid 256) process group...\n[   86.739642] libprocessgroup: Successfully killed process cgroup uid 0 pid 256 in 3ms\n[   86.749687] init: waitpid(256) returned 256\n[   86.758181] init: processing action (late-fs) from (/system/etc/init/hw/init.rc:665)\n[   86.772382] init: processing action (late-fs) from (/vendor/etc/init/hw/init.anorak.rc:44)\n[   86.775578] init: start_waiting_for_property(\"hwservicemanager.ready\", \"true\"): already set\n[   86.847052] init: Calling: /system/bin/vdc checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata\n[   87.369034] vdc: Waited 0ms for vold\n[   87.381038] Checkpoint: No magic\n[   87.389346] vdc: Command: checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata Failed: Status(-8, EX_SERVICE_SPECIFIC): '22: No magic'\n[   87.432000] vdc: vdc terminated by exit(25)\n[   87.433072] vdc: \n[   87.437013] init: vdc call failed with error code: 25\n[   87.439038] init: Calling: /system/bin/vdc checkpoint needsCheckpoint\n[   87.859898] vdc: Waited 0ms for vold\n[   87.866955] servicemanager: Could not find android.hardware.boot.IBootControl/default in the VINTF manifest.\n[   87.929697] type=1400 audit(87.793:61): avc:  denied  { read write } for  comm=\"boot@1.2-servic\" name=\"vda\" dev=\"tmpfs\" ino=478 scontext=u:r:hal_bootctl_default:s0 tcontext=u:object_r:vd_device:s0 tclass=blk_file permissive=0\n[   87.975827] init: [libfs_mgr] Invalid ext4 superblock on '/dev/block/bootdevice/by-name/userdata'\n[   87.981096] init: [libfs_mgr] mount_with_alternatives(): skipping mount due to invalid magic, mountpoint=/data blk_dev=/dev/block/vda8 rec[8].fs_type=ext4\n[   87.987190] init: [libfs_mgr] fs_mgr_mount_all(): /dev/block/vda8 is wiped and /data ext4 is formattable. Format it.\n[   87.999141] init: Calling: /system/bin/vdc cryptfs encryptFstab /dev/block/bootdevice/by-name/userdata /data true ext4 \n[   88.405414] vdc: Waited 0ms for vold\n[   88.449144] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   89.464860] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   89.468240] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   90.476264] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   90.479801] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   91.486100] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   91.494628] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   91.686187] type=1400 audit(91.556:62): avc:  denied  { ptrace } for  comm=\"crash_dump64\" scontext=u:r:crash_dump:s0 tcontext=u:r:keystore:s0 tclass=process permissive=0\n[   92.501308] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   92.503658] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   93.511391] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   93.514935] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   94.522206] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   94.524715] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   95.531404] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   95.534941] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   96.542938] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   96.547885] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   97.558504] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   97.561764] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   98.571981] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   98.574909] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   99.582250] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   99.584982] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  100.596060] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  100.601403] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  101.612032] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  101.614780] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  102.626062] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  102.628849] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  103.637928] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  103.640236] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  104.646218] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  104.649317] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  105.656162] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  105.658956] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  106.666011] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  106.668934] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  107.676260] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  107.678822] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  108.685919] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  108.688757] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  109.698872] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  109.702878] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  110.709356] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  110.712464] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  111.721224] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  111.723595] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  112.731033] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  112.733607] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  113.742459] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  113.746512] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  114.755116] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  114.761069] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  115.775102] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  115.784672] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  116.795670] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  116.799441] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  117.811144] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  117.813507] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  118.820964] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  118.823316] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  119.830288] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  119.833448] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  120.841395] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  120.843733] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  121.852790] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  121.856396] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  122.865715] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  122.868572] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  123.875243] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  123.878231] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  124.885212] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  124.888002] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  125.898243] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  125.901152] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  126.907814] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  126.910236] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  127.918401] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  127.921260] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  128.928233] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  128.930931] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  129.941040] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  129.943584] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  130.951597] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  130.954511] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  131.964843] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  131.968131] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  132.974897] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  132.977916] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  133.989857] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  133.993388] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  135.002191] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  135.006598] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  136.013376] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  136.016321] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  137.025245] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  137.028223] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  138.038304] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  138.041454] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  139.051953] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  139.055101] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  140.065914] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  140.069512] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  141.077073] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  141.080149] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  142.089881] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  142.102007] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  143.113402] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  143.116778] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  144.125916] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  144.129143] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  145.138867] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  145.141777] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  146.151579] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  146.155007] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  147.162289] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  147.165890] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  148.172852] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  148.175891] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  149.184500] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  149.188040] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  150.196607] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  150.199732] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  151.206132] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  151.209728] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  152.216894] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  152.222242] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  153.233368] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  153.236080] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  154.243178] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  154.246001] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  155.254686] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  155.259390] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  156.274669] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  156.277000] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  157.289383] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  157.292127] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  158.299164] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  158.302198] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  159.316045] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  159.322686] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  160.341216] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  160.348703] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  161.359913] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  161.363049] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  162.369216] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  162.372440] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  163.379642] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  163.383014] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  164.391409] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  164.395272] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  165.403070] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  165.406229] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  166.412716] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  166.416027] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  167.426703] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  167.430360] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  168.436992] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  168.439984] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  169.449096] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  169.453357] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  170.462687] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  170.465678] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  171.474472] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  171.476910] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  172.485680] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  172.488393] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  173.495128] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  173.498433] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  174.505373] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  174.508824] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  175.519364] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  175.522474] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  176.529541] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  176.533369] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  177.541188] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  177.544477] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  178.552455] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  178.555665] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\nqemu-system-aarch64: terminating on signal 15 from pid 3781 (python3)",
+    "console_head": "[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x000f0510]\n[    0.000000] Linux version 5.10.240-metaport-guest+ (runner@runnervm3p1d5) (Ubuntu clang version 14.0.0-1ubuntu1.1, Ubuntu LLD 14.0.0) #1 SMP PREEMPT Wed Sep 30 13:12:08 UTC 2026\n[    0.000000] Machine model: metaport,virt\n[    0.000000] earlycon: pl11 at MMIO 0x0000000009000000 (options '')\n[    0.000000] printk: bootconsole [pl11] enabled\n[    0.000000] efi: UEFI not found.\n[    0.000000] Zone ranges:\n[    0.000000]   DMA      [mem 0x0000000040000000-0x000000007fffffff]\n[    0.000000]   DMA32    empty\n[    0.000000]   Normal   empty\n[    0.000000] Movable zone start for each node\n[    0.000000] Early memory node ranges\n[    0.000000]   node   0: [mem 0x0000000040000000-0x000000007fffffff]\n[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]\n[    0.000000] On node 0 totalpages: 262144\n[    0.000000]   DMA zone: 4096 pages used for memmap\n[    0.000000]   DMA zone: 0 pages reserved\n[    0.000000]   DMA zone: 262144 pages, LIFO batch:63\n[    0.000000] cma: Reserved 16 MiB at 0x000000007dc00000\n[    0.000000] psci: probing for conduit method from DT.\n[    0.000000] psci: PSCIv0.2 detected in firmware.\n[    0.000000] psci: Using standard PSCI v0.2 function IDs\n[    0.000000] psci: Trusted OS migration not required\n[    0.000000] percpu: Embedded 32 pages/cpu s92312 r8192 d30568 u131072\n[    0.000000] pcpu-alloc: s92312 r8192 d30568 u131072 alloc=32*4096\n[    0.000000] pcpu-alloc: [0] 0 [0] 1 \n[    0.000000] Detected PIPT I-cache on CPU0\n[    0.000000] CPU features: detected: GIC system register CPU interface\n[    0.000000] CPU features: kernel page table isolation forced ON by KASLR\n[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)\n[    0.000000] CPU features: detected: Spectre-v2\n[    0.000000] CPU features: detected: Spectre-v4\n[    0.000000] CPU features: detected: Address authentication (architected algorithm)\n[    0.000000] CPU features: detected: Branch Target Identification\n[    0.000000] alternatives: patching kernel code\n[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 258048\n[    0.000000] Kernel command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 printk.devkmsg=on loglevel=8 androidboot.hardware=eureka androidboot.slot_suffix=_a androidboot.force_normal_boot=1 trace_event=signal:signal_generate,sched:sched_process_exit tp_printk androidboot.boot_devices=soc/1d84000.ufshc androidboot.bootdevice=1d84000.ufshc androidboot.vbmeta.hash_alg=sha256 androidboot.vbmeta.size=8768 androidboot.vbmeta.digest=f5c659fe96a70b767ab1838646c6803db835c00d7f5cfb2345e8c3ace629c8bf\n[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)\n[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)\n[    0.000000] mem auto-init: stack:all(zero), heap alloc:on, heap free:off\n[    0.000000] Memory: 961288K/1048576K available (13696K kernel code, 1972K rwdata, 9536K rodata, 768K init, 1565K bss, 70904K reserved, 16384K cma-reserved)\n[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1\n[    0.000000] rcu: Preemptible hierarchical RCU implementation.\n[    0.000000] rcu: \tRCU event tracing is enabled.\n[    0.000000] rcu: \tRCU dyntick-idle grace-period acceleration is enabled.\n[    0.000000] rcu: \tRCU restricting CPUs from NR_CPUS=6 to nr_cpu_ids=2.\n[    0.000000] rcu: \tRCU priority boosting: priority 1 delay 500 ms.\n[    0.000000] \tTrampoline variant of Tasks RCU enabled.\n[    0.000000] \tTracing variant of Tasks RCU enabled.\n[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 30 jiffies.\n[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2\n[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0\n[    0.000000] GICv3: 224 SPIs implemented\n[    0.000000] GICv3: 0 Extended SPIs implemented\n[    0.000000] GICv3: Distributor has no Range Selector support\n[    0.000000] GICv3: 16 PPIs implemented\n[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x00000000080a0000\n[    0.000000] ITS [mem 0x08080000-0x0809ffff]\n[    0.000000] ITS@0x0000000008080000: allocated 8192 Devices @42230000 (indirect, esz 8, psz 64K, shr 1)\n[    0.000000] ITS@0x0000000008080000: allocated 8192 Interrupt Collections @42240000 (flat, esz 8, psz 64K, shr 1)\n[    0.000000] GICv3: using LPI property table @0x0000000042250000\n[    0.000000] GICv3: CPU0: using allocated LPI pending table @0x0000000042260000\n[    0.000000] rcu: \tOffload RCU callbacks from CPUs: (none).\n[    0.000000] kfence: initialized - using 524288 bytes for 63 objects at 0x(____ptrval____)-0x(____ptrval____)\n[    0.000000] arch_timer: cp15 timer(s) running at 62.50MHz (virt).\n[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns\n[    0.000117] sched_clock: 56 bits at 62MHz, resolution 16ns, wraps every 4398046511096ns\n[    0.001305] random: crng init done\n[    0.010909] Calibrating delay loop (skipped), value calculated using timer frequency.. 125.20 BogoMIPS (lpj=208333)\n[    0.014027] pid_max: default: 32768 minimum: 301\n[    0.019941] LSM: Security Framework initializing\n[    0.022026] SELinux:  Initializing.\n[    0.025483] Mount-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)\n[    0.026049] Mountpoint-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)\n[    0.059253] /cpus/cpu-map: empty cluster\n[    0.076871] rcu: Hierarchical SRCU implementation.\n[    0.106323] Platform MSI: its@8080000 domain created\n[    0.107304] PCI/MSI: /intc@8000000/its@8080000 domain created\n[    0.108340] EFI services will not be available.\n[    0.110720] smp: Bringing up secondary CPUs ...\n[    0.132750] Detected PIPT I-cache on CPU1\n[    0.134866] GICv3: CPU1: found redistributor 1 region 0:0x00000000080c0000\n[    0.135540] GICv3: CPU1: using allocated LPI pending table @0x0000000042270000\n[    0.137513] CPU1: Booted secondary processor 0x0000000001 [0x000f0510]\n[    0.142319] smp: Brought up 1 node, 2 CPUs\n[    0.143894] SMP: Total of 2 processors activated.\n[    0.144264] CPU features: detected: Privileged Access Never\n[    0.144529] CPU features: detected: LSE atomic instructions\n[    0.144776] CPU features: detected: User Access Override\n[    0.145095] CPU features: detected: 32-bit EL0 Support\n[    0.145352] CPU features: detected: Common not Private translations\n[    0.145620] CPU features: detected: Scalable Vector Extension\n[    0.145903] CPU features: detected: CRC32 instructions\n[    0.146147] CPU features: detected: Speculative Store Bypassing Safe (SSBS)\n[    0.146591] CPU features: detected: Speculation barrier (SB)\n[    0.146841] CPU features: detected: Generic authentication (architected algorithm)\n[    0.147258] CPU features: detected: Random Number Generator\n[    0.147645] CPU features: detected: TLB range maintenance instructions\n[    0.147921] CPU features: detected: RCpc load-acquire (LDAPR)\n[    0.326177] SVE: maximum available vector length 256 bytes per vector",
+    "console_tail": "[   52.076338] usbvdm: disagrees about version of symbol module_layout\n[   52.090460] virtual_sensor: disagrees about version of symbol module_layout\n[   68.184425] init: [libfs_mgr] Skipping '/dev/block/bootdevice/by-name/spunvm' during mount_all\n[   68.190126] init: Unable to set property 'ro.boottime.init.mount_all.early' from uid:0 gid:0 pid:1: Read-only property was already set\n[   68.196518] init: Command 'mount_all /vendor/etc/fstab.${ro.hardware} --early' action=fs (/vendor/etc/init/hw/init.anorak.rc:38) took 20213ms and succeeded\n[   68.197693] init: Service 'insmod_sh' (pid 229) exited with status 0 oneshot service took 22.868999 seconds in background\n[   68.198380] init: Sending signal 9 to service 'insmod_sh' (pid 229) process group...\n[   68.201322] libprocessgroup: Successfully killed process cgroup uid 0 pid 229 in 2ms\n[   68.216694] init: waitpid(229) returned 229\n[   68.217810] init: processing action (fs) from (/system/etc/init/logd.rc:29)\n[   68.224685] init: processing action (fs) from (/system/etc/init/wifi.rc:25)\n[   68.229450] init: processing action (fs) from (/vendor/etc/init/android.hardware.light-service.anorak.rc:35)\n[   68.235189] init: processing action (post-fs) from (/system/etc/init/hw/init.rc:564)\n[   68.241570] init: starting service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)'...\n[   68.334759] init: ... started service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' has pid 246\n[   68.337215] init: SVC_EXEC service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' pid 246 (uid 1000 gid 1000+0 context default) started; waiting...\n[   68.338368] init: Command 'exec - system system -- /system/bin/vdc checkpoint markBootAttempt' action=post-fs (/system/etc/init/hw/init.rc:565) took 102ms and succeeded\n[   68.644729] cutils-trace: Error opening trace file: No such file or directory (2)\n[   68.666444] vdc: Waited 0ms for vold\n[   68.722110] init: Service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' (pid 246) exited with status 0 waiting took 0.453000 seconds\n[   68.723524] init: Sending signal 9 to service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)' (pid 246) process group...\n[   68.727315] libprocessgroup: Successfully killed process cgroup uid 1000 pid 246 in 3ms\n[   68.735424] init: waitpid(246) returned 246\n[   68.765967] selinux: SELinux:  Could not stat /sys/kernel/debug: No such file or directory.\n[   68.767986] init: Command 'chown system cache /cache' action=post-fs (/system/etc/init/hw/init.rc:580) took 0ms and failed: lchown() failed: Read-only file system\n[   68.770331] init: Command 'chmod 0770 /cache' action=post-fs (/system/etc/init/hw/init.rc:581) took 0ms and failed: fchmodat() failed: Read-only file system\n[   68.856854] init: Command 'restorecon_recursive /metadata' action=post-fs (/system/etc/init/hw/init.rc:617) took 53ms and succeeded\n[   68.987660] init: starting service 'aconfigd'...\n[   68.994422] init: Created socket '/dev/socket/aconfigd', mode 660, user 1000, group 1000\n[   69.101179] init: ... started service 'aconfigd' has pid 247\n[   69.101828] init: SVC_EXEC service 'aconfigd' pid 247 (uid 1000 gid 1000+0 context default) started; waiting...\n[   69.103213] init: Command 'exec_start aconfigd' action=post-fs (/system/etc/init/hw/init.rc:642) took 119ms and succeeded\n[   69.483684] init: Service 'aconfigd' (pid 247) exited with status 0 waiting took 0.462000 seconds\n[   69.484305] init: Sending signal 9 to service 'aconfigd' (pid 247) process group...\n[   69.509879] libprocessgroup: Successfully killed process cgroup uid 1000 pid 247 in 24ms\n[   69.522128] init: Killed 1 additional processes from a oneshot process group for service 'aconfigd'. This is new behavior, previously child processes would not be killed in this case.\n[   69.538136] init: waitpid(247) returned 247\n[   69.538699] init: Untracked pid 248 received signal 9\n[   69.539638] init: Untracked pid 248 did not have an associated service entry and will not be reaped\n[   69.541053] init: waitpid(248) returned 248\n[   69.542191] init: processing action (post-fs) from (/vendor/etc/init/hw/init.eureka.rc:3)\n[   69.545082] init: start_waiting_for_property(\"vendor.all.modules.ready\", \"1\"): already set\n[   74.550811] init: wait for '/sys/devices/platform/vendor/vendor:oculus,nautilus/nautilus/enable' timed out and took 5002ms\n[   74.554065] init: Command 'wait /sys/devices/platform/vendor/vendor:oculus,nautilus/nautilus/enable' action=post-fs (/vendor/etc/init/hw/init.eureka.rc:9) took 5006ms and failed: wait_for_file() failed\n[   74.560469] init: processing action (post-fs) from (/vendor/etc/init/hw/init.anorak.rc:40)\n[   74.564747] init: processing action (post-fs) from (/system/etc/init/gsid.rc:8)\n[   74.594535] init: processing action (post-fs) from (/system/etc/init/recovery-refresh.rc:1)\n[   74.602061] init: starting service 'exec 2 (/system/bin/recovery-refresh)'...\n[   74.687791] init: ... started service 'exec 2 (/system/bin/recovery-refresh)' has pid 249\n[   74.691890] init: Command 'exec_background - system log -- /system/bin/recovery-refresh' action=post-fs (/system/etc/init/recovery-refresh.rc:2) took 93ms and succeeded\n[   74.694376] init: processing action (late-fs) from (/system/etc/init/hw/init.rc:644)\n[   74.707906] init: starting service 'system_suspend'...\n[   74.852482] init: ... started service 'system_suspend' has pid 250\n[   74.865408] init: starting service 'keystore2'...\n[   75.168487] init: ... started service 'keystore2' has pid 251\n[   75.183645] init: starting service 'vendor.atrace-hal-1-0'...\n[   75.460586] init: ... started service 'vendor.atrace-hal-1-0' has pid 252\n[   75.481103] init: starting service 'vendor.boot-hal-1-2'...\n[   75.891854] servicemanager: getDeviceHalManifest: Reading VINTF information.\n[   75.947404] init: ... started service 'vendor.boot-hal-1-2' has pid 253\n[   75.978447] init: starting service 'gatekeeper-1-0'...\n[   76.493805] init: ... started service 'gatekeeper-1-0' has pid 256\n[   76.494674] init: service 'vendor.keymint-qti' requested start, but it is already running (flags: 4)\n[   76.507117] servicemanager: getDeviceHalManifest: Successfully processed VINTF information\n[   76.508028] servicemanager: getFrameworkHalManifest: Reading VINTF information.\n[   76.519562] init: Command 'class_start early_hal' action=late-fs (/system/etc/init/hw/init.rc:651) took 1797ms and succeeded\n[   76.520939] init: Service 'exec 2 (/system/bin/recovery-refresh)' (pid 249) exited with status 254 oneshot service took 1.892000 seconds in background\n[   76.521963] init: Sending signal 9 to service 'exec 2 (/system/bin/recovery-refresh)' (pid 249) process group...\n[   76.538105] libprocessgroup: Successfully killed process cgroup uid 1000 pid 249 in 2ms\n[   76.551644] init: waitpid(249) returned 249\n[   76.593854] init: starting service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)'...\n[   76.681648] servicemanager: getFrameworkHalManifest: Successfully processed VINTF information\n[   76.686874] servicemanager: Found android.system.suspend.ISystemSuspend/default in framework VINTF manifest.\n[   76.923533] init: ... started service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' has pid 257\n[   76.925206] init: SVC_EXEC service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' pid 257 (uid 0 gid 0+0 context default) started; waiting...\n[   76.927762] init: Command 'exec -- /system/bin/fsverity_init --load-verified-keys' action=late-fs (/system/etc/init/hw/init.rc:654) took 348ms and succeeded\n[   77.518047] init: Service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' (pid 257) exited with status 0 waiting took 0.790000 seconds\n[   77.518858] init: Sending signal 9 to service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)' (pid 257) process group...\n[   77.522041] libprocessgroup: Successfully killed process cgroup uid 0 pid 257 in 1ms\n[   77.530997] init: waitpid(257) returned 257\n[   77.532111] init: processing action (late-fs) from (/system/etc/init/hw/init.rc:665)\n[   77.542790] init: processing action (late-fs) from (/vendor/etc/init/hw/init.anorak.rc:44)\n[   77.544566] init: start_waiting_for_property(\"hwservicemanager.ready\", \"true\"): already set\n[   77.560328] init: Calling: /system/bin/vdc checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata\n[   77.940808] vdc: Waited 0ms for vold\n[   77.952219] Checkpoint: No magic\n[   77.959667] vdc: Command: checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata Failed: Status(-8, EX_SERVICE_SPECIFIC): '22: No magic'\n[   77.991396] vdc: vdc terminated by exit(25)\n[   77.991788] vdc: \n[   77.994813] init: vdc call failed with error code: 25\n[   77.996911] init: Calling: /system/bin/vdc checkpoint needsCheckpoint\n[   78.335227] vdc: Waited 0ms for vold\n[   78.340927] servicemanager: Could not find android.hardware.boot.IBootControl/default in the VINTF manifest.\n[   78.387195] type=1400 audit(78.296:61): avc:  denied  { read write } for  comm=\"boot@1.2-servic\" name=\"vda\" dev=\"tmpfs\" ino=476 scontext=u:r:hal_bootctl_default:s0 tcontext=u:object_r:vd_device:s0 tclass=blk_file permissive=0\n[   78.436944] init: [libfs_mgr] Invalid ext4 superblock on '/dev/block/bootdevice/by-name/userdata'\n[   78.440422] init: [libfs_mgr] mount_with_alternatives(): skipping mount due to invalid magic, mountpoint=/data blk_dev=/dev/block/vda8 rec[8].fs_type=ext4\n[   78.446786] init: [libfs_mgr] fs_mgr_mount_all(): /dev/block/vda8 is wiped and /data ext4 is formattable. Format it.\n[   78.453890] init: Calling: /system/bin/vdc cryptfs encryptFstab /dev/block/bootdevice/by-name/userdata /data true ext4 \n[   78.786564] vdc: Waited 0ms for vold\n[   78.810639] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   79.820818] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   79.823160] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   80.830587] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   80.833451] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   81.839737] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   81.841734] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   82.438773] type=1400 audit(82.349:62): avc:  denied  { ptrace } for  comm=\"crash_dump64\" scontext=u:r:crash_dump:s0 tcontext=u:r:keystore:s0 tclass=process permissive=0\n[   82.846517] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   82.848645] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   83.857735] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   83.860570] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   84.869628] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   84.871957] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   85.876898] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   85.880252] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   86.885838] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   86.888671] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   87.896057] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   87.898279] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   88.904644] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   88.908170] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   89.913965] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   89.916877] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   90.922081] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   90.924792] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   91.931051] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   91.933657] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   92.940718] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   92.943532] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   93.950812] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   94.101985] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   95.110917] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   95.113988] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   96.119375] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   96.121360] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   97.127660] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   97.130474] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   98.135389] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   98.138172] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[   99.147684] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[   99.150133] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  100.157093] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  100.159454] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  101.168096] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  101.170501] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  102.179802] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  102.182133] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  103.187641] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  103.190028] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  104.198398] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  104.200826] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  105.206603] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  105.208901] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  106.214129] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  106.216880] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  107.224224] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  107.226935] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  108.233105] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  108.236182] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  109.245071] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  109.247475] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  110.255923] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  110.258286] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  111.264771] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  111.267695] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  112.274079] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  112.276478] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  113.284140] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  113.286661] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  114.294409] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  114.297154] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  115.304499] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  115.306978] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  116.314279] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  116.317032] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  117.324656] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  117.327134] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  118.334664] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  118.337089] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  119.344791] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  119.347630] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  120.354221] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  120.356645] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  121.362575] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  121.364837] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  122.371254] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  122.373887] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  123.379683] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  123.382020] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  124.387420] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  124.389851] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  125.398142] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  125.400557] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  126.407407] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  126.409815] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  127.417950] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  127.420855] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  128.427229] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  128.429688] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  129.439890] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  129.443810] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  130.458247] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  130.461168] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  131.467056] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  131.469468] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  132.475101] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  132.478895] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  133.484065] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  133.486966] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  134.493586] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  134.496060] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  135.502093] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  135.505218] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  136.510895] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  136.513705] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  137.523654] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  137.526479] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  138.537355] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  138.540379] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  139.546882] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  139.550804] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  140.557635] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  140.560744] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  141.567290] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  141.571631] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  142.580988] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  142.584462] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  143.591562] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  143.594553] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  144.601072] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  144.603375] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  145.611243] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  145.614528] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  146.620378] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  146.623040] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  147.628364] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  147.630721] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  148.640034] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  148.642188] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  149.650472] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  149.652885] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  150.657875] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  150.660665] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  151.669723] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  151.672247] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  152.681869] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  152.684238] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  153.691967] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  153.695161] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  154.702114] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  154.704591] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  155.710197] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  155.713125] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  156.720513] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  156.723310] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  157.732145] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  157.735148] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  158.740925] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  158.744248] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  159.750949] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  159.753659] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  160.759679] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  160.762738] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  161.767609] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  161.770165] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  162.778426] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  162.780883] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  163.787746] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  163.790678] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  164.798916] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  164.801698] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  165.807278] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  165.810080] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  166.818056] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  166.821211] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  167.827051] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  167.830624] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  168.836418] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  168.838863] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  169.847760] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  169.851808] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  170.861220] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  170.863666] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  171.871236] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  171.874879] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  172.880933] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  172.884663] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  173.891786] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  173.897830] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  174.907529] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  174.910446] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  175.915987] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  175.918369] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  176.924482] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  176.927075] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  177.932083] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  177.934951] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\n[  178.943395] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)\n[  178.945980] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).\nqemu-system-aarch64: terminating on signal 15 from pid 3581 (python3)",
     "kernel_console_observed": true,
     "recovery_mount_skip_observed": false,
     "original_init_exec_attempt_observed": true,
     "init_sigill_observed": false,
     "original_init_marker_observed": true,
     "bootcontrol_events": [
-      "[   84.072827] init: starting service 'vendor.boot-hal-1-2'...",
-      "[   84.406364] init: ... started service 'vendor.boot-hal-1-2' has pid 254",
-      "[   87.866955] servicemanager: Could not find android.hardware.boot.IBootControl/default in the VINTF manifest.",
-      "[   87.929697] type=1400 audit(87.793:61): avc:  denied  { read write } for  comm=\"boot@1.2-servic\" name=\"vda\" dev=\"tmpfs\" ino=478 scontext=u:r:hal_bootctl_default:s0 tcontext=u:object_r:vd_device:s0 tclass=blk_file permissive=0"
+      "[   75.481103] init: starting service 'vendor.boot-hal-1-2'...",
+      "[   75.947404] init: ... started service 'vendor.boot-hal-1-2' has pid 253",
+      "[   78.340927] servicemanager: Could not find android.hardware.boot.IBootControl/default in the VINTF manifest.",
+      "[   78.387195] type=1400 audit(78.296:61): avc:  denied  { read write } for  comm=\"boot@1.2-servic\" name=\"vda\" dev=\"tmpfs\" ino=476 scontext=u:r:hal_bootctl_default:s0 tcontext=u:object_r:vd_device:s0 tclass=blk_file permissive=0"
     ],
     "diagnostic_events": [
       "[    0.000000] Linux version 5.10.240-metaport-guest+ (runner@runnervm3p1d5) (Ubuntu clang version 14.0.0-1ubuntu1.1, Ubuntu LLD 14.0.0) #1 SMP PREEMPT Wed Sep 30 13:12:08 UTC 2026",
       "[    0.000000] Machine model: metaport,virt",
-      "[    0.826137] OF: MetaPort: virtio boot controller alias 1d84000.ufshc, MMIO 0x0a000000",
-      "[   15.329019] init: Parsing file /system/etc/init/logcatd.rc..."
+      "[    0.724497] OF: MetaPort: virtio boot controller alias 1d84000.ufshc, MMIO 0x0a000000",
+      "[   12.229395] init: Parsing file /system/etc/init/logcatd.rc..."
     ],
     "controller_alias_observed": true,
     "bootcontrol_hidl12_client_observed": false,
@@ -13641,45 +13648,45 @@
     "zygote_start_attempt_observed": false,
     "zygote_termination_observed": false,
     "storage_events": [
-      "[   43.228786] init: Command 'mkdir /persist/data 0700 system system' action=early-init (/vendor/etc/init/hw/init.anorak.rc:18) took 3ms and failed: mkdir() failed on /persist/data: Read-only file system",
-      "[   86.847052] init: Calling: /system/bin/vdc checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata",
-      "[   87.389346] vdc: Command: checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata Failed: Status(-8, EX_SERVICE_SPECIFIC): '22: No magic'",
-      "[   87.439038] init: Calling: /system/bin/vdc checkpoint needsCheckpoint",
-      "[   87.975827] init: [libfs_mgr] Invalid ext4 superblock on '/dev/block/bootdevice/by-name/userdata'",
-      "[   87.999141] init: Calling: /system/bin/vdc cryptfs encryptFstab /dev/block/bootdevice/by-name/userdata /data true ext4 "
+      "[   38.503598] init: Command 'mkdir /persist/data 0700 system system' action=early-init (/vendor/etc/init/hw/init.anorak.rc:18) took 3ms and failed: mkdir() failed on /persist/data: Read-only file system",
+      "[   77.560328] init: Calling: /system/bin/vdc checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata",
+      "[   77.959667] vdc: Command: checkpoint restoreCheckpoint /dev/block/bootdevice/by-name/userdata Failed: Status(-8, EX_SERVICE_SPECIFIC): '22: No magic'",
+      "[   77.996911] init: Calling: /system/bin/vdc checkpoint needsCheckpoint",
+      "[   78.436944] init: [libfs_mgr] Invalid ext4 superblock on '/dev/block/bootdevice/by-name/userdata'",
+      "[   78.453890] init: Calling: /system/bin/vdc cryptfs encryptFstab /dev/block/bootdevice/by-name/userdata /data true ext4 "
     ],
     "security_startup": {
       "events": [
-        "[   15.309337] init: Parsing file /system/etc/init/keystore2.rc...",
-        "[   15.799304] init: Parsing file /vendor/etc/init/android.hardware.security.keymint-service-qti.rc...",
-        "[   15.851888] init: Parsing file /vendor/etc/init/qseecomd.rc...",
-        "[   15.903671] init: Parsing file /vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc...",
-        "[   53.109927] init: processing action (init) from (/vendor/etc/init/android.hardware.security.keymint-service-qti.rc:5)",
-        "[   53.126155] init: starting service 'vendor.keymint-qti'...",
-        "[   53.282575] init: ... started service 'vendor.keymint-qti' has pid 233",
-        "[   53.283576] init: Command 'start vendor.keymint-qti' action=init (/vendor/etc/init/android.hardware.security.keymint-service-qti.rc:6) took 168ms and succeeded",
-        "[   53.286646] init: processing action (init) from (/vendor/etc/init/qseecomd.rc:5)",
-        "[   53.308327] init: starting service 'vendor.qseecomd'...",
-        "[   53.615158] init: ... started service 'vendor.qseecomd' has pid 234",
-        "[   53.616314] init: Command 'start vendor.qseecomd' action=init (/vendor/etc/init/qseecomd.rc:6) took 328ms and succeeded",
-        "[   53.618573] init: processing action (init) from (/vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc:8)",
-        "[   53.633466] init: starting service 'qseecom-service'...",
-        "[   53.883732] init: ... started service 'qseecom-service' has pid 235",
-        "[   53.892368] init: Command 'start qseecom-service' action=init (/vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc:9) took 272ms and succeeded",
-        "[   83.385565] init: starting service 'keystore2'...",
-        "[   83.625718] init: ... started service 'keystore2' has pid 252",
-        "[   84.662294] init: service 'vendor.keymint-qti' requested start, but it is already running (flags: 4)",
-        "[   87.999141] init: Calling: /system/bin/vdc cryptfs encryptFstab /dev/block/bootdevice/by-name/userdata /data true ext4 ",
-        "[   88.449144] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).",
-        "[   89.464860] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)",
-        "[   89.468240] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).",
-        "[   90.476264] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)",
-        "[   90.479801] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).",
-        "[   91.486100] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)",
-        "[   91.686187] type=1400 audit(91.556:62): avc:  denied  { ptrace } for  comm=\"crash_dump64\" scontext=u:r:crash_dump:s0 tcontext=u:r:keystore:s0 tclass=process permissive=0"
+        "[   12.214724] init: Parsing file /system/etc/init/keystore2.rc...",
+        "[   12.574169] init: Parsing file /vendor/etc/init/android.hardware.security.keymint-service-qti.rc...",
+        "[   12.610871] init: Parsing file /vendor/etc/init/qseecomd.rc...",
+        "[   12.653764] init: Parsing file /vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc...",
+        "[   46.323773] init: processing action (init) from (/vendor/etc/init/android.hardware.security.keymint-service-qti.rc:5)",
+        "[   46.333828] init: starting service 'vendor.keymint-qti'...",
+        "[   46.443615] init: ... started service 'vendor.keymint-qti' has pid 231",
+        "[   46.444423] init: Command 'start vendor.keymint-qti' action=init (/vendor/etc/init/android.hardware.security.keymint-service-qti.rc:6) took 119ms and succeeded",
+        "[   46.453175] init: processing action (init) from (/vendor/etc/init/qseecomd.rc:5)",
+        "[   46.468093] init: starting service 'vendor.qseecomd'...",
+        "[   46.680401] init: ... started service 'vendor.qseecomd' has pid 232",
+        "[   46.681183] init: Command 'start vendor.qseecomd' action=init (/vendor/etc/init/qseecomd.rc:6) took 227ms and succeeded",
+        "[   46.689959] init: processing action (init) from (/vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc:8)",
+        "[   46.714483] init: starting service 'qseecom-service'...",
+        "[   47.012799] init: ... started service 'qseecom-service' has pid 234",
+        "[   47.013693] init: Command 'start qseecom-service' action=init (/vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc:9) took 322ms and succeeded",
+        "[   74.865408] init: starting service 'keystore2'...",
+        "[   75.168487] init: ... started service 'keystore2' has pid 251",
+        "[   76.494674] init: service 'vendor.keymint-qti' requested start, but it is already running (flags: 4)",
+        "[   78.453890] init: Calling: /system/bin/vdc cryptfs encryptFstab /dev/block/bootdevice/by-name/userdata /data true ext4 ",
+        "[   78.810639] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).",
+        "[   79.820818] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)",
+        "[   79.823160] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).",
+        "[   80.830587] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)",
+        "[   80.833451] servicemanager: Since 'android.system.keystore2.IKeystoreService/default' could not be found, trying to start it as a lazy AIDL service. (if it's not configured to be a lazy service, it may be stuck starting or still starting).",
+        "[   81.839737] ServiceManagerCppClient: Waited one second for android.system.keystore2.IKeystoreService/default (is service started? Number of threads started in the threadpool: 16. Are binder threads started and available?)",
+        "[   82.438773] type=1400 audit(82.349:62): avc:  denied  { ptrace } for  comm=\"crash_dump64\" scontext=u:r:crash_dump:s0 tcontext=u:r:keystore:s0 tclass=process permissive=0"
       ],
-      "matching_line_count": 200,
-      "omitted_line_count": 173,
+      "matching_line_count": 220,
+      "omitted_line_count": 193,
       "keystore_start_attempt_observed": true,
       "keymint_start_attempt_observed": true,
       "keystore_service_wait_observed": true,
@@ -13687,6 +13694,773 @@
       "keystore_registered": "NOT_ESTABLISHED",
       "userdata_mounted": "NOT_ESTABLISHED",
       "root_cause": "NOT_ESTABLISHED_FROM_LOG_MATCHES"
+    },
+    "signal_trace": {
+      "events": [
+        "[    0.958506] sched_process_exit: comm=cryptomgr_test pid=32 prio=120",
+        "[    0.959321] sched_process_exit: comm=cryptomgr_test pid=33 prio=120",
+        "[    0.963178] sched_process_exit: comm=cryptomgr_test pid=34 prio=120",
+        "[    0.964400] sched_process_exit: comm=cryptomgr_test pid=35 prio=120",
+        "[    0.966517] sched_process_exit: comm=cryptomgr_test pid=36 prio=120",
+        "[    0.967886] sched_process_exit: comm=cryptomgr_test pid=37 prio=120",
+        "[    0.969727] sched_process_exit: comm=cryptomgr_test pid=38 prio=120",
+        "[    0.971076] sched_process_exit: comm=cryptomgr_test pid=39 prio=120",
+        "[    0.973159] sched_process_exit: comm=cryptomgr_test pid=40 prio=120",
+        "[    0.974402] sched_process_exit: comm=cryptomgr_test pid=41 prio=120",
+        "[    0.975590] sched_process_exit: comm=cryptomgr_test pid=42 prio=120",
+        "[    0.977180] sched_process_exit: comm=cryptomgr_test pid=43 prio=120",
+        "[    0.978493] sched_process_exit: comm=cryptomgr_test pid=44 prio=120",
+        "[    0.980447] sched_process_exit: comm=cryptomgr_test pid=45 prio=120",
+        "[    0.981529] sched_process_exit: comm=cryptomgr_test pid=46 prio=120",
+        "[    0.983834] sched_process_exit: comm=cryptomgr_test pid=47 prio=120",
+        "[    0.986003] sched_process_exit: comm=cryptomgr_test pid=48 prio=120",
+        "[    0.989173] sched_process_exit: comm=cryptomgr_test pid=49 prio=120",
+        "[    0.990666] sched_process_exit: comm=cryptomgr_test pid=50 prio=120",
+        "[    0.991913] sched_process_exit: comm=cryptomgr_test pid=51 prio=120",
+        "[    0.993203] sched_process_exit: comm=cryptomgr_test pid=52 prio=120",
+        "[    0.995069] sched_process_exit: comm=cryptomgr_test pid=53 prio=120",
+        "[    0.996789] sched_process_exit: comm=cryptomgr_test pid=54 prio=120",
+        "[    0.998946] sched_process_exit: comm=cryptomgr_test pid=55 prio=120",
+        "[    1.000956] sched_process_exit: comm=cryptomgr_test pid=56 prio=120",
+        "[    1.002392] sched_process_exit: comm=cryptomgr_test pid=57 prio=120",
+        "[    1.003647] sched_process_exit: comm=cryptomgr_test pid=58 prio=120",
+        "[    1.005169] sched_process_exit: comm=cryptomgr_test pid=59 prio=120",
+        "[    1.006312] sched_process_exit: comm=cryptomgr_test pid=60 prio=120",
+        "[    1.007611] sched_process_exit: comm=cryptomgr_test pid=61 prio=120",
+        "[    1.009434] sched_process_exit: comm=cryptomgr_test pid=62 prio=120",
+        "[    1.010750] sched_process_exit: comm=cryptomgr_test pid=63 prio=120",
+        "[    1.012190] sched_process_exit: comm=cryptomgr_test pid=64 prio=120",
+        "[    1.013603] sched_process_exit: comm=cryptomgr_test pid=65 prio=120",
+        "[    1.015167] sched_process_exit: comm=cryptomgr_test pid=66 prio=120",
+        "[    1.016760] sched_process_exit: comm=cryptomgr_test pid=67 prio=120",
+        "[    1.019670] sched_process_exit: comm=cryptomgr_test pid=68 prio=120",
+        "[    1.020929] sched_process_exit: comm=cryptomgr_test pid=69 prio=120",
+        "[    1.022654] sched_process_exit: comm=cryptomgr_test pid=70 prio=120",
+        "[    1.023995] sched_process_exit: comm=cryptomgr_test pid=71 prio=120",
+        "[    1.025745] sched_process_exit: comm=cryptomgr_test pid=72 prio=120",
+        "[    1.027105] sched_process_exit: comm=cryptomgr_test pid=73 prio=120",
+        "[    1.028888] sched_process_exit: comm=cryptomgr_test pid=74 prio=120",
+        "[    1.031075] sched_process_exit: comm=cryptomgr_test pid=75 prio=120",
+        "[    1.033722] sched_process_exit: comm=cryptomgr_test pid=76 prio=120",
+        "[    1.035449] sched_process_exit: comm=cryptomgr_test pid=77 prio=120",
+        "[    3.622879] sched_process_exit: comm=cryptomgr_test pid=84 prio=120",
+        "[    3.624280] sched_process_exit: comm=cryptomgr_test pid=85 prio=120",
+        "[    3.626619] sched_process_exit: comm=cryptomgr_test pid=86 prio=120",
+        "[    3.627731] sched_process_exit: comm=cryptomgr_test pid=87 prio=120",
+        "[    3.629363] sched_process_exit: comm=cryptomgr_test pid=88 prio=120",
+        "[    3.630794] sched_process_exit: comm=cryptomgr_test pid=89 prio=120",
+        "[    3.632134] sched_process_exit: comm=cryptomgr_test pid=90 prio=120",
+        "[    3.634161] sched_process_exit: comm=cryptomgr_test pid=91 prio=120",
+        "[    3.635537] sched_process_exit: comm=cryptomgr_test pid=92 prio=120",
+        "[    3.637262] sched_process_exit: comm=cryptomgr_test pid=93 prio=120",
+        "[    3.639326] sched_process_exit: comm=cryptomgr_test pid=94 prio=120",
+        "[    3.640619] sched_process_exit: comm=cryptomgr_test pid=95 prio=120",
+        "[    3.641960] sched_process_exit: comm=cryptomgr_test pid=96 prio=120",
+        "[    3.644202] sched_process_exit: comm=cryptomgr_test pid=97 prio=120",
+        "[    3.645485] sched_process_exit: comm=cryptomgr_test pid=98 prio=120",
+        "[    3.647638] sched_process_exit: comm=cryptomgr_test pid=99 prio=120",
+        "[    3.649180] sched_process_exit: comm=cryptomgr_test pid=100 prio=120",
+        "[    3.651799] sched_process_exit: comm=cryptomgr_test pid=101 prio=120",
+        "[    3.654269] sched_process_exit: comm=cryptomgr_test pid=102 prio=120",
+        "[    3.656065] sched_process_exit: comm=cryptomgr_test pid=103 prio=120",
+        "[    3.658036] sched_process_exit: comm=cryptomgr_test pid=104 prio=120",
+        "[    3.659568] sched_process_exit: comm=cryptomgr_test pid=105 prio=120",
+        "[    3.849237] sched_process_exit: comm=cryptomgr_test pid=107 prio=120",
+        "[    5.300492] sched_process_exit: comm=ext4-rsv-conver pid=118 prio=100",
+        "[    5.302688] sched_process_exit: comm=jbd2/vda2-8 pid=117 prio=120",
+        "[    5.432076] sched_process_exit: comm=e2fsck pid=119 prio=100",
+        "[    5.433481] signal_generate: sig=1 errno=0 code=128 comm=e2fsck pid=119 grp=1 res=0",
+        "[    5.434553] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=1",
+        "[   15.963674] sched_process_exit: comm=ueventd pid=155 prio=100",
+        "[   15.964296] signal_generate: sig=17 errno=0 code=1 comm=ueventd pid=153 grp=1 res=1",
+        "[   16.094770] sched_process_exit: comm=ueventd pid=156 prio=100",
+        "[   16.095345] signal_generate: sig=17 errno=0 code=1 comm=ueventd pid=153 grp=1 res=1",
+        "[   16.758688] sched_process_exit: comm=apexd pid=192 prio=120",
+        "[   16.897604] sched_process_exit: comm=apexd pid=191 prio=120",
+        "[   17.048732] sched_process_exit: comm=apexd pid=193 prio=120",
+        "[   17.130828] sched_process_exit: comm=apexd pid=194 prio=120",
+        "[   17.388753] sched_process_exit: comm=apexd pid=154 prio=120",
+        "[   17.399497] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   17.631540] signal_generate: sig=9 errno=0 code=0 comm=apexd pid=154 grp=1 res=0",
+        "[   18.264221] sched_process_exit: comm=linkerconfig pid=203 prio=120",
+        "[   18.264733] signal_generate: sig=1 errno=0 code=128 comm=linkerconfig pid=203 grp=1 res=0",
+        "[   18.267076] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   23.006267] sched_process_exit: comm=init pid=204 prio=100",
+        "[   39.706287] sched_process_exit: comm=chown pid=209 prio=120",
+        "[   39.707927] signal_generate: sig=17 errno=0 code=1 comm=init.set_secnvm pid=206 grp=1 res=0",
+        "[   40.135878] sched_process_exit: comm=chmod pid=210 prio=120",
+        "[   40.137531] signal_generate: sig=17 errno=0 code=1 comm=init.set_secnvm pid=206 grp=1 res=0",
+        "[   40.168035] sched_process_exit: comm=init.set_secnvm pid=206 prio=120",
+        "[   40.169853] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   40.173939] signal_generate: sig=9 errno=0 code=0 comm=init.set_secnvm pid=206 grp=1 res=0",
+        "[   40.340062] sched_process_exit: comm=boringssl_self_ pid=208 prio=120",
+        "[   40.341871] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   40.345023] signal_generate: sig=9 errno=0 code=0 comm=boringssl_self_ pid=208 grp=1 res=0",
+        "[   40.758426] sched_process_exit: comm=boringssl_self_ pid=211 prio=120",
+        "[   40.760498] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   40.764081] signal_generate: sig=9 errno=0 code=0 comm=boringssl_self_ pid=211 grp=1 res=0",
+        "[   44.825293] sched_process_exit: comm=boringssl_self_ pid=225 prio=120",
+        "[   44.828427] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   44.834495] signal_generate: sig=9 errno=0 code=0 comm=boringssl_self_ pid=225 grp=1 res=0",
+        "[   45.264703] sched_process_exit: comm=boringssl_self_ pid=228 prio=120",
+        "[   45.266885] signal_generate: sig=17 errno=0 code=1 comm=init pid=1 grp=1 res=0",
+        "[   45.271581] signal_generate: sig=9 errno=0 code=0 comm=boringssl_self_ pid=228 grp=1 res=0",
+        "[   46.736136] sched_process_exit: comm=cat pid=230 prio=120",
+        "[   46.737785] signal_generate: sig=17 errno=0 code=1 comm=init.insmod.sh pid=229 grp=1 res=0"
+      ],
+      "event_count": 110,
+      "events_truncated": false,
+      "generated_signals": [
+        {
+          "signal": 1,
+          "errno": 0,
+          "si_code": 128,
+          "target_comm": "e2fsck",
+          "target_pid": 119,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 1
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "ueventd",
+          "target_pid": 153,
+          "group": 1,
+          "generation_result": 1
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "ueventd",
+          "target_pid": 153,
+          "group": 1,
+          "generation_result": 1
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 9,
+          "errno": 0,
+          "si_code": 0,
+          "target_comm": "apexd",
+          "target_pid": 154,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 1,
+          "errno": 0,
+          "si_code": 128,
+          "target_comm": "linkerconfig",
+          "target_pid": 203,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init.set_secnvm",
+          "target_pid": 206,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init.set_secnvm",
+          "target_pid": 206,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 9,
+          "errno": 0,
+          "si_code": 0,
+          "target_comm": "init.set_secnvm",
+          "target_pid": 206,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 9,
+          "errno": 0,
+          "si_code": 0,
+          "target_comm": "boringssl_self_",
+          "target_pid": 208,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 9,
+          "errno": 0,
+          "si_code": 0,
+          "target_comm": "boringssl_self_",
+          "target_pid": 211,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 9,
+          "errno": 0,
+          "si_code": 0,
+          "target_comm": "boringssl_self_",
+          "target_pid": 225,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init",
+          "target_pid": 1,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 9,
+          "errno": 0,
+          "si_code": 0,
+          "target_comm": "boringssl_self_",
+          "target_pid": 228,
+          "group": 1,
+          "generation_result": 0
+        },
+        {
+          "signal": 17,
+          "errno": 0,
+          "si_code": 1,
+          "target_comm": "init.insmod.sh",
+          "target_pid": 229,
+          "group": 1,
+          "generation_result": 0
+        }
+      ],
+      "process_exits": [
+        {
+          "comm": "cryptomgr_test",
+          "pid": 32,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 33,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 34,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 35,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 36,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 37,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 38,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 39,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 40,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 41,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 42,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 43,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 44,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 45,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 46,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 47,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 48,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 49,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 50,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 51,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 52,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 53,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 54,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 55,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 56,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 57,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 58,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 59,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 60,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 61,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 62,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 63,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 64,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 65,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 66,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 67,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 68,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 69,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 70,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 71,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 72,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 73,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 74,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 75,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 76,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 77,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 84,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 85,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 86,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 87,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 88,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 89,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 90,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 91,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 92,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 93,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 94,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 95,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 96,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 97,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 98,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 99,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 100,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 101,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 102,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 103,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 104,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 105,
+          "priority": 120
+        },
+        {
+          "comm": "cryptomgr_test",
+          "pid": 107,
+          "priority": 120
+        },
+        {
+          "comm": "ext4-rsv-conver",
+          "pid": 118,
+          "priority": 100
+        },
+        {
+          "comm": "jbd2/vda2-8",
+          "pid": 117,
+          "priority": 120
+        },
+        {
+          "comm": "e2fsck",
+          "pid": 119,
+          "priority": 100
+        },
+        {
+          "comm": "ueventd",
+          "pid": 155,
+          "priority": 100
+        },
+        {
+          "comm": "ueventd",
+          "pid": 156,
+          "priority": 100
+        },
+        {
+          "comm": "apexd",
+          "pid": 192,
+          "priority": 120
+        },
+        {
+          "comm": "apexd",
+          "pid": 191,
+          "priority": 120
+        },
+        {
+          "comm": "apexd",
+          "pid": 193,
+          "priority": 120
+        },
+        {
+          "comm": "apexd",
+          "pid": 194,
+          "priority": 120
+        },
+        {
+          "comm": "apexd",
+          "pid": 154,
+          "priority": 120
+        },
+        {
+          "comm": "linkerconfig",
+          "pid": 203,
+          "priority": 120
+        },
+        {
+          "comm": "init",
+          "pid": 204,
+          "priority": 100
+        },
+        {
+          "comm": "chown",
+          "pid": 209,
+          "priority": 120
+        },
+        {
+          "comm": "chmod",
+          "pid": 210,
+          "priority": 120
+        },
+        {
+          "comm": "init.set_secnvm",
+          "pid": 206,
+          "priority": 120
+        },
+        {
+          "comm": "boringssl_self_",
+          "pid": 208,
+          "priority": 120
+        },
+        {
+          "comm": "boringssl_self_",
+          "pid": 211,
+          "priority": 120
+        },
+        {
+          "comm": "boringssl_self_",
+          "pid": 225,
+          "priority": 120
+        },
+        {
+          "comm": "boringssl_self_",
+          "pid": 228,
+          "priority": 120
+        },
+        {
+          "comm": "cat",
+          "pid": 230,
+          "priority": 120
+        }
+      ],
+      "security_events": [],
+      "security_event_count": 0,
+      "security_events_truncated": false,
+      "security_generated_signals": [],
+      "security_process_exits": [],
+      "service_pid_candidates": {
+        "231": "vendor.keymint-qti",
+        "232": "vendor.qseecomd",
+        "234": "qseecom-service",
+        "251": "keystore2"
+      },
+      "trace_observed": true,
+      "fatal_cause": "NOT_ESTABLISHED_BY_SIGNAL_GENERATION"
     },
     "second_stage_init_observed": true,
     "logical_partitions_created": [
@@ -13699,55 +14473,55 @@
       "product_a"
     ],
     "boot_events": [
-      "[    5.855319] init: init first stage started!",
-      "[    6.113128] init: Switching root to '/first_stage_ramdisk'",
-      "[    6.736872] init: [libfs_mgr] __mount(source=/dev/block/by-name/metadata,target=/metadata,type=ext4)=0: Success",
-      "[    6.799453] init: [libfs_mgr] Created logical partition system_a on device /dev/block/dm-0",
-      "[    6.817816] init: [libfs_mgr] Created logical partition system_ext_a on device /dev/block/dm-1",
-      "[    6.838621] init: [libfs_mgr] Created logical partition vendor_a on device /dev/block/dm-2",
-      "[    6.858466] init: [libfs_mgr] Created logical partition odm_a on device /dev/block/dm-3",
-      "[    6.878672] init: [libfs_mgr] Created logical partition vendor_dlkm_a on device /dev/block/dm-4",
-      "[    6.895686] init: [libfs_mgr] Created logical partition odm_dlkm_a on device /dev/block/dm-5",
-      "[    6.912474] init: [libfs_mgr] Created logical partition product_a on device /dev/block/dm-6",
-      "[    6.915030] init: DSU not detected, proceeding with normal boot",
-      "[    7.146387] init: [libfs_mgr] __mount(source=/dev/block/dm-7,target=/system,type=ext4)=0: Success",
-      "[    7.153193] init: Switching root to '/system'",
-      "[    7.332668] init: [libfs_mgr] __mount(source=/dev/block/dm-8,target=/system_ext,type=ext4)=0: Success",
-      "[    7.456976] init: [libfs_mgr] __mount(source=/dev/block/dm-9,target=/vendor,type=ext4)=0: Success",
-      "[    7.568463] init: [libfs_mgr] __mount(source=/dev/block/dm-10,target=/odm,type=ext4)=0: Success",
-      "[    7.696160] init: [libfs_mgr] __mount(source=/dev/block/dm-11,target=/vendor_dlkm,type=ext4)=0: Success",
-      "[    7.799037] init: [libfs_mgr] __mount(source=/dev/block/dm-12,target=/odm_dlkm,type=ext4)=0: Success",
-      "[    7.924308] init: [libfs_mgr] __mount(source=/dev/block/dm-13,target=/product,type=ext4)=0: Success",
-      "[   11.134799] init: Loading SELinux policy",
-      "[   13.271803] init: init second stage started!",
-      "[   16.649169] init: starting service 'ueventd'...",
-      "[   16.945428] init: starting service 'apexd-bootstrap'...",
-      "[   43.285620] init: starting service 'set_secnvm_perms_sh'...",
-      "[   43.431685] init: starting service 'prng_seeder'...",
-      "[   43.676597] init: starting service 'boringssl_self_test32_vendor'...",
-      "[   45.441883] init: starting service 'boringssl_self_test64_vendor'...",
-      "[   45.982419] init: starting service 'vendor.audioadsprpcd_audiopd'...",
-      "[   47.105916] init: starting service 'logd'...",
-      "[   47.329887] init: starting service 'lmkd'...",
-      "[   47.683468] init: starting service 'servicemanager'...",
-      "[   48.286012] init: starting service 'hwservicemanager'...",
-      "[   48.904566] init: starting service 'vndservicemanager'...",
-      "[   49.539127] init: starting service 'boringssl_self_test32'...",
-      "[   51.002596] init: starting service 'boringssl_self_test64'...",
-      "[   51.597720] init: starting service 'insmod_sh'...",
-      "[   53.126155] init: starting service 'vendor.keymint-qti'...",
-      "[   53.308327] init: starting service 'vendor.qseecomd'...",
-      "[   53.633466] init: starting service 'qseecom-service'...",
-      "[   55.540849] init: starting service 'vold'...",
-      "[   76.134423] init: starting service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)'...",
-      "[   77.186182] init: starting service 'aconfigd'...",
-      "[   82.963649] init: starting service 'exec 2 (/system/bin/recovery-refresh)'...",
-      "[   83.121521] init: starting service 'system_suspend'...",
-      "[   83.385565] init: starting service 'keystore2'...",
-      "[   83.661657] init: starting service 'vendor.atrace-hal-1-0'...",
-      "[   84.072827] init: starting service 'vendor.boot-hal-1-2'...",
-      "[   84.425183] init: starting service 'gatekeeper-1-0'...",
-      "[   84.755059] init: starting service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)'..."
+      "[    4.815507] init: init first stage started!",
+      "[    5.000245] init: Switching root to '/first_stage_ramdisk'",
+      "[    5.459224] init: [libfs_mgr] __mount(source=/dev/block/by-name/metadata,target=/metadata,type=ext4)=0: Success",
+      "[    5.505051] init: [libfs_mgr] Created logical partition system_a on device /dev/block/dm-0",
+      "[    5.517968] init: [libfs_mgr] Created logical partition system_ext_a on device /dev/block/dm-1",
+      "[    5.531241] init: [libfs_mgr] Created logical partition vendor_a on device /dev/block/dm-2",
+      "[    5.543692] init: [libfs_mgr] Created logical partition odm_a on device /dev/block/dm-3",
+      "[    5.556878] init: [libfs_mgr] Created logical partition vendor_dlkm_a on device /dev/block/dm-4",
+      "[    5.569629] init: [libfs_mgr] Created logical partition odm_dlkm_a on device /dev/block/dm-5",
+      "[    5.581827] init: [libfs_mgr] Created logical partition product_a on device /dev/block/dm-6",
+      "[    5.584156] init: DSU not detected, proceeding with normal boot",
+      "[    5.755068] init: [libfs_mgr] __mount(source=/dev/block/dm-7,target=/system,type=ext4)=0: Success",
+      "[    5.760374] init: Switching root to '/system'",
+      "[    5.903030] init: [libfs_mgr] __mount(source=/dev/block/dm-8,target=/system_ext,type=ext4)=0: Success",
+      "[    5.996493] init: [libfs_mgr] __mount(source=/dev/block/dm-9,target=/vendor,type=ext4)=0: Success",
+      "[    6.084859] init: [libfs_mgr] __mount(source=/dev/block/dm-10,target=/odm,type=ext4)=0: Success",
+      "[    6.173336] init: [libfs_mgr] __mount(source=/dev/block/dm-11,target=/vendor_dlkm,type=ext4)=0: Success",
+      "[    6.240044] init: [libfs_mgr] __mount(source=/dev/block/dm-12,target=/odm_dlkm,type=ext4)=0: Success",
+      "[    6.324718] init: [libfs_mgr] __mount(source=/dev/block/dm-13,target=/product,type=ext4)=0: Success",
+      "[    8.848798] init: Loading SELinux policy",
+      "[   10.632138] init: init second stage started!",
+      "[   13.234577] init: starting service 'ueventd'...",
+      "[   13.457278] init: starting service 'apexd-bootstrap'...",
+      "[   38.546844] init: starting service 'set_secnvm_perms_sh'...",
+      "[   38.657909] init: starting service 'prng_seeder'...",
+      "[   38.844218] init: starting service 'boringssl_self_test32_vendor'...",
+      "[   40.366859] init: starting service 'boringssl_self_test64_vendor'...",
+      "[   40.787634] init: starting service 'vendor.audioadsprpcd_audiopd'...",
+      "[   41.629976] init: starting service 'logd'...",
+      "[   41.821623] init: starting service 'lmkd'...",
+      "[   42.105466] init: starting service 'servicemanager'...",
+      "[   42.451432] init: starting service 'hwservicemanager'...",
+      "[   42.797368] init: starting service 'vndservicemanager'...",
+      "[   43.198696] init: starting service 'boringssl_self_test32'...",
+      "[   44.861243] init: starting service 'boringssl_self_test64'...",
+      "[   45.303679] init: starting service 'insmod_sh'...",
+      "[   46.333828] init: starting service 'vendor.keymint-qti'...",
+      "[   46.468093] init: starting service 'vendor.qseecomd'...",
+      "[   46.714483] init: starting service 'qseecom-service'...",
+      "[   47.597078] init: starting service 'vold'...",
+      "[   68.241570] init: starting service 'exec 1 (/system/bin/vdc checkpoint markBootAttempt)'...",
+      "[   68.987660] init: starting service 'aconfigd'...",
+      "[   74.602061] init: starting service 'exec 2 (/system/bin/recovery-refresh)'...",
+      "[   74.707906] init: starting service 'system_suspend'...",
+      "[   74.865408] init: starting service 'keystore2'...",
+      "[   75.183645] init: starting service 'vendor.atrace-hal-1-0'...",
+      "[   75.481103] init: starting service 'vendor.boot-hal-1-2'...",
+      "[   75.978447] init: starting service 'gatekeeper-1-0'...",
+      "[   76.593854] init: starting service 'exec 3 (/system/bin/fsverity_init --load-verified-keys)'..."
     ],
     "label_overlay_mount_failed": false,
     "bootcontrol_misc_label_denial_observed": false,
