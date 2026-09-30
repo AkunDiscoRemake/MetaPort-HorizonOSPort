@@ -96,6 +96,11 @@ sandbox geral: executá-la em ambiente isolado e descartável, como o runner.
 `tools/inventory.py` produz SHA-256 e proveniência para outras coleções locais.
 `tools/device_probe.py` faz um preflight ADB opcional e somente leitura do telefone;
 não é um APK, não instala nada e não comprova compatibilidade XR.
+A sondagem não coleta recursos VR, estado do bootloader ou Verified Boot, nem
+faz detecção de root. Ausência de recursos declarados não bloqueia a sondagem.
+O código Android atual não exige um recurso de sistema VR nem contém detector de
+root. Isso não afirma que componentes proprietários ainda não portados tenham sido
+modificados; validações de permissões e hashes de firmware continuam necessárias.
 
 ## GitHub Actions e armazenamento
 

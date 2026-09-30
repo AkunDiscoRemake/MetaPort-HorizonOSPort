@@ -3,6 +3,7 @@
 
 Requires an already authorized USB debugging connection. Reports only selected
 properties/features, not full dumps, serial numbers, accounts or application lists.
+Does not query root/bootloader state or use VR capability as an admission check.
 """
 import argparse
 import json
@@ -12,7 +13,7 @@ import sys
 PROPERTIES = (
     "ro.product.manufacturer", "ro.product.model", "ro.product.device",
     "ro.build.version.release", "ro.build.version.sdk", "ro.product.cpu.abilist",
-    "ro.opengles.version", "ro.boot.verifiedbootstate", "ro.boot.flash.locked",
+    "ro.opengles.version",
 )
 
 
@@ -30,8 +31,7 @@ def collect(serial=None):
     properties = {key: query(["getprop", key]) or None for key in PROPERTIES}
     features = query(["pm", "list", "features"])
     prefixes = ("android.hardware.camera", "android.hardware.sensor",
-                "android.hardware.vulkan", "android.hardware.opengles",
-                "android.hardware.vr", "android.hardware.camera.ar")
+                "android.hardware.vulkan", "android.hardware.opengles")
     selected = sorted(line.removeprefix("feature:") for line in features.splitlines()
                       if line.startswith("feature:" + prefixes[0]) or
                       any(line.startswith("feature:" + p) for p in prefixes[1:]))
