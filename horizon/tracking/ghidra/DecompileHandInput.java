@@ -50,6 +50,10 @@ public class DecompileHandInput extends GhidraScript {
                                     0x8a6600L,0x6d4dc0L,0x164fd20L,0xe6a5d0L})
             select(discover(base.add(address)),
                    "Observed FUN_0172bee0 pseudo-C callee; call edge and ABI unvalidated");
+        // Next layer, selected from the measured 18-function report. Still not
+        // private signatures: inspect tensor construction and output tree packing.
+        for(long address:new long[]{0x8a67c0L,0x248d37cL,0x1651ca0L})
+            select(discover(base.add(address)),"Observed tensor/visual-output helper in prior callee C-like evidence");
         List<Map<String,Object>> tables=new ArrayList<>();
         // Constructor assigns these address points to its two interfaces.
         // Read adjacent slots only as evidence, never as a callable ABI.

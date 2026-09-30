@@ -26,3 +26,13 @@ class FocusedInputPreparationTests(unittest.TestCase):
             with patch('horizon.tracking.prepare_input.dump_entry',side_effect=lambda image,entry,path:path.write_bytes(b'wrong ELF')):
                 with self.assertRaisesRegex(ValueError,'Wrong tracking engine'):prepare(root,report,root/'out')
             self.assertFalse((root/'out/input-strings.json').exists())
+
+class VisualStringTargetsTests(unittest.TestCase):
+    def test_exact_fields_complete_strings_and_elf_addresses(self):
+        from horizon.tracking.prepare_input import visual_string_targets
+        data=b'\0SkinningWeights\0NotSkinningWeights\0PreRotation\0'
+        sections=f'[ 1] .rodata PROGBITS 00002000 00000000 {len(data):08x}'
+        targets=visual_string_targets(data,sections)
+        self.assertEqual([x['text'] for x in targets],['SkinningWeights','PreRotation'])
+        self.assertEqual(targets[0]['address'],0x2001)
+        with self.assertRaises(ValueError):visual_string_targets(data,sections.replace('00000000','00000100'))

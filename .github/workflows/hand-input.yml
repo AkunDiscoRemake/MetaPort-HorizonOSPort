@@ -12,7 +12,7 @@ concurrency:
 jobs:
   inspect:
     runs-on: ubuntu-22.04
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       WORK: ${{ github.workspace }}/local-analysis/hand-input
     steps:
@@ -54,9 +54,10 @@ jobs:
         id: decompile
         run: |
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
-            -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 180 \
+            -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
             -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
             -postScript DecompileHandInput.java "$WORK/reports/input-strings.json" "$WORK/reports/hand-input-decompilation.json" \
+            -postScript DecompileHands.java "$WORK/reports/visual-functions.txt" "$WORK/reports/visual-strings.json" "$WORK/reports/hand-input-visuals.json" \
             -deleteProject > "$WORK/ghidra.log" 2>&1
           python3 - <<'PY'
           import os,json
@@ -78,7 +79,7 @@ jobs:
           p=Path(os.environ['WORK']);log=p/'ghidra.log'
           result={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
                   'decompile_step':os.environ['OUTCOME'],'horizon_ported':False,'firmware_executed':False,
-                  'analysis_timeout_seconds':180,'pointer_candidates_are_abi':False,
+                  'analysis_timeout_seconds':900,'pointer_candidates_are_abi':False,
                   'log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-80:]) if log.exists() else None}
           (p/'reports/hand-input-run.json').write_text(json.dumps(result,indent=2)+'\n')
           PY
@@ -89,7 +90,7 @@ jobs:
         run: |
           set -euo pipefail
           dest=analysis/builds/52168470052900520
-          for name in hand-input-decompilation hand-input-run; do
+          for name in hand-input-decompilation hand-input-visuals hand-input-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
