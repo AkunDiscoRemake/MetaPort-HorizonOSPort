@@ -78,3 +78,21 @@ ser curtos, canceláveis, pausar em background e respeitar alertas térmicos; n�
 alterar controles térmicos do fabricante.
 
 **Resultado atual: NOT PORTED YET. Nenhum teste físico ou boot guest realizado.**
+
+## Aquisição via GitHub Actions
+
+Workflow `.github/workflows/fetch-firmware.yml`: tenta baixar exclusivamente o
+candidato `q3_52168470052900520.zip` e compara seu SHA-256 ao publicado no catálogo.
+Não extrai nem executa conteúdo. Falhas de HTTP, TLS ou hash impedem o upload.
+O limite de download é 10 GiB; o artifact tem retenção de um dia e não entra no Git.
+Consome a cota de armazenamento/execução de Actions; o download pode falhar também
+nessa rede. Em repositório público, tratar artifacts como publicamente acessíveis:
+não colocar segredos nem outros arquivos nesse workflow.
+
+O primeiro disparo ocorre ao publicar o workflow na branch da sessão. Para repetir,
+abrir Actions → Fetch firmware candidate → execução → Re-run all jobs. O botão
+manual de workflow_dispatch pode exigir que o workflow exista na branch padrão;
+não é necessário mudar de branch para repetir uma execução existente.
+
+Mesmo após hash válido, permanece pendente confirmar versão estável v2.4 e se o
+pacote é completo. Não iniciar RE dos componentes antes dessa revisão de escopo.
