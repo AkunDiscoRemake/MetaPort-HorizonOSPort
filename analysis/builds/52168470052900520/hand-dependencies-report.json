@@ -1,0 +1,235 @@
+{
+  "firmware_executed": false,
+  "all_dependencies_found": false,
+  "scope": "Whitelisted service/config and RPC/backend files, not a transitive closure",
+  "files": [
+    {
+      "partition": "odm",
+      "path": "/etc/trackingservice.cfg",
+      "size_bytes": 631,
+      "sha256": "986a04a5130ecaebae9540f4acc6663d100e720f21b7afb9b02f4c858c817499",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 2,
+      "lines": [
+        {
+          "line": 14,
+          "excerpt": "# Also hints wake the CtrlTracking thread wakes as the same core as",
+          "line_truncated": false
+        },
+        {
+          "line": 15,
+          "excerpt": "# SBEventHandler and IOTmotion threads",
+          "line_truncated": false
+        }
+      ],
+      "truncated": false,
+      "runtime_activation_proved": false
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/init/odm.trackingservice.rc",
+      "size_bytes": 188,
+      "sha256": "bc3f143605f1b264959529f4329956fa605d2f3e30bab76c953c99554d72dd26",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 0,
+      "lines": [],
+      "truncated": false,
+      "runtime_activation_proved": false
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/init/apex.trackingservice.rc",
+      "size_bytes": 218,
+      "sha256": "47f05c914cf24abb5caaa453e9e3d86bf51971140f2a2de86596dacfc6096da1",
+      "status": "TEXT_CANDIDATES_ONLY",
+      "matched_lines": 0,
+      "lines": [],
+      "truncated": false,
+      "runtime_activation_proved": false
+    },
+    {
+      "partition": "odm",
+      "path": "/lib64/libhzos_trackinghost.meta.so",
+      "size_bytes": 11072,
+      "sha256": "7a1a81acb7b42c143866c8536768465569109cb316fd26e21115972a1ab2fd28",
+      "elf": {
+        "bits": 64,
+        "byte_order": "little",
+        "machine": 183,
+        "architecture": "AArch64"
+      },
+      "dynamic_read_exit_code": "",
+      "needed": [
+        "libbinder_ndk.so",
+        "liblog.so",
+        "libmemorybrokerclient.so",
+        "libutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "odm",
+      "path": "/lib64/libtrackingvendorutils.so",
+      "size_bytes": 10832,
+      "sha256": "a83d12685803d32eae269c7d8b9b168c614fc9dcccefd03b9aa8e3250803afa5",
+      "elf": {
+        "bits": 64,
+        "byte_order": "little",
+        "machine": 183,
+        "architecture": "AArch64"
+      },
+      "dynamic_read_exit_code": "",
+      "needed": [
+        "libcutils.so",
+        "liblog.so",
+        "libosutils.so",
+        "libutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libhexagon.so",
+      "size_bytes": 197592,
+      "sha256": "31f44dc217b2f4a38c9e251b9a142b98f84c32519d7d9d761212b2dbd1337987",
+      "elf": {
+        "bits": 64,
+        "byte_order": "little",
+        "machine": 183,
+        "architecture": "AArch64"
+      },
+      "dynamic_read_exit_code": "",
+      "needed": [
+        "libcdsprpc.so",
+        "liblog.so",
+        "libdl.so",
+        "libc.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libhexagon_shim.so",
+      "size_bytes": 1208936,
+      "sha256": "d145909158e83ae4495465b79579df442ec3a01bcb3732c0864e4f60b1894003",
+      "elf": {
+        "bits": 64,
+        "byte_order": "little",
+        "machine": 183,
+        "architecture": "AArch64"
+      },
+      "dynamic_read_exit_code": "",
+      "needed": [
+        "libbinder_ndk.so",
+        "libdl.so",
+        "liblog.so",
+        "libc.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libcdsprpc.so",
+      "size_bytes": 436168,
+      "sha256": "0695fe138d6503602dcc70371270b3582e51cd4e26f63020fd14786a397b2587",
+      "elf": {
+        "bits": 64,
+        "byte_order": "little",
+        "machine": 183,
+        "architecture": "AArch64"
+      },
+      "dynamic_read_exit_code": "",
+      "needed": [
+        "libhidlbase.so",
+        "libhardware.so",
+        "libutils.so",
+        "vendor.qti.hardware.dsp@1.0.so",
+        "liblog.so",
+        "libc.so",
+        "libcutils.so",
+        "libdmabufheap.so",
+        "libvmmem.so",
+        "libc++.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libadsprpc.so",
+      "size_bytes": 436176,
+      "sha256": "596897d638102d34c25d704f3ed9bb06bee6a090af7cee6c6f8fa25ce930ebce",
+      "elf": {
+        "bits": 64,
+        "byte_order": "little",
+        "machine": 183,
+        "architecture": "AArch64"
+      },
+      "dynamic_read_exit_code": "",
+      "needed": [
+        "libhidlbase.so",
+        "libhardware.so",
+        "libutils.so",
+        "vendor.qti.hardware.dsp@1.0.so",
+        "liblog.so",
+        "libc.so",
+        "libcutils.so",
+        "libdmabufheap.so",
+        "libvmmem.so",
+        "libc++.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib/rfsa/adsp/libhexagon_skel.so",
+      "size_bytes": 1735628,
+      "sha256": "1a0153acbc0533a81fb3883f96c163b917793100636fc6dbd57f19ad9b06c3d1",
+      "elf": {
+        "bits": 32,
+        "byte_order": "little",
+        "machine": 164,
+        "architecture": "Hexagon"
+      },
+      "dynamic_read_exit_code": "readelf: Error: no .dynamic section in the dynamic segment\n",
+      "needed": [
+        "libc.so",
+        "libc++.so.1",
+        "libc++abi.so.1",
+        "libgcc.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib/rfsa/adsp/libQnnBoltnnOpPackageV69.so",
+      "size_bytes": 540112,
+      "sha256": "7308ac95dcf34f91b205666868e43c3d4df4d8e9073684f740aac66165651303",
+      "elf": {
+        "bits": 32,
+        "byte_order": "little",
+        "machine": 164,
+        "architecture": "Hexagon"
+      },
+      "dynamic_read_exit_code": "readelf: Error: no .dynamic section in the dynamic segment\n",
+      "needed": [
+        "libc.so",
+        "libc++.so.1",
+        "libc++abi.so.1",
+        "libgcc.so"
+      ],
+      "status": "ELF_METADATA_ONLY"
+    }
+  ]
+}
