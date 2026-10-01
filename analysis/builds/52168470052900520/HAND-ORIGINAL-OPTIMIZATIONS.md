@@ -489,3 +489,45 @@ completa de instruções: flags DSP, predicados, pacotes, endianness da memória
 ativação do kernel permanecem fora do contrato. As instruções saturadas NEON
 podem marcar FPSR.QC no ARM; isso não emula status do Hexagon. Não há ganho de
 FPS medido nem justificativa para converter QFloat em float comum.
+
+## 12. Resultado 36795978696: FIFO, erros fatais e mapper 4-KiB
+
+O literal original em VA ELF `0x72840` foi recuperado como
+`00000000010000000100000000000000`. Interpretado como header Linux `sched_attr`
+little-endian (`u32 size`, `u32 policy`, `u64 flags`): **0, 1, 1**.
+Junto ao listing de `005df1ac`, isso identifica o pedido **SCHED_FIFO** e
+**SCHED_FLAG_RESET_ON_FORK** no ramo Realtime, não RR. Não prova que o kernel
+aceitou a chamada nem concede privilégio de RT ao APK.
+
+Os callers recuperados distinguem tratamento de erro: **`005df130`** chama
+`__android_log_assert` se a aplicação de prioridade falha; **`005df474`** faz o
+mesmo para perfis. Outros wrappers recuperam o TID de pthread e encaminham para
+as variantes que retornam erro. Não é seguro carregar esses caminhos no telefone
+e presumir que falta de permissão só produzirá um aviso. O caller do construtor
+de mãos, `002b5ddc`, ainda é um wrapper de construção/shared ownership, não o
+produtor de dados da fila.
+
+### Adaptação mínima do cálculo de mapeamento
+
+`005a5134` valida FD/índice, offsets alinhados a 8, extensões mínimas dos counters
+e event flag e limite de extent. O `mmap` usa:
+- início `offset & ~0xfff`;
+- comprimento `(offset & 0xfff) + extent`;
+- proteção 3 e flags 1;
+- ponteiro de dados no início mapeado mais o deslocamento interno.
+
+Para o grantor de evento da fila observada, offset **8464**, extent **4**:
+- original 4 KiB: mmap em **8192**, delta **272**, comprimento **276**;
+- páginas 16 KiB: 8192 não é offset de mmap alinhado a página; o cálculo deve
+  produzir início **0**, delta **8464**, comprimento **8468**.
+
+`hand_fmq_mapping.{hpp,cpp}` implementa esse planejamento com tamanho de página
+fornecido pelo caller, preservando os bytes do grantor. Inclui guardas adicionais
+de range do FD/overflow; são proteções do adaptador, não otimizações descobertas.
+Testes host ASan/UBSan passaram: os quatro grantors observados, páginas 4/16/64 KiB,
+16384 offsets válidos comparados à fórmula original de 4 KiB, limites e rejeições
+sem alterar a saída. A CI ARM64/Android foi ampliada, ainda pendente para este helper.
+
+**Não faz mmap, não recebe/transfere FDs e não interpreta o payload privado.**
+A compatibilidade de páginas foi demonstrada no cálculo, não numa fila Horizon
+funcionando no X6873; o tamanho real de página do aparelho não foi medido.
