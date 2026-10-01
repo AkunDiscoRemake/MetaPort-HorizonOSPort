@@ -12,6 +12,7 @@ from pathlib import Path, PurePosixPath
 import re
 import zipfile
 from horizon.ui.prepare_shell import POLICY
+from horizon.ui.prepare_shell_apk import verify_partition
 from horizon.ui.loader_audit import PUBLIC_NDK
 from handtracking.ai.inspect_original import digest, BUILD
 from tools.scan_partitions import command, dump_entry, list_ext4
@@ -77,9 +78,7 @@ def prepare(images,reconstruction,original,output):
         raise ValueError('Unpinned source')
     inventory=json.loads(Path(f'analysis/builds/{BUILD}/static-analysis.json').read_text())['partitions']
     for part in ('system','system_ext'):
-        r=recon['partitions'][part];image=images/(part+'.img')
-        if not r['sha256_match'] or image.stat().st_size!=r['size_bytes'] or digest(image)!=r['sha256']:
-            raise ValueError('Unverified source partition')
+        verify_partition(images,part,recon,policy)
     libs=output/'libraries';libs.mkdir(exist_ok=True)
     bundled={}
     with zipfile.ZipFile(original) as z:

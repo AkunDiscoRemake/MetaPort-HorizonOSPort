@@ -8,12 +8,27 @@ from handtracking.ai.inspect_original import digest, BUILD
 from tools.scan_partitions import dump_entry
 
 
+RECONSTRUCTION=Path(f'analysis/builds/{BUILD}/reconstruction.json')
+
+
+def verify_partition(images,part,recon,policy):
+    # A caller-supplied manifest cannot establish its own expected image hash.
+    pinned=json.loads(RECONSTRUCTION.read_text())
+    expected=pinned['partitions'][part];record=recon['partitions'][part]
+    image=Path(images)/(part+'.img')
+    if (pinned['source_zip_sha256']!=policy['ota_sha256'] or
+        recon['source_zip_sha256']!=policy['ota_sha256'] or
+        record.get('sha256_match') is not True or
+        record['sha256']!=expected['sha256'] or record['size_bytes']!=expected['size_bytes'] or
+        image.stat().st_size!=expected['size_bytes'] or digest(image)!=expected['sha256']):
+        raise ValueError('Wrong pinned '+part+' image')
+
+
 def prepare(images, reconstruction, output):
     policy=json.loads(POLICY.read_text());recon=json.loads(Path(reconstruction).read_text())
     if recon['source_zip_sha256']!=policy['ota_sha256']:raise ValueError('Wrong OTA')
-    image=Path(images)/'system_ext.img';part=recon['partitions']['system_ext']
-    if not part['sha256_match'] or image.stat().st_size!=part['size_bytes'] or digest(image)!=part['sha256']:
-        raise ValueError('Wrong system_ext image')
+    verify_partition(images,'system_ext',recon,policy)
+    image=Path(images)/'system_ext.img'
     inventory=json.loads(Path(f'analysis/builds/{BUILD}/static-analysis.json').read_text())
     entries=[e for e in inventory['partitions']['system_ext']['entries']
              if e['path']==policy['apk_path'] and e['kind']=='file']
