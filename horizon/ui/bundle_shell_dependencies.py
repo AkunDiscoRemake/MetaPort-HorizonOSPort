@@ -71,7 +71,7 @@ def compare_apks(original,modified,added):
             if member_digest(dst,targets[name])!=sha:raise ValueError('Added library hash mismatch')
 
 
-def prepare(images,reconstruction,original,output,rcpc_compat=False):
+def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_dex=False):
     images=Path(images);original=Path(original);output=Path(output);output.mkdir(parents=True,exist_ok=True)
     policy=json.loads(POLICY.read_text());recon=json.loads(Path(reconstruction).read_text())
     if digest(original)!=policy['apk_sha256'] or recon['source_zip_sha256']!=policy['ota_sha256']:
@@ -157,6 +157,17 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False):
                 if row['soname']==name:
                     row.update(sha256=evidence['adapted_sha256'],source_original_sha256=evidence['source_sha256'],
                                status='FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION')
+    dex_members={};framework_evidence=[]
+    if framework_dex:
+        from horizon.ui.framework_dex import JAR_PATH,additions
+        entries=[e for e in inventory['system_ext']['entries'] if e['path']==JAR_PATH and e['kind']=='file']
+        if len(entries)!=1 or not 0<entries[0]['size_bytes']<=8*1024*1024:
+            raise ValueError('Original framework JAR inventory budget')
+        jar=output/'hzos-framework.jar'
+        dump_entry(images/'system_ext.img',entries[0],jar)
+        dex_members,evidence=additions(original,jar)
+        evidence['source_image_sha256']=recon['partitions']['system_ext']['sha256']
+        framework_evidence.append(evidence)
     unsigned=output/'shell-dependencies-unsigned.apk'
     with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
         for info in src.infolist():
@@ -164,13 +175,16 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False):
             with src.open(info) as a,dst.open(info,'w') as b:
                 for block in iter(lambda:a.read(1024*1024),b''):b.write(block)
         for member in sorted(added):dst.write(libs/PurePosixPath(member).name,member,compress_type=zipfile.ZIP_STORED)
+        for member,data in dex_members.items():
+            dst.writestr(member,data,compress_type=zipfile.ZIP_STORED)
+            added[member]=hashlib.sha256(data).hexdigest()
     compare_apks(original,unsigned,added)
     report={'source_apk_sha256':policy['apk_sha256'],'source_ota_sha256':policy['ota_sha256'],
-            'instruction_adaptations':adaptations,'original_native_dependencies_unmodified':not adaptations,
+            'framework_dex_additions':framework_evidence,'instruction_adaptations':adaptations,'original_native_dependencies_unmodified':not adaptations,
             'added_members':added,'nodes':rows,'edges':edges,'unresolved':unresolved,
             'original_members_unchanged':True,'original_signatures_removed':True,
             'namespace_and_symbol_versions_verified':False,'port_ready':False,
-            'scope':'Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes'}
+            'scope':'Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions'}
     (output/'bundle.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 
@@ -179,4 +193,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('images','reconstruction','original','output'):p.add_argument('--'+name,required=True)
     p.add_argument('--rcpc-compat',action='store_true')
-    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output,a.rcpc_compat)
+    p.add_argument('--framework-dex',action='store_true')
+    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output,a.rcpc_compat,a.framework_dex)

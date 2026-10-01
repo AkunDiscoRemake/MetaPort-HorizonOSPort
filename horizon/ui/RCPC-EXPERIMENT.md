@@ -176,3 +176,19 @@ all bounded small libraries; only original APK members `libshell.so`,
 candidates to the next fixed policy (597 sites / 29 libraries in total).
 Each addition has its own evidence-run provenance. No original APK member is
 changed, and neither startup success nor complete instruction coverage is claimed.
+
+## First Java constructor failure after native instruction adaptations
+
+Run **36940917880** recorded no SIGILL in its observed crash. It reached
+`ShellApplication.<init>` and failed with `NoClassDefFoundError` for
+`horizonos.graphics.Vector4f`; the process still terminated, without original UI.
+This does not prove complete CPU compatibility or a completed native startup.
+
+The next separate opt-in experiment extracts `/framework/hzos-framework.jar`
+from the hash-pinned system_ext image. It requires a real Vector4f class definition
+in that JAR, validates DEX checksums and rejects definitions colliding with APK
+classes or boot namespaces. If any requirement fails, packaging fails closed.
+It appends original DEX bytes under fresh multidex names; no existing APK DEX or
+resources are rewritten. The exact source-image, JAR and DEX hashes are recorded.
+The class owner and runtime outcome remain unverified until that run completes.
+Adding classes does not register PreferencesManager or provide spatial services.

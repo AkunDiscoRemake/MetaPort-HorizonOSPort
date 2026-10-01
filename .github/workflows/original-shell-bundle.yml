@@ -11,6 +11,9 @@ on:
       rcpc_compat:
         type: boolean
         default: false
+      framework_dex:
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       android_api:
@@ -19,7 +22,11 @@ on:
         options: ['36', '35']
         default: '36'
       rcpc_compat:
-        description: Explicit single-site RCpc compatibility experiment (not original native bytes)
+        description: Explicit pinned-inventory RCpc compatibility experiment (not original native bytes)
+        type: boolean
+        default: false
+      framework_dex:
+        description: Append original hzos framework DEX without replacing existing classes
         type: boolean
         default: false
 permissions:
@@ -34,6 +41,7 @@ jobs:
     env:
       WORK: ${{ github.workspace }}/local-analysis/original-bundle-work
       TARGET_ANDROID_API: ${{ inputs.android_api || '36' }}
+      FRAMEWORK_DEX: ${{ inputs.framework_dex && 'true' || 'false' }}
       RCPC_COMPAT: ${{ inputs.rcpc_compat && 'true' || 'false' }}
       REPORT_STEM: ${{ inputs.rcpc_compat && 'original-shell-rcpc' || 'original-shell-bundled' }}
       BUNDLE_REPORT: ${{ inputs.rcpc_compat && 'original-shell-rcpc-dependency-bundle' || 'original-shell-dependency-bundle' }}
@@ -74,6 +82,7 @@ jobs:
           python3 -m horizon.ui.prepare_shell_apk --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output local-analysis/original-cache/VrShell.apk
           extra=()
           if [ "$RCPC_COMPAT" = true ]; then extra+=(--rcpc-compat); fi
+          if [ "$FRAMEWORK_DEX" = true ]; then extra+=(--framework-dex); fi
           python3 -m horizon.ui.bundle_shell_dependencies "${extra[@]}" --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle
           rm -rf "$WORK/images" "$WORK/firmware.zip"
       - name: Verify cached APK too and install the test image

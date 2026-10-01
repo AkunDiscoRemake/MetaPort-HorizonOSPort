@@ -128,3 +128,10 @@ Run **36940043323** completed with another pre-UI crash, now in
 additional explicit sites across 11 firmware libraries. The next policy has
 597 sites / 29 libraries. This remains a CI-only compatibility experiment,
 not an installable functional demo or a port of the missing Java/native services.
+
+Run **36940917880** reached the Java application constructor and crashed with
+`NoClassDefFoundError: horizonos.graphics.Vector4f`, rather than the previous
+SIGILL. The next opt-in experiment attempts to add original framework DEX from
+the pinned hzos-framework JAR, with collision/namespace/checksum checks and no
+rewriting of existing APK members. It is not a fabricated Vector4f implementation
+or a working service bridge. Still no original UI, functional beta or phone test.
