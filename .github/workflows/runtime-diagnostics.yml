@@ -21,8 +21,14 @@ jobs:
           persist-credentials: false
       - name: Wait for the specific runtime run, preserving failure as failure
         run: gh run watch "$WATCH_RUN" --exit-status --interval 30 || true
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ env.WATCH_RUN }}
+          pattern: adapter-runtime-api-*-reports-only
+          path: local-analysis/runtime-captured
       - name: Collect bounded diagnostic lines
-        run: python3 -m tools.collect_action_diagnostics --repo "$GITHUB_REPOSITORY" --run "$WATCH_RUN" --output local-analysis/runtime-diagnostics.json
+        run: python3 -m tools.collect_action_diagnostics --repo "$GITHUB_REPOSITORY" --run "$WATCH_RUN" --output local-analysis/runtime-diagnostics.json --artifact-root local-analysis/runtime-captured
       - name: Publish diagnostic metadata only
         run: |
           set -euo pipefail

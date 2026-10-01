@@ -36,9 +36,23 @@ def collect(repo,run):
         out['jobs'].append(item)
     return out
 
+def captured_files(root):
+    files=[]
+    for path in sorted(Path(root).rglob('*')):
+        if path.name not in ('emulator-host.txt','boot-tail.txt'): continue
+        with path.open(errors='replace') as stream: text=stream.read(16000)
+        lines=[line for line in text.splitlines() if not re.search(r'authorization|[?&]sig=|github_token',line,re.I)]
+        files.append({'path':str(path.relative_to(root)), 'text':'\n'.join(lines),
+                      'prefix_limit_characters':16000})
+        if len(files)>=8: break
+    return files
+
+
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--repo',required=True);p.add_argument('--run',type=int,required=True);p.add_argument('--output',required=True)
+    p.add_argument('--artifact-root',type=Path)
     a=p.parse_args();r=collect(a.repo,a.run)
+    if a.artifact_root:r['captured_files']=captured_files(a.artifact_root)
     path=Path(a.output);path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(r,indent=2)+'\n')
