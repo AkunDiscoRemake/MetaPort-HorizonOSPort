@@ -100,3 +100,8 @@ A cópia dos quatro payloads espaciais foi adaptada em `space_data.cpp` e ligada
 build Android, com testes locais ASan/UBSan passando. Veja `port/android/SPACE-DATA.md`
 para offsets, limites e diferenças da API própria em relação ao código original.
 O teste Android/ARM64-QEMU **36810507577** foi iniciado; teste físico permanece ausente.
+
+Validação final desta etapa: **36810507577 passou**, incluindo o novo teste de
+cópia espacial em ARM64/QEMU e o build/lint Android. As análises nativas
+**36808853419**, **36809468975** e **36809949550** também terminaram com sucesso
+nos seus escopos estáticos. Não há um serviço Strata/SpaceManager portado executando.

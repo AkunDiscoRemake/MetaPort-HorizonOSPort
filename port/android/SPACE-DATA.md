@@ -35,3 +35,9 @@ referenciais, relógios e produtor ARCore continuam pendentes.
 cabeçalhos preservados, limites e rejeição de sobreposição. CI executa host com
 ASan/UBSan e binário ARM64 sob QEMU. São testes da implementação adaptada, não um
 oráculo executando a biblioteca proprietária, nem teste de 6DoF no aparelho.
+
+## Validação concluída
+
+Run **36810507577: sucesso** — teste host com sanitizadores, teste ARM64 sob QEMU,
+build AAR, testes Java e lint. Não houve execução da biblioteca original como
+oráculo nem teste físico. O build continua sendo componente AAR, não APK Horizon.
