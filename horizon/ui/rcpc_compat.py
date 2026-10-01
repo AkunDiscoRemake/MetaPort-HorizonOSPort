@@ -15,16 +15,16 @@ ORIGINAL_SHA='9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72'
 PC=0x88ac4
 BEFORE=0x38bfc108  # ldaprb w8, [x8]
 AFTER=0x08dffd08   # ldarb w8, [x8]
-def load_sites():
-    policy=json.loads(Path(__file__).with_name('libcxx-rcpc-sites.json').read_text())
-    if policy['source_sha256']!=ORIGINAL_SHA or len(policy['sites'])!=206:
+def load_sites(filename='libcxx-rcpc-sites.json',expected_sha=ORIGINAL_SHA,expected_count=206):
+    policy=json.loads(Path(__file__).with_name(filename).read_text())
+    if policy['source_sha256']!=expected_sha or len(policy['sites'])!=expected_count:
         raise ValueError('Wrong pinned RCpc inventory')
     return tuple((r['pc_elf'],int(r['original_word'],16),int(r['adapted_word'],16)) for r in policy['sites'])
 
 
 SITES=load_sites()
 LIBUTILS_SHA='2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167'
-LIBUTILS_SITES=((0xf860,0xb8bfc008,0x88dffc08),)
+LIBUTILS_SITES=load_sites('libutils-rcpc-sites.json',LIBUTILS_SHA,14)
 ADAPTATIONS=(('libc++.so',ORIGINAL_SHA,SITES),('libutils.so',LIBUTILS_SHA,LIBUTILS_SITES))
 
 

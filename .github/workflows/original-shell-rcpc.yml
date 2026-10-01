@@ -6,6 +6,7 @@ on:
       - .github/workflows/original-shell-rcpc.yml
       - horizon/ui/rcpc_compat.py
       - horizon/ui/libcxx-rcpc-sites.json
+      - horizon/ui/libutils-rcpc-sites.json
       - tests/test_rcpc_compat.py
       - tools/shell_crash_windows.py
       - tests/test_shell_crash_windows.py

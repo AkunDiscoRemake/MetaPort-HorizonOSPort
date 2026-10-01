@@ -118,3 +118,22 @@ form; it must be tested separately before extending compatibility to it.
 There is no validated release APK or defensible same-day release commitment on
 the basis of these reports. UI surface/client recovery remains a separate task
 from CPU translation, private-service integration and physical-phone validation.
+
+## Word-load preflight and second library — run 36924213557
+
+The fixture now runs **before** original APK installation/start. Control, LSE,
+byte acquire, word acquire and 64-bit acquire must all return their expected
+values; missing/failed cases prevent the original launch. Native mode names are
+explicit and unknown modes fail, rather than silently selecting the control.
+The 32-bit check reads `0x89abcdef` into a prefilled 64-bit register and checks
+zero-extension, not merely the low byte.
+
+On API 36 this run passed every prerequisite, while all tested RCpc forms crashed.
+The original then passed the adapted `libutils.so` site at `0xf860` and crashed
+at `SharedBuffer::release()`, with LDAPR W8 at `0x10058`. There was no surviving
+process or original UI. The next library inventory contains 14 explicit sites
+(the original observed site plus 13 decoded candidates), pinned to original
+`libutils.so` SHA-256
+`2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167`.
+No reference counter, branch or return value is replaced. The next experiment's
+outcome remains unknown until its runtime evidence is collected.
