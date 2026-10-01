@@ -21,14 +21,16 @@ INPUT_CALL = re.compile(r'nativeKeyEvent|nativeJoypadAxis|nativeOnInputDevice|na
 CONTRACT = re.compile(r'\bnative\b|loadLibrary\(|ServiceManager\.|getService\(|hand.?track|controller|onKeyEvent|onGenericMotionEvent|onHand|MemoryBroker', re.I)
 
 
-BOOTSTRAP_CLASSES=('ShellApplication','HomeActivity','MainActivity','ShellActivity')
+BOOTSTRAP_PATHS=tuple('sources/com/oculus/vrshell/'+name+'.java' for name in
+    ('ShellApplication','HomeActivity','MainActivity','ShellActivity','EmuShellExtension')) + (
+    'sources/X/C0NY.java','sources/X/C04c.java')
 
 
 def summarize_bootstrap(root):
     """Keep complete bounded startup classes, not only truncated matching lines."""
     rows=[]
-    for name in BOOTSTRAP_CLASSES:
-        relative='sources/com/oculus/vrshell/'+name+'.java';path=Path(root)/relative
+    for relative in BOOTSTRAP_PATHS:
+        path=Path(root)/relative
         row={'path':relative,'runtime_validated':False,'compile_ready':False}
         if not path.is_file() or path.is_symlink():
             row['status']='NOT_GENERATED_OR_NOT_REGULAR_FILE'

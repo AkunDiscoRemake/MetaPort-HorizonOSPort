@@ -319,3 +319,25 @@ The bundled experiment now defaults to API 36, with manual API 35 selection, to
 compare a newer translation environment. The unmodified baseline remains API 35.
 Both remain emulation rather than physical Infinix validation. Per-app UID log
 collection is added for the next experiment; no API 36 outcome is claimed here.
+
+## Full Java bootstrap evidence — run 36917207594
+
+Recovered bounded complete reconstructions of `ShellApplication` (261,175 chars),
+`HomeActivity` (5,403), and `MainActivity` (18,664), with `compile_ready=false`.
+Absence of JADX error comments is not a successful Java build: reconstructed
+methods can still contain duplicate locals or unresolved types.
+
+`ShellApplication` loads `libshell.so` in its static initializer only for the main
+`com.oculus.vrshell` process. This explains why the observed native constructors
+fail before normal Activity startup. Do not rename that process merely to skip
+loading the actual runtime.
+
+`HomeActivity.onCreate` checks `persist.oculus.emushell`. With the normal false
+branch it sets its window width/height to 1 pixel: launching the Activity cannot
+by itself validate the original compositor/UI. The true branch constructs
+`EmuShellExtension`, binds original `X.C0NY`, calls `connect()` and then attaches
+that client's ViewGroup. This is an original alternative path, not yet proven
+usable or faithful. Recovery now targets `EmuShellExtension`, `C0NY` and the
+`C04c` property accessor to determine whether it renders original content or
+contains test-only substitutions. No system property was changed and no emulator
+mode or fake device/hand state was enabled on that basis.
