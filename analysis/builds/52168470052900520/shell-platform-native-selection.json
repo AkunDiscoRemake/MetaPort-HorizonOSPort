@@ -20,6 +20,16 @@
           "ASurfaceTexture_updateTexImage2@@LIBHZOS_BASE",
           "ASurfaceTexture_getCurrentHardwareBuffer@@LIBHZOS_BASE",
           "ASurfaceTexture_release2@@LIBHZOS_BASE"
+        ],
+        "internal_call_targets": [
+          {
+            "name": "Strata",
+            "elf_address": 473328
+          },
+          {
+            "name": "convertToHardwareBuffer",
+            "elf_address": 568800
+          }
         ]
       },
       "selected": [
@@ -82,6 +92,18 @@
           "symbol": "ASurfaceTexture_release2@@LIBHZOS_BASE",
           "elf_address": 476656,
           "size_bytes": 72
+        },
+        {
+          "symbol": "Strata",
+          "elf_address": 473328,
+          "extent_checked_bytes": 4,
+          "selection_basis": "Pinned-library direct callee; not an export or a recovered signature"
+        },
+        {
+          "symbol": "convertToHardwareBuffer",
+          "elf_address": 568800,
+          "extent_checked_bytes": 4,
+          "selection_basis": "Pinned-library direct callee; not an export or a recovered signature"
         }
       ]
     },
@@ -102,6 +124,24 @@
           "HzuVirtualSpace_update@@LIBHZOS_SPACES",
           "HzuSpace_getUuid@@LIBHZOS_SPACES",
           "HzuSpace_getParentUuid@@LIBHZOS_SPACES"
+        ],
+        "internal_call_targets": [
+          {
+            "name": "toHzuSpaceData",
+            "elf_address": 11936
+          },
+          {
+            "name": "toHzuBaseSpaceData",
+            "elf_address": 15136
+          },
+          {
+            "name": "toHzuVirtualSpaceData",
+            "elf_address": 15408
+          },
+          {
+            "name": "toHzuWindowSpaceData",
+            "elf_address": 15552
+          }
         ]
       },
       "selected": [
@@ -149,6 +189,30 @@
           "symbol": "HzuSpace_getParentUuid@@LIBHZOS_SPACES",
           "elf_address": 10880,
           "size_bytes": 256
+        },
+        {
+          "symbol": "toHzuSpaceData",
+          "elf_address": 11936,
+          "extent_checked_bytes": 4,
+          "selection_basis": "Pinned-library direct callee; not an export or a recovered signature"
+        },
+        {
+          "symbol": "toHzuBaseSpaceData",
+          "elf_address": 15136,
+          "extent_checked_bytes": 4,
+          "selection_basis": "Pinned-library direct callee; not an export or a recovered signature"
+        },
+        {
+          "symbol": "toHzuVirtualSpaceData",
+          "elf_address": 15408,
+          "extent_checked_bytes": 4,
+          "selection_basis": "Pinned-library direct callee; not an export or a recovered signature"
+        },
+        {
+          "symbol": "toHzuWindowSpaceData",
+          "elf_address": 15552,
+          "extent_checked_bytes": 4,
+          "selection_basis": "Pinned-library direct callee; not an export or a recovered signature"
         }
       ]
     }

@@ -3255,6 +3255,766 @@
       "diagnostic": "",
       "status": "DECOMPILED_NOT_VALIDATED",
       "c_like": "\nvoid ASurfaceTexture_release2(void)\n\n{\n  ulong uVar1;\n  \n  uVar1 \u003d android::ConsumerBase::isAbandoned();\n  if ((uVar1 \u0026 1) !\u003d 0) {\n    __android_log_print(6,0,\"ASurfaceTexture_release2: SurfaceTexture is already abandoned\");\n    return;\n  }\n  android::ConsumerBase::abandon();\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001738f0",
+      "elf_address": 473328,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x738f0",
+      "name": "Strata",
+      "analysis_no_return": false,
+      "listing_body_address_count": 304,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 473328,
+          "assembly": "sub sp,sp,#0x60"
+        },
+        {
+          "elf_address": 473332,
+          "assembly": "stp x29,x30,[sp, #0x30]"
+        },
+        {
+          "elf_address": 473336,
+          "assembly": "str x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 473340,
+          "assembly": "stp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 473344,
+          "assembly": "add x29,sp,#0x30"
+        },
+        {
+          "elf_address": 473348,
+          "assembly": "mrs x20,tpidr_el0"
+        },
+        {
+          "elf_address": 473352,
+          "assembly": "mov x19,x0"
+        },
+        {
+          "elf_address": 473356,
+          "assembly": "adrp x1,0x11c000"
+        },
+        {
+          "elf_address": 473360,
+          "assembly": "add x1,x1,#0x15e"
+        },
+        {
+          "elf_address": 473364,
+          "assembly": "ldr x8,[x20, #0x28]"
+        },
+        {
+          "elf_address": 473368,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 473372,
+          "assembly": "str xzr,[x0]"
+        },
+        {
+          "elf_address": 473376,
+          "assembly": "add x0,sp,#0x10"
+        },
+        {
+          "elf_address": 473380,
+          "assembly": "str xzr,[sp, #0x10]"
+        },
+        {
+          "elf_address": 473384,
+          "assembly": "bl 0x001dd780"
+        },
+        {
+          "elf_address": 473388,
+          "assembly": "sub x8,x29,#0x10"
+        },
+        {
+          "elf_address": 473392,
+          "assembly": "stur xzr,[x29, #-0x10]"
+        },
+        {
+          "elf_address": 473396,
+          "assembly": "bl 0x001dd800"
+        },
+        {
+          "elf_address": 473400,
+          "assembly": "ldur x0,[x29, #-0x10]"
+        },
+        {
+          "elf_address": 473404,
+          "assembly": "add x1,sp,#0x10"
+        },
+        {
+          "elf_address": 473408,
+          "assembly": "ldr x8,[x0]"
+        },
+        {
+          "elf_address": 473412,
+          "assembly": "ldr x9,[x8, #0x40]"
+        },
+        {
+          "elf_address": 473416,
+          "assembly": "add x8,sp,#0x18"
+        },
+        {
+          "elf_address": 473420,
+          "assembly": "blr x9"
+        },
+        {
+          "elf_address": 473424,
+          "assembly": "add x8,sp,#0x8"
+        },
+        {
+          "elf_address": 473428,
+          "assembly": "add x0,sp,#0x18"
+        },
+        {
+          "elf_address": 473432,
+          "assembly": "bl 0x0018b1c0"
+        },
+        {
+          "elf_address": 473436,
+          "assembly": "ldr x8,[sp, #0x18]"
+        },
+        {
+          "elf_address": 473440,
+          "assembly": "cbz x8,0x00173978"
+        },
+        {
+          "elf_address": 473444,
+          "assembly": "ldr x9,[x8]"
+        },
+        {
+          "elf_address": 473448,
+          "assembly": "add x1,sp,#0x18"
+        },
+        {
+          "elf_address": 473452,
+          "assembly": "ldur x9,[x9, #-0x18]"
+        },
+        {
+          "elf_address": 473456,
+          "assembly": "add x0,x8,x9"
+        },
+        {
+          "elf_address": 473460,
+          "assembly": "bl 0x001dd370"
+        },
+        {
+          "elf_address": 473464,
+          "assembly": "ldur x8,[x29, #-0x10]"
+        },
+        {
+          "elf_address": 473468,
+          "assembly": "cbz x8,0x00173994"
+        },
+        {
+          "elf_address": 473472,
+          "assembly": "ldr x9,[x8]"
+        },
+        {
+          "elf_address": 473476,
+          "assembly": "sub x1,x29,#0x10"
+        },
+        {
+          "elf_address": 473480,
+          "assembly": "ldur x9,[x9, #-0x18]"
+        },
+        {
+          "elf_address": 473484,
+          "assembly": "add x0,x8,x9"
+        },
+        {
+          "elf_address": 473488,
+          "assembly": "bl 0x001dd370"
+        },
+        {
+          "elf_address": 473492,
+          "assembly": "ldr x21,[x19]"
+        },
+        {
+          "elf_address": 473496,
+          "assembly": "cbz x21,0x001739b0"
+        },
+        {
+          "elf_address": 473500,
+          "assembly": "ldr x8,[x21]"
+        },
+        {
+          "elf_address": 473504,
+          "assembly": "mov x1,x19"
+        },
+        {
+          "elf_address": 473508,
+          "assembly": "ldur x8,[x8, #-0x18]"
+        },
+        {
+          "elf_address": 473512,
+          "assembly": "add x0,x21,x8"
+        },
+        {
+          "elf_address": 473516,
+          "assembly": "bl 0x001dd370"
+        },
+        {
+          "elf_address": 473520,
+          "assembly": "ldr x8,[x19]"
+        },
+        {
+          "elf_address": 473524,
+          "assembly": "cmp x21,x8"
+        },
+        {
+          "elf_address": 473528,
+          "assembly": "b.eq 0x001739c0"
+        },
+        {
+          "elf_address": 473532,
+          "assembly": "bl 0x001dd830"
+        },
+        {
+          "elf_address": 473536,
+          "assembly": "ldr x8,[sp, #0x8]"
+        },
+        {
+          "elf_address": 473540,
+          "assembly": "str x8,[x19]"
+        },
+        {
+          "elf_address": 473544,
+          "assembly": "cbz x8,0x001739dc"
+        },
+        {
+          "elf_address": 473548,
+          "assembly": "adrp x2,0x116000"
+        },
+        {
+          "elf_address": 473552,
+          "assembly": "add x2,x2,#0xca9"
+        },
+        {
+          "elf_address": 473556,
+          "assembly": "mov w0,#0x3"
+        },
+        {
+          "elf_address": 473560,
+          "assembly": "b 0x001739e8"
+        },
+        {
+          "elf_address": 473564,
+          "assembly": "adrp x2,0x118000"
+        },
+        {
+          "elf_address": 473568,
+          "assembly": "add x2,x2,#0xfc"
+        },
+        {
+          "elf_address": 473572,
+          "assembly": "mov w0,#0x6"
+        },
+        {
+          "elf_address": 473576,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 473580,
+          "assembly": "bl 0x001dd330"
+        },
+        {
+          "elf_address": 473584,
+          "assembly": "add x0,sp,#0x10"
+        },
+        {
+          "elf_address": 473588,
+          "assembly": "bl 0x001dd790"
+        },
+        {
+          "elf_address": 473592,
+          "assembly": "ldr x8,[x20, #0x28]"
+        },
+        {
+          "elf_address": 473596,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 473600,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 473604,
+          "assembly": "b.ne 0x00173a1c"
+        },
+        {
+          "elf_address": 473608,
+          "assembly": "ldp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 473612,
+          "assembly": "ldr x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 473616,
+          "assembly": "ldp x29,x30,[sp, #0x30]"
+        },
+        {
+          "elf_address": 473620,
+          "assembly": "add sp,sp,#0x60"
+        },
+        {
+          "elf_address": 473624,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 473628,
+          "assembly": "bl 0x001de600"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "asInterface",
+          "ghidra_address": "0018b1c0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__android_log_print",
+          "ghidra_address": "001dd330",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "decStrong",
+          "ghidra_address": "001dd370",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "String16",
+          "ghidra_address": "001dd780",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "~String16",
+          "ghidra_address": "001dd790",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "defaultServiceManager",
+          "ghidra_address": "001dd800",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "sp_report_race",
+          "ghidra_address": "001dd830",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "001de600",
+          "external": false,
+          "analysis_no_return": true
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* strata_impl::Strata::Strata() */\n\nvoid __thiscall strata_impl::Strata::Strata(Strata *this)\n\n{\n  long lVar1;\n  undefined8 uVar2;\n  sp *extraout_x1;\n  char *pcVar3;\n  long *plVar4;\n  long local_58;\n  undefined8 local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  *(undefined8 *)this \u003d 0;\n  local_50 \u003d 0;\n  android::String16::String16((String16 *)\u0026local_50,\"Strata\");\n  local_40 \u003d (long *)0x0;\n  android::defaultServiceManager();\n  (**(code **)(*local_40 + 0x40))(\u0026local_48,local_40,\u0026local_50);\n  internal::horizonos::strata::IStrata::asInterface((IStrata *)\u0026local_48,extraout_x1);\n  if (local_48 !\u003d (long *)0x0) {\n    android::RefBase::decStrong((void *)((long)local_48 + *(long *)(*local_48 + -0x18)));\n  }\n  if (local_40 !\u003d (long *)0x0) {\n    android::RefBase::decStrong((void *)((long)local_40 + *(long *)(*local_40 + -0x18)));\n  }\n  plVar4 \u003d *(long **)this;\n  if (plVar4 !\u003d (long *)0x0) {\n    android::RefBase::decStrong((void *)((long)plVar4 + *(long *)(*plVar4 + -0x18)));\n  }\n  if (plVar4 !\u003d *(long **)this) {\n    android::sp_report_race();\n  }\n  *(long *)this \u003d local_58;\n  if (local_58 \u003d\u003d 0) {\n    pcVar3 \u003d \"HzuStrataStatus failed to connect to Strata service\";\n    uVar2 \u003d 6;\n  }\n  else {\n    pcVar3 \u003d \"HzuStrataStatus connected to Strata service\";\n    uVar2 \u003d 3;\n  }\n  __android_log_print(uVar2,0,pcVar3);\n  android::String16::~String16((String16 *)\u0026local_50);\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_38) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "0018ade0",
+      "elf_address": 568800,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x8ade0",
+      "name": "convertToHardwareBuffer",
+      "analysis_no_return": false,
+      "listing_body_address_count": 336,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 568800,
+          "assembly": "sub sp,sp,#0xb0"
+        },
+        {
+          "elf_address": 568804,
+          "assembly": "stp x29,x30,[sp, #0x80]"
+        },
+        {
+          "elf_address": 568808,
+          "assembly": "stp x22,x21,[sp, #0x90]"
+        },
+        {
+          "elf_address": 568812,
+          "assembly": "stp x20,x19,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 568816,
+          "assembly": "add x29,sp,#0x80"
+        },
+        {
+          "elf_address": 568820,
+          "assembly": "mrs x22,tpidr_el0"
+        },
+        {
+          "elf_address": 568824,
+          "assembly": "mov x19,x8"
+        },
+        {
+          "elf_address": 568828,
+          "assembly": "ldr x8,[x22, #0x28]"
+        },
+        {
+          "elf_address": 568832,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 568836,
+          "assembly": "cbz x0,0x0018aebc"
+        },
+        {
+          "elf_address": 568840,
+          "assembly": "mov x20,x0"
+        },
+        {
+          "elf_address": 568844,
+          "assembly": "bl 0x001dd9c0"
+        },
+        {
+          "elf_address": 568848,
+          "assembly": "bl 0x001dda20"
+        },
+        {
+          "elf_address": 568852,
+          "assembly": "ldr x21,[x0, #0x60]"
+        },
+        {
+          "elf_address": 568856,
+          "assembly": "cbz x21,0x0018aec8"
+        },
+        {
+          "elf_address": 568860,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 568864,
+          "assembly": "mov x1,sp"
+        },
+        {
+          "elf_address": 568868,
+          "assembly": "mov x0,x20"
+        },
+        {
+          "elf_address": 568872,
+          "assembly": "str xzr,[sp, #0x20]"
+        },
+        {
+          "elf_address": 568876,
+          "assembly": "stp q0,q0,[sp]"
+        },
+        {
+          "elf_address": 568880,
+          "assembly": "bl 0x001deab0"
+        },
+        {
+          "elf_address": 568884,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 568888,
+          "assembly": "add x8,sp,#0x30"
+        },
+        {
+          "elf_address": 568892,
+          "assembly": "mov x0,x21"
+        },
+        {
+          "elf_address": 568896,
+          "assembly": "stp q0,q0,[sp, #0x30]"
+        },
+        {
+          "elf_address": 568900,
+          "assembly": "stp q0,q0,[sp, #0x50]"
+        },
+        {
+          "elf_address": 568904,
+          "assembly": "bl 0x0018ab20"
+        },
+        {
+          "elf_address": 568908,
+          "assembly": "ldrb w8,[sp, #0x68]"
+        },
+        {
+          "elf_address": 568912,
+          "assembly": "cbz w8,0x0018aee8"
+        },
+        {
+          "elf_address": 568916,
+          "assembly": "ldur q0,[sp, #0x38]"
+        },
+        {
+          "elf_address": 568920,
+          "assembly": "adrp x8,0x1ef000"
+        },
+        {
+          "elf_address": 568924,
+          "assembly": "adrp x9,0x1ef000"
+        },
+        {
+          "elf_address": 568928,
+          "assembly": "ldur q1,[sp, #0x48]"
+        },
+        {
+          "elf_address": 568932,
+          "assembly": "ldr x8,[x8, #0x788]"
+        },
+        {
+          "elf_address": 568936,
+          "assembly": "add x8,x8,#0x10"
+        },
+        {
+          "elf_address": 568940,
+          "assembly": "stp q0,q1,[x19, #0x10]"
+        },
+        {
+          "elf_address": 568944,
+          "assembly": "ldr x9,[x9, #0x790]"
+        },
+        {
+          "elf_address": 568948,
+          "assembly": "ldr q0,[sp]"
+        },
+        {
+          "elf_address": 568952,
+          "assembly": "add x9,x9,#0x10"
+        },
+        {
+          "elf_address": 568956,
+          "assembly": "stp x8,x9,[x19]"
+        },
+        {
+          "elf_address": 568960,
+          "assembly": "ldp x8,x9,[sp, #0x58]"
+        },
+        {
+          "elf_address": 568964,
+          "assembly": "stp x8,x9,[x19, #0x30]"
+        },
+        {
+          "elf_address": 568968,
+          "assembly": "adrp x8,0x1ef000"
+        },
+        {
+          "elf_address": 568972,
+          "assembly": "ldr x8,[x8, #0x980]"
+        },
+        {
+          "elf_address": 568976,
+          "assembly": "stur q0,[x19, #0x48]"
+        },
+        {
+          "elf_address": 568980,
+          "assembly": "add x8,x8,#0x10"
+        },
+        {
+          "elf_address": 568984,
+          "assembly": "str x8,[x19, #0x40]"
+        },
+        {
+          "elf_address": 568988,
+          "assembly": "ldr x8,[sp, #0x10]"
+        },
+        {
+          "elf_address": 568992,
+          "assembly": "str x8,[x19, #0x58]"
+        },
+        {
+          "elf_address": 568996,
+          "assembly": "ldp w8,w9,[sp, #0x18]"
+        },
+        {
+          "elf_address": 569000,
+          "assembly": "stp w8,w9,[x19, #0x60]"
+        },
+        {
+          "elf_address": 569004,
+          "assembly": "ldr x8,[sp, #0x20]"
+        },
+        {
+          "elf_address": 569008,
+          "assembly": "str x8,[x19, #0x68]"
+        },
+        {
+          "elf_address": 569012,
+          "assembly": "mov w8,#0x1"
+        },
+        {
+          "elf_address": 569016,
+          "assembly": "b 0x0018af04"
+        },
+        {
+          "elf_address": 569020,
+          "assembly": "adrp x2,0x11d000"
+        },
+        {
+          "elf_address": 569024,
+          "assembly": "add x2,x2,#0x62e"
+        },
+        {
+          "elf_address": 569028,
+          "assembly": "b 0x0018aed0"
+        },
+        {
+          "elf_address": 569032,
+          "assembly": "adrp x2,0x116000"
+        },
+        {
+          "elf_address": 569036,
+          "assembly": "add x2,x2,#0x898"
+        },
+        {
+          "elf_address": 569040,
+          "assembly": "mov w0,#0x6"
+        },
+        {
+          "elf_address": 569044,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 569048,
+          "assembly": "bl 0x001dd330"
+        },
+        {
+          "elf_address": 569052,
+          "assembly": "strb wzr,[x19]"
+        },
+        {
+          "elf_address": 569056,
+          "assembly": "strb wzr,[x19, #0x70]"
+        },
+        {
+          "elf_address": 569060,
+          "assembly": "b 0x0018af08"
+        },
+        {
+          "elf_address": 569064,
+          "assembly": "adrp x2,0x115000"
+        },
+        {
+          "elf_address": 569068,
+          "assembly": "add x2,x2,#0x49f"
+        },
+        {
+          "elf_address": 569072,
+          "assembly": "mov w0,#0x6"
+        },
+        {
+          "elf_address": 569076,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 569080,
+          "assembly": "bl 0x001dd330"
+        },
+        {
+          "elf_address": 569084,
+          "assembly": "mov w8,wzr"
+        },
+        {
+          "elf_address": 569088,
+          "assembly": "strb wzr,[x19]"
+        },
+        {
+          "elf_address": 569092,
+          "assembly": "strb w8,[x19, #0x70]"
+        },
+        {
+          "elf_address": 569096,
+          "assembly": "ldr x8,[x22, #0x28]"
+        },
+        {
+          "elf_address": 569100,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 569104,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 569108,
+          "assembly": "b.ne 0x0018af2c"
+        },
+        {
+          "elf_address": 569112,
+          "assembly": "ldp x20,x19,[sp, #0xa0]"
+        },
+        {
+          "elf_address": 569116,
+          "assembly": "ldp x22,x21,[sp, #0x90]"
+        },
+        {
+          "elf_address": 569120,
+          "assembly": "ldp x29,x30,[sp, #0x80]"
+        },
+        {
+          "elf_address": 569124,
+          "assembly": "add sp,sp,#0xb0"
+        },
+        {
+          "elf_address": 569128,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 569132,
+          "assembly": "bl 0x001de600"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "convertNativeHandle",
+          "ghidra_address": "0018ab20",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__android_log_print",
+          "ghidra_address": "001dd330",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "AHardwareBuffer_to_GraphicBuffer",
+          "ghidra_address": "001dd9c0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "getNativeBuffer",
+          "ghidra_address": "001dda20",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "001de600",
+          "external": false,
+          "analysis_no_return": true
+        },
+        {
+          "name": "AHardwareBuffer_describe",
+          "ghidra_address": "001deab0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* strata::hardware::utils::convertToHardwareBuffer(AHardwareBuffer*) */\n\nvoid __thiscall\nstrata::hardware::utils::convertToHardwareBuffer(utils *this,AHardwareBuffer *param_1)\n\n{\n  undefined *puVar1;\n  undefined *puVar2;\n  bool bVar3;\n  long lVar4;\n  long lVar5;\n  native_handle *extraout_x1;\n  char *pcVar6;\n  long *in_x8;\n  utils *this_00;\n  long local_b0;\n  long lStack_a8;\n  long local_a0;\n  undefined8 local_98;\n  long local_90;\n  undefined8 local_80;\n  long lStack_78;\n  long lStack_70;\n  long lStack_68;\n  long local_60;\n  long lStack_58;\n  long lStack_50;\n  undefined8 local_48;\n  long local_38;\n  \n  lVar4 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar4 + 0x28);\n  if (this \u003d\u003d (utils *)0x0) {\n    pcVar6 \u003d \"convertToHardwareBuffer: invalid buffer (nullptr)\";\n  }\n  else {\n    android::AHardwareBuffer_to_GraphicBuffer((AHardwareBuffer *)this);\n    lVar5 \u003d android::GraphicBuffer::getNativeBuffer();\n    this_00 \u003d *(utils **)(lVar5 + 0x60);\n    if (this_00 !\u003d (utils *)0x0) {\n      local_90 \u003d 0;\n      lStack_a8 \u003d 0;\n      local_b0 \u003d 0;\n      local_98 \u003d 0;\n      local_a0 \u003d 0;\n      AHardwareBuffer_describe(this,\u0026local_b0);\n      lStack_78 \u003d 0;\n      local_80 \u003d 0;\n      lStack_68 \u003d 0;\n      lStack_70 \u003d 0;\n      lStack_58 \u003d 0;\n      local_60 \u003d 0;\n      local_48 \u003d 0;\n      lStack_50 \u003d 0;\n      convertNativeHandle(this_00,extraout_x1);\n      bVar3 \u003d (char)local_48 \u003d\u003d \u0027\\0\u0027;\n      if (bVar3) {\n        __android_log_print(6,0,\"convertToHardwareBuffer: failed to convert native handle\");\n        *(undefined1 *)in_x8 \u003d 0;\n      }\n      else {\n        puVar1 \u003d PTR_DAT_001ef788 + 0x10;\n        in_x8[3] \u003d lStack_70;\n        in_x8[2] \u003d lStack_78;\n        in_x8[5] \u003d local_60;\n        in_x8[4] \u003d lStack_68;\n        puVar2 \u003d PTR_DAT_001ef790 + 0x10;\n        *in_x8 \u003d (long)puVar1;\n        in_x8[1] \u003d (long)puVar2;\n        in_x8[6] \u003d lStack_58;\n        in_x8[7] \u003d lStack_50;\n        puVar1 \u003d PTR_DAT_001ef980;\n        in_x8[10] \u003d lStack_a8;\n        in_x8[9] \u003d local_b0;\n        in_x8[8] \u003d (long)(puVar1 + 0x10);\n        in_x8[0xb] \u003d local_a0;\n        *(undefined4 *)(in_x8 + 0xc) \u003d (undefined4)local_98;\n        *(undefined4 *)((long)in_x8 + 100) \u003d local_98._4_4_;\n        in_x8[0xd] \u003d local_90;\n      }\n      *(bool *)(in_x8 + 0xe) \u003d !bVar3;\n      goto LAB_0018af08;\n    }\n    pcVar6 \u003d \"convertToHardwareBuffer: failed to get native handle from buffer\";\n  }\n  __android_log_print(6,0,pcVar6);\n  *(undefined1 *)in_x8 \u003d 0;\n  *(undefined1 *)(in_x8 + 0xe) \u003d 0;\nLAB_0018af08:\n  if (*(long *)(lVar4 + 0x28) \u003d\u003d local_38) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
     }
   ]
 }

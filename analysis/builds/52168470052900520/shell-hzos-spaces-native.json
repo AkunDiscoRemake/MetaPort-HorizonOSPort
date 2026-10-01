@@ -3565,6 +3565,879 @@
       "diagnostic": "",
       "status": "DECOMPILED_NOT_VALIDATED",
       "c_like": "\nundefined4 HzuSpace_getParentUuid(long param_1,undefined8 *param_2)\n\n{\n  long lVar1;\n  uint uVar2;\n  int iVar3;\n  undefined4 uVar4;\n  undefined4 local_4c;\n  undefined8 local_48;\n  undefined8 uStack_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  uVar2 \u003d atrace_get_enabled_tags();\n  if ((uVar2 \u003e\u003e 0xb \u0026 1) !\u003d 0) {\n    atrace_begin_body(\"HzuSpace_getParentUuid\");\n  }\n  uVar4 \u003d 0xfffffffe;\n  if ((param_1 !\u003d 0) \u0026\u0026 (uVar4 \u003d 0xfffffffe, param_2 !\u003d (undefined8 *)0x0)) {\n    if (*(long *)(param_1 + 8) \u003d\u003d 0) {\n      __android_log_print(6,\"SpaceManager\",\"Invalid space\");\n    }\n    else {\n      local_48 \u003d 0;\n      uStack_40 \u003d 0;\n      local_4c \u003d 0;\n      iVar3 \u003d (**(code **)(*(long *)(param_1 + 8) + 0x10))\n                        (*(undefined8 *)(param_1 + 0x10),\u0026local_48,\u0026local_4c);\n      if (iVar3 \u003d\u003d 0) {\n        *param_2 \u003d local_48;\n        param_2[1] \u003d uStack_40;\n        uVar4 \u003d local_4c;\n      }\n      else {\n        __android_log_print(6,\"SpaceManager\",\"Failed to get parent uuid\");\n        uVar4 \u003d 0xffffffff;\n      }\n    }\n  }\n  uVar2 \u003d atrace_get_enabled_tags();\n  if ((uVar2 \u003e\u003e 0xb \u0026 1) !\u003d 0) {\n    atrace_end_body();\n  }\n  if (*(long *)(lVar1 + 0x28) !\u003d local_38) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return uVar4;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00102ea0",
+      "elf_address": 11936,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x2ea0",
+      "name": "toHzuSpaceData",
+      "analysis_no_return": false,
+      "listing_body_address_count": 232,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 11936,
+          "assembly": "ldr w9,[x1]"
+        },
+        {
+          "elf_address": 11940,
+          "assembly": "cmp w9,#0x55"
+        },
+        {
+          "elf_address": 11944,
+          "assembly": "b.ne 0x00102f80"
+        },
+        {
+          "elf_address": 11948,
+          "assembly": "mov x8,x0"
+        },
+        {
+          "elf_address": 11952,
+          "assembly": "mov w0,wzr"
+        },
+        {
+          "elf_address": 11956,
+          "assembly": "ldr x9,[x8]"
+        },
+        {
+          "elf_address": 11960,
+          "assembly": "str x9,[x1, #0x8]"
+        },
+        {
+          "elf_address": 11964,
+          "assembly": "ldp x9,x10,[x8, #0x8]"
+        },
+        {
+          "elf_address": 11968,
+          "assembly": "stp x9,x10,[x1, #0x10]"
+        },
+        {
+          "elf_address": 11972,
+          "assembly": "ldr w9,[x8, #0x18]"
+        },
+        {
+          "elf_address": 11976,
+          "assembly": "str w9,[x1, #0x20]"
+        },
+        {
+          "elf_address": 11980,
+          "assembly": "ldr s0,[x8, #0x1c]"
+        },
+        {
+          "elf_address": 11984,
+          "assembly": "str s0,[x1, #0x24]"
+        },
+        {
+          "elf_address": 11988,
+          "assembly": "ldr s0,[x8, #0x20]"
+        },
+        {
+          "elf_address": 11992,
+          "assembly": "str s0,[x1, #0x28]"
+        },
+        {
+          "elf_address": 11996,
+          "assembly": "ldr s0,[x8, #0x24]"
+        },
+        {
+          "elf_address": 12000,
+          "assembly": "str s0,[x1, #0x2c]"
+        },
+        {
+          "elf_address": 12004,
+          "assembly": "ldr s0,[x8, #0x28]"
+        },
+        {
+          "elf_address": 12008,
+          "assembly": "str s0,[x1, #0x30]"
+        },
+        {
+          "elf_address": 12012,
+          "assembly": "ldr s0,[x8, #0x2c]"
+        },
+        {
+          "elf_address": 12016,
+          "assembly": "str s0,[x1, #0x34]"
+        },
+        {
+          "elf_address": 12020,
+          "assembly": "ldr s0,[x8, #0x30]"
+        },
+        {
+          "elf_address": 12024,
+          "assembly": "str s0,[x1, #0x38]"
+        },
+        {
+          "elf_address": 12028,
+          "assembly": "ldr s0,[x8, #0x34]"
+        },
+        {
+          "elf_address": 12032,
+          "assembly": "str s0,[x1, #0x3c]"
+        },
+        {
+          "elf_address": 12036,
+          "assembly": "ldr s0,[x8, #0x38]"
+        },
+        {
+          "elf_address": 12040,
+          "assembly": "str s0,[x1, #0x40]"
+        },
+        {
+          "elf_address": 12044,
+          "assembly": "ldr s0,[x8, #0x3c]"
+        },
+        {
+          "elf_address": 12048,
+          "assembly": "str s0,[x1, #0x44]"
+        },
+        {
+          "elf_address": 12052,
+          "assembly": "ldr s0,[x8, #0x40]"
+        },
+        {
+          "elf_address": 12056,
+          "assembly": "str s0,[x1, #0x48]"
+        },
+        {
+          "elf_address": 12060,
+          "assembly": "ldr s0,[x8, #0x44]"
+        },
+        {
+          "elf_address": 12064,
+          "assembly": "str s0,[x1, #0x4c]"
+        },
+        {
+          "elf_address": 12068,
+          "assembly": "ldr s0,[x8, #0x48]"
+        },
+        {
+          "elf_address": 12072,
+          "assembly": "str s0,[x1, #0x50]"
+        },
+        {
+          "elf_address": 12076,
+          "assembly": "ldr s0,[x8, #0x4c]"
+        },
+        {
+          "elf_address": 12080,
+          "assembly": "str s0,[x1, #0x54]"
+        },
+        {
+          "elf_address": 12084,
+          "assembly": "ldr s0,[x8, #0x50]"
+        },
+        {
+          "elf_address": 12088,
+          "assembly": "str s0,[x1, #0x58]"
+        },
+        {
+          "elf_address": 12092,
+          "assembly": "ldr s0,[x8, #0x54]"
+        },
+        {
+          "elf_address": 12096,
+          "assembly": "str s0,[x1, #0x5c]"
+        },
+        {
+          "elf_address": 12100,
+          "assembly": "ldr s0,[x8, #0x58]"
+        },
+        {
+          "elf_address": 12104,
+          "assembly": "str s0,[x1, #0x60]"
+        },
+        {
+          "elf_address": 12108,
+          "assembly": "ldr s0,[x8, #0x5c]"
+        },
+        {
+          "elf_address": 12112,
+          "assembly": "str s0,[x1, #0x64]"
+        },
+        {
+          "elf_address": 12116,
+          "assembly": "ldr s0,[x8, #0x60]"
+        },
+        {
+          "elf_address": 12120,
+          "assembly": "str s0,[x1, #0x68]"
+        },
+        {
+          "elf_address": 12124,
+          "assembly": "ldr s0,[x8, #0x64]"
+        },
+        {
+          "elf_address": 12128,
+          "assembly": "str s0,[x1, #0x6c]"
+        },
+        {
+          "elf_address": 12132,
+          "assembly": "ldr s0,[x8, #0x68]"
+        },
+        {
+          "elf_address": 12136,
+          "assembly": "str s0,[x1, #0x70]"
+        },
+        {
+          "elf_address": 12140,
+          "assembly": "ldr s0,[x8, #0x6c]"
+        },
+        {
+          "elf_address": 12144,
+          "assembly": "str s0,[x1, #0x74]"
+        },
+        {
+          "elf_address": 12148,
+          "assembly": "ldr s0,[x8, #0x70]"
+        },
+        {
+          "elf_address": 12152,
+          "assembly": "str s0,[x1, #0x78]"
+        },
+        {
+          "elf_address": 12156,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 12160,
+          "assembly": "mov w0,#0xfffffffc"
+        },
+        {
+          "elf_address": 12164,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* (anonymous namespace)::toHzuSpaceData(horizonos_spaces_spacemanager_SpaceData const*,\n   HzuSpaceData*) */\n\nundefined8\n(anonymous_namespace)::toHzuSpaceData\n          (horizonos_spaces_spacemanager_SpaceData *param_1,HzuSpaceData *param_2)\n\n{\n  undefined8 uVar1;\n  \n  if (*(int *)param_2 \u003d\u003d 0x55) {\n    *(undefined8 *)(param_2 + 8) \u003d *(undefined8 *)param_1;\n    uVar1 \u003d *(undefined8 *)(param_1 + 0x10);\n    *(undefined8 *)(param_2 + 0x10) \u003d *(undefined8 *)(param_1 + 8);\n    *(undefined8 *)(param_2 + 0x18) \u003d uVar1;\n    *(undefined4 *)(param_2 + 0x20) \u003d *(undefined4 *)(param_1 + 0x18);\n    *(undefined4 *)(param_2 + 0x24) \u003d *(undefined4 *)(param_1 + 0x1c);\n    *(undefined4 *)(param_2 + 0x28) \u003d *(undefined4 *)(param_1 + 0x20);\n    *(undefined4 *)(param_2 + 0x2c) \u003d *(undefined4 *)(param_1 + 0x24);\n    *(undefined4 *)(param_2 + 0x30) \u003d *(undefined4 *)(param_1 + 0x28);\n    *(undefined4 *)(param_2 + 0x34) \u003d *(undefined4 *)(param_1 + 0x2c);\n    *(undefined4 *)(param_2 + 0x38) \u003d *(undefined4 *)(param_1 + 0x30);\n    *(undefined4 *)(param_2 + 0x3c) \u003d *(undefined4 *)(param_1 + 0x34);\n    *(undefined4 *)(param_2 + 0x40) \u003d *(undefined4 *)(param_1 + 0x38);\n    *(undefined4 *)(param_2 + 0x44) \u003d *(undefined4 *)(param_1 + 0x3c);\n    *(undefined4 *)(param_2 + 0x48) \u003d *(undefined4 *)(param_1 + 0x40);\n    *(undefined4 *)(param_2 + 0x4c) \u003d *(undefined4 *)(param_1 + 0x44);\n    *(undefined4 *)(param_2 + 0x50) \u003d *(undefined4 *)(param_1 + 0x48);\n    *(undefined4 *)(param_2 + 0x54) \u003d *(undefined4 *)(param_1 + 0x4c);\n    *(undefined4 *)(param_2 + 0x58) \u003d *(undefined4 *)(param_1 + 0x50);\n    *(undefined4 *)(param_2 + 0x5c) \u003d *(undefined4 *)(param_1 + 0x54);\n    *(undefined4 *)(param_2 + 0x60) \u003d *(undefined4 *)(param_1 + 0x58);\n    *(undefined4 *)(param_2 + 100) \u003d *(undefined4 *)(param_1 + 0x5c);\n    *(undefined4 *)(param_2 + 0x68) \u003d *(undefined4 *)(param_1 + 0x60);\n    *(undefined4 *)(param_2 + 0x6c) \u003d *(undefined4 *)(param_1 + 100);\n    *(undefined4 *)(param_2 + 0x70) \u003d *(undefined4 *)(param_1 + 0x68);\n    *(undefined4 *)(param_2 + 0x74) \u003d *(undefined4 *)(param_1 + 0x6c);\n    *(undefined4 *)(param_2 + 0x78) \u003d *(undefined4 *)(param_1 + 0x70);\n    return 0;\n  }\n  return 0xfffffffc;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00103b20",
+      "elf_address": 15136,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x3b20",
+      "name": "toHzuBaseSpaceData",
+      "analysis_no_return": false,
+      "listing_body_address_count": 272,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 15136,
+          "assembly": "stp x29,x30,[sp, #-0x10]!"
+        },
+        {
+          "elf_address": 15140,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 15144,
+          "assembly": "ldr w9,[x1]"
+        },
+        {
+          "elf_address": 15148,
+          "assembly": "cmp w9,#0xcb"
+        },
+        {
+          "elf_address": 15152,
+          "assembly": "b.ne 0x00103c0c"
+        },
+        {
+          "elf_address": 15156,
+          "assembly": "mov x8,x0"
+        },
+        {
+          "elf_address": 15160,
+          "assembly": "mov w0,wzr"
+        },
+        {
+          "elf_address": 15164,
+          "assembly": "ldr x9,[x8]"
+        },
+        {
+          "elf_address": 15168,
+          "assembly": "str x9,[x1, #0x8]"
+        },
+        {
+          "elf_address": 15172,
+          "assembly": "ldp x9,x10,[x8, #0x8]"
+        },
+        {
+          "elf_address": 15176,
+          "assembly": "stp x9,x10,[x1, #0x10]"
+        },
+        {
+          "elf_address": 15180,
+          "assembly": "ldr w9,[x8, #0x18]"
+        },
+        {
+          "elf_address": 15184,
+          "assembly": "str w9,[x1, #0x20]"
+        },
+        {
+          "elf_address": 15188,
+          "assembly": "ldr s0,[x8, #0x1c]"
+        },
+        {
+          "elf_address": 15192,
+          "assembly": "str s0,[x1, #0x24]"
+        },
+        {
+          "elf_address": 15196,
+          "assembly": "ldr s0,[x8, #0x20]"
+        },
+        {
+          "elf_address": 15200,
+          "assembly": "str s0,[x1, #0x28]"
+        },
+        {
+          "elf_address": 15204,
+          "assembly": "ldr s0,[x8, #0x24]"
+        },
+        {
+          "elf_address": 15208,
+          "assembly": "str s0,[x1, #0x2c]"
+        },
+        {
+          "elf_address": 15212,
+          "assembly": "ldr s0,[x8, #0x28]"
+        },
+        {
+          "elf_address": 15216,
+          "assembly": "str s0,[x1, #0x30]"
+        },
+        {
+          "elf_address": 15220,
+          "assembly": "ldr s0,[x8, #0x2c]"
+        },
+        {
+          "elf_address": 15224,
+          "assembly": "str s0,[x1, #0x34]"
+        },
+        {
+          "elf_address": 15228,
+          "assembly": "ldr s0,[x8, #0x30]"
+        },
+        {
+          "elf_address": 15232,
+          "assembly": "str s0,[x1, #0x38]"
+        },
+        {
+          "elf_address": 15236,
+          "assembly": "ldr s0,[x8, #0x34]"
+        },
+        {
+          "elf_address": 15240,
+          "assembly": "str s0,[x1, #0x3c]"
+        },
+        {
+          "elf_address": 15244,
+          "assembly": "ldr s0,[x8, #0x38]"
+        },
+        {
+          "elf_address": 15248,
+          "assembly": "str s0,[x1, #0x40]"
+        },
+        {
+          "elf_address": 15252,
+          "assembly": "ldr s0,[x8, #0x3c]"
+        },
+        {
+          "elf_address": 15256,
+          "assembly": "str s0,[x1, #0x44]"
+        },
+        {
+          "elf_address": 15260,
+          "assembly": "ldr s0,[x8, #0x40]"
+        },
+        {
+          "elf_address": 15264,
+          "assembly": "str s0,[x1, #0x48]"
+        },
+        {
+          "elf_address": 15268,
+          "assembly": "ldr s0,[x8, #0x44]"
+        },
+        {
+          "elf_address": 15272,
+          "assembly": "str s0,[x1, #0x4c]"
+        },
+        {
+          "elf_address": 15276,
+          "assembly": "ldr s0,[x8, #0x48]"
+        },
+        {
+          "elf_address": 15280,
+          "assembly": "str s0,[x1, #0x50]"
+        },
+        {
+          "elf_address": 15284,
+          "assembly": "ldr s0,[x8, #0x4c]"
+        },
+        {
+          "elf_address": 15288,
+          "assembly": "str s0,[x1, #0x54]"
+        },
+        {
+          "elf_address": 15292,
+          "assembly": "ldr s0,[x8, #0x50]"
+        },
+        {
+          "elf_address": 15296,
+          "assembly": "str s0,[x1, #0x58]"
+        },
+        {
+          "elf_address": 15300,
+          "assembly": "ldr s0,[x8, #0x54]"
+        },
+        {
+          "elf_address": 15304,
+          "assembly": "str s0,[x1, #0x5c]"
+        },
+        {
+          "elf_address": 15308,
+          "assembly": "ldr s0,[x8, #0x58]"
+        },
+        {
+          "elf_address": 15312,
+          "assembly": "str s0,[x1, #0x60]"
+        },
+        {
+          "elf_address": 15316,
+          "assembly": "ldr s0,[x8, #0x5c]"
+        },
+        {
+          "elf_address": 15320,
+          "assembly": "str s0,[x1, #0x64]"
+        },
+        {
+          "elf_address": 15324,
+          "assembly": "ldr s0,[x8, #0x60]"
+        },
+        {
+          "elf_address": 15328,
+          "assembly": "str s0,[x1, #0x68]"
+        },
+        {
+          "elf_address": 15332,
+          "assembly": "ldr s0,[x8, #0x64]"
+        },
+        {
+          "elf_address": 15336,
+          "assembly": "str s0,[x1, #0x6c]"
+        },
+        {
+          "elf_address": 15340,
+          "assembly": "ldr s0,[x8, #0x68]"
+        },
+        {
+          "elf_address": 15344,
+          "assembly": "str s0,[x1, #0x70]"
+        },
+        {
+          "elf_address": 15348,
+          "assembly": "ldr s0,[x8, #0x6c]"
+        },
+        {
+          "elf_address": 15352,
+          "assembly": "str s0,[x1, #0x74]"
+        },
+        {
+          "elf_address": 15356,
+          "assembly": "ldr s0,[x8, #0x70]"
+        },
+        {
+          "elf_address": 15360,
+          "assembly": "str s0,[x1, #0x78]"
+        },
+        {
+          "elf_address": 15364,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 15368,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 15372,
+          "assembly": "adrp x1,0x100000"
+        },
+        {
+          "elf_address": 15376,
+          "assembly": "add x1,x1,#0xfdb"
+        },
+        {
+          "elf_address": 15380,
+          "assembly": "adrp x2,0x101000"
+        },
+        {
+          "elf_address": 15384,
+          "assembly": "add x2,x2,#0x94"
+        },
+        {
+          "elf_address": 15388,
+          "assembly": "mov w0,#0x6"
+        },
+        {
+          "elf_address": 15392,
+          "assembly": "bl 0x001044d0"
+        },
+        {
+          "elf_address": 15396,
+          "assembly": "mov w0,#0xfffffffc"
+        },
+        {
+          "elf_address": 15400,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 15404,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "__android_log_print",
+          "ghidra_address": "001044d0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* (anonymous namespace)::toHzuBaseSpaceData(horizonos_spaces_spacemanager_BaseSpaceData const*,\n   HzuBaseSpaceData*) */\n\nundefined8\n(anonymous_namespace)::toHzuBaseSpaceData\n          (horizonos_spaces_spacemanager_BaseSpaceData *param_1,HzuBaseSpaceData *param_2)\n\n{\n  undefined8 uVar1;\n  \n  if (*(int *)param_2 \u003d\u003d 0xcb) {\n    *(undefined8 *)(param_2 + 8) \u003d *(undefined8 *)param_1;\n    uVar1 \u003d *(undefined8 *)(param_1 + 0x10);\n    *(undefined8 *)(param_2 + 0x10) \u003d *(undefined8 *)(param_1 + 8);\n    *(undefined8 *)(param_2 + 0x18) \u003d uVar1;\n    *(undefined4 *)(param_2 + 0x20) \u003d *(undefined4 *)(param_1 + 0x18);\n    *(undefined4 *)(param_2 + 0x24) \u003d *(undefined4 *)(param_1 + 0x1c);\n    *(undefined4 *)(param_2 + 0x28) \u003d *(undefined4 *)(param_1 + 0x20);\n    *(undefined4 *)(param_2 + 0x2c) \u003d *(undefined4 *)(param_1 + 0x24);\n    *(undefined4 *)(param_2 + 0x30) \u003d *(undefined4 *)(param_1 + 0x28);\n    *(undefined4 *)(param_2 + 0x34) \u003d *(undefined4 *)(param_1 + 0x2c);\n    *(undefined4 *)(param_2 + 0x38) \u003d *(undefined4 *)(param_1 + 0x30);\n    *(undefined4 *)(param_2 + 0x3c) \u003d *(undefined4 *)(param_1 + 0x34);\n    *(undefined4 *)(param_2 + 0x40) \u003d *(undefined4 *)(param_1 + 0x38);\n    *(undefined4 *)(param_2 + 0x44) \u003d *(undefined4 *)(param_1 + 0x3c);\n    *(undefined4 *)(param_2 + 0x48) \u003d *(undefined4 *)(param_1 + 0x40);\n    *(undefined4 *)(param_2 + 0x4c) \u003d *(undefined4 *)(param_1 + 0x44);\n    *(undefined4 *)(param_2 + 0x50) \u003d *(undefined4 *)(param_1 + 0x48);\n    *(undefined4 *)(param_2 + 0x54) \u003d *(undefined4 *)(param_1 + 0x4c);\n    *(undefined4 *)(param_2 + 0x58) \u003d *(undefined4 *)(param_1 + 0x50);\n    *(undefined4 *)(param_2 + 0x5c) \u003d *(undefined4 *)(param_1 + 0x54);\n    *(undefined4 *)(param_2 + 0x60) \u003d *(undefined4 *)(param_1 + 0x58);\n    *(undefined4 *)(param_2 + 100) \u003d *(undefined4 *)(param_1 + 0x5c);\n    *(undefined4 *)(param_2 + 0x68) \u003d *(undefined4 *)(param_1 + 0x60);\n    *(undefined4 *)(param_2 + 0x6c) \u003d *(undefined4 *)(param_1 + 100);\n    *(undefined4 *)(param_2 + 0x70) \u003d *(undefined4 *)(param_1 + 0x68);\n    *(undefined4 *)(param_2 + 0x74) \u003d *(undefined4 *)(param_1 + 0x6c);\n    *(undefined4 *)(param_2 + 0x78) \u003d *(undefined4 *)(param_1 + 0x70);\n    return 0;\n  }\n  __android_log_print(6,\"SpaceManager\",\"baseData version not supported\");\n  return 0xfffffffc;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00103c30",
+      "elf_address": 15408,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x3c30",
+      "name": "toHzuVirtualSpaceData",
+      "analysis_no_return": false,
+      "listing_body_address_count": 136,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 15408,
+          "assembly": "stp x29,x30,[sp, #-0x10]!"
+        },
+        {
+          "elf_address": 15412,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 15416,
+          "assembly": "ldr w9,[x1]"
+        },
+        {
+          "elf_address": 15420,
+          "assembly": "cmp w9,#0xcb"
+        },
+        {
+          "elf_address": 15424,
+          "assembly": "b.ne 0x00103c80"
+        },
+        {
+          "elf_address": 15428,
+          "assembly": "ldr w9,[x1, #0x4]"
+        },
+        {
+          "elf_address": 15432,
+          "assembly": "cmp w9,#0x1"
+        },
+        {
+          "elf_address": 15436,
+          "assembly": "b.ne 0x00103c94"
+        },
+        {
+          "elf_address": 15440,
+          "assembly": "mov x8,x0"
+        },
+        {
+          "elf_address": 15444,
+          "assembly": "mov w0,wzr"
+        },
+        {
+          "elf_address": 15448,
+          "assembly": "ldr w9,[x8]"
+        },
+        {
+          "elf_address": 15452,
+          "assembly": "str w9,[x1, #0x8]"
+        },
+        {
+          "elf_address": 15456,
+          "assembly": "ldr s0,[x8, #0x4]"
+        },
+        {
+          "elf_address": 15460,
+          "assembly": "str s0,[x1, #0xc]"
+        },
+        {
+          "elf_address": 15464,
+          "assembly": "ldr s0,[x8, #0x8]"
+        },
+        {
+          "elf_address": 15468,
+          "assembly": "str s0,[x1, #0x10]"
+        },
+        {
+          "elf_address": 15472,
+          "assembly": "ldr s0,[x8, #0xc]"
+        },
+        {
+          "elf_address": 15476,
+          "assembly": "str s0,[x1, #0x14]"
+        },
+        {
+          "elf_address": 15480,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 15484,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 15488,
+          "assembly": "adrp x1,0x100000"
+        },
+        {
+          "elf_address": 15492,
+          "assembly": "add x1,x1,#0xfdb"
+        },
+        {
+          "elf_address": 15496,
+          "assembly": "adrp x2,0x100000"
+        },
+        {
+          "elf_address": 15500,
+          "assembly": "add x2,x2,#0xe9e"
+        },
+        {
+          "elf_address": 15504,
+          "assembly": "b 0x00103ca4"
+        },
+        {
+          "elf_address": 15508,
+          "assembly": "adrp x1,0x100000"
+        },
+        {
+          "elf_address": 15512,
+          "assembly": "add x1,x1,#0xfdb"
+        },
+        {
+          "elf_address": 15516,
+          "assembly": "adrp x2,0x100000"
+        },
+        {
+          "elf_address": 15520,
+          "assembly": "add x2,x2,#0xeb9"
+        },
+        {
+          "elf_address": 15524,
+          "assembly": "mov w0,#0x6"
+        },
+        {
+          "elf_address": 15528,
+          "assembly": "bl 0x001044d0"
+        },
+        {
+          "elf_address": 15532,
+          "assembly": "mov w0,#0xfffffffc"
+        },
+        {
+          "elf_address": 15536,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 15540,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "__android_log_print",
+          "ghidra_address": "001044d0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* (anonymous namespace)::toHzuVirtualSpaceData(horizonos_spaces_spacemanager_VirtualSpaceData\n   const*, HzuVirtualSpaceData*) */\n\nundefined8\n(anonymous_namespace)::toHzuVirtualSpaceData\n          (horizonos_spaces_spacemanager_VirtualSpaceData *param_1,HzuVirtualSpaceData *param_2)\n\n{\n  char *pcVar1;\n  \n  if (*(int *)param_2 \u003d\u003d 0xcb) {\n    if (*(int *)(param_2 + 4) \u003d\u003d 1) {\n      *(undefined4 *)(param_2 + 8) \u003d *(undefined4 *)param_1;\n      *(undefined4 *)(param_2 + 0xc) \u003d *(undefined4 *)(param_1 + 4);\n      *(undefined4 *)(param_2 + 0x10) \u003d *(undefined4 *)(param_1 + 8);\n      *(undefined4 *)(param_2 + 0x14) \u003d *(undefined4 *)(param_1 + 0xc);\n      return 0;\n    }\n    pcVar1 \u003d \"data-\u003etype not supported\";\n  }\n  else {\n    pcVar1 \u003d \"data version not supported\";\n  }\n  __android_log_print(6,\"SpaceManager\",pcVar1);\n  return 0xfffffffc;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00103cc0",
+      "elf_address": 15552,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x3cc0",
+      "name": "toHzuWindowSpaceData",
+      "analysis_no_return": false,
+      "listing_body_address_count": 144,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 15552,
+          "assembly": "stp x29,x30,[sp, #-0x10]!"
+        },
+        {
+          "elf_address": 15556,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 15560,
+          "assembly": "ldr w9,[x1]"
+        },
+        {
+          "elf_address": 15564,
+          "assembly": "cmp w9,#0xcb"
+        },
+        {
+          "elf_address": 15568,
+          "assembly": "b.ne 0x00103d18"
+        },
+        {
+          "elf_address": 15572,
+          "assembly": "ldr w9,[x1, #0x4]"
+        },
+        {
+          "elf_address": 15576,
+          "assembly": "cmp w9,#0x2"
+        },
+        {
+          "elf_address": 15580,
+          "assembly": "b.ne 0x00103d2c"
+        },
+        {
+          "elf_address": 15584,
+          "assembly": "mov x8,x0"
+        },
+        {
+          "elf_address": 15588,
+          "assembly": "mov w0,wzr"
+        },
+        {
+          "elf_address": 15592,
+          "assembly": "ldr w9,[x8]"
+        },
+        {
+          "elf_address": 15596,
+          "assembly": "str w9,[x1, #0x8]"
+        },
+        {
+          "elf_address": 15600,
+          "assembly": "ldr s0,[x8, #0x4]"
+        },
+        {
+          "elf_address": 15604,
+          "assembly": "str s0,[x1, #0xc]"
+        },
+        {
+          "elf_address": 15608,
+          "assembly": "ldr s0,[x8, #0x8]"
+        },
+        {
+          "elf_address": 15612,
+          "assembly": "str s0,[x1, #0x10]"
+        },
+        {
+          "elf_address": 15616,
+          "assembly": "ldr s0,[x8, #0xc]"
+        },
+        {
+          "elf_address": 15620,
+          "assembly": "str s0,[x1, #0x14]"
+        },
+        {
+          "elf_address": 15624,
+          "assembly": "ldr s0,[x8, #0x10]"
+        },
+        {
+          "elf_address": 15628,
+          "assembly": "str s0,[x1, #0x18]"
+        },
+        {
+          "elf_address": 15632,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 15636,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 15640,
+          "assembly": "adrp x1,0x100000"
+        },
+        {
+          "elf_address": 15644,
+          "assembly": "add x1,x1,#0xfdb"
+        },
+        {
+          "elf_address": 15648,
+          "assembly": "adrp x2,0x100000"
+        },
+        {
+          "elf_address": 15652,
+          "assembly": "add x2,x2,#0xe9e"
+        },
+        {
+          "elf_address": 15656,
+          "assembly": "b 0x00103d3c"
+        },
+        {
+          "elf_address": 15660,
+          "assembly": "adrp x1,0x100000"
+        },
+        {
+          "elf_address": 15664,
+          "assembly": "add x1,x1,#0xfdb"
+        },
+        {
+          "elf_address": 15668,
+          "assembly": "adrp x2,0x100000"
+        },
+        {
+          "elf_address": 15672,
+          "assembly": "add x2,x2,#0xeb9"
+        },
+        {
+          "elf_address": 15676,
+          "assembly": "mov w0,#0x6"
+        },
+        {
+          "elf_address": 15680,
+          "assembly": "bl 0x001044d0"
+        },
+        {
+          "elf_address": 15684,
+          "assembly": "mov w0,#0xfffffffc"
+        },
+        {
+          "elf_address": 15688,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 15692,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "__android_log_print",
+          "ghidra_address": "001044d0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* (anonymous namespace)::toHzuWindowSpaceData(horizonos_spaces_spacemanager_WindowSpaceData const*,\n   HzuWindowSpaceData*) */\n\nundefined8\n(anonymous_namespace)::toHzuWindowSpaceData\n          (horizonos_spaces_spacemanager_WindowSpaceData *param_1,HzuWindowSpaceData *param_2)\n\n{\n  char *pcVar1;\n  \n  if (*(int *)param_2 \u003d\u003d 0xcb) {\n    if (*(int *)(param_2 + 4) \u003d\u003d 2) {\n      *(undefined4 *)(param_2 + 8) \u003d *(undefined4 *)param_1;\n      *(undefined4 *)(param_2 + 0xc) \u003d *(undefined4 *)(param_1 + 4);\n      *(undefined4 *)(param_2 + 0x10) \u003d *(undefined4 *)(param_1 + 8);\n      *(undefined4 *)(param_2 + 0x14) \u003d *(undefined4 *)(param_1 + 0xc);\n      *(undefined4 *)(param_2 + 0x18) \u003d *(undefined4 *)(param_1 + 0x10);\n      return 0;\n    }\n    pcVar1 \u003d \"data-\u003etype not supported\";\n  }\n  else {\n    pcVar1 \u003d \"data version not supported\";\n  }\n  __android_log_print(6,\"SpaceManager\",pcVar1);\n  return 0xfffffffc;\n}\n\n"
     }
   ]
 }
