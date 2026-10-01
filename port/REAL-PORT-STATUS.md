@@ -34,3 +34,14 @@ ficam disponíveis a APK comum só por recompilar. Alguns recursos podem exigir
 cooperação da Meta/fabricante ou ser inviáveis sob o requisito de APK sem
 privilégios e bootloader bloqueado. “Ainda não portado” não é promessa de que
 todo recurso do Quest poderá ser reproduzido nesse hardware.
+
+## Atualização: revisão dos jobs e preparação para público
+
+Os runs UI **36805504164** e cloud **36805504240** terminaram com sucesso de análise,
+com erros/omissões de decompilação descritos em `docs/PORTING-METHOD.md`. Isso não
+altera os bloqueios de execução da tabela acima. O run depth **36805607831** também
+terminou; o formato dos modelos permanece opaco (TH1).
+
+Requisitos preliminares: `docs/COMPATIBILITY.md`; política verificável em
+`devices/compatibility-policy.json`. Nenhum modelo de telefone validado fisicamente,
+sem promessa de compatibilidade universal ou APK completo.

@@ -169,3 +169,13 @@ ainda NÃO PORTADA**; ZIP recovered não equivale a APK funcional.
 
 O componente de câmera passou no build Android, mas ainda não está ligado ao
 compositor Horizon; não equivale ao passthrough estéreo do Quest nem a APK pronto.
+
+## Público, requisitos e compatibilidade
+
+[Requisitos preliminares e protocolo de validação](docs/COMPATIBILITY.md).
+Não há compatibilidade universal, lista de aparelhos certificados ou mínimo
+funcional medido. Os orçamentos de hardware são alvos para a futura alfa, não
+recomendação de compra nem garantia de executar Horizon. O objetivo continua
+sendo portar o software original, e não substituir a experiência por um demo.
+
+[Método de port: decompilação, disassembly, QEMU e critérios de execução original](docs/PORTING-METHOD.md).
