@@ -1,0 +1,39 @@
+{
+  "api": 35,
+  "abi": "x86_64",
+  "gpu_configuration": "swiftshader_indirect",
+  "tests": [
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "sensorsRepeatedStartStopAndClosedGuards",
+      "failed": false,
+      "skipped": false
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "inputServiceLifecycleRunsOnMainThread",
+      "failed": false,
+      "skipped": false
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "closingOneOutputDoesNotInvalidateAnother",
+      "failed": false,
+      "skipped": false
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "eglNativeLoadRenderPresentShaderCompileAndClose",
+      "failed": false,
+      "skipped": false
+    }
+  ],
+  "passed": false,
+  "original_firmware_executed": false,
+  "physical_device_tested": false,
+  "arcore_camera_or_depth_tested": false,
+  "quest_hand_inference_tested": false,
+  "scope": "Our adapter instrumentation only; test APKs are not METAPORT releases",
+  "source_commit": "2f0f2a9521491d8a4bda30bd62a36ba5bebefa1b",
+  "run_id": "36815321281"
+}
