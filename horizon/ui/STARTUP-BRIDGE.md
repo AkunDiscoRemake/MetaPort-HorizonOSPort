@@ -256,3 +256,20 @@ remain unresolved. An executable-segment target is not a validated function entr
 or callable ABI. The workflow publishes `shell-vtable-windows.json`; implementing
 an original runtime bridge remains blocked on the actual signatures/lifetimes and
 platform/service dependencies, not just finding addresses.
+
+## Constructor recovery and virtual-call frontier update
+
+The isolated constructor retry **36817250686 succeeded**: ELF `0xdc8480` now has
+93,530 characters of C-like output, status `DECOMPILED_NOT_VALIDATED`. This confirms
+that the C-only/64 MiB configuration recovered this function in that run; it does
+not prove which individual change removed the earlier buffer failure. The original
+95/96 batch report remains unchanged as historical evidence. Inferred no-return
+annotations and private prototypes still need independent verification.
+
+The two constructor-adjacent pointer windows produced **56 unique executable
+address candidates** after filtering preceding words and deduplicating shared
+targets. `shell-virtuals.yml` now decompiles that frontier with the same fixed ELF
+hash, a 96-function total budget and explicit incomplete-ABI flags. In particular,
+the Clay window includes ELF `0xda03e4` at relative slot `0x30`. The 32-slot windows
+can include neighboring tables: they are not proven class layouts, and no adapter
+may call a target merely because it appears in this selection.

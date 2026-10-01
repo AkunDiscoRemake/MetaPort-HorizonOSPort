@@ -115,3 +115,10 @@ process exit immediately, rather than waiting out a ten/fifteen-minute deadline.
 
 The EGL ownership case also checks ARCore's camera-context guard without creating
 an ARCore Session: this exercises real EGL contexts, **not camera or depth**.
+
+Local recheck after adding the emulator supervisor: all project syntax, regression,
+JNI-generation and source-bundle checks passed. The native execution recheck also
+passed all nine ASan/UBSan cases and both TSan cases. The supervisor has five unit
+cases covering configuration deduplication, bounded log storage/draining, early
+process exit, exact successful boot-property checking, and boot deadlines. These
+synthetic supervisor tests are not emulated Android execution evidence.
