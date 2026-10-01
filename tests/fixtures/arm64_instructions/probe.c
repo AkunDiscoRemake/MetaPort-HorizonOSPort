@@ -15,5 +15,10 @@ JNIEXPORT jint JNICALL Java_org_metaport_internal_cpuprobe_Probe_execute(JNIEnv 
                          : "=r"(old) : "r"(&byte) : "memory");
         return (jint)old;
     }
+    if(mode==3) {
+        uint8_t byte=7;
+        __asm__ volatile("ldarb %w0, [%1]" : "=r"(old) : "r"(&byte) : "memory");
+        return (jint)old;
+    }
     return (jint)(value+add);
 }

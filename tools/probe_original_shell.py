@@ -71,6 +71,7 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
     offline_guard()
     report={'apk_sha256':sha,'original_apk_unmodified':not bundled,
             'source_apk_sha256':policy['apk_sha256'],'original_members_unchanged':True,
+            'instruction_adaptations':bundle.get('instruction_adaptations',[]) if bundle else [],
             'bundled_library_count':len(bundle['added_members']) if bundle else 0,'network_isolated':True,
             'installation_attempted':False,'installation_succeeded':False,
             'activity_start_attempted':False,'port_ready':False,

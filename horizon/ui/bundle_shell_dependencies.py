@@ -71,7 +71,7 @@ def compare_apks(original,modified,added):
             if member_digest(dst,targets[name])!=sha:raise ValueError('Added library hash mismatch')
 
 
-def prepare(images,reconstruction,original,output):
+def prepare(images,reconstruction,original,output,rcpc_compat=False):
     images=Path(images);original=Path(original);output=Path(output);output.mkdir(parents=True,exist_ok=True)
     policy=json.loads(POLICY.read_text());recon=json.loads(Path(reconstruction).read_text())
     if digest(original)!=policy['apk_sha256'] or recon['source_zip_sha256']!=policy['ota_sha256']:
@@ -144,6 +144,17 @@ def prepare(images,reconstruction,original,output):
         needs=native_needs(path)
         rows.append({'soname':name,'sha256':digest(path),'size_bytes':size,**origin})
         for child in needs:edges.append({'from':name,'to':child});pending.append(child)
+    adaptations=[]
+    if rcpc_compat:
+        from horizon.ui.rcpc_compat import lower_verified
+        target=libs/'libc++.so'
+        adapted,evidence=lower_verified(target.read_bytes());target.write_bytes(adapted)
+        adaptations.append(evidence)
+        added['lib/arm64-v8a/libc++.so']=evidence['adapted_sha256']
+        for row in rows:
+            if row['soname']=='libc++.so':
+                row.update(sha256=evidence['adapted_sha256'],source_original_sha256=evidence['source_sha256'],
+                           status='FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION')
     unsigned=output/'shell-dependencies-unsigned.apk'
     with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
         for info in src.infolist():
@@ -153,10 +164,11 @@ def prepare(images,reconstruction,original,output):
         for member in sorted(added):dst.write(libs/PurePosixPath(member).name,member,compress_type=zipfile.ZIP_STORED)
     compare_apks(original,unsigned,added)
     report={'source_apk_sha256':policy['apk_sha256'],'source_ota_sha256':policy['ota_sha256'],
+            'instruction_adaptations':adaptations,'original_native_dependencies_unmodified':not adaptations,
             'added_members':added,'nodes':rows,'edges':edges,'unresolved':unresolved,
             'original_members_unchanged':True,'original_signatures_removed':True,
             'namespace_and_symbol_versions_verified':False,'port_ready':False,
-            'scope':'Original dependency packaging for offline testing; no service stubs or application-code changes'}
+            'scope':'Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes'}
     (output/'bundle.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 
@@ -164,4 +176,5 @@ def prepare(images,reconstruction,original,output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('images','reconstruction','original','output'):p.add_argument('--'+name,required=True)
-    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output)
+    p.add_argument('--rcpc-compat',action='store_true')
+    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output,a.rcpc_compat)

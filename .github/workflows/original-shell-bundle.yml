@@ -10,6 +10,10 @@ on:
         type: choice
         options: ['36', '35']
         default: '36'
+      rcpc_compat:
+        description: Explicit single-site RCpc compatibility experiment (not original native bytes)
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -22,6 +26,9 @@ jobs:
     env:
       WORK: ${{ github.workspace }}/local-analysis/original-bundle-work
       TARGET_ANDROID_API: ${{ inputs.android_api || '36' }}
+      RCPC_COMPAT: ${{ inputs.rcpc_compat && 'true' || 'false' }}
+      REPORT_STEM: ${{ inputs.rcpc_compat && 'original-shell-rcpc' || 'original-shell-bundled' }}
+      BUNDLE_REPORT: ${{ inputs.rcpc_compat && 'original-shell-rcpc-dependency-bundle' || 'original-shell-dependency-bundle' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,7 +64,9 @@ jobs:
           (p/'reconstruction.json').write_text(json.dumps(r))
           PY
           python3 -m horizon.ui.prepare_shell_apk --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output local-analysis/original-cache/VrShell.apk
-          python3 -m horizon.ui.bundle_shell_dependencies --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle
+          extra=()
+          if [ "$RCPC_COMPAT" = true ]; then extra+=(--rcpc-compat); fi
+          python3 -m horizon.ui.bundle_shell_dependencies "${extra[@]}" --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle
           rm -rf "$WORK/images" "$WORK/firmware.zip"
       - name: Verify cached APK too and install the test image
         timeout-minutes: 12
@@ -92,8 +101,8 @@ jobs:
           # Empty environment: no GitHub/Meta tokens inherited. Only loopback exists
           # inside this network namespace. The Android app itself is unprivileged.
           sudo env -i PATH="$PATH" HOME="$HOME" ANDROID_HOME="$ANDROID_HOME" JAVA_HOME="$JAVA_HOME" \
-            GITHUB_SHA="$GITHUB_SHA" GITHUB_RUN_ID="$GITHUB_RUN_ID" TARGET_ANDROID_API="$TARGET_ANDROID_API" HOST_UID="$(id -u)" HOST_GID="$(id -g)" \
-            unshare --net bash -c 'ip link set lo up; exec setpriv --reuid "$HOST_UID" --regid "$HOST_GID" --clear-groups python3 -m tools.run_original_shell_baseline --bundled --api "$TARGET_ANDROID_API"'
+            GITHUB_SHA="$GITHUB_SHA" GITHUB_RUN_ID="$GITHUB_RUN_ID" TARGET_ANDROID_API="$TARGET_ANDROID_API" REPORT_STEM="$REPORT_STEM" HOST_UID="$(id -u)" HOST_GID="$(id -g)" \
+            unshare --net bash -c 'ip link set lo up; exec setpriv --reuid "$HOST_UID" --regid "$HOST_GID" --clear-groups python3 -m tools.run_original_shell_baseline --bundled --api "$TARGET_ANDROID_API" --report-stem "$REPORT_STEM"'
       - name: Preserve exact outcome, including skipped installation or launch failure
         if: always()
         env:
@@ -104,7 +113,7 @@ jobs:
           import os,json
           from pathlib import Path
           from tools.collect_action_diagnostics import captured_files
-          p=Path('local-analysis/android-runtime/original-shell-bundled-baseline.json')
+          p=Path('local-analysis/android-runtime')/(os.environ['REPORT_STEM']+'-baseline.json')
           r=json.loads(p.read_text()) if p.exists() else {'result':'EXPERIMENT_NOT_COMPLETED','port_ready':False}
           bundle=Path('local-analysis/shell-bundle/bundle.json')
           if bundle.exists() and r.get('crash_buffer'):
@@ -127,11 +136,11 @@ jobs:
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
-          cp local-analysis/android-runtime/original-shell-bundled-baseline.json analysis/android-runtime/original-shell-bundled-baseline.json
-          git add analysis/android-runtime/original-shell-bundled-baseline.json
+          cp "local-analysis/android-runtime/${REPORT_STEM}-baseline.json" "analysis/android-runtime/${REPORT_STEM}-baseline.json"
+          git add "analysis/android-runtime/${REPORT_STEM}-baseline.json"
           if [ -f local-analysis/shell-bundle/bundle.json ]; then
-            cp local-analysis/shell-bundle/bundle.json analysis/android-runtime/original-shell-dependency-bundle.json
-            git add analysis/android-runtime/original-shell-dependency-bundle.json
+            cp local-analysis/shell-bundle/bundle.json "analysis/android-runtime/${BUNDLE_REPORT}.json"
+            git add "analysis/android-runtime/${BUNDLE_REPORT}.json"
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

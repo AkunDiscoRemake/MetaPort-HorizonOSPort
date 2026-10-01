@@ -12,7 +12,9 @@ from tools.probe_original_shell import offline_guard
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--bundled',action='store_true')
-    parser.add_argument('--api',type=int,choices=(35,36),default=35);args=parser.parse_args()
+    parser.add_argument('--api',type=int,choices=(35,36),default=35)
+    parser.add_argument('--report-stem',choices=('original-shell-bundled','original-shell-rcpc'),default='original-shell-bundled')
+    args=parser.parse_args()
     offline_guard()  # Refuse before launching the emulator too.
     root=Path('local-analysis/android-runtime');root.mkdir(parents=True,exist_ok=True)
     command=[sys.executable,'-m','tools.probe_original_shell','--apk',
@@ -24,7 +26,7 @@ if __name__=='__main__':
                  '--original','local-analysis/original-cache/VrShell.apk',
                  '--bundle-manifest','local-analysis/shell-bundle/bundle.json',
                  '--instruction-probe-apk','local-analysis/instruction-probe/signed.apk',
-                 '--output',str(root/'original-shell-bundled-baseline.json')]
+                 '--output',str(root/(args.report_stem+'-baseline.json'))]
     try:
         code=run(args.api,os.environ['ANDROID_HOME'],root,test_command=command)
     finally:

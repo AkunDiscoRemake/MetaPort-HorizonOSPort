@@ -13,7 +13,7 @@ def inspect(apk,adb):
     installed=call(['install','--no-streaming',str(apk)],120);report['install']=installed
     if installed['exit_code'] or 'Success' not in installed['text'].splitlines():return report
     try:
-        for mode in ('control','lse','rcpc'):
+        for mode in ('control','lse','rcpc','acquire'):
             call(['shell','am','force-stop',PACKAGE]);call(['logcat','-b','crash','-c'])
             result=call(['shell','am','instrument','-w','-e','mode',mode,PACKAGE+'/.Probe'],60)
             report['cases'][mode]={'instrumentation':result,

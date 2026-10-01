@@ -10,7 +10,7 @@ public final class Probe extends Instrumentation {
         Bundle result=new Bundle();
         try {
             System.loadLibrary("instruction_probe");
-            int value=execute("lse".equals(mode)?1:"rcpc".equals(mode)?2:0);
+            int value=execute("lse".equals(mode)?1:"rcpc".equals(mode)?2:"acquire".equals(mode)?3:0);
             result.putString("value", Integer.toString(value));
             finish(value==7 ? -1:0,result);
         } catch (Throwable error) {
