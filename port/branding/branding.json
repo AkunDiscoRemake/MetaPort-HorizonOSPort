@@ -1,0 +1,25 @@
+{
+  "display_name": "MetaPort official demo by ahambolota",
+  "source_commit": "6c2481a",
+  "source_git_blob": "2006fec5c166a6924427d26fdb2afb32d394fa23",
+  "source_path_in_main": "file_00000000f6dc820e80044d81d6fc2880.png",
+  "original_sha256": "f0d6583486ed0bb3513d7a157567d855bb61f76dceb03cdc4ec82df24ace48d9",
+  "original_dimensions": [
+    1254,
+    1254
+  ],
+  "generator": "Pillow 11.3.0; Lanczos; no crop or redraw",
+  "generated_files": {
+    "android-res/mipmap-mdpi/ic_metaport_demo.png": "e9a8a5e1cb1e19a5276892b34a10172217d3a8e284bf7775a6743a334def49d1",
+    "android-res/mipmap-hdpi/ic_metaport_demo.png": "77493c0f918b357895bfff3804bf3f2174e702477f7e03c48c02fea82ecee4f3",
+    "android-res/mipmap-xhdpi/ic_metaport_demo.png": "ff8e5b18ef0b98aaddfa486c1b60c802dfe51f83c6f82a12414192c81e48a6a6",
+    "android-res/mipmap-xxhdpi/ic_metaport_demo.png": "49335f20714f26b3d0d2ad281427cff5a7116bb0c379e4ae5e4f4f52bac171c5",
+    "android-res/mipmap-xxxhdpi/ic_metaport_demo.png": "4e4c54a4d8ba5359e0741d3ff68a7fba1c000aa67a112f8491e59ad49816e262",
+    "android-res/drawable-nodpi/metaport_demo_foreground.png": "d394632c10d4d27942a7885abd3551867546c020d91be30c0f425ac579ff46d4",
+    "android-res/mipmap-anydpi-v26/ic_metaport_demo.xml": "60406931ba26b88ba1a5afb622b07b6d9a03b5cb314a0be069440c37d7ed1eeb",
+    "android-res/values/metaport_demo_branding.xml": "779d5ecb756d981649c6652efc2ed8048c560b214e38ac636bfea9fc33aa2ca2"
+  },
+  "applied_to_original_apk": false,
+  "functional_demo_validated": false,
+  "scope": "User-requested project branding, not a claim of Meta certification"
+}
