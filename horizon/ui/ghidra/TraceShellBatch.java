@@ -92,7 +92,11 @@ public class TraceShellBatch extends GhidraScript {
                         row.put("elf_address",ins.getAddress().subtract(base));row.put("assembly",ins.toString());listing.add(row);
                     }
                     item.put("listing_prefix",listing);item.put("listing_prefix_truncated",instructions.hasNext());
-                    var result=decompiler.decompileFunction(function,30,monitor);
+                    // This original constructor exceeded 30s in run 36813678532.
+                    // Increase only its budget, not every function in the batch.
+                    int seconds=address.subtract(base)==0xdc8480L ? 180 : 30;
+                    item.put("decompile_timeout_seconds",seconds);
+                    var result=decompiler.decompileFunction(function,seconds,monitor);
                     item.put("diagnostic",result.getErrorMessage());
                     if(result.decompileCompleted() && result.getDecompiledFunction()!=null) {
                         String code=result.getDecompiledFunction().getC();
