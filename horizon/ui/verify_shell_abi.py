@@ -146,6 +146,12 @@ def inspect(images,reconstruction,output):
             symbols,_=command(['readelf','--dyn-syms','-W',str(wrapper)])
             report['delete_wrapper']={'member':p['wrapper_member'],'sha256':p['wrapper_sha256'],
                 **inspect_wrapper(wrapper.read_bytes(),symbols)}
+            wrapped=report['delete_wrapper']
+            if wrapped.get('elf_address',0):
+                from horizon.ui.trace_arm64_tail import trace_tail
+                relocations,_=command(['readelf','--relocs','-W',str(wrapper)])
+                wrapped['tail_trace']=trace_tail(wrapper.read_bytes(),wrapped['elf_address'],relocations)
+
     (output/'shell-jni-abi-proof.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 
