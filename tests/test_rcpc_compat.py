@@ -65,8 +65,8 @@ class RcpcAdaptation(unittest.TestCase):
 
     def test_dependency_inventory_preserves_registers_and_all_other_bytes(self):
         from horizon.ui.rcpc_compat import ADAPTATIONS
-        self.assertEqual(len(ADAPTATIONS),18)
-        self.assertEqual(len(set(name for name,_,_ in ADAPTATIONS)),18)
+        self.assertEqual(len(ADAPTATIONS),29)
+        self.assertEqual(len(set(name for name,_,_ in ADAPTATIONS)),29)
         for name,sha,sites in ADAPTATIONS:
             self.assertEqual(len(sha),64)
             self.assertEqual(len(set(pc for pc,_,_ in sites)),len(sites))

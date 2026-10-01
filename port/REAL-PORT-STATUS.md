@@ -122,3 +122,9 @@ Recovery 36939409546 also confirmed the real `privateipc.updater` package for
 ShellNativeUpdaterHolder and the boot config's PreferencesManager/Spatial Window
 Manager role dependencies. They have not been replaced by working app-scoped
 services. There is still no functional beta, phone validation, or NPU inference.
+
+Run **36940043323** completed with another pre-UI crash, now in
+`libprocessgroup.so` at guest block `0x50460`. Its expanded census supplies 120
+additional explicit sites across 11 firmware libraries. The next policy has
+597 sites / 29 libraries. This remains a CI-only compatibility experiment,
+not an installable functional demo or a port of the missing Java/native services.

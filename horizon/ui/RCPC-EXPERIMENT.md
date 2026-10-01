@@ -167,3 +167,12 @@ remaining names were explicitly skipped. The next census prioritizes as-yet
 unadapted firmware dependencies and admits up to the existing 128-node closure
 limit, retaining the same byte, candidate, output and time limits. This avoids
 alphabetic starvation without claiming the larger libraries were scanned.
+
+Run **36940043323** still crashed before UI, at the JSON-value constructor in
+`libprocessgroup.so` (guest block ELF `0x50460`). The expanded census completed for
+all bounded small libraries; only original APK members `libshell.so`,
+`libnetwork.so` and `libovravatar2p.so` exceeded its size limit. The remaining
+11 unchanged firmware libraries contribute 120 explicit byte/word/doubleword
+candidates to the next fixed policy (597 sites / 29 libraries in total).
+Each addition has its own evidence-run provenance. No original APK member is
+changed, and neither startup success nor complete instruction coverage is claimed.

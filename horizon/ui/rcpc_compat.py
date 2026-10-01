@@ -27,7 +27,7 @@ LIBUTILS_SHA='2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167'
 LIBUTILS_SITES=load_sites('libutils-rcpc-sites.json',LIBUTILS_SHA,14)
 def load_dependency_sites():
     raw=Path(__file__).with_name('dependency-rcpc-sites.json').read_bytes()
-    if hashlib.sha256(raw).hexdigest()!='cf2507c9e5593fd6794281c10bc69a1186021a2956c9ab583cd4e29dbeccb577':
+    if hashlib.sha256(raw).hexdigest()!='3a1c4ee83db35785868e49d3682dc8185949669ad3585d397197b76cd70fb277':
         raise ValueError('Wrong pinned dependency inventory')
     return tuple((r['library'],r['source_sha256'],tuple(
         (s['pc_elf'],int(s['original_word'],16),int(s['adapted_word'],16))
