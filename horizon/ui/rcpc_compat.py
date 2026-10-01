@@ -14,7 +14,8 @@ PC=0x88ac4
 BEFORE=0x38bfc108  # ldaprb w8, [x8]
 AFTER=0x08dffd08   # ldarb w8, [x8]
 SITES=((PC,BEFORE,AFTER),
-       (0x48cb0,0x38bfc008,0x08dffc08))  # __cxa_guard_acquire: w8, [x0]
+       (0x48cb0,0x38bfc008,0x08dffc08),  # __cxa_guard_acquire: w8, [x0]
+       (0x88994,0x38bfc108,0x08dffd08))  # observed locale initialization, run 36903032364
 
 
 def lower_verified(data,expected_sha=ORIGINAL_SHA,sites=SITES):
