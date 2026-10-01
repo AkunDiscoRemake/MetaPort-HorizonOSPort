@@ -3061,6 +3061,847 @@
       "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
       "physical_device_validated": false,
       "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libprocessgroup.so",
+      "source_sha256": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053",
+      "adapted_sha256": "baf598318a774c52d912ef6854c60283289f0bbd6df1ef30fc69c9b0fa8bf9eb",
+      "sites": [
+        {
+          "pc_elf": 138884,
+          "file_offset": 138884,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 186544,
+          "file_offset": 186544,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 192080,
+          "file_offset": 192080,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 192364,
+          "file_offset": 192364,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 192940,
+          "file_offset": 192940,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 193948,
+          "file_offset": 193948,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 194404,
+          "file_offset": 194404,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 197752,
+          "file_offset": 197752,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 204456,
+          "file_offset": 204456,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 204660,
+          "file_offset": 204660,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 205148,
+          "file_offset": 205148,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 209748,
+          "file_offset": 209748,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 222852,
+          "file_offset": 222852,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 277432,
+          "file_offset": 277432,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 295188,
+          "file_offset": 295188,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 309976,
+          "file_offset": 309976,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 310572,
+          "file_offset": 310572,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 310600,
+          "file_offset": 310600,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 311832,
+          "file_offset": 311832,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 312664,
+          "file_offset": 312664,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 313044,
+          "file_offset": 313044,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 313856,
+          "file_offset": 313856,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 314216,
+          "file_offset": 314216,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 324160,
+          "file_offset": 324160,
+          "original_word": "0x38bfc289",
+          "adapted_word": "0x8dffe89"
+        },
+        {
+          "pc_elf": 324248,
+          "file_offset": 324248,
+          "original_word": "0x38bfc288",
+          "adapted_word": "0x8dffe88"
+        },
+        {
+          "pc_elf": 324672,
+          "file_offset": 324672,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 328820,
+          "file_offset": 328820,
+          "original_word": "0x38bfc268",
+          "adapted_word": "0x8dffe68"
+        },
+        {
+          "pc_elf": 328848,
+          "file_offset": 328848,
+          "original_word": "0x38bfc268",
+          "adapted_word": "0x8dffe68"
+        },
+        {
+          "pc_elf": 349944,
+          "file_offset": 349944,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libmediautils.so",
+      "source_sha256": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40",
+      "adapted_sha256": "79a9fd4102647955144cb510a4eade70f75a9b5f412758e647dd8390eb87ec49",
+      "sites": [
+        {
+          "pc_elf": 138308,
+          "file_offset": 138308,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 138724,
+          "file_offset": 138724,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 142908,
+          "file_offset": 142908,
+          "original_word": "0x38bfc2c9",
+          "adapted_word": "0x8dffec9"
+        },
+        {
+          "pc_elf": 142944,
+          "file_offset": 142944,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 142960,
+          "file_offset": 142960,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 142996,
+          "file_offset": 142996,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 143452,
+          "file_offset": 143452,
+          "original_word": "0x38bfc2a9",
+          "adapted_word": "0x8dffea9"
+        },
+        {
+          "pc_elf": 143488,
+          "file_offset": 143488,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 143504,
+          "file_offset": 143504,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 143540,
+          "file_offset": 143540,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 145208,
+          "file_offset": 145208,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 145512,
+          "file_offset": 145512,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 145604,
+          "file_offset": 145604,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 145780,
+          "file_offset": 145780,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 147336,
+          "file_offset": 147336,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 147796,
+          "file_offset": 147796,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 203368,
+          "file_offset": 203368,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 203748,
+          "file_offset": 203748,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 204200,
+          "file_offset": 204200,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 207056,
+          "file_offset": 207056,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 220052,
+          "file_offset": 220052,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 228480,
+          "file_offset": 228480,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 228944,
+          "file_offset": 228944,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 229144,
+          "file_offset": 229144,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 229320,
+          "file_offset": 229320,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 229580,
+          "file_offset": 229580,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 230076,
+          "file_offset": 230076,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 230508,
+          "file_offset": 230508,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 230972,
+          "file_offset": 230972,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 231424,
+          "file_offset": 231424,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 231796,
+          "file_offset": 231796,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 233260,
+          "file_offset": 233260,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 233652,
+          "file_offset": 233652,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 234216,
+          "file_offset": 234216,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 247460,
+          "file_offset": 247460,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 248156,
+          "file_offset": 248156,
+          "original_word": "0x38bfc12a",
+          "adapted_word": "0x8dffd2a"
+        },
+        {
+          "pc_elf": 248388,
+          "file_offset": 248388,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 249432,
+          "file_offset": 249432,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 250452,
+          "file_offset": 250452,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 251928,
+          "file_offset": 251928,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 251980,
+          "file_offset": 251980,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 252344,
+          "file_offset": 252344,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 255500,
+          "file_offset": 255500,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libnativedisplay.so",
+      "source_sha256": "c57ed363e40a5a6baad0583ee2f38d5df922cc6ff3015139a6a986de2007d901",
+      "adapted_sha256": "608d9236b4e26f8eb3e8f118d38ad79eadc5c66fcd19c2b2253e438bb6e4d777",
+      "sites": [
+        {
+          "pc_elf": 41716,
+          "file_offset": 41716,
+          "original_word": "0xf8bfc2e8",
+          "adapted_word": "0xc8dffee8"
+        },
+        {
+          "pc_elf": 41852,
+          "file_offset": 41852,
+          "original_word": "0xf8bfc2e8",
+          "adapted_word": "0xc8dffee8"
+        },
+        {
+          "pc_elf": 42016,
+          "file_offset": 42016,
+          "original_word": "0xf8bfc2e8",
+          "adapted_word": "0xc8dffee8"
+        },
+        {
+          "pc_elf": 61072,
+          "file_offset": 61072,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libosutils.so",
+      "source_sha256": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
+      "adapted_sha256": "e54393bab282df38ea1e89eb416c4c7c33a4cef7a74be42b5e8ba52d93610a41",
+      "sites": [
+        {
+          "pc_elf": 111840,
+          "file_offset": 111840,
+          "original_word": "0xb8bfc116",
+          "adapted_word": "0x88dffd16"
+        },
+        {
+          "pc_elf": 174000,
+          "file_offset": 174000,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 181120,
+          "file_offset": 181120,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 182904,
+          "file_offset": 182904,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 193860,
+          "file_offset": 193860,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 194920,
+          "file_offset": 194920,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 219640,
+          "file_offset": 219640,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 225764,
+          "file_offset": 225764,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 239644,
+          "file_offset": 239644,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 247012,
+          "file_offset": 247012,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libpermission.so",
+      "source_sha256": "435b47ad6d69840dba82ef1b9b67922034a3b0131359d304b482964bb35d7aed",
+      "adapted_sha256": "afbc741564924fecbabc8e3cdc9eac3715a1a8797332dec87231d3f0078da053",
+      "sites": [
+        {
+          "pc_elf": 32924,
+          "file_offset": 32924,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 35400,
+          "file_offset": 35400,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 45852,
+          "file_offset": 45852,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libreportstatsevent.so",
+      "source_sha256": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
+      "adapted_sha256": "ac706d12d19b37a6f23a217e6d00ef9fa7d9ce498133d49ef4e4fd7b766041cf",
+      "sites": [
+        {
+          "pc_elf": 24708,
+          "file_offset": 24708,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 24724,
+          "file_offset": 24724,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 31784,
+          "file_offset": 31784,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 31800,
+          "file_offset": 31800,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 43348,
+          "file_offset": 43348,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 44396,
+          "file_offset": 44396,
+          "original_word": "0xf8bfc120",
+          "adapted_word": "0xc8dffd20"
+        },
+        {
+          "pc_elf": 44724,
+          "file_offset": 44724,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 44792,
+          "file_offset": 44792,
+          "original_word": "0xf8bfc114",
+          "adapted_word": "0xc8dffd14"
+        },
+        {
+          "pc_elf": 45304,
+          "file_offset": 45304,
+          "original_word": "0xf8bfc120",
+          "adapted_word": "0xc8dffd20"
+        },
+        {
+          "pc_elf": 45460,
+          "file_offset": 45460,
+          "original_word": "0xf8bfc120",
+          "adapted_word": "0xc8dffd20"
+        },
+        {
+          "pc_elf": 45568,
+          "file_offset": 45568,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 48280,
+          "file_offset": 48280,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libsync.so",
+      "source_sha256": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9",
+      "adapted_sha256": "ea5f212dc2fa60faff116ed5545976fcb904b6829949a7a730b638e63c4ff949",
+      "sites": [
+        {
+          "pc_elf": 4444,
+          "file_offset": 4444,
+          "original_word": "0xb8bfc319",
+          "adapted_word": "0x88dfff19"
+        },
+        {
+          "pc_elf": 4760,
+          "file_offset": 4760,
+          "original_word": "0xb8bfc2f8",
+          "adapted_word": "0x88dffef8"
+        },
+        {
+          "pc_elf": 5296,
+          "file_offset": 5296,
+          "original_word": "0xb8bfc2f8",
+          "adapted_word": "0x88dffef8"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libui.so",
+      "source_sha256": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
+      "adapted_sha256": "64b753a777abe1e945f7e3803637df46f9ec3799eddc2e792598e8ddf9e96958",
+      "sites": [
+        {
+          "pc_elf": 165604,
+          "file_offset": 165604,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 168088,
+          "file_offset": 168088,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 176916,
+          "file_offset": 176916,
+          "original_word": "0x38bfc148",
+          "adapted_word": "0x8dffd48"
+        },
+        {
+          "pc_elf": 176964,
+          "file_offset": 176964,
+          "original_word": "0x38bfc148",
+          "adapted_word": "0x8dffd48"
+        },
+        {
+          "pc_elf": 177728,
+          "file_offset": 177728,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 192900,
+          "file_offset": 192900,
+          "original_word": "0xf8bfc100",
+          "adapted_word": "0xc8dffd00"
+        },
+        {
+          "pc_elf": 217620,
+          "file_offset": 217620,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 252128,
+          "file_offset": 252128,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 260256,
+          "file_offset": 260256,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libvndksupport.so",
+      "source_sha256": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168",
+      "adapted_sha256": "9c2e62ea830c119708e4940a3762c293bd3750f35192990992f8760914f72821",
+      "sites": [
+        {
+          "pc_elf": 4264,
+          "file_offset": 4264,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "telemetryservice-aidl-cpp.so",
+      "source_sha256": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b",
+      "adapted_sha256": "b1c7a8264ecfdc0e2c8c1b0f7ecbdefab7ac4b0c8f7d46178acd1c70e8d19faa",
+      "sites": [
+        {
+          "pc_elf": 45380,
+          "file_offset": 45380,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 45508,
+          "file_offset": 45508,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 45636,
+          "file_offset": 45636,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 45764,
+          "file_offset": 45764,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 45892,
+          "file_offset": 45892,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
+    },
+    {
+      "library": "volumetricwindow_aidl-cpp.so",
+      "source_sha256": "20401099ac0b9dd705d89ecea10430716bde035aff86113e1b59896a5d870302",
+      "adapted_sha256": "47bbb19d1df413fdbfa58f198202935ecfde7c1cb8c323c5aefcc2d9c30deddb",
+      "sites": [
+        {
+          "pc_elf": 17204,
+          "file_offset": 17204,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
     }
   ],
   "original_native_dependencies_unmodified": false,
@@ -3078,11 +3919,11 @@
     "lib/arm64-v8a/libhidlbase.so": "2c4b16a9cc45215f582003420363ad6b1ebb5ac2b9392a3e519d18bfcbbb18d3",
     "lib/arm64-v8a/libinsights.so": "b3cc138675f18c16da33cbb088e009383914e086115f31178b5adcb2c9ad77a9",
     "lib/arm64-v8a/libjsoncpp.so": "ad5c93d11d93f400616625055d54f649fe6307ab830cf906bc9110458ea36460",
-    "lib/arm64-v8a/libnativedisplay.so": "c57ed363e40a5a6baad0583ee2f38d5df922cc6ff3015139a6a986de2007d901",
+    "lib/arm64-v8a/libnativedisplay.so": "608d9236b4e26f8eb3e8f118d38ad79eadc5c66fcd19c2b2253e438bb6e4d777",
     "lib/arm64-v8a/libnativehelper.so": "f30f5667bb20e4952ec8734dbf6b6a894f8b260d16cc7759969661636c30711e",
-    "lib/arm64-v8a/libosutils.so": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
-    "lib/arm64-v8a/libreportstatsevent.so": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
-    "lib/arm64-v8a/libui.so": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
+    "lib/arm64-v8a/libosutils.so": "e54393bab282df38ea1e89eb416c4c7c33a4cef7a74be42b5e8ba52d93610a41",
+    "lib/arm64-v8a/libreportstatsevent.so": "ac706d12d19b37a6f23a217e6d00ef9fa7d9ce498133d49ef4e4fd7b766041cf",
+    "lib/arm64-v8a/libui.so": "64b753a777abe1e945f7e3803637df46f9ec3799eddc2e792598e8ddf9e96958",
     "lib/arm64-v8a/libutils.so": "548802bd068e32112bdc5912474ea0bcc85c9d89d9c43abfba186096c819c6bb",
     "lib/arm64-v8a/libepsmixermessagechannel.so": "e898fcf1bb4d24a0ccf7d6243f1adac86d8099ba4a39a1ecf5acd94b45bb7387",
     "lib/arm64-v8a/android.media.audio.common.types-V2-cpp.so": "3b055d95835670f118c72e93c2faa903cbaab14fcb76f7014d10d4d269a4958e",
@@ -3101,22 +3942,22 @@
     "lib/arm64-v8a/libaudiomanager.so": "f0645685680846fed4798b6b1d58e6fa0c252e366c97d39222e54bc11ad78190",
     "lib/arm64-v8a/libmedia_helper.so": "923a8e682a9943fa49d9ed97e58d59252bc215b0868578b6485f0e76bff08294",
     "lib/arm64-v8a/libmediametrics.so": "d3de7c156dd49f692c6edcc826239eb681b0b84ee5d161e223e85bbc40ce0981",
-    "lib/arm64-v8a/libmediautils.so": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40",
+    "lib/arm64-v8a/libmediautils.so": "79a9fd4102647955144cb510a4eade70f75a9b5f412758e647dd8390eb87ec49",
     "lib/arm64-v8a/libnblog.so": "d2d5cccd47342b3608b845a5598df30519969eff09a938007e2a74d9e69105cc",
-    "lib/arm64-v8a/libprocessgroup.so": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053",
+    "lib/arm64-v8a/libprocessgroup.so": "baf598318a774c52d912ef6854c60283289f0bbd6df1ef30fc69c9b0fa8bf9eb",
     "lib/arm64-v8a/libshmemcompat.so": "79b92b40c8d10518b657bdb7c3a83b5cc94a152f1eddf9f87057d364bee20b09",
     "lib/arm64-v8a/framework-permission-aidl-cpp.so": "c6eae45c79aa6cce4de0b0da93c895a17aa36fed6e1f8d198c0dbe1744dbe99e",
     "lib/arm64-v8a/packagemanager_aidl-cpp.so": "9793d2a7dc5b7c413aa7e451670432f20e4f2f4f18549b45633d4e97302b2583",
-    "lib/arm64-v8a/volumetricwindow_aidl-cpp.so": "20401099ac0b9dd705d89ecea10430716bde035aff86113e1b59896a5d870302",
+    "lib/arm64-v8a/volumetricwindow_aidl-cpp.so": "47bbb19d1df413fdbfa58f198202935ecfde7c1cb8c323c5aefcc2d9c30deddb",
     "lib/arm64-v8a/android.hardware.graphics.common-V4-ndk.so": "2d3e696891435002c9ded6cac22d908d3f133d1fc905b38d77fdb0a2e16f88b9",
     "lib/arm64-v8a/android.hardware.graphics.bufferqueue@1.0.so": "e5320672abd66dc7302698931396f0c90f9fcb26e91ad97cab5d6badfac7fdb8",
     "lib/arm64-v8a/android.hardware.graphics.bufferqueue@2.0.so": "97a59ef87ddaa9283ff02a7f0cbe1d125c366e70a075d024a28f042125c52d91",
     "lib/arm64-v8a/android.hardware.graphics.common@1.1.so": "9962487af24ac4c3b91991f11946b32f956c183225408dfb30ac904e2077c63d",
     "lib/arm64-v8a/android.hardware.graphics.common@1.2.so": "8efff97baf46f21801636f905aec0f986cad41fe6c7512d95216fdac3d0a47a0",
     "lib/arm64-v8a/android.hidl.token@1.0-utils.so": "a69fc675c7ebf37a78ce7f9e661f7a6319ee57d7997067e0905d7fff56ecdc2a",
-    "lib/arm64-v8a/libsync.so": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9",
-    "lib/arm64-v8a/libvndksupport.so": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168",
-    "lib/arm64-v8a/telemetryservice-aidl-cpp.so": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b",
+    "lib/arm64-v8a/libsync.so": "ea5f212dc2fa60faff116ed5545976fcb904b6829949a7a730b638e63c4ff949",
+    "lib/arm64-v8a/libvndksupport.so": "9c2e62ea830c119708e4940a3762c293bd3750f35192990992f8760914f72821",
+    "lib/arm64-v8a/telemetryservice-aidl-cpp.so": "b1c7a8264ecfdc0e2c8c1b0f7ecbdefab7ac4b0c8f7d46178acd1c70e8d19faa",
     "lib/arm64-v8a/libstatssocket.so": "c5318e1d8c4a2dffe1492d63959a7bb352862d48127516bd8fae8c926c70d522",
     "lib/arm64-v8a/android.hardware.graphics.allocator-V2-ndk.so": "a93114a87115971a077f0843bc7ebf52a5a3e9e62fa11a4336c20d0d3ddfc62b",
     "lib/arm64-v8a/android.hardware.graphics.allocator@2.0.so": "1a77a65371e50d203c6c79b6c6becc1f7f72f8dd16ffade13432c23cba793375",
@@ -3133,7 +3974,7 @@
     "lib/arm64-v8a/libstagefright_foundation.so": "e4eb58f96de18674517df7ca379172a0482629ef65c35eed674ef6dc608b11da",
     "lib/arm64-v8a/libspeexresampler.so": "209cfcfd0adc5a3f02989868aa326451a37fb5048cf5a8ceb3d187ba4ba6b863",
     "lib/arm64-v8a/mediametricsservice-aidl-cpp.so": "fec808edcef27602de8343ce9d5029e593419b3724e0a92c620ea824ecf62f1d",
-    "lib/arm64-v8a/libpermission.so": "435b47ad6d69840dba82ef1b9b67922034a3b0131359d304b482964bb35d7aed",
+    "lib/arm64-v8a/libpermission.so": "afbc741564924fecbabc8e3cdc9eac3715a1a8797332dec87231d3f0078da053",
     "lib/arm64-v8a/libcgrouprc.so": "f647064c578b402b605136cb8f6536fb4bbeaa945162f60f005d2a779cc15704",
     "lib/arm64-v8a/libshmemutil.so": "3dcd9fb89567cc695541616ddd71bdb63e2e6ff13b7c9da8e3990c0bc64b9aca",
     "lib/arm64-v8a/android.hardware.common-V2-ndk.so": "79d9dfa83e28a1b7ed46c26ba96fe770245bccde820f6a69bc8afae348be41a3",
@@ -3461,12 +4302,13 @@
     },
     {
       "soname": "libnativedisplay.so",
-      "sha256": "c57ed363e40a5a6baad0583ee2f38d5df922cc6ff3015139a6a986de2007d901",
+      "sha256": "608d9236b4e26f8eb3e8f118d38ad79eadc5c66fcd19c2b2253e438bb6e4d777",
       "size_bytes": 71568,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libnativedisplay.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "c57ed363e40a5a6baad0583ee2f38d5df922cc6ff3015139a6a986de2007d901"
     },
     {
       "soname": "libnativehelper.so",
@@ -3480,30 +4322,33 @@
     },
     {
       "soname": "libosutils.so",
-      "sha256": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
+      "sha256": "e54393bab282df38ea1e89eb416c4c7c33a4cef7a74be42b5e8ba52d93610a41",
       "size_bytes": 368232,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system_ext",
       "path": "/lib64/libosutils.so",
-      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+      "source_original_sha256": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72"
     },
     {
       "soname": "libreportstatsevent.so",
-      "sha256": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
+      "sha256": "ac706d12d19b37a6f23a217e6d00ef9fa7d9ce498133d49ef4e4fd7b766041cf",
       "size_bytes": 76984,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system_ext",
       "path": "/lib64/libreportstatsevent.so",
-      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+      "source_original_sha256": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f"
     },
     {
       "soname": "libui.so",
-      "sha256": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
+      "sha256": "64b753a777abe1e945f7e3803637df46f9ec3799eddc2e792598e8ddf9e96958",
       "size_bytes": 365328,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libui.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3"
     },
     {
       "soname": "libutils.so",
@@ -3676,12 +4521,13 @@
     },
     {
       "soname": "libmediautils.so",
-      "sha256": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40",
+      "sha256": "79a9fd4102647955144cb510a4eade70f75a9b5f412758e647dd8390eb87ec49",
       "size_bytes": 422256,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libmediautils.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40"
     },
     {
       "soname": "libnblog.so",
@@ -3695,12 +4541,13 @@
     },
     {
       "soname": "libprocessgroup.so",
-      "sha256": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053",
+      "sha256": "baf598318a774c52d912ef6854c60283289f0bbd6df1ef30fc69c9b0fa8bf9eb",
       "size_bytes": 365792,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libprocessgroup.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053"
     },
     {
       "soname": "libshmemcompat.so",
@@ -3731,12 +4578,13 @@
     },
     {
       "soname": "volumetricwindow_aidl-cpp.so",
-      "sha256": "20401099ac0b9dd705d89ecea10430716bde035aff86113e1b59896a5d870302",
+      "sha256": "47bbb19d1df413fdbfa58f198202935ecfde7c1cb8c323c5aefcc2d9c30deddb",
       "size_bytes": 31536,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/volumetricwindow_aidl-cpp.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "20401099ac0b9dd705d89ecea10430716bde035aff86113e1b59896a5d870302"
     },
     {
       "soname": "android.hardware.graphics.common-V4-ndk.so",
@@ -3794,30 +4642,33 @@
     },
     {
       "soname": "libsync.so",
-      "sha256": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9",
+      "sha256": "ea5f212dc2fa60faff116ed5545976fcb904b6829949a7a730b638e63c4ff949",
       "size_bytes": 10624,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libsync.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9"
     },
     {
       "soname": "libvndksupport.so",
-      "sha256": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168",
+      "sha256": "9c2e62ea830c119708e4940a3762c293bd3750f35192990992f8760914f72821",
       "size_bytes": 10776,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libvndksupport.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168"
     },
     {
       "soname": "telemetryservice-aidl-cpp.so",
-      "sha256": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b",
+      "sha256": "b1c7a8264ecfdc0e2c8c1b0f7ecbdefab7ac4b0c8f7d46178acd1c70e8d19faa",
       "size_bytes": 64440,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system_ext",
       "path": "/lib64/telemetryservice-aidl-cpp.so",
-      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+      "source_original_sha256": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b"
     },
     {
       "soname": "libstatssocket.so",
@@ -3967,12 +4818,13 @@
     },
     {
       "soname": "libpermission.so",
-      "sha256": "435b47ad6d69840dba82ef1b9b67922034a3b0131359d304b482964bb35d7aed",
+      "sha256": "afbc741564924fecbabc8e3cdc9eac3715a1a8797332dec87231d3f0078da053",
       "size_bytes": 72392,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libpermission.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "435b47ad6d69840dba82ef1b9b67922034a3b0131359d304b482964bb35d7aed"
     },
     {
       "soname": "libcgrouprc.so",
@@ -7369,6 +8221,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "f73e755c98c04ae2a0d0dafefb3c4431dcbc2bbcee2d3360b9ceadfe656215c7",
+  "signed_apk_sha256": "645ecf042fd9028b0ffa338684605a7b2327ff3d1ad8c7cb48d01458111380d4",
   "test_certificate_not_meta_identity": true
 }
