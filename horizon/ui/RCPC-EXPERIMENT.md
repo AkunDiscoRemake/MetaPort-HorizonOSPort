@@ -147,3 +147,14 @@ are explicit and do not discard the already verified crash windows. Completeness
 means the bounded decoder output was scanned, not all code paths were reached.
 Nothing from this inventory is automatically patched or treated as a successful
 runtime/ABI/service integration.
+
+## Dependency inventory experiment following 36925786582
+
+The original still crashed after the 14-site libutils adaptation, now inside
+`libhidlbase.so / getBnConstructorMap()` at ELF `0x4f0f0`. No UI was rendered.
+The bounded inventory found additional byte/word/doubleword RCpc candidates in
+15 unchanged firmware libraries. `dependency-rcpc-sites.json` pins each original
+hash, ELF PC and replacement word; its own digest is pinned in the loader.
+Only the already independently exercised width-preserving acquire conversions
+are allowed. This is not an automatic patch of arbitrary future census output,
+a Binder/HIDL service implementation, or a physical-device optimization.

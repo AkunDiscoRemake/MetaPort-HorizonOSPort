@@ -1,0 +1,1301 @@
+{
+  "evidence_run_id": "36925786582",
+  "scope": "Explicit static candidates; not runtime reachability or complete CPU compatibility",
+  "libraries": [
+    {
+      "library": "libhidlbase.so",
+      "source_sha256": "2dde391bc8fb694f46c450ad3e545d32675c2a9f076870f2fcfaea4da613ad11",
+      "source_path": "/system/lib64/libhidlbase.so",
+      "sites": [
+        {
+          "pc_elf": 290972,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 291004,
+          "original_word": "0xf8bfc128",
+          "adapted_word": "0xc8dffd28"
+        },
+        {
+          "pc_elf": 307268,
+          "original_word": "0x38bfc288",
+          "adapted_word": "0x8dffe88"
+        },
+        {
+          "pc_elf": 311192,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 313268,
+          "original_word": "0xf8bfc120",
+          "adapted_word": "0xc8dffd20"
+        },
+        {
+          "pc_elf": 314232,
+          "original_word": "0xf8bfc2d3",
+          "adapted_word": "0xc8dffed3"
+        },
+        {
+          "pc_elf": 319684,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 323840,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 327708,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 327724,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 341340,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 347280,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 349744,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 397560,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 397576,
+          "original_word": "0x38bfc12a",
+          "adapted_word": "0x8dffd2a"
+        },
+        {
+          "pc_elf": 415492,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 425496,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 427960,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        },
+        {
+          "pc_elf": 432764,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 432780,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 432800,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 433412,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 435612,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 625700,
+          "original_word": "0xf8bfc357",
+          "adapted_word": "0xc8dfff57"
+        },
+        {
+          "pc_elf": 625956,
+          "original_word": "0xf8bfc115",
+          "adapted_word": "0xc8dffd15"
+        },
+        {
+          "pc_elf": 626068,
+          "original_word": "0xf8bfc115",
+          "adapted_word": "0xc8dffd15"
+        },
+        {
+          "pc_elf": 637352,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 637428,
+          "original_word": "0x38bfc288",
+          "adapted_word": "0x8dffe88"
+        },
+        {
+          "pc_elf": 661268,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 661300,
+          "original_word": "0xf8bfc128",
+          "adapted_word": "0xc8dffd28"
+        }
+      ]
+    },
+    {
+      "library": "android.hardware.graphics.allocator-V2-ndk.so",
+      "source_sha256": "12dc82a2497e386a628d935a31224aa9bf64b12067a643ff90dce8b9650bdfdc",
+      "source_path": "/system/lib64/android.hardware.graphics.allocator-V2-ndk.so",
+      "sites": [
+        {
+          "pc_elf": 24080,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 33108,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 34136,
+          "original_word": "0xf8bfc288",
+          "adapted_word": "0xc8dffe88"
+        },
+        {
+          "pc_elf": 34228,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "android.media.audio.common.types-V2-cpp.so",
+      "source_sha256": "5e1e6c5b777561c2db36d99975a78189f0d415649b2e95c09d4cfe9273ce0400",
+      "source_path": "/system/lib64/android.media.audio.common.types-V2-cpp.so",
+      "sites": [
+        {
+          "pc_elf": 41684,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 41972,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42100,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42228,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42356,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42484,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42612,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42740,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42868,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 42996,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 43124,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 43252,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 43380,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libaudio_aidl_conversion_common_cpp.so",
+      "source_sha256": "ef85fee06049a86d2244eecb7dca069c4b3b5f936c1531a54de020de5b3742f4",
+      "source_path": "/system/lib64/libaudio_aidl_conversion_common_cpp.so",
+      "sites": [
+        {
+          "pc_elf": 78788,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 79016,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 79540,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 79556,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 79572,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 80916,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 81608,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 82404,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 90396,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 90420,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 92656,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 93040,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 101784,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 111248,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 111672,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 127896,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libaudioclient.so",
+      "source_sha256": "c143525b4b209c381b1e6bb09fa5ff1c38e1d6eeb79fc267c7518928f5fa47e9",
+      "source_path": "/system/lib64/libaudioclient.so",
+      "sites": [
+        {
+          "pc_elf": 426952,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 427404,
+          "original_word": "0xb8bfc11b",
+          "adapted_word": "0x88dffd1b"
+        },
+        {
+          "pc_elf": 607808,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 607824,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 607872,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 728424,
+          "original_word": "0xb8bfc11c",
+          "adapted_word": "0x88dffd1c"
+        },
+        {
+          "pc_elf": 728452,
+          "original_word": "0xb8bfc118",
+          "adapted_word": "0x88dffd18"
+        },
+        {
+          "pc_elf": 731804,
+          "original_word": "0xb8bfc10a",
+          "adapted_word": "0x88dffd0a"
+        },
+        {
+          "pc_elf": 732140,
+          "original_word": "0xb8bfc109",
+          "adapted_word": "0x88dffd09"
+        },
+        {
+          "pc_elf": 732444,
+          "original_word": "0xb8bfc109",
+          "adapted_word": "0x88dffd09"
+        },
+        {
+          "pc_elf": 732964,
+          "original_word": "0xb8bfc109",
+          "adapted_word": "0x88dffd09"
+        },
+        {
+          "pc_elf": 733440,
+          "original_word": "0xb8bfc116",
+          "adapted_word": "0x88dffd16"
+        },
+        {
+          "pc_elf": 733576,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 734596,
+          "original_word": "0xb8bfc116",
+          "adapted_word": "0x88dffd16"
+        },
+        {
+          "pc_elf": 734620,
+          "original_word": "0xb8bfc117",
+          "adapted_word": "0x88dffd17"
+        },
+        {
+          "pc_elf": 734952,
+          "original_word": "0xb8bfc104",
+          "adapted_word": "0x88dffd04"
+        },
+        {
+          "pc_elf": 734964,
+          "original_word": "0xb8bfc113",
+          "adapted_word": "0x88dffd13"
+        },
+        {
+          "pc_elf": 734972,
+          "original_word": "0xb8bfc103",
+          "adapted_word": "0x88dffd03"
+        },
+        {
+          "pc_elf": 735148,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 735580,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 736560,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 738968,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libaudioclient_aidl_conversion.so",
+      "source_sha256": "3ba71b16e202d687178cf976ddc02b2d532986270fecce52c2fd8e4064ac18cb",
+      "source_path": "/system/lib64/libaudioclient_aidl_conversion.so",
+      "sites": [
+        {
+          "pc_elf": 177316,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 177544,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 178068,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 178084,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 178100,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 179444,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 180136,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 180932,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 188924,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 188948,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 191152,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 191536,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 200280,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 207664,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 208088,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 224312,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libaudiofoundation.so",
+      "source_sha256": "a517d14256391c5f79ed38de661ae11b433fefd724ca88391ba31634cced5805",
+      "source_path": "/system/lib64/libaudiofoundation.so",
+      "sites": [
+        {
+          "pc_elf": 69764,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 71188,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 71364,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 71540,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 71716,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 71892,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 72068,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 72244,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 72420,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libaudioutils.so",
+      "source_sha256": "b5111fbecba1b1c7ac29424d37e366728d6b1c8519f2d62827e8ec06063d91bb",
+      "source_path": "/system/lib64/libaudioutils.so",
+      "sites": [
+        {
+          "pc_elf": 133488,
+          "original_word": "0xb8bfc000",
+          "adapted_word": "0x88dffc00"
+        }
+      ]
+    },
+    {
+      "library": "libbase.so",
+      "source_sha256": "d3cb46a91077ab502f06997a99215996570ce04cf2fd3f67715911507d53e02c",
+      "source_path": "/system/lib64/libbase.so",
+      "sites": [
+        {
+          "pc_elf": 83396,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 84168,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 94116,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 94532,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 98716,
+          "original_word": "0x38bfc2c9",
+          "adapted_word": "0x8dffec9"
+        },
+        {
+          "pc_elf": 98752,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 98768,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 98804,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 99260,
+          "original_word": "0x38bfc2a9",
+          "adapted_word": "0x8dffea9"
+        },
+        {
+          "pc_elf": 99296,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 99312,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 99348,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 101048,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 101352,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 101444,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 101620,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 103176,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 103636,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 106240,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libbinder.so",
+      "source_sha256": "b00c5ed730f1a41b51bdcf7b3aa426d0dbde15d24370709f286fc774f6efd11a",
+      "source_path": "/system/lib64/libbinder.so",
+      "sites": [
+        {
+          "pc_elf": 357732,
+          "original_word": "0xf8bfc128",
+          "adapted_word": "0xc8dffd28"
+        },
+        {
+          "pc_elf": 364312,
+          "original_word": "0xf8bfc11b",
+          "adapted_word": "0xc8dffd1b"
+        },
+        {
+          "pc_elf": 374724,
+          "original_word": "0xf8bfc129",
+          "adapted_word": "0xc8dffd29"
+        },
+        {
+          "pc_elf": 383588,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 383640,
+          "original_word": "0xf8bfc288",
+          "adapted_word": "0xc8dffe88"
+        },
+        {
+          "pc_elf": 383648,
+          "original_word": "0xf8bfc288",
+          "adapted_word": "0xc8dffe88"
+        },
+        {
+          "pc_elf": 383668,
+          "original_word": "0xf8bfc288",
+          "adapted_word": "0xc8dffe88"
+        },
+        {
+          "pc_elf": 383676,
+          "original_word": "0xf8bfc288",
+          "adapted_word": "0xc8dffe88"
+        },
+        {
+          "pc_elf": 391940,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 394980,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 395012,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 395044,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 395092,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 414456,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 485236,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 485252,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 486584,
+          "original_word": "0xf8bfc128",
+          "adapted_word": "0xc8dffd28"
+        },
+        {
+          "pc_elf": 491840,
+          "original_word": "0xf8bfc317",
+          "adapted_word": "0xc8dfff17"
+        },
+        {
+          "pc_elf": 528456,
+          "original_word": "0xf8bfc2b4",
+          "adapted_word": "0xc8dffeb4"
+        },
+        {
+          "pc_elf": 540456,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 540532,
+          "original_word": "0x38bfc288",
+          "adapted_word": "0x8dffe88"
+        },
+        {
+          "pc_elf": 546800,
+          "original_word": "0xf8bfc128",
+          "adapted_word": "0xc8dffd28"
+        },
+        {
+          "pc_elf": 561952,
+          "original_word": "0xf8bfc128",
+          "adapted_word": "0xc8dffd28"
+        },
+        {
+          "pc_elf": 596764,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 598332,
+          "original_word": "0xf8bfc354",
+          "adapted_word": "0xc8dfff54"
+        },
+        {
+          "pc_elf": 600580,
+          "original_word": "0xf8bfc293",
+          "adapted_word": "0xc8dffe93"
+        },
+        {
+          "pc_elf": 600804,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 600996,
+          "original_word": "0xf8bfc115",
+          "adapted_word": "0xc8dffd15"
+        },
+        {
+          "pc_elf": 601108,
+          "original_word": "0xf8bfc115",
+          "adapted_word": "0xc8dffd15"
+        },
+        {
+          "pc_elf": 601244,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 601432,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 601596,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        },
+        {
+          "pc_elf": 601876,
+          "original_word": "0xf8bfc115",
+          "adapted_word": "0xc8dffd15"
+        },
+        {
+          "pc_elf": 603644,
+          "original_word": "0xf8bfc117",
+          "adapted_word": "0xc8dffd17"
+        },
+        {
+          "pc_elf": 691860,
+          "original_word": "0x38bfc2e8",
+          "adapted_word": "0x8dffee8"
+        },
+        {
+          "pc_elf": 692036,
+          "original_word": "0x38bfc2e8",
+          "adapted_word": "0x8dffee8"
+        },
+        {
+          "pc_elf": 743556,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 744064,
+          "original_word": "0xb8bfc108",
+          "adapted_word": "0x88dffd08"
+        },
+        {
+          "pc_elf": 757748,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 794708,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 794916,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 795232,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 799548,
+          "original_word": "0x38bfc2c9",
+          "adapted_word": "0x8dffec9"
+        },
+        {
+          "pc_elf": 799584,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 799600,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 799636,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 800092,
+          "original_word": "0x38bfc2a9",
+          "adapted_word": "0x8dffea9"
+        },
+        {
+          "pc_elf": 800128,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 800144,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 800180,
+          "original_word": "0x38bfc2a8",
+          "adapted_word": "0x8dffea8"
+        },
+        {
+          "pc_elf": 800696,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        },
+        {
+          "pc_elf": 800864,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 801976,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 802436,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        }
+      ]
+    },
+    {
+      "library": "libcgrouprc.so",
+      "source_sha256": "030aa68d5e60183c5218af73085e0826a0c0169a84b212d87d350f8eb7621b00",
+      "source_path": "/system/lib64/libcgrouprc.so",
+      "sites": [
+        {
+          "pc_elf": 9680,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 9792,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 9936,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        }
+      ]
+    },
+    {
+      "library": "libgui.so",
+      "source_sha256": "4c4fc4fcfb27a06f473d63e62c2fd054d7f921c37b19b495921e4fdfc89216db",
+      "source_path": "/system/lib64/libgui.so",
+      "sites": [
+        {
+          "pc_elf": 693392,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
+        },
+        {
+          "pc_elf": 747688,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 847588,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1046688,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1200504,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1203972,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1209132,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1214548,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1227500,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 1316572,
+          "original_word": "0x38bfc129",
+          "adapted_word": "0x8dffd29"
+        }
+      ]
+    },
+    {
+      "library": "libhzos.meta.so",
+      "source_sha256": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
+      "source_path": "/lib64/libhzos.meta.so",
+      "sites": [
+        {
+          "pc_elf": 328512,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 349868,
+          "original_word": "0xb8bfc12d",
+          "adapted_word": "0x88dffd2d"
+        },
+        {
+          "pc_elf": 349892,
+          "original_word": "0xb8bfc16c",
+          "adapted_word": "0x88dffd6c"
+        },
+        {
+          "pc_elf": 349924,
+          "original_word": "0xb8bfc16b",
+          "adapted_word": "0x88dffd6b"
+        },
+        {
+          "pc_elf": 350024,
+          "original_word": "0xb8bfc1e0",
+          "adapted_word": "0x88dffde0"
+        },
+        {
+          "pc_elf": 350044,
+          "original_word": "0xb8bfc1d1",
+          "adapted_word": "0x88dffdd1"
+        },
+        {
+          "pc_elf": 350080,
+          "original_word": "0xb8bfc1c0",
+          "adapted_word": "0x88dffdc0"
+        },
+        {
+          "pc_elf": 350116,
+          "original_word": "0xb8bfc1cf",
+          "adapted_word": "0x88dffdcf"
+        },
+        {
+          "pc_elf": 350136,
+          "original_word": "0xb8bfc1ae",
+          "adapted_word": "0x88dffdae"
+        },
+        {
+          "pc_elf": 350168,
+          "original_word": "0xb8bfc1af",
+          "adapted_word": "0x88dffdaf"
+        },
+        {
+          "pc_elf": 367076,
+          "original_word": "0xf8bfc348",
+          "adapted_word": "0xc8dfff48"
+        },
+        {
+          "pc_elf": 367112,
+          "original_word": "0xf8bfc35b",
+          "adapted_word": "0xc8dfff5b"
+        },
+        {
+          "pc_elf": 367124,
+          "original_word": "0xb8bfc104",
+          "adapted_word": "0x88dffd04"
+        },
+        {
+          "pc_elf": 374772,
+          "original_word": "0xb8bfc10a",
+          "adapted_word": "0x88dffd0a"
+        },
+        {
+          "pc_elf": 379620,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 379636,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 379652,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 443012,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 510904,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 520072,
+          "original_word": "0xf8bfc008",
+          "adapted_word": "0xc8dffc08"
+        },
+        {
+          "pc_elf": 594740,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 628264,
+          "original_word": "0xf8bfc288",
+          "adapted_word": "0xc8dffe88"
+        },
+        {
+          "pc_elf": 628356,
+          "original_word": "0xf8bfc108",
+          "adapted_word": "0xc8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libjsoncpp.so",
+      "source_sha256": "f3702efff12555a422ace30e74245b9886ae4fa5a02066ff1aa08dda2e19fba7",
+      "source_path": "/system/lib64/libjsoncpp.so",
+      "sites": [
+        {
+          "pc_elf": 109112,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 129460,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 144280,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 144876,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 144904,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 146136,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 146968,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 147348,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 148160,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 148520,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 158464,
+          "original_word": "0x38bfc289",
+          "adapted_word": "0x8dffe89"
+        },
+        {
+          "pc_elf": 158552,
+          "original_word": "0x38bfc288",
+          "adapted_word": "0x8dffe88"
+        },
+        {
+          "pc_elf": 158976,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 164852,
+          "original_word": "0x38bfc268",
+          "adapted_word": "0x8dffe68"
+        },
+        {
+          "pc_elf": 164880,
+          "original_word": "0x38bfc268",
+          "adapted_word": "0x8dffe68"
+        },
+        {
+          "pc_elf": 185976,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        }
+      ]
+    },
+    {
+      "library": "libmediametrics.so",
+      "source_sha256": "f224888f7d13782bf48fe0edea95e1924ddfd17c400ba4b39e8a35effe24e1a5",
+      "source_path": "/system/lib64/libmediametrics.so",
+      "sites": [
+        {
+          "pc_elf": 27272,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 47784,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        }
+      ]
+    }
+  ]
+}

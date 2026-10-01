@@ -62,3 +62,21 @@ class RcpcAdaptation(unittest.TestCase):
             self.assertEqual(before>>30,after>>30)
             self.assertIn((before&0xfffffc00,after&0xfffffc00),
                           ((0x38bfc000,0x08dffc00),(0xb8bfc000,0x88dffc00),(0xf8bfc000,0xc8dffc00)))
+
+    def test_dependency_inventory_preserves_registers_and_all_other_bytes(self):
+        from horizon.ui.rcpc_compat import ADAPTATIONS
+        self.assertEqual(len(ADAPTATIONS),17)
+        self.assertEqual(len(set(name for name,_,_ in ADAPTATIONS)),17)
+        for name,sha,sites in ADAPTATIONS:
+            self.assertEqual(len(sha),64)
+            self.assertEqual(len(set(pc for pc,_,_ in sites)),len(sites))
+            for pc,before,after in sites:
+                self.assertEqual(pc%4,0)
+                original=bytearray(fixture.CrashInstructions().image())
+                struct.pack_into('<I',original,256,before)
+                original=bytes(original)
+                result,report=lower_verified(original,hashlib.sha256(original).hexdigest(),
+                                              ((4096,before,after),),library=name)
+                self.assertEqual(result[:256]+result[260:],original[:256]+original[260:])
+                self.assertEqual(report['library'],name)
+                self.assertEqual(struct.unpack_from('<I',result,256)[0],after)

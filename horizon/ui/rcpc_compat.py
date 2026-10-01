@@ -25,7 +25,16 @@ def load_sites(filename='libcxx-rcpc-sites.json',expected_sha=ORIGINAL_SHA,expec
 SITES=load_sites()
 LIBUTILS_SHA='2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167'
 LIBUTILS_SITES=load_sites('libutils-rcpc-sites.json',LIBUTILS_SHA,14)
-ADAPTATIONS=(('libc++.so',ORIGINAL_SHA,SITES),('libutils.so',LIBUTILS_SHA,LIBUTILS_SITES))
+def load_dependency_sites():
+    raw=Path(__file__).with_name('dependency-rcpc-sites.json').read_bytes()
+    if hashlib.sha256(raw).hexdigest()!='4531a6d2954471f0481ecfc081228f78331bdc76bc35fd2366adfe9e3a82e9b2':
+        raise ValueError('Wrong pinned dependency inventory')
+    return tuple((r['library'],r['source_sha256'],tuple(
+        (s['pc_elf'],int(s['original_word'],16),int(s['adapted_word'],16))
+        for s in r['sites'])) for r in json.loads(raw)['libraries'])
+
+
+ADAPTATIONS=(('libc++.so',ORIGINAL_SHA,SITES),('libutils.so',LIBUTILS_SHA,LIBUTILS_SITES))+load_dependency_sites()
 
 
 def lower_verified(data,expected_sha=ORIGINAL_SHA,sites=SITES,library="libc++.so"):
