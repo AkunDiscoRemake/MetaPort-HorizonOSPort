@@ -972,6 +972,25 @@
       }
     ],
     "window_bytes": 16,
-    "complete_body_claimed": false
+    "complete_body_claimed": false,
+    "tail_trace": {
+      "steps": [
+        {
+          "elf_va": 291908,
+          "kind": "B",
+          "target": 540176
+        },
+        {
+          "elf_va": 540176,
+          "kind": "PLT",
+          "got_slot": 586016
+        }
+      ],
+      "runtime_binding_verified": false,
+      "callee_returns_verified": false,
+      "status": "IMPORTED_SYMBOL",
+      "symbol": "free@LIBC",
+      "relocation_row": "000000000008f120 0000000b00000402 R_AARCH64_JUMP_SLOT 0000000000000000 free@LIBC + 0"
+    }
   }
 }
