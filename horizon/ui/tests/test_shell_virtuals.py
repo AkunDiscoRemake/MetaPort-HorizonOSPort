@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: GPL-3.0-only
-import copy
 import json
 from pathlib import Path
 import unittest
@@ -31,3 +30,8 @@ class VirtualFrontier(unittest.TestCase):
         rows=select(json.loads(path.read_text()),json.loads(POLICY.read_text())['library_sha256'])
         self.assertTrue(any(r['elf_address']==0xda03e4 for r in rows))
         self.assertLessEqual(len(rows),64)
+
+    def test_ghidra_root_budget_accepts_the_selector_limit(self):
+        source=Path('horizon/ui/ghidra/TraceShellBatch.java').read_text()
+        self.assertIn('roots.size()>Math.min(64,cap)',source)
+        self.assertIn('cap>96',source)

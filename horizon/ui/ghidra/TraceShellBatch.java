@@ -26,7 +26,7 @@ public class TraceShellBatch extends GhidraScript {
         output=Path.of(args[1]);
         Address base=currentProgram.getImageBase();
         List<String> roots=Files.readAllLines(Path.of(args[0]));
-        if(roots.isEmpty() || roots.size()>Math.min(32,cap)) throw new IllegalArgumentException("Root budget");
+        if(roots.isEmpty() || roots.size()>Math.min(64,cap)) throw new IllegalArgumentException("Root budget");
         LinkedHashSet<Address> selected=new LinkedHashSet<>();
         for(String root:roots) selected.add(base.add(Long.parseUnsignedLong(root.trim(),16)));
         report.put("program_sha256",currentProgram.getExecutableSHA256());
