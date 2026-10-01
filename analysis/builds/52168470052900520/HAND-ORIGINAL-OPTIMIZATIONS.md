@@ -221,7 +221,7 @@ aparece em `0x4dac0` (2). São endereços da view ELF byte-exata; caminho ativo 
 modelos de mãos continua não validado. Formas signed, scalar-register, saturadas,
 lookup e QFloat são distintas e não foram substituídas por esta implementação.
 
-**`hand_u8_reduce.{hpp,cpp}`** adapta somente a redução unsigned vetor-vetor:
+**`hand_u8_reduce.{hpp,cpp}`** inicialmente adaptou a redução unsigned vetor-vetor:
 cada grupo de quatro bytes produz um acumulador de 32 bits, com atribuição ou
 soma módulo 2^32. Baseline ARM64 NEON faz multiplicação alargada, somas de pares
 alargadas e soma final de pares; não exige a extensão opcional dotprod. Os 128
@@ -241,5 +241,141 @@ Teste local host passou com ASan/UBSan: todos os 65536 pares de bytes, posiçõe
 variadas, 4096 vetores determinísticos e overflow, comparados com fórmula
 independente em uint64. A CI agora também compila e executa **o nosso backend
 ARM64 NEON** sob qemu-aarch64. A inclusão da etapa não significa que já passou;
-resultado da primeira execução ainda pendente. Não é execução do DSP original
+a primeira execução, **36793722930**, passou no host, ARM64 emulado, build AAR,
+testes Java e lint Android. Não é execução do DSP original
 nem teste físico no X6873.
+
+
+### Ampliação para as oito formas `vrmpy` observadas
+
+O helper agora também contém vetor unsigned × vetor signed e as duas variantes
+com quatro coeficientes de registrador escalar, cada uma com atribuição ou
+acumulação. Isso corresponde às **8 formas textuais vrmpy observadas** (5838
+ocorrências somadas no skeleton), não à ISA inteira, a 5838 otimizações ou a um
+kernel completo. Os coeficientes escalares são fornecidos em bytes, menos
+significativo primeiro, e expandidos em stack antes da redução; desempenho não
+medido. O resultado signed é mantido como bits uint32, evitando overflow signed
+indefinido em C++.
+
+Referência adicional no mesmo arquivo QEMU: `vrmpyub`/`vrmpyub_acc` (717–729),
+`vrmpybus`/`vrmpybus_acc` (794–807) e `vrmpybusv`/`vrmpybusv_acc` (838–851).
+A variante mixed NEON alarga os operandos, multiplica em int16 (produtos cabem),
+alarga as somas de pares para int32 e acumula os bits módulo 2^32.
+Testes host ASan/UBSan passaram também para todos os 65536 pares unsigned/signed,
+vetores variados, coeficientes ordenados e cruzamentos das fronteiras signed.
+**A execução ARM64/Android desta ampliação ainda está pendente.** Nenhum desses
+helpers está ligado ao caminho de inferência original.
+
+## 8. Scheduler, compartilhamento de câmeras e FMQ do serviço original
+
+`/odm/bin/trackingservice`, SHA-256
+`a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945`.
+Runs **36791709535**, **36792751892**, **36793839057**; os endereços abaixo são
+Ghidra (base `0x100000`), não endereços utilizáveis num APK. Relatórios atuais
+substituem a seleção anterior; o histórico Git preserva as extrações anteriores.
+São caminhos de um serviço compartilhado, **não todos exclusivos de mãos**.
+
+### Políticas e prioridade da movimentação de buffers
+
+A configuração original `thread_priority.cfg` foi recuperada em **36792806075**:
+
+| Seção | Política / valor declarado |
+|---|---|
+| syncbossWorkerPriority | Realtime / 52 |
+| headsetPosePriority / controllerPosePriority | Realtime / 51 e 50 |
+| cameraWorkerPriority | Realtime / 48 |
+| controllerWorkerPriority | Normal / 110 |
+| motionStreamerPriority / controllerStreamerPriority | Normal / 101 |
+| cameraStreamerPriority | Normal / 100 |
+| backgroundPriority / normalPriority | Normal / 139 e 120 |
+| computePriority | Batch, valor ausente |
+| elevatedPriority | Normal / 100, perfil SoftRealtimePerformance |
+| isochronousPriority | Realtime / 1, affinity `110000` |
+| latencyCriticalPriority / graphicsCriticalPriority | Realtime / 48 e 49 |
+
+Os comentários originais justificam prioridade do consumidor Syncboss para
+esvaziar a FIFO antes de perder mensagens, e das threads de câmera que movimentam
+buffers/dados acima dos consumidores. Isso documenta intenção de engenharia;
+não mede perdas, deadlines ou ativação das políticas. Não chamar todos esses
+workers de threads exclusivas de mãos.
+
+`005de4c0` valida Realtime entre 1 e 99, Normal entre 100 e 140, e Batch com 0
+(default quando ausente). O comentário da configuração relaciona Normal a nice;
+a conversão/aplicação efetiva no kernel ainda não foi recuperada. `005df5c0`
+consulta uma tabela e usa 1 como fallback; não é a syscall de scheduler.
+
+**Detalhe que não pode ser adivinhado:** `005df6c8` zera 128 bytes de máscara e
+mapeia o caractere **de índice i para o bit i**, se diferente de `'0'`, limitado
+a 1024 bits. Portanto `110000` produz bits **0 e 1**, não 4 e 5. Não trasladar
+esses IDs de CPU para o MediaTek nem inferir quais são cores rápidos.
+
+Os perfis vendor recuperados em **36794054709** definem:
+- `trackingPolicy`: cpuset `tracking`, grupo cpu `xr`, extensão `HzosExt/ALLOW_RT`;
+- `objectTrackingPolicy`: cpuset `object_tracking`, `HzosExt/ALLOW_RT`;
+- `SoftRealtimePerformance`: grupo cpu **`soft-rt`**, sem uclamp declarado nessa
+  definição. Ele foi encontrado seguindo a referência da configuração, não
+  porque seu nome contém hand/tracking. Ausente no arquivo system inspecionado.
+
+A extensão Hzos e grupos privilegiados não são concedidos a um APK comum.
+Não foram aplicados no telefone, emulados como se fossem garantias reais, nem
+substituídos por números nice escolhidos ao acaso.
+
+### Alteração de política, atividade agregada e supressão de transições
+
+- `0035a27c` percorre objetos de câmera com stride `0x108`, solicita alteração
+  da string de perfil e registra “Moved hand tracking camera threads”.
+  **O helper `00319b10` apenas grava a string e marca `+0x100 = 1`**. Não contém
+  uma syscall que prove aplicação imediata. O caminho é de configuração
+  DevChoice, não comprovação da configuração padrão.
+- `00359d90` manipula o modo mux de mãos e encaminha a atualização de estado.
+  `0031b044` percorre sistemas registrados e chama `0031a3e4`.
+- `0031a3e4` calcula atividade agregada de consumidores de um stream, atualiza
+  a entrada do sistema atual e compara atividade anterior/nova. Quando a
+  mudança está habilitada, só chama os slots de início/parada (`+0x28/+0x30`)
+  na transição efetiva. Há override de atividade e tratamento distinto do
+  estado 3. Isso recupera lógica de compartilhamento e evita transições
+  redundantes nesse caminho; enums/objetos e integração Camera2 não validados.
+- `0037cc2c` protege uma atualização temporal; `00381b88` suprime estados iguais
+  em timestamps normalmente não decrescentes, com contador previamente não
+  nulo. Regressões temporais e NaN exigem preservar a comparação original,
+  não tratar isso como filtro de confiança de mão.
+
+### FMQ: tamanho agora rastreado, não “zero-copy” presumido
+
+Cadeia `005a2e9c → 005a4574 → 005a4634`: solicitação `0x10`, flag 1, FD -1.
+O inicializador rejeita tamanho zero/excessivo e calcula **capacidade × `0x210`**,
+usa `ashmem_create_region("MessageQueue", ...)`, proteção 3 e descriptor/mapeador.
+Para esse ramo, são **16 unidades de 528 bytes**, 8448 bytes de área de dados;
+soma `0x14` e arredonda com máscara de 4096, produzindo **12288 bytes** de região
+solicitada. Layout interno dos 528 bytes e protocolo de leitura/escrita ainda
+não estabelecidos. Isso não prova ausência de memcpy ou Binder em outros pontos.
+O arredondamento original de 4 KiB não deve ser copiado cegamente para páginas
+Android de outro tamanho. Não existe ainda bridge FMQ original no APK.
+
+## 9. Ponteiros recuperados e entrada de processamento DPE V2
+
+Run **36791437773** concluiu com sucesso. O scanner de ELF e o Ghidra recuperaram
+funções em slots associados por hipótese RTTI a `DPEPredictorV2` e ao callback
+de prioridade. A primeira seleção incluiu destructors/clones; foi ampliada para
+até 8 alvos únicos/tipo, com índice de slot e separação inferência/scheduler.
+Não é validação do layout completo da vtable ou de uma chamada em execução.
+
+- `01717140`, ligado ao DPE V2 pelos ponteiros: inicializa resultado de `0x560`
+  bytes, prepara dois grupos de entradas, chama **`01716f20`**, mede tempo e
+  processa scores. Há sentinela `FLT_MAX → -1`, fórmulas
+  `1 / (expf((valor-limiar)*300) + 1)` e um ramo agregado alternativo com
+  constantes 1.1 e -45. Os tipos reconstruídos de alguns valores packed são
+  ambíguos; não foram convertidos diretamente em código de produção.
+- A mesma função contém alocação/liberação e dispatch virtual condicionado;
+  não suporta uma alegação geral de “sem alocação por frame” ou de seleção
+  CPU/DSP. Significado dos campos, dos dois grupos e dos scores não validado.
+- O slot 6 do callback aponta para **`0193ffd0`**, já analisado como normalização
+  de enum e encaminhamento de callback, não como aplicação de prioridade Linux.
+- A continuação **36793839065** seleciona também o callee `01716f20`, o construtor
+  V2 `017222a0` e listings de até 1024 instruções para conferir a aritmética.
+  Resultado dessa continuação ainda pendente.
+
+**Continuam NOT PORTED YET:** ABI/call-chain completa dos modelos, runtime DSP
+no MediaTek, produtor/consumidor FMQ, políticas efetivas do serviço, câmera e
+inferência integradas, renderer original completo e validação física. Nenhuma
+porcentagem ou declaração de “todas as otimizações encontradas” foi emitida.
