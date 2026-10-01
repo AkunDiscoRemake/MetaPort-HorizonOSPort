@@ -2,7 +2,7 @@ name: Android adapter runtime tests (not Horizon)
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
+    paths: [tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -55,15 +55,9 @@ jobs:
         run: |
           mkdir -p local-analysis/android-runtime
           # The emulator action has already stopped its device; logs were captured inside it.
-          python3 - <<'PY'
-          import json, os, pathlib
-          report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
-                  'api':int(os.environ['API']),'abi':'x86_64','gpu':'emulated SwiftShader',
-                  'scope':'Our adapter instrumentation only; test APKs are not METAPORT releases',
-                  'original_firmware_executed':False,'physical_device_tested':False,
-                  'arcore_camera_or_depth_tested':False,'quest_hand_inference_tested':False}
-          pathlib.Path('local-analysis/android-runtime/scope.json').write_text(json.dumps(report,indent=2)+'\n')
-          PY
+          python3 -m tools.summarize_android_runtime --api "$API" \
+            --results port/android/adapters/build/outputs/androidTest-results \
+            --output local-analysis/android-runtime/scope.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -73,3 +67,52 @@ jobs:
             port/android/adapters/build/outputs/androidTest-results/
             local-analysis/android-runtime/
           retention-days: 7
+
+  record:
+    needs: runtime
+    if: always()
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: adapter-runtime-api-*-reports-only
+          path: local-analysis/runtime-artifacts
+      - name: Publish small per-API evidence, never test APKs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          python3 - <<'PY'
+          import json,os,pathlib
+          dest=pathlib.Path('analysis/android-runtime');dest.mkdir(parents=True,exist_ok=True)
+          reports=list(pathlib.Path('local-analysis/runtime-artifacts').rglob('scope.json'))
+          if not reports:raise SystemExit('No runtime evidence available')
+          seen=set()
+          for path in reports:
+              r=json.loads(path.read_text());api=r['api']
+              assert api in (29,35) and api not in seen
+              assert r['run_id']==os.environ['GITHUB_RUN_ID']
+              assert r['source_commit']==os.environ['GITHUB_SHA']
+              assert r['original_firmware_executed'] is False
+              seen.add(api)
+              (dest/f'api-{api}.json').write_text(json.dumps(r,indent=2)+'\n')
+          PY
+          git add analysis/android-runtime
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record Android adapter instrumentation evidence, not Horizon validation [skip ci]'
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then exit 0; fi
+            done
+            exit 1
+          fi
