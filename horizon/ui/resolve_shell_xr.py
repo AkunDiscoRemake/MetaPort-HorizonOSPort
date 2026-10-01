@@ -38,7 +38,8 @@ def call_arguments(text, start):
 
 def string_at(data,segments,address):
     for seg in segments:
-        if seg['flags']&1:continue
+        # ELF load segments can combine read-only strings with executable code.
+        # A file-backed byte read does not execute or validate that address as code.
         if seg['va']<=address<seg['va']+seg['filesz']:
             offset=seg['offset']+address-seg['va']
             end=min(offset+256,seg['offset']+seg['filesz'])

@@ -25,3 +25,7 @@ class XrNames(unittest.TestCase):
     def test_non_names_code_and_unmapped_rejected(self):
         data=fixture();data[336:340]=b'abc\0';segments=load_segments(data)
         for address in (0x1050,0x2000,0x9999):self.assertIsNone(string_at(data,segments,address))
+
+    def test_string_may_share_an_executable_load_segment(self):
+        data=fixture();name=b'xrBeginSession\0';data[768:768+len(name)]=name
+        self.assertEqual(string_at(data,load_segments(data),0x2000),'xrBeginSession')
