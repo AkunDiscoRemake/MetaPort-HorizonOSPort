@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -36,6 +37,13 @@ def adb_command(adb, arguments, timeout=30):
         stream.seek(0);raw=stream.read(65537)
     return {'exit_code':code,'text':raw[:65536].decode(errors='replace'),
             'truncated':len(raw)>65536}
+
+
+def package_uid(text):
+    matches=re.findall(r'^package:'+re.escape(PACKAGE)+r' uid:(\d+)$',text,re.MULTILINE)
+    if len(matches)!=1:return None
+    value=int(matches[0])
+    return value if 10000<=value<=2147483647 else None
 
 
 def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
@@ -79,6 +87,9 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
     if install['exit_code']!=0 or 'Success' not in install['text'].splitlines():
         report['result']='INSTALL_REJECTED';return report
     report['installation_succeeded']=True
+    identity=call(['shell','cmd','package','list','packages','--user','0','-U',PACKAGE])
+    uid=package_uid(identity['text']) if identity['exit_code']==0 else None
+    report['application_uid']=uid
     call(['shell','am','force-stop',PACKAGE]);call(['logcat','-b','crash','-c'])
     try:
         report['activity_start_attempted']=True
@@ -86,6 +97,9 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
         time.sleep(observe_seconds)
         report['process_after_observation']=call(['shell','pidof',PACKAGE])
         report['crash_buffer']=call(['logcat','-b','crash','-d','-v','threadtime'])
+        if uid is not None:
+            report['application_log']=call(['logcat','-b','main','-b','system','-d',
+                                            '--uid='+str(uid),'-t','400','-v','threadtime'])
         report['activity_state']=call(['shell','dumpsys','activity','top'])
         report['observation_seconds']=observe_seconds
         report['result']='START_ATTEMPT_RECORDED_NOT_VALIDATED'
