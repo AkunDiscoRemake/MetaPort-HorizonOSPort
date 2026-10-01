@@ -1,9 +1,9 @@
 {
-  "source_commit": "04cdd857a4f7656727a7b34b2a6f3221b948b906",
-  "run_id": "36802295037",
-  "decompile_step": "success",
+  "source_commit": "7e23d65e063adc522063bfbfca52289b9a914f36",
+  "run_id": "36803121382",
+  "decompile_step": "failure",
   "horizon_ported": false,
   "physical_phone_tested": false,
   "jadx_sha256": "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974",
-  "tool_log_tail": ""
+  "tool_log_tail": "Traceback (most recent call last):\n  File \"/usr/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/usr/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/handtracking/ai/inspect_ui.py\", line 105, in <module>\n    a=p.parse_args();inspect(a.images,a.reconstruction,Path(a.jadx).resolve(),a.output)\n  File \"/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/handtracking/ai/inspect_ui.py\", line 99, in inspect\n    raise ValueError('One or more UI applications failed; see per-application evidence')\nValueError: One or more UI applications failed; see per-application evidence"
 }
