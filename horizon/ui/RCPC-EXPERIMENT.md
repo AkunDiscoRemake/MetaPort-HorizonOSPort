@@ -158,3 +158,12 @@ hash, ELF PC and replacement word; its own digest is pinned in the loader.
 Only the already independently exercised width-preserving acquire conversions
 are allowed. This is not an automatic patch of arbitrary future census output,
 a Binder/HIDL service implementation, or a physical-device optimization.
+
+Run **36939212398** passed the instruction preflight and the adapted HIDL
+constructor but still crashed, now in `libnblog.so`, ELF `0x20600`, during the
+JSON-value static constructor. Its verified inventory adds 19 explicit sites.
+No UI appeared. The census admitted only the first 64 small dependencies;
+remaining names were explicitly skipped. The next census prioritizes as-yet
+unadapted firmware dependencies and admits up to the existing 128-node closure
+limit, retaining the same byte, candidate, output and time limits. This avoids
+alphabetic starvation without claiming the larger libraries were scanned.

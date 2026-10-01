@@ -49,7 +49,8 @@ def collect(crash_text,libraries,bundle):
     # This only collects evidence: it never selects or applies new patches.
     inventories=[];scanned=0;scan_bytes=0;candidate_count=0;started=time.monotonic()
     if len(known)>128:raise ValueError('Dependency census node budget')
-    names=sorted(cache)+sorted(set(known)-set(cache))
+    names=sorted(cache)+sorted(set(known)-set(cache),key=lambda n:(
+        known[n].get('status') not in ('BUNDLED_ORIGINAL_FIRMWARE_LIBRARY','BUNDLED_ORIGINAL_APEX_LIBRARY'),n))
     for name in names:
         inventory={'library':name,'sha256':known[name]['sha256'],
                    'reachable_code_proven':False,'observed_in_crash':name in cache}
@@ -59,7 +60,7 @@ def collect(crash_text,libraries,bundle):
             path=Path(libraries)/name
             if path.is_symlink():raise ValueError('Symlink census input')
             size=path.stat().st_size
-            if not 0<size<=2*1024*1024 or scanned>=64 or scan_bytes+size>32*1024*1024 or time.monotonic()-started>=120 or candidate_count>=8192:
+            if not 0<size<=2*1024*1024 or scanned>=128 or scan_bytes+size>32*1024*1024 or time.monotonic()-started>=120 or candidate_count>=8192:
                 inventory.update(inventory_complete=False,status='SKIPPED_CENSUS_BUDGET')
             else:
                 scanned+=1;scan_bytes+=size
