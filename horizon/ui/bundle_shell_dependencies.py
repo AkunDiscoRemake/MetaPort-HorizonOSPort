@@ -18,6 +18,11 @@ from tools.scan_partitions import command, dump_entry, list_ext4
 
 MAX_LIBRARIES=128
 MAX_BYTES=256*1024*1024
+APEX_LOCATIONS={
+    'libnativehelper.so':('/system/apex/com.android.art.apex','/lib64/libnativehelper.so'),
+    'libstatssocket.so':('/system/apex/com.android.os.statsd.apex','/lib64/libstatssocket.so'),
+    'libdl_android.so':('/system/apex/com.android.runtime.apex','/lib64/bionic/libdl_android.so'),
+}
 NAME=re.compile(r'[A-Za-z0-9_][A-Za-z0-9_+.@=\-]{0,180}\.so\Z')
 
 
@@ -91,8 +96,8 @@ def prepare(images,reconstruction,original,output):
             bundled[name]=p
     if 'libshell.so' not in bundled or digest(bundled['libshell.so'])!=policy['library_sha256']:
         raise ValueError('Wrong root library')
-    # ART APEX supplies libnativehelper, absent from the flat filesystem inventory.
-    apex=None;apex_entries=[];apex_sha=None
+    # APEX payloads contain dependencies absent from the flat inventory.
+    apex_cache={}
     pending=deque(['libshell.so']);visited=set();rows=[];edges=[];added={};unresolved=[];total=0
     while pending:
         name=pending.popleft()
@@ -111,21 +116,26 @@ def prepare(images,reconstruction,original,output):
                 dump_entry(images/(part+'.img'),entry,path)
                 origin={'status':'BUNDLED_ORIGINAL_FIRMWARE_LIBRARY','partition':part,'path':entry['path'],
                         'source_image_sha256':recon['partitions'][part]['sha256']}
-            elif name=='libnativehelper.so':
-                if apex is None:
-                    entry=next(e for e in inventory['system']['entries'] if e['path']=='/system/apex/com.android.art.apex')
-                    container=output/'art.apex';dump_entry(images/'system.img',entry,container);apex_sha=digest(container)
+            elif name in APEX_LOCATIONS:
+                apex_path,member=APEX_LOCATIONS[name]
+                if apex_path not in apex_cache:
+                    matches=[e for e in inventory['system']['entries'] if e['path']==apex_path and e['kind']=='file']
+                    if len(matches)!=1 or matches[0]['size_bytes']>256*1024*1024:raise ValueError('APEX container bounds')
+                    container=output/PurePosixPath(apex_path).name
+                    dump_entry(images/'system.img',matches[0],container);apex_sha=digest(container)
                     with zipfile.ZipFile(container) as z:
-                        matches=[i for i in z.infolist() if i.filename=='apex_payload.img']
-                        if len(matches)!=1 or matches[0].file_size>256*1024*1024:raise ValueError('APEX payload budget')
-                        apex=output/'art.img'
-                        with z.open(matches[0]) as src,apex.open('wb') as dst:
-                            for b in iter(lambda:src.read(1024*1024),b''):dst.write(b)
-                    apex_entries=list_ext4(apex)
-                matches=[e for e in apex_entries if e['path']=='/lib64/libnativehelper.so' and e['kind']=='file']
-                if len(matches)!=1:raise ValueError('Missing unique APEX nativehelper')
+                        payloads=[i for i in z.infolist() if i.filename=='apex_payload.img']
+                        if len(payloads)!=1 or payloads[0].file_size>256*1024*1024:raise ValueError('APEX payload budget')
+                        apex=container.with_suffix('.img')
+                        with z.open(payloads[0]) as src,apex.open('wb') as dst:
+                            for block in iter(lambda:src.read(1024*1024),b''):dst.write(block)
+                    apex_cache[apex_path]=(apex,list_ext4(apex),apex_sha)
+                apex,apex_entries,apex_sha=apex_cache[apex_path]
+                matches=[e for e in apex_entries if e['path']==member and e['kind']=='file']
+                if len(matches)!=1 or not 0<matches[0]['size_bytes']<=96*1024*1024:
+                    raise ValueError('Missing unique bounded APEX library: '+name)
                 dump_entry(apex,matches[0],path)
-                origin={'status':'BUNDLED_ORIGINAL_APEX_LIBRARY','path':'/lib64/libnativehelper.so',
+                origin={'status':'BUNDLED_ORIGINAL_APEX_LIBRARY','path':member,'apex_path':apex_path,
                         'apex_sha256':apex_sha,'source_image_sha256':recon['partitions']['system']['sha256']}
             else:
                 unresolved.append(name);rows.append({'soname':name,'status':'NOT_RESOLVED_NO_STUB'});continue
