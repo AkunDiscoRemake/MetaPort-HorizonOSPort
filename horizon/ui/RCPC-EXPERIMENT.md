@@ -210,3 +210,14 @@ hash and changed byte range are recorded. Original APK DEX validation stays stri
 This supersedes the proposed whole-file byte-identical framework DEX addition;
 only existing APK members and added framework instruction/data payloads remain
 byte-identical. It is not proof that a preoptimized DEX body will pass ART or run.
+
+Run **36943056110** located Vector4f in the original hzos-framework JAR:
+SHA-256 `b1c5111bb301daf971b658414daf8e43a0b4cdac9ecc2e94a554d0c861607e42`,
+2041 class definitions, including 1052 horizonos and 216 vros classes. Packaging
+stopped at the conservative namespace gate because the JAR also defines Meta's
+`android.app.VrosSystemServiceRegistry` and its nested classes. The next policy
+pins that exact JAR and allows this explicitly named extension family, not
+Android's `SystemServiceRegistry`, `ContextImpl` or arbitrary android.* classes.
+It neither invokes that registry nor claims it can access package-private host
+framework APIs from an app loader. Other forbidden definitions still fail closed.
+Original code presence is not service registration or privilege acquisition.

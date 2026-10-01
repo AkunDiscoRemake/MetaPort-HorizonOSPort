@@ -159,12 +159,13 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
                                status='FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION')
     dex_members={};framework_evidence=[]
     if framework_dex:
-        from horizon.ui.framework_dex import JAR_PATH,additions
+        from horizon.ui.framework_dex import JAR_PATH,JAR_SHA256,additions
         entries=[e for e in inventory['system_ext']['entries'] if e['path']==JAR_PATH and e['kind']=='file']
         if len(entries)!=1 or not 0<entries[0]['size_bytes']<=8*1024*1024:
             raise ValueError('Original framework JAR inventory budget')
         jar=output/'hzos-framework.jar'
         dump_entry(images/'system_ext.img',entries[0],jar)
+        if digest(jar)!=JAR_SHA256:raise ValueError('Wrong pinned hzos framework JAR')
         try:
             dex_members,evidence=additions(original,jar)
         except (ValueError,OSError,zipfile.BadZipFile) as error:

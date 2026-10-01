@@ -12,6 +12,7 @@ import zipfile
 from horizon.ui.dex_contract import Dex
 
 JAR_PATH='/framework/hzos-framework.jar'
+JAR_SHA256='b1c5111bb301daf971b658414daf8e43a0b4cdac9ecc2e94a554d0c861607e42'
 REQUIRED='Lhorizonos/graphics/Vector4f;'
 
 
@@ -61,6 +62,14 @@ def read_dexes(path,byte_limit,normalize_framework=False):
     return sorted(rows)
 
 
+def forbidden_boot_definition(name):
+    # This is Meta's additional registry class, NOT android.app.SystemServiceRegistry.
+    # Merely carrying it cannot register services or grant its caller privileges.
+    root='Landroid/app/VrosSystemServiceRegistry'
+    if name==root+';' or name.startswith(root+'$'):return False
+    return name.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/'))
+
+
 def additions(original,jar):
     """Keep framework code/data unchanged, normalizing only header checksums; reject collisions."""
     originals=read_dexes(original,256*1024*1024)
@@ -68,8 +77,8 @@ def additions(original,jar):
     existing=set().union(*(r[3] for r in originals));new=set()
     for _,_,_,names,_ in framework:
         if names & (existing|new):raise ValueError('Framework class collides with existing DEX: '+', '.join(sorted(names & (existing|new))[:8]))
-        if any(n.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/')) for n in names):
-            raise ValueError('Refusing framework DEX containing boot namespace definitions: '+', '.join(sorted(n for n in names if n.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/')))[:8]))
+        if any(forbidden_boot_definition(n) for n in names):
+            raise ValueError('Refusing framework DEX containing boot namespace definitions: '+', '.join(sorted(n for n in names if forbidden_boot_definition(n))[:8]))
         new.update(names)
     if REQUIRED not in new:raise ValueError('Original Vector4f definition not found in selected JAR')
     base=max(r[0] for r in originals);members={};evidence=[]
@@ -82,4 +91,5 @@ def additions(original,jar):
     return members,{'source_path':JAR_PATH,'source_jar_sha256':hashlib.sha256(jar.read_bytes()).hexdigest(),
                     'members':evidence,'required_definition':REQUIRED,
                     'original_dex_members_unchanged':True,'framework_services_ported':False,
+                    'framework_registry_registration_performed':False,
                     'scope':'Original framework code/data with explicit header checksum normalization; not system service registration'}

@@ -60,3 +60,11 @@ class FrameworkDexTests(unittest.TestCase):
             with zipfile.ZipFile(apk,'w') as z:z.writestr('classes.dex',corrupt)
             with zipfile.ZipFile(jar,'w') as z:z.writestr('classes.dex',class_dex(REQUIRED))
             with self.assertRaisesRegex(ValueError,'checksum'):additions(apk,jar)
+
+    def test_meta_registry_extension_does_not_allow_host_registry_replacement(self):
+        from horizon.ui.framework_dex import forbidden_boot_definition
+        self.assertFalse(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistry;'))
+        self.assertFalse(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistry$10;'))
+        self.assertTrue(forbidden_boot_definition('Landroid/app/SystemServiceRegistry;'))
+        self.assertTrue(forbidden_boot_definition('Landroid/app/ContextImpl;'))
+        self.assertTrue(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistryOther;'))
