@@ -1,0 +1,8 @@
+{
+  "source_commit": "9e6302c7b231bf671767a44442ef6994fab72ed7",
+  "run_id": "36811921551",
+  "decompile_step": "failure",
+  "horizon_ported": false,
+  "physical_phone_tested": false,
+  "tool_log_tail": "Traceback (most recent call last):\n  File \"/usr/lib/python3.10/runpy.py\", line 196, in _run_module_as_main\n    return _run_code(code, main_globals, None,\n  File \"/usr/lib/python3.10/runpy.py\", line 86, in _run_code\n    exec(code, run_globals)\n  File \"/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/horizon/ui/verify_shell_abi.py\", line 139, in <module>\n    a=p.parse_args();inspect(a.images,a.reconstruction,a.output)\n  File \"/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/horizon/ui/verify_shell_abi.py\", line 127, in inspect\n    selected=select_symbols(symbols,['__wrap__ZdlPv'])[0]\n  File \"/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/horizon/ui/prepare_shell.py\", line 30, in select_symbols\n    if address<=0 or size<=0:raise ValueError('Invalid entry point')\nValueError: Invalid entry point"
+}
