@@ -2095,16 +2095,16 @@
         },
         {
           "path": "sources/X/C12230kX.java",
-          "generated_sha256": "aa45f440a2a1eb85ae40fc106bc15d3b4c25ee8be10b73bae3de3e55a817079f",
+          "generated_sha256": "898d7108c3e4d99cccab3c065b176e7050299f185f9ff4e8fb8b4997dc97a768",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 137,
+              "line": 136,
               "text": "sb2.append(\"Exception while updating native version: \");"
             },
             {
-              "line": 140,
+              "line": 139,
               "text": "C14210oD.A0C(\"DeviceConfigVersionInfoManager\", \"Exception while updating native version: %s\", sb);"
             }
           ]
@@ -6220,7 +6220,7 @@
             "truncated": true
           },
           "settings_capabilities": {
-            "matching_lines": 232,
+            "matching_lines": 238,
             "sites": [
               {
                 "path": "sources/com/oculus/deviceconfigclient/DeviceConfigClientDebugReceiver.java",
@@ -8435,15 +8435,15 @@
                 "path": "sources/X/C1UA.java",
                 "line": 268,
                 "start_line": 263,
-                "generated_sha256": "b5b6de147a4d9d5e2c54f5fd2ce5894ec3cd936f1a7535ab8d47d0a8c53b3e98",
+                "generated_sha256": "2902b0f9861adfef38f43525682d3188855e4a2f57adfa7363aca3b3c9ea6d19",
                 "has_decompiler_errors": false,
                 "context": "                    this.A02 = true;\n                    if (!this.A03) {\n                        String strA04 = A04();\n                        Intent intent = new Intent(strA04);\n                        intent.setPackage(\"com.oculus.vrshell\");\n                        boolean zBindService = this.A04.bindService(intent, this.A05, 1);\n                        this.A03 = zBindService;\n                        if (!zBindService) {\n                            C08I c08i = this.A0A;\n                            c08i.getValue();\n                            ((C1UC) c08i.getValue()).A02(strA04, C1UC.A00((VolumetricWindowToken) this.A0B.getValue(), (IBinder) this.A09.getValue(), A00(this)), false);"
               },
               {
                 "path": "sources/X/C1UA.java",
-                "line": 353,
-                "start_line": 348,
-                "generated_sha256": "b5b6de147a4d9d5e2c54f5fd2ce5894ec3cd936f1a7535ab8d47d0a8c53b3e98",
+                "line": 355,
+                "start_line": 350,
+                "generated_sha256": "2902b0f9861adfef38f43525682d3188855e4a2f57adfa7363aca3b3c9ea6d19",
                 "has_decompiler_errors": false,
                 "context": "            }\n            this.A01 = null;\n            if (this.A0C) {\n                try {\n                    try {\n                        this.A04.unbindService(this.A05);\n                    } catch (Throwable th3) {\n                        this.A0C = false;\n                        throw th3;\n                    }\n                } catch (IllegalArgumentException e) {"
               },
@@ -9315,7 +9315,7 @@
         "source_coverage_complete": false,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 5122 of 5456 (93%)\nINFO  - progress: 5127 of 5456 (93%)\nINFO  - progress: 5144 of 5456 (94%)\nINFO  - progress: 5167 of 5456 (94%)\nINFO  - progress: 5180 of 5456 (94%)\nINFO  - progress: 5180 of 5456 (94%)\nINFO  - progress: 5190 of 5456 (95%)\nINFO  - progress: 5247 of 5456 (96%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5357 of 5456 (98%)\nINFO  - progress: 5392 of 5456 (98%)\nINFO  - progress: 5409 of 5456 (99%)\nINFO  - progress: 5415 of 5456 (99%)\nINFO  - progress: 5421 of 5456 (99%)\nINFO  - progress: 5426 of 5456 (99%)\nINFO  - progress: 5428 of 5456 (99%)\nINFO  - progress: 5428 of 5456 (99%)\nINFO  - progress: 5442 of 5456 (99%)\n                                                             \nERROR - finished with errors, count: 95"
+      "log_tail": "INFO  - progress: 5147 of 5456 (94%)\nINFO  - progress: 5167 of 5456 (94%)\nINFO  - progress: 5180 of 5456 (94%)\nINFO  - progress: 5180 of 5456 (94%)\nINFO  - progress: 5190 of 5456 (95%)\nINFO  - progress: 5282 of 5456 (96%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5318 of 5456 (97%)\nINFO  - progress: 5342 of 5456 (97%)\nINFO  - progress: 5388 of 5456 (98%)\nINFO  - progress: 5408 of 5456 (99%)\nINFO  - progress: 5415 of 5456 (99%)\nINFO  - progress: 5419 of 5456 (99%)\nINFO  - progress: 5421 of 5456 (99%)\nINFO  - progress: 5426 of 5456 (99%)\nINFO  - progress: 5428 of 5456 (99%)\nINFO  - progress: 5439 of 5456 (99%)\n                                                             \nERROR - finished with errors, count: 95"
     },
     {
       "path": "/priv-app/IdentityManagement/IdentityManagement.apk",
@@ -9668,16 +9668,16 @@
       "contracts": [
         {
           "path": "sources/com/oculus/deviceconfigservice/verifiedapps/DeviceConfigVersionInfoManager.java",
-          "generated_sha256": "71a678af4d710e12c753a39ea6904004827f65d91f7cdb9a7b803cd75b42a4f0",
+          "generated_sha256": "ae8f773ab6ae4352c5ac879b13bd6eeb7d482d0de285fbb3d5ae82beb14b1460",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 444,
+              "line": 443,
               "text": "DeviceConfigTelemetryLogger.logBuildVersionMapError(context, Outlined$0$0$0.$outlined$0$e2c56a2fa4b721c7(sb$outlined$0$10d8b35c65754a3f, \"Exception while updating native version: \", Outlined$0$0$1.$outlined$0$10d8b35c65754a3f()));"
             },
             {
-              "line": 445,
+              "line": 444,
               "text": "BLog.e(\"DeviceConfigVersionInfoManager\", \"Exception while updating native version: %s\", sb$outlined$0$10d8b35c65754a3f);"
             }
           ]
@@ -14792,7 +14792,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 938 of 1577 (59%)\nINFO  - progress: 1009 of 1577 (63%)\nINFO  - progress: 1013 of 1577 (64%)\nINFO  - progress: 1039 of 1577 (65%)\nINFO  - progress: 1068 of 1577 (67%)\nINFO  - progress: 1113 of 1577 (70%)\nINFO  - progress: 1140 of 1577 (72%)\nINFO  - progress: 1186 of 1577 (75%)\nINFO  - progress: 1232 of 1577 (78%)\nINFO  - progress: 1243 of 1577 (78%)\nINFO  - progress: 1299 of 1577 (82%)\nINFO  - progress: 1334 of 1577 (84%)\nINFO  - progress: 1345 of 1577 (85%)\nINFO  - progress: 1373 of 1577 (87%)\nINFO  - progress: 1374 of 1577 (87%)\nINFO  - progress: 1387 of 1577 (87%)\nINFO  - progress: 1407 of 1577 (89%)\nINFO  - progress: 1413 of 1577 (89%)\nINFO  - progress: 1426 of 1577 (90%)\nINFO  - progress: 1451 of 1577 (92%)\nINFO  - progress: 1460 of 1577 (92%)\nINFO  - progress: 1478 of 1577 (93%)\nINFO  - progress: 1507 of 1577 (95%)\nINFO  - progress: 1519 of 1577 (96%)\nINFO  - progress: 1529 of 1577 (96%)\nINFO  - progress: 1538 of 1577 (97%)\nINFO  - progress: 1538 of 1577 (97%)\nINFO  - progress: 1538 of 1577 (97%)\nINFO  - progress: 1538 of 1577 (97%)\nINFO  - progress: 1538 of 1577 (97%)\nINFO  - progress: 1538 of 1577 (97%)\nINFO  - progress: 1539 of 1577 (97%)\nINFO  - progress: 1571 of 1577 (99%)\nINFO  - progress: 1574 of 1577 (99%)\nINFO  - progress: 1574 of 1577 (99%)\nINFO  - progress: 1574 of 1577 (99%)\nINFO  - progress: 1574 of 1577 (99%)\nINFO  - progress: 1576 of 1577 (99%)\n                                                             \nERROR - finished with errors, count: 32"
+      "log_tail": "INFO  - progress: 967 of 1577 (61%)\nINFO  - progress: 1012 of 1577 (64%)\nINFO  - progress: 1025 of 1577 (64%)\nINFO  - progress: 1042 of 1577 (66%)\nINFO  - progress: 1074 of 1577 (68%)\nINFO  - progress: 1108 of 1577 (70%)\nINFO  - progress: 1137 of 1577 (72%)\nINFO  - progress: 1193 of 1577 (75%)\nINFO  - progress: 1233 of 1577 (78%)\nINFO  - progress: 1254 of 1577 (79%)\nINFO  - progress: 1297 of 1577 (82%)\nINFO  - progress: 1333 of 1577 (84%)\nINFO  - progress: 1335 of 1577 (84%)\nINFO  - progress: 1357 of 1577 (86%)\nINFO  - progress: 1363 of 1577 (86%)\nINFO  - progress: 1373 of 1577 (87%)\nINFO  - progress: 1378 of 1577 (87%)\nINFO  - progress: 1398 of 1577 (88%)\nINFO  - progress: 1408 of 1577 (89%)\nINFO  - progress: 1424 of 1577 (90%)\nINFO  - progress: 1453 of 1577 (92%)\nINFO  - progress: 1460 of 1577 (92%)\nINFO  - progress: 1478 of 1577 (93%)\nINFO  - progress: 1498 of 1577 (94%)\nINFO  - progress: 1516 of 1577 (96%)\nINFO  - progress: 1521 of 1577 (96%)\nINFO  - progress: 1529 of 1577 (96%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1544 of 1577 (97%)\nINFO  - progress: 1557 of 1577 (98%)\nINFO  - progress: 1557 of 1577 (98%)\nINFO  - progress: 1557 of 1577 (98%)\nINFO  - progress: 1557 of 1577 (98%)\n                                                             \nERROR - finished with errors, count: 32"
     },
     {
       "path": "/priv-app/DeviceAuthServer/DeviceAuthServer.apk",
@@ -16196,7 +16196,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": false
       },
-      "log_tail": "INFO  - loading ...\nINFO  - processing ...\nINFO  - progress: 0 of 395 (0%)\nINFO  - progress: 111 of 395 (28%)\nINFO  - progress: 129 of 395 (32%)\nINFO  - progress: 170 of 395 (43%)\nINFO  - progress: 220 of 395 (55%)\nINFO  - progress: 241 of 395 (61%)\nINFO  - progress: 267 of 395 (67%)\nINFO  - progress: 306 of 395 (77%)\nINFO  - progress: 344 of 395 (87%)\nINFO  - progress: 359 of 395 (90%)\nINFO  - progress: 362 of 395 (91%)\nINFO  - progress: 388 of 395 (98%)\n                                                             \nINFO  - done"
+      "log_tail": "INFO  - loading ...\nINFO  - processing ...\nINFO  - progress: 0 of 395 (0%)\nINFO  - progress: 111 of 395 (28%)\nINFO  - progress: 130 of 395 (32%)\nINFO  - progress: 169 of 395 (42%)\nINFO  - progress: 220 of 395 (55%)\nINFO  - progress: 241 of 395 (61%)\nINFO  - progress: 270 of 395 (68%)\nINFO  - progress: 314 of 395 (79%)\nINFO  - progress: 344 of 395 (87%)\nINFO  - progress: 359 of 395 (90%)\nINFO  - progress: 361 of 395 (91%)\nINFO  - progress: 381 of 395 (96%)\n                                                             \nINFO  - done"
     },
     {
       "path": "/priv-app/OCMS/OCMS.apk",
@@ -18926,16 +18926,16 @@
         },
         {
           "path": "sources/com/oculus/deviceconfigservice/verifiedapps/DeviceConfigVersionInfoManager.java",
-          "generated_sha256": "13ff1074508c87f4fdf701240802ca39fd80f08157ce369f689b138a86454fe4",
+          "generated_sha256": "d329d8523702cdf511b0c836d98aad95e6ca3685b4ab10c58a66483449b6ea53",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 361,
+              "line": 357,
               "text": "DeviceConfigTelemetryLogger.A03(context, AnonymousClass000.A0Z(sbA17, \"Exception while updating native version: \", AnonymousClass004.A15()));"
             },
             {
-              "line": 362,
+              "line": 358,
               "text": "C2r7.A0I(TAG, \"Exception while updating native version: %s\", sbA17);"
             }
           ]
@@ -19418,7 +19418,7 @@
         },
         {
           "path": "sources/com/oculus/ocms/installer2/Installer.java",
-          "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+          "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
           "has_decompiler_errors": true,
           "matching_lines": 10,
           "selected_lines": [
@@ -19455,11 +19455,11 @@
               "text": "return AbstractC09881cW.A01(this.rootScope, C1eL.A00(installJobControl, this.exceptionHandler), C30Z.A00, new Installer$launchJobAsCoroutine$appInstallCoroutineJob$1(this, installJobControl, null));"
             },
             {
-              "line": 3983,
+              "line": 3988,
               "text": "C10101dI c10101dIA01 = AbstractC09881cW.A01(this.rootScope, C1eL.A00(installJobControl, this.exceptionHandler), C30Z.A00, new Installer$launchJobAsCoroutine$appInstallCoroutineJob$1(this, installJobControl, null));"
             },
             {
-              "line": 4174,
+              "line": 4179,
               "text": "C10101dI c10101dIA01 = AbstractC09881cW.A01(this.rootScope, C1eL.A00(installJobControl2, this.exceptionHandler), C30Z.A00, new Installer$launchJobAsCoroutine$appInstallCoroutineJob$1(this, installJobControl2, null));"
             }
           ]
@@ -24281,7 +24281,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 188,
                 "start_line": 183,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "import java.util.concurrent.ConcurrentHashMap;\nimport java.util.concurrent.ConcurrentLinkedQueue;\nimport java.util.concurrent.CountDownLatch;\nimport kotlin.Metadata;\nimport kotlin.jvm.internal.SourceDebugExtension;\nimport kotlinx.coroutines.CoroutineExceptionHandler;\nimport org.jetbrains.annotations.NotNull;\nimport org.jetbrains.annotations.Nullable;\n\n/*  JADX ERROR: Error in decompile pass: KotlinMetadataDecompile\n    java.lang.IllegalArgumentException: Provided Metadata instance does not have metadataVersion in it and therefore is malformed and cannot be read."
               },
@@ -24289,7 +24289,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 256,
                 "start_line": 251,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "\n    @NotNull\n    public final EventHub eventHub;\n\n    @NotNull\n    public final CoroutineExceptionHandler exceptionHandler;\n\n    @NotNull\n    public final InstallRequestHandler handler;\n\n    @NotNull"
               },
@@ -24297,7 +24297,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 304,
                 "start_line": 299,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "\n    @NotNull\n    public final OculusInstallerStorageCheckLogger oculusInstallerStorageCheckLogger;\n\n    @NotNull\n    public InterfaceC08761Te<? super String, ? super InstallJobControl, ? super Throwable, C1NO> packageInstallCompletionHandler;\n\n    @NotNull\n    public final C1Sq quickPerformanceLogger$delegate;\n\n    @NotNull"
               },
@@ -24305,7 +24305,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 319,
                 "start_line": 314,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "\n    @NotNull\n    public InterfaceC08761Te<? super InstallerRequest, ? super AssetPayload, ? super Throwable, C1NO> uninstallAssetHandler;\n\n    @NotNull\n    public InterfaceC08761Te<? super String, ? super InstallerRequest, ? super Throwable, C1NO> uninstallCompletionHandler;\n\n    @NotNull\n    public final List<InstallJobControl> waitingJobList;\n\n    @Metadata"
               },
@@ -24313,7 +24313,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 1792,
                 "start_line": 1787,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "                C1Sq.A01(Installer.this).markerEnd(862851341, (short) 2);\n                Installer.this.installerAnalytics.eventHub.A00(new DeviceEvent(EventType.INSTALLER_INSTALLER_INIT_COMPLETED_EVENT, System.currentTimeMillis(), true, null, null, null, EventComponent.OCMS, null));\n                Installer.this.installerReadyLock.countDown();\n            }\n        });\n        this.uninstallCompletionHandler = new Installer$uninstallCompletionHandler$1(this);\n        this.uninstallAssetHandler = new Installer$uninstallAssetHandler$1(this);\n        this.exceptionHandler = new Installer$special$$inlined$CoroutineExceptionHandler$1(CoroutineExceptionHandler.Key, this);\n        this.packageInstallCompletionHandler = new Installer$packageInstallCompletionHandler$1(this);\n    }\n"
               },
@@ -24321,7 +24321,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 1794,
                 "start_line": 1789,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "                Installer.this.installerReadyLock.countDown();\n            }\n        });\n        this.uninstallCompletionHandler = new Installer$uninstallCompletionHandler$1(this);\n        this.uninstallAssetHandler = new Installer$uninstallAssetHandler$1(this);\n        this.exceptionHandler = new Installer$special$$inlined$CoroutineExceptionHandler$1(CoroutineExceptionHandler.Key, this);\n        this.packageInstallCompletionHandler = new Installer$packageInstallCompletionHandler$1(this);\n    }\n\n    public static final AppConfig A00(Installer installer) {\n        return C1uB.A06(installer.appConfig$delegate);"
               },
@@ -24329,7 +24329,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 1795,
                 "start_line": 1790,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "            }\n        });\n        this.uninstallCompletionHandler = new Installer$uninstallCompletionHandler$1(this);\n        this.uninstallAssetHandler = new Installer$uninstallAssetHandler$1(this);\n        this.exceptionHandler = new Installer$special$$inlined$CoroutineExceptionHandler$1(CoroutineExceptionHandler.Key, this);\n        this.packageInstallCompletionHandler = new Installer$packageInstallCompletionHandler$1(this);\n    }\n\n    public static final AppConfig A00(Installer installer) {\n        return C1uB.A06(installer.appConfig$delegate);\n    }"
               },
@@ -24337,23 +24337,23 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 2038,
                 "start_line": 2033,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "    }\n\n    @VisibleForTesting\n    @NotNull\n    private final C1dL<C1NO> A06(@NotNull InstallJobControl installJobControl) {\n        return AbstractC09881cW.A01(this.rootScope, C1eL.A00(installJobControl, this.exceptionHandler), C30Z.A00, new Installer$launchJobAsCoroutine$appInstallCoroutineJob$1(this, installJobControl, null));\n    }\n\n    /* JADX WARN: Code duplicated, block: B:39:0x00db  */\n    /* JADX WARN: Code duplicated, block: B:42:0x00e7  */\n    /* JADX WARN: Code duplicated, block: B:45:0x0107  */"
               },
               {
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
-                "line": 3983,
-                "start_line": 3978,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "line": 3988,
+                "start_line": 3983,
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "                                            }\n                                        }\n                                        if (C1Ym.A0E(this)) {\n                                            this.handler.A00(500L);\n                                        }\n                                        C10101dI c10101dIA01 = AbstractC09881cW.A01(this.rootScope, C1eL.A00(installJobControl, this.exceptionHandler), C30Z.A00, new Installer$launchJobAsCoroutine$appInstallCoroutineJob$1(this, installJobControl, null));\n                                        this.activeJobMap.put(str, installJobControl);\n                                        this.activeCoroutineJobMap.put(str, c10101dIA01);\n                                        this.installJobObserver.A6l();\n                                        c10101dIA01.A5W(new Installer$launchJob$1(this, installJobControl, str));\n                                        return true;"
               },
               {
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
-                "line": 4174,
-                "start_line": 4169,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "line": 4179,
+                "start_line": 4174,
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "                                                    }\n                                                }\n                                                if (C1Ym.A0E(this)) {\n                                                    this.handler.A00(500L);\n                                                }\n                                                C10101dI c10101dIA01 = AbstractC09881cW.A01(this.rootScope, C1eL.A00(installJobControl2, this.exceptionHandler), C30Z.A00, new Installer$launchJobAsCoroutine$appInstallCoroutineJob$1(this, installJobControl2, null));\n                                                this.activeJobMap.put(str, installJobControl2);\n                                                this.activeCoroutineJobMap.put(str, c10101dIA01);\n                                                this.installJobObserver.A6l();\n                                                c10101dIA01.A5W(new Installer$launchJob$1(this, installJobControl2, str));\n                                                String str2 = installJobControl2.data.packageName;"
               },
@@ -24519,7 +24519,7 @@
                 "path": "sources/com/oculus/ocms/installer2/Installer.java",
                 "line": 1733,
                 "start_line": 1728,
-                "generated_sha256": "7c2d9132191763e2f85c666b9dbf4e54cd6bc7877320b2aef9c5dc26d98c5903",
+                "generated_sha256": "b62b2ba379939ea43410a989e07f6e483555534e9f67d6c08f2f60fb5ada865e",
                 "has_decompiler_errors": true,
                 "context": "                            C2r7.A01(OrphanedIncfsMountCleaner.TAG, \"No orphaned incfs mounts found\");\n                            sharedPreferences6.edit().putBoolean(OrphanedIncfsMountCleaner.KEY_CLEANUP_COMPLETED, true).apply();\n                        } else {\n                            C2r7.A08(OrphanedIncfsMountCleaner.TAG, \"Found %d orphaned incfs mount(s) to clean up\", AnonymousClass003.A0a(listA1A));\n                            try {\n                                Object objInvoke = Class.forName(\"android.os.ServiceManager\").getMethod(\"getService\", String.class).invoke(null, OrphanedIncfsMountCleaner.SERVICE_NAME);\n                                if (!(objInvoke instanceof IBinder) || (iBinder = (IBinder) objInvoke) == null) {\n                                    C2r7.A05(OrphanedIncfsMountCleaner.TAG, \"IncrementalService not available, skipping cleanup\");\n                                } else {\n                                    Iterator it17 = listA1A.iterator();\n                                    while (it17.hasNext()) {"
               },
@@ -25410,7 +25410,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": false
       },
-      "log_tail": "INFO  - progress: 6872 of 9091 (75%)\nINFO  - progress: 6925 of 9091 (76%)\nINFO  - progress: 6969 of 9091 (76%)\nINFO  - progress: 7016 of 9091 (77%)\nINFO  - progress: 7064 of 9091 (77%)\nINFO  - progress: 7073 of 9091 (77%)\nINFO  - progress: 7105 of 9091 (78%)\nINFO  - progress: 7192 of 9091 (79%)\nINFO  - progress: 7257 of 9091 (79%)\nINFO  - progress: 7298 of 9091 (80%)\nINFO  - progress: 7370 of 9091 (81%)\nINFO  - progress: 7494 of 9091 (82%)\nINFO  - progress: 7563 of 9091 (83%)\nINFO  - progress: 7650 of 9091 (84%)\nINFO  - progress: 7756 of 9091 (85%)\nINFO  - progress: 7766 of 9091 (85%)\nINFO  - progress: 7871 of 9091 (86%)\nINFO  - progress: 7960 of 9091 (87%)\nINFO  - progress: 8018 of 9091 (88%)\nINFO  - progress: 8181 of 9091 (89%)\nINFO  - progress: 8235 of 9091 (90%)\nINFO  - progress: 8306 of 9091 (91%)\nINFO  - progress: 8432 of 9091 (92%)\nINFO  - progress: 8496 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8573 of 9091 (94%)\nINFO  - progress: 8573 of 9091 (94%)\nINFO  - progress: 8573 of 9091 (94%)\nINFO  - progress: 8673 of 9091 (95%)\nINFO  - progress: 8740 of 9091 (96%)\nINFO  - progress: 8843 of 9091 (97%)\nINFO  - progress: 8893 of 9091 (97%)\nINFO  - progress: 8946 of 9091 (98%)\nINFO  - progress: 9037 of 9091 (99%)\nINFO  - progress: 9059 of 9091 (99%)\nINFO  - progress: 9059 of 9091 (99%)\n                                                             \nERROR - finished with errors, count: 11999"
+      "log_tail": "INFO  - progress: 6937 of 9091 (76%)\nINFO  - progress: 6979 of 9091 (76%)\nINFO  - progress: 7033 of 9091 (77%)\nINFO  - progress: 7070 of 9091 (77%)\nINFO  - progress: 7083 of 9091 (77%)\nINFO  - progress: 7098 of 9091 (78%)\nINFO  - progress: 7203 of 9091 (79%)\nINFO  - progress: 7284 of 9091 (80%)\nINFO  - progress: 7311 of 9091 (80%)\nINFO  - progress: 7392 of 9091 (81%)\nINFO  - progress: 7524 of 9091 (82%)\nINFO  - progress: 7577 of 9091 (83%)\nINFO  - progress: 7656 of 9091 (84%)\nINFO  - progress: 7759 of 9091 (85%)\nINFO  - progress: 7802 of 9091 (85%)\nINFO  - progress: 7848 of 9091 (86%)\nINFO  - progress: 7974 of 9091 (87%)\nINFO  - progress: 8070 of 9091 (88%)\nINFO  - progress: 8187 of 9091 (90%)\nINFO  - progress: 8235 of 9091 (90%)\nINFO  - progress: 8306 of 9091 (91%)\nINFO  - progress: 8445 of 9091 (92%)\nINFO  - progress: 8484 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8509 of 9091 (93%)\nINFO  - progress: 8573 of 9091 (94%)\nINFO  - progress: 8596 of 9091 (94%)\nINFO  - progress: 8673 of 9091 (95%)\nINFO  - progress: 8750 of 9091 (96%)\nINFO  - progress: 8833 of 9091 (97%)\nINFO  - progress: 8894 of 9091 (97%)\nINFO  - progress: 8946 of 9091 (98%)\nINFO  - progress: 8996 of 9091 (98%)\nINFO  - progress: 9059 of 9091 (99%)\nINFO  - progress: 9059 of 9091 (99%)\nINFO  - progress: 9082 of 9091 (99%)\n                                                             \nERROR - finished with errors, count: 11999"
     },
     {
       "path": "/app/SocialPlatform/SocialPlatform.apk",
@@ -35239,16 +35239,16 @@
         },
         {
           "path": "sources/com/oculus/deviceconfigservice/verifiedapps/DeviceConfigVersionInfoManager.java",
-          "generated_sha256": "03f0af2906d80f3fafc6a33361eb25b2d32802217c9ce68d062c7fafa3a7814f",
+          "generated_sha256": "df04e8e1fc5e6ac6c1480bf081c407887aba0fdbe764f183f02661d64e58e9fa",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 481,
+              "line": 338,
               "text": "DeviceConfigTelemetryLogger.A04(context, \"Exception while updating native version: \" + ((Object) sb));"
             },
             {
-              "line": 482,
+              "line": 339,
               "text": "C23135hH.A0E(TAG, \"Exception while updating native version: %s\", sb);"
             }
           ]
@@ -37082,7 +37082,7 @@
         "scope": "Bounded lexical candidates, not resolved call graph or complete UI recovery",
         "categories": {
           "cloud_identity": {
-            "matching_lines": 931,
+            "matching_lines": 932,
             "sites": [
               {
                 "path": "sources/com/meta/arvr/groups/impl/FetchGroupInfoUseCase$groupDataFlow$1.java",
@@ -37862,7 +37862,7 @@
             "truncated": true
           },
           "settings_capabilities": {
-            "matching_lines": 3490,
+            "matching_lines": 3474,
             "sites": [
               {
                 "path": "sources/com/meta/arvr/calling/impl/CallApiImpl.java",
@@ -40092,9 +40092,9 @@
               },
               {
                 "path": "sources/com/oculus/people/badging/PeopleBadgingServiceConnection.java",
-                "line": 141,
-                "start_line": 136,
-                "generated_sha256": "dff5e01de268108bae4605fb515cd02777b2025fe662fc55b0d7ff63ee800cdd",
+                "line": 130,
+                "start_line": 125,
+                "generated_sha256": "fa5a1cdf49ffd1a373777dd285841411d243d75dc838898c68197b1f0ddf7d7c",
                 "has_decompiler_errors": true,
                 "context": "            X.1Pf r0 = r5.getContext()\n            boolean r0 = X.C0KX.A03(r0)\n            if (r0 == 0) goto Lbb\n            android.content.Context r8 = r12.context     // Catch: java.lang.Throwable -> L68\n            android.content.Intent r0 = r12.bindIntent     // Catch: java.lang.Throwable -> L68\n            boolean r0 = r8.bindService(r0, r11, r3)     // Catch: java.lang.Throwable -> L68\n            java.lang.Boolean r10 = java.lang.Boolean.valueOf(r0)     // Catch: java.lang.Throwable -> L68\n            goto L6e\n        L68:\n            r0 = move-exception\n            X.0JB r10 = new X.0JB"
               },
@@ -41085,7 +41085,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 11438 of 14909 (76%)\nINFO  - progress: 11499 of 14909 (77%)\nINFO  - progress: 11622 of 14909 (77%)\nINFO  - progress: 11677 of 14909 (78%)\nINFO  - progress: 11747 of 14909 (78%)\nINFO  - progress: 11800 of 14909 (79%)\nINFO  - progress: 11895 of 14909 (79%)\nINFO  - progress: 12016 of 14909 (80%)\nINFO  - progress: 12098 of 14909 (81%)\nINFO  - progress: 12155 of 14909 (81%)\nINFO  - progress: 12170 of 14909 (81%)\nINFO  - progress: 12177 of 14909 (81%)\nINFO  - progress: 12177 of 14909 (81%)\nINFO  - progress: 12235 of 14909 (82%)\nINFO  - progress: 12312 of 14909 (82%)\nINFO  - progress: 12429 of 14909 (83%)\nINFO  - progress: 12548 of 14909 (84%)\nINFO  - progress: 12601 of 14909 (84%)\nINFO  - progress: 12698 of 14909 (85%)\nINFO  - progress: 12835 of 14909 (86%)\nINFO  - progress: 13001 of 14909 (87%)\nINFO  - progress: 13115 of 14909 (87%)\nINFO  - progress: 13269 of 14909 (88%)\nINFO  - progress: 13358 of 14909 (89%)\nINFO  - progress: 13493 of 14909 (90%)\nINFO  - progress: 13592 of 14909 (91%)\nINFO  - progress: 13718 of 14909 (92%)\nINFO  - progress: 13838 of 14909 (92%)\nINFO  - progress: 14063 of 14909 (94%)\nINFO  - progress: 14207 of 14909 (95%)\nINFO  - progress: 14311 of 14909 (95%)\nINFO  - progress: 14360 of 14909 (96%)\nINFO  - progress: 14371 of 14909 (96%)\nINFO  - progress: 14460 of 14909 (96%)\nINFO  - progress: 14581 of 14909 (97%)\nINFO  - progress: 14730 of 14909 (98%)\nINFO  - progress: 14792 of 14909 (99%)\nINFO  - progress: 14895 of 14909 (99%)\n                                                             \nERROR - finished with errors, count: 367"
+      "log_tail": "INFO  - progress: 11499 of 14909 (77%)\nINFO  - progress: 11640 of 14909 (78%)\nINFO  - progress: 11698 of 14909 (78%)\nINFO  - progress: 11769 of 14909 (78%)\nINFO  - progress: 11846 of 14909 (79%)\nINFO  - progress: 11975 of 14909 (80%)\nINFO  - progress: 12134 of 14909 (81%)\nINFO  - progress: 12155 of 14909 (81%)\nINFO  - progress: 12177 of 14909 (81%)\nINFO  - progress: 12178 of 14909 (81%)\nINFO  - progress: 12237 of 14909 (82%)\nINFO  - progress: 12321 of 14909 (82%)\nINFO  - progress: 12432 of 14909 (83%)\nINFO  - progress: 12548 of 14909 (84%)\nINFO  - progress: 12601 of 14909 (84%)\nINFO  - progress: 12674 of 14909 (85%)\nINFO  - progress: 12870 of 14909 (86%)\nINFO  - progress: 13084 of 14909 (87%)\nINFO  - progress: 13171 of 14909 (88%)\nINFO  - progress: 13295 of 14909 (89%)\nINFO  - progress: 13349 of 14909 (89%)\nINFO  - progress: 13388 of 14909 (89%)\nINFO  - progress: 13492 of 14909 (90%)\nINFO  - progress: 13587 of 14909 (91%)\nINFO  - progress: 13663 of 14909 (91%)\nINFO  - progress: 13802 of 14909 (92%)\nINFO  - progress: 13867 of 14909 (93%)\nINFO  - progress: 13977 of 14909 (93%)\nINFO  - progress: 14101 of 14909 (94%)\nINFO  - progress: 14240 of 14909 (95%)\nINFO  - progress: 14311 of 14909 (95%)\nINFO  - progress: 14359 of 14909 (96%)\nINFO  - progress: 14360 of 14909 (96%)\nINFO  - progress: 14427 of 14909 (96%)\nINFO  - progress: 14524 of 14909 (97%)\nINFO  - progress: 14734 of 14909 (98%)\nINFO  - progress: 14780 of 14909 (99%)\nINFO  - progress: 14841 of 14909 (99%)\n                                                             \nERROR - finished with errors, count: 367"
     }
   ],
   "scope": "cloud"
