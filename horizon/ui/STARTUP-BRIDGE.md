@@ -105,3 +105,37 @@ Validação final desta etapa: **36810507577 passou**, incluindo o novo teste de
 cópia espacial em ARM64/QEMU e o build/lint Android. As análises nativas
 **36808853419**, **36809468975** e **36809949550** também terminaram com sucesso
 nos seus escopos estáticos. Não há um serviço Strata/SpaceManager portado executando.
+
+## Original DEX / ARM64 return verification
+
+Actions **36812160938 succeeded**. `shell-jni-abi-proof.json` verifies the pinned
+original APK, DEX checksums and native declarations, and original executable ELF
+bytes without loading firmware. `nativeInit` has the original descriptor
+`(Lcom/oculus/vrshell/ShellApplication;JLjava/lang/String;Ljava/lang/String;ZZ)J`.
+Its normal ARM64 epilogue loads a 64-bit value from ELF global `0x275b008` into
+`X0` and preserves it through `RET`. The service setter stores to that same slot.
+The return-type discrepancy is therefore resolved **for the normal return path**:
+the inferred Ghidra `void` declaration must not become the JNI adapter signature.
+This does not establish constructor success, ownership, exception behavior or a
+complete callable private ABI.
+
+Raw bytes also contain branches after both cleanup calls that were absent from
+the earlier Ghidra function-body listing: `0xd78d5c -> 0xd78d14` and
+`0xd78d68 -> 0xd78d1c`. The original libc++ `__wrap__ZdlPv` export has a nonzero
+address (`0x47444`) but **zero ELF symbol size**. Its first instruction branches
+to `0x83e10`; the captured 16-byte window is not a proven function extent, and
+subsequent instructions may belong to other entries. The target implementation
+and the cause of Ghidra's no-return inference remain unverified. No allocator
+replacement is justified by this evidence alone.
+
+The first proof run, 36811921551, rejected the zero-size symbol. The verifier now
+reports bounded wrapper evidence separately rather than treating missing size as
+proof of an invalid function. Local suites: **36 UI tests passed; 92 hand-analysis
+tests ran successfully with one skip** (dependencies installed).
+
+A separate `shell-threads.yml` analysis now follows five internal candidates
+referenced by the pinned startup report: the thread target and trampoline,
+service destruction, preferences symbol lookup, and thread lifecycle helper.
+Their names/purposes remain analysis hypotheses, not original API declarations.
+The selector verifies source-library hash, reference provenance and executable
+address bounds; neither workflow executes firmware or produces a working APK.

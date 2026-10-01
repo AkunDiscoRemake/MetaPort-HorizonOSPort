@@ -10,7 +10,12 @@
   "java_declares_return": "long",
   "native_reconstruction_declares_return": "void",
   "callable_abi_validated": false,
-  "warning": "Return-type discrepancy: do not implement a void JNI entry from this C-like output. Compare DEX descriptor and ARM64 return paths first.",
+  "warning": "Original DEX and normal ARM64 epilogue agree on 64-bit return. Do not implement this JNI entry as void. Full callable service ABI, construction, exceptions and ownership remain unvalidated.",
   "wrapped_delete_no_return_warning_observed": true,
-  "cause_confirmed": false
+  "cause_confirmed": false,
+  "normal_return_type_discrepancy_resolved": true,
+  "original_dex_return": "J (Java long / JNI jlong)",
+  "normal_arm64_return": "X0, 64 bits, loaded from ELF global 0x275b008",
+  "proof_report": "shell-jni-abi-proof.json",
+  "proof_run_id": "36812160938"
 }
