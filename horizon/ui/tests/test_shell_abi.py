@@ -37,3 +37,13 @@ class ReturnProofTests(unittest.TestCase):
         struct.pack_into('<II',b,272,0xb0000008,0xf9000500)
         p.update(return_instruction=0x100c,service_setter_page_instruction=0x1010,service_setter_store_instruction=0x1014)
         with self.assertRaises(ValueError):prove_return(b,p)
+
+class WrapperBoundaryTests(unittest.TestCase):
+    def test_zero_valued_export_is_reported_not_treated_as_function(self):
+        from horizon.ui.verify_shell_abi import inspect_wrapper
+        r=inspect_wrapper(b'', '1: 0000000000000000 0 FUNC GLOBAL DEFAULT ABS __wrap__ZdlPv')
+        self.assertEqual(r['status'],'ZERO_ADDRESS_EXPORT_NOT_CALLABLE_PROOF')
+        self.assertFalse(r['nonreturning_claim_validated'])
+    def test_missing_symbol_remains_unknown(self):
+        from horizon.ui.verify_shell_abi import inspect_wrapper
+        self.assertEqual(inspect_wrapper(b'','')['status'],'NO_UNIQUE_DEFINED_FUNCTION')

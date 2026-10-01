@@ -8,7 +8,7 @@ import struct
 import tempfile
 import zipfile
 from horizon.ui.dex_contract import Dex, MAX_DEX
-from horizon.ui.prepare_shell import POLICY, executable_ranges, select_symbols
+from horizon.ui.prepare_shell import POLICY, executable_ranges
 from horizon.ui.inspect_platform import verify_partition
 from handtracking.ai.inspect_original import digest, BUILD
 from tools.scan_partitions import dump_entry, command
@@ -81,6 +81,26 @@ def prove_return(blob,p):
             'scope':'Normal sequential epilogue only; constructor, exceptions and runtime not executed'}
 
 
+def inspect_wrapper(blob,symbols):
+    rows=[line.split() for line in symbols.splitlines() if len(line.split())>=8 and line.split()[7]=='__wrap__ZdlPv']
+    report={'symbol_rows':[' '.join(r) for r in rows[:8]],'nonreturning_claim_validated':False}
+    if len(rows)!=1 or rows[0][3]!='FUNC' or rows[0][6]=='UND':
+        return dict(report,status='NO_UNIQUE_DEFINED_FUNCTION')
+    r=rows[0];address=int(r[1],16);size=int(r[2],0)
+    report.update(elf_address=address,declared_size_bytes=size,section_index=r[6])
+    if address==0:
+        return dict(report,status='ZERO_ADDRESS_EXPORT_NOT_CALLABLE_PROOF')
+    # Zero ELF st_size is legal for assembly/aliases, but establishes no body size.
+    extent=size if size else 16
+    if extent>4096:return dict(report,status='BODY_EXCEEDS_ANALYSIS_LIMIT')
+    try:
+        instructions=disassemble(blob,address,address+extent)
+    except ValueError as error:
+        return dict(report,status='NO_EXECUTABLE_WINDOW',error=str(error))
+    return dict(report,status='BOUNDED_INSTRUCTIONS_ONLY',instructions=instructions,
+                window_bytes=extent,complete_body_claimed=False)
+
+
 def inspect(images,reconstruction,output):
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
     p=json.loads(ABI_POLICY.read_text());policy=json.loads(POLICY.read_text())
@@ -124,12 +144,8 @@ def inspect(images,reconstruction,output):
             wrapper=root/'wrapper.so';wrapper.write_bytes(archive.read(wrapperentry))
             if digest(wrapper)!=p['wrapper_sha256']:raise ValueError('Wrong original wrapper library')
             symbols,_=command(['readelf','--dyn-syms','-W',str(wrapper)])
-            selected=select_symbols(symbols,['__wrap__ZdlPv'])[0]
-            a=selected['elf_address'];size=selected['size_bytes']
-            if size>4096:raise ValueError('Wrapper body exceeds bound')
             report['delete_wrapper']={'member':p['wrapper_member'],'sha256':p['wrapper_sha256'],
-                'selection':selected,'instructions':disassemble(wrapper.read_bytes(),a,a+size),
-                'nonreturning_claim_validated':False}
+                **inspect_wrapper(wrapper.read_bytes(),symbols)}
     (output/'shell-jni-abi-proof.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
 
