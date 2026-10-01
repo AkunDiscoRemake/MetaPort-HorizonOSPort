@@ -1252,13 +1252,91 @@
     {
       "library": "libutils.so",
       "source_sha256": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
-      "adapted_sha256": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
+      "adapted_sha256": "548802bd068e32112bdc5912474ea0bcc85c9d89d9c43abfba186096c819c6bb",
       "sites": [
         {
           "pc_elf": 63584,
           "file_offset": 63584,
           "original_word": "0xb8bfc008",
           "adapted_word": "0x88dffc08"
+        },
+        {
+          "pc_elf": 65624,
+          "file_offset": 65624,
+          "original_word": "0xb8bfc008",
+          "adapted_word": "0x88dffc08"
+        },
+        {
+          "pc_elf": 65712,
+          "file_offset": 65712,
+          "original_word": "0xb8bfc008",
+          "adapted_word": "0x88dffc08"
+        },
+        {
+          "pc_elf": 65836,
+          "file_offset": 65836,
+          "original_word": "0xb8bfc268",
+          "adapted_word": "0x88dffe68"
+        },
+        {
+          "pc_elf": 66560,
+          "file_offset": 66560,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 67396,
+          "file_offset": 67396,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 74212,
+          "file_offset": 74212,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 74624,
+          "file_offset": 74624,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 82484,
+          "file_offset": 82484,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 82816,
+          "file_offset": 82816,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 90128,
+          "file_offset": 90128,
+          "original_word": "0xb8bfc008",
+          "adapted_word": "0x88dffc08"
+        },
+        {
+          "pc_elf": 90212,
+          "file_offset": 90212,
+          "original_word": "0xb8bfc268",
+          "adapted_word": "0x88dffe68"
+        },
+        {
+          "pc_elf": 90384,
+          "file_offset": 90384,
+          "original_word": "0xb8bfc268",
+          "adapted_word": "0x88dffe68"
+        },
+        {
+          "pc_elf": 108296,
+          "file_offset": 108296,
+          "original_word": "0x38bfc109",
+          "adapted_word": "0x8dffd09"
         }
       ],
       "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
@@ -1287,7 +1365,7 @@
     "lib/arm64-v8a/libosutils.so": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
     "lib/arm64-v8a/libreportstatsevent.so": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
     "lib/arm64-v8a/libui.so": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
-    "lib/arm64-v8a/libutils.so": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
+    "lib/arm64-v8a/libutils.so": "548802bd068e32112bdc5912474ea0bcc85c9d89d9c43abfba186096c819c6bb",
     "lib/arm64-v8a/libepsmixermessagechannel.so": "e898fcf1bb4d24a0ccf7d6243f1adac86d8099ba4a39a1ecf5acd94b45bb7387",
     "lib/arm64-v8a/android.media.audio.common.types-V2-cpp.so": "5e1e6c5b777561c2db36d99975a78189f0d415649b2e95c09d4cfe9273ce0400",
     "lib/arm64-v8a/audioclient-types-aidl-cpp.so": "b0109407e6679b636bdb50450aef79e71c313044096b9c5bd31dac43fee67834",
@@ -1704,7 +1782,7 @@
     },
     {
       "soname": "libutils.so",
-      "sha256": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
+      "sha256": "548802bd068e32112bdc5912474ea0bcc85c9d89d9c43abfba186096c819c6bb",
       "size_bytes": 129496,
       "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
@@ -5556,7 +5634,5 @@
   "original_signatures_removed": true,
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
-  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "84f38827eb266207e39cf3938f873202b450293cd09ff421cd64c9366534a0bf",
-  "test_certificate_not_meta_identity": true
+  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes"
 }
