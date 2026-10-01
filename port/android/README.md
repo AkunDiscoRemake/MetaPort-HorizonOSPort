@@ -148,3 +148,12 @@ fabricam poses quando o tracking falta. Ainda não há ligação JNI/renderer de
 O teste nativo usa ASan/UBSan e comparação com cópia de referência. Consulte
 [HAND-VISUALS](../../analysis/builds/52168470052900520/HAND-VISUALS.md) para medidas
 dos assets originais e limitações; esses números não são um benchmark do telefone.
+
+## Runtime instrumentado (escopo limitado)
+
+Há testes em emuladores Android API 29/35 para carregar a JNI do projeto,
+exercitar sensores/entrada, EGL, pixel renderizado e shaders OES. A variante
+x86_64 é exclusivamente uma fixture de teste; release permanece ARM64. Isso não
+executa o Horizon nem valida ARCore, câmera/depth ou o Infinix. Veja
+[`docs/VALIDATION.md`](../../docs/VALIDATION.md) e os relatórios por API em
+`analysis/android-runtime/`.

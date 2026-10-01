@@ -179,3 +179,40 @@ Next bounded analysis: **36813678532**, eight identity/Clay/platform/frame
 candidates, still pending at this update. Android contract build **36813604224 succeeded**: NDK compilation, native tests,
 Java tests and lint passed. The output remains an AAR, not an APK. Local validation: **45 UI tests passed; 92 hand-analysis tests ran,
 one skipped**. A working METAPORT APK and device rendering are still unvalidated.
+
+## FrameFunction: recuperação parcial e fronteira real de runtime
+
+Run **36813678532 falhou na validação**, preservando 23 reconstruções C-like de
+24 funções. O construtor em ELF `0xdc8480` excedeu 30 segundos; seu prefixo de
+instruções também está truncado. Não foi convertido em sucesso silencioso.
+
+Evidências recuperadas, ainda sem execução/ABI privada validada:
+
+- `0xd61360` aguarda identidade; o corpo contém a mensagem “No user in 60s.
+  Bailing.” e `_Exit(0)`. Isso não autoriza inventar uma identidade ou burlar auth.
+- `0xd622fc` contém `ShellApp::FrameFunction`, exige estado VrApi, chama a
+  preparação de frame Clay e sinaliza parada quando perde `xrInstance` ou essa
+  preparação falha. A submissão de frame usa chamada virtual; não basta trocar
+  a saída por `eglSwapBuffers`.
+- `0xd8a760` resolve `createPreferencesManager` por `dlsym`, após accessor com
+  `call_once`; o callback de carga a seguir é ELF `0xd8a5e8`.
+- As funções `0xd8bc20` / `0xd8befc`, inicialmente rotuladas como candidatas a
+  init/start, constroem opções/mapas de recursos. Os status de init/start são
+  consultados por chamadas a **`0xbbd334` / `0x1b5ed50`** na reconstrução.
+- `ShellApp` aloca `0x740` bytes e chama **`0x111fb2c`**; o objeto é depois
+  atribuído ao slot identificado como `vrPlatform_` pelo invariant textual.
+  Isso é uma pista para constructor/vtable, não uma definição de struct/ABI.
+- O caminho Clay padrão aloca com alinhamento `0x40` e chama **`0xdaebf0`**;
+  há também um caminho de factory indireta. Não substituímos ambos por stubs.
+
+`TraceShellBatch.java` amplia a recuperação para até 96 funções por importação,
+com seleção em dois níveis, gravação incremental, limites explícitos e progresso
+no log. A função que excedeu o limite recebe 180s, sem multiplicar esse orçamento
+por todas as demais. Listing de 256 instruções e C-like de até 200 mil caracteres
+por função têm truncamentos/falhas explícitos. **Não é disassembly completo de
+Horizon**. A seleção ampliada segue também identidade, interação de janela,
+callback de carga e preparação de frame; um job paralelo segue os quatro alvos
+concretos de plataforma/Clay acima.
+
+Checagens de runtime dos nossos adaptadores, separadas dessas inferências:
+`docs/VALIDATION.md`. Executar nossa JNI não significa executar a JNI original.
