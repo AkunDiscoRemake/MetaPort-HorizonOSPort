@@ -84,6 +84,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          # Refresh before copying outputs: queued runs may start on an older
+          # report and otherwise conflict when rebasing a replacement JSON file.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
           for name in ui-decompilation ui-analysis-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
