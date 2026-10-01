@@ -122,3 +122,14 @@ passed all nine ASan/UBSan cases and both TSan cases. The supervisor has five un
 cases covering configuration deduplication, bounded log storage/draining, early
 process exit, exact successful boot-property checking, and boot deadlines. These
 synthetic supervisor tests are not emulated Android execution evidence.
+
+### Verified Android adapter runtime recovery
+
+**Run 36883580010 passed on API 29 and API 35**, source commit
+`9b6d50e`: exactly five named instrumented cases per API, no failures, no skips,
+no missing cases. Evidence is in `analysis/android-runtime/api-{29,35}.json`.
+The camera-context ownership guard was included in the real EGL instrumentation.
+This closes the missing-library/disk-space/ADB-path CI failures for that run.
+It does not execute original Horizon firmware, an ARCore camera/depth session,
+Quest hand inference, or a physical Infinix device. No METAPORT release APK is
+established by these test APKs.

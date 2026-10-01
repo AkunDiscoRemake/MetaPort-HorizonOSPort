@@ -82,3 +82,13 @@ Modelos, firmware, assets Meta e outros componentes mantêm os direitos/licença
 originais: **não são relicenciados como GPL**. O solicitante relatou autorização;
 isso não foi verificado independentemente. O pacote não concede direitos sobre
 componentes de terceiros. Veja também `THIRD-PARTY-NOTICE.md`.
+
+## Desassemblagem integral das seções executáveis do engine
+
+`hand-engine-disassembly.yml` agora extrai o `libtrackingengines.so` original
+pinado (SHA-256 `10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe`,
+41.154.352 bytes) e gera a listagem das seções executáveis, incluindo regiões
+zeradas, em gzip. O pipeline verifica a imagem ODM e o ELF antes de analisar.
+O JSON de proveniência é publicado no Git; a listagem fica em artefato do Actions
+por sete dias. Isso cobre **uma biblioteca ARM64**, não todos os modelos/DSPs,
+nem prova que todas as otimizações foram identificadas ou que a IA executa.
