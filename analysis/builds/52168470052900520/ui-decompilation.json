@@ -9283,7 +9283,7 @@
         },
         {
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "matching_lines": 106,
           "selected_lines": [
@@ -9958,26 +9958,6 @@
           ]
         },
         {
-          "path": "sources/X/AbstractC36731qO.java",
-          "generated_sha256": "dc71ec9ea041158898c0512a689b74ed82cf60e2e035c83b9d55822b1ee320de",
-          "has_decompiler_errors": false,
-          "matching_lines": 3,
-          "selected_lines": [
-            {
-              "line": 220,
-              "text": "at jadx.core.dex.visitors.finaly.traverser.TraverserController.processHandlerImplementations(TraverserController.java:43)"
-            },
-            {
-              "line": 221,
-              "text": "at jadx.core.dex.visitors.finaly.traverser.TraverserController.advance(TraverserController.java:156)"
-            },
-            {
-              "line": 222,
-              "text": "at jadx.core.dex.visitors.finaly.traverser.TraverserController.process(TraverserController.java:79)"
-            }
-          ]
-        },
-        {
           "path": "sources/X/AnonymousClass057.java",
           "generated_sha256": "e51cc2b15542a5a77576671ecf0fe409599271e5edefd32853aa0a8123db35c3",
           "has_decompiler_errors": false,
@@ -9991,7 +9971,7 @@
         },
         {
           "path": "sources/X/C005002q.java",
-          "generated_sha256": "b560b61f8885fc45157204d3ef6041d26cbbc2b98427738383ac90221f100d20",
+          "generated_sha256": "5ddd94365d3f7c86a1733525982e2f6f3b5de020fdc7e005947e9d2700291f2f",
           "has_decompiler_errors": false,
           "matching_lines": 1,
           "selected_lines": [
@@ -10887,24 +10867,24 @@
         },
         {
           "path": "sources/X/C33001j4.java",
-          "generated_sha256": "83f755ef4a067ca173a3159e72d0429d5fed4c915b2d7505ecba84bcf89d27f8",
+          "generated_sha256": "86aeed1f1eec819d52195552d7dd0a3f4f6d8e18b9ead27e922e411b527710d5",
           "has_decompiler_errors": false,
           "matching_lines": 4,
           "selected_lines": [
             {
-              "line": 278,
+              "line": 280,
               "text": "Log.w(\"XRInputTelemetryController\", \"recordSwipeBackspace(...) failed: Invalid InputModality/XRInputTelemetryEntry\");"
             },
             {
-              "line": 479,
+              "line": 481,
               "text": "Log.w(\"XRInputTelemetryController\", \"recordSwipeBackspace(...) failed: Invalid InputModality/XRInputTelemetryEntry\");"
             },
             {
-              "line": 1402,
+              "line": 1403,
               "text": "Log.w(\"XRInputTelemetryController\", AnonymousClass000.A0r(\"Failed to find InputModality for deviceId: \", AnonymousClass004.A12(), i2));"
             },
             {
-              "line": 1421,
+              "line": 1422,
               "text": "enumC33391jp = z ? EnumC33391jp.RAYCAST_HANDS : EnumC33391jp.RAYCAST_CONTROLLERS;"
             }
           ]
@@ -12636,6 +12616,18 @@
               "text": "public static native void runStdFunctionImpl(long j);"
             }
           ]
+        },
+        {
+          "path": "sources/com/facebook/jni/kotlin/NativeFunction0.java",
+          "generated_sha256": "f5eec717ac515d487fc3ad46d038eb4cb148803aef165047817fce50e47f30b1",
+          "has_decompiler_errors": false,
+          "matching_lines": 1,
+          "selected_lines": [
+            {
+              "line": 18,
+              "text": "public native Object invoke();"
+            }
+          ]
         }
       ],
       "input_call_sites": [
@@ -12643,7 +12635,7 @@
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
           "line": 568,
           "start_line": 556,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "    public static native void nativeHandleTheaterRequestFromPanelId(int i, boolean z, boolean z2, String str);\n\n    public static native void nativeHandleUpdateTheaterViewDimming(float f, boolean z);\n\n    public static native void nativeHideGazeTooltip(String str);\n\n    public static native void nativeImageViewResponse(int i, int i2, int i3, int[] iArr);\n\n    public static native long nativeInit(ShellApplication shellApplication, long j, String str, String str2, boolean z, boolean z2);\n\n    public static native void nativeInjectPanelIpc(int i, String str);\n\n    public static native void nativeJoypadAxis(float f, float f2, float f3, float f4, float f5, float f6, int i);\n\n    public static native void nativeKeyEvent(int i, int i2, int i3, int i4, boolean z, boolean z2, boolean z3, boolean z4);\n\n    public static native void nativeMaybeUpdatePathwayDestinationMetadata(String str, String str2, int i, int i2, Bitmap bitmap);\n\n    public static native void nativeMemoryPressureUpdate(String str);\n\n    public static native void nativeMouse(int i, float f, float f2, float f3, int i2, float f4, float f5, int i3, boolean z, int i4, String str, boolean z2);\n\n    public static native void nativeNotifyIfsSurfacesChanged(int i, float f, int i2, String str);\n\n    public static native void nativeNotifySurfaceCalibrationProgress(int i, float f, int i2, int i3, Pose pose);"
         },
@@ -12651,7 +12643,7 @@
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
           "line": 570,
           "start_line": 558,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "    public static native void nativeHandleUpdateTheaterViewDimming(float f, boolean z);\n\n    public static native void nativeHideGazeTooltip(String str);\n\n    public static native void nativeImageViewResponse(int i, int i2, int i3, int[] iArr);\n\n    public static native long nativeInit(ShellApplication shellApplication, long j, String str, String str2, boolean z, boolean z2);\n\n    public static native void nativeInjectPanelIpc(int i, String str);\n\n    public static native void nativeJoypadAxis(float f, float f2, float f3, float f4, float f5, float f6, int i);\n\n    public static native void nativeKeyEvent(int i, int i2, int i3, int i4, boolean z, boolean z2, boolean z3, boolean z4);\n\n    public static native void nativeMaybeUpdatePathwayDestinationMetadata(String str, String str2, int i, int i2, Bitmap bitmap);\n\n    public static native void nativeMemoryPressureUpdate(String str);\n\n    public static native void nativeMouse(int i, float f, float f2, float f3, int i2, float f4, float f5, int i3, boolean z, int i4, String str, boolean z2);\n\n    public static native void nativeNotifyIfsSurfacesChanged(int i, float f, int i2, String str);\n\n    public static native void nativeNotifySurfaceCalibrationProgress(int i, float f, int i2, int i3, Pose pose);\n\n    public static native void nativeNotifySurfaceKeyboardEvent(int i, int i2, int i3, int i4);"
         },
@@ -12659,7 +12651,7 @@
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
           "line": 594,
           "start_line": 582,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "    public static native void nativeNotifySurfaceKeyboardEvent(int i, int i2, int i3, int i4);\n\n    public static native void nativeNotifySurfaceTouchpadAudioPlay(int i, float f, int i2);\n\n    public static native void nativeOnAppInstallCompleted(String str);\n\n    public static native void nativeOnDensityDpiChanged(int i, int i2);\n\n    public static native void nativeOnDestroy();\n\n    public static native void nativeOnFocusedPanelChanged(int i);\n\n    public static native void nativeOnInputDeviceAdded(int i);\n\n    public static native void nativeOnInputDeviceRemoved(int i);\n\n    public static native void nativeOnInteractionWindowChanged(int i, IBinder iBinder, String str, Parcel parcel, String str2, int i2, int i3, int i4);\n\n    public static native void nativeOnLaunchContextReady(String str, boolean z);\n\n    public static native void nativeOnNewObservableChildVolumetricWindow(String str, String str2, String[] strArr);\n\n    public static native void nativeOnPersistedVolumetricWindowsRemoved(String[] strArr);\n\n    public static native void nativeOnRemoveChildVolumetricWindow(String str);"
         },
@@ -12667,7 +12659,7 @@
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
           "line": 596,
           "start_line": 584,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "    public static native void nativeNotifySurfaceTouchpadAudioPlay(int i, float f, int i2);\n\n    public static native void nativeOnAppInstallCompleted(String str);\n\n    public static native void nativeOnDensityDpiChanged(int i, int i2);\n\n    public static native void nativeOnDestroy();\n\n    public static native void nativeOnFocusedPanelChanged(int i);\n\n    public static native void nativeOnInputDeviceAdded(int i);\n\n    public static native void nativeOnInputDeviceRemoved(int i);\n\n    public static native void nativeOnInteractionWindowChanged(int i, IBinder iBinder, String str, Parcel parcel, String str2, int i2, int i3, int i4);\n\n    public static native void nativeOnLaunchContextReady(String str, boolean z);\n\n    public static native void nativeOnNewObservableChildVolumetricWindow(String str, String str2, String[] strArr);\n\n    public static native void nativeOnPersistedVolumetricWindowsRemoved(String[] strArr);\n\n    public static native void nativeOnRemoveChildVolumetricWindow(String str);\n\n    public static native void nativeOnServiceDisconnected(String str);"
         },
@@ -12675,23 +12667,23 @@
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
           "line": 626,
           "start_line": 614,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "    public static native void nativeOpenSystemKeyboard(int i, int i2, String str);\n\n    public static native void nativePlayEffect(String str, String str2);\n\n    public static native void nativePlaySpatialAudio(String str, String str2, int i, float f, float f2, float f3, String str3, boolean z);\n\n    public static native void nativeRefreshBloomPresentation();\n\n    public static native void nativeRemovePortal(String str);\n\n    public static native void nativeRequestObservableChildVWPoseChange(String str, String str2, int i);\n\n    public static native void nativeRequestUpdateGamepadInputMode(boolean z);\n\n    public static native void nativeRequestUpdateRecoveryMonitorId(int i);\n\n    public static native void nativeRequestVWBoundsChange(String str, float f, float f2, float f3);\n\n    public static native void nativeRequestVWLayoutParamsChange(String str, String str2);\n\n    public static native void nativeRequestVWVisbilityChange(String str, boolean z);\n\n    public static native void nativeSendResizePanel(int i, int i2, int i3);\n\n    public static native void nativeSendSetPanelAspectRatio(int i, int i2, int i3);"
         },
         {
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
-          "line": 5404,
-          "start_line": 5392,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "line": 5406,
+          "start_line": 5394,
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "\n    public void cancelNamedNotification(String str) {\n        C07Q.A02(this, str);\n    }\n\n    @Override // com.oculus.vrshell.IShellAPI\n    public final void hideGazeTooltip(String str) {\n        nativeHideGazeTooltip(str);\n    }\n\n    @Override // com.oculus.vrshell.IShellAPI\n    public final void onInputDeviceAdded(int i) {\n        nativeOnInputDeviceAdded(i);\n    }\n\n    @Override // com.oculus.vrshell.IShellAPI\n    public final void onInputDeviceRemoved(int i) {\n        nativeOnInputDeviceRemoved(i);\n    }\n\n    public void sendNamedNotification(String str) {\n        C07Q.A03(this, str);\n    }\n\n    @Override // X.AnonymousClass014"
         },
         {
           "path": "sources/com/oculus/vrshell/ShellApplication.java",
-          "line": 5409,
-          "start_line": 5397,
-          "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+          "line": 5411,
+          "start_line": 5399,
+          "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
           "has_decompiler_errors": false,
           "context": "    @Override // com.oculus.vrshell.IShellAPI\n    public final void hideGazeTooltip(String str) {\n        nativeHideGazeTooltip(str);\n    }\n\n    @Override // com.oculus.vrshell.IShellAPI\n    public final void onInputDeviceAdded(int i) {\n        nativeOnInputDeviceAdded(i);\n    }\n\n    @Override // com.oculus.vrshell.IShellAPI\n    public final void onInputDeviceRemoved(int i) {\n        nativeOnInputDeviceRemoved(i);\n    }\n\n    public void sendNamedNotification(String str) {\n        C07Q.A03(this, str);\n    }\n\n    @Override // X.AnonymousClass014\n    public final void onSurfaceCalibrationProgressChanged(int i, float f, int i2, int i3, Pose pose) {\n        nativeNotifySurfaceCalibrationProgress(i, f, i2, i3, pose);\n    }\n\n    private void addInputState(long j, float f, float f2, boolean z, int i, int i2, int i3, long j2, float f3, float f4, boolean z2, float f5, float f6, float f7, boolean z3, float f8, boolean z4, boolean z5, boolean z6, float f9, boolean z7, int i4, int i5, long j3, boolean z8, float f10, float f11, float f12, int i6, long j4, long j5) {"
         },
@@ -12864,7 +12856,7 @@
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
                 "line": 171,
                 "start_line": 166,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "import X.InterfaceC08450fP;\nimport X.InterfaceC34131lN;\nimport X.InterfaceC40911xs;\nimport X.RunnableC47342Re;\nimport android.accounts.Account;\nimport android.accounts.AccountManager;\nimport android.accounts.AccountManagerCallback;\nimport android.accounts.AuthenticatorException;\nimport android.accounts.OperationCanceledException;\nimport android.app.ActivityManager;\nimport android.app.ActivityOptions;"
               },
@@ -12872,7 +12864,7 @@
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
                 "line": 172,
                 "start_line": 167,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "import X.InterfaceC34131lN;\nimport X.InterfaceC40911xs;\nimport X.RunnableC47342Re;\nimport android.accounts.Account;\nimport android.accounts.AccountManager;\nimport android.accounts.AccountManagerCallback;\nimport android.accounts.AuthenticatorException;\nimport android.accounts.OperationCanceledException;\nimport android.app.ActivityManager;\nimport android.app.ActivityOptions;\nimport android.app.Application;"
               },
@@ -12880,47 +12872,47 @@
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
                 "line": 301,
                 "start_line": 296,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "import horizonos.graphics.Vector3f;\nimport horizonos.graphics.Vector4f;\nimport horizonos.os.preferences.PreferencesManager;\nimport horizonos.service.volumetricwindow.VolumetricWindowPresenter;\nimport horizonos.spatial.virtualobject.VirtualObjectHostManager;\nimport horizonos.supplement.accountauth.HzAccountManager;\nimport horizonos.view.VolumetricWindowToken;\nimport horizonos.view.interaction.InteractionStructure;\nimport java.io.ByteArrayOutputStream;\nimport java.io.File;\nimport java.io.FileNotFoundException;"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2059,
-                "start_line": 2054,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2063,
+                "start_line": 2058,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "    public final /* synthetic */ void A0Y() {\n        String str = A1f;\n        Log.d(str, \"Fetching updated oculus user id and user access token.\");\n        String tokenBlocking = \"\";\n        String str2 = \"\";\n        HzAccountManager hzAccountManager = HzAccountManager.getInstance(this);\n        Account defaultAccountBlocking = hzAccountManager.getDefaultAccountBlocking(\"com.oculus\");\n        boolean z = false;\n        if (defaultAccountBlocking != null) {\n            AccountManager.get(this);\n            try {"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2060,
-                "start_line": 2055,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2064,
+                "start_line": 2059,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "        String str = A1f;\n        Log.d(str, \"Fetching updated oculus user id and user access token.\");\n        String tokenBlocking = \"\";\n        String str2 = \"\";\n        HzAccountManager hzAccountManager = HzAccountManager.getInstance(this);\n        Account defaultAccountBlocking = hzAccountManager.getDefaultAccountBlocking(\"com.oculus\");\n        boolean z = false;\n        if (defaultAccountBlocking != null) {\n            AccountManager.get(this);\n            try {\n                tokenBlocking = hzAccountManager.getTokenBlocking(defaultAccountBlocking, \"user_id\", (String) null, (Bundle) null);"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2063,
-                "start_line": 2058,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2067,
+                "start_line": 2062,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "        String str2 = \"\";\n        HzAccountManager hzAccountManager = HzAccountManager.getInstance(this);\n        Account defaultAccountBlocking = hzAccountManager.getDefaultAccountBlocking(\"com.oculus\");\n        boolean z = false;\n        if (defaultAccountBlocking != null) {\n            AccountManager.get(this);\n            try {\n                tokenBlocking = hzAccountManager.getTokenBlocking(defaultAccountBlocking, \"user_id\", (String) null, (Bundle) null);\n            } catch (AuthenticatorException | IOException | SecurityException e) {\n                Log.e(str, \"Error accessing oculus user id for user. \", e);\n            }"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2065,
-                "start_line": 2060,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2069,
+                "start_line": 2064,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "        Account defaultAccountBlocking = hzAccountManager.getDefaultAccountBlocking(\"com.oculus\");\n        boolean z = false;\n        if (defaultAccountBlocking != null) {\n            AccountManager.get(this);\n            try {\n                tokenBlocking = hzAccountManager.getTokenBlocking(defaultAccountBlocking, \"user_id\", (String) null, (Bundle) null);\n            } catch (AuthenticatorException | IOException | SecurityException e) {\n                Log.e(str, \"Error accessing oculus user id for user. \", e);\n            }\n            if (!TextUtils.isEmpty(tokenBlocking)) {\n                Log.d(str, \"Fetching updated oculus user dsat token.\");"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2072,
-                "start_line": 2067,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2076,
+                "start_line": 2071,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "                Log.e(str, \"Error accessing oculus user id for user. \", e);\n            }\n            if (!TextUtils.isEmpty(tokenBlocking)) {\n                Log.d(str, \"Fetching updated oculus user dsat token.\");\n                try {\n                    str2 = (String) hzAccountManager.getTokenAsync(defaultAccountBlocking, \"dsat\", (String) null, (AccountManagerCallback) null, (Handler) null, (Bundle) null).getResult(10L, TimeUnit.SECONDS);\n                } catch (AuthenticatorException e2) {\n                    e = e2;\n                    if (e.getMessage().contains(\"Account is logged out\")) {\n                        z = true;\n                    } else {"
               },
@@ -13949,65 +13941,65 @@
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2854,
-                "start_line": 2849,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2858,
+                "start_line": 2853,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "                    intent.putExtra(\"uri\", AnonymousClass000.A0p(str4, queryParameter2, sbA12));\n                }\n                str6 = \"com.oculus.systemux/com.oculus.panelapp.bugreporter.BugReporterReprojectedDialogActivity\";\n            } else {\n                if ((i & 32) != 0) {\n                    if (queryParameter == null || !queryParameter.equals(\"com.oculus.fullpassthrough\")) {\n                        intent = (Intent) pairRemove.first;\n                        sbA12 = AnonymousClass004.A12();\n                        str4 = \"?sourceApp=com.oculus.fullpassthrough&trigger=\";\n                        intent.putExtra(\"uri\", AnonymousClass000.A0p(str4, queryParameter2, sbA12));\n                    }"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2857,
-                "start_line": 2852,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2861,
+                "start_line": 2856,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "            } else {\n                if ((i & 32) != 0) {\n                    if (queryParameter == null || !queryParameter.equals(\"com.oculus.fullpassthrough\")) {\n                        intent = (Intent) pairRemove.first;\n                        sbA12 = AnonymousClass004.A12();\n                        str4 = \"?sourceApp=com.oculus.fullpassthrough&trigger=\";\n                        intent.putExtra(\"uri\", AnonymousClass000.A0p(str4, queryParameter2, sbA12));\n                    }\n                } else if ((i & 4) != 0) {\n                    if (queryParameter2 == null || (!queryParameter2.equals(\"app_error_dialog\") && !queryParameter2.equals(\"anr_dialog\") && !queryParameter2.equals(\"Avalanche\") && !queryParameter2.equals(\"Link\"))) {\n                        Log.w(str5, \"OS Dialog is being shown, to start Bug Reporter Reprojected Dialog anyway!\");"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2898,
-                "start_line": 2893,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2902,
+                "start_line": 2897,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "        }\n    }\n\n    @Override // com.oculus.vrshell.IShellAPI\n    public final void forwardDoubleTapEvent() {\n        nativeBroadcastIntent(new String[]{\"intent_action\", \"com.oculus.vrshell.intent.action.UPDATE_FULL_PASSTHROUGH\", \"toggle_point\", \"DoubleTap\"});\n    }\n\n    public void generateShellDropMotionEvents() {\n        this.A06.post(new Runnable() { // from class: X.01M\n            public static final String __redex_internal_original_name = \"ShellApplication$$ExternalSyntheticLambda33\";"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 3651,
-                "start_line": 3646,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 3653,
+                "start_line": 3648,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "                this.A01.A0d(i, str, str2);\n            }\n        });\n    }\n\n    public void sendPassthroughToggleEnabledToTheaterViewPanel(boolean z) {\n        TheaterViewHandler theaterViewHandler = this.A0g;\n        if (theaterViewHandler != null) {\n            theaterViewHandler.A04 = z;\n            Iterator<C01U> it = theaterViewHandler.A09.iterator();\n            while (it.hasNext()) {"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 3758,
-                "start_line": 3753,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 3760,
+                "start_line": 3755,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "\n    public void setActiveWorld(String str, int i) {\n        this.A13.A00(Integer.valueOf(i), str);\n        C07S c07s = this.A0G;\n        if (c07s == null) {\n            Log.e(A1f, \"mFullPassthroughToastMediaManager is not initialized properly.\");\n            c07s = new C07S(getApplicationContext(), this.A05, A1e);\n            this.A0G = c07s;\n        }\n        boolean z = true;\n        if (i != 0 && i != 1 && i != 2) {"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 3885,
-                "start_line": 3880,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 3887,
+                "start_line": 3882,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "    public void setRequestForegroundAppPausedWithVoid(boolean z, boolean z2) {\n        String str = A1f;\n        StringBuilder sbA12 = AnonymousClass004.A12();\n        sbA12.append(\"setRequestForegroundAppPausedWithVoid: '\");\n        sbA12.append(z);\n        AnonymousClass000.A1N(\", usePassthrough: \", str, sbA12, z2);\n        ActivityManagerUtils activityManagerUtils = this.A1S;\n        if (z) {\n            activityManagerUtils.pauseForegroundAppToVoid(this, z2);\n        } else {\n            activityManagerUtils.resumeForegroundAppFromVoid(this);"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 4303,
-                "start_line": 4298,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 4305,
+                "start_line": 4300,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "            Intent intentA0N = AnonymousClass004.A0N(\"com.oculus.systemactivities.SCREENSHOT\");\n            intentA0N.setPackage(\"com.oculus.systemdriver\");\n            intentA0N.putExtra(\"surface\", imageReaderNewInstance.getSurface());\n            intentA0N.putExtra(\"intent_pkg\", \"com.oculus.vrshell\");\n            intentA0N.putExtra(\"delayInSeconds\", d);\n            intentA0N.putExtra(\"skipPassthrough\", !this.A0U.A0C);\n            intentA0N.putExtra(\"show_capture_indicator\", false);\n            try {\n                intentA0N.setExtrasClassLoader(getClassLoader());\n                Bundle extras = intentA0N.getExtras();\n                if (extras == null) {"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 4452,
-                "start_line": 4447,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 4454,
+                "start_line": 4449,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "                }, this.A1H);\n                String str = A1f;\n                StringBuilder sbA12 = AnonymousClass004.A12();\n                sbA12.append(\"To broadcast the intent: INTENT_KEY_BUG_SCREENSHOT_SURFACE with delay: \");\n                sbA12.append(d);\n                sbA12.append(\" seconds, skipPassthrough: \");\n                sbA12.append(!this.A0U.A0C);\n                Log.i(str, sbA12.toString());\n                sendBroadcast(intentA0N);\n            } catch (Exception e) {\n                Log.d(C006603m.A00, e.getMessage(), e);"
               },
@@ -14729,17 +14721,17 @@
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2700,
-                "start_line": 2695,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2704,
+                "start_line": 2699,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "        if (c005002q != null) {\n            c005002q.A08.post(c005002q.A0B);\n        }\n    }\n\n    public void boostForegroundPanelService(boolean z, String str, String str2) {\n        String str3 = A1f;\n        StringBuilder sbA12 = AnonymousClass004.A12();\n        sbA12.append(\"Setting boost to \");\n        sbA12.append(z);\n        sbA12.append(\" for foreground panel service \");"
               },
               {
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
-                "line": 2708,
-                "start_line": 2703,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "line": 2712,
+                "start_line": 2707,
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "        sbA12.append(\"Setting boost to \");\n        sbA12.append(z);\n        sbA12.append(\" for foreground panel service \");\n        sbA12.append(str);\n        AnonymousClass000.A1G(\"/\", str2, str3, sbA12);\n        this.A1S.setIsForegroundPanelService(z, AnonymousClass005.A0D(str, str2));\n    }\n\n    public void broadcastBugReportScreenshotIntent() {\n        A0a(0.0d);\n    }"
               },
@@ -15863,7 +15855,7 @@
                 "path": "sources/com/oculus/vrshell/ShellApplication.java",
                 "line": 568,
                 "start_line": 563,
-                "generated_sha256": "4ef56c721e4a457c9af47be0dc37760afb9696b499ff8e76ff4798438bf3d7d3",
+                "generated_sha256": "4744ddc0640e9521e0f95397adfb4a80c36821afdbb78f19e3d4f44d90ba54d8",
                 "has_decompiler_errors": false,
                 "context": "\n    public static native long nativeInit(ShellApplication shellApplication, long j, String str, String str2, boolean z, boolean z2);\n\n    public static native void nativeInjectPanelIpc(int i, String str);\n\n    public static native void nativeJoypadAxis(float f, float f2, float f3, float f4, float f5, float f6, int i);\n\n    public static native void nativeKeyEvent(int i, int i2, int i3, int i4, boolean z, boolean z2, boolean z3, boolean z4);\n\n    public static native void nativeMaybeUpdatePathwayDestinationMetadata(String str, String str2, int i, int i2, Bitmap bitmap);\n"
               }
@@ -17068,7 +17060,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 4710 of 5814 (81%)\nINFO  - progress: 4728 of 5814 (81%)\nINFO  - progress: 4728 of 5814 (81%)\nINFO  - progress: 4737 of 5814 (81%)\nINFO  - progress: 4839 of 5814 (83%)\nINFO  - progress: 4856 of 5814 (83%)\nINFO  - progress: 4923 of 5814 (84%)\nINFO  - progress: 4960 of 5814 (85%)\nINFO  - progress: 5032 of 5814 (86%)\nINFO  - progress: 5088 of 5814 (87%)\nINFO  - progress: 5195 of 5814 (89%)\nINFO  - progress: 5225 of 5814 (89%)\nINFO  - progress: 5225 of 5814 (89%)\nINFO  - progress: 5308 of 5814 (91%)\nINFO  - progress: 5345 of 5814 (91%)\nINFO  - progress: 5420 of 5814 (93%)\nINFO  - progress: 5499 of 5814 (94%)\nINFO  - progress: 5541 of 5814 (95%)\nINFO  - progress: 5614 of 5814 (96%)\nINFO  - progress: 5659 of 5814 (97%)\nINFO  - progress: 5699 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5712 of 5814 (98%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\nINFO  - progress: 5813 of 5814 (99%)\nINFO  - progress: 5813 of 5814 (99%)\n                                                             \nERROR - finished with errors, count: 148"
+      "log_tail": "INFO  - progress: 3003 of 5814 (51%)\nINFO  - progress: 3084 of 5814 (53%)\nINFO  - progress: 3125 of 5814 (53%)\nINFO  - progress: 3208 of 5814 (55%)\nINFO  - progress: 3268 of 5814 (56%)\nINFO  - progress: 3356 of 5814 (57%)\nINFO  - progress: 3420 of 5814 (58%)\nINFO  - progress: 3443 of 5814 (59%)\nINFO  - progress: 3533 of 5814 (60%)\nINFO  - progress: 3591 of 5814 (61%)\nINFO  - progress: 3727 of 5814 (64%)\nINFO  - progress: 3864 of 5814 (66%)\nINFO  - progress: 4068 of 5814 (69%)\nINFO  - progress: 4208 of 5814 (72%)\nINFO  - progress: 4258 of 5814 (73%)\nINFO  - progress: 4329 of 5814 (74%)\nINFO  - progress: 4563 of 5814 (78%)\nINFO  - progress: 4676 of 5814 (80%)\nINFO  - progress: 4691 of 5814 (80%)\nINFO  - progress: 4737 of 5814 (81%)\nINFO  - progress: 4856 of 5814 (83%)\nINFO  - progress: 4935 of 5814 (84%)\nINFO  - progress: 5056 of 5814 (86%)\nINFO  - progress: 5201 of 5814 (89%)\nINFO  - progress: 5225 of 5814 (89%)\nINFO  - progress: 5345 of 5814 (91%)\nINFO  - progress: 5484 of 5814 (94%)\nINFO  - progress: 5622 of 5814 (96%)\nINFO  - progress: 5699 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5800 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\nINFO  - progress: 5813 of 5814 (99%)\n                                                             \nERROR - finished with errors, count: 148"
     },
     {
       "path": "/priv-app/MetaSystemUI/MetaSystemUI.apk",
@@ -27142,7 +27134,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 4911 of 6598 (74%)\nINFO  - progress: 5040 of 6598 (76%)\nINFO  - progress: 5139 of 6598 (77%)\nINFO  - progress: 5204 of 6598 (78%)\nINFO  - progress: 5250 of 6598 (79%)\nINFO  - progress: 5315 of 6598 (80%)\nINFO  - progress: 5356 of 6598 (81%)\nINFO  - progress: 5387 of 6598 (81%)\nINFO  - progress: 5461 of 6598 (82%)\nINFO  - progress: 5536 of 6598 (83%)\nINFO  - progress: 5590 of 6598 (84%)\nINFO  - progress: 5621 of 6598 (85%)\nINFO  - progress: 5698 of 6598 (86%)\nINFO  - progress: 5749 of 6598 (87%)\nINFO  - progress: 5784 of 6598 (87%)\nINFO  - progress: 5828 of 6598 (88%)\nINFO  - progress: 5877 of 6598 (89%)\nINFO  - progress: 5940 of 6598 (90%)\nINFO  - progress: 5976 of 6598 (90%)\nINFO  - progress: 5991 of 6598 (90%)\nINFO  - progress: 6034 of 6598 (91%)\nINFO  - progress: 6068 of 6598 (91%)\nINFO  - progress: 6098 of 6598 (92%)\nINFO  - progress: 6140 of 6598 (93%)\nINFO  - progress: 6173 of 6598 (93%)\nINFO  - progress: 6190 of 6598 (93%)\nINFO  - progress: 6216 of 6598 (94%)\nINFO  - progress: 6225 of 6598 (94%)\nINFO  - progress: 6247 of 6598 (94%)\nINFO  - progress: 6308 of 6598 (95%)\nINFO  - progress: 6322 of 6598 (95%)\nINFO  - progress: 6351 of 6598 (96%)\nINFO  - progress: 6386 of 6598 (96%)\nINFO  - progress: 6438 of 6598 (97%)\nINFO  - progress: 6467 of 6598 (98%)\nINFO  - progress: 6520 of 6598 (98%)\nINFO  - progress: 6536 of 6598 (99%)\nINFO  - progress: 6567 of 6598 (99%)\n                                                             \nERROR - finished with errors, count: 23"
+      "log_tail": "INFO  - loading ...\nINFO  - processing ...\nINFO  - progress: 0 of 6598 (0%)\nINFO  - progress: 2083 of 6598 (31%)\nINFO  - progress: 4670 of 6598 (70%)\nINFO  - progress: 4672 of 6598 (70%)\nINFO  - progress: 4681 of 6598 (70%)\nINFO  - progress: 4699 of 6598 (71%)\nINFO  - progress: 4725 of 6598 (71%)\nINFO  - progress: 4954 of 6598 (75%)\nINFO  - progress: 5147 of 6598 (78%)\nINFO  - progress: 5257 of 6598 (79%)\nINFO  - progress: 5379 of 6598 (81%)\nINFO  - progress: 5504 of 6598 (83%)\nINFO  - progress: 5593 of 6598 (84%)\nINFO  - progress: 5708 of 6598 (86%)\nINFO  - progress: 5789 of 6598 (87%)\nINFO  - progress: 5852 of 6598 (88%)\nINFO  - progress: 5955 of 6598 (90%)\nINFO  - progress: 6000 of 6598 (90%)\nINFO  - progress: 6070 of 6598 (91%)\nINFO  - progress: 6119 of 6598 (92%)\nINFO  - progress: 6189 of 6598 (93%)\nINFO  - progress: 6227 of 6598 (94%)\nINFO  - progress: 6311 of 6598 (95%)\nINFO  - progress: 6386 of 6598 (96%)\nINFO  - progress: 6450 of 6598 (97%)\nINFO  - progress: 6514 of 6598 (98%)\nINFO  - progress: 6563 of 6598 (99%)\n                                                             \nERROR - finished with errors, count: 23"
     },
     {
       "path": "/priv-app/SystemUX/SystemUX.apk",
@@ -32496,24 +32488,24 @@
         },
         {
           "path": "sources/X/AnonymousClass124.java",
-          "generated_sha256": "30dfe684e8c9c191024d6adef0821099c966bca2b470e806e7ca2058fc564128",
+          "generated_sha256": "c9a6fd28aa2b73f1561cc1859968fd9206b5615e4f03b14c4f67f583d683122c",
           "has_decompiler_errors": false,
           "matching_lines": 4,
           "selected_lines": [
             {
-              "line": 5,
+              "line": 4,
               "text": "import kotlinx.coroutines.CoroutineExceptionHandler;"
             },
             {
-              "line": 12,
+              "line": 11,
               "text": "Iterator<CoroutineExceptionHandler> it = AbstractC21190zC.A00.iterator();"
             },
             {
-              "line": 26,
+              "line": 25,
               "text": "threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, thA12);"
             },
             {
-              "line": 51,
+              "line": 50,
               "text": "threadCurrentThread2.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread2, th);"
             }
           ]
@@ -32560,16 +32552,16 @@
         },
         {
           "path": "sources/X/AnonymousClass269.java",
-          "generated_sha256": "feb1560f389f166ce861412b5495253b6570174ba4b55a886dfcabf90c163412",
+          "generated_sha256": "cdab2d3d1f6eb993d67dfb41c08990dcf252be44bd901c8150015a46b5237ccc",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 74,
+              "line": 73,
               "text": "AbstractC51732Zl.A03(context, AnonymousClass000.A0v(sbA12, \"Exception while updating native version: \", AnonymousClass005.A12()));"
             },
             {
-              "line": 75,
+              "line": 74,
               "text": "C12870j6.A0A(\"DeviceConfigVersionInfoManager\", \"Exception while updating native version: %s\", sbA12);"
             }
           ]
@@ -37908,7 +37900,7 @@
                 "path": "sources/X/AbstractC32911eo.java",
                 "line": 26,
                 "start_line": 21,
-                "generated_sha256": "3bfbd84a7d7583dc48bbd586fd4fabfb629dc16567c23767985c0ff03553fbd1",
+                "generated_sha256": "40cd7b050747b83de6ddb2e238a95ec2f14ffa468ba44c1f1ef2696309b0366e",
                 "has_decompiler_errors": false,
                 "context": "        ReentrantLock reentrantLock = this.A03;\n        reentrantLock.lock();\n        try {\n            this.A01 = true;\n            if (this.A00 == C2CU.A00) {\n                if (this.A04.bindService(AnonymousClass002.A0a(\"com.oculus.vrshell.shellsdk.IShellSDKService\"), this.A05, 1)) {\n                    this.A00 = C2CU.A01;\n                } else {\n                    Log.e(\"ShellSDKIPCBaseManager\", \"Failed to connect to com.oculus.vrshell.shellsdk.IShellSDKService\");\n                }\n            }"
               },
@@ -37916,7 +37908,7 @@
                 "path": "sources/X/AbstractC32911eo.java",
                 "line": 45,
                 "start_line": 40,
-                "generated_sha256": "3bfbd84a7d7583dc48bbd586fd4fabfb629dc16567c23767985c0ff03553fbd1",
+                "generated_sha256": "40cd7b050747b83de6ddb2e238a95ec2f14ffa468ba44c1f1ef2696309b0366e",
                 "has_decompiler_errors": false,
                 "context": "        try {\n            C32841eh c32841eh = (C32841eh) this;\n            c32841eh.A02(new C26831Mp(c32841eh, 8));\n            if (this.A00 == C2CU.A0C) {\n                try {\n                    this.A04.unbindService(this.A05);\n                    this.A00 = C2CU.A00;\n                    this.A01 = false;\n                    c32841eh.A03 = null;\n                    c32841eh.A02 = null;\n                    c32841eh.A01 = null;"
               },
@@ -37938,9 +37930,9 @@
               },
               {
                 "path": "sources/X/AbstractC63672wt.java",
-                "line": 81,
-                "start_line": 76,
-                "generated_sha256": "7cac22ff751dad3270f59d967e77a74cd45d1f36fae1e07a667354cc17316f46",
+                "line": 80,
+                "start_line": 75,
+                "generated_sha256": "2a831fc4a7115d358a8fffd5caa761ff44126b82530fffd17e1647dc61d29e1f",
                 "has_decompiler_errors": false,
                 "context": "                    Intent intent = c2x1.A00;\n                    if (intent == null) {\n                        throw AnonymousClass002.A0p();\n                    }\n                    if (c63652wr.A07.compareAndSet(true, false)) {\n                        c63652wr.A02.bindService(intent, c63652wr.A03, 1);\n                        C2x1 c2x2 = c63652wr.A05;\n                        C63662ws c63662ws = c63652wr.A06;\n                        C13160ji.A1n(c63662ws, 0);\n                        TriggerBasedInvalidationTracker triggerBasedInvalidationTracker2 = c2x2.A03;\n                        String[] strArr = c63662ws.A00;"
               },
@@ -39016,7 +39008,7 @@
         "source_coverage_complete": false,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 6258 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6293 of 7819 (80%)\nINFO  - progress: 6346 of 7819 (81%)\nINFO  - progress: 6447 of 7819 (82%)\nINFO  - progress: 6623 of 7819 (84%)\nINFO  - progress: 6689 of 7819 (85%)\nINFO  - progress: 6780 of 7819 (86%)\nINFO  - progress: 6845 of 7819 (87%)\nINFO  - progress: 6903 of 7819 (88%)\nINFO  - progress: 6903 of 7819 (88%)\nINFO  - progress: 6915 of 7819 (88%)\nINFO  - progress: 6969 of 7819 (89%)\nINFO  - progress: 6993 of 7819 (89%)\nINFO  - progress: 7014 of 7819 (89%)\nINFO  - progress: 7115 of 7819 (90%)\nINFO  - progress: 7184 of 7819 (91%)\nINFO  - progress: 7209 of 7819 (92%)\nINFO  - progress: 7214 of 7819 (92%)\nINFO  - progress: 7214 of 7819 (92%)\nINFO  - progress: 7240 of 7819 (92%)\nINFO  - progress: 7248 of 7819 (92%)\nINFO  - progress: 7297 of 7819 (93%)\nINFO  - progress: 7394 of 7819 (94%)\nINFO  - progress: 7413 of 7819 (94%)\nINFO  - progress: 7430 of 7819 (95%)\nINFO  - progress: 7475 of 7819 (95%)\nINFO  - progress: 7536 of 7819 (96%)\nINFO  - progress: 7631 of 7819 (97%)\nINFO  - progress: 7656 of 7819 (97%)\nINFO  - progress: 7709 of 7819 (98%)\nINFO  - progress: 7767 of 7819 (99%)\nINFO  - progress: 7783 of 7819 (99%)\nINFO  - progress: 7815 of 7819 (99%)\n                                                             \nERROR - finished with errors, count: 259"
+      "log_tail": "INFO  - progress: 3894 of 7819 (49%)\nINFO  - progress: 3967 of 7819 (50%)\nINFO  - progress: 4105 of 7819 (52%)\nINFO  - progress: 4235 of 7819 (54%)\nINFO  - progress: 4288 of 7819 (54%)\nINFO  - progress: 4349 of 7819 (55%)\nINFO  - progress: 4466 of 7819 (57%)\nINFO  - progress: 4754 of 7819 (60%)\nINFO  - progress: 5022 of 7819 (64%)\nINFO  - progress: 5147 of 7819 (65%)\nINFO  - progress: 5343 of 7819 (68%)\nINFO  - progress: 5506 of 7819 (70%)\nINFO  - progress: 5774 of 7819 (73%)\nINFO  - progress: 5848 of 7819 (74%)\nINFO  - progress: 5848 of 7819 (74%)\nINFO  - progress: 5909 of 7819 (75%)\nINFO  - progress: 5974 of 7819 (76%)\nINFO  - progress: 6086 of 7819 (77%)\nINFO  - progress: 6193 of 7819 (79%)\nINFO  - progress: 6266 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6343 of 7819 (81%)\nINFO  - progress: 6600 of 7819 (84%)\nINFO  - progress: 6770 of 7819 (86%)\nINFO  - progress: 6903 of 7819 (88%)\nINFO  - progress: 6954 of 7819 (88%)\nINFO  - progress: 6993 of 7819 (89%)\nINFO  - progress: 7055 of 7819 (90%)\nINFO  - progress: 7173 of 7819 (91%)\nINFO  - progress: 7214 of 7819 (92%)\nINFO  - progress: 7238 of 7819 (92%)\nINFO  - progress: 7378 of 7819 (94%)\nINFO  - progress: 7429 of 7819 (95%)\nINFO  - progress: 7555 of 7819 (96%)\nINFO  - progress: 7620 of 7819 (97%)\nINFO  - progress: 7736 of 7819 (98%)\nINFO  - progress: 7799 of 7819 (99%)\n                                                             \nERROR - finished with errors, count: 259"
     },
     {
       "path": "/priv-app/SettingsPanelApp/SettingsPanelApp.apk",
@@ -47511,7 +47503,7 @@
                 "path": "sources/X/C2IR.java",
                 "line": 77,
                 "start_line": 72,
-                "generated_sha256": "9d8b79e1dc5bb60d2c0bc2ffe74f1cbe42e839f43fd158afc9e6bba9ba8ea32c",
+                "generated_sha256": "a33230d3da7ab525c19a2421fb2c7a3a1a796692c6bc8e4680089460f296f201",
                 "has_decompiler_errors": false,
                 "context": "                    this.A02 = true;\n                    if (!this.A03) {\n                        String strA04 = A04();\n                        Intent intent = new Intent(strA04);\n                        intent.setPackage(\"com.oculus.vrshell\");\n                        boolean zBindService = this.A04.bindService(intent, this.A05, 1);\n                        this.A03 = zBindService;\n                        if (!zBindService) {\n                            InterfaceC49212Vo interfaceC49212Vo = this.A0A;\n                            interfaceC49212Vo.getValue();\n                            ((C2IT) interfaceC49212Vo.getValue()).A02(strA04, C2IT.A00((VolumetricWindowToken) this.A0B.getValue(), (IBinder) this.A09.getValue(), A00(this)), false);"
               },
@@ -47519,7 +47511,7 @@
                 "path": "sources/X/C2IR.java",
                 "line": 113,
                 "start_line": 108,
-                "generated_sha256": "9d8b79e1dc5bb60d2c0bc2ffe74f1cbe42e839f43fd158afc9e6bba9ba8ea32c",
+                "generated_sha256": "a33230d3da7ab525c19a2421fb2c7a3a1a796692c6bc8e4680089460f296f201",
                 "has_decompiler_errors": false,
                 "context": "            A05();\n            this.A01 = null;\n            if (this.A0C) {\n                try {\n                    try {\n                        this.A04.unbindService(this.A05);\n                    } catch (Throwable th) {\n                        this.A0C = false;\n                        throw th;\n                    }\n                } catch (IllegalArgumentException e) {"
               },
@@ -48427,7 +48419,7 @@
         "source_coverage_complete": false,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 8771 of 9792 (89%)\nINFO  - progress: 8771 of 9792 (89%)\nINFO  - progress: 8810 of 9792 (89%)\nINFO  - progress: 8856 of 9792 (90%)\nINFO  - progress: 8919 of 9792 (91%)\nINFO  - progress: 8936 of 9792 (91%)\nINFO  - progress: 8944 of 9792 (91%)\nINFO  - progress: 9008 of 9792 (91%)\nINFO  - progress: 9093 of 9792 (92%)\nINFO  - progress: 9127 of 9792 (93%)\nINFO  - progress: 9172 of 9792 (93%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9237 of 9792 (94%)\nINFO  - progress: 9253 of 9792 (94%)\nINFO  - progress: 9310 of 9792 (95%)\nINFO  - progress: 9352 of 9792 (95%)\nINFO  - progress: 9384 of 9792 (95%)\nINFO  - progress: 9394 of 9792 (95%)\nINFO  - progress: 9455 of 9792 (96%)\nINFO  - progress: 9478 of 9792 (96%)\nINFO  - progress: 9485 of 9792 (96%)\nINFO  - progress: 9546 of 9792 (97%)\nINFO  - progress: 9598 of 9792 (98%)\nINFO  - progress: 9633 of 9792 (98%)\nINFO  - progress: 9657 of 9792 (98%)\nINFO  - progress: 9704 of 9792 (99%)\nINFO  - progress: 9737 of 9792 (99%)\nINFO  - progress: 9745 of 9792 (99%)\nINFO  - progress: 9760 of 9792 (99%)\nINFO  - progress: 9761 of 9792 (99%)\nINFO  - progress: 9763 of 9792 (99%)\nINFO  - progress: 9768 of 9792 (99%)\nINFO  - progress: 9786 of 9792 (99%)\nINFO  - progress: 9791 of 9792 (99%)\n                                                             \nERROR - finished with errors, count: 249"
+      "log_tail": "INFO  - progress: 5713 of 9792 (58%)\nINFO  - progress: 5991 of 9792 (61%)\nINFO  - progress: 6111 of 9792 (62%)\nINFO  - progress: 6314 of 9792 (64%)\nINFO  - progress: 6451 of 9792 (65%)\nINFO  - progress: 6677 of 9792 (68%)\nINFO  - progress: 6988 of 9792 (71%)\nINFO  - progress: 7240 of 9792 (73%)\nINFO  - progress: 7540 of 9792 (77%)\nINFO  - progress: 7707 of 9792 (78%)\nINFO  - progress: 7866 of 9792 (80%)\nINFO  - progress: 8058 of 9792 (82%)\nINFO  - progress: 8092 of 9792 (82%)\nINFO  - progress: 8319 of 9792 (84%)\nINFO  - progress: 8456 of 9792 (86%)\nINFO  - progress: 8564 of 9792 (87%)\nINFO  - progress: 8712 of 9792 (88%)\nINFO  - progress: 8771 of 9792 (89%)\nINFO  - progress: 8826 of 9792 (90%)\nINFO  - progress: 8881 of 9792 (90%)\nINFO  - progress: 8970 of 9792 (91%)\nINFO  - progress: 9101 of 9792 (92%)\nINFO  - progress: 9198 of 9792 (93%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9211 of 9792 (94%)\nINFO  - progress: 9296 of 9792 (94%)\nINFO  - progress: 9389 of 9792 (95%)\nINFO  - progress: 9460 of 9792 (96%)\nINFO  - progress: 9489 of 9792 (96%)\nINFO  - progress: 9586 of 9792 (97%)\nINFO  - progress: 9628 of 9792 (98%)\nINFO  - progress: 9703 of 9792 (99%)\nINFO  - progress: 9742 of 9792 (99%)\nINFO  - progress: 9760 of 9792 (99%)\nINFO  - progress: 9763 of 9792 (99%)\nINFO  - progress: 9779 of 9792 (99%)\nINFO  - progress: 9790 of 9792 (99%)\n                                                             \nERROR - finished with errors, count: 249"
     },
     {
       "path": "/priv-app/LibraryPanelApp/LibraryPanelApp.apk",
@@ -51724,16 +51716,16 @@
         },
         {
           "path": "sources/X/C38701pl.java",
-          "generated_sha256": "d3c860dc391ea12c299c8d59e3a00860a9e6821eeeb96192a9c2419f57777171",
+          "generated_sha256": "9df3b553ef8c12b4b6a94e6a50b4c51510f1a1a16ad956b97125eb73ae4f366e",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 75,
+              "line": 76,
               "text": "C2MD.A03(context, AnonymousClass000.A0x(sbA14, \"Exception while updating native version: \", AnonymousClass000.A14()));"
             },
             {
-              "line": 76,
+              "line": 77,
               "text": "C010004y.A0A(\"DeviceConfigVersionInfoManager\", \"Exception while updating native version: %s\", sbA14);"
             }
           ]
@@ -55936,7 +55928,7 @@
             "truncated": true
           },
           "privileged_services": {
-            "matching_lines": 34,
+            "matching_lines": 35,
             "sites": [
               {
                 "path": "sources/com/meta/libraries/appmanager/AppManagerClient.java",
@@ -56020,27 +56012,35 @@
               },
               {
                 "path": "sources/X/AnonymousClass230.java",
-                "line": 93,
-                "start_line": 88,
-                "generated_sha256": "c67ebc73870ad9bf61a40bca64c245904296814e136fb383cbd883395398e1e0",
+                "line": 87,
+                "start_line": 82,
+                "generated_sha256": "89b3e52b2a87672ce8a38da709083234721e4cf246e549d6e0ed49b7a5ef6143",
                 "has_decompiler_errors": false,
                 "context": "                    this.A02 = true;\n                    if (!this.A03) {\n                        String strA04 = A04();\n                        Intent intent = new Intent(strA04);\n                        intent.setPackage(\"com.oculus.vrshell\");\n                        boolean zBindService = this.A04.bindService(intent, this.A05, 1);\n                        this.A03 = zBindService;\n                        if (!zBindService) {\n                            C2HY c2hy = this.A0A;\n                            c2hy.getValue();\n                            ((AnonymousClass233) c2hy.getValue()).A02(strA04, AnonymousClass233.A00((VolumetricWindowToken) this.A0B.getValue(), (IBinder) this.A09.getValue(), A01(this)), false);"
               },
               {
                 "path": "sources/X/AnonymousClass230.java",
-                "line": 170,
-                "start_line": 165,
-                "generated_sha256": "c67ebc73870ad9bf61a40bca64c245904296814e136fb383cbd883395398e1e0",
+                "line": 142,
+                "start_line": 137,
+                "generated_sha256": "89b3e52b2a87672ce8a38da709083234721e4cf246e549d6e0ed49b7a5ef6143",
                 "has_decompiler_errors": false,
-                "context": "                    }\n                    this.A01 = null;\n                    if (this.A0C) {\n                        try {\n                            try {\n                                this.A04.unbindService(this.A05);\n                            } catch (Throwable th2) {\n                                this.A0C = false;\n                                throw th2;\n                            }\n                        } catch (IllegalArgumentException e) {"
+                "context": "        } else {\n            if (!(r7 instanceof X.C29541Pz)) {\n                if (!(r7 instanceof X.C1Pg)) {\n                    r7.A01 = null;\n                    if (r7.A0C) {\n                        r7.A04.unbindService(r7.A05);\n                        r7.A0C = false;\n                    }\n                    r4.unlock();\n                }\n                X.C1Pg r6 = (X.C1Pg) r7;"
               },
               {
                 "path": "sources/X/AnonymousClass230.java",
-                "line": 193,
-                "start_line": 188,
-                "generated_sha256": "c67ebc73870ad9bf61a40bca64c245904296814e136fb383cbd883395398e1e0",
+                "line": 174,
+                "start_line": 169,
+                "generated_sha256": "89b3e52b2a87672ce8a38da709083234721e4cf246e549d6e0ed49b7a5ef6143",
                 "has_decompiler_errors": false,
-                "context": "                anonymousClass230 = c29541Pz;\n            }\n            anonymousClass230.A07(c29511Pw);\n            this.A01 = null;\n            if (this.A0C) {\n                this.A04.unbindService(this.A05);\n                this.A0C = false;\n            }\n            reentrantLock.unlock();\n        } catch (Throwable th3) {\n            reentrantLock.unlock();"
+                "context": "                }\n                r7.A01 = null;\n                if (r7.A0C) {\n                    try {\n                        try {\n                            r7.A04.unbindService(r7.A05);\n                        } catch (java.lang.Throwable r0) {\n                            r7.A0C = false;\n                            throw r0;\n                        }\n                    } catch (java.lang.IllegalArgumentException r2) {"
+              },
+              {
+                "path": "sources/X/AnonymousClass230.java",
+                "line": 199,
+                "start_line": 194,
+                "generated_sha256": "89b3e52b2a87672ce8a38da709083234721e4cf246e549d6e0ed49b7a5ef6143",
+                "has_decompiler_errors": false,
+                "context": "            r2 = r2;\n        }\n        r2.A07(r0);\n        r7.A01 = null;\n        if (r7.A0C) {\n            r7.A04.unbindService(r7.A05);\n            r7.A0C = false;\n        }\n        r4.unlock();\n    }\n"
               },
               {
                 "path": "sources/X/C1Yo.java",
@@ -57021,7 +57021,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 4245 of 6369 (66%)\nINFO  - progress: 4246 of 6369 (66%)\nINFO  - progress: 4335 of 6369 (68%)\nINFO  - progress: 4335 of 6369 (68%)\nINFO  - progress: 4443 of 6369 (69%)\nINFO  - progress: 4474 of 6369 (70%)\nINFO  - progress: 4487 of 6369 (70%)\nINFO  - progress: 4549 of 6369 (71%)\nINFO  - progress: 4618 of 6369 (72%)\nINFO  - progress: 4633 of 6369 (72%)\nINFO  - progress: 4633 of 6369 (72%)\nINFO  - progress: 4647 of 6369 (72%)\nINFO  - progress: 4669 of 6369 (73%)\nINFO  - progress: 4797 of 6369 (75%)\nINFO  - progress: 4910 of 6369 (77%)\nINFO  - progress: 4999 of 6369 (78%)\nINFO  - progress: 5057 of 6369 (79%)\nINFO  - progress: 5099 of 6369 (80%)\nINFO  - progress: 5197 of 6369 (81%)\nINFO  - progress: 5278 of 6369 (82%)\nINFO  - progress: 5324 of 6369 (83%)\nINFO  - progress: 5376 of 6369 (84%)\nINFO  - progress: 5392 of 6369 (84%)\nINFO  - progress: 5427 of 6369 (85%)\nINFO  - progress: 5515 of 6369 (86%)\nINFO  - progress: 5544 of 6369 (87%)\nINFO  - progress: 5563 of 6369 (87%)\nINFO  - progress: 5602 of 6369 (87%)\nINFO  - progress: 5699 of 6369 (89%)\nINFO  - progress: 5761 of 6369 (90%)\nINFO  - progress: 5831 of 6369 (91%)\nINFO  - progress: 5856 of 6369 (91%)\nINFO  - progress: 5953 of 6369 (93%)\nINFO  - progress: 6016 of 6369 (94%)\nINFO  - progress: 6082 of 6369 (95%)\nINFO  - progress: 6164 of 6369 (96%)\nINFO  - progress: 6239 of 6369 (97%)\nINFO  - progress: 6298 of 6369 (98%)\n                                                             \nERROR - finished with errors, count: 319"
+      "log_tail": "INFO  - progress: 2863 of 6369 (44%)\nINFO  - progress: 2889 of 6369 (45%)\nINFO  - progress: 2941 of 6369 (46%)\nINFO  - progress: 2957 of 6369 (46%)\nINFO  - progress: 2958 of 6369 (46%)\nINFO  - progress: 3000 of 6369 (47%)\nINFO  - progress: 3101 of 6369 (48%)\nINFO  - progress: 3129 of 6369 (49%)\nINFO  - progress: 3198 of 6369 (50%)\nINFO  - progress: 3273 of 6369 (51%)\nINFO  - progress: 3293 of 6369 (51%)\nINFO  - progress: 3394 of 6369 (53%)\nINFO  - progress: 3517 of 6369 (55%)\nINFO  - progress: 3663 of 6369 (57%)\nINFO  - progress: 3761 of 6369 (59%)\nINFO  - progress: 3767 of 6369 (59%)\nINFO  - progress: 3826 of 6369 (60%)\nINFO  - progress: 4147 of 6369 (65%)\nINFO  - progress: 4301 of 6369 (67%)\nINFO  - progress: 4335 of 6369 (68%)\nINFO  - progress: 4472 of 6369 (70%)\nINFO  - progress: 4549 of 6369 (71%)\nINFO  - progress: 4633 of 6369 (72%)\nINFO  - progress: 4668 of 6369 (73%)\nINFO  - progress: 4830 of 6369 (75%)\nINFO  - progress: 5051 of 6369 (79%)\nINFO  - progress: 5104 of 6369 (80%)\nINFO  - progress: 5281 of 6369 (82%)\nINFO  - progress: 5389 of 6369 (84%)\nINFO  - progress: 5481 of 6369 (86%)\nINFO  - progress: 5528 of 6369 (86%)\nINFO  - progress: 5563 of 6369 (87%)\nINFO  - progress: 5683 of 6369 (89%)\nINFO  - progress: 5810 of 6369 (91%)\nINFO  - progress: 5900 of 6369 (92%)\nINFO  - progress: 6081 of 6369 (95%)\nINFO  - progress: 6182 of 6369 (97%)\nINFO  - progress: 6367 of 6369 (99%)\n                                                             \nERROR - finished with errors, count: 319"
     }
   ],
   "scope": "ui"
