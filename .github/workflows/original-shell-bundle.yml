@@ -4,6 +4,12 @@ on:
     branches: [arena/01a0f02d-metaport-horizonosport]
     paths: [horizon/ui/bundle_shell_dependencies.py, horizon/ui/tests/test_shell_bundle.py, tools/shell_crash_windows.py, .github/workflows/original-shell-bundle.yml]
   workflow_dispatch:
+    inputs:
+      android_api:
+        description: Android emulator API (translation comparison, not a phone test)
+        type: choice
+        options: ['36', '35']
+        default: '36'
 permissions:
   contents: write
 concurrency:
@@ -15,6 +21,7 @@ jobs:
     timeout-minutes: 55
     env:
       WORK: ${{ github.workspace }}/local-analysis/original-bundle-work
+      TARGET_ANDROID_API: ${{ inputs.android_api || '36' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,7 +63,7 @@ jobs:
         timeout-minutes: 12
         run: |
           echo 'd3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463  local-analysis/original-cache/VrShell.apk' | sha256sum --check --strict
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;35.0.0' 'emulator' 'platform-tools' 'system-images;android-35;google_apis;x86_64'
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;35.0.0' 'emulator' 'platform-tools' "system-images;android-${TARGET_ANDROID_API};google_apis;x86_64"
       - name: Align and sign only for this offline experiment
         timeout-minutes: 5
         run: |
@@ -83,8 +90,8 @@ jobs:
           # Empty environment: no GitHub/Meta tokens inherited. Only loopback exists
           # inside this network namespace. The Android app itself is unprivileged.
           sudo env -i PATH="$PATH" HOME="$HOME" ANDROID_HOME="$ANDROID_HOME" JAVA_HOME="$JAVA_HOME" \
-            GITHUB_SHA="$GITHUB_SHA" GITHUB_RUN_ID="$GITHUB_RUN_ID" HOST_UID="$(id -u)" HOST_GID="$(id -g)" \
-            unshare --net bash -c 'ip link set lo up; exec setpriv --reuid "$HOST_UID" --regid "$HOST_GID" --clear-groups python3 -m tools.run_original_shell_baseline --bundled'
+            GITHUB_SHA="$GITHUB_SHA" GITHUB_RUN_ID="$GITHUB_RUN_ID" TARGET_ANDROID_API="$TARGET_ANDROID_API" HOST_UID="$(id -u)" HOST_GID="$(id -g)" \
+            unshare --net bash -c 'ip link set lo up; exec setpriv --reuid "$HOST_UID" --regid "$HOST_GID" --clear-groups python3 -m tools.run_original_shell_baseline --bundled --api "$TARGET_ANDROID_API"'
       - name: Preserve exact outcome, including skipped installation or launch failure
         if: always()
         env:

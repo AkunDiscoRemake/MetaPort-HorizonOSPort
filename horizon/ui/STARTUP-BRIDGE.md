@@ -309,3 +309,13 @@ initialization under ARM64 translation. No original UI is validated. See
 `port/REAL-PORT-STATUS.md` for the preceding missing-library crashes. Do not remove
 instructions or replace services on the assumption that this is a CPU-extension
 issue: static crash windows and additional runtime evidence are required first.
+
+Run **36896042385** reproduced the crash and recovered the file-backed instruction
+window: `0x89660` is an ordinary `adrp`; at `0x8966c` the same function contains
+`ldaddal w9, w8, [x8]` (LSE atomics). This suggests an instruction-translation
+compatibility investigation, but the static window does not prove the faulting
+instruction or its cause. Do not patch the atomics or remove guards on that basis.
+The bundled experiment now defaults to API 36, with manual API 35 selection, to
+compare a newer translation environment. The unmodified baseline remains API 35.
+Both remain emulation rather than physical Infinix validation. Per-app UID log
+collection is added for the next experiment; no API 36 outcome is claimed here.

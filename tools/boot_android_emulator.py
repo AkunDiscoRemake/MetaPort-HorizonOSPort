@@ -52,7 +52,7 @@ def wait_for_boot(process, adb, timeout):
 
 
 def run(api, sdk, output, boot_timeout=600, test_command=None):
-    if api not in (29, 35) or not 1 <= boot_timeout <= 900:
+    if api not in (29, 35, 36) or not 1 <= boot_timeout <= 900:
         raise ValueError('Unsupported test configuration')
     sdk = Path(sdk)
     output = Path(output)

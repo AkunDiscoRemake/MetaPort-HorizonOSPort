@@ -79,6 +79,7 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
             'scope':'Original APK offline baseline; process survival does not establish a working port'}
     call=lambda args,timeout=30:adb_command(adb,args,timeout)
     abi=call(['shell','getprop','ro.product.cpu.abilist'])
+    report['guest_api']=call(['shell','getprop','ro.build.version.sdk'])
     report['guest_abi']=abi;report['native_bridge']=call(['shell','getprop','ro.dalvik.vm.native.bridge'])
     if abi['exit_code']!=0 or 'arm64-v8a' not in abi['text'].strip().split(','):
         report['result']='UNSUPPORTED_OR_UNKNOWN_GUEST_ABI';return report
