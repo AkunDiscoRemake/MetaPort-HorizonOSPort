@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 35
     env:
-      WATCH_RUN: '36817044003'
+      WATCH_RUN: '36818964794'
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
