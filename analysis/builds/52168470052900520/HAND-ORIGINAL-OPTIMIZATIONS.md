@@ -531,3 +531,18 @@ sem alterar a saída. A CI ARM64/Android foi ampliada, ainda pendente para este 
 **Não faz mmap, não recebe/transfere FDs e não interpreta o payload privado.**
 A compatibilidade de páginas foi demonstrada no cálculo, não numa fila Horizon
 funcionando no X6873; o tamanho real de página do aparelho não foi medido.
+
+
+### Validação desta continuação
+
+- **36796617906: sucesso completo**, incluindo packing saturado no host e no
+  ARM64 NEON emulado, AAR Android, testes Java e lint.
+- **36796777883: falha geral na publicação do relatório**. As etapas de testes
+  nativos (inclusive planner FMQ), execução ARM64, compilação AAR, Java/lint e
+  upload dos artefatos constam como sucesso. Não reclassificar o run como verde.
+- O publisher Android agora atualiza o checkout limpo **antes** de copiar o
+  relatório, para evitar conflitos de rebase com relatório de build anterior,
+  e repete o push em caso de corrida. A nova execução verificará essa correção.
+- Foram mantidos os limites explícitos da análise: syscall observada não é
+  privilégio concedido; mapper adaptado não é fila integrada; packing validado
+  não é inferência de mãos nem teste físico no X6873.

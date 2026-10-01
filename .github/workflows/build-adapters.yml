@@ -173,16 +173,27 @@ jobs:
         run: |
           set -euo pipefail
           if [ ! -f local-analysis/android-build/build-report.json ]; then exit 0; fi
+          # Refresh the clean checkout before replacing a report produced by a
+          # prior queued build. Committing first can create a same-file rebase conflict.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           mkdir -p analysis/android-build
           cp local-analysis/android-build/build-report.json analysis/android-build/build-report.json
           git add -- analysis/android-build/build-report.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then
-            git commit -m 'Record Android adapter build and test result'
+            git commit -m 'Record Android adapter build and test result [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
-              push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            published=0
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+                published=1
+                break
+              fi
+            done
+            test "$published" = 1
           fi
