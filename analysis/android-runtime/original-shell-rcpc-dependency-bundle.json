@@ -5634,5 +5634,7 @@
   "original_signatures_removed": true,
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
-  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes"
+  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
+  "signed_apk_sha256": "d4f22cf2abe5c8252bba80c26f3285412813ab0a0dabe4887a9e6910760a5dfe",
+  "test_certificate_not_meta_identity": true
 }
