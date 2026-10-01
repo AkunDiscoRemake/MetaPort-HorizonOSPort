@@ -218,8 +218,8 @@ alias/dependências; janelas +/-8 linhas não delimitam kernels ou pacotes compl
 No skeleton, `.uw = vrmpy(.ub,.ub)` aparece em `0x637bc` (29 ocorrências textuais)
 e `.uw += vrmpy(.ub,.ub)` em `0x66e40` (424). No pacote QNN, a primeira forma
 aparece em `0x4dac0` (2). São endereços da view ELF byte-exata; caminho ativo dos
-modelos de mãos continua não validado. Formas signed, scalar-register, saturadas,
-lookup e QFloat são distintas e não foram substituídas por esta implementação.
+modelos de mãos continua não validado. Formas signed e scalar-register são tratadas separadamente na ampliação abaixo;
+saturadas, lookup e QFloat continuam fora desta implementação.
 
 **`hand_u8_reduce.{hpp,cpp}`** inicialmente adaptou a redução unsigned vetor-vetor:
 cada grupo de quatro bytes produz um acumulador de 32 bits, com atribuição ou
@@ -379,3 +379,19 @@ Não é validação do layout completo da vtable ou de uma chamada em execução
 no MediaTek, produtor/consumidor FMQ, políticas efetivas do serviço, câmera e
 inferência integradas, renderer original completo e validação física. Nenhuma
 porcentagem ou declaração de “todas as otimizações encontradas” foi emitida.
+
+
+### Continuação da seleção
+
+O scanner de ROI foi refinado para reconhecer `roiHeight`, `roi_width`,
+`QuantizedRoiAlign`, `RoIAlignForwardCPUKernel` e plurais, sem aceitar substrings
+incidentais em Android, centroid ou Meroitic. O teste cobre as grafias observadas
+na listagem anterior. Isso corrige tanto falsos positivos quanto a perda de
+identificadores causada pela correção anterior baseada só em `\broi\b`.
+A alteração será usada na próxima varredura; não muda retroativamente os reports.
+
+`TraceHandService.java` passa a rastrear callers diretos de funções de scheduler,
+afinidade e task profiles, incluindo thunks, no binário de serviço pinado. Limites:
+128 refs/raiz, 2 callers novos/raiz e 24 funções no total. Chamadas indiretas e
+números de syscall bruta continuam não resolvidos. A continuação **36794645662**
+também inspeciona os helpers FMQ `005a4bb4` e `005a4f04`; resultado pendente.

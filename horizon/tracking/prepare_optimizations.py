@@ -10,9 +10,19 @@ from tools.scan_partitions import command
 GROUPS = {
     'inference': r'quantiz|uint8|float16|int8|hexagon|boltnn|xnnpack|delegate|batch|tensor.*contigu',
     'memory': r'zero.copy|buffer.*reus|memory.plan|arena.alloc|aligned_alloc|prealloc|memory.pool|cache.*tensor',
-    'temporal': r'predict|smooth|filter|thread.pool|affinity|schedul|frame.*skip|downsampl|\broi\b|region.of.interest',
+    'temporal': r'predict|smooth|filter|thread.pool|affinity|schedul|frame.*skip|downsampl|region.of.interest',
 }
 HAND = re.compile(r'handtracking|hand_tracking|handprototype|handbbox|handpose|hand[ /:_-]|\bdpe\b|dpetorch|\bskb\b|\bstp\b', re.I)
+
+
+def is_roi_lead(text):
+    # Split identifier tokens, not substrings: android/centroids/Meroitic are not ROI.
+    # Preserve the common RoI spelling and acronym plural before CamelCase splits.
+    normalized=text.replace('RoI','ROI')
+    normalized=re.sub(r'ROIs(?=$|[^a-z])','ROI',normalized)
+    normalized=re.sub(r'([A-Z]+)([A-Z][a-z])',r'\1 \2',normalized)
+    normalized=re.sub(r'([a-z0-9])([A-Z])',r'\1 \2',normalized)
+    return bool(re.search(r'\brois?\b',normalized.replace('_',' '),re.I))
 
 
 def scan(data, sections):
@@ -29,7 +39,7 @@ def scan(data, sections):
             continue
         text = match.group()[:-1].decode('ascii')
         for name, pattern in GROUPS.items():
-            if re.search(pattern, text, re.I):
+            if re.search(pattern, text, re.I) or (name == "temporal" and is_roi_lead(text)):
                 groups[name].append({'address': va + match.start(), 'text': text,
                                      'hand_context_in_string': bool(HAND.search(text))})
     result = {}

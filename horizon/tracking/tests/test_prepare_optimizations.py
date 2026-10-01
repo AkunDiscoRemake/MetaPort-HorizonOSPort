@@ -38,3 +38,11 @@ class OptimizationTargets(unittest.TestCase):
         r=self.scan(b'android/content/Context\0ROI crop\0')
         self.assertEqual(r['temporal']['matched_count'],1)
         self.assertEqual(r['temporal']['selected'][0]['text'],'ROI crop')
+
+    def test_roi_identifier_spellings_without_incidental_substrings(self):
+        positive=['roiHeight','roi_width','QuantizedRoiAlign','RoIAlignForwardCPUKernel',
+                  'maskedCamIds.size() * 4 == rois.size()','numROIs','HandROIExtractor']
+        negative=['ANDROID_CONTEXT','android/content/Context','centroid_weights',
+                  'data.numCentroids','Meroitic_Hieroglyphs','expectedGyroIndices_']
+        r=self.scan(('\0'.join(positive+negative)+'\0').encode())
+        self.assertEqual({x['text'] for x in r['temporal']['candidates']},set(positive))
