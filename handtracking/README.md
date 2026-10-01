@@ -92,3 +92,9 @@ zeradas, em gzip. O pipeline verifica a imagem ODM e o ELF antes de analisar.
 O JSON de proveniência é publicado no Git; a listagem fica em artefato do Actions
 por sete dias. Isso cobre **uma biblioteca ARM64**, não todos os modelos/DSPs,
 nem prova que todas as otimizações foram identificadas ou que a IA executa.
+
+A primeira execução, **36884576681**, concluiu com sucesso: **8.277.719 linhas de
+instruções**, 400.473.978 bytes de texto e **71.540.451 bytes de gzip**. Metadados:
+`analysis/builds/52168470052900520/hand-engine-full-disassembly.json`. Artefato:
+`original-tracking-engine-executable-sections-not-inference`. Nenhuma inferência
+foi executada por essa análise.

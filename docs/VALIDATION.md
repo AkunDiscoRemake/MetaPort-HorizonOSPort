@@ -133,3 +133,10 @@ This closes the missing-library/disk-space/ADB-path CI failures for that run.
 It does not execute original Horizon firmware, an ARCore camera/depth session,
 Quest hand inference, or a physical Infinix device. No METAPORT release APK is
 established by these test APKs.
+
+Before the passing run, `36882551201` progressed through emulator boot but its
+shell test launcher failed with exit 127: `adb` was absent from PATH. Both shell
+scripts now resolve `${ANDROID_HOME}/platform-tools/adb` explicitly. Two script
+fixtures verify SDK paths containing spaces, CheckJNI setup, log cleanup and
+preservation of a nonzero Gradle exit. These fixtures simulate commands only;
+the passing API 29/35 instrumentation above is the real Android evidence.
