@@ -176,6 +176,6 @@ native declaration in this DEX class**; export presence alone does not prove a
 reachable Java API. The generated contract deliberately does not invent one.
 
 Next bounded analysis: **36813678532**, eight identity/Clay/platform/frame
-candidates, still pending at this update. Android contract build **36813604224**
-also pending. Local validation: **45 UI tests passed; 92 hand-analysis tests ran,
+candidates, still pending at this update. Android contract build **36813604224 succeeded**: NDK compilation, native tests,
+Java tests and lint passed. The output remains an AAR, not an APK. Local validation: **45 UI tests passed; 92 hand-analysis tests ran,
 one skipped**. A working METAPORT APK and device rendering are still unvalidated.
