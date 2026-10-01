@@ -1,0 +1,9 @@
+{
+  "source_commit": "b45a18a13135d19a34e695b3fd489e3eda1f2833",
+  "run_id": "36805504240",
+  "decompile_step": "success",
+  "horizon_ported": false,
+  "physical_phone_tested": false,
+  "jadx_sha256": "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974",
+  "tool_log_tail": ""
+}
