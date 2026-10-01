@@ -5,6 +5,7 @@
 #include <EGL/eglext.h>
 #include <cstring>
 #include <memory>
+#include <mutex>
 #include <stdexcept>
 #include <string>
 
@@ -22,6 +23,34 @@ bool extension(const char* list, const char* wanted) {
     }
     return false;
 }
+// eglInitialize does not create an independent display lifetime per Output.
+// Balance our owners centrally: closing one window must not terminate its peers.
+// External display owners (ARCore/another renderer) still need explicit coordination.
+class DisplayOwners {
+    std::mutex mutex_;
+    EGLDisplay display_=EGL_NO_DISPLAY;
+    unsigned owners_=0;
+public:
+    EGLDisplay acquire() {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (owners_==0) {
+            EGLDisplay candidate=eglGetDisplay(EGL_DEFAULT_DISPLAY);
+            require(candidate!=EGL_NO_DISPLAY,"EGL display unavailable");
+            require(eglInitialize(candidate,nullptr,nullptr),"EGL initialization failed");
+            display_=candidate;
+        }
+        ++owners_;
+        return display_;
+    }
+    void release() {
+        std::lock_guard<std::mutex> lock(mutex_);
+        if (--owners_==0) {
+            eglTerminate(display_);
+            display_=EGL_NO_DISPLAY;
+        }
+    }
+};
+DisplayOwners displays;
 class Output {
 public:
     EGLDisplay display=EGL_NO_DISPLAY;
@@ -37,16 +66,14 @@ public:
                 eglMakeCurrent(display,EGL_NO_SURFACE,EGL_NO_SURFACE,EGL_NO_CONTEXT);
             if (surface!=EGL_NO_SURFACE) eglDestroySurface(display,surface);
             if (context!=EGL_NO_CONTEXT) eglDestroyContext(display,context);
-            eglTerminate(display);
+            displays.release();
         }
         if (window) ANativeWindow_release(window);
     }
     void open(JNIEnv* env,jobject java_surface) {
         window=ANativeWindow_fromSurface(env,java_surface);
         require(window!=nullptr,"ANativeWindow unavailable");
-        display=eglGetDisplay(EGL_DEFAULT_DISPLAY);
-        require(display!=EGL_NO_DISPLAY,"EGL display unavailable");
-        require(eglInitialize(display,nullptr,nullptr),"EGL initialization failed");
+        display=displays.acquire();
         initialized=true;
         require(eglBindAPI(EGL_OPENGL_ES_API),"OpenGL ES API unavailable");
         EGLConfig config=nullptr;
@@ -75,7 +102,9 @@ public:
 };
 Output* output(jlong h) { return reinterpret_cast<Output*>(h); }
 void error(JNIEnv* env,const std::exception& e) {
-    env->ThrowNew(env->FindClass("java/lang/IllegalStateException"),e.what());
+    if (env->ExceptionCheck()) return;
+    jclass type=env->FindClass("java/lang/IllegalStateException");
+    if (type) { env->ThrowNew(type,e.what()); env->DeleteLocalRef(type); }
 }
 }
 extern "C" JNIEXPORT jlong JNICALL Java_org_metaport_port_EglOutput_nativeCreate(JNIEnv* env,jclass,jobject surface) {

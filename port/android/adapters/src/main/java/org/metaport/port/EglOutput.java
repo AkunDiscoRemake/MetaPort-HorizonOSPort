@@ -3,8 +3,9 @@ package org.metaport.port;
 import android.view.Surface;
 
 /** Android window output for a future original compositor bridge; NOT a compositor.
- * Owns an EGL display/context on the creating render thread. Do not mix with another
- * EGL display owner on that thread. No stereo/distortion/layers are synthesized.
+ * Owns a context on the creating render thread; shares display lifetime with other
+ * EglOutput instances. Do not mix with external EGL display owners (including
+ * ARCore-managed contexts) without an explicit display-ownership contract. No stereo/distortion/layers are synthesized.
  */
 public final class EglOutput implements AutoCloseable {
     static { System.loadLibrary("metaport_adapters"); }
