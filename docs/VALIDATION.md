@@ -160,3 +160,19 @@ Exact evidence: `analysis/android-runtime/original-shell-bundled-baseline.json`
 and `original-shell-dependency-bundle.json`; successful CI records the failure,
 it does not convert it into a passing app test. Static crash windows added after
 this run are file evidence only, not captured process memory or a proven cause.
+
+### API 36 comparison — run 36897515996
+
+The original bundle also crashed on API 36. This time the host stack explicitly
+contains `libndk_translation.so / berberis::UndefinedInsnThunk`. The guest frame
+is `libc++.so / locale::locale()` at ELF `0x88ab0`; its instruction window contains
+`ldaprb w8, [x8]` at `0x88ac4` (RCpc), not the preceding API 35 LSE window.
+No instruction has been replaced based on this association alone.
+
+The crash named PID 2687, while the later `pidof` sample returned 3446. A process
+existing at that sample does not imply the original process survived. The probe
+now marks an application-specific crash explicitly even when a later PID exists;
+a regression fixture covers this case. Separate CI-only control/LSE/RCpc tests
+are being introduced to isolate translation capability. These have no launcher
+UI, no permissions, no Meta services and no user-facing APK release. Their result
+must not be confused with original application startup or physical-device support.

@@ -15,7 +15,7 @@ class OriginalBaseline(unittest.TestCase):
         with patch('tools.probe_original_shell.subprocess.check_output',return_value='[{"ifname":"lo"}]'):
             offline_guard()
 
-    def run_fixture(self,abi='x86_64,arm64-v8a',install='Failure [INSTALL_FAILED_MISSING_SHARED_LIBRARY]',code=1,uid_output=''):
+    def run_fixture(self,abi='x86_64,arm64-v8a',install='Failure [INSTALL_FAILED_MISSING_SHARED_LIBRARY]',code=1,uid_output='',crash_text='',pid_text=''):
         with tempfile.TemporaryDirectory() as d:
             apk=Path(d)/'test.apk';apk.write_bytes(b'fixture only')
             policy=Path(d)/'policy.json';policy.write_text(json.dumps({'apk_sha256':hashlib.sha256(apk.read_bytes()).hexdigest()}))
@@ -23,6 +23,8 @@ class OriginalBaseline(unittest.TestCase):
             def fake(adb,args,timeout):
                 calls.append(args)
                 text=abi if 'ro.product.cpu.abilist' in args else install if args[0]=='install' else uid_output if 'packages' in args else ''
+                if 'pidof' in args:text=pid_text
+                if args[0]=='logcat' and 'crash' in args and '-d' in args:text=crash_text
                 return {'exit_code':code if args[0]=='install' else 0,'text':text,'truncated':False}
             with patch('tools.probe_original_shell.POLICY',policy), \
                  patch('tools.probe_original_shell.offline_guard'), \
@@ -70,3 +72,13 @@ class OriginalBaseline(unittest.TestCase):
                 self.assertIn('--uid=10209',logs[0]);self.assertIn('400',logs[0])
             else:
                 self.assertEqual(logs,[]);self.assertNotIn('application_log',report)
+
+    def test_replacement_pid_does_not_hide_original_app_crash(self):
+        for crash in ('pid: 2687, tid: 2687 >>> com.oculus.vrshell <<<',
+                      'Process: com.oculus.vrshell, PID: 2687'):
+            r,_=self.run_fixture(install='Success',code=0,crash_text=crash,pid_text='3446\n')
+            self.assertEqual(r['result'],'APPLICATION_CRASH_RECORDED')
+            self.assertTrue(r['application_crash_recorded'])
+            self.assertFalse(r['port_ready'])
+        r,_=self.run_fixture(install='Success',code=0,crash_text='>>> unrelated.app <<<')
+        self.assertFalse(r['application_crash_recorded'])
