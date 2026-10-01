@@ -1,0 +1,34 @@
+{
+  "run_id": 36817044003,
+  "source_commit": "ea8cb8b13615c18b609f1480594c8e31b8d046de",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "runtime (35)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Execute Android JNI, sensor lifecycle, EGL and shader tests",
+        "Capture logs and explicit scope"
+      ],
+      "log_download_exit": 1,
+      "diagnostic_lines_unavailable": true
+    },
+    {
+      "name": "runtime (29)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Execute Android JNI, sensor lifecycle, EGL and shader tests",
+        "Capture logs and explicit scope"
+      ],
+      "log_download_exit": 1,
+      "diagnostic_lines_unavailable": true
+    },
+    {
+      "name": "record",
+      "conclusion": "success",
+      "failed_steps": []
+    }
+  ],
+  "scope": "CI diagnostics, not runtime validation"
+}
