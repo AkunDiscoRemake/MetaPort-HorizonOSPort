@@ -19,6 +19,16 @@
         "ASurfaceTexture_updateTexImage2@@LIBHZOS_BASE",
         "ASurfaceTexture_getCurrentHardwareBuffer@@LIBHZOS_BASE",
         "ASurfaceTexture_release2@@LIBHZOS_BASE"
+      ],
+      "internal_call_targets": [
+        {
+          "name": "Strata",
+          "elf_address": 473328
+        },
+        {
+          "name": "convertToHardwareBuffer",
+          "elf_address": 568800
+        }
       ]
     },
     {
@@ -37,6 +47,24 @@
         "HzuVirtualSpace_update@@LIBHZOS_SPACES",
         "HzuSpace_getUuid@@LIBHZOS_SPACES",
         "HzuSpace_getParentUuid@@LIBHZOS_SPACES"
+      ],
+      "internal_call_targets": [
+        {
+          "name": "toHzuSpaceData",
+          "elf_address": 11936
+        },
+        {
+          "name": "toHzuBaseSpaceData",
+          "elf_address": 15136
+        },
+        {
+          "name": "toHzuVirtualSpaceData",
+          "elf_address": 15408
+        },
+        {
+          "name": "toHzuWindowSpaceData",
+          "elf_address": 15552
+        }
       ]
     }
   ]

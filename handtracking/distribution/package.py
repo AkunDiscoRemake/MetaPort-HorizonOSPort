@@ -97,7 +97,7 @@ def source_files():
                 files[p.relative_to(ROOT).as_posix()]=p
     # Reports remain in their original relative paths so the AI tools/tests work.
     for p in (ROOT/f'analysis/builds/{BUILD}').iterdir():
-        if p.suffix in ('.md','.json') and (p.name.lower().startswith(('hand','input-','model','ptez','reference','compressed-hand','attributes-')) or p.name in ('static-analysis.json','reconstruction.json','ui-decompilation.json')):
+        if p.suffix in ('.md','.json') and (p.name.lower().startswith(('hand','input-','model','ptez','reference','compressed-hand','attributes-')) or p.name in ('static-analysis.json','reconstruction.json','ui-decompilation.json','shell-hzos-native.json','shell-hzos-spaces-native.json')):
             files[p.relative_to(ROOT).as_posix()]=p
     return files
 

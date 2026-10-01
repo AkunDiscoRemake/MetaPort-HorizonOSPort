@@ -25,7 +25,14 @@ def prepare(images,reconstruction,output):
         if target.stat().st_size!=lib['size_bytes'] or digest(target)!=lib['sha256']:raise ValueError('Wrong pinned platform library')
         text,_=command(['readelf','--dyn-syms','-W',str(target)])
         selected=select_symbols(text,lib['exports']);ranges=executable_ranges(target.read_bytes())
-        if not all(any(a<=e['elf_address'] and e['elf_address']+e['size_bytes']<=b for a,b in ranges) for e in selected):
+        for helper in lib.get('internal_call_targets',[]):
+            address=helper['elf_address']
+            if not isinstance(address,int) or address%4:raise ValueError('Invalid internal target')
+            selected.append({'symbol':helper['name'],'elf_address':address,
+                'extent_checked_bytes':4,'selection_basis':'Pinned-library direct callee; not an export or a recovered signature'})
+        if len(selected)>24 or len({e['elf_address'] for e in selected})!=len(selected):
+            raise ValueError('Duplicate/excessive targets')
+        if not all(any(a<=e['elf_address'] and e['elf_address']+e.get('size_bytes',e.get('extent_checked_bytes',0))<=b for a,b in ranges) for e in selected):
             raise ValueError('Non-executable target')
         (output/(prefix+'-functions.txt')).write_text(''.join(f"{e['elf_address']:x}\n" for e in selected))
         (output/(prefix+'-strings.json')).write_text('[]\n')
