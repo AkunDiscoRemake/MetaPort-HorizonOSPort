@@ -6,6 +6,10 @@ on:
     paths:
       - port/android/**
       - native/tests/**
+      - handtracking/native/**
+      - handtracking/tests/native/**
+      - handtracking/CMakeLists.txt
+      - handtracking/integration/**
       - .github/workflows/build-adapters.yml
   workflow_dispatch:
 permissions:
@@ -37,70 +41,70 @@ jobs:
         run: |
           mkdir -p local-analysis/native-tests
           g++ -std=c++17 -Wall -Wextra -Werror -pthread -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/sample_cache_test.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include native/tests/sample_cache_test.cpp \
             -o local-analysis/native-tests/sample_cache_test
           local-analysis/native-tests/sample_cache_test
           g++ -std=c++17 -Wall -Wextra -Werror -pthread -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/input_router_test.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include native/tests/input_router_test.cpp \
             -o local-analysis/native-tests/input_router_test
           local-analysis/native-tests/input_router_test
       - name: Test lossless hand palette packing with sanitizers
         run: |
           g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_palette_test.cpp \
-            port/android/adapters/src/main/cpp/hand_palette.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_palette_test.cpp \
+            handtracking/native/src/hand_palette.cpp \
             -o local-analysis/native-tests/hand_palette_test
           local-analysis/native-tests/hand_palette_test
       - name: Test original hand material update rule
         run: |
           g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_material_test.cpp \
-            port/android/adapters/src/main/cpp/hand_material.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_material_test.cpp \
+            handtracking/native/src/hand_material.cpp \
             -o local-analysis/native-tests/hand_material_test
           local-analysis/native-tests/hand_material_test
       - name: Test observed planned arena alignment
         run: |
           g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_arena_layout_test.cpp \
-            port/android/adapters/src/main/cpp/hand_arena_layout.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_arena_layout_test.cpp \
+            handtracking/native/src/hand_arena_layout.cpp \
             -o local-analysis/native-tests/hand_arena_layout_test
           local-analysis/native-tests/hand_arena_layout_test
       - name: Test observed integer reductions on host and emulated ARM64 NEON
         run: |
           g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_u8_reduce_test.cpp \
-            port/android/adapters/src/main/cpp/hand_u8_reduce.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_u8_reduce_test.cpp \
+            handtracking/native/src/hand_u8_reduce.cpp \
             -o local-analysis/native-tests/hand_u8_reduce_test
           local-analysis/native-tests/hand_u8_reduce_test
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends g++-aarch64-linux-gnu qemu-user
           aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_u8_reduce_test.cpp \
-            port/android/adapters/src/main/cpp/hand_u8_reduce.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_u8_reduce_test.cpp \
+            handtracking/native/src/hand_u8_reduce.cpp \
             -o local-analysis/native-tests/hand_u8_reduce_arm64
           qemu-aarch64 local-analysis/native-tests/hand_u8_reduce_arm64
       - name: Test observed saturating pack outputs on host and ARM64 NEON
         run: |
           g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_saturating_pack_test.cpp \
-            port/android/adapters/src/main/cpp/hand_saturating_pack.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_saturating_pack_test.cpp \
+            handtracking/native/src/hand_saturating_pack.cpp \
             -o local-analysis/native-tests/hand_saturating_pack_test
           local-analysis/native-tests/hand_saturating_pack_test
           aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_saturating_pack_test.cpp \
-            port/android/adapters/src/main/cpp/hand_saturating_pack.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_saturating_pack_test.cpp \
+            handtracking/native/src/hand_saturating_pack.cpp \
             -o local-analysis/native-tests/hand_saturating_pack_arm64
           qemu-aarch64 local-analysis/native-tests/hand_saturating_pack_arm64
       - name: Test page-size adaptation of original hand FMQ mapping
         run: |
           g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_fmq_mapping_test.cpp \
-            port/android/adapters/src/main/cpp/hand_fmq_mapping.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_fmq_mapping_test.cpp \
+            handtracking/native/src/hand_fmq_mapping.cpp \
             -o local-analysis/native-tests/hand_fmq_mapping_test
           local-analysis/native-tests/hand_fmq_mapping_test
           aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
-            -Iport/android/adapters/src/main/cpp native/tests/hand_fmq_mapping_test.cpp \
-            port/android/adapters/src/main/cpp/hand_fmq_mapping.cpp \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_fmq_mapping_test.cpp \
+            handtracking/native/src/hand_fmq_mapping.cpp \
             -o local-analysis/native-tests/hand_fmq_mapping_arm64
           qemu-aarch64 local-analysis/native-tests/hand_fmq_mapping_arm64
       - name: Compile AAR, test Java and lint Android integration

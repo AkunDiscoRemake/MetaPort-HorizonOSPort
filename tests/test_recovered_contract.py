@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 class ContractEvidenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.contract=json.loads((ROOT/'horizon/tracking/abi/52168470052900520.json').read_text())
+        cls.contract=json.loads((ROOT/'handtracking/ai/abi/52168470052900520.json').read_text())
         analysis=json.loads((ROOT/'analysis/builds/52168470052900520/static-analysis.json').read_text())
         cls.source=next(e for e in analysis['partitions']['system_ext']['elf_analysis']
                         if e['path']==cls.contract['source_path'])

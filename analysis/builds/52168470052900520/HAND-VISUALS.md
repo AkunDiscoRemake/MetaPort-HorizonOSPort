@@ -6,7 +6,7 @@ substituta e não transforma uma biblioteca de poses em animações inventadas.
 
 ## Implementado e medido com os arquivos originais
 
-- `horizon/tracking/hand_assets.py`: leitura MessagePack limitada, sem executar
+- `handtracking/ai/hand_assets.py`: leitura MessagePack limitada, sem executar
   modelos, com rejeição de chaves duplicadas, extensões e números não finitos.
 - A imagem ODM é verificada contra a reconstrução; os quatro arquivos são
   conferidos por tamanho e SHA-256 em `hand-assets-policy.json` antes da leitura.

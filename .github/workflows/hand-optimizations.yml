@@ -2,7 +2,7 @@ name: Original hand optimization disassembly
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/elf_pointer_evidence.py, horizon/tracking/tests/test_elf_pointer_evidence.py, horizon/tracking/ghidra/TraceHandOptimizations.java, horizon/tracking/prepare_optimizations.py, horizon/tracking/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
+    paths: [handtracking/ai/elf_pointer_evidence.py, handtracking/ai/tests/test_elf_pointer_evidence.py, handtracking/ai/ghidra/TraceHandOptimizations.java, handtracking/ai/prepare_optimizations.py, handtracking/ai/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m unittest horizon.tracking.tests.test_prepare_optimizations horizon.tracking.tests.test_elf_pointer_evidence -v
+          python3 -m unittest handtracking.ai.tests.test_prepare_optimizations handtracking.ai.tests.test_elf_pointer_evidence -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -37,14 +37,14 @@ jobs:
           import os,json
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
-          from horizon.tracking.prepare_input import prepare
+          from handtracking.ai.prepare_input import prepare
           root=Path(os.environ['WORK'])
           result=reconstruct(root/'firmware.zip',root/'images',selected={'odm'})
           (root/'reconstruction.json').write_text(json.dumps(result))
           prepare(root/'images',root/'reconstruction.json',root/'reports')
           PY
-          python3 -m horizon.tracking.prepare_optimizations "$WORK/reports"
-          python3 -m horizon.tracking.elf_pointer_evidence "$WORK/reports"
+          python3 -m handtracking.ai.prepare_optimizations "$WORK/reports"
+          python3 -m handtracking.ai.elf_pointer_evidence "$WORK/reports"
       - name: Install pinned static decompiler
         run: |
           curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
@@ -57,7 +57,7 @@ jobs:
         run: |
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
             -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
-            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
             -postScript TraceHandOptimizations.java "$WORK/reports/optimization-all-strings.json" "$WORK/reports" \
             -postScript DecompileHands.java "$WORK/reports/inference-functions.txt" "$WORK/reports/inference-strings.json" "$WORK/reports/hand-optimization-inference.json" 2048 \
             -postScript DecompileHands.java "$WORK/reports/memory-functions.txt" "$WORK/reports/memory-strings.json" "$WORK/reports/hand-optimization-memory.json" \
@@ -66,7 +66,7 @@ jobs:
           python3 - <<'PY'
           import json,os
           from pathlib import Path
-          from horizon.tracking.prepare_input import ENGINE_SHA
+          from handtracking.ai.prepare_input import ENGINE_SHA
           for group in ('inference','memory','temporal'):
             r=json.loads((Path(os.environ['WORK'])/f'reports/hand-optimization-{group}.json').read_text())
             assert r['program_sha256'].lower()==ENGINE_SHA

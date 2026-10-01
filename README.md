@@ -151,3 +151,10 @@ O código próprio do MetaPort está sob **GNU GPLv3 (GPL-3.0-only)** — texto 
 em [LICENSE](LICENSE). Componentes proprietários, fontes externas e evidências
 extraídas mantêm os direitos e licenças aplicáveis; consulte [NOTICE.md](NOTICE.md).
 Esta licença não concede direitos sobre o firmware da Meta nem torna o port pronto.
+
+## Subsistema de hand tracking separado
+
+[MetaPort HandTracking](handtracking/README.md) contém as ferramentas da IA original,
+componentes nativos compartilhados e empacotamento verificável. O MetaPort o utiliza
+como dependência CMake, sem duplicar implementações. **Inferência original completa
+ainda NÃO PORTADA**; ZIP recovered não equivale a APK funcional.

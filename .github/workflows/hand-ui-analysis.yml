@@ -2,7 +2,7 @@ name: Original hand tracking and UI contracts
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/inspect_original.py, horizon/tracking/ghidra/DecompileHands.java, horizon/tracking/tests/test_inspect_original.py, .github/workflows/hand-ui-analysis.yml]
+    paths: [handtracking/ai/inspect_original.py, handtracking/ai/ghidra/DecompileHands.java, handtracking/ai/tests/test_inspect_original.py, .github/workflows/hand-ui-analysis.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,8 +27,8 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
-          python3 -m pip install -r horizon/tracking/requirements.txt
-          python3 -m unittest discover -s horizon/tracking/tests -v
+          python3 -m pip install -r handtracking/ai/requirements.txt
+          python3 -m unittest discover -s handtracking/ai/tests -v
           mkdir -p "$WORK/reports"
       - name: Obtain fixed verified OTA and original images
         run: |
@@ -46,7 +46,7 @@ jobs:
           PY
       - name: Inspect original hand models, native ABI and VrShell manifest
         run: |
-          python3 -m horizon.tracking.inspect_original --images "$WORK/images" \
+          python3 -m handtracking.ai.inspect_original --images "$WORK/images" \
             --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
       - name: Install hash-pinned Ghidra from official release
         run: |
@@ -61,7 +61,7 @@ jobs:
           mkdir -p "$WORK/project"
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Hands \
             -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
-            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
             -postScript DecompileHands.java "$WORK/reports/functions.txt" "$WORK/reports/strings.json" "$WORK/reports/hand-decompilation.json" \
             -postScript DecompileHandInput.java "$WORK/reports/input-strings.json" "$WORK/reports/hand-input-decompilation.json" \
             -deleteProject > "$WORK/ghidra.log" 2>&1
@@ -69,7 +69,7 @@ jobs:
           test -f "$WORK/reports/hand-input-decompilation.json"
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Clients \
             -import "$WORK/reports/libtrackingserviceclients.so" -max-cpu 2 -analysisTimeoutPerFile 300 \
-            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
             -postScript DecompileHands.java "$WORK/reports/client-functions.txt" "$WORK/reports/client-strings.json" "$WORK/reports/hand-client-decompilation.json" \
             -deleteProject >> "$WORK/ghidra.log" 2>&1
           test -f "$WORK/reports/hand-client-decompilation.json"

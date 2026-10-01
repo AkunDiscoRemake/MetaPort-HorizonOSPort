@@ -2,7 +2,7 @@ name: Original hand renderer decompilation
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/prepare_hand_render.py, horizon/tracking/tests/test_prepare_hand_render.py, .github/workflows/hand-render.yml]
+    paths: [handtracking/ai/prepare_hand_render.py, handtracking/ai/tests/test_prepare_hand_render.py, .github/workflows/hand-render.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m unittest horizon.tracking.tests.test_prepare_hand_render -v
+          python3 -m unittest handtracking.ai.tests.test_prepare_hand_render -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -37,7 +37,7 @@ jobs:
           import os,json
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
-          from horizon.tracking.prepare_hand_render import prepare
+          from handtracking.ai.prepare_hand_render import prepare
           root=Path(os.environ['WORK'])
           result=reconstruct(root/'firmware.zip',root/'images',selected={'system_ext'})
           (root/'reconstruction.json').write_text(json.dumps(result))
@@ -55,7 +55,7 @@ jobs:
         run: |
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
             -import "$WORK/reports/libshell.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
-            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
             -postScript DecompileHands.java "$WORK/reports/render-functions.txt" "$WORK/reports/render-strings.json" "$WORK/reports/hand-render-decompilation.json" \
             -deleteProject > "$WORK/ghidra.log" 2>&1
           python3 - <<'PY'

@@ -2,7 +2,7 @@ name: Original tracking service scheduler disassembly
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/prepare_tracking_bridges.py, horizon/tracking/tests/test_tracking_bridges.py, horizon/tracking/ghidra/SelectTrackingBridge.java, horizon/tracking/ghidra/TraceHandService.java, horizon/tracking/prepare_hand_service.py, horizon/tracking/tests/test_prepare_hand_service.py, .github/workflows/hand-service.yml]
+    paths: [handtracking/ai/prepare_tracking_bridges.py, handtracking/ai/tests/test_tracking_bridges.py, handtracking/ai/ghidra/SelectTrackingBridge.java, handtracking/ai/ghidra/TraceHandService.java, handtracking/ai/prepare_hand_service.py, handtracking/ai/tests/test_prepare_hand_service.py, .github/workflows/hand-service.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m unittest horizon.tracking.tests.test_prepare_hand_service horizon.tracking.tests.test_tracking_bridges -v
+          python3 -m unittest handtracking.ai.tests.test_prepare_hand_service handtracking.ai.tests.test_tracking_bridges -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -37,7 +37,7 @@ jobs:
           import os,json
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
-          from horizon.tracking.prepare_hand_service import prepare
+          from handtracking.ai.prepare_hand_service import prepare
           root=Path(os.environ['WORK'])
           result=reconstruct(root/'firmware.zip',root/'images',selected={'odm'})
           (root/'reconstruction.json').write_text(json.dumps(result))
@@ -55,14 +55,14 @@ jobs:
         run: |
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
             -import "$WORK/reports/trackingservice" -max-cpu 2 -analysisTimeoutPerFile 600 \
-            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
             -postScript TraceHandService.java "$WORK/reports/service-functions.txt" "$WORK/reports/hand-service-scheduling-calls.json" \
             -postScript DecompileHands.java "$WORK/reports/service-functions.txt" "$WORK/reports/service-strings.json" "$WORK/reports/hand-service-decompilation.json" 1024 \
             -deleteProject > "$WORK/ghidra.log" 2>&1
           python3 - <<'PY'
           import json,os
           from pathlib import Path
-          from horizon.tracking.prepare_hand_service import SERVICE_SHA
+          from handtracking.ai.prepare_hand_service import SERVICE_SHA
           r=json.loads((Path(os.environ['WORK'])/'reports/hand-service-decompilation.json').read_text())
           assert r['program_sha256'].lower()==SERVICE_SHA
           assert r['firmware_executed'] is False
@@ -76,7 +76,7 @@ jobs:
             prefix=${item#*:}
             "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" "$prefix" \
               -import "$WORK/reports/$binary" -max-cpu 2 -analysisTimeoutPerFile 120 \
-              -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+              -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
               -postScript SelectTrackingBridge.java "$WORK/reports/$prefix" \
               -postScript DecompileHands.java "$WORK/reports/$prefix-functions.txt" "$WORK/reports/$prefix-strings.json" "$WORK/reports/$prefix-decompilation.json" 1024 \
               -deleteProject > "$WORK/$prefix.log" 2>&1
@@ -84,7 +84,7 @@ jobs:
           python3 - <<'PY'
           import json,os
           from pathlib import Path
-          from horizon.tracking.prepare_tracking_bridges import BRIDGES
+          from handtracking.ai.prepare_tracking_bridges import BRIDGES
           root=Path(os.environ['WORK'])/'reports'
           for _,prefix,_,sha in BRIDGES:
               r=json.loads((root/f'{prefix}-decompilation.json').read_text())

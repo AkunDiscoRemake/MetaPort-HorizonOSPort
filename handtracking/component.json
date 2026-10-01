@@ -1,0 +1,20 @@
+{
+  "name": "MetaPort HandTracking",
+  "version": "0.1.0-recovered",
+  "firmware_build": "52168470052900520",
+  "native_target": "metaport_handtracking",
+  "metaport_integration": "metaport_adapters links metaport_handtracking_objects from this module",
+  "ai_tools_package": "handtracking.ai",
+  "original_model_files_in_catalog": 21,
+  "all_quest3_ai_recovered": false,
+  "all_original_optimizations_found": false,
+  "original_inference_ported": false,
+  "physical_phone_validated": false,
+  "missing": [
+    "Complete original private runtime ABI and dependency closure",
+    "HexagonRpcBackend execution or faithful replacement on MediaTek",
+    "Camera calibration and original input conversion integration",
+    "Full FMQ producer/consumer and original renderer integration",
+    "Physical Infinix X6873 validation"
+  ]
+}

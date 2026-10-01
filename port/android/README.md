@@ -96,7 +96,7 @@ Uma solução SharedCamera/mãos requer arbitragem própria, ainda não implemen
 ## O que falta do lado Horizon
 
 O transporte observado usa MemoryBroker/Binder e regiões compartilhadas. Ver
-[contrato observado](../../horizon/tracking/CONTRACT.md). Os símbolos, layouts e
+[contrato observado](../../handtracking/ai/CONTRACT.md). Os símbolos, layouts e
 lifecycle originais não foram substituídos pelos tipos deste módulo. Não é correto
 carregar este AAR e afirmar que o Horizon já está recebendo suas poses.
 

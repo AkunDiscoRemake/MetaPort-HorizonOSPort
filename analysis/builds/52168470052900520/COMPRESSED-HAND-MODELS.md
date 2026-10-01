@@ -8,10 +8,10 @@ O texto abaixo preserva os resultados da etapa anterior.
 
 ## O que foi implementado
 
-- `horizon/tracking/ptez.py`: exploração limitada do container `etz0`, descompressão
+- `handtracking/ai/ptez.py`: exploração limitada do container `etz0`, descompressão
   deflate com limite de saída, verificação de comprimento/fim do stream e estrutura
   inicial FlatBuffer. Não carrega modelos nem executa operadores.
-- `horizon/tracking/pte_schema.py`: leitor limitado de tabelas, vetores, strings,
+- `handtracking/ai/pte_schema.py`: leitor limitado de tabelas, vetores, strings,
   tipos/formatos de tensores, constantes escalares e referências de instruções.
   Há limites por campo e orçamento global contra vetores compartilhados que poderiam
   multiplicar o trabalho/saída de um parser ingênuo.

@@ -26,7 +26,7 @@ A fonte pública selecionada não é uma correspondência exata comprovada com o
 - Serviço Binder original, parte do protocolo e VINTF identificados por evidência.
 
 Relatórios: `reconstruction.json`, `static-analysis.json`.
-Contrato recuperado: `horizon/tracking/abi/52168470052900520.json` na raiz do projeto.
+Contrato recuperado: `handtracking/ai/abi/52168470052900520.json` na raiz do projeto.
 
 “Todas as partições do OTA” não quer dizer dump de todo armazenamento de um headset:
 não inclui necessariamente dados provisionados por unidade, contas, userdata ou

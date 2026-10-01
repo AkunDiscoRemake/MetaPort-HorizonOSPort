@@ -2,7 +2,7 @@ name: Original hand geometry and animation assets
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/hand_assets.py, horizon/tracking/hand-assets-policy.json, horizon/tracking/tests/test_hand_assets.py, .github/workflows/hand-assets.yml]
+    paths: [handtracking/ai/hand_assets.py, handtracking/ai/hand-assets-policy.json, handtracking/ai/tests/test_hand_assets.py, .github/workflows/hand-assets.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,8 +23,8 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m pip install -r horizon/tracking/requirements.txt
-          python3 -m unittest horizon.tracking.tests.test_hand_assets -v
+          python3 -m pip install -r handtracking/ai/requirements.txt
+          python3 -m unittest handtracking.ai.tests.test_hand_assets -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -34,7 +34,7 @@ jobs:
           import os,json
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
-          from horizon.tracking.hand_assets import inspect
+          from handtracking.ai.hand_assets import inspect
           root=Path(os.environ['WORK'])
           result=reconstruct(root/'firmware.zip',root/'images',selected={'odm'})
           (root/'reconstruction.json').write_text(json.dumps(result))

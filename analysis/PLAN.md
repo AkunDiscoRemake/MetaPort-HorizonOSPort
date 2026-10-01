@@ -23,7 +23,7 @@ investigação, não interfaces identificadas nem implementações existentes.
 | horizon/systemui | Componentes reais, recursos, serviços consumidos | Integração das superfícies originais |
 | horizon/compositor | Contratos de layers, buffers, fences, timing | Vulkan/EGL, Android display |
 | horizon/xr | Runtime, loader, extensões e contratos OpenXR | Spaces, actions, swapchains e sessões reais |
-| horizon/tracking | ABI de pose, tempo, coordenadas, confiança | ARCore + sensores; perda explícita de tracking |
+| handtracking/ai | ABI de pose, tempo, coordenadas, confiança | ARCore + sensores; perda explícita de tracking |
 | horizon/handtracking | Estruturas, joints, confiança e aquisição | Câmera + backend CV/ML compatível |
 | horizon/passthrough | Aquisição, composição, calibração e oclusão | Camera2, sincronização e geometria |
 | horizon/input | Eventos, controles, foco e permissões | Dispositivos Android compatíveis |

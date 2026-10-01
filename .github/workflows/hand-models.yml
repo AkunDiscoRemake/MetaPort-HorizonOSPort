@@ -2,7 +2,7 @@ name: Original compressed hand model inspection
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ptez.py, horizon/tracking/validate_models.py, horizon/tracking/model-evidence-policy.json, horizon/tracking/tests/test_validate_models.py, horizon/tracking/tests/test_reference_fixture.py, horizon/tracking/requirements.txt, horizon/tracking/reference_probe.cpp, horizon/tracking/compare_reference.py, horizon/tracking/pte_constants.py, horizon/tracking/tests/test_pte_constants.py, horizon/tracking/pte_schema.py, horizon/tracking/tests/test_pte_schema.py, horizon/tracking/tests/test_ptez.py, .github/workflows/hand-models.yml]
+    paths: [handtracking/ai/ptez.py, handtracking/ai/validate_models.py, handtracking/ai/model-evidence-policy.json, handtracking/ai/tests/test_validate_models.py, handtracking/ai/tests/test_reference_fixture.py, handtracking/ai/requirements.txt, handtracking/ai/reference_probe.cpp, handtracking/ai/compare_reference.py, handtracking/ai/pte_constants.py, handtracking/ai/tests/test_pte_constants.py, handtracking/ai/pte_schema.py, handtracking/ai/tests/test_pte_schema.py, handtracking/ai/tests/test_ptez.py, .github/workflows/hand-models.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,8 +23,8 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt flatbuffers-compiler libflatbuffers-dev g++
-          python3 -m pip install -r horizon/tracking/requirements.txt
-          python3 -m unittest discover -s horizon/tracking/tests -v
+          python3 -m pip install -r handtracking/ai/requirements.txt
+          python3 -m unittest discover -s handtracking/ai/tests -v
           mkdir -p "$WORK/reports"
       - name: Build independent public-schema verifier, not a model runtime
         run: |
@@ -37,8 +37,8 @@ jobs:
           echo "4f944f0d6b58fde322d0d4052d7a06f3a59f9a4d1266e677c459eb1089d12b22  $WORK/schema/program.fbs" | sha256sum --check --strict
           echo "9cfdae7d02d850c6141e2abfb7998c599aba2abbffcb014971cdb989c02e7b81  $WORK/schema/scalar_type.fbs" | sha256sum --check --strict
           flatc --cpp -o "$WORK/schema" "$WORK/schema/scalar_type.fbs" "$WORK/schema/program.fbs"
-          g++ -std=c++17 -O2 -Wall -Wextra -Werror -I"$WORK/schema" horizon/tracking/reference_probe.cpp -o "$WORK/reference-probe"
-          METAPORT_REFERENCE_PROBE="$WORK/reference-probe" python3 -m unittest horizon.tracking.tests.test_reference_fixture -v
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -I"$WORK/schema" handtracking/ai/reference_probe.cpp -o "$WORK/reference-probe"
+          METAPORT_REFERENCE_PROBE="$WORK/reference-probe" python3 -m unittest handtracking.ai.tests.test_reference_fixture -v
       - name: Obtain fixed verified OTA and original images
         run: |
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
@@ -57,7 +57,7 @@ jobs:
         id: inspect
         run: |
           set +e
-          python3 -m horizon.tracking.ptez --images "$WORK/images" \
+          python3 -m handtracking.ai.ptez --images "$WORK/images" \
             --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
           code=$?
           tail -n 60 "$WORK/inspection.log"
@@ -65,10 +65,10 @@ jobs:
       - name: Compare with official generated accessors and structural verifier
         id: reference
         run: |
-          python3 -m horizon.tracking.compare_reference --probe "$WORK/reference-probe" --directory "$WORK/reports"
+          python3 -m handtracking.ai.compare_reference --probe "$WORK/reference-probe" --directory "$WORK/reports"
       - name: Reject incomplete or contradictory fixed-corpus evidence
         id: validate
-        run: python3 -m horizon.tracking.validate_models --directory "$WORK/reports"
+        run: python3 -m handtracking.ai.validate_models --directory "$WORK/reports"
       - name: Record provenance even on analysis failure
         if: always()
         env:

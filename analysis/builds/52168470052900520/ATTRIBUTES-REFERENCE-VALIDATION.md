@@ -6,7 +6,7 @@ confere a estrutura com um segundo leitor; não comprova inferência no Infinix.
 
 ## Atributos recuperados, sem chamar o getter
 
-`horizon/tracking/pte_constants.py` lê o cabeçalho `eh00`, restringe referências
+`handtracking/ai/pte_constants.py` lê o cabeçalho `eh00`, restringe referências
 FlatBuffer ao `program_size` e localiza apenas um getter sem entradas, instruções
 ou delegates, cujo único resultado seja um tensor Byte estático, imutável e
 interno. Rejeita storage externo, alocação dinâmica, offsets fora dos segmentos,
@@ -118,8 +118,8 @@ source `5d48c59`, relatório automático `7dd4e13`:
   no CI; o módulo nativo/sintético foi reexecutado no Actions após a compilação;
 - regressões locais: suíte raiz 53 testes/um skip, guest 30 testes/um skip.
 
-Dependências host-only ficam em `horizon/tracking/requirements.txt`. Para os
-parsers e fixtures Python: `python3 -m unittest discover -s horizon/tracking/tests -v`.
+Dependências host-only ficam em `handtracking/ai/requirements.txt`. Para os
+parsers e fixtures Python: `python3 -m unittest discover -s handtracking/ai/tests -v`.
 O workflow gera os headers públicos e compila/testa o probe C++ separadamente.
 A instalação local via apt não funcionou por falha de rede; a compilação C++
 confirmada nesta etapa é a do runner, não uma build Android ou teste no telefone.

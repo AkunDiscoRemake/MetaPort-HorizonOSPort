@@ -2,7 +2,7 @@ name: Focused original hand input conversion
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/validate_input_report.py, horizon/tracking/tests/test_validate_input_report.py, horizon/tracking/prepare_input.py, horizon/tracking/tests/test_prepare_input.py, horizon/tracking/ghidra/DecompileHandInput.java, .github/workflows/hand-input.yml]
+    paths: [handtracking/ai/validate_input_report.py, handtracking/ai/tests/test_validate_input_report.py, handtracking/ai/prepare_input.py, handtracking/ai/tests/test_prepare_input.py, handtracking/ai/ghidra/DecompileHandInput.java, .github/workflows/hand-input.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m unittest horizon.tracking.tests.test_prepare_input horizon.tracking.tests.test_validate_input_report -v
+          python3 -m unittest handtracking.ai.tests.test_prepare_input handtracking.ai.tests.test_validate_input_report -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -37,7 +37,7 @@ jobs:
           import os,json
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
-          from horizon.tracking.prepare_input import prepare
+          from handtracking.ai.prepare_input import prepare
           root=Path(os.environ['WORK'])
           result=reconstruct(root/'firmware.zip',root/'images',selected={'odm'})
           (root/'reconstruction.json').write_text(json.dumps(result))
@@ -55,11 +55,11 @@ jobs:
         run: |
           "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
             -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
-            -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
             -postScript DecompileHandInput.java "$WORK/reports/input-strings.json" "$WORK/reports/hand-input-decompilation.json" \
             -postScript DecompileHands.java "$WORK/reports/visual-functions.txt" "$WORK/reports/visual-strings.json" "$WORK/reports/hand-input-visuals.json" \
             -deleteProject > "$WORK/ghidra.log" 2>&1
-          python3 -m horizon.tracking.validate_input_report "$WORK/reports/hand-input-decompilation.json"
+          python3 -m handtracking.ai.validate_input_report "$WORK/reports/hand-input-decompilation.json"
       - name: Record measured outcome
         if: always()
         env:

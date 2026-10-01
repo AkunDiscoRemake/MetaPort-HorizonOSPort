@@ -2,7 +2,7 @@ name: Original VrShell and MetaSystemUI decompilation
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/inspect_ui.py, .github/workflows/ui-decompilation.yml]
+    paths: [handtracking/ai/inspect_ui.py, .github/workflows/ui-decompilation.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
-          python3 -m unittest discover -s horizon/tracking/tests -v
+          python3 -m unittest discover -s handtracking/ai/tests -v
           mkdir -p "$WORK/reports"
       - name: Obtain fixed verified OTA and original images
         run: |
@@ -54,7 +54,7 @@ jobs:
         id: decompile
         run: |
           set +e
-          python3 -m horizon.tracking.inspect_ui --images "$WORK/images" \
+          python3 -m handtracking.ai.inspect_ui --images "$WORK/images" \
             --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
           code=$?
           tail -n 60 "$WORK/inspection.log"

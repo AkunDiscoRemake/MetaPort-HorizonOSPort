@@ -1,0 +1,294 @@
+{
+  "firmware_build": "52168470052900520",
+  "ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "scope": "All 25 inventoried handtracking resource files plus the pinned original engine/service and inspected ODM/vendor dependencies; not the complete transitive runtime closure",
+  "resources": [
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/common/defaultProfile.msgpack",
+      "size_bytes": 196371,
+      "sha256": "10282731f703669daa10040612a9d48a8cb133c17050da0c1aabbc41dc287ea8",
+      "kind": "original_visual_asset"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/common/defaultfbx_L.msgpack",
+      "size_bytes": 187811,
+      "sha256": "b2bbddd2495ce8bad80f25e07cd2ffc630452d09da1bf384d144500e151b7422",
+      "kind": "original_visual_asset"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/common/defaultfbx_R.msgpack",
+      "size_bytes": 187811,
+      "sha256": "baef26268d95901b78e7cc22d073685d4aff9b319aeea09a4b75bb5967c52fe8",
+      "kind": "original_visual_asset"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/common/defaultfbx_restSkeletons.msgpack",
+      "size_bytes": 4827,
+      "sha256": "62ffffddcb08a13884c1a400ea64ecd9e0c42f010c3c5ec00fc0612470a259ce",
+      "kind": "original_visual_asset"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/detection/DETV68.ptl",
+      "size_bytes": 382957,
+      "sha256": "6dc512b4f9f88c9a40057f4dbf862c9244d61a741b400e57e7354ae828aca6b1",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/detection/DET_ENC_V81.ptl",
+      "size_bytes": 4109577,
+      "sha256": "68dd5e67fcd3c7b2a68d874543269a81cd87b0cc5ec81aa02dceb38bce0e2133",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/dpe/DPEV30MG.ptl",
+      "size_bytes": 4593559,
+      "sha256": "99959ef6f99e5f31cd7a7bc35d230571c0636ff57e0ee22c700bc111234ed18a",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/dpe/DPEV31MG.ptez",
+      "size_bytes": 4789025,
+      "sha256": "dd14c969247279bb78a1d741a387cadb6dd46c7aac47447508cea814de8b3b50",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/dpe/DPEV32MG.ptez",
+      "size_bytes": 4864293,
+      "sha256": "d4333db07519c3b953fa3b531bd3d19cb58abc65fd28f639162b62950579ab3a",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/microgesture/MGV30MG.ptl",
+      "size_bytes": 159397,
+      "sha256": "0640812b92f08dfa6693cdc8e8fc00cd5dc1328a30c7bdac02436a98eefbbc56",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/microgesture/MGV31MG.ptl",
+      "size_bytes": 341405,
+      "sha256": "b8c77b074d0959180bd0ca9ad37babc8217cb0f466ca6df2be439915ddb6d930",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/microgesture/MGV31MG_MP.ptl",
+      "size_bytes": 341981,
+      "sha256": "ca6448851012c7c0806108ade3255a0bd72535c9ff51a464af698f3aba619e8a",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/microgesture/MGV32MG.ptl",
+      "size_bytes": 341215,
+      "sha256": "9d718646a1953055f4f3b4602383a0f6107603c8ef904efd0d7869353ef75a6a",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV30.ptez",
+      "size_bytes": 11661914,
+      "sha256": "941be457b231466b326591eab5d6c27aa7871eca9d71f4a72aa589d9c9a691fa",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV30.ptl",
+      "size_bytes": 12293712,
+      "sha256": "acca4779e20f1a230d7bea255ec4f0be5ee638c49ff54b57de872421ae61e53b",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV31.ptez",
+      "size_bytes": 11605764,
+      "sha256": "a8773b7b4f966a40014dd4a650a9eb6980aaf1c1aaf0364add42d6c012a79e0c",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV31.ptl",
+      "size_bytes": 12246124,
+      "sha256": "bf44f383496ae7bc1cb36c8c08831d855910327f2989695d62140565594c53ac",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV32.ptez",
+      "size_bytes": 11900887,
+      "sha256": "ac0e1f83fdc72de347394371e7e63888be9e400f0a47945d782fc50b921ede2b",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV30.ptez",
+      "size_bytes": 2819074,
+      "sha256": "e76502376f86c2410306a9aa1bd5bf14527f8024183a86d9adb8fe63aa00a0fb",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV30.ptl",
+      "size_bytes": 7099092,
+      "sha256": "4179e33416599ffc68adb3329ecd933b3ef6946afc39dfbd34e4caf9806cbd10",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31.ptez",
+      "size_bytes": 2458332,
+      "sha256": "e33f0c45da354a5d3da0e295f44130b4c3c4bdcd28bf67363cb674b7c2dc9a28",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31.ptl",
+      "size_bytes": 3040750,
+      "sha256": "5492c229f3e4407f3aa0b9c7958fa33998435e7603a5d828a8a2fe5f39a00506",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31_Day0.ptez",
+      "size_bytes": 2831620,
+      "sha256": "12b57ada3c20e731690bc7745a54cff24e83b36d824761877775690412d354d1",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV32.ptez",
+      "size_bytes": 2807271,
+      "sha256": "4df3529236a336fb7f45b53b954095b9955957d2ad585593fcf1f515fc1b99a4",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV32_Day0.ptez",
+      "size_bytes": 2815396,
+      "sha256": "75054140ec02fdd86951e4ebde39ac0baaf33080564e60d4e8bc4972383a40ed",
+      "kind": "original_model"
+    },
+    {
+      "partition": "odm",
+      "path": "/bin/trackingservice",
+      "size_bytes": 5384496,
+      "sha256": "a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945",
+      "kind": "original_runtime_component"
+    },
+    {
+      "partition": "odm",
+      "path": "/lib64/libtrackingengines.so",
+      "size_bytes": 41154352,
+      "sha256": "10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe",
+      "kind": "original_runtime_component"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/trackingservice.cfg",
+      "size_bytes": 631,
+      "sha256": "986a04a5130ecaebae9540f4acc6663d100e720f21b7afb9b02f4c858c817499",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/thread_priority.cfg",
+      "size_bytes": 1821,
+      "sha256": "44e496862b89c9bbc463be89599257b77fcbe8522e57be9f86b29bdb7432a64d",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/init/odm.trackingservice.rc",
+      "size_bytes": 188,
+      "sha256": "bc3f143605f1b264959529f4329956fa605d2f3e30bab76c953c99554d72dd26",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/init/apex.trackingservice.rc",
+      "size_bytes": 218,
+      "sha256": "47f05c914cf24abb5caaa453e9e3d86bf51971140f2a2de86596dacfc6096da1",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "odm",
+      "path": "/lib64/libhzos_trackinghost.meta.so",
+      "size_bytes": 11072,
+      "sha256": "7a1a81acb7b42c143866c8536768465569109cb316fd26e21115972a1ab2fd28",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "odm",
+      "path": "/lib64/libtrackingvendorutils.so",
+      "size_bytes": 10832,
+      "sha256": "a83d12685803d32eae269c7d8b9b168c614fc9dcccefd03b9aa8e3250803afa5",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/etc/task_profiles.json",
+      "size_bytes": 12937,
+      "sha256": "d8fc4688a228518554d695224478350070f77b06a3229e555943ec55778437e8",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/etc/cgroups.json",
+      "size_bytes": 367,
+      "sha256": "ae6dcb12a6a99b9e94743a376f7914b48078169b8e12788343712c7e243e89ab",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libhexagon.so",
+      "size_bytes": 197592,
+      "sha256": "31f44dc217b2f4a38c9e251b9a142b98f84c32519d7d9d761212b2dbd1337987",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libhexagon_shim.so",
+      "size_bytes": 1208936,
+      "sha256": "d145909158e83ae4495465b79579df442ec3a01bcb3732c0864e4f60b1894003",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libcdsprpc.so",
+      "size_bytes": 436168,
+      "sha256": "0695fe138d6503602dcc70371270b3582e51cd4e26f63020fd14786a397b2587",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib64/libadsprpc.so",
+      "size_bytes": 436176,
+      "sha256": "596897d638102d34c25d704f3ed9bb06bee6a090af7cee6c6f8fa25ce930ebce",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib/rfsa/adsp/libhexagon_skel.so",
+      "size_bytes": 1735628,
+      "sha256": "1a0153acbc0533a81fb3883f96c163b917793100636fc6dbd57f19ad9b06c3d1",
+      "kind": "original_dependency_or_config"
+    },
+    {
+      "partition": "vendor",
+      "path": "/lib/rfsa/adsp/libQnnBoltnnOpPackageV69.so",
+      "size_bytes": 540112,
+      "sha256": "7308ac95dcf34f91b205666868e43c3d4df4d8e9073684f740aac66165651303",
+      "kind": "original_dependency_or_config"
+    }
+  ]
+}
