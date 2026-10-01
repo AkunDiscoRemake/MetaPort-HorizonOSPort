@@ -8,7 +8,7 @@ CATEGORIES = {
     'passthrough': r'passthrough|passThrough|seeThrough|environmentBlend',
     'composition': r'SurfaceControl|SurfaceTexture|SurfaceView|TextureView|EGL|Compositor|setLayer|swapchain',
     'panels_navigation': r'PanelManager|PanelService|ShellCommand|launchPanel|showPanel|navigation|backStack',
-    'ux_animation': r'ObjectAnimator|ValueAnimator|AnimatorSet|TransitionManager|SpringAnimation|Choreographer',
+    'ux_animation': r'propertyName|interpolator|<set\b|<alpha\b|<translate\b|ObjectAnimator|ValueAnimator|AnimatorSet|TransitionManager|SpringAnimation|Choreographer',
     'input_hands': r'hand.?track|onHand|nativeJoypadAxis|IInputDataInjection|nativeKeyEvent',
     'privileged_services': r'ServiceManager|getService\(|bindService\(|enforceCallingPermission|checkCallingPermission',
 }
@@ -40,7 +40,6 @@ def summarize_ux(root):
             result['resource_files_total'] += 1
             if len(result['resource_files']) < 160:
                 result['resource_files'].append({'path': relative, 'sha256': sha, 'size_bytes': len(raw)})
-            continue
         text = raw.decode('utf-8', errors='replace')
         lines = text.splitlines()
         failed = bool(re.search(r'JADX ERROR|Method not decompiled:', text))

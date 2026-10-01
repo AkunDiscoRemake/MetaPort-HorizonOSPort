@@ -11,7 +11,9 @@ from tools.scan_partitions import dump_entry, command, elf_report
 from handtracking.ai.inspect_original import digest, BUILD
 from horizon.ui.evidence import summarize_ux
 
-APKS = ['/priv-app/VrShell/VrShell.apk', '/priv-app/MetaSystemUI/MetaSystemUI.apk']
+APKS = ['/priv-app/VrShell/VrShell.apk', '/priv-app/MetaSystemUI/MetaSystemUI.apk',
+        '/priv-app/SystemUX/SystemUX.apk', '/priv-app/SettingsPanelApp/SettingsPanelApp.apk',
+        '/priv-app/LibraryPanelApp/LibraryPanelApp.apk']
 INPUT_CALL = re.compile(r'nativeKeyEvent|nativeJoypadAxis|nativeOnInputDevice|nativeRequestUpdateGamepadInputMode|IHandTracking|IInputDataInjection')
 CONTRACT = re.compile(r'\bnative\b|loadLibrary\(|ServiceManager\.|getService\(|hand.?track|controller|onKeyEvent|onGenericMotionEvent|onHand|MemoryBroker', re.I)
 
@@ -59,11 +61,13 @@ def inspect(images, reconstruction, jadx, output):
             manifest,_=command(['aapt','dump','xmltree',str(apk),'AndroidManifest.xml'],max_output=4*1024*1024)
             native=[]
             with zipfile.ZipFile(apk) as archive:
-                name='lib/arm64-v8a/libshell.so'
-                if name in archive.namelist():
+                members = [n for n in archive.namelist() if n.startswith('lib/arm64-v8a/') and n.endswith('.so')]
+                if len(members) > 64 or sum(archive.getinfo(n).file_size for n in members) > 512*1024*1024:
+                    raise ValueError('APK native library budget exceeded')
+                for index,name in enumerate(members):
                     entry=archive.getinfo(name)
                     if entry.file_size>128*1024*1024: raise ValueError('Native library size limit')
-                    library=root/'libshell.so';library.write_bytes(archive.read(entry))
+                    library=root/f'library-{index}.so';library.write_bytes(archive.read(entry))
                     native.append({'apk_member':name,**elf_report(library,deep=False)})
             env=dict(os.environ,JAVA_OPTS='-Xmx4g')
             with (root/'jadx.log').open('w') as log:

@@ -8,13 +8,15 @@ class EvidenceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d)
             (p/'Shell.java').write_text('// JADX ERROR\nPassthrough.start();\nSurfaceControl.x();\nValueAnimator.x();')
-            (p/'layout.xml').write_text('<layout/>')
+            (p/'layout.xml').write_text('<objectAnimator propertyName="alpha" duration="200"/>')
             r = summarize_ux(p)
             self.assertFalse(r['ui_ported'])
             self.assertEqual(r['resource_files_total'], 1)
-            for k in ('passthrough', 'composition', 'ux_animation'):
+            for k in ('passthrough', 'composition'):
                 self.assertEqual(r['categories'][k]['matching_lines'], 1)
                 self.assertTrue(r['categories'][k]['sites'][0]['has_decompiler_errors'])
+            self.assertEqual(r['categories']['ux_animation']['matching_lines'], 2)
+            self.assertTrue(any(s['path'].endswith('.xml') for s in r['categories']['ux_animation']['sites']))
     def test_counts_continue_after_bounded_sample(self):
         with tempfile.TemporaryDirectory() as d:
             (Path(d)/'Shell.java').write_text('passthrough();\n'*(LIMIT+3))
