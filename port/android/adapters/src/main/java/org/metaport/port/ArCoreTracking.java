@@ -1,6 +1,7 @@
 package org.metaport.port;
 
 import android.Manifest;
+import android.media.Image;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import com.google.ar.core.Session;
 import com.google.ar.core.TrackingState;
 import com.google.ar.core.exceptions.CameraNotAvailableException;
 import com.google.ar.core.exceptions.UnavailableException;
+import com.google.ar.core.exceptions.NotYetAvailableException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +33,9 @@ import java.util.Map;
  */
 public final class ArCoreTracking implements AutoCloseable {
     public enum Availability { READY, INSTALL_REQUIRED, UNSUPPORTED, UNKNOWN }
+    public enum DepthMode { OFF, AUTOMATIC, RAW }
+    public enum DepthResult { DISABLED, NO_CAMERA_FRAME, NOT_YET_AVAILABLE, DELIVERED }
+    private DepthMode depthMode = DepthMode.OFF;
     public enum State { TRACKING, PAUSED, STOPPED }
     public static final String CLOCK_DOMAIN = "ARCORE_FRAME_TIMESTAMP";
     public static final String COORDINATES = "ARCORE_WORLD_FROM_PHYSICAL_CAMERA_METERS_XYZW";
@@ -100,6 +105,65 @@ public final class ArCoreTracking implements AutoCloseable {
         if (rotation < 0 || rotation > 3 || width <= 0 || height <= 0) throw new IllegalArgumentException("Invalid display geometry");
         session.setDisplayGeometry(rotation, width, height);
         latestCameraFrame = null;
+    }
+
+    private static Config.DepthMode arDepthMode(DepthMode mode) {
+        switch (mode) {
+            case AUTOMATIC: return Config.DepthMode.AUTOMATIC;
+            case RAW: return Config.DepthMode.RAW_DEPTH_ONLY;
+            default: return Config.DepthMode.DISABLED;
+        }
+    }
+    public boolean supportsDepth(DepthMode mode) {
+        check();
+        if (mode == null) throw new IllegalArgumentException("Missing depth mode");
+        return mode == DepthMode.OFF || session.isDepthModeSupported(arDepthMode(mode));
+    }
+    /** Explicit opt-in, only while paused. Unsupported is NOT replaced by fake depth. */
+    public void configureDepth(DepthMode mode) {
+        check();
+        if (resumed) throw new IllegalStateException("Pause before configuring depth");
+        if (!supportsDepth(mode)) throw new UnsupportedOperationException("ARCore depth mode unavailable");
+        Config config = session.getConfig();
+        config.setDepthMode(arDepthMode(mode)); session.configure(config);
+        depthMode = mode; latestCameraFrame = null;
+    }
+    @FunctionalInterface public interface DepthConsumer {
+        /** Borrowed images: valid only during this call. Do not close, retain or
+         * access asynchronously. RAW confidence is 0..255; AUTOMATIC confidence
+         * is null, not fabricated. Millimeters use image row/pixel strides.
+         * Depth timestamp may differ from color; never assume synchronization.
+         */
+        void accept(Image millimeters, Image confidence, long colorTimestampNs, long epoch);
+    }
+    /** No Java image copy; images closed even if the consumer throws. RAW depth
+     * can be sparse/repeated across color frames. No Quest sensor/algorithm claim.
+     */
+    public DepthResult withDepth(DepthConsumer consumer) {
+        check();
+        if (consumer == null) throw new IllegalArgumentException("Missing consumer");
+        if (depthMode == DepthMode.OFF) return DepthResult.DISABLED;
+        if (!resumed || latestCameraFrame == null || latestCameraFrame.getTimestamp() == 0)
+            return DepthResult.NO_CAMERA_FRAME;
+        Image depth;
+        try {
+            depth = depthMode == DepthMode.RAW ? latestCameraFrame.acquireRawDepthImage16Bits()
+                    : latestCameraFrame.acquireDepthImage16Bits();
+        } catch (NotYetAvailableException e) { return DepthResult.NOT_YET_AVAILABLE; }
+        try (Image ownedDepth = depth) {
+            if (depthMode == DepthMode.RAW) {
+                Image confidence;
+                try { confidence = latestCameraFrame.acquireRawDepthConfidenceImage(); }
+                catch (NotYetAvailableException e) { return DepthResult.NOT_YET_AVAILABLE; }
+                try (Image ownedConfidence = confidence) {
+                    if (depth.getTimestamp() != confidence.getTimestamp() ||
+                        depth.getWidth() != confidence.getWidth() || depth.getHeight() != confidence.getHeight())
+                        throw new IllegalStateException("Mismatched raw depth/confidence images");
+                    consumer.accept(ownedDepth, ownedConfidence, latestCameraFrame.getTimestamp(), epoch);
+                }
+            } else consumer.accept(ownedDepth, null, latestCameraFrame.getTimestamp(), epoch);
+        }
+        return DepthResult.DELIVERED;
     }
 
     public void resume() throws CameraNotAvailableException {
