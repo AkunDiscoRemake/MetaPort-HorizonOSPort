@@ -273,3 +273,20 @@ hash, a 96-function total budget and explicit incomplete-ABI flags. In particula
 the Clay window includes ELF `0xda03e4` at relative slot `0x30`. The 32-slot windows
 can include neighboring tables: they are not proven class layouts, and no adapter
 may call a target merely because it appears in this selection.
+
+## Completed virtual frontier and OpenXR call-site resolution
+
+Run **36883108996 succeeded** with 56 roots / 96 selected functions, all recorded
+as `DECOMPILED_NOT_VALIDATED`. The refreshed broader batch **36883109004** also
+recovered 96/96 selected functions; these overlapping batches are not additive
+counts of unique recovered functions.
+
+The virtual frontier exposes `xrBeginSession` at ELF `0x1123704`, event polling at
+`0x11239a4`, and frame waiting at `0xb90f54`. These names do not supply an OpenXR
+runtime on the phone. `resolve_shell_xr.py` now traces procedure-name references
+back to the hash-pinned original ELF instead of assigning guessed private APIs.
+The first run **36887072598** recorded 43 C-like call sites and left all three
+`xrGetInstanceProcAddr` names unresolved. The revised reader permits string bytes
+inside executable PT_LOAD ranges (permissions do not establish section contents);
+its new CI result is pending at this update. Unresolved does not mean supported,
+and successful name recovery would not prove a callable or integrated ABI.
