@@ -1,20 +1,20 @@
-name: Disassemble all executable sections of original libshell
+name: Disassemble original tracking engine executable sections
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [tools/disassemble_original_arm64.py, horizon/ui/inspect_shell_vtables.py, horizon/ui/tests/test_shell_vtables.py, horizon/ui/disassemble_shell.py, horizon/ui/tests/test_disassemble_shell.py, .github/workflows/shell-disassembly.yml]
+    paths: [tools/disassemble_original_arm64.py, handtracking/ai/disassemble_engine.py, .github/workflows/hand-engine-disassembly.yml]
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: metaport-shell-disassembly
+  group: metaport-hand-engine-disassembly
   cancel-in-progress: false
 jobs:
   analyze:
     runs-on: ubuntu-22.04
     timeout-minutes: 90
     env:
-      WORK: ${{ github.workspace }}/local-analysis/shell-disassembly
+      WORK: ${{ github.workspace }}/local-analysis/hand-engine-disassembly
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,16 +42,15 @@ jobs:
           from pathlib import Path
           from tools.reconstruct_ota import reconstruct
           p=Path(os.environ['WORK'])
-          r=reconstruct(p/'firmware.zip',p/'images',selected={'system_ext'})
+          r=reconstruct(p/'firmware.zip',p/'images',selected={'odm'})
           (p/'reconstruction.json').write_text(json.dumps(r))
           PY
       - name: Extract pinned original and stream all executable-section assembly
         id: decompile
         timeout-minutes: 15
         run: |
-          python3 -m horizon.ui.prepare_shell --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
-          python3 -m horizon.ui.disassemble_shell --library "$WORK/reports/libshell.so" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
-          python3 -m horizon.ui.inspect_shell_vtables --library "$WORK/reports/libshell.so" --output "$WORK/reports/shell-vtable-windows.json" >> "$WORK/inspection.log" 2>&1
+          python3 -m handtracking.ai.prepare_input --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
+          python3 -m handtracking.ai.disassemble_engine --library "$WORK/reports/libtrackingengines.so" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
       - name: Record provenance even on analysis failure
         if: always()
         env:
@@ -67,7 +66,7 @@ jobs:
                   'decompile_step':os.environ['DECOMPILE_OUTCOME'],'horizon_ported':False,
                   'physical_phone_tested':False,
                   'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
-          (p/'reports/shell-disassembly-run.json').write_text(json.dumps(report,indent=2)+'\n')
+          (p/'reports/hand-engine-disassembly-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
       - name: Publish reports only, never firmware or models
         if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
@@ -81,7 +80,7 @@ jobs:
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
-          for name in shell-full-disassembly shell-disassembly-run shell-vtable-windows; do
+          for name in hand-engine-full-disassembly hand-engine-disassembly-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
@@ -90,7 +89,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then
-            git commit -m 'Record original libshell executable-section listing metadata, not runtime readiness [skip ci]'
+            git commit -m 'Record original tracking engine executable-section listing metadata, not runtime readiness [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
@@ -99,17 +98,17 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: shell-disassembly-reports-no-firmware
+          name: hand-engine-disassembly-reports-no-firmware
           path: |
-            ${{ env.WORK }}/reports/shell-*.json
+            ${{ env.WORK }}/reports/hand-engine-*.json
           retention-days: 7
 
       - uses: actions/upload-artifact@v4
         with:
-          name: original-libshell-executable-sections-not-runtime
+          name: original-tracking-engine-executable-sections-not-inference
           path: |
-            ${{ env.WORK }}/reports/libshell-executable-sections.asm.gz
-            ${{ env.WORK }}/reports/shell-full-disassembly.json
+            ${{ env.WORK }}/reports/libtrackingengines-executable-sections.asm.gz
+            ${{ env.WORK }}/reports/hand-engine-full-disassembly.json
             NOTICE.md
           compression-level: 0
           if-no-files-found: error
