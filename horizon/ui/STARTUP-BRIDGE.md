@@ -139,3 +139,43 @@ service destruction, preferences symbol lookup, and thread lifecycle helper.
 Their names/purposes remain analysis hypotheses, not original API declarations.
 The selector verifies source-library hash, reference provenance and executable
 address bounds; neither workflow executes firmware or produces a working APK.
+
+## Thread → original ShellApp → frame loop
+
+Run **36812219346 succeeded**, recovering five seeds and nine direct callees.
+The report remains C-like reconstruction, not a compiled or executed port.
+
+- ELF `0xd8a0b4` prepares a `0x890`-byte stack region, invokes `0xd5d3d8`, then
+  `0xd8e01c` and a thread-rundown helper. This does not establish a public C++
+  object layout for reuse by our code.
+- `0xd5d3d8` includes `ShellApp::ShellApp`, identity readiness, JavaVM thread
+  attachment, Clay initialization/startup, a non-null VR-platform invariant,
+  controller/environment/input setup, and the original frame loop. The frame
+  iteration invokes `0xd622fc`. Its large decompilation contains indirect calls
+  and allocator no-return warnings; do not compile it as recovered source.
+- Service destruction at `0xd8a254` signals stop and calls rundown with 200 ms
+  waits and a retry argument of 20. It also contains `_Exit(0)`, not just ordinary
+  object destruction. This is an explicit process-lifecycle integration issue,
+  not evidence of root detection and not permission to remove checks blindly.
+- The preferences accessor uses `call_once` with callback `0xd8a760` (callback
+  bodies were not followed by the earlier direct-CALL-only frontier).
+
+Run **36812746651 succeeded** in tracing original `__wrap__ZdlPv` from `0x47444`
+through PLT `0x83e10` to GOT `0x8f120`, whose relocation names **`free@LIBC`**.
+This resolves the static tail destination, not runtime symbol interposition or
+all exception paths. It contradicts treating the wrapper's zero symbol size as
+absence of an implementation; Ghidra's no-return inference still needs correction
+before relying on reconstructed cleanup control flow.
+
+`generate_jni_contract.py` generates type-only C++ function pointers from all
+native declarations recovered from the original target DEX class. The Android
+build now compiles startup signature assertions with actual NDK JNI types.
+There are **no fake JNI implementations or success stubs**. Notably, the exported
+`nativePassthroughRequest` selected in the original ELF study has **no matching
+native declaration in this DEX class**; export presence alone does not prove a
+reachable Java API. The generated contract deliberately does not invent one.
+
+Next bounded analysis: **36813678532**, eight identity/Clay/platform/frame
+candidates, still pending at this update. Android contract build **36813604224**
+also pending. Local validation: **45 UI tests passed; 92 hand-analysis tests ran,
+one skipped**. A working METAPORT APK and device rendering are still unvalidated.

@@ -45,3 +45,17 @@ terminou; o formato dos modelos permanece opaco (TH1).
 Requisitos preliminares: `docs/COMPATIBILITY.md`; política verificável em
 `devices/compatibility-policy.json`. Nenhum modelo de telefone validado fisicamente,
 sem promessa de compatibilidade universal ou APK completo.
+
+## Inicialização original: progresso sem APK funcional
+
+A análise 36812219346 recuperou a cadeia da thread até `ShellApp` e seu laço de
+frames. Há dependências explícitas de identidade, Clay e plataforma VR antes do
+loop; o encerramento do serviço inclui `_Exit(0)`. A ligação JNI agora tem tipos
+C++ gerados das declarações do DEX original, incluindo retorno `jlong` de
+`nativeInit`, com checagem NDK adicionada ao build. Esses tipos não implementam
+serviços nem tornam o shell carregável. Ver `horizon/ui/STARTUP-BRIDGE.md`.
+
+O próximo alvo de análise é a inicialização da plataforma e a iteração de frame,
+não empacotar um launcher substituto. A exigência de APK comum continua sujeita
+aos bloqueios de serviços/permissões listados acima; não há garantia técnica de
+portar integralmente o Horizon nesse regime.
