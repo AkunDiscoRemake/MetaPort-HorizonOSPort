@@ -6,6 +6,8 @@ File bytes are not a capture of relocated process memory or proof of crash cause
 import hashlib
 from pathlib import Path
 import re
+import subprocess
+import time
 from handtracking.ai.elf_pointer_evidence import load_segments
 from tools.scan_partitions import command
 
@@ -42,20 +44,38 @@ def collect(crash_text,libraries,bundle):
                         '--start-address='+hex(row['start_elf']),
                         '--stop-address='+hex(row['end_elf']),str(path)],max_output=65536)
         row['disassembly']=text;rows.append(row)
-    inventories=[];scanned=0
-    for name,data in sorted(cache.items()):
+    # Prioritize real crash libraries, then inventory other verified small
+    # dependencies so the next experiment need not discover every load singly.
+    # This only collects evidence: it never selects or applies new patches.
+    inventories=[];scanned=0;scan_bytes=0;candidate_count=0;started=time.monotonic()
+    if len(known)>128:raise ValueError('Dependency census node budget')
+    names=sorted(cache)+sorted(set(known)-set(cache))
+    for name in names:
         inventory={'library':name,'sha256':known[name]['sha256'],
-                   'reachable_code_proven':False}
-        if len(data)>2*1024*1024 or scanned>=4:
-            inventory.update(inventory_complete=False,status='SKIPPED_CENSUS_BUDGET')
-        else:
-            scanned+=1
-            try:
-                text,_=command(['aarch64-linux-gnu-objdump','-d',str(Path(libraries)/name)],max_output=16*1024*1024)
-                inventory['candidates']=rcpc_candidates(text)
-            except (ValueError,OSError) as error:
-                # A failed optional census must not erase verified crash windows.
-                inventory.update(error=str(error),inventory_complete=False)
+                   'reachable_code_proven':False,'observed_in_crash':name in cache}
+        try:
+            if not re.fullmatch(r'[A-Za-z0-9_][A-Za-z0-9_+.@=\-]{0,180}\.so',name) or '..' in name:
+                raise ValueError('Invalid census library name')
+            path=Path(libraries)/name
+            if path.is_symlink():raise ValueError('Symlink census input')
+            size=path.stat().st_size
+            if not 0<size<=2*1024*1024 or scanned>=64 or scan_bytes+size>32*1024*1024 or time.monotonic()-started>=120 or candidate_count>=8192:
+                inventory.update(inventory_complete=False,status='SKIPPED_CENSUS_BUDGET')
+            else:
+                scanned+=1;scan_bytes+=size
+                data=cache.get(name)
+                if data is None:data=path.read_bytes()
+                if hashlib.sha256(data).hexdigest()!=known[name]['sha256']:
+                    raise ValueError('Census library hash mismatch')
+                load_segments(data)
+                text,_=command(['aarch64-linux-gnu-objdump','-d',str(path)],max_output=16*1024*1024)
+                candidates=rcpc_candidates(text)
+                if candidate_count+len(candidates)>8192:raise ValueError('Aggregate candidate budget')
+                candidate_count+=len(candidates)
+                inventory.update(candidates=candidates,inventory_complete=True)
+        except (ValueError,OSError,subprocess.TimeoutExpired) as error:
+            # Optional failures must not erase verified crash windows.
+            inventory.update(error=str(error),inventory_complete=False)
         inventories.append(inventory)
     return {'frames':rows,'rcpc_inventories':inventories,'runtime_memory_verified':False,'crash_cause_proven':False,
             'scope':'Original packaged ELF instructions at reported guest PCs; not a hardware compatibility verdict'}

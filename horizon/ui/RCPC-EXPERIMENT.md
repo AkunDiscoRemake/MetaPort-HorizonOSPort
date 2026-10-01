@@ -137,3 +137,13 @@ process or original UI. The next library inventory contains 14 explicit sites
 `2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167`.
 No reference counter, branch or return value is replaced. The next experiment's
 outcome remains unknown until its runtime evidence is collected.
+
+The optional inventory now prioritizes crash libraries and then examines the
+remaining verified small dependencies: at most 64 libraries, 2 MiB/library,
+32 MiB aggregate input, 8192 candidates, 16 MiB disassembler output/library,
+and a 120-second admission deadline (an admitted parser has its own 45-second
+timeout). Hash mismatches, symlinks, invalid names, budget skips and timeouts
+are explicit and do not discard the already verified crash windows. Completeness
+means the bounded decoder output was scanned, not all code paths were reached.
+Nothing from this inventory is automatically patched or treated as a successful
+runtime/ABI/service integration.

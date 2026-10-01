@@ -57,3 +57,47 @@ class CrashInstructions(unittest.TestCase):
                           {'nodes':[{'soname':'libc++.so','sha256':sha}]})
             self.assertEqual(len(r['frames']),1)
             self.assertFalse(r['rcpc_inventories'][0]['inventory_complete'])
+
+    def test_noncrashing_dependency_is_verified_but_not_claimed_reachable(self):
+        data=self.image();sha=hashlib.sha256(data).hexdigest()
+        with tempfile.TemporaryDirectory() as d:
+            for name in ('libutils.so','libother.so'):(Path(d)/name).write_bytes(data)
+            bundle={'nodes':[{'soname':name,'sha256':sha} for name in ('libutils.so','libother.so')]}
+            with patch('tools.shell_crash_windows.command',return_value=('nop','')):
+                r=collect('#00 pc 00001000 /data/app/a/lib/arm64/libutils.so (f)',d,bundle)
+                self.assertEqual(len(r['frames']),1)
+                other=next(i for i in r['rcpc_inventories'] if i['library']=='libother.so')
+                self.assertTrue(other['inventory_complete'])
+                self.assertFalse(other['observed_in_crash']);self.assertFalse(other['reachable_code_proven'])
+                (Path(d)/'libother.so').write_bytes(data+b'changed')
+                r=collect('#00 pc 00001000 /data/app/a/lib/arm64/libutils.so (f)',d,bundle)
+                other=next(i for i in r['rcpc_inventories'] if i['library']=='libother.so')
+                self.assertFalse(other['inventory_complete']);self.assertIn('hash mismatch',other['error'])
+                self.assertEqual(len(r['frames']),1)
+
+    def test_census_timeout_retains_crash_window(self):
+        import subprocess
+        data=self.image();sha=hashlib.sha256(data).hexdigest()
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d)/'libutils.so').write_bytes(data)
+            with patch('tools.shell_crash_windows.command',side_effect=[('nop',''),subprocess.TimeoutExpired('objdump',45)]):
+                r=collect('#00 pc 00001000 /data/app/a/lib/arm64/libutils.so (f)',d,
+                          {'nodes':[{'soname':'libutils.so','sha256':sha}]})
+            self.assertEqual(len(r['frames']),1)
+            self.assertFalse(r['rcpc_inventories'][0]['inventory_complete'])
+
+    def test_census_deadline_is_explicit_and_does_not_drop_windows(self):
+        data=self.image();sha=hashlib.sha256(data).hexdigest()
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d)/'libutils.so').write_bytes(data)
+            with patch('tools.shell_crash_windows.command',return_value=('nop','')) as cmd, patch('tools.shell_crash_windows.time.monotonic',side_effect=[0,121]):
+                r=collect('#00 pc 00001000 /data/app/a/lib/arm64/libutils.so (f)',d,
+                          {'nodes':[{'soname':'libutils.so','sha256':sha}]})
+            self.assertEqual(cmd.call_count,1);self.assertEqual(len(r['frames']),1)
+            self.assertEqual(r['rcpc_inventories'][0]['status'],'SKIPPED_CENSUS_BUDGET')
+
+    def test_census_rejects_traversal_without_reading_or_decoding(self):
+        with patch('tools.shell_crash_windows.command') as cmd:
+            r=collect('', '/unused', {'nodes':[{'soname':'../outside.so','sha256':'0'*64}]})
+        cmd.assert_not_called()
+        self.assertIn('Invalid census library name',r['rcpc_inventories'][0]['error'])

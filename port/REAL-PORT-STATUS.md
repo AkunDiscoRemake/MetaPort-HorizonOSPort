@@ -102,3 +102,11 @@ A análise original revelou um cliente local com Surfaces e roteamento de toque
 para `emuNativeClick`, mas ele ainda não foi habilitado/validado no port e depende
 da integração do serviço nativo. Nome e ícone do usuário continuam preparados;
 não foram usados para mascarar esse bloqueio com uma Activity substituta.
+
+Run **36924213557**: a alternativa de acquire de 32 bits passou no teste
+independente, incluindo extensão para 64 bits; RCpc de 32 bits falhou no tradutor.
+Todos os pré-requisitos de instruções passaram antes de instalar o original.
+O aplicativo ultrapassou `attemptEdit`, mas encerrou em `SharedBuffer::release`
+(próximo LDAPR em `0x10058`). Continua sem UI e sem beta funcional.
+A experiência seguinte usa 14 pontos explícitos de `libutils.so`; não confundir
+essa adaptação para o emulador com otimização para o Infinix ou para sua NPU.
