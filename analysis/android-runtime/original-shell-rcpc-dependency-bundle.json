@@ -1248,6 +1248,23 @@
       "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
       "physical_device_validated": false,
       "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libutils.so",
+      "source_sha256": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
+      "adapted_sha256": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
+      "sites": [
+        {
+          "pc_elf": 63584,
+          "file_offset": 63584,
+          "original_word": "0xb8bfc008",
+          "adapted_word": "0x88dffc08"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
     }
   ],
   "original_native_dependencies_unmodified": false,
@@ -1270,7 +1287,7 @@
     "lib/arm64-v8a/libosutils.so": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
     "lib/arm64-v8a/libreportstatsevent.so": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
     "lib/arm64-v8a/libui.so": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
-    "lib/arm64-v8a/libutils.so": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
+    "lib/arm64-v8a/libutils.so": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
     "lib/arm64-v8a/libepsmixermessagechannel.so": "e898fcf1bb4d24a0ccf7d6243f1adac86d8099ba4a39a1ecf5acd94b45bb7387",
     "lib/arm64-v8a/android.media.audio.common.types-V2-cpp.so": "5e1e6c5b777561c2db36d99975a78189f0d415649b2e95c09d4cfe9273ce0400",
     "lib/arm64-v8a/audioclient-types-aidl-cpp.so": "b0109407e6679b636bdb50450aef79e71c313044096b9c5bd31dac43fee67834",
@@ -1687,12 +1704,13 @@
     },
     {
       "soname": "libutils.so",
-      "sha256": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
+      "sha256": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
       "size_bytes": 129496,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libutils.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167"
     },
     {
       "soname": "libepsmixermessagechannel.so",
@@ -5539,6 +5557,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "45b32e9541e8ac4d551a4639f8551cc7b7486dd148849753fa84b157ec04f0b5",
+  "signed_apk_sha256": "84f38827eb266207e39cf3938f873202b450293cd09ff421cd64c9366534a0bf",
   "test_certificate_not_meta_identity": true
 }
