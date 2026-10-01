@@ -2,32 +2,146 @@
   "result": "EXPERIMENT_NOT_COMPLETED",
   "port_ready": false,
   "framework_dex_inspection": {
-    "packaging_error": "DEX checksum/signature mismatch",
+    "packaging_error": "Refusing framework DEX containing boot namespace definitions: Landroid/app/VrosSystemServiceRegistry$$ExternalSyntheticLambda0;, Landroid/app/VrosSystemServiceRegistry$10;, Landroid/app/VrosSystemServiceRegistry$11;, Landroid/app/VrosSystemServiceRegistry$12;, Landroid/app/VrosSystemServiceRegistry$13;, Landroid/app/VrosSystemServiceRegistry$14;, Landroid/app/VrosSystemServiceRegistry$15;, Landroid/app/VrosSystemServiceRegistry$16;",
     "jars": [
       {
         "partition": "system_ext",
         "path": "/framework/hzos-framework.jar",
         "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
-        "error": "DEX checksum/signature mismatch"
+        "sha256": "b1c5111bb301daf971b658414daf8e43a0b4cdac9ecc2e94a554d0c861607e42",
+        "class_definitions": 2041,
+        "dex_headers": [
+          {
+            "member": "classes.dex",
+            "source_dex_sha256": "081de5d2d6401c4d9e45c88260cb451cbb3e0b376effff08b3f31488b54582c6",
+            "source_checksum_hex": "b979ea58",
+            "source_signature_hex": "f380124bb041f68b9a9f990543a5e2c06fb4549e",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "8c8e3d2382680f4d6ea78240bba99f71e529507c1f07ce2f827727b5dfcf4465",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          }
+        ],
+        "defines_required": true,
+        "required_dex_members": [
+          "classes.dex"
+        ],
+        "horizonos_definitions": 1052,
+        "vros_definitions": 216
       },
       {
         "partition": "system_ext",
         "path": "/framework/com.oculus.os.platform.jar",
         "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
-        "error": "DEX checksum/signature mismatch"
+        "sha256": "9659b2f81dd6ba59c4ea549e0229717e2a22e6cc31369b5735ddc4b90d495285",
+        "class_definitions": 889,
+        "dex_headers": [
+          {
+            "member": "classes.dex",
+            "source_dex_sha256": "e58088cc39f3494bddde87b80828eb0d6ee36aeedc7d530d1f2eaa0b7ba02913",
+            "source_checksum_hex": "21826274",
+            "source_signature_hex": "7d658fce7469bd251cfcec23895e587258626f2c",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "3e109b84d4668f50ec065cc07e5cbee6b50c22d88ded5b37183d67970a5698ba",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          }
+        ],
+        "defines_required": false,
+        "required_dex_members": [],
+        "horizonos_definitions": 0,
+        "vros_definitions": 0
       },
       {
         "partition": "system",
         "path": "/system/framework/framework.jar",
         "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
-        "error": "DEX checksum/signature mismatch"
+        "sha256": "e98ae09ebfc3550042ff16239e27159d50ea3c1e0fb0df79016eab17ad00b30e",
+        "class_definitions": 29552,
+        "dex_headers": [
+          {
+            "member": "classes.dex",
+            "source_dex_sha256": "99ec705f4d99e0d479bef76ab0cda51509f6dba00b0dd4f38c2222b416bfe3a7",
+            "source_checksum_hex": "3fb795ef",
+            "source_signature_hex": "6ecb8c1003c463e8005963b7ab81ab9c65f2e676",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "c1d83ead674d9dca905d385efda6d286c86b640711462711cd2ca921819f3d13",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          },
+          {
+            "member": "classes2.dex",
+            "source_dex_sha256": "34c6d4917763bbe581baa1356dcb105158aa6b3f29e8320866d8a169a62b436d",
+            "source_checksum_hex": "1b7cfd67",
+            "source_signature_hex": "77231ded85acddfbca9d8a8a6b63c171f50f398f",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "0f7f07f4f518069d63e52975c37931773f1fa1cc3814a9f96b1f75c1f551a9b5",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          },
+          {
+            "member": "classes3.dex",
+            "source_dex_sha256": "53dfeeee57c3c1ed06a1481edf84718cfd95ed6ce2cd9a4fff58ebdf1112e035",
+            "source_checksum_hex": "1c088538",
+            "source_signature_hex": "b477b9951eccbb2ce5fb92a6733e41d9d5d58096",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "0f6992a3b98ad928ea3712918e5c39e9ff3c9cc133447e9b65a7bb72863f576c",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          },
+          {
+            "member": "classes4.dex",
+            "source_dex_sha256": "89de20ba8c4853f9295a7e97c356bb6836302318afaa28049e32c81b6bdc194a",
+            "source_checksum_hex": "de15c3d4",
+            "source_signature_hex": "4dfd1150e21d015cedb55b793c6f86d50ee6db9e",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "71da00dcbd06ca97894188670b23a6b7350925d8d4a2398286a7a8854a05beb8",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          },
+          {
+            "member": "classes5.dex",
+            "source_dex_sha256": "8dcd05bcf5048b02586e9cfc64112eea909912817a33c309f41fcb3af70a8bbb",
+            "source_checksum_hex": "3b78b5e5",
+            "source_signature_hex": "3eca586656a4b8a3e3009350fb8abeb4af57730e",
+            "header_checksums_recomputed": true,
+            "payload_sha256": "759672c98dccc59a44a65952133b7ca2f2034ead27405aaaddd22b16ca771986",
+            "changed_byte_range": [
+              8,
+              32
+            ],
+            "instruction_and_data_bytes_unchanged": true
+          }
+        ],
+        "defines_required": false,
+        "required_dex_members": [],
+        "horizonos_definitions": 0,
+        "vros_definitions": 0
       }
     ],
     "framework_services_ported": false,
     "firmware_executed": false
   },
-  "source_commit": "329b7b62224b821e7f87e999f6e1e3f3a77c4f89",
-  "run_id": "36942634549",
+  "source_commit": "08358e1e7879e5780de419abac8c256427f41163",
+  "run_id": "36943056110",
   "probe_step": "skipped",
   "ci_diagnostics": []
 }
