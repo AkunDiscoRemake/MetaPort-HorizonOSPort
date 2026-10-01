@@ -38545,19 +38545,19 @@
       "reference_count": 2,
       "sites": [
         {
-          "elf_address": 33269756,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020ba640",
-            "elf_address": 33269312
-          }
-        },
-        {
           "elf_address": 11250448,
           "reference_type": "PARAM",
           "containing_function": {
             "name": "FUN_00bba480",
             "elf_address": 11248768
+          }
+        },
+        {
+          "elf_address": 33269756,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020ba640",
+            "elf_address": 33269312
           }
         }
       ],
@@ -41407,6 +41407,11 @@
       "sites_truncated": false
     }
   ],
+  "dpe_output_lookup_literal": {
+    "elf_address": 235797,
+    "bytes_hex": "726e6e5f6d656d5f6665617475726573",
+    "ascii": "rnn_mem_features"
+  },
   "elf_pointer_functions": [
     {
       "type_name": "N6nimble15DPEHandTracking14DPEPredictorV2E",
@@ -41771,7 +41776,10 @@
       23185024,
       23185440,
       23162656,
-      23220160
+      23220160,
+      23218736,
+      23228736,
+      12126264
     ],
     "memory": [
       13756064,
