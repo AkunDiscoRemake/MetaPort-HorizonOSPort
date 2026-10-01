@@ -21,13 +21,35 @@ INPUT_CALL = re.compile(r'nativeKeyEvent|nativeJoypadAxis|nativeOnInputDevice|na
 CONTRACT = re.compile(r'\bnative\b|loadLibrary\(|ServiceManager\.|getService\(|hand.?track|controller|onKeyEvent|onGenericMotionEvent|onHand|MemoryBroker', re.I)
 
 
+BOOTSTRAP_CLASSES=('ShellApplication','HomeActivity','MainActivity','ShellActivity')
+
+
+def summarize_bootstrap(root):
+    """Keep complete bounded startup classes, not only truncated matching lines."""
+    rows=[]
+    for name in BOOTSTRAP_CLASSES:
+        relative='sources/com/oculus/vrshell/'+name+'.java';path=Path(root)/relative
+        row={'path':relative,'runtime_validated':False,'compile_ready':False}
+        if not path.is_file() or path.is_symlink():
+            row['status']='NOT_GENERATED_OR_NOT_REGULAR_FILE'
+        elif path.stat().st_size>512*1024:
+            row.update(status='OVERSIZED_NOT_EMBEDDED',size_bytes=path.stat().st_size,generated_sha256=digest(path))
+        else:
+            text=path.read_text(errors='replace')
+            failed=bool(re.search(r'JADX ERROR|Method not decompiled:',text))
+            row.update(status='RECONSTRUCTED_WITH_ERRORS' if failed else 'RECONSTRUCTED_NOT_COMPILE_VALIDATED',
+                       generated_sha256=digest(path),source=text,has_decompiler_errors=failed)
+        rows.append(row)
+    return {'classes':rows,'scope':'Selected reconstructed original startup code, not a substitute UI or a completed port'}
+
+
 def summarize_sources(root):
     files = sorted(Path(root).rglob('*.java'))
     if len(files) > 100000: raise ValueError('Source count limit')
     result = {'generated_java_files': len(files), 'files_with_decompiler_errors': 0,
               'native_declarations_total': 0, 'contracts': [], 'input_call_sites': [],
               'source_is_reconstructed_not_original': True, 'runtime_validated': False,
-              'skipped_oversized_sources': [], 'source_coverage_complete': True}
+              'skipped_oversized_sources': [], 'source_coverage_complete': True, 'bootstrap':summarize_bootstrap(root)}
     # Prefer the original UI namespaces, not unrelated dependencies' controller names.
     files.sort(key=lambda p: (0 if any(x in str(p) for x in ('/com/oculus/','/com/meta/')) else 1 if 'systemui' in str(p).lower() else 2, str(p)))
     for path in files:

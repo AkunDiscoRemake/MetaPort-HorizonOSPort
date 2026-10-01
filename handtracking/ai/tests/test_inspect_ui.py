@@ -43,3 +43,19 @@ class UiSummaryTests(unittest.TestCase):
             self.assertFalse(report['source_coverage_complete'])
             self.assertEqual(report['skipped_oversized_sources'][0]['path'],'Huge.java')
             self.assertEqual(report['native_declarations_total'],1)
+
+    def test_complete_bootstrap_preserves_context_and_marks_missing_classes(self):
+        with tempfile.TemporaryDirectory() as root:
+            path=Path(root)/'sources/com/oculus/vrshell/ShellApplication.java'
+            path.parent.mkdir(parents=True)
+            source='class ShellApplication { void before() {} native void init(); void after() {} }'
+            path.write_text(source)
+            rows=summarize_sources(root)['bootstrap']['classes']
+            self.assertEqual(rows[0]['source'],source)
+            self.assertFalse(rows[0]['compile_ready'])
+            self.assertEqual(rows[1]['status'],'NOT_GENERATED_OR_NOT_REGULAR_FILE')
+            path.write_text('// JADX ERROR\n'+source)
+            self.assertEqual(summarize_sources(root)['bootstrap']['classes'][0]['status'],'RECONSTRUCTED_WITH_ERRORS')
+            with path.open('wb') as f:f.truncate(512*1024+1)
+            row=summarize_sources(root)['bootstrap']['classes'][0]
+            self.assertEqual(row['status'],'OVERSIZED_NOT_EMBEDDED');self.assertNotIn('source',row)
