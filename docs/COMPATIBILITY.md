@@ -67,3 +67,17 @@ estarem junto do projeto. A autorização relatada pelo solicitante não foi
 verificada; antes de ampliar redistribuição pública, confirmar por escrito o
 escopo (binários, modelos, marcas e uso dos serviços). Não apresentar como produto
 oficial ou certificado pela Meta. Popularidade não altera esses requisitos.
+
+## ABI ARM64 não basta para os binários originais
+
+A análise e execução de 2026-10-01 encontraram instruções LSE e RCpc em
+`libc++.so` do firmware. No experimento isolado **36900295491**, o tradutor do
+emulador API 36 executou o controle e `ldaddal`, mas `ldaprb` provocou SIGILL.
+Isso é uma limitação demonstrada desse ambiente, não um teste do Infinix nem uma
+prova de que todo aparelho anunciado como ARM64 executará o firmware.
+
+Uma adaptação pontual de acquire está sendo testada separadamente, com hashes e
+instruções alteradas declarados em `horizon/ui/RCPC-EXPERIMENT.md`. Não há detecção
+física de extensões, comparação de desempenho, certificação ARCore/Depth ou novo
+modelo de telefone aprovado por esse experimento. Os requisitos públicos continuam
+preliminares; não anunciar compatibilidade universal a partir da instalação do APK.
