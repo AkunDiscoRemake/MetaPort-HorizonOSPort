@@ -1,0 +1,16 @@
+name: Original shell explicit RCpc compatibility experiment (not a release)
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths:
+      - .github/workflows/original-shell-rcpc.yml
+      - horizon/ui/rcpc_compat.py
+      - tests/test_rcpc_compat.py
+jobs:
+  compatibility:
+    permissions:
+      contents: write
+    uses: ./.github/workflows/original-shell-bundle.yml
+    with:
+      android_api: '36'
+      rcpc_compat: true

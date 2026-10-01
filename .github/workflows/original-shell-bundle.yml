@@ -3,6 +3,14 @@ on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
     paths: [horizon/ui/bundle_shell_dependencies.py, horizon/ui/tests/test_shell_bundle.py, tools/shell_crash_windows.py, .github/workflows/original-shell-bundle.yml]
+  workflow_call:
+    inputs:
+      android_api:
+        type: string
+        default: '36'
+      rcpc_compat:
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       android_api:
@@ -17,7 +25,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: metaport-original-shell-bundle
+  group: metaport-original-shell-${{ inputs.rcpc_compat && 'rcpc' || 'bundle' }}
   cancel-in-progress: true
 jobs:
   baseline:
