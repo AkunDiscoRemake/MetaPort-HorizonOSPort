@@ -216,3 +216,23 @@ concretos de plataforma/Clay acima.
 
 Checagens de runtime dos nossos adaptadores, separadas dessas inferências:
 `docs/VALIDATION.md`. Executar nossa JNI não significa executar a JNI original.
+
+### Primeiro lote ampliado concluído com falha explícita
+
+Run **36815414643** processou as 96 funções selecionadas: **95 reconstruídas** e
+uma falha. A função `0xdc8480` já não falhou pelo timeout de 30s, mas por
+**“Response buffer size exceeded”**. O relatório preserva isso. A contagem de
+107951 funções identificadas pelo Ghidra não é contagem de funções portadas nem
+prova de cobertura completa; a análise automática também atingiu seu limite de
+900s. A etapa posterior concluiu somente o lote selecionado.
+
+O retry isolado usa C markup sem solicitar a árvore HighFunction que não
+consumimos, transporte limitado a 64 MiB, timeout de 180s e saída C-like ainda
+limitada a 200 mil caracteres. É uma tentativa de reduzir o payload, não uma
+correção já validada da função ou de seu comportamento.
+
+O lote recuperou `OsSdkLoader` usando `dlsym`, tentativa de `android_dlopen_ext`
+com flag `0x200`, e fallback `dlopen`. O nome do namespace ainda aparece como
+referência de dados; não inventar seu valor. `nativeUserIdentityResponse` converte
+as duas strings JNI e encaminha-as, com o booleano, ao objeto existente — não
+fornece autenticação por si só.

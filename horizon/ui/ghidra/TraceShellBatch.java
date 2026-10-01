@@ -77,7 +77,7 @@ public class TraceShellBatch extends GhidraScript {
         report.put("analysis_complete",false);save();
         DecompInterface decompiler=new DecompInterface();
         // We consume C markup, not HighFunction's serialized syntax/data-flow tree.
-        // Avoid the >50MiB unused tree that overflowed the constructor response buffer.
+        // Try omitting that unused tree after the constructor exceeded the response buffer.
         DecompileOptions options=new DecompileOptions();
         options.setMaxPayloadMBytes(64);
         decompiler.setOptions(options);

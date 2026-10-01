@@ -79,3 +79,13 @@ execução de firmware. Sanitizadores cobrem apenas os caminhos exercitados.
 Ainda faltam boot original, integração dos serviços/compositor, execução da IA e
 validação física. Estabilidade de produto exige esses testes, além de sessões
 prolongadas com tracking, calor, memória, perda de câmera e pause/resume reais.
+
+### Falha de infraestrutura preservada
+
+O run **36815717226** não chegou à instrumentação: as anotações dos dois jobs
+registram **“Timeout waiting for emulator to boot.”** Não há XML de testes; os
+relatórios ficam corretamente com `passed: false`. Isso não é aprovação nem prova
+de crash do código do renderer. A nova tentativa força KVM, fixa RAM/heap/disco,
+desativa Vulkan (a suíte usa GLES), amplia o limite de boot para 900s e captura
+logcat desde o boot. Essas medidas são diagnóstico/mitigação, não confirmação da
+causa do timeout.
