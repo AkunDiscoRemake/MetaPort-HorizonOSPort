@@ -546,3 +546,28 @@ funcionando no X6873; o tamanho real de página do aparelho não foi medido.
 - Foram mantidos os limites explícitos da análise: syscall observada não é
   privilégio concedido; mapper adaptado não é fila integrada; packing validado
   não é inferência de mãos nem teste físico no X6873.
+
+
+### Fronteira do serviço e dependências menores
+
+**36797013885** recuperou os wrappers fatais para TID atual/outro pthread e
+ligou a construção de HandTrackingService a `002af150`. Nessa função aparecem
+registro de `HandTrackingGlue`, construção por `002bcec4`, um provider via
+`002c000c` e registro PAL condicionado a `005a36a4`. As assinaturas C-like não
+validam ABI; o gate PAL não foi classificado como detecção de root/VR.
+Wrappers sem callers diretos não foram considerados inutilizados.
+
+Para investigar os limites entre módulos, a workflow agora extrai e analisa
+separadamente duas bibliotecas pequenas, com tamanho e SHA pinados a partir do
+relatório de dependências original:
+- `libhzos_trackinghost.meta.so`, 11072 bytes, SHA-256
+  `7a1a81acb7b42c143866c8536768465569109cb316fd26e21115972a1ab2fd28`;
+  dependências incluem Binder NDK e `libmemorybrokerclient.so`.
+- `libtrackingvendorutils.so`, 10832 bytes, SHA-256
+  `a83d12685803d32eae269c7d8b9b168c614fc9dcccefd03b9aa8e3250803afa5`;
+  depende de `libosutils.so`, relevante para a fronteira do scheduler.
+
+A seleção inclui até 24 funções executáveis não-thunk detectadas automaticamente
+por biblioteca, declara truncamento e verifica o hash dentro do Ghidra. Isso não
+significa recuperação de todas as funções reais ou ABI validada. Nenhum binário
+é executado ou publicado; os resultados dessas duas novas análises estão pendentes.

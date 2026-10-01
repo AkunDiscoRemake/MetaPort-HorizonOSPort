@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 from horizon.tracking.inspect_original import BUILD, digest
 from tools.scan_partitions import command, dump_entry
+from horizon.tracking.prepare_tracking_bridges import prepare_bridges
 
 SERVICE_SHA='a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945'
 SERVICE_SIZE=5384496
@@ -46,4 +47,5 @@ def prepare(images,reconstruction,output):
     (output/'service-functions.txt').write_text(''.join(f'{address:x}\n' for address in helpers))
     (output/'service-strings.json').write_text(json.dumps(report['selected'],indent=2)+'\n')
     (output/'hand-service-targets.json').write_text(json.dumps(report,indent=2)+'\n')
+    prepare_bridges(image,inventory,output)
     return report

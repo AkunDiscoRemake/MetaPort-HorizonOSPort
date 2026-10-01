@@ -2,7 +2,7 @@ name: Original tracking service scheduler disassembly
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/tracking/ghidra/TraceHandService.java, horizon/tracking/prepare_hand_service.py, horizon/tracking/tests/test_prepare_hand_service.py, .github/workflows/hand-service.yml]
+    paths: [horizon/tracking/prepare_tracking_bridges.py, horizon/tracking/tests/test_tracking_bridges.py, horizon/tracking/ghidra/SelectTrackingBridge.java, horizon/tracking/ghidra/TraceHandService.java, horizon/tracking/prepare_hand_service.py, horizon/tracking/tests/test_prepare_hand_service.py, .github/workflows/hand-service.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -12,7 +12,7 @@ concurrency:
 jobs:
   inspect:
     runs-on: ubuntu-22.04
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       WORK: ${{ github.workspace }}/local-analysis/hand-service
     steps:
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends e2fsprogs binutils
-          python3 -m unittest horizon.tracking.tests.test_prepare_hand_service -v
+          python3 -m unittest horizon.tracking.tests.test_prepare_hand_service horizon.tracking.tests.test_tracking_bridges -v
           mkdir -p "$WORK/reports" "$WORK/project"
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -68,10 +68,34 @@ jobs:
           assert r['firmware_executed'] is False
           assert any(f['status']=='DECOMPILED_NOT_VALIDATED' for f in r['functions'])
           PY
+      - name: Disassemble pinned tracking host and vendor utility shims
+        id: bridges
+        run: |
+          for item in 'libhzos_trackinghost.meta.so:hand-hzos-host' 'libtrackingvendorutils.so:hand-vendor-utils'; do
+            binary=${item%%:*}
+            prefix=${item#*:}
+            "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" "$prefix" \
+              -import "$WORK/reports/$binary" -max-cpu 2 -analysisTimeoutPerFile 120 \
+              -scriptPath "$GITHUB_WORKSPACE/horizon/tracking/ghidra" \
+              -postScript SelectTrackingBridge.java "$WORK/reports/$prefix" \
+              -postScript DecompileHands.java "$WORK/reports/$prefix-functions.txt" "$WORK/reports/$prefix-strings.json" "$WORK/reports/$prefix-decompilation.json" 1024 \
+              -deleteProject > "$WORK/$prefix.log" 2>&1
+          done
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from horizon.tracking.prepare_tracking_bridges import BRIDGES
+          root=Path(os.environ['WORK'])/'reports'
+          for _,prefix,_,sha in BRIDGES:
+              r=json.loads((root/f'{prefix}-decompilation.json').read_text())
+              assert r['program_sha256'].lower()==sha and r['firmware_executed'] is False
+              assert any(f['status']=='DECOMPILED_NOT_VALIDATED' for f in r['functions'])
+          PY
       - name: Record measured outcome
         if: always()
         env:
           OUTCOME: ${{ steps.decompile.outcome }}
+          BRIDGES_OUTCOME: ${{ steps.bridges.outcome }}
         run: |
           mkdir -p "$WORK/reports"
           python3 - <<'PY'
@@ -79,8 +103,10 @@ jobs:
           from pathlib import Path
           p=Path(os.environ['WORK']);log=p/'ghidra.log'
           result={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
-                  'decompile_step':os.environ['OUTCOME'],'horizon_ported':False,'firmware_executed':False,
+                  'decompile_step':os.environ['OUTCOME'],'bridges_step':os.environ['BRIDGES_OUTCOME'],'horizon_ported':False,'firmware_executed':False,
                   'analysis_timeout_seconds':600,'pointer_candidates_are_abi':False,
+                  'bridge_log_tails':{name:'\n'.join((p/f'{name}.log').read_text(errors='replace').splitlines()[-40:])
+                     for name in ('hand-hzos-host','hand-vendor-utils') if (p/f'{name}.log').exists()},
                   'log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-80:]) if log.exists() else None}
           (p/'reports/hand-service-run.json').write_text(json.dumps(result,indent=2)+'\n')
           PY
@@ -96,7 +122,7 @@ jobs:
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
-          for name in hand-service-targets hand-service-decompilation hand-service-scheduling-calls hand-service-run; do
+          for name in hand-service-targets hand-service-decompilation hand-service-scheduling-calls hand-service-run hand-service-bridges hand-hzos-host-selection hand-hzos-host-decompilation hand-vendor-utils-selection hand-vendor-utils-decompilation; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
@@ -122,5 +148,8 @@ jobs:
         if: always()
         with:
           name: original-hand-service-evidence-no-binaries
-          path: ${{ env.WORK }}/reports/hand-service-*.json
+          path: |
+            ${{ env.WORK }}/reports/hand-service-*.json
+            ${{ env.WORK }}/reports/hand-hzos-host-*.json
+            ${{ env.WORK }}/reports/hand-vendor-utils-*.json
           retention-days: 7
