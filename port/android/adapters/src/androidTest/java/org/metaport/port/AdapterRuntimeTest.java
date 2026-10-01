@@ -28,7 +28,7 @@ public class AdapterRuntimeTest {
         assertFalse("Foreign thread did not finish", other.isAlive());
         assertTrue("Expected thread ownership rejection", result.get() instanceof IllegalStateException);
     }
-    @Test public void sensorsRepeatedStartStopAndClosedGuards() {
+    @Test(timeout=120000) public void sensorsRepeatedStartStopAndClosedGuards() {
         NativeSensors sensors = new NativeSensors(context());
         try {
             assertThrows(IllegalArgumentException.class, () -> sensors.start(9999));
@@ -73,7 +73,7 @@ public class AdapterRuntimeTest {
         assertEquals(0, pixel.get(2)&255);
         output.present(0); // One queued frame per test surface, no consumer backpressure loop.
     }
-    @Test public void eglNativeLoadRenderPresentShaderCompileAndClose() throws Exception {
+    @Test(timeout=120000) public void eglNativeLoadRenderPresentShaderCompileAndClose() throws Exception {
         assertThrows(IllegalArgumentException.class, () -> new EglOutput(null));
         for (int i=0; i<4; i++) {
             try (Window window = new Window()) {
@@ -94,7 +94,7 @@ public class AdapterRuntimeTest {
             }
         }
     }
-    @Test public void closingOneOutputDoesNotInvalidateAnother() {
+    @Test(timeout=120000) public void closingOneOutputDoesNotInvalidateAnother() {
         try (Window first = new Window(); Window second = new Window();
              EglOutput a = new EglOutput(first.surface)) {
             EglOutput b = new EglOutput(second.surface);
@@ -102,7 +102,7 @@ public class AdapterRuntimeTest {
             renderPixel(a);
         }
     }
-    @Test public void inputServiceLifecycleRunsOnMainThread() {
+    @Test(timeout=120000) public void inputServiceLifecycleRunsOnMainThread() {
         InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
             JoyConInput input = new JoyConInput(context());
             try {

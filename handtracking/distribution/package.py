@@ -90,6 +90,7 @@ def extract_originals(images, reconstruction, destination):
 def source_files():
     files={'README.md':ROOT/'handtracking/README.md', 'LICENSE':ROOT/'LICENSE',
            'horizon/input/original-contract.json':ROOT/'horizon/input/original-contract.json',
+           'port/android/adapters/src/main/cpp/shell_jni_contract.hpp':ROOT/'port/android/adapters/src/main/cpp/shell_jni_contract.hpp',
            'NOTICE.md':ROOT/'NOTICE.md', 'THIRD-PARTY-NOTICE.md':ROOT/'handtracking/distribution/THIRD-PARTY-NOTICE.md'}
     for directory in ('handtracking','tools','horizon/ui'):
         for p in (ROOT/directory).rglob('*'):
@@ -97,7 +98,7 @@ def source_files():
                 files[p.relative_to(ROOT).as_posix()]=p
     # Reports remain in their original relative paths so the AI tools/tests work.
     for p in (ROOT/f'analysis/builds/{BUILD}').iterdir():
-        if p.suffix in ('.md','.json') and (p.name.lower().startswith(('hand','input-','model','ptez','reference','compressed-hand','attributes-')) or p.name in ('static-analysis.json','reconstruction.json','ui-decompilation.json','shell-hzos-native.json','shell-hzos-spaces-native.json')):
+        if p.suffix in ('.md','.json') and (p.name.lower().startswith(('hand','input-','model','ptez','reference','compressed-hand','attributes-','shell-')) or p.name in ('static-analysis.json','reconstruction.json','ui-decompilation.json','shell-hzos-native.json','shell-hzos-spaces-native.json')):
             files[p.relative_to(ROOT).as_posix()]=p
     return files
 
