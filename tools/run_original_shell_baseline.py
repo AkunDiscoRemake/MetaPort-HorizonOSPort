@@ -23,6 +23,7 @@ if __name__=='__main__':
                  '--apk','local-analysis/shell-bundle/signed.apk',
                  '--original','local-analysis/original-cache/VrShell.apk',
                  '--bundle-manifest','local-analysis/shell-bundle/bundle.json',
+                 '--instruction-probe-apk','local-analysis/instruction-probe/signed.apk',
                  '--output',str(root/'original-shell-bundled-baseline.json')]
     try:
         code=run(args.api,os.environ['ANDROID_HOME'],root,test_command=command)

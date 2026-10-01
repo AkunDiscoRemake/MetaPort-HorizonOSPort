@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: GPL-3.0-only
+#include <jni.h>
+#include <stdint.h>
+JNIEXPORT jint JNICALL Java_org_metaport_internal_cpuprobe_Probe_execute(JNIEnv *env,jclass cls,jint mode) {
+    (void)env; (void)cls;
+    uint32_t value=5,old=0,add=2;
+    if(mode==1) {
+        __asm__ volatile(".arch_extension lse\nldaddal %w0, %w1, [%2]"
+                         : "+r"(add), "=&r"(old) : "r"(&value) : "memory");
+        return old==5 ? (jint)value : -1;
+    }
+    if(mode==2) {
+        uint8_t byte=7;
+        __asm__ volatile(".arch_extension rcpc\nldaprb %w0, [%1]"
+                         : "=r"(old) : "r"(&byte) : "memory");
+        return (jint)old;
+    }
+    return (jint)(value+add);
+}

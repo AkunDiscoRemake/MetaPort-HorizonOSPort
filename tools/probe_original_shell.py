@@ -103,7 +103,12 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
                                             '--uid='+str(uid),'-t','400','-v','threadtime'])
         report['activity_state']=call(['shell','dumpsys','activity','top'])
         report['observation_seconds']=observe_seconds
-        report['result']='START_ATTEMPT_RECORDED_NOT_VALIDATED'
+        crash=report['crash_buffer']
+        report['application_crash_recorded']=crash['exit_code']==0 and (
+            '>>> '+PACKAGE+' <<<' in crash['text'] or
+            'Process: '+PACKAGE+', PID:' in crash['text'])
+        report['result']=('APPLICATION_CRASH_RECORDED' if report['application_crash_recorded']
+                          else 'START_ATTEMPT_RECORDED_NOT_VALIDATED')
     finally:
         call(['shell','am','force-stop',PACKAGE])
     return report
@@ -113,10 +118,17 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--apk',required=True);p.add_argument('--output',required=True)
     p.add_argument('--original');p.add_argument('--bundle-manifest')
+    p.add_argument('--instruction-probe-apk')
     a=p.parse_args()
     try:r=inspect(a.apk,Path(os.environ['ANDROID_HOME'])/'platform-tools/adb',
                   original=a.original,bundle_manifest=a.bundle_manifest)
     except Exception as error:r={'result':'EXPERIMENT_FAILED','error':str(error),'port_ready':False}
+    if a.instruction_probe_apk and r.get('installation_succeeded'):
+        from tools.probe_arm64_instructions import inspect as probe_instructions
+        try:
+            r['instruction_probe']=probe_instructions(a.instruction_probe_apk,Path(os.environ['ANDROID_HOME'])/'platform-tools/adb')
+        except Exception as error:
+            r['instruction_probe']={'error':str(error),'port_ready':False}
     r.update(source_commit=os.environ.get('GITHUB_SHA'),run_id=os.environ.get('GITHUB_RUN_ID'))
     output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(r,indent=2)+'\n')

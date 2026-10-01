@@ -63,7 +63,7 @@ jobs:
         timeout-minutes: 12
         run: |
           echo 'd3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463  local-analysis/original-cache/VrShell.apk' | sha256sum --check --strict
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;35.0.0' 'emulator' 'platform-tools' "system-images;android-${TARGET_ANDROID_API};google_apis;x86_64"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;35.0.0' 'platforms;android-35' 'ndk;27.2.12479018' 'emulator' 'platform-tools' "system-images;android-${TARGET_ANDROID_API};google_apis;x86_64"
       - name: Align and sign only for this offline experiment
         timeout-minutes: 5
         run: |
@@ -83,6 +83,8 @@ jobs:
           r.update(signed_apk_sha256=digest(root/'signed.apk'),test_certificate_not_meta_identity=True)
           p.write_text(json.dumps(r,indent=2)+'\n')
           PYCODE
+      - name: Build separate internal instruction fixture (not a release)
+        run: python3 -m tools.build_instruction_probe
       - name: Probe original APK without external network or credentials
         id: probe
         timeout-minutes: 15
