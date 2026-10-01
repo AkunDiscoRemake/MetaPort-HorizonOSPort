@@ -587,7 +587,8 @@ Evidências do caminho, ainda sem execução de modelo:
   licença para inventar entradas quando nenhuma imagem foi capturada.
 - Processa dois índices por grupo e faz `memmove` de dados e blocos de `0xfc`
   bytes. Existem alocações/liberações e matrizes intermediárias; não é zero-copy.
-- Um ramo testa o byte em `param_2 + 0x41`; o outro verifica tipo numérico `0x0d`
+- Um ramo testa o byte no offset `0x208` (`param_2 + 0x41` no C-like, cujo
+  ponteiro é de palavras de 8 bytes); o outro verifica tipo numérico `0x0d`
   antes de obter o ponteiro. O getter `00c90838` será seguido. Não interpretar
   `use_uint8_input=false` como prova de entrada float nem remover quantização.
 - Monta a string **`forward`** com os imediatos little-endian `0x77726f66` e
@@ -610,3 +611,8 @@ layout ABI. Não converte os trechos reconstruídos em poses sintéticas.
 corrigido. Packing saturado e planner FMQ têm teste host sanitizado, execução
 ARM64 emulada e compilação AAR; a inferência original continua NOT PORTED YET.
 Suíte Python desta etapa: **90 testes, 1 skip**.
+
+
+Continuações disparadas: **36798216915** (builder/getter/decoder DPE e literal
+copiado) e **36797899084** (serviço e duas bibliotecas-shim). Ainda em execução
+na última verificação; não foram registrados como sucesso antecipadamente.
