@@ -15,7 +15,7 @@
           "targets": [
             {
               "address": "026b6840",
-              "name": "initialize",
+              "name": "_ZN8facebook3jni10initializeEP7_JavaVMONSt6__ndk18functionIFvvEEE",
               "eligible_local_body": false
             }
           ],
