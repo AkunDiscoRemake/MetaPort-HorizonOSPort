@@ -102,6 +102,26 @@ public class AdapterRuntimeTest {
             renderPixel(a);
         }
     }
+    @Test(timeout=120000) public void rendererRejectsDifferentContextAndClosedUse() throws Exception {
+        try (Window first = new Window(); Window second = new Window();
+             EglOutput a = new EglOutput(first.surface)) {
+            PassthroughRenderer renderer = new PassthroughRenderer();
+            try {
+                try (EglOutput b = new EglOutput(second.surface)) {
+                    b.makeCurrent();
+                    assertThrows(IllegalStateException.class, renderer::cameraTexture);
+                    assertThrows(IllegalStateException.class, renderer::close);
+                }
+                a.makeCurrent();
+                assertTrue(renderer.cameraTexture() > 0);
+                wrongThread(renderer::cameraTexture);
+                assertFalse(renderer.draw(null,0,0,64,48)); // Missing camera frame is not fabricated.
+                assertThrows(IllegalArgumentException.class, () -> renderer.draw(null,-1,0,64,48));
+                renderer.close();
+                assertThrows(IllegalStateException.class, renderer::cameraTexture);
+            } finally { a.makeCurrent(); renderer.close(); }
+        }
+    }
     @Test(timeout=120000) public void inputServiceLifecycleRunsOnMainThread() {
         InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
             JoyConInput input = new JoyConInput(context());

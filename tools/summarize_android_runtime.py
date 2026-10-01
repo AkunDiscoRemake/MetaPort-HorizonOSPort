@@ -7,6 +7,14 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 
+EXPECTED_CASES=frozenset((
+    'sensorsRepeatedStartStopAndClosedGuards',
+    'eglNativeLoadRenderPresentShaderCompileAndClose',
+    'closingOneOutputDoesNotInvalidateAnother',
+    'rendererRejectsDifferentContextAndClosedUse',
+    'inputServiceLifecycleRunsOnMainThread'))
+
+
 def summarize(results,api):
     files=sorted(Path(results).rglob('TEST-*.xml'))
     if not 0<len(files)<=32:raise ValueError('Missing/excessive instrumentation XML reports')
@@ -21,11 +29,13 @@ def summarize(results,api):
         if any(int(s.get('failures','0')) or int(s.get('errors','0')) for s in tree.iter('testsuite')):
             raise ValueError('JUnit suite failure')
     unique={(c['class'],c['name']) for c in cases}
-    passed=(len(cases)>=5 and len(unique)==len(cases) and
+    names={c['name'] for c in cases}
+    passed=(names==EXPECTED_CASES and len(unique)==len(cases) and
             all(c['class']=='org.metaport.port.AdapterRuntimeTest' and c['name'] and
                 not c['failed'] and not c['skipped'] for c in cases))
     return {'api':api,'abi':'x86_64','gpu_configuration':'swiftshader_indirect',
-            'tests':cases,'passed':passed,'original_firmware_executed':False,
+            'tests':cases,'missing_cases':sorted(EXPECTED_CASES-names),
+            'passed':passed,'original_firmware_executed':False,
             'physical_device_tested':False,'arcore_camera_or_depth_tested':False,
             'quest_hand_inference_tested':False,
             'scope':'Our adapter instrumentation only; test APKs are not METAPORT releases'}
