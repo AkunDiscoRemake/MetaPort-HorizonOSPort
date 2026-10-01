@@ -49,3 +49,26 @@ não certifica o runtime original nem sua compatibilidade de símbolos.
 Resultados ficam em `analysis/builds/52168470052900520/shell-*.json` e preservam
 hashes, escopo, truncamentos e status. Workflow verde não significa APK funcional.
 Não chamar ponteiros privados com assinaturas inferidas pelo decompilador.
+
+## Resultados efetivamente concluídos
+
+Run **36809468975** passou e reconstruiu os 21 exports selecionados. Observações
+confirmadas nos corpos e referências capturados, ainda **sem ABI executável**:
+
+- `HzuSpaceManager_create` chama `HzuFpHalBroker_getService` com o nome
+  `horizonos.spaces.spacemanager.ISpaceManager` e instância `default`.
+- `locateSpace`/`locateSpace2` chamam o serviço por tabela de funções e convertem a
+  resposta com `toHzuSpaceData`/`toHzuBaseSpaceData` e variantes. O teste de palavra
+  `0x55` é observado; seu significado formal ainda não foi estabelecido.
+- `HzuStrata_createLayer` usa o serviço através de objeto Binder e mantém referências
+  fortes. `setBuffer` passa por `convertToHardwareBuffer`, não entrega uma textura
+  GLES arbitrária diretamente ao compositor.
+- `HzuChoreographer_create` exige SurfaceControl associado à janela e Looper na
+  thread; ambos têm caminhos de erro explícitos. A troca por um callback genérico
+  de frame não foi demonstrada equivalente.
+- `ASurfaceTexture_create` constrói BufferQueue/SurfaceTexture privados e consulta
+  display/contexto EGL. Não é prova de intercambialidade com a API pública homônima.
+
+A análise seguinte acrescenta seis alvos internos observados diretamente nesses
+relatórios (construtor Strata, conversão de hardware buffer e quatro conversores
+espaciais), mantendo os hashes exatos. Não gera stubs de sucesso para o serviço.
