@@ -4288,6 +4288,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Original dependency packaging for offline testing; no service stubs or application-code changes",
-  "signed_apk_sha256": "b541cd7c950a5f6651bf79e82eff10a362cb7092423220f4248c7e64530bb239",
+  "signed_apk_sha256": "006d9b195c554316078e502452202d69ed8cae113cd9f74ee6e516cc7a570863",
   "test_certificate_not_meta_identity": true
 }
