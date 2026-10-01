@@ -54,6 +54,7 @@
     "lib/arm64-v8a/libsync.so": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9",
     "lib/arm64-v8a/libvndksupport.so": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168",
     "lib/arm64-v8a/telemetryservice-aidl-cpp.so": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b",
+    "lib/arm64-v8a/libstatssocket.so": "c5318e1d8c4a2dffe1492d63959a7bb352862d48127516bd8fae8c926c70d522",
     "lib/arm64-v8a/android.hardware.graphics.allocator-V2-ndk.so": "12dc82a2497e386a628d935a31224aa9bf64b12067a643ff90dce8b9650bdfdc",
     "lib/arm64-v8a/android.hardware.graphics.allocator@2.0.so": "1a77a65371e50d203c6c79b6c6becc1f7f72f8dd16ffade13432c23cba793375",
     "lib/arm64-v8a/android.hardware.graphics.allocator@3.0.so": "df4722b7ba6536eeb0a633ad2ee40846906f7b601d407f25f5805c7e437e0cfc",
@@ -75,7 +76,9 @@
     "lib/arm64-v8a/android.hardware.common-V2-ndk.so": "79d9dfa83e28a1b7ed46c26ba96fe770245bccde820f6a69bc8afae348be41a3",
     "lib/arm64-v8a/android.hardware.graphics.common@1.0.so": "9381845b861356cc4c7c993e44a12a39119db0285af34f828ecae9f1d269f288",
     "lib/arm64-v8a/android.hardware.media@1.0.so": "90b65836ce321c119c5b072d6fb2309dfa5b2e97d2e101756fd100a0c4220a7a",
-    "lib/arm64-v8a/android.hidl.token@1.0.so": "809b0142715d6c318a263e50729a6db9fc423e4737a16921f3503bc5bd325346"
+    "lib/arm64-v8a/android.hidl.token@1.0.so": "809b0142715d6c318a263e50729a6db9fc423e4737a16921f3503bc5bd325346",
+    "lib/arm64-v8a/libdl_android.so": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
+    "lib/arm64-v8a/ld-android.so": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac"
   },
   "nodes": [
     {
@@ -400,6 +403,7 @@
       "size_bytes": 27248,
       "status": "BUNDLED_ORIGINAL_APEX_LIBRARY",
       "path": "/lib64/libnativehelper.so",
+      "apex_path": "/system/apex/com.android.art.apex",
       "apex_sha256": "4614c9712f15d53b5a3c937fb7f4107fd3df7f8f6bcc9fc20ef9c32b9fd2940d",
       "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
     },
@@ -738,7 +742,13 @@
     },
     {
       "soname": "libstatssocket.so",
-      "status": "NOT_RESOLVED_NO_STUB"
+      "sha256": "c5318e1d8c4a2dffe1492d63959a7bb352862d48127516bd8fae8c926c70d522",
+      "size_bytes": 27472,
+      "status": "BUNDLED_ORIGINAL_APEX_LIBRARY",
+      "path": "/lib64/libstatssocket.so",
+      "apex_path": "/system/apex/com.android.os.statsd.apex",
+      "apex_sha256": "b5d1e21d9fd97b72f333dc06eba5181628859140a31c645035186181af2f73e0",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
     },
     {
       "soname": "android.hardware.graphics.allocator-V2-ndk.so",
@@ -940,7 +950,22 @@
     },
     {
       "soname": "libdl_android.so",
-      "status": "NOT_RESOLVED_NO_STUB"
+      "sha256": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
+      "size_bytes": 9928,
+      "status": "BUNDLED_ORIGINAL_APEX_LIBRARY",
+      "path": "/lib64/bionic/libdl_android.so",
+      "apex_path": "/system/apex/com.android.runtime.apex",
+      "apex_sha256": "6971181ba9942dc49e54676a3a5d9fd1b2bed41135d52767d77bfc122fc25fcc",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "ld-android.so",
+      "sha256": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac",
+      "size_bytes": 9392,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/ld-android.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
     }
   ],
   "edges": [
@@ -3505,6 +3530,18 @@
       "to": "libdl.so"
     },
     {
+      "from": "libstatssocket.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libstatssocket.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libstatssocket.so",
+      "to": "libdl.so"
+    },
+    {
       "from": "android.hardware.graphics.allocator-V2-ndk.so",
       "to": "libbinder_ndk.so"
     },
@@ -4239,17 +4276,18 @@
     {
       "from": "android.hidl.token@1.0.so",
       "to": "libdl.so"
+    },
+    {
+      "from": "libdl_android.so",
+      "to": "ld-android.so"
     }
   ],
-  "unresolved": [
-    "libstatssocket.so",
-    "libdl_android.so"
-  ],
+  "unresolved": [],
   "original_members_unchanged": true,
   "original_signatures_removed": true,
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Original dependency packaging for offline testing; no service stubs or application-code changes",
-  "signed_apk_sha256": "f9d393534c272d9fa52f04dba15905421f98f2743df07653a06c9abd176d4183",
+  "signed_apk_sha256": "8edd04ceecdf120eced6355bbf6897e8f98d0a245021ee3ee2b587c7419310bc",
   "test_certificate_not_meta_identity": true
 }
