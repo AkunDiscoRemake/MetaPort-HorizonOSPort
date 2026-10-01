@@ -17,7 +17,7 @@ TARGETS=((0xd8a0b4,0xd89758,'thread target candidate'),
          (0xd8a078,0xd89758,'thread lifecycle candidate'))
 
 
-def select(blob,evidence):
+def select(blob,evidence,targets=TARGETS):
     policy=json.loads(POLICY.read_text())
     if hashlib.sha256(blob).hexdigest()!=policy['library_sha256']:
         raise ValueError('Unpinned library')
@@ -26,7 +26,7 @@ def select(blob,evidence):
     base=int(evidence['image_base'],16)
     ranges=executable_ranges(blob)
     selected=[]
-    for address,caller,purpose in TARGETS:
+    for address,caller,purpose in targets:
         functions=[f for f in evidence['functions'] if f['elf_address']==caller]
         label=f'FUN_{address+base:08x}'
         if len(functions)!=1 or label not in functions[0]['c_like']:
