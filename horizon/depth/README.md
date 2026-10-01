@@ -19,3 +19,14 @@ chamar isso de estéreo. O VRBox não fornece sensores.
 
 O backend opcional ARCore está em `port/android/DEPTH.md`: é uma adaptação Android
 explicitamente diferente, não substituição oculta do algoritmo Meta.
+
+## Primeira recuperação verificada
+
+Run **36805607831: sucesso na extração/inspeção**, não na execução de modelos.
+Os dois `.ptl` começam com `54 48 31 00 00 00` (`TH1` seguido de zeros), não ZIP.
+O parser os registrou como **UNKNOWN**: não há grafo/pesos decodificados nem
+compatibilidade Torch/ExecuTorch demonstrada. Não carregar só por terem extensão
+`.ptl`. Os hashes e tamanhos agora estão em `resource-policy.json`.
+
+O tuning tem raízes `basic`, `convergence`, `factorization`, `metering`;
+nomes de configuração não demonstram que o sensor correspondente existe no celular.

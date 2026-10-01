@@ -1,0 +1,24 @@
+{
+  "build": "52168470052900520",
+  "ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "resources": [
+    {
+      "partition": "system",
+      "path": "/system/etc/mldepth/stereo_model.ptl",
+      "size_bytes": 5502172,
+      "sha256": "c7f62495e9ddf4ded535deb6e84e7d487f9482f8a5e1215a1dcce55ad66d7933"
+    },
+    {
+      "partition": "system",
+      "path": "/system/etc/mldepth/stereo_model_2.ptl",
+      "size_bytes": 7669175,
+      "sha256": "824bafbb621525711e7bb9950028f3b0268d0d27f65d0ce787d3e863c2f416fd"
+    },
+    {
+      "partition": "odm",
+      "path": "/etc/camera/depthaectuning.json",
+      "size_bytes": 56657,
+      "sha256": "5033d2bad67ed431aecada51b2356e6db50e3240a86313519b31ceae54aba530"
+    }
+  ]
+}

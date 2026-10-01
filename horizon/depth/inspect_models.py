@@ -18,6 +18,8 @@ def inspect(images, reconstruction, output):
     images=Path(images);output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
     recon=json.loads(Path(reconstruction).read_text())
     if recon['source_zip_sha256'] != OTA_SHA256: raise ValueError('Wrong OTA')
+    policy=json.loads(Path(__file__).with_name('resource-policy.json').read_text())
+    pins={(x['partition'],x['path']):x for x in policy['resources']}
     inventory=json.loads(Path(f'analysis/builds/{BUILD}/static-analysis.json').read_text())['partitions']
     report={'build':BUILD,'source_ota_sha256':OTA_SHA256,'models_executed':False,
             'quest_depth_ported':False,'phone_validated':False,'resources':[]}
@@ -32,6 +34,9 @@ def inspect(images, reconstruction, output):
                 original=Path(d)/'resource';dump_entry(image,entries[0],original)
                 item={'partition':part,'path':path,'size_bytes':original.stat().st_size,
                       'sha256':digest(original),'partition_sha256':expected['sha256']}
+                pin=pins[(part,path)]
+                if (item['sha256'],item['size_bytes']) != (pin['sha256'],pin['size_bytes']):
+                    raise ValueError('Original depth resource hash mismatch')
                 if path.endswith('.ptl'):item['metadata']=model_metadata(original,'.ptl')
                 else:
                     if original.stat().st_size>256*1024:raise ValueError('Config size limit')
