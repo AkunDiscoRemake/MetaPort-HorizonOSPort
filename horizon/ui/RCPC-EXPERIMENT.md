@@ -104,3 +104,17 @@ and hashes remain declared. The original-baseline job stays unmodified; this is
 an additional, not-yet-validated translation experiment, not a physical-phone
 optimization or release. No permission/entitlement check, C++ guard branch or
 service is bypassed. Concurrent behavior and end-to-end UI still need validation.
+
+## Inventory experiment outcome — run 36919477652
+
+The 206-site `libc++.so` experiment installed and executed, but the app still
+crashed before original UI rendering. The recorded fault moved to
+`libutils.so`, `android::SharedBuffer::attemptEdit() const`, ELF `0xf860`:
+`0xb8bfc008` / `ldapr w8, [x0]` (a 32-bit load). The observed process was absent
+at the final sample. This is not a working demo and not validation of all adapted
+paths. The existing byte/64-bit instruction fixtures do not cover this 32-bit
+form; it must be tested separately before extending compatibility to it.
+
+There is no validated release APK or defensible same-day release commitment on
+the basis of these reports. UI surface/client recovery remains a separate task
+from CPU translation, private-service integration and physical-phone validation.

@@ -88,3 +88,17 @@ Evidências: `analysis/android-runtime/original-shell-{baseline,bundled-baseline
 e `original-shell-dependency-bundle.json`. Os relatórios de última execução podem
 ser atualizados por CI; consultar também `run_id`/`source_commit` e o histórico Git.
 Workflow verde significa coleta concluída, não boot funcional nem “90% Horizon”.
+
+### Atualização do bloqueio da beta
+
+Run **36919477652**: mesmo após a adaptação explícita de 206 pontos inventariados
+em `libc++.so`, o aplicativo encerrou antes da UI. O próximo SIGILL está em
+`libutils.so / android::SharedBuffer::attemptEdit()`, ELF `0xf860`, leitura RCpc
+de **32 bits**. Os testes isolados de byte/64 bits não validam essa variante.
+Não há APK de beta funcional nem validação no Infinix. Não apresentar a instalação
+bem-sucedida ou o workflow verde como liberação pronta para hoje.
+
+A análise original revelou um cliente local com Surfaces e roteamento de toque
+para `emuNativeClick`, mas ele ainda não foi habilitado/validado no port e depende
+da integração do serviço nativo. Nome e ícone do usuário continuam preparados;
+não foram usados para mascarar esse bloqueio com uma Activity substituta.
