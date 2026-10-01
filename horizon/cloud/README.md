@@ -27,3 +27,19 @@ credenciais de usuário e não são usados para autenticação.
 Resultado: `analysis/builds/52168470052900520/ui-cloud-decompilation.json`.
 Relatório de candidatos não é um port dos serviços cloud e nunca habilita um
 indicador de "Store funcional" sozinho. Fontes reconstruídas podem ter erros.
+
+## Autorização declarada e integração técnica
+
+O responsável pelo projeto declarou autorização para usar os servidores Meta.
+Essa declaração não foi verificada independentemente e não é tratada como uma
+negativa de autorização. Também não comprova, por si só, que o cliente Android
+já esteja registrado, autenticado ou aceito pelos serviços.
+
+Para implementar a integração autorizada, ainda faltam contratos técnicos:
+SDK/documentação de endpoints e versões, métodos de autenticação e escopos,
+registro de aplicativo/dispositivo, requisitos de assinatura/atestação e ambiente
+de testes aprovado. Esses itens devem vir da documentação/acesso fornecido pela
+Meta, não ser inventados a partir de nomes encontrados no binário. Documentação
+pública ou arquivos sanitizados podem orientar o port; credenciais não devem ser
+colocadas no chat, no repositório, no APK ou nos relatórios. A extração atual
+continua offline e não usa tokens encontrados nos clientes originais.
