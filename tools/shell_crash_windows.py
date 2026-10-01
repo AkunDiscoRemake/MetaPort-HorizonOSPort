@@ -40,14 +40,20 @@ def collect(crash_text,libraries,bundle):
         row={'library':name,'sha256':known[name]['sha256'],**instruction_window(cache[name],pc,after=512)}
         text,_=command(['aarch64-linux-gnu-objdump','-d','-C',
                         '--start-address='+hex(row['start_elf']),
-                        '--stop-address='+hex(row['end_elf']),str(path)],max_output=16384)
+                        '--stop-address='+hex(row['end_elf']),str(path)],max_output=65536)
         row['disassembly']=text;rows.append(row)
     inventories=[]
     if 'libc++.so' in cache:
         # Only this bounded library, and only metadata. Never bulk-rewrite matches.
-        text,_=command(['aarch64-linux-gnu-objdump','-d',str(Path(libraries)/'libc++.so')],max_output=16*1024*1024)
-        inventories.append({'library':'libc++.so','sha256':known['libc++.so']['sha256'],
-                            'candidates':rcpc_candidates(text),'reachable_code_proven':False})
+        inventory={'library':'libc++.so','sha256':known['libc++.so']['sha256'],
+                   'reachable_code_proven':False}
+        try:
+            text,_=command(['aarch64-linux-gnu-objdump','-d',str(Path(libraries)/'libc++.so')],max_output=16*1024*1024)
+            inventory['candidates']=rcpc_candidates(text)
+        except (ValueError,OSError) as error:
+            # A failed optional census must not erase verified crash windows.
+            inventory.update(error=str(error),inventory_complete=False)
+        inventories.append(inventory)
     return {'frames':rows,'rcpc_inventories':inventories,'runtime_memory_verified':False,'crash_cause_proven':False,
             'scope':'Original packaged ELF instructions at reported guest PCs; not a hardware compatibility verdict'}
 

@@ -47,3 +47,13 @@ class CrashInstructions(unittest.TestCase):
         text="  88ac4: 38bfc108 ldaprb w8, [x8]\n  48cb0: 08dffc08 ldarb w8, [x0]\n"
         rows=rcpc_candidates(text)
         self.assertEqual(len(rows),1);self.assertEqual(rows[0]['pc_elf'],0x88ac4)
+
+    def test_optional_census_failure_keeps_verified_crash_window(self):
+        data=self.image();sha=hashlib.sha256(data).hexdigest()
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d)/'libc++.so').write_bytes(data)
+            with patch('tools.shell_crash_windows.command',side_effect=[('nop',''),ValueError('budget')]):
+                r=collect('#00 pc 00001000 /data/app/a/lib/arm64/libc++.so (f)',d,
+                          {'nodes':[{'soname':'libc++.so','sha256':sha}]})
+            self.assertEqual(len(r['frames']),1)
+            self.assertFalse(r['rcpc_inventories'][0]['inventory_complete'])
