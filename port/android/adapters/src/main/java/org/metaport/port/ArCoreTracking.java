@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.opengl.EGL14;
+import android.opengl.EGLContext;
 import android.opengl.GLES20;
 import android.os.Looper;
 
@@ -43,6 +44,7 @@ public final class ArCoreTracking implements AutoCloseable {
     private Session session;
     private Frame latestCameraFrame;
     private int cameraTexture;
+    private EGLContext cameraContext;
     private final Map<Long, Anchor> anchors = new HashMap<>();
     private long nextAnchor = 1, previousTimestamp = 0, epoch = 0;
     private boolean resumed = false, textureBound = false;
@@ -90,6 +92,14 @@ public final class ArCoreTracking implements AutoCloseable {
             throw new IllegalStateException("A current GLES context is required");
     }
 
+    // Package-visible so the actual EGL ownership guard can be instrumented
+    // without fabricating an ARCore Session or claiming camera/depth execution.
+    static void requireCameraContext(EGLContext expected) {
+        EGLContext current = EGL14.eglGetCurrentContext();
+        if (expected == null || current.equals(EGL14.EGL_NO_CONTEXT) || !current.equals(expected))
+            throw new IllegalStateException("Rebind camera texture after EGL context change");
+    }
+
     /** OES texture must belong to the current render context; call again after context recreation. */
     public void setCameraTexture(int externalOesTexture) {
         check(); requireGl();
@@ -97,6 +107,7 @@ public final class ArCoreTracking implements AutoCloseable {
             throw new IllegalArgumentException("Texture has not been created/bound by host");
         session.setCameraTextureName(externalOesTexture);
         textureBound = true; cameraTexture = externalOesTexture;
+        cameraContext = EGL14.eglGetCurrentContext();
         latestCameraFrame = null;
     }
 
@@ -179,7 +190,9 @@ public final class ArCoreTracking implements AutoCloseable {
     }
 
     public TrackingFrame update() throws CameraNotAvailableException {
-        check(); requireGl();
+        check();
+        latestCameraFrame = null; // Context loss must also invalidate the old background.
+        requireCameraContext(cameraContext);
         if (!resumed || !textureBound) throw new IllegalStateException("Resume and bind an OES camera texture first");
         latestCameraFrame = null; // Failure must not keep an old background eligible.
         Frame frame = session.update();
@@ -204,6 +217,7 @@ public final class ArCoreTracking implements AutoCloseable {
     public boolean drawPassthrough(PassthroughRenderer renderer, int x, int y, int width, int height) {
         check(); requireGl();
         if (!resumed || latestCameraFrame == null) return false;
+        requireCameraContext(cameraContext);
         if (renderer.cameraTexture() != cameraTexture)
             throw new IllegalArgumentException("Bind this renderer's texture to this session first");
         return renderer.draw(latestCameraFrame, x, y, width, height);
@@ -251,7 +265,7 @@ public final class ArCoreTracking implements AutoCloseable {
                 pause();
                 for (Anchor anchor : anchors.values()) anchor.detach();
                 anchors.clear();
-            } finally { session.close(); session=null; textureBound=false; latestCameraFrame=null; cameraTexture=0; }
+            } finally { session.close(); session=null; textureBound=false; latestCameraFrame=null; cameraTexture=0; cameraContext=null; }
         }
     }
     private static PoseData poseData(Pose pose) { return new PoseData(pose.getTranslation(), pose.getRotationQuaternion()); }

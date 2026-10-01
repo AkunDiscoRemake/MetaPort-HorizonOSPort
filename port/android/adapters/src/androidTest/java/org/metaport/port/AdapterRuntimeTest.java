@@ -4,6 +4,8 @@ package org.metaport.port;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
+import android.opengl.EGL14;
+import android.opengl.EGLContext;
 import android.view.Surface;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -105,14 +107,20 @@ public class AdapterRuntimeTest {
     @Test(timeout=120000) public void rendererRejectsDifferentContextAndClosedUse() throws Exception {
         try (Window first = new Window(); Window second = new Window();
              EglOutput a = new EglOutput(first.surface)) {
+            EGLContext cameraContext = EGL14.eglGetCurrentContext();
+            ArCoreTracking.requireCameraContext(cameraContext);
+            assertThrows(IllegalStateException.class, () -> ArCoreTracking.requireCameraContext(null));
             PassthroughRenderer renderer = new PassthroughRenderer();
             try {
                 try (EglOutput b = new EglOutput(second.surface)) {
                     b.makeCurrent();
+                    assertThrows(IllegalStateException.class, () -> ArCoreTracking.requireCameraContext(cameraContext));
                     assertThrows(IllegalStateException.class, renderer::cameraTexture);
                     assertThrows(IllegalStateException.class, renderer::close);
                 }
+                assertThrows(IllegalStateException.class, () -> ArCoreTracking.requireCameraContext(cameraContext));
                 a.makeCurrent();
+                ArCoreTracking.requireCameraContext(cameraContext);
                 assertTrue(renderer.cameraTexture() > 0);
                 wrongThread(renderer::cameraTexture);
                 assertFalse(renderer.draw(null,0,0,64,48)); // Missing camera frame is not fabricated.
