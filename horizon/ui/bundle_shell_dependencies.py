@@ -18,7 +18,7 @@ from tools.scan_partitions import command, dump_entry, list_ext4
 
 MAX_LIBRARIES=128
 MAX_BYTES=256*1024*1024
-NAME=re.compile(r'lib[A-Za-z0-9_+.\-]+\.so\Z')
+NAME=re.compile(r'[A-Za-z0-9_][A-Za-z0-9_+.@=\-]{0,180}\.so\Z')
 
 
 def signatures(name):

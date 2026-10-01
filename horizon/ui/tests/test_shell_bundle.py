@@ -4,7 +4,8 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
-from horizon.ui.bundle_shell_dependencies import candidate,compare_apks,signatures
+from unittest.mock import patch
+from horizon.ui.bundle_shell_dependencies import candidate,compare_apks,signatures,native_needs
 
 class OriginalBundle(unittest.TestCase):
     def test_system_precedence_is_explicit_not_vendor_guess(self):
@@ -40,3 +41,12 @@ class OriginalBundle(unittest.TestCase):
             with self.assertRaises(ValueError):compare_apks(original,target,added)
             build()
             with self.assertRaises(ValueError):compare_apks(original,target,{'lib/arm64-v8a/libx.so':'bad'})
+
+    def test_hidl_sonames_are_valid_but_paths_are_not(self):
+        with patch('horizon.ui.bundle_shell_dependencies.command',return_value=(
+                'Machine: AArch64\n (NEEDED) Shared library: [android.hardware.graphics.common@1.2.so]','')):
+            self.assertEqual(native_needs(Path('unused')),['android.hardware.graphics.common@1.2.so'])
+        for name in ('../libbad.so','/system/libbad.so','lib..bad.so'):
+            with patch('horizon.ui.bundle_shell_dependencies.command',return_value=(
+                    f'Machine: AArch64\n (NEEDED) Shared library: [{name}]','')):
+                with self.assertRaises(ValueError):native_needs(Path('unused'))
