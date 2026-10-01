@@ -1,4 +1,4 @@
-name: Original VrShell and MetaSystemUI decompilation
+name: Original Horizon UI and UX decompilation
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
@@ -12,7 +12,7 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-22.04
-    timeout-minutes: 45
+    timeout-minutes: 90
     env:
       WORK: ${{ github.workspace }}/local-analysis/ui
     steps:
@@ -52,7 +52,7 @@ jobs:
             'https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip' -o "$WORK/jadx.zip"
           echo "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974  $WORK/jadx.zip" | sha256sum --check --strict
           unzip -q "$WORK/jadx.zip" -d "$WORK/jadx"
-      - name: Decompile DEX for original VrShell and MetaSystemUI, never run or install them
+      - name: Decompile five original UI apps and resources, never run or install them
         id: decompile
         run: |
           set +e

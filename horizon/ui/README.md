@@ -1,13 +1,16 @@
 # UI/UX original — continuação do MetaPort
 
 Não contém uma UI substituta. O workflow `ui-decompilation.yml` extrai os APKs
-originais VrShell e MetaSystemUI da partição verificada e executa JADX 1.5.6 pinado.
+originais VrShell, MetaSystemUI, SystemUX, SettingsPanelApp e LibraryPanelApp da partição verificada e executa JADX 1.5.6 pinado.
 Agora também decodifica recursos (antes `--no-res`) e registra separadamente:
 
 - candidatos de passthrough e composição de superfícies;
 - painéis/navegação e animações/transições;
 - entrada de mãos/controles e serviços privilegiados;
-- inventário limitado de XMLs com hashes e erros do decompilador.
+- inventário limitado de XMLs com hashes, contextos de animação e erros do decompilador.
+
+As bibliotecas ARM64 embarcadas também têm seus metadados ELF inspecionados,
+com limites de tamanho/quantidade. Isso não equivale a decompilar suas funções.
 
 `evidence.py` é um índice de candidatos com contexto e limites explícitos, **não
 um grafo de chamadas resolvido**, nem prova de ABI utilizável. Relatórios ficam em
