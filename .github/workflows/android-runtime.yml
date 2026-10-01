@@ -2,7 +2,7 @@ name: Android adapter runtime tests (not Horizon)
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
+    paths: [tools/prepare_emulator_diagnostics.sh, tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -44,8 +44,15 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disk-size: 2048M
+          cores: 2
+          disable-linux-hw-accel: false
+          emulator-boot-timeout: 900
+          pre-emulator-launch-script: bash tools/prepare_emulator_diagnostics.sh
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          emulator-options: -no-window -gpu swiftshader_indirect -feature -Vulkan -accel on -noaudio -no-boot-anim -no-snapshot -camera-back none -camera-front none
           script: |
             bash tools/run_android_runtime.sh
       - name: Capture logs and explicit scope
@@ -54,7 +61,13 @@ jobs:
           API: ${{ matrix.api }}
         run: |
           mkdir -p local-analysis/android-runtime
-          # The emulator action has already stopped its device; logs were captured inside it.
+          # Stop the bounded boot logger; the emulator action already stopped the device.
+          if [ -f local-analysis/android-runtime/boot-logger.pid ]; then
+            kill "$(cat local-analysis/android-runtime/boot-logger.pid)" 2>/dev/null || true
+          fi
+          if [ -f local-analysis/android-runtime/boot-logcat.txt ]; then
+            tail -n 100 local-analysis/android-runtime/boot-logcat.txt > local-analysis/android-runtime/boot-tail.txt
+          fi
           python3 -m tools.summarize_android_runtime --api "$API" \
             --results port/android/adapters/build/outputs/androidTest-results \
             --output local-analysis/android-runtime/scope.json
