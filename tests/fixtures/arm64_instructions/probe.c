@@ -30,5 +30,16 @@ JNIEXPORT jint JNICALL Java_org_metaport_internal_cpuprobe_Probe_execute(JNIEnv 
         }
         return loaded==UINT64_C(0x1234567800000007) ? 7 : -1;
     }
-    return (jint)(value+add);
+    if(mode==6 || mode==7) {
+        uint32_t word=UINT32_C(0x89abcdef);
+        uint64_t loaded=UINT64_MAX;
+        if(mode==6) {
+            __asm__ volatile(".arch_extension rcpc\nldapr %w0, [%1]"
+                             : "+r"(loaded) : "r"(&word) : "memory");
+        } else {
+            __asm__ volatile("ldar %w0, [%1]" : "+r"(loaded) : "r"(&word) : "memory");
+        }
+        return loaded==UINT64_C(0x89abcdef) ? 7 : -1;
+    }
+    return mode==0 ? (jint)(value+add) : -1;
 }

@@ -146,15 +146,17 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False):
         for child in needs:edges.append({'from':name,'to':child});pending.append(child)
     adaptations=[]
     if rcpc_compat:
-        from horizon.ui.rcpc_compat import lower_verified
-        target=libs/'libc++.so'
-        adapted,evidence=lower_verified(target.read_bytes());target.write_bytes(adapted)
-        adaptations.append(evidence)
-        added['lib/arm64-v8a/libc++.so']=evidence['adapted_sha256']
-        for row in rows:
-            if row['soname']=='libc++.so':
-                row.update(sha256=evidence['adapted_sha256'],source_original_sha256=evidence['source_sha256'],
-                           status='FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION')
+        from horizon.ui.rcpc_compat import lower_verified,ADAPTATIONS
+        for name,expected_sha,sites in ADAPTATIONS:
+            target=libs/name
+            adapted,evidence=lower_verified(target.read_bytes(),expected_sha,sites,library=name)
+            target.write_bytes(adapted)
+            adaptations.append(evidence)
+            added['lib/arm64-v8a/'+name]=evidence['adapted_sha256']
+            for row in rows:
+                if row['soname']==name:
+                    row.update(sha256=evidence['adapted_sha256'],source_original_sha256=evidence['source_sha256'],
+                               status='FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION')
     unsigned=output/'shell-dependencies-unsigned.apk'
     with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
         for info in src.infolist():

@@ -42,3 +42,13 @@ class RcpcAdaptation(unittest.TestCase):
             self.assertEqual(before>>30,after>>30)
             self.assertIn((before&0xfffffc00,after&0xfffffc00),
                           ((0x38bfc000,0x08dffc00),(0xf8bfc000,0xc8dffc00)))
+
+    def test_word_acquire_and_library_identity_are_preserved(self):
+        original=bytearray(fixture.CrashInstructions().image());before=0xb8bfc008;after=0x88dffc08
+        struct.pack_into('<I',original,256,before);original=bytes(original)
+        sha=hashlib.sha256(original).hexdigest()
+        result,evidence=lower_verified(original,sha,((4096,before,after),),library='libutils.so')
+        self.assertEqual(evidence['library'],'libutils.so')
+        self.assertEqual(struct.unpack_from('<I',result,256)[0],after)
+        self.assertEqual(result[:256]+result[260:],original[:256]+original[260:])
+        with self.assertRaises(ValueError):lower_verified(original,sha,((4096,before,0xc8dffc08),))

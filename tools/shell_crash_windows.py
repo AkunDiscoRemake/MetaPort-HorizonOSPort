@@ -42,17 +42,20 @@ def collect(crash_text,libraries,bundle):
                         '--start-address='+hex(row['start_elf']),
                         '--stop-address='+hex(row['end_elf']),str(path)],max_output=65536)
         row['disassembly']=text;rows.append(row)
-    inventories=[]
-    if 'libc++.so' in cache:
-        # Only this bounded library, and only metadata. Never bulk-rewrite matches.
-        inventory={'library':'libc++.so','sha256':known['libc++.so']['sha256'],
+    inventories=[];scanned=0
+    for name,data in sorted(cache.items()):
+        inventory={'library':name,'sha256':known[name]['sha256'],
                    'reachable_code_proven':False}
-        try:
-            text,_=command(['aarch64-linux-gnu-objdump','-d',str(Path(libraries)/'libc++.so')],max_output=16*1024*1024)
-            inventory['candidates']=rcpc_candidates(text)
-        except (ValueError,OSError) as error:
-            # A failed optional census must not erase verified crash windows.
-            inventory.update(error=str(error),inventory_complete=False)
+        if len(data)>2*1024*1024 or scanned>=4:
+            inventory.update(inventory_complete=False,status='SKIPPED_CENSUS_BUDGET')
+        else:
+            scanned+=1
+            try:
+                text,_=command(['aarch64-linux-gnu-objdump','-d',str(Path(libraries)/name)],max_output=16*1024*1024)
+                inventory['candidates']=rcpc_candidates(text)
+            except (ValueError,OSError) as error:
+                # A failed optional census must not erase verified crash windows.
+                inventory.update(error=str(error),inventory_complete=False)
         inventories.append(inventory)
     return {'frames':rows,'rcpc_inventories':inventories,'runtime_memory_verified':False,'crash_cause_proven':False,
             'scope':'Original packaged ELF instructions at reported guest PCs; not a hardware compatibility verdict'}

@@ -10,7 +10,19 @@ public final class Probe extends Instrumentation {
         Bundle result=new Bundle();
         try {
             System.loadLibrary("instruction_probe");
-            int value=execute("lse".equals(mode)?1:"rcpc".equals(mode)?2:"acquire".equals(mode)?3:"rcpc64".equals(mode)?4:"acquire64".equals(mode)?5:0);
+            int selection;
+            switch(mode) {
+                case "control": selection=0; break;
+                case "lse": selection=1; break;
+                case "rcpc": selection=2; break;
+                case "acquire": selection=3; break;
+                case "rcpc64": selection=4; break;
+                case "acquire64": selection=5; break;
+                case "rcpc32": selection=6; break;
+                case "acquire32": selection=7; break;
+                default: throw new IllegalArgumentException("Unknown instruction case: "+mode);
+            }
+            int value=execute(selection);
             result.putString("value", Integer.toString(value));
             finish(value==7 ? -1:0,result);
         } catch (Throwable error) {
