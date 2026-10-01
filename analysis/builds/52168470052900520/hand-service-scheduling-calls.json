@@ -82,15 +82,92 @@
       "reference_count": 0,
       "callers": [],
       "references_truncated": false
+    },
+    {
+      "name": "FUN_005df1ac",
+      "address": "005df1ac",
+      "external": false,
+      "reference_count": 5,
+      "callers": [
+        {
+          "caller_name": "FUN_005df130",
+          "caller_elf_address": 5108016,
+          "callsite_elf_address": 5108036,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df3fc",
+          "caller_elf_address": 5108732,
+          "callsite_elf_address": 5108768,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df424",
+          "caller_elf_address": 5108772,
+          "callsite_elf_address": 5108808,
+          "selected": false
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "name": "FUN_005df4e0",
+      "address": "005df4e0",
+      "external": false,
+      "reference_count": 5,
+      "callers": [
+        {
+          "caller_name": "FUN_005df474",
+          "caller_elf_address": 5108852,
+          "callsite_elf_address": 5108868,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df570",
+          "caller_elf_address": 5109104,
+          "callsite_elf_address": 5109140,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df598",
+          "caller_elf_address": 5109144,
+          "callsite_elf_address": 5109180,
+          "selected": false
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "name": "FUN_005a2ce8",
+      "address": "005a2ce8",
+      "external": false,
+      "reference_count": 3,
+      "callers": [
+        {
+          "caller_name": "FUN_002b5ddc",
+          "caller_elf_address": 1793500,
+          "callsite_elf_address": 1793584,
+          "selected": true
+        }
+      ],
+      "references_truncated": false
     }
   ],
+  "realtime_header_literal": {
+    "elf_address": 469056,
+    "bytes_hex": "00000000010000000100000000000000"
+  },
   "selected_elf_addresses": [
-    4869044,
-    4869892,
+    4870452,
     5108140,
     5108960,
     5213792,
-    5219696
+    5219696,
+    5108016,
+    5108732,
+    5108852,
+    5109104,
+    1793500
   ],
   "firmware_executed": false,
   "hand_exclusive": false,
