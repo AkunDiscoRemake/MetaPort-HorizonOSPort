@@ -5,7 +5,7 @@ import struct
 import tempfile
 import unittest
 from unittest.mock import patch
-from tools.shell_crash_windows import instruction_window,collect
+from tools.shell_crash_windows import instruction_window,collect,rcpc_candidates
 
 class CrashInstructions(unittest.TestCase):
     def image(self):
@@ -31,7 +31,19 @@ class CrashInstructions(unittest.TestCase):
             text='#00 pc 0000000000001000 /data/app/example/lib/arm64/libc++.so (function+0)\n'
             with patch('tools.shell_crash_windows.command',return_value=('nop','')) as command:
                 result=collect(text*20,d,bundle)
-                self.assertEqual(len(result['frames']),1);command.assert_called_once()
+                self.assertEqual(len(result['frames']),1);self.assertEqual(command.call_count,2)
                 self.assertFalse(result['crash_cause_proven'])
                 path.write_bytes(data+b'altered')
                 with self.assertRaises(ValueError):collect(text,d,bundle)
+
+    def test_wide_window_clips_at_executable_end_and_rejects_over_budget(self):
+        row=instruction_window(self.image(),4096,after=512)
+        self.assertEqual(row['end_elf'],4160)
+        self.assertEqual(len(bytes.fromhex(row['bytes_hex'])),64)
+        for after in (0,3,1028):
+            with self.assertRaises(ValueError):instruction_window(self.image(),4096,after)
+
+    def test_census_does_not_treat_plain_acquire_as_rcpc(self):
+        text="  88ac4: 38bfc108 ldaprb w8, [x8]\n  48cb0: 08dffc08 ldarb w8, [x0]\n"
+        rows=rcpc_candidates(text)
+        self.assertEqual(len(rows),1);self.assertEqual(rows[0]['pc_elf'],0x88ac4)
