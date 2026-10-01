@@ -1,8 +1,33 @@
 {
   "result": "EXPERIMENT_NOT_COMPLETED",
   "port_ready": false,
-  "source_commit": "106d06df6e3d7e3f582e02dc48d171701ff80598",
-  "run_id": "36942098540",
+  "framework_dex_inspection": {
+    "packaging_error": "DEX checksum/signature mismatch",
+    "jars": [
+      {
+        "partition": "system_ext",
+        "path": "/framework/hzos-framework.jar",
+        "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+        "error": "DEX checksum/signature mismatch"
+      },
+      {
+        "partition": "system_ext",
+        "path": "/framework/com.oculus.os.platform.jar",
+        "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+        "error": "DEX checksum/signature mismatch"
+      },
+      {
+        "partition": "system",
+        "path": "/system/framework/framework.jar",
+        "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+        "error": "DEX checksum/signature mismatch"
+      }
+    ],
+    "framework_services_ported": false,
+    "firmware_executed": false
+  },
+  "source_commit": "329b7b62224b821e7f87e999f6e1e3f3a77c4f89",
+  "run_id": "36942634549",
   "probe_step": "skipped",
   "ci_diagnostics": []
 }
