@@ -5,6 +5,8 @@ on:
       - arena/01a0f02d-metaport-horizonosport
     paths:
       - port/android/**
+      - horizon/ui/generate_jni_contract.py
+      - horizon/ui/tests/test_jni_contract.py
       - native/tests/**
       - handtracking/native/**
       - handtracking/tests/native/**
@@ -33,6 +35,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
+      - name: Verify original DEX-derived JNI type contract
+        run: python3 -m horizon.ui.generate_jni_contract --check
       - name: Install pinned Android toolchain
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \

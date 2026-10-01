@@ -2,7 +2,7 @@ name: Verify original VrShell DEX and ARM64 JNI return
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/ui/dex_contract.py, horizon/ui/verify_shell_abi.py, horizon/ui/shell-abi-policy.json, horizon/ui/tests/test_dex_contract.py, horizon/ui/tests/test_shell_abi.py, .github/workflows/shell-abi.yml]
+    paths: [horizon/ui/trace_arm64_tail.py, horizon/ui/tests/test_arm64_tail.py, horizon/ui/dex_contract.py, horizon/ui/verify_shell_abi.py, horizon/ui/shell-abi-policy.json, horizon/ui/tests/test_dex_contract.py, horizon/ui/tests/test_shell_abi.py, .github/workflows/shell-abi.yml]
   workflow_dispatch:
 permissions:
   contents: write
