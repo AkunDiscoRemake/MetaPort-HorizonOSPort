@@ -2936,6 +2936,131 @@
       "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
       "physical_device_validated": false,
       "complete_cpu_compatibility": false
+    },
+    {
+      "library": "libnblog.so",
+      "source_sha256": "278d5c04ace25e08a7807e35df6c20697db062ae1c80a40dd9361587a3f96baf",
+      "adapted_sha256": "d2d5cccd47342b3608b845a5598df30519969eff09a938007e2a74d9e69105cc",
+      "sites": [
+        {
+          "pc_elf": 109468,
+          "file_offset": 109468,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 109488,
+          "file_offset": 109488,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 130116,
+          "file_offset": 130116,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 130136,
+          "file_offset": 130136,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 132628,
+          "file_offset": 132628,
+          "original_word": "0x38bfc268",
+          "adapted_word": "0x8dffe68"
+        },
+        {
+          "pc_elf": 132656,
+          "file_offset": 132656,
+          "original_word": "0x38bfc268",
+          "adapted_word": "0x8dffe68"
+        },
+        {
+          "pc_elf": 161716,
+          "file_offset": 161716,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 178776,
+          "file_offset": 178776,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 180668,
+          "file_offset": 180668,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 180696,
+          "file_offset": 180696,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 181752,
+          "file_offset": 181752,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 182584,
+          "file_offset": 182584,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 182964,
+          "file_offset": 182964,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 183776,
+          "file_offset": 183776,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 184136,
+          "file_offset": 184136,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 195968,
+          "file_offset": 195968,
+          "original_word": "0x38bfc289",
+          "adapted_word": "0x8dffe89"
+        },
+        {
+          "pc_elf": 196056,
+          "file_offset": 196056,
+          "original_word": "0x38bfc288",
+          "adapted_word": "0x8dffe88"
+        },
+        {
+          "pc_elf": 196480,
+          "file_offset": 196480,
+          "original_word": "0x38bfc2c8",
+          "adapted_word": "0x8dffec8"
+        },
+        {
+          "pc_elf": 222012,
+          "file_offset": 222012,
+          "original_word": "0x38bfc128",
+          "adapted_word": "0x8dffd28"
+        }
+      ],
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
+      "scope": "Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof",
+      "physical_device_validated": false,
+      "complete_cpu_compatibility": false
     }
   ],
   "original_native_dependencies_unmodified": false,
@@ -2977,7 +3102,7 @@
     "lib/arm64-v8a/libmedia_helper.so": "923a8e682a9943fa49d9ed97e58d59252bc215b0868578b6485f0e76bff08294",
     "lib/arm64-v8a/libmediametrics.so": "d3de7c156dd49f692c6edcc826239eb681b0b84ee5d161e223e85bbc40ce0981",
     "lib/arm64-v8a/libmediautils.so": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40",
-    "lib/arm64-v8a/libnblog.so": "278d5c04ace25e08a7807e35df6c20697db062ae1c80a40dd9361587a3f96baf",
+    "lib/arm64-v8a/libnblog.so": "d2d5cccd47342b3608b845a5598df30519969eff09a938007e2a74d9e69105cc",
     "lib/arm64-v8a/libprocessgroup.so": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053",
     "lib/arm64-v8a/libshmemcompat.so": "79b92b40c8d10518b657bdb7c3a83b5cc94a152f1eddf9f87057d364bee20b09",
     "lib/arm64-v8a/framework-permission-aidl-cpp.so": "c6eae45c79aa6cce4de0b0da93c895a17aa36fed6e1f8d198c0dbe1744dbe99e",
@@ -3560,12 +3685,13 @@
     },
     {
       "soname": "libnblog.so",
-      "sha256": "278d5c04ace25e08a7807e35df6c20697db062ae1c80a40dd9361587a3f96baf",
+      "sha256": "d2d5cccd47342b3608b845a5598df30519969eff09a938007e2a74d9e69105cc",
       "size_bytes": 239920,
-      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
       "path": "/system/lib64/libnblog.so",
-      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "source_original_sha256": "278d5c04ace25e08a7807e35df6c20697db062ae1c80a40dd9361587a3f96baf"
     },
     {
       "soname": "libprocessgroup.so",
@@ -7243,6 +7369,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "0199565aef19d444a1c6a326d7a415401b5fbca877d06d502d163388c1c886a6",
+  "signed_apk_sha256": "f73e755c98c04ae2a0d0dafefb3c4431dcbc2bbcee2d3360b9ceadfe656215c7",
   "test_certificate_not_meta_identity": true
 }
