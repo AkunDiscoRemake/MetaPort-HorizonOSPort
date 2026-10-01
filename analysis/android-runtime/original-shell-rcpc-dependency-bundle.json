@@ -5,7 +5,7 @@
     {
       "library": "libc++.so",
       "source_sha256": "9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72",
-      "adapted_sha256": "500827212691a96aad494badd5ce641528f2ecc025272680ddfe778e9dc4644f",
+      "adapted_sha256": "4cc6674e283a9239a37bf49437c77950fa728dcf040a843dbb1b8ca925a35ff4",
       "sites": [
         {
           "pc_elf": 559812,
@@ -18,6 +18,12 @@
           "file_offset": 298160,
           "original_word": "0x38bfc008",
           "adapted_word": "0x8dffc08"
+        },
+        {
+          "pc_elf": 559508,
+          "file_offset": 559508,
+          "original_word": "0x38bfc108",
+          "adapted_word": "0x8dffd08"
         }
       ],
       "operation": "LDAPRB -> LDARB, preserving the byte load and both registers",
@@ -31,7 +37,7 @@
     "lib/arm64-v8a/libhzos_spaces.meta.so": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
     "lib/arm64-v8a/libhzos.meta.so": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
     "lib/arm64-v8a/libbase.so": "d3cb46a91077ab502f06997a99215996570ce04cf2fd3f67715911507d53e02c",
-    "lib/arm64-v8a/libc++.so": "500827212691a96aad494badd5ce641528f2ecc025272680ddfe778e9dc4644f",
+    "lib/arm64-v8a/libc++.so": "4cc6674e283a9239a37bf49437c77950fa728dcf040a843dbb1b8ca925a35ff4",
     "lib/arm64-v8a/libhzos_fphal.meta.so": "99b1b8b42068e3328fb62a843f0c75a46b765966a9ee690e0250d001409c0562",
     "lib/arm64-v8a/libaudioclient.so": "c143525b4b209c381b1e6bb09fa5ff1c38e1d6eeb79fc267c7518928f5fa47e9",
     "lib/arm64-v8a/libbinder.so": "b00c5ed730f1a41b51bdcf7b3aa426d0dbde15d24370709f286fc774f6efd11a",
@@ -322,7 +328,7 @@
     },
     {
       "soname": "libc++.so",
-      "sha256": "500827212691a96aad494badd5ce641528f2ecc025272680ddfe778e9dc4644f",
+      "sha256": "4cc6674e283a9239a37bf49437c77950fa728dcf040a843dbb1b8ca925a35ff4",
       "size_bytes": 727248,
       "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
@@ -4315,6 +4321,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "8e73573846198c604c27f8810e6a2ae2d972c591e736c048e82d176427cc2d2c",
+  "signed_apk_sha256": "6f7ec22808ed7efb8a689c55ead1889962f81ac6ad3e3baa8fd57d68aee28a81",
   "test_certificate_not_meta_identity": true
 }
