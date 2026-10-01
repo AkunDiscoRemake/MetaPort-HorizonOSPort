@@ -1991,9 +1991,14 @@
       "truncated": false,
       "runtime_activation_proved": false,
       "task_profiles": {
+        "explicit_profile_roots": [
+          "SoftRealtimePerformance"
+        ],
         "definitions": {},
         "referenced_attributes": [],
-        "unresolved_profile_names": [],
+        "unresolved_profile_names": [
+          "SoftRealtimePerformance"
+        ],
         "unresolved_attribute_names": [],
         "runtime_applied": false,
         "phone_compatible": false,
@@ -3078,7 +3083,22 @@
       "truncated": false,
       "runtime_activation_proved": false,
       "task_profiles": {
+        "explicit_profile_roots": [
+          "SoftRealtimePerformance"
+        ],
         "definitions": {
+          "SoftRealtimePerformance": {
+            "Name": "SoftRealtimePerformance",
+            "Actions": [
+              {
+                "Name": "JoinCgroup",
+                "Params": {
+                  "Controller": "cpu",
+                  "Path": "soft-rt"
+                }
+              }
+            ]
+          },
           "objectTrackingPolicy": {
             "Name": "objectTrackingPolicy",
             "Actions": [
@@ -3270,7 +3290,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "fbfc972bb94949490229813df5f7b062265094a81e4558c19cc80c773f5a1ac8",
+        "decoded_text_sha256": "41c6aeb0e44ec5950ff2b5ee0a90a7adb477e3561daa9924b11346870acde7b0",
         "tool": "llvm-objdump-14",
         "instruction_lines": 336224,
         "unknown_or_invalid_instruction_lines": 83988,
@@ -3396,7 +3416,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "be2c68fd28801da58f728d58872c2952247fe1da540b6cc56631c2f389cf8cab",
+        "decoded_text_sha256": "1f0565b8db51e89022ecec7724c532ae0b9e67367331d3e494c3973ee844ece3",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -3420,7 +3440,7 @@
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "970754a54306d7bc6e773ab60778b0594c18bd5843eb723b3e902e7ee7143512",
+        "decoded_text_sha256": "7fb293a671909c8f236e2ee2321fe5676dad3da7c0377443cef3ab07261dfbe3",
         "tool": "llvm-objdump-14",
         "instruction_lines": 345808,
         "unknown_or_invalid_instruction_lines": 50552,
@@ -4895,7 +4915,7 @@
       ],
       "status": "DISASSEMBLED_NOT_VALIDATED",
       "disassembly": {
-        "decoded_text_sha256": "9517da190667fc90350a8845933bcc99f291f9bea264976a599bb0166eea30fd",
+        "decoded_text_sha256": "112f61b11644be9b461d0b24afb2b1bfbf8fe42c63b166036cc57a4339593537",
         "tool": "llvm-objdump-14",
         "instruction_lines": 79499,
         "unknown_or_invalid_instruction_lines": 29613,
@@ -4958,7 +4978,7 @@
         "decoded_segment_bytes_unchanged": true
       },
       "original_section_disassembly": {
-        "decoded_text_sha256": "be2c68fd28801da58f728d58872c2952247fe1da540b6cc56631c2f389cf8cab",
+        "decoded_text_sha256": "1f0565b8db51e89022ecec7724c532ae0b9e67367331d3e494c3973ee844ece3",
         "tool": "llvm-objdump-14",
         "instruction_lines": 0,
         "unknown_or_invalid_instruction_lines": 0,
@@ -4982,7 +5002,7 @@
         "diagnostics": ""
       },
       "hvx_decoder_probe": {
-        "decoded_text_sha256": "ae92ea4d82d159642216b2867511ebbcd5eeebbb0dc2600e8110d40b0df4c146",
+        "decoded_text_sha256": "c75c5554f38512de72e5bb421d07d98b061adf82206112ce8ece5e3ced196462",
         "tool": "llvm-objdump-14",
         "instruction_lines": 80870,
         "unknown_or_invalid_instruction_lines": 25839,
