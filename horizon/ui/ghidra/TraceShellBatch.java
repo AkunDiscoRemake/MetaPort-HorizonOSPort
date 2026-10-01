@@ -2,6 +2,7 @@
 // @category MetaPort
 import ghidra.app.script.GhidraScript;
 import ghidra.app.decompiler.DecompInterface;
+import ghidra.app.decompiler.DecompileOptions;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.listing.Function;
 import com.google.gson.GsonBuilder;
@@ -19,17 +20,19 @@ public class TraceShellBatch extends GhidraScript {
     }
     @Override public void run() throws Exception {
         String[] args=getScriptArgs();
-        if(args.length!=2) throw new IllegalArgumentException("roots-file output-json");
+        if(args.length!=2 && args.length!=3) throw new IllegalArgumentException("roots-file output-json [function-cap]");
+        int cap=args.length==3 ? Integer.parseInt(args[2]) : 96;
+        if(cap<1 || cap>96) throw new IllegalArgumentException("Function budget");
         output=Path.of(args[1]);
         Address base=currentProgram.getImageBase();
         List<String> roots=Files.readAllLines(Path.of(args[0]));
-        if(roots.isEmpty() || roots.size()>32) throw new IllegalArgumentException("Root budget");
+        if(roots.isEmpty() || roots.size()>Math.min(32,cap)) throw new IllegalArgumentException("Root budget");
         LinkedHashSet<Address> selected=new LinkedHashSet<>();
         for(String root:roots) selected.add(base.add(Long.parseUnsignedLong(root.trim(),16)));
         report.put("program_sha256",currentProgram.getExecutableSHA256());
         report.put("image_base",base.toString());
         report.put("root_count",selected.size());
-        report.put("function_cap",96);
+        report.put("function_cap",cap);
         report.put("identified_function_count_not_total_original",currentProgram.getFunctionManager().getFunctionCount());
         report.put("scope","At most two Ghidra called-function levels; indirect targets unresolved; analyzer prototypes may be wrong");
         report.put("firmware_executed",false);
@@ -37,8 +40,8 @@ public class TraceShellBatch extends GhidraScript {
         report.put("all_horizon_disassembled",false);
         List<Map<String,Object>> frontier=new ArrayList<>();
         List<Address> level=new ArrayList<>(selected);
-        boolean capped=false;
-        for(int depth=0;depth<2 && selected.size()<96;depth++) {
+        boolean capped=selected.size()>=cap;
+        for(int depth=0;depth<2 && selected.size()<cap;depth++) {
             List<List<Address>> candidates=new ArrayList<>();
             for(Address address:level) {
                 monitor.checkCancelled();
@@ -63,7 +66,7 @@ public class TraceShellBatch extends GhidraScript {
             for(int rank=0;rank<128;rank++) for(List<Address> list:candidates) if(rank<list.size()) {
                 Address a=list.get(rank);
                 if(selected.contains(a)) continue;
-                if(selected.size()==96) { capped=true;continue; }
+                if(selected.size()==cap) { capped=true;continue; }
                 selected.add(a);next.add(a);
             }
             level=next;
@@ -73,6 +76,15 @@ public class TraceShellBatch extends GhidraScript {
         List<Map<String,Object>> functions=new ArrayList<>();report.put("functions",functions);
         report.put("analysis_complete",false);save();
         DecompInterface decompiler=new DecompInterface();
+        // We consume C markup, not HighFunction's serialized syntax/data-flow tree.
+        // Avoid the >50MiB unused tree that overflowed the constructor response buffer.
+        DecompileOptions options=new DecompileOptions();
+        options.setMaxPayloadMBytes(64);
+        decompiler.setOptions(options);
+        decompiler.toggleSyntaxTree(false);
+        decompiler.toggleCCode(true);
+        report.put("syntax_tree_requested",false);
+        report.put("decompiler_payload_limit_mib",64);
         if(!decompiler.openProgram(currentProgram)) throw new IllegalStateException("Decompiler unavailable");
         try {
             for(Address address:selected) {
