@@ -1,0 +1,2 @@
+# Static disassembly only, not an inference or Android runtime dependency.
+capstone==5.0.3
