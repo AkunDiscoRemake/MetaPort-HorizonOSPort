@@ -24,10 +24,11 @@ jobs:
           distribution: temurin
           java-version: '21'
       - name: Install host-only parsers and test metadata inspection
+        timeout-minutes: 8
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
-          python3 -m pip install -r handtracking/ai/requirements.txt -r horizon/ui/abi-requirements.txt
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
+          python3 -m pip install --timeout 30 --retries 2 -r handtracking/ai/requirements.txt -r horizon/ui/abi-requirements.txt
           python3 -m unittest discover -s handtracking/ai/tests -v
           python3 -m unittest discover -s horizon/ui/tests -v
           mkdir -p "$WORK/reports"
