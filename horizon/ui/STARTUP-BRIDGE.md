@@ -290,3 +290,22 @@ The first run **36887072598** recorded 43 C-like call sites and left all three
 inside executable PT_LOAD ranges (permissions do not establish section contents);
 its new CI result is pending at this update. Unresolved does not mean supported,
 and successful name recovery would not prove a callable or integrated ABI.
+
+## Resolved XR names and original runtime baseline (2026-10-01)
+
+Run **36891774884** resolves all three dynamic lookups among 43 candidate call
+sites: `xrEnumerateDisplayRefreshRatesFB` at `0x1122c58`,
+`xrGetDisplayRefreshRateFB` at `0x112428c`, and
+`xrPerfSettingsSetPerformanceLevelEXT` at `0x11237bc`. The latter uses session / 1 /
+uVar2 and session / 2 / uVar3. Inputs below 5 index a uint32 table at ELF
+`0x24dd7c`; its values remain unrecovered, while the other branch yields `0x32`.
+These are original call contracts, not an implemented Android OpenXR runtime.
+
+The actual boot experiment now reaches native constructor execution but still
+fails. Run **36894922933** installs an own-test-signed derivative with 77 original
+libraries and unchanged retained APK members. No traversed DT_NEEDED names remain
+unresolved; SIGILL occurs at `libc++.so` ELF `0x89660` during locale / iostream
+initialization under ARM64 translation. No original UI is validated. See
+`port/REAL-PORT-STATUS.md` for the preceding missing-library crashes. Do not remove
+instructions or replace services on the assumption that this is a CPU-extension
+issue: static crash windows and additional runtime evidence are required first.

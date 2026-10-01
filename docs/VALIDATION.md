@@ -140,3 +140,23 @@ scripts now resolve `${ANDROID_HOME}/platform-tools/adb` explicitly. Two script
 fixtures verify SDK paths containing spaces, CheckJNI setup, log cleanup and
 preservation of a nonzero Gradle exit. These fixtures simulate commands only;
 the passing API 29/35 instrumentation above is the real Android evidence.
+
+### Original APK runtime, distinct from adapter instrumentation
+
+On 2026-10-01, unmodified VrShell run **36891774927** installed on API 35 but
+crashed loading `libhzos_spaces.meta.so`. Run **36893813190** added 74 verified
+original libraries and still crashed, now missing `libstatssocket.so`. Run
+**36894922933** added 77 originals, with no unresolved DT_NEEDED names in the
+traversed graph, but crashed with SIGILL in packaged `libc++.so` at guest ELF PC
+`0x89660` (`std::__1::locale::id::__init()`, during iostream constructors).
+
+The guest uses `libndk_translation.so`; this is not physical ARM64 validation.
+A zero `am start` exit status coexisted with process death after 20 seconds.
+Dependency graph closure is not symbol-version, service, namespace, original UI,
+hand inference or stability validation. Bundle APKs use an own test certificate;
+retained original member bytes and added-library hashes are checked after signing.
+No Meta identity, fake services, external network, permission grants or release APK.
+Exact evidence: `analysis/android-runtime/original-shell-bundled-baseline.json`
+and `original-shell-dependency-bundle.json`; successful CI records the failure,
+it does not convert it into a passing app test. Static crash windows added after
+this run are file evidence only, not captured process memory or a proven cause.
