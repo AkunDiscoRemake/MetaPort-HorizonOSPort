@@ -1,6 +1,8 @@
 {
   "source_apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
   "source_ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "instruction_adaptations": [],
+  "original_native_dependencies_unmodified": true,
   "added_members": {
     "lib/arm64-v8a/libhzos_spaces.meta.so": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
     "lib/arm64-v8a/libhzos.meta.so": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
@@ -4287,7 +4289,7 @@
   "original_signatures_removed": true,
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
-  "scope": "Original dependency packaging for offline testing; no service stubs or application-code changes",
-  "signed_apk_sha256": "a71107f4901b0fa637e701dd4f602de37a40ab08c5a12ccf7e14b5a9ac9b16ca",
+  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
+  "signed_apk_sha256": "6b14e46d45e9a265378183d4ba4dde628cf80f21c9e79df4309722c055fe4052",
   "test_certificate_not_meta_identity": true
 }
