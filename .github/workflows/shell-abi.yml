@@ -45,7 +45,7 @@ jobs:
           r=reconstruct(p/'firmware.zip',p/'images',selected={'system_ext'})
           (p/'reconstruction.json').write_text(json.dumps(r))
           PY
-      - name: Verify DEX descriptors and raw ARM64 return bytes without loading original code
+      - name: Verify DEX and ARM64 return, preserving unresolved wrapper metadata
         id: decompile
         run: |
           set +e
