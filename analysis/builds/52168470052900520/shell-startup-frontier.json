@@ -1,0 +1,1159 @@
+{
+  "program_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "scope": "One-hop direct CALL frontier only; excludes unresolved indirect calls and tail jumps",
+  "roots": [
+    {
+      "elf_address": 14197624,
+      "function_found": true,
+      "name": "JNI_OnLoad",
+      "call_instructions": 3,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14197676,
+          "instruction": "bl 0x026b6840",
+          "targets": [
+            {
+              "address": "026b6840",
+              "name": "initialize",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14197724,
+          "instruction": "blr x9",
+          "targets": [
+            {
+              "address": "00ad7850",
+              "name": "FUN_00ad7850",
+              "eligible_local_body": true
+            },
+            {
+              "address": "00e8967c",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14197764,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14125964,
+      "function_found": true,
+      "name": "Java_com_oculus_vrshell_ShellApplication_nativeInit",
+      "call_instructions": 17,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14126056,
+          "instruction": "bl 0x026b8920",
+          "targets": [
+            {
+              "address": "026b8920",
+              "name": "clock_gettime",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126140,
+          "instruction": "bl 0x026b8920",
+          "targets": [
+            {
+              "address": "026b8920",
+              "name": "clock_gettime",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126172,
+          "instruction": "bl 0x00b27af8",
+          "targets": [
+            {
+              "address": "00b27af8",
+              "name": "FUN_00b27af8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126200,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126220,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126240,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126264,
+          "instruction": "bl 0x00d8eadc",
+          "targets": [
+            {
+              "address": "00d8eadc",
+              "name": "FUN_00d8eadc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126284,
+          "instruction": "bl 0x00d8eadc",
+          "targets": [
+            {
+              "address": "00d8eadc",
+              "name": "FUN_00d8eadc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126336,
+          "instruction": "bl 0x00e89758",
+          "targets": [
+            {
+              "address": "00e89758",
+              "name": "FUN_00e89758",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126344,
+          "instruction": "bl 0x00e78e08",
+          "targets": [
+            {
+              "address": "00e78e08",
+              "name": "FUN_00e78e08",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126424,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126436,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126452,
+          "instruction": "bl 0x026b8080",
+          "targets": [
+            {
+              "address": "026b8080",
+              "name": "__wrap___cxa_guard_acquire",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126480,
+          "instruction": "bl 0x026b8110",
+          "targets": [
+            {
+              "address": "026b8110",
+              "name": "__wrap___cxa_guard_release",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126520,
+          "instruction": "bl 0x00aa98dc",
+          "targets": [
+            {
+              "address": "00aa98dc",
+              "name": "FUN_00aa98dc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126524,
+          "instruction": "bl 0x026b6390",
+          "targets": [
+            {
+              "address": "026b6390",
+              "name": "abort",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126528,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14126664,
+      "function_found": true,
+      "name": "Java_com_oculus_vrshell_ShellApplication_nativeOnDestroy",
+      "call_instructions": 2,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14126688,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14126700,
+          "instruction": "b 0x00e78e08",
+          "targets": [
+            {
+              "address": "00e78e08",
+              "name": "FUN_00e78e08",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14126972,
+      "function_found": true,
+      "name": "Java_com_oculus_vrshell_ShellApplication_nativeFrameCommand",
+      "call_instructions": 47,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14127028,
+          "instruction": "bl 0x00d8eadc",
+          "targets": [
+            {
+              "address": "00d8eadc",
+              "name": "FUN_00d8eadc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127188,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127208,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127364,
+          "instruction": "bl 0x026b63d0",
+          "targets": [
+            {
+              "address": "026b63d0",
+              "name": "memcmp",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127436,
+          "instruction": "bl 0x026b63d0",
+          "targets": [
+            {
+              "address": "026b63d0",
+              "name": "memcmp",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127460,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127480,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127536,
+          "instruction": "bl 0x00aa98dc",
+          "targets": [
+            {
+              "address": "00aa98dc",
+              "name": "FUN_00aa98dc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127540,
+          "instruction": "bl 0x026b6390",
+          "targets": [
+            {
+              "address": "026b6390",
+              "name": "abort",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127648,
+          "instruction": "bl 0x026b63d0",
+          "targets": [
+            {
+              "address": "026b63d0",
+              "name": "memcmp",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127784,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127804,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127916,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14127936,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128036,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128056,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128124,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128144,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128224,
+          "instruction": "bl 0x026b63d0",
+          "targets": [
+            {
+              "address": "026b63d0",
+              "name": "memcmp",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128348,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128368,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128404,
+          "instruction": "bl 0x026b63d0",
+          "targets": [
+            {
+              "address": "026b63d0",
+              "name": "memcmp",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128436,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128456,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128500,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128520,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128544,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128564,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128588,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128608,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128632,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128652,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128676,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128696,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128720,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128740,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128768,
+          "instruction": "bl 0x026b63e0",
+          "targets": [
+            {
+              "address": "026b63e0",
+              "name": "strlen",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128824,
+          "instruction": "bl 0x026bcd90",
+          "targets": [
+            {
+              "address": "026bcd90",
+              "name": "memmove",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128840,
+          "instruction": "bl 0x00d8f8c4",
+          "targets": [
+            {
+              "address": "00d8f8c4",
+              "name": "FUN_00d8f8c4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128856,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128912,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128940,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128968,
+          "instruction": "bl 0x00b88068",
+          "targets": [
+            {
+              "address": "00b88068",
+              "name": "FUN_00b88068",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14128988,
+          "instruction": "bl 0x026b63d0",
+          "targets": [
+            {
+              "address": "026b63d0",
+              "name": "memcmp",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14129012,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14129032,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14129040,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14133740,
+      "function_found": true,
+      "name": "Java_com_oculus_vrshell_ShellApplication_nativePassthroughRequest",
+      "call_instructions": 6,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14133800,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133832,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133872,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133920,
+          "instruction": "bl 0x00d8f8c4",
+          "targets": [
+            {
+              "address": "00d8f8c4",
+              "name": "FUN_00d8f8c4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133936,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133980,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14149264,
+      "function_found": true,
+      "name": "Java_com_oculus_vrshell_ShellApplication_nativeOnSizeChanged",
+      "call_instructions": 7,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14149328,
+          "instruction": "bl 0x00d8f700",
+          "targets": [
+            {
+              "address": "00d8f700",
+              "name": "FUN_00d8f700",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14149364,
+          "instruction": "bl 0x00b67258",
+          "targets": [
+            {
+              "address": "00b67258",
+              "name": "FUN_00b67258",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14149388,
+          "instruction": "bl 0x00d8f9e8",
+          "targets": [
+            {
+              "address": "00d8f9e8",
+              "name": "FUN_00d8f9e8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14149404,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14149452,
+          "instruction": "bl 0x00d8f8c4",
+          "targets": [
+            {
+              "address": "00d8f8c4",
+              "name": "FUN_00d8f8c4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14149468,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14149512,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14133372,
+      "function_found": true,
+      "name": "Java_com_oculus_vrshell_ShellApplication_nativeOnLaunchContextReady",
+      "call_instructions": 8,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14133440,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133472,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133496,
+          "instruction": "bl 0x00d8eadc",
+          "targets": [
+            {
+              "address": "00d8eadc",
+              "name": "FUN_00d8eadc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133560,
+          "instruction": "bl 0x00e88ed8",
+          "targets": [
+            {
+              "address": "00e88ed8",
+              "name": "FUN_00e88ed8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133576,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133628,
+          "instruction": "bl 0x00d8f8c4",
+          "targets": [
+            {
+              "address": "00d8f8c4",
+              "name": "FUN_00d8f8c4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133644,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14133692,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    }
+  ],
+  "selected_functions": 20,
+  "selection_cap": 24,
+  "firmware_executed": false,
+  "jni_abi_validated": false,
+  "surface_lifecycle_ported": false
+}
