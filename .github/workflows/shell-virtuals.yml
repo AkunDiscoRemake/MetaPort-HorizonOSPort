@@ -1,20 +1,20 @@
-name: Original Horizon UI and UX decompilation
+name: Original shell constructor-adjacent virtual-call frontier
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [handtracking/ai/inspect_ui.py, handtracking/ai/requirements.txt, tools/reconstruct_ota.py, tools/scan_partitions.py, .github/workflows/ui-decompilation.yml]
+    paths: [horizon/ui/prepare_shell_virtuals.py, horizon/ui/ghidra/TraceShellBatch.java, .github/workflows/shell-virtuals.yml]
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: metaport-ui-decompilation
-  cancel-in-progress: false
+  group: metaport-shell-virtuals
+  cancel-in-progress: true
 jobs:
   analyze:
     runs-on: ubuntu-22.04
     timeout-minutes: 90
     env:
-      WORK: ${{ github.workspace }}/local-analysis/ui
+      WORK: ${{ github.workspace }}/local-analysis/shell-virtuals
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,22 +45,45 @@ jobs:
           r=reconstruct(p/'firmware.zip',p/'images',selected={'system_ext'})
           (p/'reconstruction.json').write_text(json.dumps(r))
           PY
-      - name: Install hash-pinned JADX from official release
+      - name: Extract pinned original ELF and executable startup symbols
         run: |
-          curl --fail --location --retry 3 --max-time 600 --max-filesize 268435456 \
+          python3 -m horizon.ui.prepare_shell_virtuals --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
+      - name: Install pinned static decompiler
+        run: |
+          curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
             --proto '=https' --proto-redir '=https' \
-            'https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip' -o "$WORK/jadx.zip"
-          echo "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974  $WORK/jadx.zip" | sha256sum --check --strict
-          unzip -q "$WORK/jadx.zip" -d "$WORK/jadx"
-      - name: Decompile original settings and UI while recording oversized-source gaps
+            'https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3.2_build/ghidra_11.3.2_PUBLIC_20250415.zip' -o "$WORK/ghidra.zip"
+          echo "99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2  $WORK/ghidra.zip" | sha256sum --check --strict
+          unzip -q "$WORK/ghidra.zip" -d "$WORK"
+      - name: Recover original candidate virtual-call implementations
         id: decompile
         run: |
+          mkdir -p "$WORK/project"
           set +e
-          python3 -m handtracking.ai.inspect_ui --images "$WORK/images" \
-            --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
-          code=$?
+          "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Shell \
+            -import "$WORK/reports/libshell.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
+            -scriptPath "$GITHUB_WORKSPACE/horizon/ui/ghidra;$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
+            -postScript TraceShellBatch.java "$WORK/reports/shell-functions.txt" "$WORK/reports/shell-virtuals-decompilation.json" \
+            -deleteProject 2>&1 | tee "$WORK/inspection.log"
+          code=${PIPESTATUS[0]}
           tail -n 60 "$WORK/inspection.log"
-          exit "$code"
+          if [ "$code" -ne 0 ]; then exit "$code"; fi
+          python3 - <<'PYCODE'
+          import json,os
+          from pathlib import Path
+          from horizon.ui.prepare_shell import POLICY
+          p=Path(os.environ['WORK'])/'reports'
+          policy=json.loads(POLICY.read_text())
+          r=json.loads((p/'shell-virtuals-decompilation.json').read_text())
+          assert r['program_sha256'].lower()==policy['library_sha256']
+          assert r['firmware_executed'] is False
+          seeds=json.loads((p/'shell-virtuals-selection.json').read_text())['selected']
+          functions={x['elf_address']:x for x in r['functions']}
+          assert r['root_count']==len(seeds)
+          assert r['analysis_complete'] and r['processed_count']==r['selected_count']
+          assert r['all_horizon_disassembled'] is False
+          assert all(functions[x['elf_address']]['status']=='DECOMPILED_NOT_VALIDATED' for x in seeds)
+          PYCODE
       - name: Record provenance even on analysis failure
         if: always()
         env:
@@ -74,9 +97,9 @@ jobs:
           log=p/'inspection.log'
           report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
                   'decompile_step':os.environ['DECOMPILE_OUTCOME'],'horizon_ported':False,
-                  'physical_phone_tested':False,'jadx_sha256':'545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974',
+                  'physical_phone_tested':False,'ghidra_sha256':'99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2',
                   'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
-          (p/'reports/ui-analysis-run.json').write_text(json.dumps(report,indent=2)+'\n')
+          (p/'reports/shell-virtuals-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
       - name: Publish reports only, never firmware or models
         if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
@@ -90,7 +113,7 @@ jobs:
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
-          for name in ui-decompilation ui-analysis-run; do
+          for name in shell-virtuals-selection shell-virtuals-decompilation shell-virtuals-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
@@ -99,7 +122,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then
-            git commit -m 'Record original UI DEX decompilation evidence [skip ci]'
+            git commit -m 'Record bounded original VrShell batch, not complete disassembly, not a working runtime [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
@@ -108,7 +131,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ui-decompilation-reports-no-firmware
+          name: shell-virtuals-reports-no-firmware
           path: |
-            ${{ env.WORK }}/reports/ui-*.json
+            ${{ env.WORK }}/reports/shell-*.json
           retention-days: 7
