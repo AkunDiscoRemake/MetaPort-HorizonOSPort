@@ -1,0 +1,158 @@
+# SPDX-License-Identifier: GPL-3.0-only
+"""Bundle verified ORIGINAL native dependencies for an offline load experiment.
+
+No DEX/resource patches, forged services, Meta signing identity, or runtime claims.
+Missing/ambiguous libraries remain explicit. A dependency closure is not a port.
+"""
+import argparse
+from collections import deque
+import hashlib
+import json
+from pathlib import Path, PurePosixPath
+import re
+import zipfile
+from horizon.ui.prepare_shell import POLICY
+from horizon.ui.loader_audit import PUBLIC_NDK
+from handtracking.ai.inspect_original import digest, BUILD
+from tools.scan_partitions import command, dump_entry, list_ext4
+
+MAX_LIBRARIES=128
+MAX_BYTES=256*1024*1024
+NAME=re.compile(r'lib[A-Za-z0-9_+.\-]+\.so\Z')
+
+
+def signatures(name):
+    upper=name.upper()
+    return upper.startswith('META-INF/') and (upper.endswith(('.SF','.RSA','.DSA','.EC')) or upper=='META-INF/MANIFEST.MF')
+
+
+def native_needs(path):
+    text,_=command(['readelf','-h','-d','-W',str(path)],max_output=2*1024*1024)
+    if not re.search(r'Machine:\s+AArch64',text):raise ValueError('Non-ARM64 dependency')
+    names=re.findall(r'\(NEEDED\).*?\[(.*?)\]',text)
+    if len(names)>128 or any(not NAME.fullmatch(n) or '..' in n for n in names):raise ValueError('Invalid DT_NEEDED')
+    return names
+
+
+def candidate(inventory,name):
+    # System libraries of a system_ext app: prefer the system namespace, not
+    # vendor variants. This selection is recorded, not a namespace/ABI proof.
+    for partition in ('system','system_ext'):
+        rows=[e for e in inventory[partition]['entries'] if e['kind']=='file' and
+              e['path'] in ('/lib64/'+name,'/system/lib64/'+name)]
+        if len(rows)>1:raise ValueError('Ambiguous direct library')
+        if rows:return partition,rows[0]
+    return None
+
+
+def member_digest(archive,info):
+    h=hashlib.sha256()
+    with archive.open(info) as f:
+        for b in iter(lambda:f.read(1024*1024),b''):h.update(b)
+    return h.hexdigest()
+
+
+def compare_apks(original,modified,added):
+    """Check every retained original member byte-for-byte, not just classes.dex."""
+    with zipfile.ZipFile(original) as src,zipfile.ZipFile(modified) as dst:
+        originals={i.filename:i for i in src.infolist() if not signatures(i.filename)}
+        targets={i.filename:i for i in dst.infolist() if not signatures(i.filename)}
+        if len({i.filename for i in dst.infolist()})!=len(dst.infolist()) or set(targets)!=set(originals)|set(added):
+            raise ValueError('APK members changed outside declared library additions/signature removal')
+        for name,info in originals.items():
+            if member_digest(src,info)!=member_digest(dst,targets[name]):raise ValueError('Original member changed: '+name)
+        for name,sha in added.items():
+            if member_digest(dst,targets[name])!=sha:raise ValueError('Added library hash mismatch')
+
+
+def prepare(images,reconstruction,original,output):
+    images=Path(images);original=Path(original);output=Path(output);output.mkdir(parents=True,exist_ok=True)
+    policy=json.loads(POLICY.read_text());recon=json.loads(Path(reconstruction).read_text())
+    if digest(original)!=policy['apk_sha256'] or recon['source_zip_sha256']!=policy['ota_sha256']:
+        raise ValueError('Unpinned source')
+    inventory=json.loads(Path(f'analysis/builds/{BUILD}/static-analysis.json').read_text())['partitions']
+    for part in ('system','system_ext'):
+        r=recon['partitions'][part];image=images/(part+'.img')
+        if not r['sha256_match'] or image.stat().st_size!=r['size_bytes'] or digest(image)!=r['sha256']:
+            raise ValueError('Unverified source partition')
+    libs=output/'libraries';libs.mkdir(exist_ok=True)
+    bundled={}
+    with zipfile.ZipFile(original) as z:
+        seen=set()
+        for info in z.infolist():
+            if info.filename in seen:raise ValueError('Duplicate original APK member')
+            seen.add(info.filename)
+            if not info.filename.startswith('lib/arm64-v8a/') or not info.filename.endswith('.so'):continue
+            name=PurePosixPath(info.filename).name
+            if not NAME.fullmatch(name) or not 0<info.file_size<=96*1024*1024:raise ValueError('Invalid APK native member')
+            p=libs/name
+            with z.open(info) as src,p.open('wb') as dst:
+                for block in iter(lambda:src.read(1024*1024),b''):dst.write(block)
+            bundled[name]=p
+    if 'libshell.so' not in bundled or digest(bundled['libshell.so'])!=policy['library_sha256']:
+        raise ValueError('Wrong root library')
+    # ART APEX supplies libnativehelper, absent from the flat filesystem inventory.
+    apex=None;apex_entries=[];apex_sha=None
+    pending=deque(['libshell.so']);visited=set();rows=[];edges=[];added={};unresolved=[];total=0
+    while pending:
+        name=pending.popleft()
+        if name in visited:continue
+        if len(visited)>=MAX_LIBRARIES:raise ValueError('Native closure budget')
+        visited.add(name)
+        if name in PUBLIC_NDK and name not in bundled:
+            rows.append({'soname':name,'status':'PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED'});continue
+        path=bundled.get(name);origin={'status':'ORIGINAL_APK_MEMBER'}
+        if path is None:
+            selected=candidate(inventory,name)
+            path=libs/name
+            if selected:
+                part,entry=selected
+                if not 0<entry['size_bytes']<=96*1024*1024:raise ValueError('Dependency size budget')
+                dump_entry(images/(part+'.img'),entry,path)
+                origin={'status':'BUNDLED_ORIGINAL_FIRMWARE_LIBRARY','partition':part,'path':entry['path'],
+                        'source_image_sha256':recon['partitions'][part]['sha256']}
+            elif name=='libnativehelper.so':
+                if apex is None:
+                    entry=next(e for e in inventory['system']['entries'] if e['path']=='/system/apex/com.android.art.apex')
+                    container=output/'art.apex';dump_entry(images/'system.img',entry,container);apex_sha=digest(container)
+                    with zipfile.ZipFile(container) as z:
+                        matches=[i for i in z.infolist() if i.filename=='apex_payload.img']
+                        if len(matches)!=1 or matches[0].file_size>256*1024*1024:raise ValueError('APEX payload budget')
+                        apex=output/'art.img'
+                        with z.open(matches[0]) as src,apex.open('wb') as dst:
+                            for b in iter(lambda:src.read(1024*1024),b''):dst.write(b)
+                    apex_entries=list_ext4(apex)
+                matches=[e for e in apex_entries if e['path']=='/lib64/libnativehelper.so' and e['kind']=='file']
+                if len(matches)!=1:raise ValueError('Missing unique APEX nativehelper')
+                dump_entry(apex,matches[0],path)
+                origin={'status':'BUNDLED_ORIGINAL_APEX_LIBRARY','path':'/lib64/libnativehelper.so',
+                        'apex_sha256':apex_sha,'source_image_sha256':recon['partitions']['system']['sha256']}
+            else:
+                unresolved.append(name);rows.append({'soname':name,'status':'NOT_RESOLVED_NO_STUB'});continue
+            added['lib/arm64-v8a/'+name]=digest(path)
+        size=path.stat().st_size;total+=size
+        if total>MAX_BYTES:raise ValueError('Native byte budget')
+        needs=native_needs(path)
+        rows.append({'soname':name,'sha256':digest(path),'size_bytes':size,**origin})
+        for child in needs:edges.append({'from':name,'to':child});pending.append(child)
+    unsigned=output/'shell-dependencies-unsigned.apk'
+    with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
+        for info in src.infolist():
+            if signatures(info.filename):continue
+            with src.open(info) as a,dst.open(info,'w') as b:
+                for block in iter(lambda:a.read(1024*1024),b''):b.write(block)
+        for member in sorted(added):dst.write(libs/PurePosixPath(member).name,member,compress_type=zipfile.ZIP_STORED)
+    compare_apks(original,unsigned,added)
+    report={'source_apk_sha256':policy['apk_sha256'],'source_ota_sha256':policy['ota_sha256'],
+            'added_members':added,'nodes':rows,'edges':edges,'unresolved':unresolved,
+            'original_members_unchanged':True,'original_signatures_removed':True,
+            'namespace_and_symbol_versions_verified':False,'port_ready':False,
+            'scope':'Original dependency packaging for offline testing; no service stubs or application-code changes'}
+    (output/'bundle.json').write_text(json.dumps(report,indent=2)+'\n')
+    return report
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__)
+    for name in ('images','reconstruction','original','output'):p.add_argument('--'+name,required=True)
+    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output)

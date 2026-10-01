@@ -38,7 +38,7 @@ def adb_command(adb, arguments, timeout=30):
             'truncated':len(raw)>65536}
 
 
-def inspect(apk, adb, observe_seconds=20):
+def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
     if not 0<=observe_seconds<=30:raise ValueError('Observation budget')
     apk=Path(apk);policy=json.loads(POLICY.read_text())
     if not 0<apk.stat().st_size<=512*1024*1024:raise ValueError('APK bounds')
@@ -46,9 +46,24 @@ def inspect(apk, adb, observe_seconds=20):
     with apk.open('rb') as stream:
         for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
     sha=digest.hexdigest()
-    if sha!=policy['apk_sha256']:raise ValueError('Unverified original APK')
+    bundled=original is not None or bundle_manifest is not None
+    bundle=None
+    if bundled:
+        if original is None or bundle_manifest is None:raise ValueError('Incomplete bundle provenance')
+        from horizon.ui.bundle_shell_dependencies import compare_apks
+        from handtracking.ai.inspect_original import digest
+        manifest=Path(bundle_manifest)
+        if manifest.stat().st_size>2*1024*1024:raise ValueError('Bundle evidence budget')
+        bundle=json.loads(manifest.read_text())
+        if digest(Path(original))!=policy['apk_sha256'] or bundle['source_apk_sha256']!=policy['apk_sha256']:
+            raise ValueError('Unverified original source')
+        if sha!=bundle['signed_apk_sha256']:raise ValueError('Unverified signed bundle')
+        compare_apks(original,apk,bundle['added_members'])
+    elif sha!=policy['apk_sha256']:raise ValueError('Unverified original APK')
     offline_guard()
-    report={'apk_sha256':sha,'original_apk_unmodified':True,'network_isolated':True,
+    report={'apk_sha256':sha,'original_apk_unmodified':not bundled,
+            'source_apk_sha256':policy['apk_sha256'],'original_members_unchanged':True,
+            'bundled_library_count':len(bundle['added_members']) if bundle else 0,'network_isolated':True,
             'installation_attempted':False,'installation_succeeded':False,
             'activity_start_attempted':False,'port_ready':False,
             'physical_device_tested':False,'original_ui_rendering_validated':False,
@@ -82,8 +97,10 @@ def inspect(apk, adb, observe_seconds=20):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--apk',required=True);p.add_argument('--output',required=True)
+    p.add_argument('--original');p.add_argument('--bundle-manifest')
     a=p.parse_args()
-    try:r=inspect(a.apk,Path(os.environ['ANDROID_HOME'])/'platform-tools/adb')
+    try:r=inspect(a.apk,Path(os.environ['ANDROID_HOME'])/'platform-tools/adb',
+                  original=a.original,bundle_manifest=a.bundle_manifest)
     except Exception as error:r={'result':'EXPERIMENT_FAILED','error':str(error),'port_ready':False}
     r.update(source_commit=os.environ.get('GITHUB_SHA'),run_id=os.environ.get('GITHUB_RUN_ID'))
     output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True)
