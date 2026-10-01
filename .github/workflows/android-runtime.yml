@@ -2,7 +2,7 @@ name: Android adapter runtime tests (not Horizon)
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [tools/prepare_emulator_diagnostics.sh, tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
+    paths: [tools/boot_android_emulator.py, tests/test_emulator_supervisor.py, tools/prepare_emulator_diagnostics.sh, tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,7 +30,7 @@ jobs:
           gradle-version: '8.10.2'
       - name: Install pinned build toolchain
         run: |
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1'
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'emulator' 'system-images;android-${{ matrix.api }};google_apis;x86_64'
       - name: Install required emulator host shared libraries
         run: |
           # -noaudio does not remove the QEMU binary's ELF dependency on libpulse.
@@ -44,23 +44,9 @@ jobs:
       - name: Build test-only x86_64 fixtures (never release APKs)
         run: gradle -p port/android -PmetaportEmulatorTests=true :adapters:assembleDebug :adapters:assembleDebugAndroidTest
       - name: Execute Android JNI, sensor lifecycle, EGL and shader tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api }}
-          target: google_apis
-          arch: x86_64
-          profile: pixel_2
-          ram-size: 2048M
-          heap-size: 512M
-          disk-size: 2048M
-          cores: 2
-          disable-linux-hw-accel: false
-          emulator-boot-timeout: 900
-          pre-emulator-launch-script: bash tools/prepare_emulator_diagnostics.sh
-          disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -feature -Vulkan -accel on -noaudio -no-boot-anim -no-snapshot -camera-back none -camera-front none
-          script: |
-            bash tools/run_android_runtime.sh
+        env:
+          API: ${{ matrix.api }}
+        run: python3 -m tools.boot_android_emulator --api "$API"
       - name: Capture logs and explicit scope
         if: always()
         env:
@@ -111,12 +97,14 @@ jobs:
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           python3 - <<'PY'
           import json,os,pathlib
+          from tools.collect_action_diagnostics import captured_files
           dest=pathlib.Path('analysis/android-runtime');dest.mkdir(parents=True,exist_ok=True)
           reports=list(pathlib.Path('local-analysis/runtime-artifacts').rglob('scope.json'))
           if not reports:raise SystemExit('No runtime evidence available')
           seen=set()
           for path in reports:
               r=json.loads(path.read_text());api=r['api']
+              r['ci_diagnostics']=captured_files(path.parent)
               assert api in (29,35) and api not in seen
               assert r['run_id']==os.environ['GITHUB_RUN_ID']
               assert r['source_commit']==os.environ['GITHUB_SHA']

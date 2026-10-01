@@ -39,7 +39,7 @@ def collect(repo,run):
 def captured_files(root):
     files=[]
     for path in sorted(Path(root).rglob('*')):
-        if path.name not in ('emulator-host.txt','boot-tail.txt'): continue
+        if path.name not in ('emulator-host.txt','boot-tail.txt','emulator-output.txt'): continue
         with path.open(errors='replace') as stream: text=stream.read(16000)
         lines=[line for line in text.splitlines() if not re.search(r'authorization|[?&]sig=|github_token',line,re.I)]
         files.append({'path':str(path.relative_to(root)), 'text':'\n'.join(lines),
