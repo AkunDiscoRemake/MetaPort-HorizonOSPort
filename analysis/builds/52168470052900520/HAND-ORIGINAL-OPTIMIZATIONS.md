@@ -263,7 +263,9 @@ A variante mixed NEON alarga os operandos, multiplica em int16 (produtos cabem),
 alarga as somas de pares para int32 e acumula os bits módulo 2^32.
 Testes host ASan/UBSan passaram também para todos os 65536 pares unsigned/signed,
 vetores variados, coeficientes ordenados e cruzamentos das fronteiras signed.
-**A execução ARM64/Android desta ampliação ainda está pendente.** Nenhum desses
+**Run 36794546518 passou**: host sanitizado, as quatro APIs no backend ARM64
+NEON sob qemu-aarch64, build AAR, testes Java e lint Android. Isso valida as
+reduções contra a fórmula de referência, não o DSP ou o telefone. Nenhum desses
 helpers está ligado ao caminho de inferência original.
 
 ## 8. Scheduler, compartilhamento de câmeras e FMQ do serviço original
