@@ -39,6 +39,12 @@ public class TraceHandService extends GhidraScript {
         while(internal.hasNext()) {monitor.checkCancelled();consider(internal.next());}
         var external=currentProgram.getFunctionManager().getExternalFunctions();
         while(external.hasNext()) {monitor.checkCancelled();consider(external.next());}
+        // Callers of the priority/profile applicators and hand-service constructor
+        // recovered in run 36794645662; addresses are ELF VAs, not callable ABI.
+        for(long elf:new long[]{0x4df1acL,0x4df4e0L,0x4a2ce8L}) {
+            Function f=getFunctionAt(base.add(elf));
+            if(f!=null) roots.put(f.getEntryPoint(),f);
+        }
         List<Map<String,Object>> evidence=new ArrayList<>();
         for(Function root:roots.values()) {
             monitor.checkCancelled();var refs=getReferencesTo(root.getEntryPoint());
@@ -65,6 +71,16 @@ public class TraceHandService extends GhidraScript {
         Files.writeString(functions,text.toString());
         Map<String,Object> report=new LinkedHashMap<>();
         report.put("program_sha256",SHA);report.put("roots",evidence);
+        // 16-byte literal loaded by the Realtime sched_attr branch at 005df268.
+        // Raw bytes only: do not guess FIFO/RR or flags from the name Realtime.
+        byte[] literal=new byte[16];Address literalAddress=base.add(0x72840L);
+        if(currentProgram.getMemory().getBytes(literalAddress,literal)!=literal.length)
+            throw new IllegalStateException("Incomplete scheduler literal");
+        Map<String,Object> constant=new LinkedHashMap<>();
+        constant.put("elf_address",0x72840L);
+        constant.put("bytes_hex",HexFormat.of().formatHex(literal));
+        report.put("realtime_header_literal",constant);
+
         report.put("selected_elf_addresses",new ArrayList<>(selected));
         report.put("firmware_executed",false);report.put("hand_exclusive",false);
         report.put("scope","Named scheduler/profile functions and thunks, direct call refs only; 128 refs/root, 2 new callers/root, 24 total targets. Indirect dispatch and raw syscall numbers unresolved.");

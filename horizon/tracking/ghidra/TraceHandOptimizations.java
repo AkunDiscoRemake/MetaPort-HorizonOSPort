@@ -154,7 +154,7 @@ public class TraceHandOptimizations extends GhidraScript {
                 item.put("direct_calls",calls);item.put("scan_truncated",refs.length>256);edges.add(item);
             }
             if(group.getKey().equals("inference"))
-                for(long helper:new long[]{0x161c420L,0x161c680L,0x161c820L,0x1616f20L,0x16222a0L}) selected.add(helper);
+                for(long helper:new long[]{0x161c420L,0x161c680L,0x161c820L,0x1616f20L,0x1624fc0L}) selected.add(helper);
             selections.put(group.getKey(),new ArrayList<>(selected));
             StringBuilder text=new StringBuilder();
             for(long address:selected) text.append(Long.toHexString(address)).append('\n');

@@ -397,3 +397,65 @@ afinidade e task profiles, incluindo thunks, no binário de serviço pinado. Lim
 128 refs/raiz, 2 callers novos/raiz e 24 funções no total. Chamadas indiretas e
 números de syscall bruta continuam não resolvidos. A continuação **36794645662**
 também inspeciona os helpers FMQ `005a4bb4` e `005a4f04`; resultado pendente.
+
+
+## 10. Aplicação real das políticas recuperada; continuação DPE/FMQ
+
+**36794645662 e 36793839065 concluíram com sucesso.** Isso supera os estados
+pendentes registrados nas seções anteriores, não valida execução no telefone.
+
+### Scheduler: agora há syscall e ordem de aplicação
+
+O trace recuperou **`005df1ac` (`setPriorityReturnErr` no log original)**:
+1. conta bits da máscara de 128 bytes; se vazia, não chama `sched_setaffinity`;
+2. se houver perfis, chama `SetTaskProfiles(tid, perfis, false)`;
+3. monta atributos e chama **`syscall(0x112, tid, &attr, 0)`**. Em AArch64 Linux,
+   274 é `sched_setattr`; a chamada e argumentos são visíveis no listing;
+4. erro de afinidade ou perfil interrompe esse caminho antes da syscall final.
+
+O ramo Normal faz `sub w8,w8,#0x78` e grava só 32 bits em `sp+0x10`, após zerar
+os campos: **nice = valor - 120**, prioridade RT permanece zero. A aritmética foi
+conferida no assembly, não apenas no C-like que apresenta casts ambíguos.
+Batch grava política 3; ambos gravam flags 1. O ramo Realtime carrega um literal
+de 16 bytes em `00172840` e grava o valor no campo de prioridade. Esse literal
+será capturado antes de afirmar FIFO versus RR ou flags específicas desse ramo.
+A confirmação de uma chamada estática não prova sucesso da syscall nem a ligação
+com cada worker de mãos. Um APK comum não recebe automaticamente os grupos e
+privilégios do serviço Horizon.
+
+`005df4e0` aplica somente perfis e retorna erro quando `SetTaskProfiles` falha.
+A próxima seleção segue callers desses dois helpers e do construtor
+`005a2ce8`, para aproximar os mecanismos compartilhados dos usuários concretos.
+
+### FMQ: descriptor e leitores
+
+`005a4bb4` monta grantors de 8, 8, área de dados e, opcionalmente, 4 bytes, com
+alinhamento de 8; grava quantum 528 e flavor **2**. `005a4f04` confere o quantum,
+aloca contador local de leitura de 8 bytes, mapeia contador de escrita, dados e
+flag de evento, e chama `EventFlag::createEventFlag`.
+
+Isso corresponde à estrutura do FMQ **unsynchronized-write**, com posição de
+leitura independente. Referência pública de enum: LineageOS Android 14,
+[`base/fmq/MQDescriptorBase.h`](https://github.com/LineageOS/android_system_libfmq/blob/lineage-21.0/base/fmq/MQDescriptorBase.h),
+blob `7303917623ac37915fdd33f195010db481f39f0b`, SHA-256
+`69d61adc1c0123ce90f9abc6956a7305126b3ee7e970c08d8569b718f7ffaa0b`:
+`kUnsynchronizedWrite = 0x02`. Essa referência Apache-2.0 não é código Meta.
+A [documentação AOSP de FMQ](https://source.android.com/docs/core/architecture/hidl/fmq)
+descreve um escritor e múltiplos leitores, com possibilidade de perder dados
+quando um leitor não acompanha. **Ainda falta recuperar o produtor e seus
+métodos de escrita**, portanto não afirmar ausência de bloqueio/cópia em todo o
+caminho de mãos. O próximo helper é o mapper `005a5134`.
+
+### DPE: cópia e escala SIMD antes do próximo estágio
+
+`01716f20` foi recuperado: aloca/copia registros de **64 bytes**, multiplica
+três floats nos offsets **0x30, 0x34 e 0x38 por 0.001**, encaminha para
+**`01724fc0`** e libera a cópia. O listing confirma `fmul v2.2S` e `fmul s3`
+com stride `0x40`, em vez de conversão inteira sugerida por casts no C-like.
+É compatível com escala de componentes de transformação, mas não identifica
+sozinho o tipo privado, coordenadas ou unidades de entrada. Não aplicar uma
+conversão de pose ARCore por palpite. A próxima seleção segue `01724fc0`.
+
+A suíte Python atual tem **88 testes, 1 skip**; o backend ARM64 das oito formas
+vrmpy observadas e o build Android passaram em **36794546518**. Ainda não há
+inferência de mãos completa, ganho medido no X6873 ou ZIP/Release final.
