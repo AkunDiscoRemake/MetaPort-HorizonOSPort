@@ -183,9 +183,10 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
                         raise ValueError('Framework inspection inventory budget')
                     target=output/(part+'-'+PurePosixPath(source).name)
                     dump_entry(images/(part+'.img'),candidates[0],target)
-                    entries=read_dexes(target,128*1024*1024)
+                    entries=read_dexes(target,128*1024*1024,normalize_framework=True)
                     names=set().union(*(entry[3] for entry in entries))
                     item.update(sha256=digest(target),class_definitions=len(names),
+                                dex_headers=[dict(member=e[1],**e[4]) for e in entries],
                                 defines_required=REQUIRED in names,
                                 required_dex_members=[e[1] for e in entries if REQUIRED in e[3]],
                                 horizonos_definitions=sum(n.startswith('Lhorizonos/') for n in names),

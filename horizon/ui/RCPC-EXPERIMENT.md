@@ -199,3 +199,14 @@ or launched. The archived run logs were not retrievable from this workspace
 The next run preserves bounded packaging errors and inspects three fixed JARs
 from the already verified images to locate the real Vector4f definition. This
 failure path does not automatically select or append a different framework JAR.
+
+Run **36942634549** preserved the preparation failure: all three inspected JARs
+from the pinned images failed the standard internal DEX checksum/signature check.
+No application installation or execution took place. The next experiment allows
+only explicit framework-header normalization: SHA-1 at bytes 12–31, then Adler-32
+at bytes 8–11. Bytes 0–7 and 32 onward, including instructions, tables and data,
+remain unchanged. Source partition/JAR/DEX hashes, stored header fields, payload
+hash and changed byte range are recorded. Original APK DEX validation stays strict.
+This supersedes the proposed whole-file byte-identical framework DEX addition;
+only existing APK members and added framework instruction/data payloads remain
+byte-identical. It is not proof that a preoptimized DEX body will pass ART or run.

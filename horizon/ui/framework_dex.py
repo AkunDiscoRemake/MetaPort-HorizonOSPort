@@ -6,6 +6,8 @@ DEX checks here establish bounded metadata/provenance, not full ART verification
 """
 import hashlib
 import re
+import struct
+import zlib
 import zipfile
 from horizon.ui.dex_contract import Dex
 
@@ -23,7 +25,21 @@ def definitions(data):
     return names
 
 
-def read_dexes(path,byte_limit):
+def normalized_framework_header(data):
+    if len(data)<112:raise ValueError('Truncated framework DEX')
+    result=bytearray(data)
+    result[12:32]=hashlib.sha1(result[32:]).digest()
+    struct.pack_into('<I',result,8,zlib.adler32(result[12:])&0xffffffff)
+    result=bytes(result)
+    return result,{'source_dex_sha256':hashlib.sha256(data).hexdigest(),
+                   'source_checksum_hex':data[8:12].hex(),'source_signature_hex':data[12:32].hex(),
+                   'header_checksums_recomputed':result!=data,
+                   'payload_sha256':hashlib.sha256(data[32:]).hexdigest(),
+                   'changed_byte_range':[8,32] if result!=data else None,
+                   'instruction_and_data_bytes_unchanged':True}
+
+
+def read_dexes(path,byte_limit,normalize_framework=False):
     rows=[];total=0
     with zipfile.ZipFile(path) as archive:
         infos=archive.infolist()
@@ -38,17 +54,19 @@ def read_dexes(path,byte_limit):
             if index>128 or len(rows)>=32 or not 112<=info.file_size<=128*1024*1024 or total>byte_limit:
                 raise ValueError('DEX archive budget')
             data=archive.read(info)
-            rows.append((index,info.filename,data,definitions(data)))
+            evidence={}
+            if normalize_framework:data,evidence=normalized_framework_header(data)
+            rows.append((index,info.filename,data,definitions(data),evidence))
     if not rows:raise ValueError('No standard DEX in archive')
     return sorted(rows)
 
 
 def additions(original,jar):
-    """Return byte-identical additional DEX members; reject class/boot collisions."""
+    """Keep framework code/data unchanged, normalizing only header checksums; reject collisions."""
     originals=read_dexes(original,256*1024*1024)
-    framework=read_dexes(jar,32*1024*1024)
+    framework=read_dexes(jar,32*1024*1024,normalize_framework=True)
     existing=set().union(*(r[3] for r in originals));new=set()
-    for _,_,_,names in framework:
+    for _,_,_,names,_ in framework:
         if names & (existing|new):raise ValueError('Framework class collides with existing DEX: '+', '.join(sorted(names & (existing|new))[:8]))
         if any(n.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/')) for n in names):
             raise ValueError('Refusing framework DEX containing boot namespace definitions: '+', '.join(sorted(n for n in names if n.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/')))[:8]))
@@ -56,12 +74,12 @@ def additions(original,jar):
     if REQUIRED not in new:raise ValueError('Original Vector4f definition not found in selected JAR')
     base=max(r[0] for r in originals);members={};evidence=[]
     if base+len(framework)>128:raise ValueError('Combined DEX index budget')
-    for offset,(_,source,data,names) in enumerate(framework,1):
+    for offset,(_,source,data,names,metadata) in enumerate(framework,1):
         target=f'classes{base+offset}.dex';members[target]=data
         evidence.append({'source_member':source,'apk_member':target,
                          'sha256':hashlib.sha256(data).hexdigest(),'size_bytes':len(data),
-                         'class_definitions':len(names)})
+                         'class_definitions':len(names),**metadata})
     return members,{'source_path':JAR_PATH,'source_jar_sha256':hashlib.sha256(jar.read_bytes()).hexdigest(),
                     'members':evidence,'required_definition':REQUIRED,
                     'original_dex_members_unchanged':True,'framework_services_ported':False,
-                    'scope':'Byte-identical original framework DEX addition, not system service registration'}
+                    'scope':'Original framework code/data with explicit header checksum normalization; not system service registration'}
