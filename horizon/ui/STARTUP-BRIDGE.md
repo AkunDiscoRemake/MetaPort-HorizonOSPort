@@ -373,3 +373,19 @@ Correction to the previous missing-class record: the original application import
 `com.oculus.vrshell.privateipc.updater.ShellNativeUpdaterHolder`, not the class
 at the package root previously searched. Recovery now uses that exact imported
 path. Absence at the earlier path did not establish absence from the APK.
+
+Recovery **36939409546** found the actual boot-config and updater classes.
+`C00A.A0O` defaults to true, but normal (non-automation) configuration assigns
+`RoleManager.isRoleHeld("oculus.app.role.SPATIAL_WINDOW_MANAGER")`. Automation
+skips that assignment; enabling automation is not an implemented app-scoped
+window manager and has not been used as a workaround. Earlier in the same
+method, `PreferencesManager` is dereferenced for multiple boolean settings
+without a null check. Supplying native libraries alone does not supply this
+Java framework service. A `WorldManager` query also exists, inside a catch block.
+
+The correctly located `ShellNativeUpdaterHolder` is present and reconstructed.
+Its `init(Context)` stores the ShellApplication singleton; its UI update callbacks
+post to the application's handler and resolve `VolumetricWindowToken`s before
+passing surfaces/layer changes to the multi-layer handler. This is not a missing
+class to replace with a dummy object. Recovered Java remains uncompiled and the
+app-scoped equivalents of these service contracts remain **NOT PORTED YET**.

@@ -110,3 +110,15 @@ O aplicativo ultrapassou `attemptEdit`, mas encerrou em `SharedBuffer::release`
 (próximo LDAPR em `0x10058`). Continua sem UI e sem beta funcional.
 A experiência seguinte usa 14 pontos explícitos de `libutils.so`; não confundir
 essa adaptação para o emulador com otimização para o Infinix ou para sua NPU.
+
+Runs **36925786582** and **36939212398** still ended before original UI rendering:
+first at the HIDL constructor, then at the JSON-value constructor in `libnblog.so`.
+The explicit experimental policy now has 477 sites across 18 firmware libraries;
+this count measures instruction adaptations for the CI translator, **not port
+completion**. Run 36940043323 tests the latest policy; its result was pending at
+this documentation update. Original APK DEX/resources remain unchanged.
+
+Recovery 36939409546 also confirmed the real `privateipc.updater` package for
+ShellNativeUpdaterHolder and the boot config's PreferencesManager/Spatial Window
+Manager role dependencies. They have not been replaced by working app-scoped
+services. There is still no functional beta, phone validation, or NPU inference.
