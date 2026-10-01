@@ -33944,23 +33944,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 112888,
-      "text": "DFD currently not supported on Android! model: {}",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 28979520,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01ca3120",
-            "elf_address": 28979488
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 115754,
       "text": "Failed to open schedule file: {}",
       "hand_context_in_string": false,
@@ -34091,57 +34074,6 @@
           "containing_function": {
             "name": "FUN_012c2d70",
             "elf_address": 18623856
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 163289,
-      "text": "android/content/Context",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 12890844,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d4af00",
-            "elf_address": 12889856
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 171046,
-      "text": "binder_status_t aidl::android::frameworks::stats::AnnotationValue::writeToParcel(AParcel *) const",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 37248196,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02485c50",
-            "elf_address": 37248080
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 171144,
-      "text": "binder_status_t aidl::android::frameworks::stats::VendorAtomValue::writeToParcel(AParcel *) const",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 8757960,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0095a0c0",
-            "elf_address": 8757440
           }
         }
       ],
@@ -34289,23 +34221,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 188778,
-      "text": "android.frameworks.stats.IStats/default",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 10035588,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a91fb0",
-            "elf_address": 10035120
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 190537,
       "text": "FilterSystem::propagateInit",
       "hand_context_in_string": false,
@@ -34333,23 +34248,6 @@
           "containing_function": {
             "name": "FUN_01273270",
             "elf_address": 18297456
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 194199,
-      "text": "roiHeight",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 33271880,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_020baf00",
-            "elf_address": 33271552
           }
         }
       ],
@@ -34509,111 +34407,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 210894,
-      "text": "centroid_weights",
-      "hand_context_in_string": false,
-      "reference_count": 12,
-      "sites": [
-        {
-          "elf_address": 25104632,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f1030",
-            "elf_address": 25104432
-          }
-        },
-        {
-          "elf_address": 25105272,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f12b0",
-            "elf_address": 25105072
-          }
-        },
-        {
-          "elf_address": 25105912,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f1530",
-            "elf_address": 25105712
-          }
-        },
-        {
-          "elf_address": 25102712,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f08b0",
-            "elf_address": 25102512
-          }
-        },
-        {
-          "elf_address": 25103352,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0b30",
-            "elf_address": 25103152
-          }
-        },
-        {
-          "elf_address": 25103992,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0db0",
-            "elf_address": 25103792
-          }
-        },
-        {
-          "elf_address": 25100792,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0130",
-            "elf_address": 25100592
-          }
-        },
-        {
-          "elf_address": 25101432,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f03b0",
-            "elf_address": 25101232
-          }
-        },
-        {
-          "elf_address": 25102072,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0630",
-            "elf_address": 25101872
-          }
-        },
-        {
-          "elf_address": 25117160,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f4120",
-            "elf_address": 25116960
-          }
-        },
-        {
-          "elf_address": 25069464,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018e86d0",
-            "elf_address": 25069264
-          }
-        },
-        {
-          "elf_address": 25100152,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018efeb0",
-            "elf_address": 25099952
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 211485,
       "text": "AnchorSmootherOffsets",
       "hand_context_in_string": false,
@@ -34659,23 +34452,6 @@
           "containing_function": {
             "name": "FUN_00c009e0",
             "elf_address": 11536864
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 212149,
-      "text": "android.frameworks.stats.IStats",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 37241776,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "_INIT_1430",
-            "elf_address": 37241760
           }
         }
       ],
@@ -34748,111 +34524,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 224775,
-      "text": "centroid_means",
-      "hand_context_in_string": false,
-      "reference_count": 12,
-      "sites": [
-        {
-          "elf_address": 25104556,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f1030",
-            "elf_address": 25104432
-          }
-        },
-        {
-          "elf_address": 25105196,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f12b0",
-            "elf_address": 25105072
-          }
-        },
-        {
-          "elf_address": 25105836,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f1530",
-            "elf_address": 25105712
-          }
-        },
-        {
-          "elf_address": 25102636,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f08b0",
-            "elf_address": 25102512
-          }
-        },
-        {
-          "elf_address": 25103276,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0b30",
-            "elf_address": 25103152
-          }
-        },
-        {
-          "elf_address": 25103916,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0db0",
-            "elf_address": 25103792
-          }
-        },
-        {
-          "elf_address": 25100716,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0130",
-            "elf_address": 25100592
-          }
-        },
-        {
-          "elf_address": 25101356,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f03b0",
-            "elf_address": 25101232
-          }
-        },
-        {
-          "elf_address": 25101996,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f0630",
-            "elf_address": 25101872
-          }
-        },
-        {
-          "elf_address": 25117084,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018f4120",
-            "elf_address": 25116960
-          }
-        },
-        {
-          "elf_address": 25069388,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018e86d0",
-            "elf_address": 25069264
-          }
-        },
-        {
-          "elf_address": 25100076,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_018efeb0",
-            "elf_address": 25099952
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 227371,
       "text": "downsampleBaseImage.size() \u003d\u003d numPools",
       "hand_context_in_string": false,
@@ -34867,14 +34538,6 @@
           }
         }
       ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 230495,
-      "text": "Meroitic_Hieroglyphs",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
       "sites_truncated": false
     },
     {
@@ -34914,23 +34577,6 @@
           "containing_function": {
             "name": "FUN_01b993f0",
             "elf_address": 27890672
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 247291,
-      "text": "data.numCentroids",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 11104980,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_00b96f40",
-            "elf_address": 11104064
           }
         }
       ],
@@ -34998,57 +34644,6 @@
           "containing_function": {
             "name": "FUN_01c309a0",
             "elf_address": 28510624
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 255682,
-      "text": "Using android_get_exported_namespace: %s",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 30919556,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01e7cb20",
-            "elf_address": 30919456
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 256218,
-      "text": "android_get_exported_namespace SUCCESS: %s",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 30919660,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01e7cb20",
-            "elf_address": 30919456
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 256515,
-      "text": "android_get_exported_namespace FAILED: %s",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 30919720,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01e7cb20",
-            "elf_address": 30919456
           }
         }
       ],
@@ -35324,23 +34919,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 283684,
-      "text": "roi_align( Tensor features, Tensor rois, Tensor aligned_height, Tensor aligned_width, Tensor spatial_scale) -\u003e Tensor",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 13079216,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d79280",
-            "elf_address": 13079168
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 288553,
       "text": "constellation_prediction_fusion_orientation_error",
       "hand_context_in_string": false,
@@ -35569,73 +35147,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 298866,
-      "text": "android/content/pm/PackageManager",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 12890240,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d4af00",
-            "elf_address": 12889856
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 307964,
-      "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 3,
-      "sites": [
-        {
-          "elf_address": 37954916,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        },
-        {
-          "elf_address": 37954884,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        },
-        {
-          "elf_address": 37954836,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 308025,
-      "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align_autograd-cpu.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 10517400,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "_INIT_1438",
-            "elf_address": 10517364
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 319084,
       "text": "xplat/pi_algo/sdk/modules/3A/cvAEC/core/AECFilter.cpp",
       "hand_context_in_string": false,
@@ -35685,23 +35196,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 322265,
-      "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/private_typeinfo.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 9303164,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_009df380",
-            "elf_address": 9302912
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 326319,
       "text": "xplat/caffe2/c10/core/thread_pool.cpp",
       "hand_context_in_string": false,
@@ -35713,82 +35207,6 @@
           "containing_function": {
             "name": "FUN_025f1490",
             "elf_address": 38737040
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 337147,
-      "text": "buck-out/v2/art/fbsource/589b88fdf073c790/arvr/libraries/vros/third-party/interfaces/android.frameworks.stats/__1482496251-cpp-gen__/out/android/frameworks/stats/AnnotationValue.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 37248188,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02485c50",
-            "elf_address": 37248080
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 337329,
-      "text": "buck-out/v2/art/fbsource/589b88fdf073c790/arvr/libraries/vros/third-party/interfaces/android.frameworks.stats/__98618868657-cpp-gen__/out/android/frameworks/stats/VendorAtomValue.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 8757952,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0095a0c0",
-            "elf_address": 8757440
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 339422,
-      "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/cxa_demangle.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 40132568,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02745b10",
-            "elf_address": 40131344
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 342880,
-      "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/fallback_malloc.cpp",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 40127100,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02744978",
-            "elf_address": 40126840
-          }
-        },
-        {
-          "elf_address": 40127164,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02744978",
-            "elf_address": 40126840
           }
         }
       ],
@@ -35854,23 +35272,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 351103,
-      "text": "caffe2_threadpool_android_cap",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 11822212,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "_INIT_1451",
-            "elf_address": 11822016
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 352370,
       "text": "AttitudeFilterVioDrift.proto",
       "hand_context_in_string": false,
@@ -35890,23 +35291,6 @@
           "containing_function": {
             "name": "FUN_008c20b0",
             "elf_address": 8134832
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 357042,
-      "text": "android/content/pm/PackageInfo",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 12890444,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d4af00",
-            "elf_address": 12889856
           }
         }
       ],
@@ -36097,23 +35481,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 373574,
-      "text": "data.centroids.size() \u003d\u003d data.numCentroids * data.floatDimension",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 11105120,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00b96f40",
-            "elf_address": 11104064
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 374666,
       "text": "Can not have both regressor visibility prediction and encoder visibility prediction turned on",
       "hand_context_in_string": false,
@@ -36133,23 +35500,6 @@
           "containing_function": {
             "name": "FUN_0170e720",
             "elf_address": 23127840
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 376533,
-      "text": "roi_align",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 13079616,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d793d0",
-            "elf_address": 13079504
           }
         }
       ],
@@ -36416,39 +35766,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 397417,
-      "text": "RoIAlignForwardCPUKernel",
-      "hand_context_in_string": false,
-      "reference_count": 3,
-      "sites": [
-        {
-          "elf_address": 37954908,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        },
-        {
-          "elf_address": 37954876,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        },
-        {
-          "elf_address": 37954828,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 399853,
       "text": "smoothFactorDueToAccel",
       "hand_context_in_string": false,
@@ -36477,304 +35794,6 @@
           "containing_function": {
             "name": "FUN_01526e80",
             "elf_address": 21130880
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 410871,
-      "text": "verticalSampleRatio \u003c\u003d heightRoi",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 33279300,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020bcae0",
-            "elf_address": 33278688
-          }
-        },
-        {
-          "elf_address": 33280468,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020bcff0",
-            "elf_address": 33279984
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 410904,
-      "text": "peripheryFoveationRoi",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 13329296,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_00db62a0",
-            "elf_address": 13329056
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 410926,
-      "text": "parafoveaFoveationRoi",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 13329260,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_00db62a0",
-            "elf_address": 13329056
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 410948,
-      "text": "mr::mrsystemservice::FoveationRoi",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 13329628,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00db6440",
-            "elf_address": 13329472
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 410982,
-      "text": "horizontalSampleRatio \u003c\u003d widthRoi",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 33279240,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020bcae0",
-            "elf_address": 33278688
-          }
-        },
-        {
-          "elf_address": 33280408,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020bcff0",
-            "elf_address": 33279984
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 413677,
-      "text": "roiWidth",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 33271848,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_020baf00",
-            "elf_address": 33271552
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 418718,
-      "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/demangle/Utility.h",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 40183676,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_027526a0",
-            "elf_address": 40183456
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 420389,
-      "text": "buck-out/v2/art/fbsource/third-party/toolchains/android-ndk/__r26b-compilation-sysroot__/e7f00470cbe869ac/r26b-compilation-sysroot/usr/include/android/binder_auto_utils.h",
-      "hand_context_in_string": false,
-      "reference_count": 7,
-      "sites": [
-        {
-          "elf_address": 9871496,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a69e90",
-            "elf_address": 9870992
-          }
-        },
-        {
-          "elf_address": 9871472,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a69e90",
-            "elf_address": 9870992
-          }
-        },
-        {
-          "elf_address": 9871440,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a69e90",
-            "elf_address": 9870992
-          }
-        },
-        {
-          "elf_address": 9871416,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a69e90",
-            "elf_address": 9870992
-          }
-        },
-        {
-          "elf_address": 10034812,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a91e30",
-            "elf_address": 10034736
-          }
-        },
-        {
-          "elf_address": 10035824,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a91fb0",
-            "elf_address": 10035120
-          }
-        },
-        {
-          "elf_address": 37239620,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02483ae0",
-            "elf_address": 37239520
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 420693,
-      "text": "buck-out/v2/art/fbsource/third-party/toolchains/android-ndk/__r26b-compilation-sysroot__/e7f00470cbe869ac/r26b-compilation-sysroot/usr/include/android/binder_interface_utils.h",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 37241676,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02484340",
-            "elf_address": 37241664
-          }
-        },
-        {
-          "elf_address": 37241588,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_024841d0",
-            "elf_address": 37241296
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 427020,
-      "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/demangle/ItaniumDemangle.h",
-      "hand_context_in_string": false,
-      "reference_count": 8,
-      "sites": [
-        {
-          "elf_address": 40185992,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02752ee4",
-            "elf_address": 40185572
-          }
-        },
-        {
-          "elf_address": 40175828,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02750814",
-            "elf_address": 40175636
-          }
-        },
-        {
-          "elf_address": 40154748,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0274b5e0",
-            "elf_address": 40154592
-          }
-        },
-        {
-          "elf_address": 40143316,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0274891c",
-            "elf_address": 40143132
-          }
-        },
-        {
-          "elf_address": 40143284,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0274891c",
-            "elf_address": 40143132
-          }
-        },
-        {
-          "elf_address": 40167008,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0274e608",
-            "elf_address": 40166920
-          }
-        },
-        {
-          "elf_address": 40164468,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0274d818",
-            "elf_address": 40163352
-          }
-        },
-        {
-          "elf_address": 40135660,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_02746124",
-            "elf_address": 40132900
           }
         }
       ],
@@ -37122,23 +36141,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 447884,
-      "text": "HTA_OP_RoiAlign_f",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 11832956,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00c46f40",
-            "elf_address": 11824960
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 449381,
       "text": "filtertype: %s, filter size: %d, input: %f, output: %f",
       "hand_context_in_string": false,
@@ -37150,23 +36152,6 @@
           "containing_function": {
             "name": "FUN_020a24a0",
             "elf_address": 33170592
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 453290,
-      "text": "data.centroids.size() % descriptorSize",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 9470492,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_00a08150",
-            "elf_address": 9470288
           }
         }
       ],
@@ -37187,14 +36172,6 @@
           }
         }
       ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 457482,
-      "text": "Meroitic_Cursive",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
       "sites_truncated": false
     },
     {
@@ -37232,40 +36209,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 459636,
-      "text": "UpdateSysButtonUpAndroidInputValue",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 27923340,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_01ba1350",
-            "elf_address": 27923280
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 459671,
-      "text": "UpdateSysButtonDownAndroidInputValue",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 27923376,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_01ba1350",
-            "elf_address": 27923280
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 463210,
       "text": "selftracked_controller.controller_transition_pose_smoother.pose_not_finite",
       "hand_context_in_string": false,
@@ -37277,23 +36220,6 @@
           "containing_function": {
             "name": "FUN_01272df0",
             "elf_address": 18296304
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 464670,
-      "text": "SystemButtonAndroidInputState",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 27829060,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_01b89190",
-            "elf_address": 27824528
           }
         }
       ],
@@ -37460,31 +36386,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 506180,
-      "text": "__loader_android_get_exported_namespace",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 37030488,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_024500a0",
-            "elf_address": 37028000
-          }
-        },
-        {
-          "elf_address": 12592016,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d02350",
-            "elf_address": 12591952
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 506350,
       "text": "predictionSpace",
       "hand_context_in_string": false,
@@ -37606,40 +36507,6 @@
           "containing_function": {
             "name": "FUN_0136e0a0",
             "elf_address": 19325088
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 522268,
-      "text": "getRuntimePath(): Default runtime path doesn\u0027t exist for Android",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 25731776,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0198a200",
-            "elf_address": 25731584
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 522333,
-      "text": "Butterfly configuration is not supported on Android",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 26458068,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01a3b7a0",
-            "elf_address": 26458016
           }
         }
       ],
@@ -37916,40 +36783,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 563735,
-      "text": "SystemButtonAndroidInputData",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 27923124,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01ba1210",
-            "elf_address": 27922960
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 570171,
-      "text": "shouldBeGyroField.indices \u003d\u003d expectedGyroIndices_",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 16841748,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_0110ec20",
-            "elf_address": 16837664
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 570609,
       "text": "!uncertaintyFilter_ || e2eBlendshapeEstimator_",
       "hand_context_in_string": false,
@@ -38029,23 +36862,6 @@
           "containing_function": {
             "name": "FUN_01275530",
             "elf_address": 18306352
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 589948,
-      "text": "staticRoiHistY",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 33002656,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_020793c0",
-            "elf_address": 33002432
           }
         }
       ],
@@ -38184,40 +37000,6 @@
       "hand_context_in_string": false,
       "reference_count": 0,
       "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 642089,
-      "text": "()Landroid/content/pm/PackageManager;",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 12890144,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d4af00",
-            "elf_address": 12889856
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 642153,
-      "text": "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 12890344,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00d4af00",
-            "elf_address": 12889856
-          }
-        }
-      ],
       "sites_truncated": false
     },
     {
@@ -38432,57 +37214,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 688183,
-      "text": "roiHeight \u003e 0",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 33271888,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020baf00",
-            "elf_address": 33271552
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 688375,
-      "text": "data.numCentroids \u003e 0",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 11104988,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00b96f40",
-            "elf_address": 11104064
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 688609,
-      "text": "roiWidth \u003e 0",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 33271844,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020baf00",
-            "elf_address": 33271552
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 690040,
       "text": "settings.numFramesToSkip \u003e\u003d 0",
       "hand_context_in_string": false,
@@ -38552,23 +37283,6 @@
           "containing_function": {
             "name": "FUN_020bcff0",
             "elf_address": 33279984
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 691443,
-      "text": "data.centroids.size() % descriptorSize \u003d\u003d 0",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 9470500,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a08150",
-            "elf_address": 9470288
           }
         }
       ],
@@ -39505,65 +38219,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 844449,
-      "text": "maskedCamIds.size() * 4 \u003d\u003d rois.size()",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 11250448,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00bba480",
-            "elf_address": 11248768
-          }
-        },
-        {
-          "elf_address": 33269756,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_020ba640",
-            "elf_address": 33269312
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 845884,
-      "text": "numDescriptors \u003d\u003d data.centroidFrequencies.size()",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 9470640,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_00a08150",
-            "elf_address": 9470288
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 846719,
-      "text": "data.centroids.size()",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 11105112,
-          "reference_type": "DATA",
-          "containing_function": {
-            "name": "FUN_00b96f40",
-            "elf_address": 11104064
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 847462,
       "text": "topN \u003c\u003d filter.size()",
       "hand_context_in_string": false,
@@ -39853,57 +38508,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 896968,
-      "text": "roi_cols \u003d\u003d 4 || roi_cols \u003d\u003d 5\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 37954924,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 897080,
-      "text": "rois.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 37954892,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 897172,
-      "text": "features.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
-      "hand_context_in_string": false,
-      "reference_count": 1,
-      "sites": [
-        {
-          "elf_address": 37954844,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_025321f8",
-            "elf_address": 37954040
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 1134810,
       "text": "Downsampling resolution: \u0027{}\u0027 is missing \u0027x\u0027 separator!",
       "hand_context_in_string": false,
@@ -39983,31 +38587,6 @@
           "containing_function": {
             "name": "FUN_0134a004",
             "elf_address": 19177476
-          }
-        }
-      ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 1142014,
-      "text": "DFD currently not supported on Android!",
-      "hand_context_in_string": false,
-      "reference_count": 2,
-      "sites": [
-        {
-          "elf_address": 28980540,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01ca3190",
-            "elf_address": 28979600
-          }
-        },
-        {
-          "elf_address": 28980612,
-          "reference_type": "PARAM",
-          "containing_function": {
-            "name": "FUN_01ca3570",
-            "elf_address": 28980592
           }
         }
       ],
@@ -40418,30 +38997,6 @@
           }
         }
       ],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 1306711,
-      "text": "N4arvr20ComponentFactoryImplINSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEENS_27ComponentAllocatorUniquePtrIN10perception34ProjectionAndCentroidDataInterfaceEEEJEE20MetaComponentFactoryINS9_12_GLOBAL__N_116UprightDeep16x16ELDn0EEE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 1306963,
-      "text": "N4arvr21IComponentConstructorINSt6__ndk110unique_ptrIN10perception34ProjectionAndCentroidDataInterfaceENS1_14default_deleteIS4_EEEEJEEE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 1307146,
-      "text": "N10perception34ProjectionAndCentroidDataInterfaceE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
       "sites_truncated": false
     },
     {
@@ -40942,14 +39497,6 @@
     {
       "elf_address": 1701110,
       "text": "N4body3hps2nn19CarmmAlphaPredictorE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 1711826,
-      "text": "NSt6__ndk120__shared_ptr_emplaceIN4bolt2nn22AndroidIonMemAllocatorENS_9allocatorIS3_EEEE",
       "hand_context_in_string": false,
       "reference_count": 0,
       "sites": [],
@@ -41574,14 +40121,6 @@
     {
       "elf_address": 2321789,
       "text": "N9neuralnet9PredictorE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 2337028,
-      "text": "N7reflect17ClientStateHelperIN5rssdk28SystemButtonAndroidInputDataEEE",
       "hand_context_in_string": false,
       "reference_count": 0,
       "sites": [],
@@ -42326,38 +40865,6 @@
       "sites_truncated": false
     },
     {
-      "elf_address": 2599776,
-      "text": "N4absl12log_internal12_GLOBAL__N_114AndroidLogSinkE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 2898770,
-      "text": "N4aidl7android10frameworks5stats7BpStatsE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 2898812,
-      "text": "N3ndk12BpCInterfaceIN4aidl7android10frameworks5stats6IStatsEEE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 2898875,
-      "text": "N4aidl7android10frameworks5stats6IStatsE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
       "elf_address": 2948774,
       "text": "N5viper5tabby20ViperThreadSchedulerE",
       "hand_context_in_string": false,
@@ -42401,14 +40908,6 @@
     {
       "elf_address": 3001113,
       "text": "N8perfetto6protos3gen22TraceStats_FilterStatsE",
-      "hand_context_in_string": false,
-      "reference_count": 0,
-      "sites": [],
-      "sites_truncated": false
-    },
-    {
-      "elf_address": 3001982,
-      "text": "N8perfetto6protos3gen31TraceConfig_AndroidReportConfigE",
       "hand_context_in_string": false,
       "reference_count": 0,
       "sites": [],
@@ -42521,6 +41020,8 @@
         "name": "FUN_00c580a0",
         "elf_address": 11894944
       },
+      "pointer_slot_elf": 40416648,
+      "adjacent_slot_index": 0,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42532,6 +41033,8 @@
         "name": "FUN_00c58070",
         "elf_address": 11894896
       },
+      "pointer_slot_elf": 40416656,
+      "adjacent_slot_index": 1,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42543,6 +41046,8 @@
         "name": "FUN_01717140",
         "elf_address": 23163200
       },
+      "pointer_slot_elf": 40416664,
+      "adjacent_slot_index": 2,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42554,6 +41059,8 @@
         "name": "FUN_01717120",
         "elf_address": 23163168
       },
+      "pointer_slot_elf": 40416672,
+      "adjacent_slot_index": 3,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42565,7 +41072,9 @@
         "name": "FUN_01716e50",
         "elf_address": 23162448
       },
-      "selected": false,
+      "pointer_slot_elf": 40416680,
+      "adjacent_slot_index": 4,
+      "selected": true,
       "private_abi_validated": false
     },
     {
@@ -42576,7 +41085,9 @@
         "name": "FUN_01716e60",
         "elf_address": 23162464
       },
-      "selected": false,
+      "pointer_slot_elf": 40416688,
+      "adjacent_slot_index": 5,
+      "selected": true,
       "private_abi_validated": false
     },
     {
@@ -42587,7 +41098,9 @@
         "name": "FUN_01716e80",
         "elf_address": 23162496
       },
-      "selected": false,
+      "pointer_slot_elf": 40416696,
+      "adjacent_slot_index": 6,
+      "selected": true,
       "private_abi_validated": false
     },
     {
@@ -42598,7 +41111,9 @@
         "name": "FUN_010963b0",
         "elf_address": 16343984
       },
-      "selected": false,
+      "pointer_slot_elf": 40416704,
+      "adjacent_slot_index": 7,
+      "selected": true,
       "private_abi_validated": false
     },
     {
@@ -42609,6 +41124,8 @@
         "name": "FUN_00987710",
         "elf_address": 8943376
       },
+      "pointer_slot_elf": 40438600,
+      "adjacent_slot_index": 0,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42620,6 +41137,8 @@
         "name": "free",
         "elf_address": 7088080
       },
+      "pointer_slot_elf": 40438608,
+      "adjacent_slot_index": 1,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42631,6 +41150,8 @@
         "name": "FUN_0193ff70",
         "elf_address": 25427824
       },
+      "pointer_slot_elf": 40438616,
+      "adjacent_slot_index": 2,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42642,6 +41163,8 @@
         "name": "FUN_0193ffb0",
         "elf_address": 25427888
       },
+      "pointer_slot_elf": 40438624,
+      "adjacent_slot_index": 3,
       "selected": true,
       "private_abi_validated": false
     },
@@ -42653,6 +41176,8 @@
         "name": "FUN_00987710",
         "elf_address": 8943376
       },
+      "pointer_slot_elf": 40438632,
+      "adjacent_slot_index": 4,
       "selected": false,
       "private_abi_validated": false
     },
@@ -42664,6 +41189,8 @@
         "name": "free",
         "elf_address": 7088080
       },
+      "pointer_slot_elf": 40438640,
+      "adjacent_slot_index": 5,
       "selected": false,
       "private_abi_validated": false
     },
@@ -42675,7 +41202,9 @@
         "name": "FUN_0193ffd0",
         "elf_address": 25427920
       },
-      "selected": false,
+      "pointer_slot_elf": 40438648,
+      "adjacent_slot_index": 6,
+      "selected": true,
       "private_abi_validated": false
     },
     {
@@ -42686,7 +41215,9 @@
         "name": "FUN_01940180",
         "elf_address": 25428352
       },
-      "selected": false,
+      "pointer_slot_elf": 40438656,
+      "adjacent_slot_index": 7,
+      "selected": true,
       "private_abi_validated": false
     },
     {
@@ -42697,12 +41228,14 @@
         "name": "FUN_019401d0",
         "elf_address": 25428432
       },
-      "selected": false,
+      "pointer_slot_elf": 40438664,
+      "adjacent_slot_index": 8,
+      "selected": true,
       "private_abi_validated": false
     }
   ],
   "rtti_pointer_candidates": [],
-  "rtti_scope": "Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 targets selected.",
+  "rtti_scope": "Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 unique targets per type selected. DPE candidates belong to inference, not scheduling.",
   "incoming_root_calls": [
     {
       "group": "inference",
@@ -42828,11 +41361,21 @@
   ],
   "selected_elf_addresses": {
     "inference": [
+      11894944,
+      11894896,
+      23163200,
+      23163168,
+      23162448,
+      23162464,
+      23162496,
+      16343984,
       25498528,
       23165840,
       23184416,
       23185024,
-      23185440
+      23185440,
+      23162656,
+      23208608
     ],
     "memory": [
       13756064,
@@ -42840,14 +41383,13 @@
       28949312
     ],
     "temporal": [
-      11894944,
-      11894896,
-      23163200,
-      23163168,
       8943376,
       7088080,
       25427824,
       25427888,
+      25427920,
+      25428352,
+      25428432,
       28447904,
       10674720,
       28313744,

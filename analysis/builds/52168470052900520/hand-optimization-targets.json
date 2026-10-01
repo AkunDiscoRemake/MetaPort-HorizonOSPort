@@ -9453,7 +9453,7 @@
       "truncated": false
     },
     "temporal": {
-      "matched_count": 615,
+      "matched_count": 534,
       "candidates": [
         {
           "address": 134657,
@@ -9531,11 +9531,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 112888,
-          "text": "DFD currently not supported on Android! model: {}",
-          "hand_context_in_string": false
-        },
-        {
           "address": 115754,
           "text": "Failed to open schedule file: {}",
           "hand_context_in_string": false
@@ -9576,21 +9571,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 163289,
-          "text": "android/content/Context",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 171046,
-          "text": "binder_status_t aidl::android::frameworks::stats::AnnotationValue::writeToParcel(AParcel *) const",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 171144,
-          "text": "binder_status_t aidl::android::frameworks::stats::VendorAtomValue::writeToParcel(AParcel *) const",
-          "hand_context_in_string": false
-        },
-        {
           "address": 173825,
           "text": "Horizontal sample ratio is too high for the given region of interest",
           "hand_context_in_string": false
@@ -9616,11 +9596,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 188778,
-          "text": "android.frameworks.stats.IStats/default",
-          "hand_context_in_string": false
-        },
-        {
           "address": 190537,
           "text": "FilterSystem::propagateInit",
           "hand_context_in_string": false
@@ -9633,11 +9608,6 @@
         {
           "address": 193200,
           "text": "selftracked_controller.controller_transition_pose_smoother.calculate_old_weight",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 194199,
-          "text": "roiHeight",
           "hand_context_in_string": false
         },
         {
@@ -9686,11 +9656,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 210894,
-          "text": "centroid_weights",
-          "hand_context_in_string": false
-        },
-        {
           "address": 211485,
           "text": "AnchorSmootherOffsets",
           "hand_context_in_string": false
@@ -9703,11 +9668,6 @@
         {
           "address": 211613,
           "text": "Inline scheduleLoadSubmapSets with {} sets",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 212149,
-          "text": "android.frameworks.stats.IStats",
           "hand_context_in_string": false
         },
         {
@@ -9731,18 +9691,8 @@
           "hand_context_in_string": false
         },
         {
-          "address": 224775,
-          "text": "centroid_means",
-          "hand_context_in_string": false
-        },
-        {
           "address": 227371,
           "text": "downsampleBaseImage.size() == numPools",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 230495,
-          "text": "Meroitic_Hieroglyphs",
           "hand_context_in_string": false
         },
         {
@@ -9761,11 +9711,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 247291,
-          "text": "data.numCentroids",
-          "hand_context_in_string": false
-        },
-        {
           "address": 248401,
           "text": "predictedBlobs",
           "hand_context_in_string": false
@@ -9778,21 +9723,6 @@
         {
           "address": 250060,
           "text": "oculus_anchor_smoother_angular_speed_dead_zone_rad_s",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 255682,
-          "text": "Using android_get_exported_namespace: %s",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 256218,
-          "text": "android_get_exported_namespace SUCCESS: %s",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 256515,
-          "text": "android_get_exported_namespace FAILED: %s",
           "hand_context_in_string": false
         },
         {
@@ -9866,11 +9796,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 283684,
-          "text": "roi_align( Tensor features, Tensor rois, Tensor aligned_height, Tensor aligned_width, Tensor spatial_scale) -> Tensor",
-          "hand_context_in_string": false
-        },
-        {
           "address": 288553,
           "text": "constellation_prediction_fusion_orientation_error",
           "hand_context_in_string": false
@@ -9931,53 +9856,13 @@
           "hand_context_in_string": false
         },
         {
-          "address": 298866,
-          "text": "android/content/pm/PackageManager",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 307964,
-          "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 308025,
-          "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align_autograd-cpu.cpp",
-          "hand_context_in_string": false
-        },
-        {
           "address": 319084,
           "text": "xplat/pi_algo/sdk/modules/3A/cvAEC/core/AECFilter.cpp",
           "hand_context_in_string": false
         },
         {
-          "address": 322265,
-          "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/private_typeinfo.cpp",
-          "hand_context_in_string": false
-        },
-        {
           "address": 326319,
           "text": "xplat/caffe2/c10/core/thread_pool.cpp",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 337147,
-          "text": "buck-out/v2/art/fbsource/589b88fdf073c790/arvr/libraries/vros/third-party/interfaces/android.frameworks.stats/__1482496251-cpp-gen__/out/android/frameworks/stats/AnnotationValue.cpp",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 337329,
-          "text": "buck-out/v2/art/fbsource/589b88fdf073c790/arvr/libraries/vros/third-party/interfaces/android.frameworks.stats/__98618868657-cpp-gen__/out/android/frameworks/stats/VendorAtomValue.cpp",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 339422,
-          "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/cxa_demangle.cpp",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 342880,
-          "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/fallback_malloc.cpp",
           "hand_context_in_string": false
         },
         {
@@ -9996,11 +9881,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 351103,
-          "text": "caffe2_threadpool_android_cap",
-          "hand_context_in_string": false
-        },
-        {
           "address": 352370,
           "text": "AttitudeFilterVioDrift.proto",
           "hand_context_in_string": false
@@ -10008,11 +9888,6 @@
         {
           "address": 355573,
           "text": "sourceHeight should be divisible by downsampleRatio",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 357042,
-          "text": "android/content/pm/PackageInfo",
           "hand_context_in_string": false
         },
         {
@@ -10061,23 +9936,8 @@
           "hand_context_in_string": false
         },
         {
-          "address": 373574,
-          "text": "data.centroids.size() == data.numCentroids * data.floatDimension",
-          "hand_context_in_string": false
-        },
-        {
           "address": 374666,
           "text": "Can not have both regressor visibility prediction and encoder visibility prediction turned on",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 376533,
-          "text": "roi_align",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 376543,
-          "text": "QuantizedRoiAlign",
           "hand_context_in_string": false
         },
         {
@@ -10141,11 +10001,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 397417,
-          "text": "RoIAlignForwardCPUKernel",
-          "hand_context_in_string": false
-        },
-        {
           "address": 399853,
           "text": "smoothFactorDueToAccel",
           "hand_context_in_string": false
@@ -10153,56 +10008,6 @@
         {
           "address": 404873,
           "text": "runSubBlock: predictor has no network",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 410871,
-          "text": "verticalSampleRatio <= heightRoi",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 410904,
-          "text": "peripheryFoveationRoi",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 410926,
-          "text": "parafoveaFoveationRoi",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 410948,
-          "text": "mr::mrsystemservice::FoveationRoi",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 410982,
-          "text": "horizontalSampleRatio <= widthRoi",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 413677,
-          "text": "roiWidth",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 418718,
-          "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/demangle/Utility.h",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 420389,
-          "text": "buck-out/v2/art/fbsource/third-party/toolchains/android-ndk/__r26b-compilation-sysroot__/e7f00470cbe869ac/r26b-compilation-sysroot/usr/include/android/binder_auto_utils.h",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 420693,
-          "text": "buck-out/v2/art/fbsource/third-party/toolchains/android-ndk/__r26b-compilation-sysroot__/e7f00470cbe869ac/r26b-compilation-sysroot/usr/include/android/binder_interface_utils.h",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 427020,
-          "text": "third-party/llvm-project/19.x-android/llvm-project/libcxxabi/src/demangle/ItaniumDemangle.h",
           "hand_context_in_string": false
         },
         {
@@ -10291,38 +10096,13 @@
           "hand_context_in_string": false
         },
         {
-          "address": 445695,
-          "text": "HTA_OP_QuantizedRoiAlign_8_ref",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 445851,
-          "text": "HTA_OP_QuantizedRoiPool_8_ref",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 447884,
-          "text": "HTA_OP_RoiAlign_f",
-          "hand_context_in_string": false
-        },
-        {
           "address": 449381,
           "text": "filtertype: %s, filter size: %d, input: %f, output: %f",
           "hand_context_in_string": false
         },
         {
-          "address": 453290,
-          "text": "data.centroids.size() % descriptorSize",
-          "hand_context_in_string": false
-        },
-        {
           "address": 453352,
           "text": "filterSize",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 457482,
-          "text": "Meroitic_Cursive",
           "hand_context_in_string": false
         },
         {
@@ -10336,23 +10116,8 @@
           "hand_context_in_string": false
         },
         {
-          "address": 459636,
-          "text": "UpdateSysButtonUpAndroidInputValue",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 459671,
-          "text": "UpdateSysButtonDownAndroidInputValue",
-          "hand_context_in_string": false
-        },
-        {
           "address": 463210,
           "text": "selftracked_controller.controller_transition_pose_smoother.pose_not_finite",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 464670,
-          "text": "SystemButtonAndroidInputState",
           "hand_context_in_string": false
         },
         {
@@ -10411,11 +10176,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 506180,
-          "text": "__loader_android_get_exported_namespace",
-          "hand_context_in_string": false
-        },
-        {
           "address": 506350,
           "text": "predictionSpace",
           "hand_context_in_string": false
@@ -10456,16 +10216,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 522268,
-          "text": "getRuntimePath(): Default runtime path doesn't exist for Android",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 522333,
-          "text": "Butterfly configuration is not supported on Android",
-          "hand_context_in_string": false
-        },
-        {
           "address": 522625,
           "text": "selftracked_controller.controller_transition_pose_smoother.pose_timestamp_invalid",
           "hand_context_in_string": false
@@ -10478,11 +10228,6 @@
         {
           "address": 527757,
           "text": ": Scheduling nullptr callbacks is not allowed",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 532825,
-          "text": "QuantizedRoiAlignRotated",
           "hand_context_in_string": false
         },
         {
@@ -10541,16 +10286,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 563735,
-          "text": "SystemButtonAndroidInputData",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 570171,
-          "text": "shouldBeGyroField.indices == expectedGyroIndices_",
-          "hand_context_in_string": false
-        },
-        {
           "address": 570609,
           "text": "!uncertaintyFilter_ || e2eBlendshapeEstimator_",
           "hand_context_in_string": false
@@ -10573,11 +10308,6 @@
         {
           "address": 574197,
           "text": "previousPredictionMode_",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 589948,
-          "text": "staticRoiHistY",
           "hand_context_in_string": false
         },
         {
@@ -10623,31 +10353,6 @@
         {
           "address": 626801,
           "text": "SCHEDULING_FAILED",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 642089,
-          "text": "()Landroid/content/pm/PackageManager;",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 642153,
-          "text": "(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 645656,
-          "text": "HTA_OP_QuantizedRoiAlign_8",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 645815,
-          "text": "HTA_OP_QuantizedRoiPool_8",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 646804,
-          "text": "HTA_OP_QuantizedRoiAlignV2_8",
           "hand_context_in_string": false
         },
         {
@@ -10701,11 +10406,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 663234,
-          "text": "HTA_OP_QuantizedRoiPool_8_v2",
-          "hand_context_in_string": false
-        },
-        {
           "address": 675694,
           "text": "selftracked_controller.controller_transition_pose_smoother.coeff_not_between_0_1",
           "hand_context_in_string": false
@@ -10726,21 +10426,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 688183,
-          "text": "roiHeight > 0",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 688375,
-          "text": "data.numCentroids > 0",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 688609,
-          "text": "roiWidth > 0",
-          "hand_context_in_string": false
-        },
-        {
           "address": 690040,
           "text": "settings.numFramesToSkip >= 0",
           "hand_context_in_string": false
@@ -10753,11 +10438,6 @@
         {
           "address": 690144,
           "text": "roi.xMin >= 0",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 691443,
-          "text": "data.centroids.size() % descriptorSize == 0",
           "hand_context_in_string": false
         },
         {
@@ -11036,21 +10716,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 844449,
-          "text": "maskedCamIds.size() * 4 == rois.size()",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 845884,
-          "text": "numDescriptors == data.centroidFrequencies.size()",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 846719,
-          "text": "data.centroids.size()",
-          "hand_context_in_string": false
-        },
-        {
           "address": 847462,
           "text": "topN <= filter.size()",
           "hand_context_in_string": false
@@ -11136,21 +10801,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 896968,
-          "text": "roi_cols == 4 || roi_cols == 5\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 897080,
-          "text": "rois.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 897172,
-          "text": "features.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
-          "hand_context_in_string": false
-        },
-        {
           "address": 1134810,
           "text": "Downsampling resolution: '{}' is missing 'x' separator!",
           "hand_context_in_string": false
@@ -11173,11 +10823,6 @@
         {
           "address": 1141776,
           "text": "{}: {}passiveVisionPrediction's hasPosition flag is set to true, but the device (handedness {}, type {}, id {:#x}) is not an ML tracked device!",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 1142014,
-          "text": "DFD currently not supported on Android!",
           "hand_context_in_string": false
         },
         {
@@ -11348,21 +10993,6 @@
         {
           "address": 1300752,
           "text": "ZN4vega19VegaCoarseLocalizer17createTaskContextINS_15coarselocalizer29CoarseLocalizeTaskContextDataEZNS0_22scheduleCoarseLocalizeERKN5OSSDK7Sensors2v39TimestampINS6_16TheTrackingClockEEEPN10perception6mapper23VegaMapStorageInterfaceERKNS4_4UuidINSD_20LocalizationEventTagEEEE3$_1EENSt6__ndk110shared_ptrIT_EERNSC_10ObjectPoolISO_EEOT0_EUlPSO_E_",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 1306711,
-          "text": "N4arvr20ComponentFactoryImplINSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEENS_27ComponentAllocatorUniquePtrIN10perception34ProjectionAndCentroidDataInterfaceEEEJEE20MetaComponentFactoryINS9_12_GLOBAL__N_116UprightDeep16x16ELDn0EEE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 1306963,
-          "text": "N4arvr21IComponentConstructorINSt6__ndk110unique_ptrIN10perception34ProjectionAndCentroidDataInterfaceENS1_14default_deleteIS4_EEEEJEEE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 1307146,
-          "text": "N10perception34ProjectionAndCentroidDataInterfaceE",
           "hand_context_in_string": false
         },
         {
@@ -11623,11 +11253,6 @@
         {
           "address": 1711708,
           "text": "N9neuralnet15BoltNNPredictorE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 1711826,
-          "text": "NSt6__ndk120__shared_ptr_emplaceIN4bolt2nn22AndroidIonMemAllocatorENS_9allocatorIS3_EEEE",
           "hand_context_in_string": false
         },
         {
@@ -11933,11 +11558,6 @@
         {
           "address": 2321789,
           "text": "N9neuralnet9PredictorE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 2337028,
-          "text": "N7reflect17ClientStateHelperIN5rssdk28SystemButtonAndroidInputDataEEE",
           "hand_context_in_string": false
         },
         {
@@ -12316,11 +11936,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 2599776,
-          "text": "N4absl12log_internal12_GLOBAL__N_114AndroidLogSinkE",
-          "hand_context_in_string": false
-        },
-        {
           "address": 2879693,
           "text": "NSt6__ndk110__function6__funcIZN4bolt2nn12hexagonNNRunEjPKcPKNS3_6TensorEjPS6_jPcjP20dsp_runtime_config_tPjRKNS2_13SchedulerReqsEE3$_0NS_9allocatorISH_EEFivEEE",
           "hand_context_in_string": false
@@ -12431,21 +12046,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 2898770,
-          "text": "N4aidl7android10frameworks5stats7BpStatsE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 2898812,
-          "text": "N3ndk12BpCInterfaceIN4aidl7android10frameworks5stats6IStatsEEE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 2898875,
-          "text": "N4aidl7android10frameworks5stats6IStatsE",
-          "hand_context_in_string": false
-        },
-        {
           "address": 2948774,
           "text": "N5viper5tabby20ViperThreadSchedulerE",
           "hand_context_in_string": false
@@ -12468,11 +12068,6 @@
         {
           "address": 3001113,
           "text": "N8perfetto6protos3gen22TraceStats_FilterStatsE",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 3001982,
-          "text": "N8perfetto6protos3gen31TraceConfig_AndroidReportConfigE",
           "hand_context_in_string": false
         },
         {
@@ -12608,11 +12203,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 112888,
-          "text": "DFD currently not supported on Android! model: {}",
-          "hand_context_in_string": false
-        },
-        {
           "address": 115754,
           "text": "Failed to open schedule file: {}",
           "hand_context_in_string": false
@@ -12653,21 +12243,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 163289,
-          "text": "android/content/Context",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 171046,
-          "text": "binder_status_t aidl::android::frameworks::stats::AnnotationValue::writeToParcel(AParcel *) const",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 171144,
-          "text": "binder_status_t aidl::android::frameworks::stats::VendorAtomValue::writeToParcel(AParcel *) const",
-          "hand_context_in_string": false
-        },
-        {
           "address": 173825,
           "text": "Horizontal sample ratio is too high for the given region of interest",
           "hand_context_in_string": false
@@ -12693,11 +12268,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 188778,
-          "text": "android.frameworks.stats.IStats/default",
-          "hand_context_in_string": false
-        },
-        {
           "address": 190537,
           "text": "FilterSystem::propagateInit",
           "hand_context_in_string": false
@@ -12710,11 +12280,6 @@
         {
           "address": 193200,
           "text": "selftracked_controller.controller_transition_pose_smoother.calculate_old_weight",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 194199,
-          "text": "roiHeight",
           "hand_context_in_string": false
         },
         {
@@ -12763,11 +12328,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 210894,
-          "text": "centroid_weights",
-          "hand_context_in_string": false
-        },
-        {
           "address": 211485,
           "text": "AnchorSmootherOffsets",
           "hand_context_in_string": false
@@ -12780,11 +12340,6 @@
         {
           "address": 211613,
           "text": "Inline scheduleLoadSubmapSets with {} sets",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 212149,
-          "text": "android.frameworks.stats.IStats",
           "hand_context_in_string": false
         },
         {
@@ -12808,18 +12363,8 @@
           "hand_context_in_string": false
         },
         {
-          "address": 224775,
-          "text": "centroid_means",
-          "hand_context_in_string": false
-        },
-        {
           "address": 227371,
           "text": "downsampleBaseImage.size() == numPools",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 230495,
-          "text": "Meroitic_Hieroglyphs",
           "hand_context_in_string": false
         },
         {
@@ -12838,11 +12383,6 @@
           "hand_context_in_string": false
         },
         {
-          "address": 247291,
-          "text": "data.numCentroids",
-          "hand_context_in_string": false
-        },
-        {
           "address": 248401,
           "text": "predictedBlobs",
           "hand_context_in_string": false
@@ -12850,6 +12390,61 @@
         {
           "address": 250001,
           "text": "oculus_anchor_smoother_linear_speed_dead_zone_m_s",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 250060,
+          "text": "oculus_anchor_smoother_angular_speed_dead_zone_rad_s",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 258179,
+          "text": "filter_ == nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 260268,
+          "text": "(filter) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 262643,
+          "text": "(predictor_) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 262719,
+          "text": "(predictionDetector_) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 263014,
+          "text": "(filter_) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 263035,
+          "text": "(angularVelocityFilter_) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 263071,
+          "text": "(linearAccelerationFilter_) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 263110,
+          "text": "(attitudeFilter_) != nullptr",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 266503,
+          "text": "DPEPredictorImpl constructor",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 266673,
+          "text": "dpe_run_predictor",
           "hand_context_in_string": false
         }
       ],
