@@ -22,3 +22,14 @@ class Profiles(unittest.TestCase):
     def test_unresolved_attribute_is_visible(self):
         r=select_profiles({'Profiles':[{'Name':'HandThread','Actions':[{'Name':'SetAttribute','Params':{'Name':'Missing'}}]}]})
         self.assertEqual(r['unresolved_attribute_names'],['Missing'])
+
+    def test_explicit_config_reference_follows_non_tracking_names(self):
+        root={'AggregateProfiles':[{'Name':'SoftRealtimePerformance','Profiles':['cpuPolicy']}],
+              'Profiles':[{'Name':'cpuPolicy','Actions':[{'Name':'SetAttribute','Params':{'Name':'Min'}}]}],
+              'Attributes':[{'Name':'Min','Controller':'cpu','File':'uclamp.min'}]}
+        self.assertEqual(select_profiles(root)['definitions'],{})
+        r=select_profiles(root,extra_roots=('SoftRealtimePerformance','cross-file'))
+        self.assertEqual(set(r['definitions']),{'SoftRealtimePerformance','cpuPolicy'})
+        self.assertEqual(r['unresolved_profile_names'],['cross-file'])
+        self.assertEqual(r['referenced_attributes'][0]['Name'],'Min')
+        with self.assertRaises(ValueError):select_profiles(root,extra_roots='not-a-list')

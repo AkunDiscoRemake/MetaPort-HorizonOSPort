@@ -3,7 +3,9 @@
 import re
 
 
-def select_profiles(root):
+def select_profiles(root, extra_roots=()):
+    if not isinstance(extra_roots,(tuple,list)) or len(extra_roots)>2048 or not all(isinstance(x,str) and x for x in extra_roots):
+        raise ValueError("Invalid explicit profile roots")
     if not isinstance(root,dict): raise ValueError('Profile root must be an object')
     definitions={};duplicates=[];kinds={}
     for kind in ('Profiles','AggregateProfiles'):
@@ -15,7 +17,7 @@ def select_profiles(root):
             if name in definitions: duplicates.append(name)
             else: definitions[name]=row;kinds[name]=kind
     if duplicates: raise ValueError('Ambiguous profile names')
-    pending=[name for name in definitions if re.search(r'hand|tracking',name,re.I)]
+    pending=[name for name in definitions if re.search(r'hand|tracking',name,re.I)] + list(extra_roots)
     selected={};missing=set()
     while pending:
         name=pending.pop()
@@ -38,7 +40,7 @@ def select_profiles(root):
                 params=action.get('Params',{})
                 if isinstance(params,dict) and isinstance(params.get('Name'),str):names.add(params['Name'])
     attrs=[a for a in attributes if isinstance(a,dict) and a.get('Name') in names]
-    return {'definitions':selected,'referenced_attributes':attrs,'unresolved_profile_names':sorted(missing),
+    return {'explicit_profile_roots':sorted(set(extra_roots)),'definitions':selected,'referenced_attributes':attrs,'unresolved_profile_names':sorted(missing),
             'unresolved_attribute_names':sorted(names-{a['Name'] for a in attrs}),
             'runtime_applied':False,'phone_compatible':False,
             'scope':'Single-file profile and aggregate definitions; cross-file precedence and privileged application not validated'}

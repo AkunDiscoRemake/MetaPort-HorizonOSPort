@@ -193,7 +193,9 @@ def inspect(images, reconstruction, output, disassemble=False):
                     row.update(text_evidence(data, include_all=path=='/etc/thread_priority.cfg'))
                     if path.endswith('/task_profiles.json'):
                         if len(data)>1024*1024: raise ValueError('Profile size limit')
-                        row['task_profiles']=select_profiles(json.loads(data))
+                        # Explicit analysis seed from this pinned build's ODM thread_priority.cfg,
+                        # elevatedPriority.taskprofile, recovered by run 36792806075.
+                        row['task_profiles']=select_profiles(json.loads(data), extra_roots=('SoftRealtimePerformance',))
     Path(output).write_text(json.dumps(result, indent=2)+'\n')
     return result
 
