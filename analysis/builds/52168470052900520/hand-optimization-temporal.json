@@ -246,6 +246,14 @@
       ]
     },
     {
+      "elf_address": 194199,
+      "text": "roiHeight",
+      "direct_reference_count": 1,
+      "reference_addresses": [
+        "020bb048"
+      ]
+    },
+    {
       "elf_address": 196211,
       "text": "AnchorJumpDueToSmootherReset",
       "direct_reference_count": 1,
@@ -498,14 +506,6 @@
       "text": "DPEPredictorImpl constructor",
       "direct_reference_count": 0,
       "reference_addresses": []
-    },
-    {
-      "elf_address": 266673,
-      "text": "dpe_run_predictor",
-      "direct_reference_count": 1,
-      "reference_addresses": [
-        "016f63f0"
-      ]
     }
   ],
   "functions": [

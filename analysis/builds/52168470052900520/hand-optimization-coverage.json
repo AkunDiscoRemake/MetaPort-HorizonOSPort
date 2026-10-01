@@ -34254,6 +34254,23 @@
       "sites_truncated": false
     },
     {
+      "elf_address": 194199,
+      "text": "roiHeight",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 33271880,
+          "reference_type": "DATA",
+          "containing_function": {
+            "name": "FUN_020baf00",
+            "elf_address": 33271552
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
       "elf_address": 196211,
       "text": "AnchorJumpDueToSmootherReset",
       "hand_context_in_string": false,
@@ -34919,6 +34936,23 @@
       "sites_truncated": false
     },
     {
+      "elf_address": 283684,
+      "text": "roi_align( Tensor features, Tensor rois, Tensor aligned_height, Tensor aligned_width, Tensor spatial_scale) -\u003e Tensor",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 13079216,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_00d79280",
+            "elf_address": 13079168
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
       "elf_address": 288553,
       "text": "constellation_prediction_fusion_orientation_error",
       "hand_context_in_string": false,
@@ -35141,6 +35175,56 @@
           "containing_function": {
             "name": "FUN_019ca080",
             "elf_address": 25993344
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 307964,
+      "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp",
+      "hand_context_in_string": false,
+      "reference_count": 3,
+      "sites": [
+        {
+          "elf_address": 37954916,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        },
+        {
+          "elf_address": 37954884,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        },
+        {
+          "elf_address": 37954836,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 308025,
+      "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align_autograd-cpu.cpp",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 10517400,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "_INIT_1438",
+            "elf_address": 10517364
           }
         }
       ],
@@ -35506,6 +35590,23 @@
       "sites_truncated": false
     },
     {
+      "elf_address": 376533,
+      "text": "roi_align",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 13079616,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_00d793d0",
+            "elf_address": 13079504
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
       "elf_address": 376950,
       "text": "prediction_len",
       "hand_context_in_string": false,
@@ -35766,6 +35867,39 @@
       "sites_truncated": false
     },
     {
+      "elf_address": 397417,
+      "text": "RoIAlignForwardCPUKernel",
+      "hand_context_in_string": false,
+      "reference_count": 3,
+      "sites": [
+        {
+          "elf_address": 37954908,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        },
+        {
+          "elf_address": 37954876,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        },
+        {
+          "elf_address": 37954828,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
       "elf_address": 399853,
       "text": "smoothFactorDueToAccel",
       "hand_context_in_string": false,
@@ -35794,6 +35928,124 @@
           "containing_function": {
             "name": "FUN_01526e80",
             "elf_address": 21130880
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 410871,
+      "text": "verticalSampleRatio \u003c\u003d heightRoi",
+      "hand_context_in_string": false,
+      "reference_count": 2,
+      "sites": [
+        {
+          "elf_address": 33279300,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020bcae0",
+            "elf_address": 33278688
+          }
+        },
+        {
+          "elf_address": 33280468,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020bcff0",
+            "elf_address": 33279984
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 410904,
+      "text": "peripheryFoveationRoi",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 13329296,
+          "reference_type": "DATA",
+          "containing_function": {
+            "name": "FUN_00db62a0",
+            "elf_address": 13329056
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 410926,
+      "text": "parafoveaFoveationRoi",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 13329260,
+          "reference_type": "DATA",
+          "containing_function": {
+            "name": "FUN_00db62a0",
+            "elf_address": 13329056
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 410948,
+      "text": "mr::mrsystemservice::FoveationRoi",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 13329628,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_00db6440",
+            "elf_address": 13329472
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 410982,
+      "text": "horizontalSampleRatio \u003c\u003d widthRoi",
+      "hand_context_in_string": false,
+      "reference_count": 2,
+      "sites": [
+        {
+          "elf_address": 33279240,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020bcae0",
+            "elf_address": 33278688
+          }
+        },
+        {
+          "elf_address": 33280408,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020bcff0",
+            "elf_address": 33279984
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 413677,
+      "text": "roiWidth",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 33271848,
+          "reference_type": "DATA",
+          "containing_function": {
+            "name": "FUN_020baf00",
+            "elf_address": 33271552
           }
         }
       ],
@@ -36135,6 +36387,23 @@
           "containing_function": {
             "name": "FUN_00b6ae20",
             "elf_address": 10923552
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 447884,
+      "text": "HTA_OP_RoiAlign_f",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 11832956,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_00c46f40",
+            "elf_address": 11824960
           }
         }
       ],
@@ -36868,6 +37137,23 @@
       "sites_truncated": false
     },
     {
+      "elf_address": 589948,
+      "text": "staticRoiHistY",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 33002656,
+          "reference_type": "DATA",
+          "containing_function": {
+            "name": "FUN_020793c0",
+            "elf_address": 33002432
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
       "elf_address": 594707,
       "text": "FCONFIG_GRADIENT_FILTER_SHIFT",
       "hand_context_in_string": false,
@@ -37208,6 +37494,40 @@
           "containing_function": {
             "name": "FUN_0136e0a0",
             "elf_address": 19325088
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 688183,
+      "text": "roiHeight \u003e 0",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 33271888,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020baf00",
+            "elf_address": 33271552
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 688609,
+      "text": "roiWidth \u003e 0",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 33271844,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020baf00",
+            "elf_address": 33271552
           }
         }
       ],
@@ -38219,6 +38539,31 @@
       "sites_truncated": false
     },
     {
+      "elf_address": 844449,
+      "text": "maskedCamIds.size() * 4 \u003d\u003d rois.size()",
+      "hand_context_in_string": false,
+      "reference_count": 2,
+      "sites": [
+        {
+          "elf_address": 33269756,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_020ba640",
+            "elf_address": 33269312
+          }
+        },
+        {
+          "elf_address": 11250448,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_00bba480",
+            "elf_address": 11248768
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
       "elf_address": 847462,
       "text": "topN \u003c\u003d filter.size()",
       "hand_context_in_string": false,
@@ -38502,6 +38847,57 @@
           "containing_function": {
             "name": "FUN_01522600",
             "elf_address": 21112320
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 896968,
+      "text": "roi_cols \u003d\u003d 4 || roi_cols \u003d\u003d 5\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 37954924,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 897080,
+      "text": "rois.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 37954892,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
+          }
+        }
+      ],
+      "sites_truncated": false
+    },
+    {
+      "elf_address": 897172,
+      "text": "features.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
+      "hand_context_in_string": false,
+      "reference_count": 1,
+      "sites": [
+        {
+          "elf_address": 37954844,
+          "reference_type": "PARAM",
+          "containing_function": {
+            "name": "FUN_025321f8",
+            "elf_address": 37954040
           }
         }
       ],
@@ -41375,7 +41771,7 @@
       23185024,
       23185440,
       23162656,
-      23208608
+      23220160
     ],
     "memory": [
       13756064,

@@ -9453,7 +9453,7 @@
       "truncated": false
     },
     "temporal": {
-      "matched_count": 534,
+      "matched_count": 562,
       "candidates": [
         {
           "address": 134657,
@@ -9608,6 +9608,11 @@
         {
           "address": 193200,
           "text": "selftracked_controller.controller_transition_pose_smoother.calculate_old_weight",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 194199,
+          "text": "roiHeight",
           "hand_context_in_string": false
         },
         {
@@ -9796,6 +9801,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 283684,
+          "text": "roi_align( Tensor features, Tensor rois, Tensor aligned_height, Tensor aligned_width, Tensor spatial_scale) -> Tensor",
+          "hand_context_in_string": false
+        },
+        {
           "address": 288553,
           "text": "constellation_prediction_fusion_orientation_error",
           "hand_context_in_string": false
@@ -9853,6 +9863,16 @@
         {
           "address": 293994,
           "text": "magFilter",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 307964,
+          "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 308025,
+          "text": "xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align_autograd-cpu.cpp",
           "hand_context_in_string": false
         },
         {
@@ -9941,6 +9961,16 @@
           "hand_context_in_string": false
         },
         {
+          "address": 376533,
+          "text": "roi_align",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 376543,
+          "text": "QuantizedRoiAlign",
+          "hand_context_in_string": false
+        },
+        {
           "address": 376950,
           "text": "prediction_len",
           "hand_context_in_string": false
@@ -10001,6 +10031,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 397417,
+          "text": "RoIAlignForwardCPUKernel",
+          "hand_context_in_string": false
+        },
+        {
           "address": 399853,
           "text": "smoothFactorDueToAccel",
           "hand_context_in_string": false
@@ -10008,6 +10043,36 @@
         {
           "address": 404873,
           "text": "runSubBlock: predictor has no network",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 410871,
+          "text": "verticalSampleRatio <= heightRoi",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 410904,
+          "text": "peripheryFoveationRoi",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 410926,
+          "text": "parafoveaFoveationRoi",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 410948,
+          "text": "mr::mrsystemservice::FoveationRoi",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 410982,
+          "text": "horizontalSampleRatio <= widthRoi",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 413677,
+          "text": "roiWidth",
           "hand_context_in_string": false
         },
         {
@@ -10093,6 +10158,21 @@
         {
           "address": 437092,
           "text": "MR filter config",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 445695,
+          "text": "HTA_OP_QuantizedRoiAlign_8_ref",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 445851,
+          "text": "HTA_OP_QuantizedRoiPool_8_ref",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 447884,
+          "text": "HTA_OP_RoiAlign_f",
           "hand_context_in_string": false
         },
         {
@@ -10231,6 +10311,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 532825,
+          "text": "QuantizedRoiAlignRotated",
+          "hand_context_in_string": false
+        },
+        {
           "address": 539984,
           "text": "PtProFiltersEnabled",
           "hand_context_in_string": false
@@ -10311,6 +10396,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 589948,
+          "text": "staticRoiHistY",
+          "hand_context_in_string": false
+        },
+        {
           "address": 594707,
           "text": "FCONFIG_GRADIENT_FILTER_SHIFT",
           "hand_context_in_string": false
@@ -10353,6 +10443,21 @@
         {
           "address": 626801,
           "text": "SCHEDULING_FAILED",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 645656,
+          "text": "HTA_OP_QuantizedRoiAlign_8",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 645815,
+          "text": "HTA_OP_QuantizedRoiPool_8",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 646804,
+          "text": "HTA_OP_QuantizedRoiAlignV2_8",
           "hand_context_in_string": false
         },
         {
@@ -10406,6 +10511,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 663234,
+          "text": "HTA_OP_QuantizedRoiPool_8_v2",
+          "hand_context_in_string": false
+        },
+        {
           "address": 675694,
           "text": "selftracked_controller.controller_transition_pose_smoother.coeff_not_between_0_1",
           "hand_context_in_string": false
@@ -10423,6 +10533,16 @@
         {
           "address": 686591,
           "text": "outputFilterByDetectionCropRadiiRatioThreshold <= 1.0",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 688183,
+          "text": "roiHeight > 0",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 688609,
+          "text": "roiWidth > 0",
           "hand_context_in_string": false
         },
         {
@@ -10716,6 +10836,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 844449,
+          "text": "maskedCamIds.size() * 4 == rois.size()",
+          "hand_context_in_string": false
+        },
+        {
           "address": 847462,
           "text": "topN <= filter.size()",
           "hand_context_in_string": false
@@ -10798,6 +10923,21 @@
         {
           "address": 882213,
           "text": "Unknown prediction_type: '{}'",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 896968,
+          "text": "roi_cols == 4 || roi_cols == 5\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 897080,
+          "text": "rois.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
+          "hand_context_in_string": false
+        },
+        {
+          "address": 897172,
+          "text": "features.dim()\"\" CHECK FAILED at \"xplat/caffe2/fb/custom_ops/roi_align/torch/roi_align-cpu.cpp\"",
           "hand_context_in_string": false
         },
         {
@@ -12283,6 +12423,11 @@
           "hand_context_in_string": false
         },
         {
+          "address": 194199,
+          "text": "roiHeight",
+          "hand_context_in_string": false
+        },
+        {
           "address": 196211,
           "text": "AnchorJumpDueToSmootherReset",
           "hand_context_in_string": false
@@ -12440,11 +12585,6 @@
         {
           "address": 266503,
           "text": "DPEPredictorImpl constructor",
-          "hand_context_in_string": false
-        },
-        {
-          "address": 266673,
-          "text": "dpe_run_predictor",
           "hand_context_in_string": false
         }
       ],
