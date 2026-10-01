@@ -1,6 +1,7 @@
 {
   "source_apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
   "source_ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "framework_dex_additions": [],
   "instruction_adaptations": [],
   "original_native_dependencies_unmodified": true,
   "added_members": {
@@ -4289,7 +4290,7 @@
   "original_signatures_removed": true,
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
-  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "e99cdaa2c5e948be414d7a6a7f4d578f359dced082a07fc0c92badde9d316159",
+  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
+  "signed_apk_sha256": "97c626ceb883711a2296d8fb0a87d3008de4fe4f2b154a846575225b5d3bdd7d",
   "test_certificate_not_meta_identity": true
 }
