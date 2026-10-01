@@ -72,3 +72,20 @@ confirmadas nos corpos e referências capturados, ainda **sem ABI executável**:
 A análise seguinte acrescenta seis alvos internos observados diretamente nesses
 relatórios (construtor Strata, conversão de hardware buffer e quatro conversores
 espaciais), mantendo os hashes exatos. Não gera stubs de sucesso para o serviço.
+
+## Inicialização JNI: resultado e contradição que bloqueia implementação cega
+
+Run **36808853419 concluído com sucesso de análise**. Os sete exports selecionados
+foram reconstruídos, com helpers diretos amostrados. `nativeInit` exige que não
+exista uma instância nativa anterior; o caminho de duplicação aborta. Isso é
+controle de lifecycle, não detector de root/VR a remover indiscriminadamente.
+
+`nativePassthroughRequest` enfileira uma mensagem identificada por `0x14`, com
+payload alocado de `0x68` bytes e marca `5`. Isso não executa por si só captura ou
+renderização. O consumidor e o significado do argumento inteiro continuam pendentes.
+
+**Há uma divergência de tipos:** o Java reconstruído declara `long nativeInit(...)`,
+enquanto o Ghidra emitiu `void` e avisos de no-return em wrappers de delete.
+`analysis/builds/52168470052900520/shell-init-abi-discrepancy.json` registra essa
+contradição. Não transformar a assinatura C-like em header utilizável sem conferir
+o descritor DEX, retorno ARM64 e comportamento dos wrappers. A causa não foi provada.
