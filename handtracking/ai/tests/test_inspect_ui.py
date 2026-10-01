@@ -1,5 +1,7 @@
 from pathlib import Path
 import tempfile
+import json
+from unittest.mock import patch
 import unittest
 from handtracking.ai.inspect_ui import summarize_sources
 
@@ -14,3 +16,20 @@ class UiSummaryTests(unittest.TestCase):
             self.assertEqual(report['native_declarations_total'],1)
             self.assertFalse(report['runtime_validated'])
             self.assertTrue(report['contracts'][0]['has_decompiler_errors'])
+
+    def test_app_failures_are_persisted_and_do_not_hide_later_apps(self):
+        from handtracking.ai.inspect_ui import inspect
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            reconstruction=root/'reconstruction.json'
+            reconstruction.write_text(json.dumps({'partitions':{'system_ext':{'sha256':'verified'}}}))
+            apps=['/priv-app/VrShell/VrShell.apk','/priv-app/MetaSystemUI/MetaSystemUI.apk']
+            with patch('handtracking.ai.inspect_ui.APKS',apps), \
+                 patch('handtracking.ai.inspect_ui.digest',return_value='verified'), \
+                 patch('handtracking.ai.inspect_ui.dump_entry',side_effect=ValueError('bounded failure')):
+                with self.assertRaisesRegex(ValueError,'One or more'):
+                    inspect(root,reconstruction,root/'jadx',root/'report')
+            report=json.loads((root/'report/ui-decompilation.json').read_text())
+            self.assertEqual([a['path'] for a in report['applications']],apps)
+            self.assertTrue(all(a['decompiler_status']=='ANALYSIS_FAILED' for a in report['applications']))
+            self.assertFalse(report['ui_ported'])
