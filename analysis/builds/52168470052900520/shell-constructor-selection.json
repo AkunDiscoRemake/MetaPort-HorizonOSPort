@@ -1,0 +1,12 @@
+{
+  "selected": [
+    {
+      "elf_address": 14451840,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00ec8480",
+      "purpose": "constructor retry after timeout and response-buffer limit"
+    }
+  ],
+  "firmware_executed": false,
+  "private_abi_validated": false
+}

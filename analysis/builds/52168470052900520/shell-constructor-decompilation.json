@@ -1,0 +1,1057 @@
+{
+  "program_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "image_base": "00100000",
+  "root_count": 1,
+  "function_cap": 1,
+  "identified_function_count_not_total_original": 107950,
+  "scope": "At most two Ghidra called-function levels; indirect targets unresolved; analyzer prototypes may be wrong",
+  "firmware_executed": false,
+  "private_abi_validated": false,
+  "all_horizon_disassembled": false,
+  "frontier": [],
+  "selection_capped": true,
+  "selected_count": 1,
+  "functions": [
+    {
+      "elf_address": 14451840,
+      "name": "FUN_00ec8480",
+      "analysis_no_return": false,
+      "body_address_count": 13772,
+      "listing_prefix": [
+        {
+          "elf_address": 14451840,
+          "assembly": "stp x29,x30,[sp, #-0x60]!"
+        },
+        {
+          "elf_address": 14451844,
+          "assembly": "stp x28,x27,[sp, #0x10]"
+        },
+        {
+          "elf_address": 14451848,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 14451852,
+          "assembly": "stp x26,x25,[sp, #0x20]"
+        },
+        {
+          "elf_address": 14451856,
+          "assembly": "stp x24,x23,[sp, #0x30]"
+        },
+        {
+          "elf_address": 14451860,
+          "assembly": "stp x22,x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 14451864,
+          "assembly": "stp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 14451868,
+          "assembly": "sub sp,sp,#0x490"
+        },
+        {
+          "elf_address": 14451872,
+          "assembly": "mrs x26,tpidr_el0"
+        },
+        {
+          "elf_address": 14451876,
+          "assembly": "mov x19,x0"
+        },
+        {
+          "elf_address": 14451880,
+          "assembly": "mov x21,x1"
+        },
+        {
+          "elf_address": 14451884,
+          "assembly": "ldr x8,[x26, #0x28]"
+        },
+        {
+          "elf_address": 14451888,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 14451892,
+          "assembly": "mov x28,x4"
+        },
+        {
+          "elf_address": 14451896,
+          "assembly": "mov x24,x3"
+        },
+        {
+          "elf_address": 14451900,
+          "assembly": "mov x20,x2"
+        },
+        {
+          "elf_address": 14451904,
+          "assembly": "stur x8,[x29, #-0x10]"
+        },
+        {
+          "elf_address": 14451908,
+          "assembly": "adrp x8,0x26c4000"
+        },
+        {
+          "elf_address": 14451912,
+          "assembly": "add x8,x8,#0xa18"
+        },
+        {
+          "elf_address": 14451916,
+          "assembly": "str x8,[x0]"
+        },
+        {
+          "elf_address": 14451920,
+          "assembly": "mov x8,#-0x4010000000000000"
+        },
+        {
+          "elf_address": 14451924,
+          "assembly": "strb wzr,[x0, #0x8]"
+        },
+        {
+          "elf_address": 14451928,
+          "assembly": "str x8,[x0, #0x10]"
+        },
+        {
+          "elf_address": 14451932,
+          "assembly": "add x0,x0,#0x18"
+        },
+        {
+          "elf_address": 14451936,
+          "assembly": "bl 0x00bfce0c"
+        },
+        {
+          "elf_address": 14451940,
+          "assembly": "add x0,x19,#0x28"
+        },
+        {
+          "elf_address": 14451944,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 14451948,
+          "assembly": "bl 0x00bfce0c"
+        },
+        {
+          "elf_address": 14451952,
+          "assembly": "add x0,x19,#0x38"
+        },
+        {
+          "elf_address": 14451956,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 14451960,
+          "assembly": "bl 0x00bfce0c"
+        },
+        {
+          "elf_address": 14451964,
+          "assembly": "add x0,x19,#0x48"
+        },
+        {
+          "elf_address": 14451968,
+          "assembly": "mov x1,xzr"
+        },
+        {
+          "elf_address": 14451972,
+          "assembly": "bl 0x00bfce0c"
+        },
+        {
+          "elf_address": 14451976,
+          "assembly": "adrp x23,0x28ab000"
+        },
+        {
+          "elf_address": 14451980,
+          "assembly": "add x23,x23,#0x198"
+        },
+        {
+          "elf_address": 14451984,
+          "assembly": "ldp x22,x8,[x23]"
+        },
+        {
+          "elf_address": 14451988,
+          "assembly": "stp x22,x8,[x19, #0x58]"
+        },
+        {
+          "elf_address": 14451992,
+          "assembly": "cbz x8,0x00ec85a4"
+        },
+        {
+          "elf_address": 14451996,
+          "assembly": "add x1,x8,#0x8"
+        },
+        {
+          "elf_address": 14452000,
+          "assembly": "mov w0,#0x1"
+        },
+        {
+          "elf_address": 14452004,
+          "assembly": "bl 0x00e78720"
+        },
+        {
+          "elf_address": 14452008,
+          "assembly": "ldr x8,[x23, #0x8]"
+        },
+        {
+          "elf_address": 14452012,
+          "assembly": "stp x22,x8,[x19, #0x68]"
+        },
+        {
+          "elf_address": 14452016,
+          "assembly": "cbz x8,0x00ec85a8"
+        },
+        {
+          "elf_address": 14452020,
+          "assembly": "add x1,x8,#0x8"
+        },
+        {
+          "elf_address": 14452024,
+          "assembly": "mov w0,#0x1"
+        },
+        {
+          "elf_address": 14452028,
+          "assembly": "bl 0x00e78720"
+        },
+        {
+          "elf_address": 14452032,
+          "assembly": "ldr x8,[x23, #0x8]"
+        },
+        {
+          "elf_address": 14452036,
+          "assembly": "stp x22,x8,[x19, #0x78]"
+        },
+        {
+          "elf_address": 14452040,
+          "assembly": "cbz x8,0x00ec85ac"
+        },
+        {
+          "elf_address": 14452044,
+          "assembly": "add x1,x8,#0x8"
+        },
+        {
+          "elf_address": 14452048,
+          "assembly": "mov w0,#0x1"
+        },
+        {
+          "elf_address": 14452052,
+          "assembly": "bl 0x00e78720"
+        },
+        {
+          "elf_address": 14452056,
+          "assembly": "ldr x8,[x23, #0x8]"
+        },
+        {
+          "elf_address": 14452060,
+          "assembly": "stp x22,x8,[x19, #0x88]"
+        },
+        {
+          "elf_address": 14452064,
+          "assembly": "cbz x8,0x00ec85b0"
+        },
+        {
+          "elf_address": 14452068,
+          "assembly": "add x1,x8,#0x8"
+        },
+        {
+          "elf_address": 14452072,
+          "assembly": "mov w0,#0x1"
+        },
+        {
+          "elf_address": 14452076,
+          "assembly": "bl 0x00e78720"
+        },
+        {
+          "elf_address": 14452080,
+          "assembly": "ldr x8,[x23, #0x8]"
+        },
+        {
+          "elf_address": 14452084,
+          "assembly": "stp x22,x8,[x19, #0x98]"
+        },
+        {
+          "elf_address": 14452088,
+          "assembly": "cbz x8,0x00ec85b4"
+        },
+        {
+          "elf_address": 14452092,
+          "assembly": "add x1,x8,#0x8"
+        },
+        {
+          "elf_address": 14452096,
+          "assembly": "mov w0,#0x1"
+        },
+        {
+          "elf_address": 14452100,
+          "assembly": "bl 0x00e78720"
+        },
+        {
+          "elf_address": 14452104,
+          "assembly": "ldr x8,[x23, #0x8]"
+        },
+        {
+          "elf_address": 14452108,
+          "assembly": "stp x22,x8,[x19, #0xa8]"
+        },
+        {
+          "elf_address": 14452112,
+          "assembly": "cbz x8,0x00ec85b8"
+        },
+        {
+          "elf_address": 14452116,
+          "assembly": "add x1,x8,#0x8"
+        },
+        {
+          "elf_address": 14452120,
+          "assembly": "mov w0,#0x1"
+        },
+        {
+          "elf_address": 14452124,
+          "assembly": "bl 0x00e78720"
+        },
+        {
+          "elf_address": 14452128,
+          "assembly": "b 0x00ec85b8"
+        },
+        {
+          "elf_address": 14452132,
+          "assembly": "stp x22,xzr,[x19, #0x68]"
+        },
+        {
+          "elf_address": 14452136,
+          "assembly": "stp x22,xzr,[x19, #0x78]"
+        },
+        {
+          "elf_address": 14452140,
+          "assembly": "stp x22,xzr,[x19, #0x88]"
+        },
+        {
+          "elf_address": 14452144,
+          "assembly": "stp x22,xzr,[x19, #0x98]"
+        },
+        {
+          "elf_address": 14452148,
+          "assembly": "stp x22,xzr,[x19, #0xa8]"
+        },
+        {
+          "elf_address": 14452152,
+          "assembly": "adrp x8,0x26c4000"
+        },
+        {
+          "elf_address": 14452156,
+          "assembly": "add x8,x8,#0x970"
+        },
+        {
+          "elf_address": 14452160,
+          "assembly": "strh wzr,[x19, #0xb8]"
+        },
+        {
+          "elf_address": 14452164,
+          "assembly": "str x8,[x19]"
+        },
+        {
+          "elf_address": 14452168,
+          "assembly": "stp x21,x20,[x19, #0xc0]"
+        },
+        {
+          "elf_address": 14452172,
+          "assembly": "mov w0,#0x250"
+        },
+        {
+          "elf_address": 14452176,
+          "assembly": "bl 0x026b7c60"
+        },
+        {
+          "elf_address": 14452180,
+          "assembly": "mov w8,#0x2130"
+        },
+        {
+          "elf_address": 14452184,
+          "assembly": "mov w9,#0x1124"
+        },
+        {
+          "elf_address": 14452188,
+          "assembly": "mov w1,wzr"
+        },
+        {
+          "elf_address": 14452192,
+          "assembly": "mov w2,#0x248"
+        },
+        {
+          "elf_address": 14452196,
+          "assembly": "mov x21,x0"
+        },
+        {
+          "elf_address": 14452200,
+          "assembly": "add x23,x19,x8"
+        },
+        {
+          "elf_address": 14452204,
+          "assembly": "add x27,x19,x9"
+        },
+        {
+          "elf_address": 14452208,
+          "assembly": "add x22,x19,#0x11c"
+        },
+        {
+          "elf_address": 14452212,
+          "assembly": "bl 0x026bcdd0"
+        },
+        {
+          "elf_address": 14452216,
+          "assembly": "mov x8,#0x2"
+        },
+        {
+          "elf_address": 14452220,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 14452224,
+          "assembly": "stp xzr,xzr,[x21, #0x168]"
+        },
+        {
+          "elf_address": 14452228,
+          "assembly": "movk x8,#0xbf80, LSL #48"
+        },
+        {
+          "elf_address": 14452232,
+          "assembly": "mov x25,x19"
+        },
+        {
+          "elf_address": 14452236,
+          "assembly": "mov x9,x22"
+        },
+        {
+          "elf_address": 14452240,
+          "assembly": "stur x8,[x21, #0xb4]"
+        },
+        {
+          "elf_address": 14452244,
+          "assembly": "stur x8,[x21, #0xfc]"
+        },
+        {
+          "elf_address": 14452248,
+          "assembly": "add x8,x21,#0x160"
+        },
+        {
+          "elf_address": 14452252,
+          "assembly": "stur wzr,[x8, #0x17]"
+        },
+        {
+          "elf_address": 14452256,
+          "assembly": "add x8,x21,#0x120"
+        },
+        {
+          "elf_address": 14452260,
+          "assembly": "stur wzr,[x8, #0x17]"
+        },
+        {
+          "elf_address": 14452264,
+          "assembly": "mov w8,#0x3f800000"
+        },
+        {
+          "elf_address": 14452268,
+          "assembly": "stur q0,[x21, #0xd8]"
+        },
+        {
+          "elf_address": 14452272,
+          "assembly": "stur q0,[x21, #0xe8]"
+        },
+        {
+          "elf_address": 14452276,
+          "assembly": "str q0,[x21, #0x1d0]"
+        },
+        {
+          "elf_address": 14452280,
+          "assembly": "str q0,[x21, #0x210]"
+        },
+        {
+          "elf_address": 14452284,
+          "assembly": "str q0,[x25, #0xe0]!"
+        },
+        {
+          "elf_address": 14452288,
+          "assembly": "str q0,[x25, #0x10]"
+        },
+        {
+          "elf_address": 14452292,
+          "assembly": "fmov v0.2S,#0x3f800000"
+        },
+        {
+          "elf_address": 14452296,
+          "assembly": "str w8,[x25, #0x20]"
+        },
+        {
+          "elf_address": 14452300,
+          "assembly": "mov x8,#-0x4010000000000000"
+        },
+        {
+          "elf_address": 14452304,
+          "assembly": "str x8,[x25, #0x28]"
+        },
+        {
+          "elf_address": 14452308,
+          "assembly": "adrp x8,0x2f3000"
+        },
+        {
+          "elf_address": 14452312,
+          "assembly": "ldr q1,[x8, #0x200]"
+        },
+        {
+          "elf_address": 14452316,
+          "assembly": "mov w8,#0x410"
+        },
+        {
+          "elf_address": 14452320,
+          "assembly": "strb wzr,[x21, #0xf8]"
+        },
+        {
+          "elf_address": 14452324,
+          "assembly": "str xzr,[x21, #0x180]"
+        },
+        {
+          "elf_address": 14452328,
+          "assembly": "strb wzr,[x21, #0x1e4]"
+        },
+        {
+          "elf_address": 14452332,
+          "assembly": "strb wzr,[x21, #0x1e0]"
+        },
+        {
+          "elf_address": 14452336,
+          "assembly": "strb wzr,[x21, #0x220]"
+        },
+        {
+          "elf_address": 14452340,
+          "assembly": "str xzr,[x21, #0x160]"
+        },
+        {
+          "elf_address": 14452344,
+          "assembly": "str xzr,[x21, #0x248]"
+        },
+        {
+          "elf_address": 14452348,
+          "assembly": "stp xzr,xzr,[x21, #0x120]"
+        },
+        {
+          "elf_address": 14452352,
+          "assembly": "str xzr,[x21, #0x130]"
+        },
+        {
+          "elf_address": 14452356,
+          "assembly": "stur x21,[x25, #-0x10]"
+        },
+        {
+          "elf_address": 14452360,
+          "assembly": "sturh wzr,[x25, #-0x8]"
+        },
+        {
+          "elf_address": 14452364,
+          "assembly": "strb wzr,[x25, #0x30]"
+        },
+        {
+          "elf_address": 14452368,
+          "assembly": "strb wzr,[x25, #0x38]"
+        },
+        {
+          "elf_address": 14452372,
+          "assembly": "stp q1,q1,[x9]"
+        },
+        {
+          "elf_address": 14452376,
+          "assembly": "subs x8,x8,#0x28"
+        },
+        {
+          "elf_address": 14452380,
+          "assembly": "str d0,[x9, #0x20]"
+        },
+        {
+          "elf_address": 14452384,
+          "assembly": "add x9,x9,#0x28"
+        },
+        {
+          "elf_address": 14452388,
+          "assembly": "b.ne 0x00ec8694"
+        },
+        {
+          "elf_address": 14452392,
+          "assembly": "movi v2.2D,#0x0"
+        },
+        {
+          "elf_address": 14452396,
+          "assembly": "add x8,x19,#0x52c"
+        },
+        {
+          "elf_address": 14452400,
+          "assembly": "mov w9,#0x410"
+        },
+        {
+          "elf_address": 14452404,
+          "assembly": "strb wzr,[x19, #0x540]"
+        },
+        {
+          "elf_address": 14452408,
+          "assembly": "str q2,[x8]"
+        },
+        {
+          "elf_address": 14452412,
+          "assembly": "add x8,x22,#0x428"
+        },
+        {
+          "elf_address": 14452416,
+          "assembly": "stp q1,q1,[x8]"
+        },
+        {
+          "elf_address": 14452420,
+          "assembly": "subs x9,x9,#0x28"
+        },
+        {
+          "elf_address": 14452424,
+          "assembly": "str d0,[x8, #0x20]"
+        },
+        {
+          "elf_address": 14452428,
+          "assembly": "add x8,x8,#0x28"
+        },
+        {
+          "elf_address": 14452432,
+          "assembly": "b.ne 0x00ec86c0"
+        },
+        {
+          "elf_address": 14452436,
+          "assembly": "movi v0.2D,#0x0"
+        },
+        {
+          "elf_address": 14452440,
+          "assembly": "mov w8,#0x10"
+        },
+        {
+          "elf_address": 14452444,
+          "assembly": "mov x10,#0x7562"
+        },
+        {
+          "elf_address": 14452448,
+          "assembly": "strb w8,[x19, #0xda0]"
+        },
+        {
+          "elf_address": 14452452,
+          "assembly": "add x8,x19,#0x954"
+        },
+        {
+          "elf_address": 14452456,
+          "assembly": "movk x10,#0x7474, LSL #16"
+        },
+        {
+          "elf_address": 14452460,
+          "assembly": "movk x10,#0x6e6f, LSL #32"
+        },
+        {
+          "elf_address": 14452464,
+          "assembly": "add x9,x22,#0xc85"
+        },
+        {
+          "elf_address": 14452468,
+          "assembly": "mov w21,#0xe"
+        },
+        {
+          "elf_address": 14452472,
+          "assembly": "movk x10,#0x615f, LSL #48"
+        },
+        {
+          "elf_address": 14452476,
+          "assembly": "mov w20,#0x1"
+        },
+        {
+          "elf_address": 14452480,
+          "assembly": "str xzr,[x19, #0x968]"
+        },
+        {
+          "elf_address": 14452484,
+          "assembly": "str q0,[x8]"
+        },
+        {
+          "elf_address": 14452488,
+          "assembly": "mov w8,#0x6f74"
+        },
+        {
+          "elf_address": 14452492,
+          "assembly": "movk w8,#0x416e, LSL #16"
+        },
+        {
+          "elf_address": 14452496,
+          "assembly": "str x10,[x9]"
+        },
+        {
+          "elf_address": 14452500,
+          "assembly": "add x9,x19,#0xdb9"
+        },
+        {
+          "elf_address": 14452504,
+          "assembly": "str w8,[x19, #0xdbc]"
+        },
+        {
+          "elf_address": 14452508,
+          "assembly": "mov w8,#0x7542"
+        },
+        {
+          "elf_address": 14452512,
+          "assembly": "movk w8,#0x7474, LSL #16"
+        },
+        {
+          "elf_address": 14452516,
+          "assembly": "str q0,[x19, #0x970]"
+        },
+        {
+          "elf_address": 14452520,
+          "assembly": "strb wzr,[x19, #0xda9]"
+        },
+        {
+          "elf_address": 14452524,
+          "assembly": "strb w21,[x19, #0xdb8]"
+        },
+        {
+          "elf_address": 14452528,
+          "assembly": "str w8,[x9]"
+        },
+        {
+          "elf_address": 14452532,
+          "assembly": "strb wzr,[x19, #0xdc0]"
+        },
+        {
+          "elf_address": 14452536,
+          "assembly": "str w20,[x19, #0xdd0]"
+        },
+        {
+          "elf_address": 14452540,
+          "assembly": "mov w0,#0x20"
+        },
+        {
+          "elf_address": 14452544,
+          "assembly": "str x25,[sp, #0x8]"
+        },
+        {
+          "elf_address": 14452548,
+          "assembly": "bl 0x026b7c60"
+        },
+        {
+          "elf_address": 14452552,
+          "assembly": "adrp x8,0x1e3000"
+        },
+        {
+          "elf_address": 14452556,
+          "assembly": "add x8,x8,#0x61"
+        },
+        {
+          "elf_address": 14452560,
+          "assembly": "mov w9,#0x21"
+        },
+        {
+          "elf_address": 14452564,
+          "assembly": "ldr q0,[x8]"
+        },
+        {
+          "elf_address": 14452568,
+          "assembly": "str x9,[x19, #0xdd8]"
+        },
+        {
+          "elf_address": 14452572,
+          "assembly": "add x9,x19,#0xdf9"
+        },
+        {
+          "elf_address": 14452576,
+          "assembly": "str x0,[x19, #0xde8]"
+        },
+        {
+          "elf_address": 14452580,
+          "assembly": "str q0,[x0]"
+        },
+        {
+          "elf_address": 14452584,
+          "assembly": "ldur q0,[x8, #0xe]"
+        },
+        {
+          "elf_address": 14452588,
+          "assembly": "mov w8,#0x1e"
+        },
+        {
+          "elf_address": 14452592,
+          "assembly": "str x8,[x19, #0xde0]"
+        },
+        {
+          "elf_address": 14452596,
+          "assembly": "mov w8,#0x6863"
+        },
+        {
+          "elf_address": 14452600,
+          "assembly": "movk w8,#0x615f, LSL #16"
+        },
+        {
+          "elf_address": 14452604,
+          "assembly": "stur q0,[x0, #0xe]"
+        },
+        {
+          "elf_address": 14452608,
+          "assembly": "str w8,[x19, #0xdfc]"
+        },
+        {
+          "elf_address": 14452612,
+          "assembly": "mov w8,#0x6f74"
+        },
+        {
+          "elf_address": 14452616,
+          "assembly": "movk w8,#0x6375, LSL #16"
+        },
+        {
+          "elf_address": 14452620,
+          "assembly": "strb wzr,[x0, #0x1e]"
+        },
+        {
+          "elf_address": 14452624,
+          "assembly": "str w8,[x9]"
+        },
+        {
+          "elf_address": 14452628,
+          "assembly": "mov w8,#0xc"
+        },
+        {
+          "elf_address": 14452632,
+          "assembly": "mov w9,#0x6f54"
+        },
+        {
+          "elf_address": 14452636,
+          "assembly": "strb w8,[x19, #0xe10]"
+        },
+        {
+          "elf_address": 14452640,
+          "assembly": "add x8,x19,#0xe11"
+        },
+        {
+          "elf_address": 14452644,
+          "assembly": "movk w9,#0x6375, LSL #16"
+        },
+        {
+          "elf_address": 14452648,
+          "assembly": "str w9,[x8]"
+        },
+        {
+          "elf_address": 14452652,
+          "assembly": "mov w9,#0x4168"
+        },
+        {
+          "elf_address": 14452656,
+          "assembly": "strh w9,[x8, #0x4]"
+        },
+        {
+          "elf_address": 14452660,
+          "assembly": "add x8,x19,#0xda0"
+        },
+        {
+          "elf_address": 14452664,
+          "assembly": "str xzr,[x19, #0xdf0]"
+        },
+        {
+          "elf_address": 14452668,
+          "assembly": "strb w21,[x19, #0xdf8]"
+        },
+        {
+          "elf_address": 14452672,
+          "assembly": "strb wzr,[x19, #0xe00]"
+        },
+        {
+          "elf_address": 14452676,
+          "assembly": "strb wzr,[x19, #0xe17]"
+        },
+        {
+          "elf_address": 14452680,
+          "assembly": "str x8,[sp, #0x1d8]"
+        },
+        {
+          "elf_address": 14452684,
+          "assembly": "str w20,[x19, #0xe28]"
+        },
+        {
+          "elf_address": 14452688,
+          "assembly": "mov w0,#0x20"
+        },
+        {
+          "elf_address": 14452692,
+          "assembly": "bl 0x026b7c60"
+        },
+        {
+          "elf_address": 14452696,
+          "assembly": "adrp x8,0x1e6000"
+        },
+        {
+          "elf_address": 14452700,
+          "assembly": "add x8,x8,#0x9c0"
+        },
+        {
+          "elf_address": 14452704,
+          "assembly": "adrp x9,0x2f2000"
+        },
+        {
+          "elf_address": 14452708,
+          "assembly": "ldr q0,[x8]"
+        },
+        {
+          "elf_address": 14452712,
+          "assembly": "ldur q1,[x8, #0xe]"
+        },
+        {
+          "elf_address": 14452716,
+          "assembly": "mov w8,#0x10"
+        },
+        {
+          "elf_address": 14452720,
+          "assembly": "strb w8,[x19, #0xe50]"
+        },
+        {
+          "elf_address": 14452724,
+          "assembly": "add x8,x22,#0xd35"
+        },
+        {
+          "elf_address": 14452728,
+          "assembly": "str q0,[x0]"
+        },
+        {
+          "elf_address": 14452732,
+          "assembly": "ldr q0,[x9, #0x180]"
+        },
+        {
+          "elf_address": 14452736,
+          "assembly": "mov x9,#0x7562"
+        },
+        {
+          "elf_address": 14452740,
+          "assembly": "movk x9,#0x7474, LSL #16"
+        },
+        {
+          "elf_address": 14452744,
+          "assembly": "str x0,[x19, #0xe40]"
+        },
+        {
+          "elf_address": 14452748,
+          "assembly": "movk x9,#0x6e6f, LSL #32"
+        },
+        {
+          "elf_address": 14452752,
+          "assembly": "stur q1,[x0, #0xe]"
+        },
+        {
+          "elf_address": 14452756,
+          "assembly": "movk x9,#0x625f, LSL #48"
+        },
+        {
+          "elf_address": 14452760,
+          "assembly": "str q0,[sp, #0x200]"
+        },
+        {
+          "elf_address": 14452764,
+          "assembly": "str x9,[x8]"
+        },
+        {
+          "elf_address": 14452768,
+          "assembly": "mov w8,#0x6f74"
+        },
+        {
+          "elf_address": 14452772,
+          "assembly": "add x9,x19,#0xe69"
+        },
+        {
+          "elf_address": 14452776,
+          "assembly": "movk w8,#0x426e, LSL #16"
+        },
+        {
+          "elf_address": 14452780,
+          "assembly": "str q0,[x19, #0xe30]"
+        },
+        {
+          "elf_address": 14452784,
+          "assembly": "str w8,[x19, #0xe6c]"
+        },
+        {
+          "elf_address": 14452788,
+          "assembly": "mov w8,#0x7542"
+        },
+        {
+          "elf_address": 14452792,
+          "assembly": "movk w8,#0x7474, LSL #16"
+        },
+        {
+          "elf_address": 14452796,
+          "assembly": "strb wzr,[x0, #0x1e]"
+        },
+        {
+          "elf_address": 14452800,
+          "assembly": "str w8,[x9]"
+        },
+        {
+          "elf_address": 14452804,
+          "assembly": "add x8,x19,#0xdf8"
+        },
+        {
+          "elf_address": 14452808,
+          "assembly": "str xzr,[x19, #0xe48]"
+        },
+        {
+          "elf_address": 14452812,
+          "assembly": "strb wzr,[x19, #0xe59]"
+        },
+        {
+          "elf_address": 14452816,
+          "assembly": "strb w21,[x19, #0xe68]"
+        },
+        {
+          "elf_address": 14452820,
+          "assembly": "strb wzr,[x19, #0xe70]"
+        },
+        {
+          "elf_address": 14452824,
+          "assembly": "str x8,[sp, #0x1d0]"
+        },
+        {
+          "elf_address": 14452828,
+          "assembly": "str w20,[x19, #0xe80]"
+        },
+        {
+          "elf_address": 14452832,
+          "assembly": "mov w0,#0x20"
+        },
+        {
+          "elf_address": 14452836,
+          "assembly": "bl 0x026b7c60"
+        },
+        {
+          "elf_address": 14452840,
+          "assembly": "adrp x8,0x1e2000"
+        },
+        {
+          "elf_address": 14452844,
+          "assembly": "add x8,x8,#0xe77"
+        },
+        {
+          "elf_address": 14452848,
+          "assembly": "mov w9,#0x21"
+        },
+        {
+          "elf_address": 14452852,
+          "assembly": "ldr q0,[x8]"
+        },
+        {
+          "elf_address": 14452856,
+          "assembly": "str x9,[x19, #0xe88]"
+        },
+        {
+          "elf_address": 14452860,
+          "assembly": "add x9,x19,#0xea9"
+        }
+      ],
+      "listing_prefix_truncated": true,
+      "decompile_timeout_seconds": 180,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_00ec8480(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,\n                 undefined8 param_5)\n\n{\n  long *plVar1;\n  long *plVar2;\n  undefined8 *puVar3;\n  undefined8 *puVar4;\n  undefined8 *puVar5;\n  undefined8 *puVar6;\n  undefined1 *puVar7;\n  long *plVar8;\n  long lVar9;\n  long *plVar10;\n  long lVar11;\n  undefined8 *puVar12;\n  undefined8 *puVar13;\n  undefined8 *puVar14;\n  undefined8 *puVar15;\n  undefined8 *puVar16;\n  undefined8 *puVar17;\n  undefined8 *puVar18;\n  undefined8 *puVar19;\n  undefined8 *puVar20;\n  undefined8 *puVar21;\n  undefined8 *puVar22;\n  undefined8 *puVar23;\n  undefined8 *puVar24;\n  undefined8 *puVar25;\n  undefined8 *puVar26;\n  undefined8 *puVar27;\n  undefined8 *puVar28;\n  undefined8 *puVar29;\n  undefined8 *puVar30;\n  undefined8 *puVar31;\n  undefined8 *puVar32;\n  undefined1 *puVar33;\n  ulong uVar34;\n  long lVar35;\n  undefined8 *puVar36;\n  undefined8 *puVar37;\n  undefined8 *puVar38;\n  undefined8 *puVar39;\n  undefined8 uVar40;\n  undefined8 uStack_240;\n  undefined8 uStack_238;\n  undefined8 **ppuStack_230;\n  undefined8 *puStack_228;\n  undefined8 uStack_220;\n  undefined8 uStack_218;\n  undefined8 uStack_210;\n  undefined8 uStack_200;\n  undefined8 uStack_1f8;\n  undefined8 uStack_1f0;\n  undefined8 *puStack_1e8;\n  undefined1 *puStack_1e0;\n  undefined8 *puStack_1d8;\n  undefined8 uStack_1d0;\n  undefined8 *puStack_1c8;\n  undefined8 *puStack_1c0;\n  undefined8 *puStack_1b8;\n  undefined8 uStack_1b0;\n  undefined8 *puStack_1a8;\n  long *plStack_1a0;\n  undefined8 *puStack_198;\n  undefined8 uStack_190;\n  undefined8 *puStack_188;\n  undefined8 uStack_180;\n  undefined8 *puStack_178;\n  undefined8 uStack_170;\n  undefined8 *puStack_168;\n  undefined8 uStack_160;\n  undefined8 *puStack_158;\n  undefined8 uStack_150;\n  undefined8 *puStack_148;\n  undefined4 uStack_140;\n  undefined8 *puStack_138;\n  undefined4 uStack_130;\n  undefined8 *puStack_128;\n  undefined4 uStack_120;\n  undefined8 *puStack_118;\n  undefined4 uStack_110;\n  undefined8 *puStack_108;\n  undefined4 uStack_100;\n  undefined8 *puStack_f8;\n  undefined8 uStack_f0;\n  undefined8 uStack_e8;\n  undefined8 uStack_e0;\n  undefined1 *puStack_d8;\n  undefined8 uStack_d0;\n  undefined8 *puStack_c8;\n  undefined8 *puStack_c0;\n  undefined8 *puStack_b8;\n  undefined8 uStack_b0;\n  undefined8 uStack_a8;\n  code *pcStack_a0;\n  undefined8 *puStack_98;\n  undefined1 *puStack_90;\n  undefined8 uStack_88;\n  undefined8 uStack_80;\n  undefined8 uStack_78;\n  long lStack_70;\n  \n  lVar9 \u003d tpidr_el0;\n  lStack_70 \u003d *(long *)(lVar9 + 0x28);\n  *param_1 \u003d \u0026DAT_026c4a18;\n  *(undefined1 *)(param_1 + 1) \u003d 0;\n  param_1[2] \u003d 0xbff0000000000000;\n  FUN_00bfce0c(param_1 + 3,0);\n                    /* try { // try from 00ec84e4 to 00ec84ef has its CatchHandler @ 00ecce84 */\n  FUN_00bfce0c(param_1 + 5,0);\n                    /* try { // try from 00ec84f0 to 00ec84fb has its CatchHandler @ 00ecce4c */\n  FUN_00bfce0c(param_1 + 7,0);\n                    /* try { // try from 00ec84fc to 00ec8507 has its CatchHandler @ 00ecce14 */\n  FUN_00bfce0c(param_1 + 9,0);\n  lVar35 \u003d DAT_028ab1a0;\n  uVar40 \u003d DAT_028ab198;\n  param_1[0xb] \u003d DAT_028ab198;\n  param_1[0xc] \u003d lVar35;\n  if (lVar35 \u003d\u003d 0) {\n    param_1[0xd] \u003d uVar40;\n    param_1[0xe] \u003d 0;\nLAB_00ec85a8:\n    param_1[0xf] \u003d uVar40;\n    param_1[0x10] \u003d 0;\nLAB_00ec85ac:\n    param_1[0x11] \u003d uVar40;\n    param_1[0x12] \u003d 0;\nLAB_00ec85b0:\n    param_1[0x13] \u003d uVar40;\n    param_1[0x14] \u003d 0;\nLAB_00ec85b4:\n    param_1[0x15] \u003d uVar40;\n    param_1[0x16] \u003d 0;\n  }\n  else {\n    FUN_00e78720(1,lVar35 + 8);\n    lVar35 \u003d DAT_028ab1a0;\n    param_1[0xd] \u003d uVar40;\n    param_1[0xe] \u003d lVar35;\n    if (lVar35 \u003d\u003d 0) goto LAB_00ec85a8;\n    FUN_00e78720(1,lVar35 + 8);\n    lVar35 \u003d DAT_028ab1a0;\n    param_1[0xf] \u003d uVar40;\n    param_1[0x10] \u003d lVar35;\n    if (lVar35 \u003d\u003d 0) goto LAB_00ec85ac;\n    FUN_00e78720(1,lVar35 + 8);\n    lVar35 \u003d DAT_028ab1a0;\n    param_1[0x11] \u003d uVar40;\n    param_1[0x12] \u003d lVar35;\n    if (lVar35 \u003d\u003d 0) goto LAB_00ec85b0;\n    FUN_00e78720(1,lVar35 + 8);\n    lVar35 \u003d DAT_028ab1a0;\n    param_1[0x13] \u003d uVar40;\n    param_1[0x14] \u003d lVar35;\n    if (lVar35 \u003d\u003d 0) goto LAB_00ec85b4;\n    FUN_00e78720(1,lVar35 + 8);\n    lVar35 \u003d DAT_028ab1a0;\n    param_1[0x15] \u003d uVar40;\n    param_1[0x16] \u003d lVar35;\n    if (lVar35 !\u003d 0) {\n      FUN_00e78720(1,lVar35 + 8);\n    }\n  }\n  *(undefined2 *)(param_1 + 0x17) \u003d 0;\n  *param_1 \u003d \u0026DAT_026c4970;\n  param_1[0x18] \u003d param_2;\n  param_1[0x19] \u003d param_3;\n                    /* try { // try from 00ec85cc to 00ec85d3 has its CatchHandler @ 00ecce0c */\n  lVar11 \u003d __wrap__Znwm(0x250);\n  puVar12 \u003d (undefined8 *)((long)param_1 + 0x11c);\n  memset(lVar11,0,0x248);\n  *(undefined8 *)(lVar11 + 0x168) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x170) \u003d 0;\n  *(undefined8 *)(lVar11 + 0xb4) \u003d 0xbf80000000000002;\n  *(undefined8 *)(lVar11 + 0xfc) \u003d 0xbf80000000000002;\n  *(undefined4 *)(lVar11 + 0x177) \u003d 0;\n  *(undefined4 *)(lVar11 + 0x137) \u003d 0;\n  *(undefined8 *)(lVar11 + 0xe0) \u003d 0;\n  *(undefined8 *)(lVar11 + 0xd8) \u003d 0;\n  *(undefined8 *)(lVar11 + 0xf0) \u003d 0;\n  *(undefined8 *)(lVar11 + 0xe8) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x1d8) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x1d0) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x218) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x210) \u003d 0;\n  param_1[0x1d] \u003d 0;\n  param_1[0x1c] \u003d 0;\n  param_1[0x1f] \u003d 0;\n  param_1[0x1e] \u003d 0;\n  uVar40 \u003d NEON_fmov(0x3f800000,4);\n  *(undefined4 *)(param_1 + 0x20) \u003d 0x3f800000;\n  param_1[0x21] \u003d 0xbff0000000000000;\n  lVar35 \u003d 0x410;\n  *(undefined1 *)(lVar11 + 0xf8) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x180) \u003d 0;\n  *(undefined1 *)(lVar11 + 0x1e4) \u003d 0;\n  *(undefined1 *)(lVar11 + 0x1e0) \u003d 0;\n  *(undefined1 *)(lVar11 + 0x220) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x160) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x248) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x120) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x128) \u003d 0;\n  *(undefined8 *)(lVar11 + 0x130) \u003d 0;\n  param_1[0x1a] \u003d lVar11;\n  *(undefined2 *)(param_1 + 0x1b) \u003d 0;\n  *(undefined1 *)(param_1 + 0x22) \u003d 0;\n  *(undefined1 *)(param_1 + 0x23) \u003d 0;\n  do {\n    puVar12[1] \u003d 0x3f80000000000000;\n    *puVar12 \u003d 0;\n    puVar12[3] \u003d 0x3f80000000000000;\n    puVar12[2] \u003d 0;\n    lVar35 \u003d lVar35 + -0x28;\n    puVar12[4] \u003d uVar40;\n    puVar12 \u003d puVar12 + 5;\n  } while (lVar35 !\u003d 0);\n  lVar35 \u003d 0x410;\n  *(undefined1 *)(param_1 + 0xa8) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x534) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x52c) \u003d 0;\n  puVar12 \u003d (undefined8 *)((long)param_1 + 0x544);\n  do {\n    puVar12[1] \u003d 0x3f80000000000000;\n    *puVar12 \u003d 0;\n    puVar12[3] \u003d 0x3f80000000000000;\n    puVar12[2] \u003d 0;\n    lVar35 \u003d lVar35 + -0x28;\n    puVar12[4] \u003d uVar40;\n    puVar12 \u003d puVar12 + 5;\n  } while (lVar35 !\u003d 0);\n  *(undefined1 *)(param_1 + 0x1b4) \u003d 0x10;\n  param_1[0x12d] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x95c) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x954) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0xda1) \u003d 0x615f6e6f74747562;\n  *(undefined4 *)((long)param_1 + 0xdbc) \u003d 0x416e6f74;\n  param_1[0x12f] \u003d 0;\n  param_1[0x12e] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xda9) \u003d 0;\n  *(undefined1 *)(param_1 + 0x1b7) \u003d 0xe;\n  *(undefined4 *)((long)param_1 + 0xdb9) \u003d 0x74747542;\n  *(undefined1 *)(param_1 + 0x1b8) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1ba) \u003d 1;\n                    /* try { // try from 00ec873c to 00ec8747 has its CatchHandler @ 00ecce04 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x1bb] \u003d 0x21;\n  param_1[0x1bd] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  param_1[0x1bc] \u003d 0x1e;\n  *(undefined8 *)((long)puVar12 + 0x16) \u003d 0x6b63696c632f612f;\n  *(undefined8 *)((long)puVar12 + 0xe) \u003d 0x7475706e692f7468;\n  *(undefined4 *)((long)param_1 + 0xdfc) \u003d 0x615f6863;\n  *(undefined1 *)((long)puVar12 + 0x1e) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0xdf9) \u003d 0x63756f74;\n  *(undefined1 *)(param_1 + 0x1c2) \u003d 0xc;\n  *(undefined4 *)((long)param_1 + 0xe11) \u003d 0x63756f54;\n  *(undefined2 *)((long)param_1 + 0xe15) \u003d 0x4168;\n  puVar12 \u003d param_1 + 0x1b4;\n  param_1[0x1be] \u003d 0;\n  *(undefined1 *)(param_1 + 0x1bf) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x1c0) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xe17) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1c5) \u003d 1;\n                    /* try { // try from 00ec87d0 to 00ec87d7 has its CatchHandler @ 00eccdfc */\n  puVar13 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  *(undefined1 *)(param_1 + 0x1ca) \u003d 0x10;\n  puVar13[1] \u003d 0x74686769722f646e;\n  *puVar13 \u003d 0x61682f726573752f;\n  param_1[0x1c8] \u003d puVar13;\n  *(undefined8 *)((long)puVar13 + 0x16) \u003d 0x6863756f742f612f;\n  *(undefined8 *)((long)puVar13 + 0xe) \u003d 0x7475706e692f7468;\n  *(undefined8 *)((long)param_1 + 0xe51) \u003d 0x625f6e6f74747562;\n  param_1[0x1c7] \u003d 0x1e;\n  param_1[0x1c6] \u003d 0x21;\n  *(undefined4 *)((long)param_1 + 0xe6c) \u003d 0x426e6f74;\n  *(undefined1 *)((long)puVar13 + 0x1e) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0xe69) \u003d 0x74747542;\n  puVar13 \u003d param_1 + 0x1bf;\n  param_1[0x1c9] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xe59) \u003d 0;\n  *(undefined1 *)(param_1 + 0x1cd) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x1ce) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1d0) \u003d 1;\n                    /* try { // try from 00ec8860 to 00ec8867 has its CatchHandler @ 00eccdf4 */\n  puVar14 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x1d1] \u003d 0x21;\n  param_1[0x1d3] \u003d puVar14;\n  puVar14[1] \u003d 0x74686769722f646e;\n  *puVar14 \u003d 0x61682f726573752f;\n  param_1[0x1d2] \u003d 0x1e;\n  *(undefined8 *)((long)puVar14 + 0x16) \u003d 0x6b63696c632f622f;\n  *(undefined8 *)((long)puVar14 + 0xe) \u003d 0x7475706e692f7468;\n  *(undefined4 *)((long)param_1 + 0xeac) \u003d 0x625f6863;\n  *(undefined1 *)((long)puVar14 + 0x1e) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0xea9) \u003d 0x63756f74;\n  *(undefined1 *)(param_1 + 0x1d8) \u003d 0xc;\n  *(undefined4 *)((long)param_1 + 0xec1) \u003d 0x63756f54;\n  *(undefined2 *)((long)param_1 + 0xec5) \u003d 17000;\n  puVar14 \u003d param_1 + 0x1ca;\n  param_1[0x1d4] \u003d 0;\n  *(undefined1 *)(param_1 + 0x1d5) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x1d6) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xec7) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1db) \u003d 1;\n                    /* try { // try from 00ec88f0 to 00ec88f7 has its CatchHandler @ 00eccdec */\n  puVar15 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x1de] \u003d puVar15;\n  puVar15[1] \u003d 0x74686769722f646e;\n  *puVar15 \u003d 0x61682f726573752f;\n  *(undefined1 *)(param_1 + 0x1e0) \u003d 0x10;\n  *(undefined8 *)((long)param_1 + 0xf01) \u003d 0x785f6e6f74747562;\n  param_1[0x1dd] \u003d 0x1e;\n  param_1[0x1dc] \u003d 0x21;\n  *(undefined4 *)((long)param_1 + 0xf1c) \u003d 0x586e6f74;\n  *(undefined8 *)((long)puVar15 + 0x16) \u003d 0x6863756f742f622f;\n  *(undefined8 *)((long)puVar15 + 0xe) \u003d 0x7475706e692f7468;\n  *(undefined4 *)((long)param_1 + 0xf19) \u003d 0x74747542;\n  puVar39 \u003d param_1 + 0x1d5;\n  *(undefined1 *)((long)puVar15 + 0x1e) \u003d 0;\n  param_1[0x1df] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xf09) \u003d 0;\n  *(undefined1 *)(param_1 + 0x1e3) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x1e4) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1e6) \u003d 1;\n                    /* try { // try from 00ec8978 to 00ec897f has its CatchHandler @ 00eccde4 */\n  puVar15 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x1e7] \u003d 0x21;\n  param_1[0x1e9] \u003d puVar15;\n  puVar15[1] \u003d 0x2f7466656c2f646e;\n  *puVar15 \u003d 0x61682f726573752f;\n  param_1[0x1e8] \u003d 0x1d;\n  *(undefined8 *)((long)puVar15 + 0x15) \u003d 0x6b63696c632f782f;\n  *(undefined8 *)((long)puVar15 + 0xd) \u003d 0x7475706e692f7466;\n  *(undefined4 *)((long)param_1 + 0xf5c) \u003d 0x785f6863;\n  *(undefined1 *)((long)puVar15 + 0x1d) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0xf59) \u003d 0x63756f74;\n  *(undefined1 *)(param_1 + 0x1ee) \u003d 0xc;\n  *(undefined4 *)((long)param_1 + 0xf71) \u003d 0x63756f54;\n  *(undefined2 *)((long)param_1 + 0xf75) \u003d 0x5868;\n  puVar15 \u003d param_1 + 0x1e0;\n  param_1[0x1ea] \u003d 0;\n  *(undefined1 *)(param_1 + 0x1eb) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x1ec) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xf77) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1f1) \u003d 1;\n                    /* try { // try from 00ec8a08 to 00ec8a0f has its CatchHandler @ 00eccddc */\n  puVar16 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  *(undefined1 *)(param_1 + 0x1f6) \u003d 0x10;\n  puVar16[1] \u003d 0x2f7466656c2f646e;\n  *puVar16 \u003d 0x61682f726573752f;\n  param_1[500] \u003d puVar16;\n  *(undefined8 *)((long)puVar16 + 0x15) \u003d 0x6863756f742f782f;\n  *(undefined8 *)((long)puVar16 + 0xd) \u003d 0x7475706e692f7466;\n  *(undefined8 *)((long)param_1 + 0xfb1) \u003d 0x795f6e6f74747562;\n  param_1[499] \u003d 0x1d;\n  param_1[0x1f2] \u003d 0x21;\n  *(undefined4 *)((long)param_1 + 0xfcc) \u003d 0x596e6f74;\n  *(undefined1 *)((long)puVar16 + 0x1d) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0xfc9) \u003d 0x74747542;\n  puVar16 \u003d param_1 + 0x1eb;\n  param_1[0x1f5] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0xfb9) \u003d 0;\n  *(undefined1 *)(param_1 + 0x1f9) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x1fa) \u003d 0;\n  *(undefined4 *)(param_1 + 0x1fc) \u003d 1;\n                    /* try { // try from 00ec8a98 to 00ec8a9f has its CatchHandler @ 00eccdd4 */\n  puVar17 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x1fd] \u003d 0x21;\n  param_1[0x1ff] \u003d puVar17;\n  puVar17[1] \u003d 0x2f7466656c2f646e;\n  *puVar17 \u003d 0x61682f726573752f;\n  param_1[0x1fe] \u003d 0x1d;\n  *(undefined4 *)((long)param_1 + 0x1009) \u003d 0x63756f74;\n  *(undefined8 *)((long)puVar17 + 0x15) \u003d 0x6b63696c632f792f;\n  *(undefined8 *)((long)puVar17 + 0xd) \u003d 0x7475706e692f7466;\n  *(undefined4 *)((long)param_1 + 0x100c) \u003d 0x795f6863;\n  *(undefined1 *)(param_1 + 0x204) \u003d 0xc;\n  *(undefined1 *)((long)puVar17 + 0x1d) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0x1021) \u003d 0x63756f54;\n  *(undefined2 *)((long)param_1 + 0x1025) \u003d 0x5968;\n  puVar17 \u003d param_1 + 0x1f6;\n  param_1[0x200] \u003d 0;\n  *(undefined1 *)(param_1 + 0x201) \u003d 0xe;\n  *(undefined1 *)(param_1 + 0x202) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1027) \u003d 0;\n  *(undefined4 *)(param_1 + 0x207) \u003d 1;\n                    /* try { // try from 00ec8b2c to 00ec8b33 has its CatchHandler @ 00eccdcc */\n  puVar18 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  puVar18[1] \u003d 0x2f7466656c2f646e;\n  *puVar18 \u003d 0x61682f726573752f;\n  *(undefined1 *)(param_1 + 0x20c) \u003d 0x14;\n  *(undefined8 *)((long)param_1 + 0x1061) \u003d 0x6769725f70697267;\n  *(undefined2 *)((long)param_1 + 0x1069) \u003d 0x7468;\n  *(undefined1 *)(param_1 + 0x20f) \u003d 0x12;\n  param_1[0x20a] \u003d puVar18;\n  *(undefined1 *)((long)param_1 + 0x1081) \u003d 0x74;\n  *(undefined8 *)((long)param_1 + 0x1079) \u003d 0x6867695270697247;\n  puVar3 \u003d param_1 + 0x201;\n  param_1[0x209] \u003d 0x1d;\n  param_1[0x208] \u003d 0x21;\n  *(undefined8 *)((long)puVar18 + 0x15) \u003d 0x6863756f742f792f;\n  *(undefined8 *)((long)puVar18 + 0xd) \u003d 0x7475706e692f7466;\n  *(undefined1 *)((long)puVar18 + 0x1d) \u003d 0;\n  param_1[0x20b] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x106b) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1082) \u003d 0;\n  *(undefined4 *)(param_1 + 0x212) \u003d 2;\n                    /* try { // try from 00ec8bc8 to 00ec8bd3 has its CatchHandler @ 00eccdc4 */\n  puVar19 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x213] \u003d 0x29;\n  param_1[0x214] \u003d 0x24;\n  *(undefined1 *)(param_1 + 0x217) \u003d 0x1a;\n  *(undefined8 *)((long)param_1 + 0x10b9) \u003d 0x5f72656767697274;\n  *(undefined8 *)((long)param_1 + 0x10be) \u003d 0x74686769725f7265;\n  *(undefined1 *)(param_1 + 0x21a) \u003d 0x18;\n  *(undefined8 *)((long)param_1 + 0x10d1) \u003d 0x5272656767697254;\n  *(undefined4 *)((long)param_1 + 0x10d9) \u003d 0x74686769;\n  puVar18 \u003d param_1 + 0x20c;\n  param_1[0x215] \u003d puVar19;\n  *(undefined4 *)(puVar19 + 4) \u003d 0x65756c61;\n  puVar19[1] \u003d 0x74686769722f646e;\n  *puVar19 \u003d 0x61682f726573752f;\n  puVar19[3] \u003d 0x762f657a65657571;\n  puVar19[2] \u003d 0x732f7475706e692f;\n  *(undefined1 *)((long)puVar19 + 0x24) \u003d 0;\n  param_1[0x216] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x10c6) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x10dd) \u003d 0;\n  *(undefined4 *)(param_1 + 0x21d) \u003d 2;\n                    /* try { // try from 00ec8c74 to 00ec8c7b has its CatchHandler @ 00eccdbc */\n  puVar20 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  *(undefined1 *)(param_1 + 0x222) \u003d 0x26;\n  *(undefined4 *)(puVar20 + 4) \u003d 0x65756c61;\n  puVar20[1] \u003d 0x74686769722f646e;\n  *puVar20 \u003d 0x61682f726573752f;\n  puVar20[3] \u003d 0x762f726567676972;\n  puVar20[2] \u003d 0x742f7475706e692f;\n  *(undefined8 *)((long)param_1 + 0x1119) \u003d 0x6f745f7468676972;\n  *(undefined8 *)((long)param_1 + 0x1111) \u003d 0x5f72656767697274;\n  *(undefined1 *)(param_1 + 0x225) \u003d 0x22;\n  *(undefined8 *)((long)param_1 + 0x1131) \u003d 0x63756f5474686769;\n  *(undefined8 *)((long)param_1 + 0x1129) \u003d 0x5272656767697254;\n  *(undefined1 *)((long)param_1 + 0x1139) \u003d 0x68;\n  puVar19 \u003d param_1 + 0x217;\n  param_1[0x220] \u003d puVar20;\n  param_1[0x21f] \u003d 0x24;\n  param_1[0x21e] \u003d 0x29;\n  *(undefined1 *)((long)puVar20 + 0x24) \u003d 0;\n  param_1[0x221] \u003d 0;\n  *(undefined4 *)(param_1 + 0x224) \u003d 0x6863756f;\n  *(undefined1 *)((long)param_1 + 0x1124) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x113a) \u003d 0;\n  *(undefined4 *)(param_1 + 0x228) \u003d 1;\n                    /* try { // try from 00ec8d14 to 00ec8d1b has its CatchHandler @ 00eccdb4 */\n  puVar21 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x229] \u003d 0x29;\n  param_1[0x22a] \u003d 0x24;\n  puVar36 \u003d param_1 + 0x22d;\n  *(undefined1 *)puVar36 \u003d 0x2c;\n  puVar21[1] \u003d 0x74686769722f646e;\n  *puVar21 \u003d 0x61682f726573752f;\n  puVar21[3] \u003d 0x742f726567676972;\n  puVar21[2] \u003d 0x742f7475706e692f;\n  param_1[0x22b] \u003d puVar21;\n  *(undefined8 *)((long)param_1 + 0x1171) \u003d 0x74686769725f7473;\n  *(undefined8 *)((long)param_1 + 0x1169) \u003d 0x65725f626d756874;\n  *(undefined8 *)((long)param_1 + 0x1177) \u003d 0x6863756f745f7468;\n  *(undefined2 *)((long)param_1 + 0x117f) \u003d 0x2600;\n  *(undefined4 *)(puVar21 + 4) \u003d 0x6863756f;\n  *(undefined8 *)((long)param_1 + 0x1189) \u003d 0x6f54746867695274;\n  *(undefined8 *)((long)param_1 + 0x1181) \u003d 0x736552626d756854;\n  puVar20 \u003d param_1 + 0x222;\n  *(undefined1 *)((long)puVar21 + 0x24) \u003d 0;\n  param_1[0x22c] \u003d 0;\n  *(undefined4 *)(param_1 + 0x232) \u003d 0x6863756f;\n  *(undefined1 *)((long)param_1 + 0x1194) \u003d 0;\n  *(undefined4 *)(param_1 + 0x233) \u003d 1;\n                    /* try { // try from 00ec8dac to 00ec8db7 has its CatchHandler @ 00eccdac */\n  puVar21 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x236] \u003d puVar21;\n  *(undefined1 *)((long)puVar21 + 0x26) \u003d 0;\n  puVar21[1] \u003d 0x74686769722f646e;\n  *puVar21 \u003d 0x61682f726573752f;\n  puVar21[3] \u003d 0x74736572626d7568;\n  puVar21[2] \u003d 0x742f7475706e692f;\n  *(undefined8 *)((long)puVar21 + 0x1e) \u003d 0x6863756f742f7473;\n  puVar37 \u003d param_1 + 0x238;\n  *(undefined1 *)puVar37 \u003d 0x12;\n  *(undefined1 *)((long)param_1 + 0x11c9) \u003d 0x74;\n  param_1[0x235] \u003d 0x26;\n  param_1[0x234] \u003d 0x29;\n  param_1[0x237] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x11c1) \u003d 0x66656c5f70697267;\n  *(undefined1 *)(param_1 + 0x23b) \u003d 0x10;\n  *(undefined1 *)((long)param_1 + 0x11ca) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x11e1) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x11d9) \u003d 0x7466654c70697247;\n  *(undefined4 *)(param_1 + 0x23e) \u003d 2;\n                    /* try { // try from 00ec8e48 to 00ec8e4f has its CatchHandler @ 00eccda4 */\n  puVar21 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x23f] \u003d 0x29;\n  param_1[0x240] \u003d 0x23;\n  puVar38 \u003d param_1 + 0x243;\n  *(undefined1 *)puVar38 \u003d 0x18;\n  *(undefined4 *)((long)param_1 + 0x1221) \u003d 0x7466656c;\n  param_1[0x241] \u003d puVar21;\n  *(undefined4 *)((long)puVar21 + 0x1f) \u003d 0x65756c61;\n  *(undefined8 *)((long)param_1 + 0x1219) \u003d 0x5f72656767697274;\n  *(undefined1 *)(param_1 + 0x246) \u003d 0x16;\n  puVar21[1] \u003d 0x2f7466656c2f646e;\n  *puVar21 \u003d 0x61682f726573752f;\n  puVar21[3] \u003d 0x61762f657a656575;\n  puVar21[2] \u003d 0x71732f7475706e69;\n  *(undefined8 *)((long)param_1 + 0x1231) \u003d 0x4c72656767697254;\n  *(undefined1 *)((long)puVar21 + 0x23) \u003d 0;\n  param_1[0x242] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1225) \u003d 0;\n  *(undefined4 *)(param_1 + 0x247) \u003d 0x7466654c;\n  *(undefined1 *)((long)param_1 + 0x123c) \u003d 0;\n  *(undefined4 *)(param_1 + 0x249) \u003d 2;\n                    /* try { // try from 00ec8ef0 to 00ec8ef7 has its CatchHandler @ 00eccd9c */\n  puVar21 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  *(undefined4 *)((long)puVar21 + 0x1f) \u003d 0x65756c61;\n  param_1[0x24c] \u003d puVar21;\n  puVar21[1] \u003d 0x2f7466656c2f646e;\n  *puVar21 \u003d 0x61682f726573752f;\n  puVar21[3] \u003d 0x61762f7265676769;\n  puVar21[2] \u003d 0x72742f7475706e69;\n  *(undefined2 *)((long)param_1 + 0x1281) \u003d 0x6863;\n  *(undefined8 *)((long)param_1 + 0x1279) \u003d 0x756f745f7466656c;\n  *(undefined8 *)((long)param_1 + 0x1271) \u003d 0x5f72656767697274;\n  *(undefined1 *)(param_1 + 0x251) \u003d 0x20;\n  param_1[0x24b] \u003d 0x23;\n  param_1[0x24a] \u003d 0x29;\n  *(undefined1 *)((long)puVar21 + 0x23) \u003d 0;\n  param_1[0x24d] \u003d 0;\n  *(undefined1 *)(param_1 + 0x24e) \u003d 0x24;\n  *(undefined1 *)((long)param_1 + 0x1283) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1291) \u003d 0x6863756f54746665;\n  *(undefined8 *)((long)param_1 + 0x1289) \u003d 0x4c72656767697254;\n  *(undefined1 *)((long)param_1 + 0x1299) \u003d 0;\n  *(undefined4 *)(param_1 + 0x254) \u003d 1;\n                    /* try { // try from 00ec8f7c to 00ec8f83 has its CatchHandler @ 00eccd94 */\n  puVar21 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x256] \u003d 0x23;\n  param_1[0x255] \u003d 0x29;\n  *(undefined4 *)((long)puVar21 + 0x1f) \u003d 0x6863756f;\n  *(undefined1 *)(param_1 + 0x259) \u003d 0x2a;\n  puVar21[1] \u003d 0x2f7466656c2f646e;\n  *puVar21 \u003d 0x61682f726573752f;\n  puVar21[3] \u003d 0x6f742f7265676769;\n  puVar21[2] \u003d 0x72742f7475706e69;\n  param_1[599] \u003d puVar21;\n  *(undefined8 *)((long)param_1 + 0x12d1) \u003d 0x5f7466656c5f7473;\n  *(undefined8 *)((long)param_1 + 0x12c9) \u003d 0x65725f626d756874;\n  *(undefined8 *)((long)param_1 + 0x12d6) \u003d 0x6863756f745f7466;\n  *(undefined1 *)((long)puVar21 + 0x23) \u003d 0;\n  param_1[600] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x12de) \u003d 0;\n  *(undefined1 *)(param_1 + 0x25c) \u003d 0x24;\n  puVar21 \u003d param_1 + 0x24e;\n  *(undefined2 *)((long)param_1 + 0x12f1) \u003d 0x6863;\n  *(undefined8 *)((long)param_1 + 0x12e9) \u003d 0x756f547466654c74;\n  *(undefined8 *)((long)param_1 + 0x12e1) \u003d 0x736552626d756854;\n  *(undefined1 *)((long)param_1 + 0x12f3) \u003d 0;\n  *(undefined4 *)(param_1 + 0x25f) \u003d 1;\n                    /* try { // try from 00ec9014 to 00ec901f has its CatchHandler @ 00eccd8c */\n  puVar22 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x262] \u003d puVar22;\n  puVar4 \u003d param_1 + 0x259;\n  puVar22[1] \u003d 0x2f7466656c2f646e;\n  *puVar22 \u003d 0x61682f726573752f;\n  puVar22[3] \u003d 0x2f74736572626d75;\n  puVar22[2] \u003d 0x68742f7475706e69;\n  *(undefined8 *)((long)puVar22 + 0x1d) \u003d 0x6863756f742f7473;\n  *(undefined1 *)(param_1 + 0x264) \u003d 0x1c;\n  *(undefined8 *)((long)param_1 + 0x1321) \u003d 0x6b63697473796f6a;\n  *(undefined8 *)((long)param_1 + 0x1327) \u003d 0x74686769725f6b63;\n  *(undefined1 *)(param_1 + 0x267) \u003d 0x1a;\n  *(undefined8 *)((long)param_1 + 0x133e) \u003d 0x74686769526b6369;\n  *(undefined8 *)((long)param_1 + 0x1339) \u003d 0x6b63697473796f4a;\n  param_1[0x261] \u003d 0x25;\n  param_1[0x260] \u003d 0x29;\n  *(undefined1 *)((long)puVar22 + 0x25) \u003d 0;\n  param_1[0x263] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x132f) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1346) \u003d 0;\n  *(undefined4 *)(param_1 + 0x26a) \u003d 3;\n                    /* try { // try from 00ec90b8 to 00ec90c7 has its CatchHandler @ 00eccd84 */\n  puVar22 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x26c] \u003d 0x21;\n  param_1[0x26b] \u003d 0x29;\n  *(undefined2 *)(puVar22 + 4) \u003d 0x6b;\n  *(undefined1 *)(param_1 + 0x26f) \u003d 0x28;\n  puVar22[1] \u003d 0x74686769722f646e;\n  *puVar22 \u003d 0x61682f726573752f;\n  puVar22[3] \u003d 0x63697473626d7568;\n  puVar22[2] \u003d 0x742f7475706e692f;\n  *(undefined4 *)((long)param_1 + 0x1389) \u003d 0x6863756f;\n  *(undefined8 *)((long)param_1 + 0x1381) \u003d 0x745f74686769725f;\n  *(undefined8 *)((long)param_1 + 0x1379) \u003d 0x6b63697473796f6a;\n  param_1[0x26d] \u003d puVar22;\n  *(undefined8 *)((long)param_1 + 0x1399) \u003d 0x756f547468676952;\n  *(undefined8 *)((long)param_1 + 0x1391) \u003d 0x6b63697473796f4a;\n  *(undefined2 *)((long)param_1 + 0x13a1) \u003d 0x6863;\n  puVar22 \u003d param_1 + 0x264;\n  param_1[0x26e] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x138d) \u003d 0;\n  *(undefined1 *)(param_1 + 0x272) \u003d 0x24;\n  *(undefined1 *)((long)param_1 + 0x13a3) \u003d 0;\n  *(undefined4 *)(param_1 + 0x275) \u003d 1;\n                    /* try { // try from 00ec9160 to 00ec9167 has its CatchHandler @ 00eccd7c */\n  puVar23 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x278] \u003d puVar23;\n  *(undefined1 *)((long)puVar23 + 0x27) \u003d 0;\n  puVar23[1] \u003d 0x74686769722f646e;\n  *puVar23 \u003d 0x61682f726573752f;\n  puVar23[3] \u003d 0x63697473626d7568;\n  puVar23[2] \u003d 0x742f7475706e692f;\n  *(undefined8 *)((long)puVar23 + 0x1f) \u003d 0x6863756f742f6b63;\n  *(undefined1 *)(param_1 + 0x27a) \u003d 0x28;\n  param_1[0x277] \u003d 0x27;\n  param_1[0x276] \u003d 0x29;\n  *(undefined4 *)((long)param_1 + 0x13e1) \u003d 0x6b63696c;\n  *(undefined8 *)((long)param_1 + 0x13d9) \u003d 0x635f74686769725f;\n  *(undefined8 *)((long)param_1 + 0x13d1) \u003d 0x6b63697473796f6a;\n  param_1[0x279] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x13e5) \u003d 0;\n  *(undefined1 *)(param_1 + 0x27d) \u003d 0x24;\n  puVar23 \u003d param_1 + 0x26f;\n  *(undefined8 *)((long)param_1 + 0x13f1) \u003d 0x696c437468676952;\n  *(undefined8 *)((long)param_1 + 0x13e9) \u003d 0x6b63697473796f4a;\n  *(undefined2 *)((long)param_1 + 0x13f9) \u003d 0x6b63;\n  *(undefined1 *)((long)param_1 + 0x13fb) \u003d 0;\n  *(undefined4 *)(param_1 + 0x280) \u003d 1;\n                    /* try { // try from 00ec91f8 to 00ec9203 has its CatchHandler @ 00eccd74 */\n  puVar24 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x281] \u003d 0x29;\n  param_1[0x282] \u003d 0x27;\n  puVar24[1] \u003d 0x74686769722f646e;\n  *puVar24 \u003d 0x61682f726573752f;\n  puVar24[3] \u003d 0x63697473626d7568;\n  puVar24[2] \u003d 0x742f7475706e692f;\n  *(undefined8 *)((long)puVar24 + 0x1f) \u003d 0x6b63696c632f6b63;\n  *(undefined1 *)(param_1 + 0x285) \u003d 0x1a;\n  *(undefined8 *)((long)param_1 + 0x1429) \u003d 0x6b63697473796f6a;\n  *(undefined8 *)((long)param_1 + 0x142e) \u003d 0x7466656c5f6b6369;\n  *(undefined1 *)(param_1 + 0x288) \u003d 0x18;\n  param_1[0x283] \u003d puVar24;\n  *(undefined4 *)((long)param_1 + 0x1449) \u003d 0x7466654c;\n  puVar5 \u003d param_1 + 0x27a;\n  *(undefined8 *)((long)param_1 + 0x1441) \u003d 0x6b63697473796f4a;\n  *(undefined1 *)((long)puVar24 + 0x27) \u003d 0;\n  param_1[0x284] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1436) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x144d) \u003d 0;\n  *(undefined4 *)(param_1 + 0x28b) \u003d 3;\n                    /* try { // try from 00ec92a4 to 00ec92ab has its CatchHandler @ 00eccd6c */\n  puVar25 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  puVar25[1] \u003d 0x2f7466656c2f646e;\n  *puVar25 \u003d 0x61682f726573752f;\n  puVar25[3] \u003d 0x6b63697473626d75;\n  puVar25[2] \u003d 0x68742f7475706e69;\n  *(undefined8 *)((long)param_1 + 0x1489) \u003d 0x6f745f7466656c5f;\n  *(undefined8 *)((long)param_1 + 0x1481) \u003d 0x6b63697473796f6a;\n  *(undefined4 *)(param_1 + 0x292) \u003d 0x6863756f;\n  param_1[0x28e] \u003d puVar25;\n  *(undefined1 *)((long)param_1 + 0x14a9) \u003d 0x68;\n  *(undefined8 *)((long)param_1 + 0x14a1) \u003d 0x63756f547466654c;\n  *(undefined8 *)((long)param_1 + 0x1499) \u003d 0x6b63697473796f4a;\n  puVar24 \u003d param_1 + 0x285;\n  param_1[0x28d] \u003d 0x20;\n  param_1[0x28c] \u003d 0x29;\n  *(undefined1 *)(puVar25 + 4) \u003d 0;\n  param_1[0x28f] \u003d 0;\n  *(undefined1 *)(param_1 + 0x290) \u003d 0x26;\n  *(undefined1 *)((long)param_1 + 0x1494) \u003d 0;\n  *(undefined1 *)(param_1 + 0x293) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x14aa) \u003d 0;\n  *(undefined4 *)(param_1 + 0x296) \u003d 1;\n                    /* try { // try from 00ec9340 to 00ec9347 has its CatchHandler @ 00eccd64 */\n  puVar25 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x297] \u003d 0x29;\n  param_1[0x299] \u003d puVar25;\n  puVar25[1] \u003d 0x2f7466656c2f646e;\n  *puVar25 \u003d 0x61682f726573752f;\n  puVar25[3] \u003d 0x6b63697473626d75;\n  puVar25[2] \u003d 0x68742f7475706e69;\n  *(undefined8 *)((long)puVar25 + 0x1e) \u003d 0x6863756f742f6b63;\n  param_1[0x298] \u003d 0x26;\n  *(undefined8 *)((long)param_1 + 0x14e1) \u003d 0x6c635f7466656c5f;\n  *(undefined8 *)((long)param_1 + 0x14d9) \u003d 0x6b63697473796f6a;\n  *(undefined1 *)((long)puVar25 + 0x26) \u003d 0;\n  *(undefined4 *)(param_1 + 0x29d) \u003d 0x6b63696c;\n  param_1[0x29a] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1501) \u003d 0x6b;\n  *(undefined8 *)((long)param_1 + 0x14f9) \u003d 0x63696c437466654c;\n  *(undefined8 *)((long)param_1 + 0x14f1) \u003d 0x6b63697473796f4a;\n  puVar25 \u003d param_1 + 0x290;\n  *(undefined1 *)(param_1 + 0x29b) \u003d 0x26;\n  *(undefined1 *)((long)param_1 + 0x14ec) \u003d 0;\n  *(undefined1 *)(param_1 + 0x29e) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x1502) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2a1) \u003d 1;\n                    /* try { // try from 00ec93d4 to 00ec93db has its CatchHandler @ 00eccd5c */\n  puVar26 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x2a3] \u003d 0x26;\n  param_1[0x2a2] \u003d 0x29;\n  param_1[0x2a4] \u003d puVar26;\n  *(undefined1 *)((long)puVar26 + 0x26) \u003d 0;\n  puVar6 \u003d param_1 + 0x29b;\n  puVar26[1] \u003d 0x2f7466656c2f646e;\n  *puVar26 \u003d 0x61682f726573752f;\n  puVar26[3] \u003d 0x6b63697473626d75;\n  puVar26[2] \u003d 0x68742f7475706e69;\n  *(undefined8 *)((long)puVar26 + 0x1e) \u003d 0x6b63696c632f6b63;\n  *(undefined1 *)(param_1 + 0x2a6) \u003d 0x2a;\n  *(undefined8 *)((long)param_1 + 0x1539) \u003d 0x5f65736f705f7265;\n  *(undefined8 *)((long)param_1 + 0x1531) \u003d 0x6c6c6f72746e6f63;\n  *(undefined8 *)((long)param_1 + 0x153e) \u003d 0x74686769725f6573;\n  *(undefined1 *)(param_1 + 0x2a9) \u003d 0x26;\n  param_1[0x2a5] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1551) \u003d 0x5072656c6c6f7274;\n  *(undefined8 *)((long)param_1 + 0x1549) \u003d 0x6e6f437468676952;\n  *(undefined1 *)((long)param_1 + 0x1546) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2ab) \u003d 0x65736f50;\n  *(undefined1 *)((long)param_1 + 0x155c) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2ac) \u003d 4;\n                    /* try { // try from 00ec946c to 00ec947b has its CatchHandler @ 00eccd54 */\n  puVar27 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x2ad] \u003d 0x29;\n  param_1[0x2ae] \u003d 0x20;\n  *(undefined4 *)((long)param_1 + 0x1599) \u003d 0x7466656c;\n  puVar27[1] \u003d 0x74686769722f646e;\n  *puVar27 \u003d 0x61682f726573752f;\n  puVar27[3] \u003d 0x65736f702f706972;\n  puVar27[2] \u003d 0x672f7475706e692f;\n  param_1[0x2af] \u003d puVar27;\n  *(undefined8 *)((long)param_1 + 0x1591) \u003d 0x5f65736f705f7265;\n  *(undefined8 *)((long)param_1 + 0x1589) \u003d 0x6c6c6f72746e6f63;\n  *(undefined1 *)(param_1 + 0x2b4) \u003d 0x24;\n  *(undefined8 *)((long)param_1 + 0x15a9) \u003d 0x6f5072656c6c6f72;\n  *(undefined8 *)((long)param_1 + 0x15a1) \u003d 0x746e6f437466654c;\n  *(undefined2 *)((long)param_1 + 0x15b1) \u003d 0x6573;\n  puVar26 \u003d param_1 + 0x2a6;\n  *(undefined1 *)(puVar27 + 4) \u003d 0;\n  param_1[0x2b0] \u003d 0;\n  *(undefined1 *)(param_1 + 0x2b1) \u003d 0x28;\n  *(undefined1 *)((long)param_1 + 0x159d) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x15b3) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2b7) \u003d 4;\n                    /* try { // try from 00ec9514 to 00ec951b has its CatchHandler @ 00eccd4c */\n  puVar28 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x2ba] \u003d puVar28;\n  puVar27 \u003d param_1 + 0x2b1;\n  puVar28[1] \u003d 0x2f7466656c2f646e;\n  *puVar28 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar28 + 0x17) \u003d 0x65736f702f706972;\n  *(undefined8 *)((long)puVar28 + 0xf) \u003d 0x672f7475706e692f;\n  param_1[0x2b9] \u003d 0x1f;\n  param_1[0x2b8] \u003d 0x21;\n  *(undefined1 *)((long)puVar28 + 0x1f) \u003d 0;\n  param_1[699] \u003d 0;\n                    /* try { // try from 00ec9558 to 00ec9563 has its CatchHandler @ 00eccd44 */\n  puVar28 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  *(undefined1 *)(param_1 + 0x2bf) \u003d 0x2c;\n  puVar28[1] \u003d 0x705f6d69615f7265;\n  *puVar28 \u003d 0x6c6c6f72746e6f63;\n  param_1[0x2be] \u003d puVar28;\n  param_1[0x2bd] \u003d 0x19;\n  param_1[700] \u003d 0x21;\n  *(undefined8 *)((long)puVar28 + 0x11) \u003d 0x74686769725f6573;\n  *(undefined8 *)((long)puVar28 + 9) \u003d 0x6f705f6d69615f72;\n  *(undefined8 *)((long)param_1 + 0x1601) \u003d 0x4172656c6c6f7274;\n  *(undefined8 *)((long)param_1 + 0x15f9) \u003d 0x6e6f437468676952;\n  *(undefined8 *)((long)param_1 + 0x1607) \u003d 0x65736f506d694172;\n  *(undefined1 *)((long)puVar28 + 0x19) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x160f) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2c2) \u003d 4;\n                    /* try { // try from 00ec95cc to 00ec95d3 has its CatchHandler @ 00eccd38 */\n  puVar29 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x2c3] \u003d 0x21;\n  puVar28 \u003d param_1 + 700;\n  param_1[0x2c5] \u003d puVar29;\n  param_1[0x2c4] \u003d 0x1f;\n  puVar29[1] \u003d 0x74686769722f646e;\n  *puVar29 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar29 + 0x17) \u003d 0x65736f702f6d6961;\n  *(undefined8 *)((long)puVar29 + 0xf) \u003d 0x2f7475706e692f74;\n  *(undefined1 *)((long)puVar29 + 0x1f) \u003d 0;\n  param_1[0x2c6] \u003d 0;\n                    /* try { // try from 00ec9614 to 00ec961b has its CatchHandler @ 00eccd30 */\n  puVar29 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x2c7] \u003d 0x21;\n  param_1[0x2c8] \u003d 0x18;\n  param_1[0x2c9] \u003d puVar29;\n  puVar29[2] \u003d 0x7466656c5f65736f;\n  puVar29[1] \u003d 0x705f6d69615f7265;\n  *puVar29 \u003d 0x6c6c6f72746e6f63;\n  *(undefined1 *)(param_1 + 0x2ca) \u003d 0x2a;\n  *(undefined1 *)(puVar29 + 3) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1659) \u003d 0x694172656c6c6f72;\n  *(undefined8 *)((long)param_1 + 0x1651) \u003d 0x746e6f437466654c;\n  *(undefined8 *)((long)param_1 + 0x165e) \u003d 0x65736f506d694172;\n  *(undefined1 *)((long)param_1 + 0x1666) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2cd) \u003d 4;\n                    /* try { // try from 00ec9684 to 00ec968b has its CatchHandler @ 00eccd24 */\n  puVar30 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x2d0] \u003d puVar30;\n  puVar29 \u003d param_1 + 0x2c7;\n  param_1[0x2cf] \u003d 0x1e;\n  param_1[0x2ce] \u003d 0x21;\n  puVar30[1] \u003d 0x2f7466656c2f646e;\n  *puVar30 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar30 + 0x16) \u003d 0x65736f702f6d6961;\n  *(undefined8 *)((long)puVar30 + 0xe) \u003d 0x2f7475706e692f74;\n  *(undefined1 *)((long)puVar30 + 0x1e) \u003d 0;\n  param_1[0x2d1] \u003d 0;\n                    /* try { // try from 00ec96c0 to 00ec96cb has its CatchHandler @ 00eccd1c */\n  puVar30 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  puVar30[2] \u003d 0x74686769725f7363;\n  puVar30[1] \u003d 0x69747061685f7265;\n  *puVar30 \u003d 0x6c6c6f72746e6f63;\n  *(undefined1 *)(param_1 + 0x2d5) \u003d 0x2c;\n  param_1[0x2d4] \u003d puVar30;\n  *(undefined8 *)((long)param_1 + 0x16b1) \u003d 0x4872656c6c6f7274;\n  *(undefined8 *)((long)param_1 + 0x16a9) \u003d 0x6e6f437468676952;\n  *(undefined8 *)((long)param_1 + 0x16b7) \u003d 0x7363697470614872;\n  param_1[0x2d3] \u003d 0x18;\n  param_1[0x2d2] \u003d 0x21;\n  *(undefined1 *)(puVar30 + 3) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x16bf) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2d8) \u003d 100;\n                    /* try { // try from 00ec9734 to 00ec973b has its CatchHandler @ 00eccd10 */\n  puVar30 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x2d9] \u003d 0x21;\n  param_1[0x2db] \u003d puVar30;\n  param_1[0x2da] \u003d 0x1e;\n  puVar30[1] \u003d 0x74686769722f646e;\n  *puVar30 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar30 + 0x16) \u003d 0x6369747061682f74;\n  *(undefined8 *)((long)puVar30 + 0xe) \u003d 0x757074756f2f7468;\n  *(undefined1 *)((long)puVar30 + 0x1e) \u003d 0;\n  param_1[0x2dc] \u003d 0;\n                    /* try { // try from 00ec9778 to 00ec977f has its CatchHandler @ 00eccd08 */\n  puVar30 \u003d (undefined8 *)__wrap__Znwm(0x1a);\n  param_1[0x2dd] \u003d 0x1b;\n  param_1[0x2de] \u003d 0x17;\n  param_1[0x2df] \u003d puVar30;\n  puVar30[1] \u003d 0x69747061685f7265;\n  *puVar30 \u003d 0x6c6c6f72746e6f63;\n  *(undefined8 *)((long)puVar30 + 0xf) \u003d 0x7466656c5f736369;\n  *(undefined1 *)(param_1 + 0x2e0) \u003d 0x2a;\n  *(undefined1 *)((long)puVar30 + 0x17) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1709) \u003d 0x614872656c6c6f72;\n  *(undefined8 *)((long)param_1 + 0x1701) \u003d 0x746e6f437466654c;\n  *(undefined8 *)((long)param_1 + 0x170e) \u003d 0x7363697470614872;\n  *(undefined1 *)((long)param_1 + 0x1716) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2e3) \u003d 100;\n                    /* try { // try from 00ec97e8 to 00ec97ef has its CatchHandler @ 00ecccfc */\n  puVar30 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  puVar30[1] \u003d 0x2f7466656c2f646e;\n  *puVar30 \u003d 0x61682f726573752f;\n  *(undefined1 *)(param_1 + 0x2e8) \u003d 0x16;\n  *(undefined8 *)((long)param_1 + 0x1741) \u003d 0x6d5f6e6f74747562;\n  param_1[0x2e5] \u003d 0x1d;\n  param_1[0x2e4] \u003d 0x21;\n  *(undefined4 *)(param_1 + 0x2e9) \u003d 0x756e656d;\n  *(undefined1 *)(param_1 + 0x2eb) \u003d 0x14;\n  param_1[0x2e6] \u003d puVar30;\n  *(undefined8 *)((long)puVar30 + 0x15) \u003d 0x6369747061682f74;\n  *(undefined8 *)((long)puVar30 + 0xd) \u003d 0x757074756f2f7466;\n  *(undefined1 *)((long)puVar30 + 0x1d) \u003d 0;\n  param_1[0x2e7] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x174c) \u003d 0;\n  *(undefined2 *)((long)param_1 + 0x1761) \u003d 0x756e;\n  *(undefined8 *)((long)param_1 + 0x1759) \u003d 0x654d6e6f74747542;\n  *(undefined1 *)((long)param_1 + 0x1763) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2ee) \u003d 1;\n                    /* try { // try from 00ec9880 to 00ec988b has its CatchHandler @ 00ecccf4 */\n  puVar31 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x2ef] \u003d 0x29;\n  *(undefined1 *)(param_1 + 0x2f3) \u003d 0x1a;\n  *(undefined8 *)((long)param_1 + 0x1799) \u003d 0x735f6e6f74747562;\n  *(undefined8 *)((long)param_1 + 0x179e) \u003d 0x6d65747379735f6e;\n  *(undefined1 *)(param_1 + 0x2f6) \u003d 0x18;\n  *(undefined8 *)((long)param_1 + 0x17b1) \u003d 0x79536e6f74747542;\n  *(undefined4 *)((long)param_1 + 0x17b9) \u003d 0x6d657473;\n  puVar30 \u003d param_1 + 0x2e8;\n  param_1[0x2f1] \u003d puVar31;\n  param_1[0x2f0] \u003d 0x20;\n  puVar31[1] \u003d 0x2f7466656c2f646e;\n  *puVar31 \u003d 0x61682f726573752f;\n  puVar31[3] \u003d 0x6b63696c632f756e;\n  puVar31[2] \u003d 0x656d2f7475706e69;\n  *(undefined1 *)(puVar31 + 4) \u003d 0;\n  param_1[0x2f2] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x17a6) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x17bd) \u003d 0;\n  *(undefined4 *)(param_1 + 0x2f9) \u003d 1;\n                    /* try { // try from 00ec9924 to 00ec992b has its CatchHandler @ 00ecc658 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x2fb] \u003d 0x23;\n  param_1[0x2fa] \u003d 0x29;\n  *(undefined4 *)((long)puVar32 + 0x1f) \u003d 0x6b63696c;\n  puVar32[1] \u003d 0x74686769722f646e;\n  *puVar32 \u003d 0x61682f726573752f;\n  puVar32[3] \u003d 0x6c632f6d65747379;\n  puVar32[2] \u003d 0x732f7475706e692f;\n  *(undefined1 *)(param_1 + 0x2fe) \u003d 0x24;\n  *(undefined2 *)((long)param_1 + 0x1801) \u003d 0x6c72;\n  *(undefined8 *)((long)param_1 + 0x17f9) \u003d 0x75635f7468676972;\n  *(undefined8 *)((long)param_1 + 0x17f1) \u003d 0x5f72656767697274;\n  param_1[0x2fc] \u003d puVar32;\n  *(undefined8 *)((long)param_1 + 0x1811) \u003d 0x6c72754374686769;\n  *(undefined8 *)((long)param_1 + 0x1809) \u003d 0x5272656767697274;\n  puVar31 \u003d param_1 + 0x2f3;\n  *(undefined1 *)((long)puVar32 + 0x23) \u003d 0;\n  param_1[0x2fd] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1803) \u003d 0;\n  *(undefined1 *)(param_1 + 0x301) \u003d 0x20;\n  *(undefined1 *)((long)param_1 + 0x1819) \u003d 0;\n  *(undefined4 *)(param_1 + 0x304) \u003d 2;\n                    /* try { // try from 00ec99b4 to 00ec99bb has its CatchHandler @ 00ecc614 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x305] \u003d 0x29;\n  puVar32[1] \u003d 0x74686769722f646e;\n  *puVar32 \u003d 0x61682f726573752f;\n  puVar32[3] \u003d 0x632f726567676972;\n  puVar32[2] \u003d 0x742f7475706e692f;\n  *(undefined8 *)((long)puVar32 + 0x1e) \u003d 0x62665f6c7275632f;\n  param_1[0x307] \u003d puVar32;\n  *(undefined1 *)((long)param_1 + 0x1859) \u003d 0x6c;\n  *(undefined8 *)((long)param_1 + 0x1851) \u003d 0x7275635f7466656c;\n  *(undefined8 *)((long)param_1 + 0x1849) \u003d 0x5f72656767697274;\n  *(undefined1 *)(param_1 + 0x30c) \u003d 0x1e;\n  param_1[0x306] \u003d 0x26;\n  *(undefined8 *)((long)param_1 + 0x1861) \u003d 0x4c72656767697274;\n  *(undefined1 *)((long)puVar32 + 0x26) \u003d 0;\n  param_1[0x308] \u003d 0;\n  *(undefined1 *)(param_1 + 0x309) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x185a) \u003d 0;\n  param_1[0x30d] \u003d 0x6c7275437466654c;\n  *(undefined1 *)(param_1 + 0x30e) \u003d 0;\n  *(undefined4 *)(param_1 + 0x30f) \u003d 2;\n                    /* try { // try from 00ec9a50 to 00ec9a57 has its CatchHandler @ 00ecc5d0 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  *(undefined1 *)(param_1 + 0x314) \u003d 0x26;\n  param_1[0x311] \u003d 0x25;\n  param_1[0x310] \u003d 0x29;\n  param_1[0x312] \u003d puVar32;\n  *(undefined1 *)((long)puVar32 + 0x25) \u003d 0;\n  puVar32[1] \u003d 0x2f7466656c2f646e;\n  *puVar32 \u003d 0x61682f726573752f;\n  puVar32[3] \u003d 0x75632f7265676769;\n  puVar32[2] \u003d 0x72742f7475706e69;\n  *(undefined8 *)((long)puVar32 + 0x1d) \u003d 0x62665f6c7275632f;\n  param_1[0x313] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x18a9) \u003d 0x6c735f7468676972;\n  *(undefined8 *)((long)param_1 + 0x18a1) \u003d 0x5f72656767697274;\n  *(undefined1 *)((long)param_1 + 0x18b4) \u003d 0;\n  *(undefined4 *)(param_1 + 0x316) \u003d 0x6564696c;\n  *(undefined1 *)(param_1 + 0x317) \u003d 0x22;\n  *(undefined8 *)((long)param_1 + 0x18c1) \u003d 0x64696c5374686769;\n  *(undefined8 *)((long)param_1 + 0x18b9) \u003d 0x5272656767697274;\n  *(undefined1 *)((long)param_1 + 0x18c9) \u003d 0x65;\n  *(undefined1 *)((long)param_1 + 0x18ca) \u003d 0;\n  *(undefined4 *)(param_1 + 0x31a) \u003d 2;\n                    /* try { // try from 00ec9ae4 to 00ec9af3 has its CatchHandler @ 00ecc584 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x31b] \u003d 0x29;\n  param_1[0x31c] \u003d 0x27;\n  param_1[0x31d] \u003d puVar32;\n  puVar32[1] \u003d 0x74686769722f646e;\n  *puVar32 \u003d 0x61682f726573752f;\n  puVar32[3] \u003d 0x732f726567676972;\n  puVar32[2] \u003d 0x742f7475706e692f;\n  *(undefined8 *)((long)puVar32 + 0x1f) \u003d 0x62665f6564696c73;\n  *(undefined1 *)(param_1 + 799) \u003d 0x24;\n  *(undefined2 *)((long)param_1 + 0x1909) \u003d 0x6564;\n  *(undefined8 *)((long)param_1 + 0x1901) \u003d 0x696c735f7466656c;\n  *(undefined8 *)((long)param_1 + 0x18f9) \u003d 0x5f72656767697274;\n  *(undefined1 *)(param_1 + 0x322) \u003d 0x20;\n  *(undefined8 *)((long)param_1 + 0x1919) \u003d 0x6564696c53746665;\n  *(undefined8 *)((long)param_1 + 0x1911) \u003d 0x4c72656767697274;\n  *(undefined1 *)((long)puVar32 + 0x27) \u003d 0;\n  param_1[0x31e] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x190b) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1921) \u003d 0;\n  *(undefined4 *)(param_1 + 0x325) \u003d 2;\n                    /* try { // try from 00ec9b84 to 00ec9b8f has its CatchHandler @ 00ecc540 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x327] \u003d 0x26;\n  param_1[0x326] \u003d 0x29;\n  puVar32[1] \u003d 0x2f7466656c2f646e;\n  *puVar32 \u003d 0x61682f726573752f;\n  puVar32[3] \u003d 0x6c732f7265676769;\n  puVar32[2] \u003d 0x72742f7475706e69;\n  *(undefined8 *)((long)puVar32 + 0x1e) \u003d 0x62665f6564696c73;\n  puStack_1e0._0_4_ \u003d 1;\n  param_1[0x328] \u003d puVar32;\n  uStack_1d0._0_4_ \u003d 2;\n  puStack_1c0._0_4_ \u003d 3;\n  uStack_1b0._0_4_ \u003d 4;\n  plStack_1a0._0_4_ \u003d 5;\n  uStack_190._0_4_ \u003d 6;\n  *(undefined1 *)((long)puVar32 + 0x26) \u003d 0;\n  param_1[0x329] \u003d 0;\n  uStack_1f0._0_4_ \u003d 0;\n  uStack_180._0_4_ \u003d 7;\n  uStack_170._0_4_ \u003d 8;\n  uStack_160._0_4_ \u003d 9;\n  uStack_150._0_4_ \u003d 10;\n  uStack_140 \u003d 0xb;\n  uStack_130 \u003d 0xc;\n  uStack_120 \u003d 0xd;\n  uStack_110 \u003d 0xe;\n  uStack_100 \u003d 0xf;\n                    /* try { // try from 00ec9cb0 to 00ec9cbf has its CatchHandler @ 00ecc4fc */\n  puStack_1e8 \u003d puVar15;\n  puStack_1d8 \u003d puVar16;\n  puStack_1c8 \u003d puVar17;\n  puStack_1b8 \u003d puVar3;\n  puStack_1a8 \u003d puVar37;\n  puStack_198 \u003d puVar38;\n  puStack_188 \u003d puVar21;\n  puStack_178 \u003d puVar4;\n  puStack_168 \u003d puVar24;\n  puStack_158 \u003d puVar25;\n  puStack_148 \u003d puVar6;\n  puStack_138 \u003d puVar27;\n  puStack_128 \u003d puVar29;\n  puStack_118 \u003d puVar30;\n  puStack_108 \u003d param_1 + 0x309;\n  puStack_f8 \u003d param_1 + 799;\n  FUN_00ed1608(param_1 + 0x32e,\u0026uStack_1f0,0x10);\n  uStack_170._0_4_ \u003d 8;\n  puStack_1e0._0_4_ \u003d 1;\n  uStack_1d0._0_4_ \u003d 2;\n  puStack_1c0._0_4_ \u003d 3;\n  uStack_1b0._0_4_ \u003d 4;\n  plStack_1a0._0_4_ \u003d 5;\n  uStack_190._0_4_ \u003d 6;\n  uStack_150 \u003d CONCAT44(uStack_150._4_4_,10);\n  uStack_140 \u003d 0xb;\n  uStack_120 \u003d 0xd;\n  uStack_180._0_4_ \u003d 7;\n  uStack_160._0_4_ \u003d 9;\n  uStack_130 \u003d 0xc;\n  uStack_110 \u003d 0xe;\n  uStack_1f0._0_4_ \u003d 0;\n  uStack_100 \u003d 0xf;\n                    /* try { // try from 00ec9d90 to 00ec9d9f has its CatchHandler @ 00ecc4e8 */\n  puStack_1e8 \u003d puVar12;\n  puStack_1d8 \u003d puVar13;\n  puStack_1c8 \u003d puVar14;\n  puStack_1b8 \u003d puVar39;\n  puStack_1a8 \u003d puVar18;\n  puStack_198 \u003d puVar19;\n  puStack_188 \u003d puVar20;\n  puStack_178 \u003d puVar36;\n  puStack_168 \u003d puVar22;\n  puStack_158 \u003d puVar23;\n  puStack_148 \u003d puVar5;\n  puStack_138 \u003d puVar26;\n  puStack_128 \u003d puVar28;\n  puStack_118 \u003d puVar31;\n  puStack_108 \u003d param_1 + 0x2fe;\n  puStack_f8 \u003d param_1 + 0x314;\n  FUN_00ed1608(param_1 + 0x333,\u0026uStack_1f0,0x10);\n  param_1[0x33a] \u003d 0;\n  param_1[0x339] \u003d 0;\n  param_1[0x338] \u003d 0;\n                    /* try { // try from 00ec9dac to 00ec9dbb has its CatchHandler @ 00ecc4d4 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0xf0);\n  param_1[0x33a] \u003d puVar32 + 0x1e;\n  param_1[0x339] \u003d puVar32 + 0x1e;\n  param_1[0x33c] \u003d 0;\n  param_1[0x33b] \u003d 0;\n  *puVar32 \u003d puVar12;\n  puVar32[1] \u003d puVar13;\n  puVar32[0xe] \u003d puVar21;\n  puVar32[0xf] \u003d puVar4;\n  puVar32[2] \u003d puVar14;\n  puVar32[3] \u003d puVar39;\n  puVar32[0x10] \u003d puVar22;\n  puVar32[0x11] \u003d puVar23;\n  puVar32[4] \u003d puVar15;\n  puVar32[5] \u003d puVar16;\n  puVar32[0x12] \u003d puVar5;\n  puVar32[0x13] \u003d puVar24;\n  param_1[0x338] \u003d puVar32;\n  puVar32[0x14] \u003d puVar25;\n  puVar32[0x15] \u003d puVar6;\n  puVar32[6] \u003d puVar17;\n  puVar32[7] \u003d puVar3;\n  puVar32[0x16] \u003d puVar26;\n  puVar32[0x17] \u003d puVar27;\n  puVar32[8] \u003d puVar18;\n  puVar32[9] \u003d puVar19;\n  puVar32[0x18] \u003d puVar28;\n  puVar32[0x19] \u003d puVar29;\n  puVar32[10] \u003d puVar20;\n  puVar32[0xb] \u003d puVar36;\n  puVar32[0xc] \u003d puVar37;\n  puVar32[0xd] \u003d puVar38;\n  puVar32[0x1a] \u003d param_1 + 0x2d2;\n  puVar32[0x1b] \u003d param_1 + 0x2dd;\n  param_1[0x33d] \u003d 0;\n  puVar32[0x1c] \u003d puVar30;\n  puVar32[0x1d] \u003d puVar31;\n                    /* try { // try from 00ec9e64 to 00ec9e6b has its CatchHandler @ 00ecc4c0 */\n  puVar32 \u003d (undefined8 *)__wrap__Znwm(0x110);\n  puVar32[0xc] \u003d puVar37;\n  puVar32[0xd] \u003d puVar38;\n  param_1[0x33b] \u003d puVar32;\n  puVar32[2] \u003d puVar14;\n  puVar32[3] \u003d puVar39;\n  param_1[0x33d] \u003d puVar32 + 0x22;\n  puVar32[4] \u003d puVar15;\n  puVar32[5] \u003d puVar16;\n  param_1[0x33c] \u003d puVar32 + 0x22;\n  *(undefined1 *)(param_1 + 0x33e) \u003d 0x28;\n  *puVar32 \u003d puVar12;\n  puVar32[1] \u003d puVar13;\n  puVar32[6] \u003d puVar17;\n  puVar32[7] \u003d puVar3;\n  puVar32[0xe] \u003d puVar21;\n  puVar32[0xf] \u003d puVar4;\n  puVar32[8] \u003d puVar18;\n  puVar32[9] \u003d puVar19;\n  puVar32[0x10] \u003d puVar22;\n  puVar32[0x11] \u003d puVar23;\n  puVar32[10] \u003d puVar20;\n  puVar32[0xb] \u003d puVar36;\n  puVar32[0x12] \u003d puVar5;\n  puVar32[0x13] \u003d puVar24;\n  *(undefined1 *)((long)param_1 + 0x1a05) \u003d 0;\n  puVar32[0x14] \u003d puVar25;\n  puVar32[0x15] \u003d puVar6;\n  *(undefined1 *)(param_1 + 0x343) \u003d 0;\n  puVar32[0x16] \u003d puVar26;\n  puVar32[0x17] \u003d puVar27;\n  puVar32[0x18] \u003d puVar28;\n  puVar32[0x19] \u003d puVar29;\n  puVar32[0x1a] \u003d param_1 + 0x2d2;\n  puVar32[0x1b] \u003d param_1 + 0x2dd;\n  puVar32[0x1c] \u003d puVar30;\n  puVar32[0x1d] \u003d puVar31;\n  puVar32[0x20] \u003d param_1 + 0x314;\n  puVar32[0x1e] \u003d param_1 + 0x2fe;\n  puVar32[0x1f] \u003d param_1 + 0x309;\n  puVar32[0x21] \u003d param_1 + 799;\n  *(undefined8 *)((long)param_1 + 0x19f9) \u003d 0x5f74686769725f70;\n  *(undefined8 *)((long)param_1 + 0x19f1) \u003d 0x61745f626d756874;\n  *(undefined4 *)((long)param_1 + 0x1a01) \u003d 0x646e6168;\n  *(undefined1 *)(param_1 + 0x341) \u003d 0x1e;\n  *(undefined8 *)((long)param_1 + 0x1a09) \u003d 0x6854207468676952;\n  param_1[0x342] \u003d 0x70615420626d7568;\n  *(undefined4 *)(param_1 + 0x344) \u003d 1;\n                    /* try { // try from 00ec9f7c to 00ec9f83 has its CatchHandler @ 00ecc4b8 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x345] \u003d 0x31;\n  param_1[0x347] \u003d puVar12;\n  param_1[0x346] \u003d 0x2b;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x626d7568745f7061;\n  puVar12[2] \u003d 0x742f7475706e692f;\n  *(undefined1 *)((long)puVar12 + 0x2b) \u003d 0;\n  *(undefined8 *)((long)puVar12 + 0x23) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1b) \u003d 0x656d5f626d756874;\n  param_1[0x348] \u003d 0;\n                    /* try { // try from 00ec9fc0 to 00ec9fc7 has its CatchHandler @ 00ecc4b0 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x34b] \u003d puVar12;\n  param_1[0x349] \u003d 0x21;\n  param_1[0x34a] \u003d 0x18;\n  *(undefined1 *)(puVar12 + 3) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1a74) \u003d 0;\n  puVar12[2] \u003d 0x646e61685f746867;\n  *(undefined1 *)(param_1 + 0x34c) \u003d 0x26;\n  puVar12[1] \u003d 0x69725f6570697773;\n  *puVar12 \u003d 0x5f64726177726f66;\n  *(undefined8 *)((long)param_1 + 0x1a69) \u003d 0x7753206472617772;\n  *(undefined8 *)((long)param_1 + 0x1a61) \u003d 0x6f46207468676952;\n  *(undefined4 *)(param_1 + 0x34e) \u003d 0x65706977;\n  *(undefined4 *)(param_1 + 0x34f) \u003d 1;\n                    /* try { // try from 00eca030 to 00eca037 has its CatchHandler @ 00ecc4a4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x352] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x726f665f65706977;\n  puVar12[2] \u003d 0x732f7475706e692f;\n  param_1[0x351] \u003d 0x2f;\n  param_1[0x350] \u003d 0x31;\n  *(undefined8 *)((long)puVar12 + 0x27) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1f) \u003d 0x656d5f6472617772;\n  *(undefined1 *)((long)puVar12 + 0x2f) \u003d 0;\n  param_1[0x353] \u003d 0;\n                    /* try { // try from 00eca074 to 00eca07b has its CatchHandler @ 00ecc49c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x356] \u003d puVar12;\n  puVar12[1] \u003d 0x725f65706977735f;\n  *puVar12 \u003d 0x647261776b636162;\n  *(undefined1 *)(param_1 + 0x357) \u003d 0x28;\n  *(undefined8 *)((long)puVar12 + 0x11) \u003d 0x646e61685f746867;\n  *(undefined8 *)((long)puVar12 + 9) \u003d 0x69725f6570697773;\n  param_1[0x355] \u003d 0x19;\n  param_1[0x354] \u003d 0x21;\n  *(undefined1 *)((long)puVar12 + 0x19) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0x1ac9) \u003d 0x65706977;\n  *(undefined8 *)((long)param_1 + 0x1ac1) \u003d 0x5320647261776b63;\n  *(undefined8 *)((long)param_1 + 0x1ab9) \u003d 0x6142207468676952;\n  *(undefined1 *)((long)param_1 + 0x1acd) \u003d 0;\n  *(undefined4 *)(param_1 + 0x35a) \u003d 1;\n                    /* try { // try from 00eca0e0 to 00eca0e7 has its CatchHandler @ 00ecc490 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x38);\n  param_1[0x35d] \u003d puVar12;\n  param_1[0x35b] \u003d 0x39;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x6361625f65706977;\n  puVar12[2] \u003d 0x732f7475706e692f;\n  param_1[0x35c] \u003d 0x30;\n  puVar12[5] \u003d 0x6b63696c632f6174;\n  puVar12[4] \u003d 0x656d5f647261776b;\n  *(undefined1 *)(param_1 + 0x35f) \u003d 0x2a;\n  *(undefined8 *)((long)param_1 + 0x1b01) \u003d 0x74686769725f6570;\n  *(undefined8 *)((long)param_1 + 0x1af9) \u003d 0x6977735f7466656c;\n  *(undefined8 *)((long)param_1 + 0x1b06) \u003d 0x646e61685f746867;\n  *(undefined1 *)(param_1 + 0x362) \u003d 0x2a;\n  *(undefined1 *)(puVar12 + 6) \u003d 0;\n  param_1[0x35e] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1b19) \u003d 0x207466654c20646e;\n  *(undefined8 *)((long)param_1 + 0x1b11) \u003d 0x6148207468676952;\n  *(undefined8 *)((long)param_1 + 0x1b1e) \u003d 0x6570697753207466;\n  *(undefined1 *)((long)param_1 + 0x1b0e) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1b26) \u003d 0;\n  *(undefined4 *)(param_1 + 0x365) \u003d 1;\n                    /* try { // try from 00eca17c to 00eca183 has its CatchHandler @ 00ecc488 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x368] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x66656c5f65706977;\n  puVar12[2] \u003d 0x732f7475706e692f;\n  param_1[0x367] \u003d 0x2c;\n  param_1[0x366] \u003d 0x31;\n  *(undefined8 *)((long)puVar12 + 0x24) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1c) \u003d 0x656d5f7466656c5f;\n  *(undefined1 *)((long)puVar12 + 0x2c) \u003d 0;\n  param_1[0x369] \u003d 0;\n                    /* try { // try from 00eca1c0 to 00eca1c7 has its CatchHandler @ 00ecc480 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x36c] \u003d puVar12;\n  puVar12[2] \u003d 0x646e61685f746867;\n  puVar12[1] \u003d 0x69725f6570697773;\n  *puVar12 \u003d 0x5f656c6b63756e6b;\n  *(undefined1 *)(param_1 + 0x36d) \u003d 0x2c;\n  param_1[0x36b] \u003d 0x18;\n  param_1[0x36a] \u003d 0x21;\n  *(undefined1 *)(puVar12 + 3) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1b71) \u003d 0x746867695220646e;\n  *(undefined8 *)((long)param_1 + 0x1b69) \u003d 0x6148207468676952;\n  *(undefined8 *)((long)param_1 + 0x1b77) \u003d 0x6570697753207468;\n  *(undefined1 *)((long)param_1 + 0x1b7f) \u003d 0;\n  *(undefined4 *)(param_1 + 0x370) \u003d 1;\n                    /* try { // try from 00eca224 to 00eca22b has its CatchHandler @ 00ecc474 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x371] \u003d 0x31;\n  param_1[0x372] \u003d 0x2d;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x6769725f65706977;\n  puVar12[2] \u003d 0x732f7475706e692f;\n  *(undefined1 *)(param_1 + 0x375) \u003d 0x26;\n  *(undefined8 *)((long)puVar12 + 0x25) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1d) \u003d 0x656d5f7468676972;\n  *(undefined8 *)((long)param_1 + 0x1bb1) \u003d 0x685f7466656c5f70;\n  *(undefined8 *)((long)param_1 + 0x1ba9) \u003d 0x61745f626d756874;\n  param_1[0x373] \u003d puVar12;\n  *(undefined4 *)(param_1 + 0x377) \u003d 0x646e6168;\n  *(undefined1 *)(param_1 + 0x378) \u003d 0x1c;\n  *(undefined8 *)((long)param_1 + 0x1bc7) \u003d 0x70615420626d7568;\n  *(undefined8 *)((long)param_1 + 0x1bc1) \u003d 0x756854207466654c;\n  *(undefined1 *)((long)puVar12 + 0x2d) \u003d 0;\n  param_1[0x374] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1bbc) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1bcf) \u003d 0;\n  *(undefined4 *)(param_1 + 0x37b) \u003d 1;\n                    /* try { // try from 00eca2c4 to 00eca2cb has its CatchHandler @ 00ecc46c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x37e] \u003d puVar12;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x5f626d7568745f70;\n  puVar12[2] \u003d 0x61742f7475706e69;\n  param_1[0x37d] \u003d 0x2a;\n  param_1[0x37c] \u003d 0x31;\n  *(undefined8 *)((long)puVar12 + 0x22) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1a) \u003d 0x656d5f626d756874;\n  *(undefined1 *)((long)puVar12 + 0x2a) \u003d 0;\n  param_1[0x37f] \u003d 0;\n                    /* try { // try from 00eca304 to 00eca30f has its CatchHandler @ 00ecc464 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x1a);\n  puVar12[1] \u003d 0x656c5f6570697773;\n  *puVar12 \u003d 0x5f64726177726f66;\n  *(undefined8 *)((long)puVar12 + 0xf) \u003d 0x646e61685f746665;\n  *(undefined1 *)(param_1 + 899) \u003d 0x24;\n  param_1[0x382] \u003d puVar12;\n  *(undefined2 *)((long)param_1 + 0x1c29) \u003d 0x6570;\n  *(undefined8 *)((long)param_1 + 0x1c21) \u003d 0x6977532064726177;\n  *(undefined8 *)((long)param_1 + 0x1c19) \u003d 0x726f46207466654c;\n  param_1[0x381] \u003d 0x17;\n  param_1[0x380] \u003d 0x1b;\n  *(undefined1 *)((long)puVar12 + 0x17) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1c2b) \u003d 0;\n  *(undefined4 *)(param_1 + 0x386) \u003d 1;\n                    /* try { // try from 00eca378 to 00eca37f has its CatchHandler @ 00ecc2e4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x387] \u003d 0x31;\n  param_1[0x389] \u003d puVar12;\n  param_1[0x388] \u003d 0x2e;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x77726f665f657069;\n  puVar12[2] \u003d 0x77732f7475706e69;\n  *(undefined1 *)((long)puVar12 + 0x2e) \u003d 0;\n  *(undefined8 *)((long)puVar12 + 0x26) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1e) \u003d 0x656d5f6472617772;\n  param_1[0x38a] \u003d 0;\n                    /* try { // try from 00eca3b8 to 00eca3bf has its CatchHandler @ 00ecc2a4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x38b] \u003d 0x21;\n  param_1[0x38c] \u003d 0x18;\n  puVar12[2] \u003d 0x646e61685f746665;\n  puVar12[1] \u003d 0x6c5f65706977735f;\n  *puVar12 \u003d 0x647261776b636162;\n  *(undefined1 *)(param_1 + 0x38e) \u003d 0x26;\n  param_1[0x38d] \u003d puVar12;\n  *(undefined1 *)(puVar12 + 3) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1c79) \u003d 0x775320647261776b;\n  *(undefined8 *)((long)param_1 + 0x1c71) \u003d 0x636142207466654c;\n  *(undefined4 *)(param_1 + 0x390) \u003d 0x65706977;\n  *(undefined1 *)((long)param_1 + 0x1c84) \u003d 0;\n  *(undefined4 *)(param_1 + 0x391) \u003d 1;\n                    /* try { // try from 00eca428 to 00eca42f has its CatchHandler @ 00ecc290 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x393] \u003d 0x2f;\n  param_1[0x392] \u003d 0x31;\n  *(undefined4 *)((long)param_1 + 0x1cc1) \u003d 0x646e6168;\n  param_1[0x394] \u003d puVar12;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x6b6361625f657069;\n  puVar12[2] \u003d 0x77732f7475706e69;\n  *(undefined1 *)(param_1 + 0x396) \u003d 0x28;\n  *(undefined8 *)((long)puVar12 + 0x27) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1f) \u003d 0x656d5f647261776b;\n  *(undefined1 *)(param_1 + 0x399) \u003d 0x28;\n  *(undefined8 *)((long)param_1 + 0x1cb9) \u003d 0x5f7466656c5f6570;\n  *(undefined8 *)((long)param_1 + 0x1cb1) \u003d 0x6977735f7466656c;\n  *(undefined1 *)((long)puVar12 + 0x2f) \u003d 0;\n  param_1[0x395] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1cc5) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1cd1) \u003d 0x53207466654c2064;\n  *(undefined8 *)((long)param_1 + 0x1cc9) \u003d 0x6e6148207466654c;\n  *(undefined4 *)((long)param_1 + 0x1cd9) \u003d 0x65706977;\n  *(undefined1 *)((long)param_1 + 0x1cdd) \u003d 0;\n  *(undefined4 *)(param_1 + 0x39c) \u003d 1;\n                    /* try { // try from 00eca4b8 to 00eca4bf has its CatchHandler @ 00ecc250 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x39d] \u003d 0x31;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x7466656c5f657069;\n  puVar12[2] \u003d 0x77732f7475706e69;\n  param_1[0x39e] \u003d 0x2b;\n  *(undefined8 *)((long)puVar12 + 0x23) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1b) \u003d 0x656d5f7466656c5f;\n  *(undefined1 *)(param_1 + 0x3a1) \u003d 0x2a;\n  *(undefined8 *)((long)param_1 + 0x1d11) \u003d 0x7466656c5f657069;\n  *(undefined8 *)((long)param_1 + 0x1d09) \u003d 0x77735f7468676972;\n  *(undefined8 *)((long)param_1 + 0x1d16) \u003d 0x646e61685f746665;\n  *(undefined1 *)(param_1 + 0x3a4) \u003d 0x2a;\n  param_1[0x39f] \u003d puVar12;\n  *(undefined1 *)((long)puVar12 + 0x2b) \u003d 0;\n  param_1[0x3a0] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1d1e) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1d29) \u003d 0x2074686769522064;\n  *(undefined8 *)((long)param_1 + 0x1d21) \u003d 0x6e6148207466654c;\n  *(undefined8 *)((long)param_1 + 0x1d2e) \u003d 0x6570697753207468;\n  *(undefined1 *)((long)param_1 + 0x1d36) \u003d 0;\n  *(undefined4 *)(param_1 + 0x3a7) \u003d 1;\n                    /* try { // try from 00eca554 to 00eca55b has its CatchHandler @ 00ecc20c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x3a9] \u003d 0x2c;\n  param_1[0x3a8] \u003d 0x31;\n  uStack_1b0._0_4_ \u003d 1;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x686769725f657069;\n  puVar12[2] \u003d 0x77732f7475706e69;\n  param_1[0x3aa] \u003d puVar12;\n  *(undefined8 *)((long)puVar12 + 0x24) \u003d 0x6b63696c632f6174;\n  *(undefined8 *)((long)puVar12 + 0x1c) \u003d 0x656d5f7468676972;\n  *(undefined1 *)((long)puVar12 + 0x2c) \u003d 0;\n  param_1[0x3ab] \u003d 0;\n  uStack_1f0._0_4_ \u003d 0;\n  puStack_1e0._0_4_ \u003d 3;\n  uStack_1d0._0_4_ \u003d 4;\n  puStack_1c0._0_4_ \u003d 2;\n                    /* try { // try from 00eca5c8 to 00eca5d7 has its CatchHandler @ 00ecc1cc */\n  puStack_1e8 \u003d param_1 + 0x375;\n  puStack_1d8 \u003d param_1 + 0x380;\n  puStack_1c8 \u003d param_1 + 0x38b;\n  puStack_1b8 \u003d param_1 + 0x396;\n  puStack_1a8 \u003d param_1 + 0x3a1;\n  FUN_00ed1a4c(param_1 + 0x3ac,\u0026uStack_1f0,5);\n  uStack_1d0._0_4_ \u003d 4;\n  puStack_1c0._0_4_ \u003d 2;\n  puStack_1e0._0_4_ \u003d 3;\n  uStack_1b0._0_4_ \u003d 1;\n  uStack_1f0._0_4_ \u003d 0;\n                    /* try { // try from 00eca61c to 00eca62b has its CatchHandler @ 00ecc1bc */\n  puStack_1e8 \u003d param_1 + 0x33e;\n  puStack_1d8 \u003d param_1 + 0x349;\n  puStack_1c8 \u003d param_1 + 0x354;\n  puStack_1b8 \u003d param_1 + 0x35f;\n  puStack_1a8 \u003d param_1 + 0x36a;\n  FUN_00ed1a4c(param_1 + 0x3b1,\u0026uStack_1f0,5);\n  param_1[0x3b8] \u003d 0;\n  param_1[0x3b7] \u003d 0;\n  param_1[0x3b6] \u003d 0;\n                    /* try { // try from 00eca638 to 00eca63f has its CatchHandler @ 00ecc1ac */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x50);\n  param_1[0x3b8] \u003d puVar12 + 10;\n  *puVar12 \u003d param_1 + 0x375;\n  puVar12[1] \u003d param_1 + 0x380;\n  param_1[0x3b7] \u003d puVar12 + 10;\n  puVar12[4] \u003d param_1 + 0x3a1;\n  puVar12[5] \u003d param_1 + 0x33e;\n  puVar12[2] \u003d param_1 + 0x38b;\n  puVar12[3] \u003d param_1 + 0x396;\n  puVar12[6] \u003d param_1 + 0x349;\n  puVar12[7] \u003d param_1 + 0x354;\n  *(undefined1 *)(param_1 + 0x3b9) \u003d 0x10;\n  puVar12[8] \u003d param_1 + 0x35f;\n  puVar12[9] \u003d param_1 + 0x36a;\n  *(undefined8 *)((long)param_1 + 0x1dc9) \u003d 0x657a61675f657965;\n  *(undefined1 *)(param_1 + 0x3bc) \u003d 0x10;\n  param_1[0x3b6] \u003d puVar12;\n  *(undefined1 *)((long)param_1 + 0x1dd1) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1de1) \u003d 0x657a614720657945;\n  *(undefined1 *)((long)param_1 + 0x1de9) \u003d 0;\n  *(undefined4 *)(param_1 + 0x3bf) \u003d 4;\n                    /* try { // try from 00eca6c0 to 00eca6c7 has its CatchHandler @ 00ecc1a4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  *(undefined2 *)(puVar12 + 4) \u003d 0x6573;\n  param_1[0x3c1] \u003d 0x22;\n  param_1[0x3c0] \u003d 0x29;\n  *(undefined4 *)((long)param_1 + 0x1e29) \u003d 0x657a6167;\n  *(undefined8 *)((long)param_1 + 0x1e21) \u003d 0x5f6579655f776172;\n  *(undefined1 *)(param_1 + 0x3c4) \u003d 0x18;\n  *(undefined1 *)(param_1 + 0x3c7) \u003d 0x18;\n  param_1[0x3c2] \u003d puVar12;\n  puVar12[1] \u003d 0x692f7478655f7365;\n  *puVar12 \u003d 0x79652f726573752f;\n  puVar12[3] \u003d 0x6f702f7478655f65;\n  puVar12[2] \u003d 0x7a61672f7475706e;\n  *(undefined1 *)((long)puVar12 + 0x22) \u003d 0;\n  param_1[0x3c3] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1e2d) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1e39) \u003d 0x2065794520776152;\n  *(undefined4 *)((long)param_1 + 0x1e41) \u003d 0x657a6147;\n  *(undefined1 *)((long)param_1 + 0x1e45) \u003d 0;\n  *(undefined4 *)(param_1 + 0x3ca) \u003d 4;\n                    /* try { // try from 00eca75c to 00eca763 has its CatchHandler @ 00ecc164 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x3cb] \u003d 0x29;\n  param_1[0x3cd] \u003d puVar12;\n  puVar12[1] \u003d 0x692f7478655f7365;\n  *puVar12 \u003d 0x79652f726573752f;\n  puVar12[3] \u003d 0x656d5f657a61675f;\n  puVar12[2] \u003d 0x7761722f7475706e;\n  param_1[0x3cc] \u003d 0x27;\n  *(undefined8 *)((long)puVar12 + 0x1f) \u003d 0x65736f702f617465;\n  *(undefined1 *)((long)puVar12 + 0x27) \u003d 0;\n  param_1[0x3cf] \u003d 0;\n  param_1[0x3ce] \u003d 0;\n  param_1[0x3d1] \u003d 0;\n  param_1[0x3d0] \u003d 0;\n                    /* try { // try from 00eca7a8 to 00eca7af has its CatchHandler @ 00ecc134 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x10);\n  param_1[0x3d1] \u003d puVar12 + 2;\n  param_1[0x3d0] \u003d puVar12 + 2;\n  param_1[0x3d4] \u003d 0;\n  param_1[0x3d3] \u003d 0;\n  *(undefined4 *)(param_1 + 0x3d5) \u003d 0x14;\n  *(undefined1 *)(param_1 + 0x3d6) \u003d 0x1c;\n  *puVar12 \u003d param_1 + 0x3b9;\n  puVar12[1] \u003d param_1 + 0x3c4;\n  *(undefined8 *)((long)param_1 + 0x1eb1) \u003d 0x65736f705f6d6961;\n  *(undefined8 *)((long)param_1 + 0x1eb7) \u003d 0x74686769725f6573;\n  *(undefined1 *)(param_1 + 0x3d9) \u003d 0x18;\n  param_1[0x3cf] \u003d puVar12;\n  *(undefined1 *)(param_1 + 0x3d2) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1ebf) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x1ec9) \u003d 0x5265736f506d6941;\n  *(undefined4 *)((long)param_1 + 0x1ed1) \u003d 0x74686769;\n  *(undefined1 *)((long)param_1 + 0x1ed5) \u003d 0;\n  *(undefined4 *)(param_1 + 0x3dc) \u003d 4;\n                    /* try { // try from 00eca840 to 00eca84b has its CatchHandler @ 00ecc12c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x3dd] \u003d 0x21;\n  *(undefined1 *)(param_1 + 0x3e1) \u003d 0x1e;\n  param_1[0x3de] \u003d 0x1f;\n  *(undefined8 *)((long)param_1 + 0x1f09) \u003d 0x736f705f70697267;\n  param_1[0x3e2] \u003d 0x74686769725f6573;\n  *(undefined1 *)(param_1 + 0x3e4) \u003d 0x1a;\n  *(undefined8 *)((long)param_1 + 0x1f26) \u003d 0x746867695265736f;\n  *(undefined8 *)((long)param_1 + 0x1f21) \u003d 0x65736f5070697247;\n  param_1[0x3df] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar12 + 0x17) \u003d 0x65736f702f6d6961;\n  *(undefined8 *)((long)puVar12 + 0xf) \u003d 0x2f7475706e692f74;\n  *(undefined1 *)((long)puVar12 + 0x1f) \u003d 0;\n  param_1[0x3e0] \u003d 0;\n  *(undefined1 *)(param_1 + 0x3e3) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1f2e) \u003d 0;\n  *(undefined4 *)(param_1 + 999) \u003d 4;\n                    /* try { // try from 00eca8d4 to 00eca8df has its CatchHandler @ 00ecc124 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  *(undefined1 *)(param_1 + 0x3ec) \u003d 0x28;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x65736f702f706972;\n  puVar12[2] \u003d 0x672f7475706e692f;\n  *(undefined4 *)((long)param_1 + 0x1f71) \u003d 0x74686769;\n  *(undefined8 *)((long)param_1 + 0x1f69) \u003d 0x725f65736f705f74;\n  *(undefined8 *)((long)param_1 + 0x1f61) \u003d 0x78655f68636e6970;\n  *(undefined1 *)(param_1 + 0x3ef) \u003d 0x22;\n  param_1[0x3ea] \u003d puVar12;\n  *(undefined1 *)((long)param_1 + 0x1f89) \u003d 0x74;\n  *(undefined8 *)((long)param_1 + 0x1f81) \u003d 0x6867695265736f50;\n  *(undefined8 *)((long)param_1 + 0x1f79) \u003d 0x74784568636e6950;\n  param_1[0x3e9] \u003d 0x20;\n  param_1[1000] \u003d 0x29;\n  *(undefined1 *)(puVar12 + 4) \u003d 0;\n  param_1[0x3eb] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1f75) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1f8a) \u003d 0;\n  *(undefined4 *)(param_1 + 0x3f2) \u003d 4;\n                    /* try { // try from 00eca964 to 00eca96b has its CatchHandler @ 00ecc11c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x3f5] \u003d puVar12;\n  param_1[0x3f3] \u003d 0x29;\n  param_1[0x3f4] \u003d 0x25;\n  *(undefined1 *)((long)puVar12 + 0x25) \u003d 0;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x7478655f68636e69;\n  puVar12[2] \u003d 0x702f7475706e692f;\n  *(undefined8 *)((long)puVar12 + 0x1d) \u003d 0x65736f702f747865;\n  *(undefined1 *)(param_1 + 0x3f7) \u003d 0x26;\n  *(undefined8 *)((long)param_1 + 0x1fc1) \u003d 0x69725f65736f705f;\n  *(undefined8 *)((long)param_1 + 0x1fb9) \u003d 0x7478655f656b6f70;\n  *(undefined1 *)(param_1 + 0x3fa) \u003d 0x20;\n  *(undefined8 *)((long)param_1 + 0x1fd9) \u003d 0x746867695265736f;\n  *(undefined8 *)((long)param_1 + 0x1fd1) \u003d 0x50747845656b6f50;\n  param_1[0x3f6] \u003d 0;\n  *(undefined4 *)(param_1 + 0x3f9) \u003d 0x74686769;\n  *(undefined1 *)((long)param_1 + 0x1fcc) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x1fe1) \u003d 0;\n  *(undefined4 *)(param_1 + 0x3fd) \u003d 4;\n                    /* try { // try from 00eca9f0 to 00eca9f7 has its CatchHandler @ 00ecc114 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x3ff] \u003d 0x24;\n  param_1[0x3fe] \u003d 0x29;\n  *(undefined4 *)(puVar12 + 4) \u003d 0x65736f70;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x2f7478655f656b6f;\n  puVar12[2] \u003d 0x702f7475706e692f;\n  param_1[0x400] \u003d puVar12;\n  *(undefined8 *)((long)param_1 + 0x2019) \u003d 0x5f65756c61765f74;\n  *(undefined8 *)((long)param_1 + 0x2011) \u003d 0x78655f68636e6970;\n  *(undefined8 *)((long)param_1 + 0x201e) \u003d 0x74686769725f6575;\n  *(undefined1 *)((long)puVar12 + 0x24) \u003d 0;\n  param_1[0x401] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2031) \u003d 0x67695265756c6156;\n  *(undefined8 *)((long)param_1 + 0x2029) \u003d 0x74784568636e6950;\n  *(undefined2 *)((long)param_1 + 0x2039) \u003d 0x7468;\n  *(undefined1 *)(param_1 + 0x402) \u003d 0x2a;\n  *(undefined1 *)((long)param_1 + 0x2026) \u003d 0;\n  *(undefined1 *)(param_1 + 0x405) \u003d 0x24;\n  *(undefined1 *)((long)param_1 + 0x203b) \u003d 0;\n  *(undefined4 *)(param_1 + 0x408) \u003d 1;\n                    /* try { // try from 00ecaa90 to 00ecaa97 has its CatchHandler @ 00ecc10c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x40b] \u003d puVar12;\n  param_1[0x409] \u003d 0x29;\n  param_1[0x40a] \u003d 0x26;\n  *(undefined1 *)((long)puVar12 + 0x26) \u003d 0;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x7478655f68636e69;\n  puVar12[2] \u003d 0x702f7475706e692f;\n  *(undefined8 *)((long)puVar12 + 0x1e) \u003d 0x65756c61762f7478;\n  param_1[0x40c] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2071) \u003d 0x5f79646165725f74;\n  *(undefined8 *)((long)param_1 + 0x2069) \u003d 0x78655f68636e6970;\n  *(undefined8 *)((long)param_1 + 0x2076) \u003d 0x74686769725f7964;\n  *(undefined1 *)(param_1 + 0x40d) \u003d 0x2a;\n  *(undefined1 *)((long)param_1 + 0x207e) \u003d 0;\n  *(undefined2 *)((long)param_1 + 0x2091) \u003d 0x7468;\n  *(undefined8 *)((long)param_1 + 0x2089) \u003d 0x6769527964616552;\n  *(undefined8 *)((long)param_1 + 0x2081) \u003d 0x74784568636e6950;\n  *(undefined1 *)(param_1 + 0x410) \u003d 0x24;\n  *(undefined1 *)((long)param_1 + 0x2093) \u003d 0;\n  *(undefined4 *)(param_1 + 0x413) \u003d 1;\n                    /* try { // try from 00ecab24 to 00ecab2b has its CatchHandler @ 00ecc104 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x416] \u003d puVar12;\n  param_1[0x415] \u003d 0x2a;\n  param_1[0x414] \u003d 0x31;\n  *(undefined1 *)((long)puVar12 + 0x2a) \u003d 0;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x7478655f68636e69;\n  puVar12[2] \u003d 0x702f7475706e692f;\n  *(undefined8 *)((long)puVar12 + 0x22) \u003d 0x7478655f79646165;\n  *(undefined8 *)((long)puVar12 + 0x1a) \u003d 0x722f7478655f6863;\n  param_1[0x417] \u003d 0;\n                    /* try { // try from 00ecab60 to 00ecab67 has its CatchHandler @ 00ecc0fc */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x419] \u003d 0x18;\n  param_1[0x418] \u003d 0x21;\n  param_1[0x41a] \u003d puVar12;\n  puVar12[2] \u003d 0x74686769725f6575;\n  puVar12[1] \u003d 0x6c61765f65746176;\n  *puVar12 \u003d 0x697463615f6d6961;\n  *(undefined1 *)(param_1 + 0x41b) \u003d 0x2a;\n  *(undefined1 *)(puVar12 + 3) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x20e1) \u003d 0x65756c6156657461;\n  *(undefined8 *)((long)param_1 + 0x20d9) \u003d 0x76697463416d6941;\n  *(undefined8 *)((long)param_1 + 0x20e6) \u003d 0x746867695265756c;\n  *(undefined1 *)((long)param_1 + 0x20ee) \u003d 0;\n  *(undefined4 *)(param_1 + 0x41e) \u003d 1;\n                    /* try { // try from 00ecabcc to 00ecabd3 has its CatchHandler @ 00ecc0f0 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x41f] \u003d 0x31;\n  param_1[0x421] \u003d puVar12;\n  param_1[0x420] \u003d 0x2d;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x76697463615f6d69;\n  puVar12[2] \u003d 0x612f7475706e692f;\n  *(undefined1 *)((long)puVar12 + 0x2d) \u003d 0;\n  *(undefined8 *)((long)puVar12 + 0x25) \u003d 0x65756c61762f7478;\n  *(undefined8 *)((long)puVar12 + 0x1d) \u003d 0x655f657461766974;\n  param_1[0x422] \u003d 0;\n                    /* try { // try from 00ecac10 to 00ecac17 has its CatchHandler @ 00ecc0e8 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x423] \u003d 0x21;\n  puVar12[1] \u003d 0x6165725f65746176;\n  *puVar12 \u003d 0x697463615f6d6961;\n  puVar12[2] \u003d 0x74686769725f7964;\n  param_1[0x425] \u003d puVar12;\n  param_1[0x424] \u003d 0x18;\n  *(undefined1 *)(puVar12 + 3) \u003d 0;\n  *(undefined1 *)(param_1 + 0x426) \u003d 0x2a;\n  *(undefined8 *)((long)param_1 + 0x2139) \u003d 0x7964616552657461;\n  *(undefined8 *)((long)param_1 + 0x2131) \u003d 0x76697463416d6941;\n  *(undefined8 *)((long)param_1 + 0x213e) \u003d 0x7468676952796461;\n  *(undefined1 *)((long)param_1 + 0x2146) \u003d 0;\n  *(undefined4 *)(param_1 + 0x429) \u003d 1;\n                    /* try { // try from 00ecac80 to 00ecac87 has its CatchHandler @ 00ecc0dc */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x38);\n  puVar39 \u003d param_1 + 0x42e;\n  *(undefined1 *)puVar39 \u003d 0x2a;\n  param_1[0x42c] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x76697463615f6d69;\n  puVar12[2] \u003d 0x612f7475706e692f;\n  *(undefined2 *)(puVar12 + 6) \u003d 0x74;\n  param_1[0x42b] \u003d 0x31;\n  param_1[0x42a] \u003d 0x39;\n  param_1[0x42d] \u003d 0;\n  puVar12[5] \u003d 0x78655f7964616572;\n  puVar12[4] \u003d 0x2f7478655f657461;\n  *(undefined1 *)((long)param_1 + 0x2186) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2179) \u003d 0x5f65756c61765f74;\n  *(undefined8 *)((long)param_1 + 0x2171) \u003d 0x78655f7073617267;\n  *(undefined8 *)((long)param_1 + 0x217e) \u003d 0x74686769725f6575;\n  *(undefined1 *)(param_1 + 0x431) \u003d 0x24;\n  *(undefined1 *)((long)param_1 + 0x219b) \u003d 0;\n  *(undefined2 *)((long)param_1 + 0x2199) \u003d 0x7468;\n  *(undefined8 *)((long)param_1 + 0x2191) \u003d 0x67695265756c6156;\n  *(undefined8 *)((long)param_1 + 0x2189) \u003d 0x7478457073617247;\n  *(undefined4 *)(param_1 + 0x434) \u003d 1;\n                    /* try { // try from 00ecad20 to 00ecad27 has its CatchHandler @ 00ecc0d4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x435] \u003d 0x29;\n  param_1[0x436] \u003d 0x26;\n  param_1[0x437] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x7478655f70736172;\n  puVar12[2] \u003d 0x672f7475706e692f;\n  *(undefined8 *)((long)puVar12 + 0x1e) \u003d 0x65756c61762f7478;\n  puVar13 \u003d param_1 + 0x439;\n  *(undefined1 *)puVar13 \u003d 0x2a;\n  *(undefined1 *)((long)puVar12 + 0x26) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x21d1) \u003d 0x5f79646165725f74;\n  *(undefined8 *)((long)param_1 + 0x21c9) \u003d 0x78655f7073617267;\n  *(undefined8 *)((long)param_1 + 0x21d6) \u003d 0x74686769725f7964;\n  param_1[0x438] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x21de) \u003d 0;\n  *(undefined2 *)((long)param_1 + 0x21f1) \u003d 0x7468;\n  *(undefined8 *)((long)param_1 + 0x21e9) \u003d 0x6769527964616552;\n  *(undefined8 *)((long)param_1 + 0x21e1) \u003d 0x7478457073617247;\n  *(undefined1 *)(param_1 + 0x43c) \u003d 0x24;\n  *(undefined1 *)((long)param_1 + 0x21f3) \u003d 0;\n  *(undefined4 *)(param_1 + 0x43f) \u003d 1;\n                    /* try { // try from 00ecadbc to 00ecadc7 has its CatchHandler @ 00ecc0cc */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x441] \u003d 0x2a;\n  param_1[0x440] \u003d 0x31;\n  param_1[0x442] \u003d puVar12;\n  puVar12[1] \u003d 0x74686769722f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x7478655f70736172;\n  puVar12[2] \u003d 0x672f7475706e692f;\n  puVar14 \u003d param_1 + 0x444;\n  *(undefined1 *)puVar14 \u003d 0x1a;\n  *(undefined8 *)((long)puVar12 + 0x22) \u003d 0x7478655f79646165;\n  *(undefined8 *)((long)puVar12 + 0x1a) \u003d 0x722f7478655f7073;\n  *(undefined8 *)((long)param_1 + 0x2221) \u003d 0x65736f705f6d6961;\n  *(undefined8 *)((long)param_1 + 0x2226) \u003d 0x7466656c5f65736f;\n  *(undefined1 *)(param_1 + 0x447) \u003d 0x16;\n  *(undefined1 *)((long)puVar12 + 0x2a) \u003d 0;\n  param_1[0x443] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x222e) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2239) \u003d 0x4c65736f506d6941;\n  *(undefined4 *)(param_1 + 0x448) \u003d 0x7466654c;\n  *(undefined1 *)((long)param_1 + 0x2244) \u003d 0;\n  *(undefined4 *)(param_1 + 0x44a) \u003d 4;\n                    /* try { // try from 00ecae5c to 00ecae63 has its CatchHandler @ 00ecc0c4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  param_1[0x44d] \u003d puVar12;\n  param_1[1099] \u003d 0x21;\n  param_1[0x44c] \u003d 0x1e;\n  *(undefined1 *)(param_1 + 0x44f) \u003d 0x1c;\n  *(undefined1 *)((long)puVar12 + 0x1e) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2279) \u003d 0x736f705f70697267;\n  *(undefined8 *)((long)param_1 + 0x227f) \u003d 0x7466656c5f65736f;\n  *(undefined1 *)(param_1 + 0x452) \u003d 0x18;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar12 + 0x16) \u003d 0x65736f702f6d6961;\n  *(undefined8 *)((long)puVar12 + 0xe) \u003d 0x2f7475706e692f74;\n  param_1[0x44e] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x2287) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2291) \u003d 0x65736f5070697247;\n  *(undefined4 *)((long)param_1 + 0x2299) \u003d 0x7466654c;\n  *(undefined1 *)((long)param_1 + 0x229d) \u003d 0;\n  *(undefined4 *)(param_1 + 0x455) \u003d 4;\n                    /* try { // try from 00ecaee4 to 00ecaeef has its CatchHandler @ 00ecc0bc */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x20);\n  *(undefined1 *)(param_1 + 0x45a) \u003d 0x26;\n  param_1[0x457] \u003d 0x1f;\n  param_1[0x456] \u003d 0x21;\n  *(undefined1 *)(param_1 + 0x45d) \u003d 0x20;\n  param_1[0x458] \u003d puVar12;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  *(undefined8 *)((long)puVar12 + 0x17) \u003d 0x65736f702f706972;\n  *(undefined8 *)((long)puVar12 + 0xf) \u003d 0x672f7475706e692f;\n  *(undefined8 *)((long)param_1 + 0x22d9) \u003d 0x6c5f65736f705f74;\n  *(undefined8 *)((long)param_1 + 0x22d1) \u003d 0x78655f68636e6970;\n  *(undefined1 *)((long)puVar12 + 0x1f) \u003d 0;\n  *(undefined4 *)(param_1 + 0x45c) \u003d 0x7466656c;\n  param_1[0x459] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x22f1) \u003d 0x7466654c65736f50;\n  *(undefined8 *)((long)param_1 + 0x22e9) \u003d 0x74784568636e6950;\n  *(undefined1 *)((long)param_1 + 0x22e4) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x22f9) \u003d 0;\n  *(undefined4 *)(param_1 + 0x460) \u003d 4;\n                    /* try { // try from 00ecaf68 to 00ecaf6f has its CatchHandler @ 00ecc0b4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x461] \u003d 0x29;\n  param_1[0x462] \u003d 0x24;\n  *(undefined1 *)(param_1 + 0x465) \u003d 0x24;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x2f7478655f68636e;\n  puVar12[2] \u003d 0x69702f7475706e69;\n  *(undefined2 *)((long)param_1 + 0x2339) \u003d 0x7466;\n  *(undefined8 *)((long)param_1 + 0x2331) \u003d 0x656c5f65736f705f;\n  *(undefined8 *)((long)param_1 + 0x2329) \u003d 0x7478655f656b6f70;\n  *(undefined1 *)(param_1 + 0x468) \u003d 0x1e;\n  param_1[0x463] \u003d puVar12;\n  *(undefined8 *)((long)param_1 + 0x2341) \u003d 0x50747845656b6f50;\n  *(undefined4 *)(puVar12 + 4) \u003d 0x65736f70;\n  *(undefined1 *)((long)puVar12 + 0x24) \u003d 0;\n  param_1[0x464] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x233b) \u003d 0;\n  param_1[0x469] \u003d 0x7466654c65736f50;\n  *(undefined1 *)(param_1 + 0x46a) \u003d 0;\n  *(undefined4 *)(param_1 + 0x46b) \u003d 4;\n                    /* try { // try from 00ecb004 to 00ecb00f has its CatchHandler @ 00ecc0ac */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  *(undefined4 *)((long)puVar12 + 0x1f) \u003d 0x65736f70;\n  param_1[0x46d] \u003d 0x23;\n  param_1[0x46c] \u003d 0x29;\n  *(undefined1 *)(param_1 + 0x470) \u003d 0x28;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x702f7478655f656b;\n  puVar12[2] \u003d 0x6f702f7475706e69;\n  *(undefined4 *)((long)param_1 + 0x2391) \u003d 0x7466656c;\n  *(undefined8 *)((long)param_1 + 0x2389) \u003d 0x5f65756c61765f74;\n  *(undefined8 *)((long)param_1 + 0x2381) \u003d 0x78655f68636e6970;\n  param_1[0x46e] \u003d puVar12;\n  *(undefined8 *)((long)param_1 + 0x23a1) \u003d 0x66654c65756c6156;\n  *(undefined8 *)((long)param_1 + 0x2399) \u003d 0x74784568636e6950;\n  *(undefined1 *)((long)param_1 + 0x23a9) \u003d 0x74;\n  *(undefined1 *)((long)puVar12 + 0x23) \u003d 0;\n  param_1[0x46f] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x2395) \u003d 0;\n  *(undefined1 *)(param_1 + 0x473) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x23aa) \u003d 0;\n  *(undefined4 *)(param_1 + 0x476) \u003d 1;\n                    /* try { // try from 00ecb0a0 to 00ecb0a7 has its CatchHandler @ 00ecc0a4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x479] \u003d puVar12;\n  param_1[0x477] \u003d 0x29;\n  param_1[0x478] \u003d 0x25;\n  *(undefined1 *)((long)puVar12 + 0x25) \u003d 0;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x2f7478655f68636e;\n  puVar12[2] \u003d 0x69702f7475706e69;\n  *(undefined8 *)((long)puVar12 + 0x1d) \u003d 0x65756c61762f7478;\n  *(undefined1 *)(param_1 + 0x47b) \u003d 0x28;\n  *(undefined4 *)((long)param_1 + 0x23e9) \u003d 0x7466656c;\n  param_1[0x47a] \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x23e1) \u003d 0x5f79646165725f74;\n  *(undefined8 *)((long)param_1 + 0x23d9) \u003d 0x78655f68636e6970;\n  *(undefined1 *)((long)param_1 + 0x23ed) \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x2401) \u003d 0x74;\n  *(undefined8 *)((long)param_1 + 0x23f9) \u003d 0x66654c7964616552;\n  *(undefined8 *)((long)param_1 + 0x23f1) \u003d 0x74784568636e6950;\n  *(undefined1 *)(param_1 + 0x47e) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x2402) \u003d 0;\n  *(undefined4 *)(param_1 + 0x481) \u003d 1;\n                    /* try { // try from 00ecb134 to 00ecb13b has its CatchHandler @ 00ecc09c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x484] \u003d puVar12;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x2f7478655f68636e;\n  puVar12[2] \u003d 0x69702f7475706e69;\n  param_1[0x483] \u003d 0x29;\n  param_1[0x482] \u003d 0x31;\n  *(undefined8 *)((long)puVar12 + 0x21) \u003d 0x7478655f79646165;\n  *(undefined8 *)((long)puVar12 + 0x19) \u003d 0x722f7478655f6863;\n  *(undefined1 *)((long)puVar12 + 0x29) \u003d 0;\n  param_1[0x485] \u003d 0;\n                    /* try { // try from 00ecb178 to 00ecb17f has its CatchHandler @ 00ecc094 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x1a);\n  param_1[0x487] \u003d 0x17;\n  param_1[0x486] \u003d 0x1b;\n  param_1[0x488] \u003d puVar12;\n  puVar12[1] \u003d 0x6c61765f65746176;\n  *puVar12 \u003d 0x697463615f6d6961;\n  *(undefined8 *)((long)puVar12 + 0xf) \u003d 0x7466656c5f65756c;\n  *(undefined1 *)(param_1 + 0x489) \u003d 0x28;\n  *(undefined1 *)((long)puVar12 + 0x17) \u003d 0;\n  *(undefined4 *)((long)param_1 + 0x2459) \u003d 0x7466654c;\n  *(undefined8 *)((long)param_1 + 0x2451) \u003d 0x65756c6156657461;\n  *(undefined8 *)((long)param_1 + 0x2449) \u003d 0x76697463416d6941;\n  *(undefined1 *)((long)param_1 + 0x245d) \u003d 0;\n  *(undefined4 *)(param_1 + 0x48c) \u003d 1;\n                    /* try { // try from 00ecb1e4 to 00ecb1eb has its CatchHandler @ 00ecbcb8 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  param_1[0x48d] \u003d 0x31;\n  param_1[0x48f] \u003d puVar12;\n  param_1[0x48e] \u003d 0x2c;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x6176697463615f6d;\n  puVar12[2] \u003d 0x69612f7475706e69;\n  *(undefined1 *)((long)puVar12 + 0x2c) \u003d 0;\n  *(undefined8 *)((long)puVar12 + 0x24) \u003d 0x65756c61762f7478;\n  *(undefined8 *)((long)puVar12 + 0x1c) \u003d 0x655f657461766974;\n  param_1[0x490] \u003d 0;\n                    /* try { // try from 00ecb228 to 00ecb22f has its CatchHandler @ 00ecbc78 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x1a);\n  param_1[0x491] \u003d 0x1b;\n  puVar12[1] \u003d 0x6165725f65746176;\n  *puVar12 \u003d 0x697463615f6d6961;\n  *(undefined8 *)((long)puVar12 + 0xf) \u003d 0x7466656c5f796461;\n  param_1[0x493] \u003d puVar12;\n  param_1[0x492] \u003d 0x17;\n  *(undefined1 *)((long)puVar12 + 0x17) \u003d 0;\n  *(undefined1 *)(param_1 + 0x494) \u003d 0x28;\n  *(undefined4 *)((long)param_1 + 0x24b1) \u003d 0x7466654c;\n  *(undefined8 *)((long)param_1 + 0x24a9) \u003d 0x7964616552657461;\n  *(undefined8 *)((long)param_1 + 0x24a1) \u003d 0x76697463416d6941;\n  *(undefined1 *)((long)param_1 + 0x24b5) \u003d 0;\n  *(undefined4 *)(param_1 + 0x497) \u003d 1;\n                    /* try { // try from 00ecb29c to 00ecb2a3 has its CatchHandler @ 00ecbc68 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x38);\n  *(undefined1 *)(param_1 + 0x49c) \u003d 0x28;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x6176697463615f6d;\n  puVar12[2] \u003d 0x69612f7475706e69;\n  param_1[0x499] \u003d 0x30;\n  param_1[0x498] \u003d 0x39;\n  puVar12[5] \u003d 0x7478655f79646165;\n  puVar12[4] \u003d 0x722f7478655f6574;\n  *(undefined4 *)((long)param_1 + 0x24f1) \u003d 0x7466656c;\n  *(undefined8 *)((long)param_1 + 0x24e9) \u003d 0x5f65756c61765f74;\n  *(undefined8 *)((long)param_1 + 0x24e1) \u003d 0x78655f7073617267;\n  param_1[0x49a] \u003d puVar12;\n  *(undefined8 *)((long)param_1 + 0x2501) \u003d 0x66654c65756c6156;\n  *(undefined8 *)((long)param_1 + 0x24f9) \u003d 0x7478457073617247;\n  *(undefined1 *)((long)param_1 + 0x2509) \u003d 0x74;\n  *(undefined1 *)(puVar12 + 6) \u003d 0;\n  param_1[0x49b] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x24f5) \u003d 0;\n  *(undefined1 *)(param_1 + 0x49f) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x250a) \u003d 0;\n  *(undefined4 *)(param_1 + 0x4a2) \u003d 1;\n                    /* try { // try from 00ecb338 to 00ecb33f has its CatchHandler @ 00ecbc28 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x28);\n  param_1[0x4a3] \u003d 0x29;\n  param_1[0x4a4] \u003d 0x25;\n  param_1[0x4a5] \u003d puVar12;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x2f7478655f707361;\n  puVar12[2] \u003d 0x72672f7475706e69;\n  *(undefined8 *)((long)puVar12 + 0x1d) \u003d 0x65756c61762f7478;\n  *(undefined1 *)(param_1 + 0x4a7) \u003d 0x28;\n  *(undefined4 *)((long)param_1 + 0x2549) \u003d 0x7466656c;\n  *(undefined1 *)((long)puVar12 + 0x25) \u003d 0;\n  *(undefined8 *)((long)param_1 + 0x2541) \u003d 0x5f79646165725f74;\n  *(undefined8 *)((long)param_1 + 0x2539) \u003d 0x78655f7073617267;\n  param_1[0x4a6] \u003d 0;\n  *(undefined1 *)((long)param_1 + 0x254d) \u003d 0;\n  *(undefined1 *)(param_1 + 0x4aa) \u003d 0x22;\n  *(undefined1 *)((long)param_1 + 0x2561) \u003d 0x74;\n  *(undefined8 *)((long)param_1 + 0x2559) \u003d 0x66654c7964616552;\n  *(undefined8 *)((long)param_1 + 0x2551) \u003d 0x7478457073617247;\n  *(undefined1 *)((long)param_1 + 0x2562) \u003d 0;\n  *(undefined4 *)(param_1 + 0x4ad) \u003d 1;\n                    /* try { // try from 00ecb3cc to 00ecb3d7 has its CatchHandler @ 00ecbbe4 */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0x30);\n  puStack_1e0._0_4_ \u003d 1;\n  param_1[0x4af] \u003d 0x29;\n  param_1[0x4ae] \u003d 0x31;\n  param_1[0x4b0] \u003d puVar12;\n  puVar12[1] \u003d 0x2f7466656c2f646e;\n  *puVar12 \u003d 0x61682f726573752f;\n  puVar12[3] \u003d 0x2f7478655f707361;\n  puVar12[2] \u003d 0x72672f7475706e69;\n  *(undefined1 *)((long)puVar12 + 0x29) \u003d 0;\n  *(undefined8 *)((long)puVar12 + 0x21) \u003d 0x7478655f79646165;\n  *(undefined8 *)((long)puVar12 + 0x19) \u003d 0x722f7478655f7073;\n  uStack_1d0._0_4_ \u003d 2;\n  param_1[0x4b1] \u003d 0;\n  uStack_1f0._0_4_ \u003d 0;\n  puStack_1c0._0_4_ \u003d 3;\n  uStack_1b0._0_4_ \u003d 4;\n  plStack_1a0._0_4_ \u003d 5;\n  uStack_190._0_4_ \u003d 6;\n  uStack_180._0_4_ \u003d 7;\n  uStack_170._0_4_ \u003d 8;\n  uStack_160._0_4_ \u003d 9;\n                    /* try { // try from 00ecb4a0 to 00ecb4af has its CatchHandler @ 00ecbba0 */\n  puStack_1e8 \u003d puVar14;\n  puStack_1d8 \u003d param_1 + 0x44f;\n  puStack_1c8 \u003d param_1 + 0x45a;\n  puStack_1b8 \u003d param_1 + 0x465;\n  puStack_1a8 \u003d param_1 + 0x470;\n  puStack_198 \u003d param_1 + 0x47b;\n  puStack_188 \u003d param_1 + 0x486;\n  puStack_178 \u003d param_1 + 0x491;\n  puStack_168 \u003d param_1 + 0x49c;\n  puStack_158 \u003d param_1 + 0x4a7;\n  FUN_00ed1e90(param_1 + 0x4b4,\u0026uStack_1f0,10);\n  puStack_1e0 \u003d (undefined1 *)CONCAT44(puStack_1e0._4_4_,1);\n  uStack_1d0 \u003d CONCAT44(uStack_1d0._4_4_,2);\n  puStack_1c0 \u003d (undefined8 *)CONCAT44(puStack_1c0._4_4_,3);\n  uStack_1b0 \u003d CONCAT44(uStack_1b0._4_4_,4);\n  plStack_1a0 \u003d (long *)CONCAT44(plStack_1a0._4_4_,5);\n  uStack_190 \u003d CONCAT44(uStack_190._4_4_,6);\n  uStack_180 \u003d CONCAT44(uStack_180._4_4_,7);\n  uStack_170 \u003d CONCAT44(uStack_170._4_4_,8);\n  uStack_160 \u003d CONCAT44(uStack_160._4_4_,9);\n  uStack_1f0 \u003d (undefined1 *)((ulong)uStack_1f0._4_4_ \u003c\u003c 0x20);\n                    /* try { // try from 00ecb534 to 00ecb543 has its CatchHandler @ 00ecbb8c */\n  puStack_1e8 \u003d param_1 + 0x3d6;\n  puStack_1d8 \u003d param_1 + 0x3e1;\n  puStack_1c8 \u003d param_1 + 0x3ec;\n  puStack_1b8 \u003d param_1 + 0x3f7;\n  puStack_1a8 \u003d param_1 + 0x402;\n  puStack_198 \u003d param_1 + 0x40d;\n  puStack_188 \u003d param_1 + 0x418;\n  puStack_178 \u003d param_1 + 0x423;\n  puStack_168 \u003d puVar39;\n  puStack_158 \u003d puVar13;\n  FUN_00ed1e90(param_1 + 0x4b9,\u0026uStack_1f0,10);\n  param_1[0x4c0] \u003d 0;\n  param_1[0x4bf] \u003d 0;\n  param_1[0x4be] \u003d 0;\n                    /* try { // try from 00ecb550 to 00ecb557 has its CatchHandler @ 00ecbb7c */\n  puVar12 \u003d (undefined8 *)__wrap__Znwm(0xa0);\n  param_1[0x4c0] \u003d puVar12 + 0x14;\n  *puVar12 \u003d puVar14;\n  param_1[0x4bf] \u003d puVar12 + 0x14;\n  puVar12[1] \u003d param_1 + 0x44f;\n  param_1[0x4be] \u003d puVar12;\n  puVar12[2] \u003d param_1 + 0x45a;\n  puVar12[0xd] \u003d param_1 + 0x3f7;\n  puVar12[0xe] \u003d param_1 + 0x402;\n  puVar12[3] \u003d param_1 + 0x465;\n  puVar12[0xf] \u003d param_1 + 0x40d;\n  puVar12[0x10] \u003d param_1 + 0x418;\n  puVar12[4] \u003d param_1 + 0x470;\n  puVar12[0x11] \u003d param_1 + 0x423;\n  puVar12[0x12] \u003d puVar39;\n  puVar12[5] \u003d param_1 + 0x47b;\n  param_1[0x4c5] \u003d 0;\n  puVar12[6] \u003d param_1 + 0x486;\n  param_1[0x4d5] \u003d 0;\n  puVar12[7] \u003d param_1 + 0x491;\n  param_1[0x4d7] \u003d param_4;\n  puVar12[8] \u003d param_1 + 0x49c;\n  param_1[0x4d8] \u003d param_5;\n  puVar12[9] \u003d param_1 + 0x4a7;\n  puVar12[10] \u003d param_1 + 0x3d6;\n  puVar12[0xb] \u003d param_1 + 0x3e1;\n  puVar12[0xc] \u003d param_1 + 0x3ec;\n  puVar12[0x13] \u003d puVar13;\n  param_1[0x4c2] \u003d 0;\n  param_1[0x4c1] \u003d 0;\n  param_1[0x4c4] \u003d 0;\n  param_1[0x4c3] \u003d 0;\n  param_1[0x4c8] \u003d 0;\n  param_1[0x4c7] \u003d 0;\n  param_1[0x4ca] \u003d 0;\n  param_1[0x4c9] \u003d 0;\n  param_1[0x4cc] \u003d 0;\n  param_1[0x4cb] \u003d 0;\n  param_1[0x4ce] \u003d 0;\n  param_1[0x4cd] \u003d 0;\n  param_1[0x4d0] \u003d 0;\n  param_1[0x4cf] \u003d 0;\n  param_1[0x4d2] \u003d 0;\n  param_1[0x4d1] \u003d 0;\n  param_1[0x4d4] \u003d 0;\n  param_1[0x4d3] \u003d 0;\n  *(undefined4 *)(param_1 + 0x4c6) \u003d 0x3f800000;\n  param_1[0x4d6] \u003d 0x200000002;\n                    /* try { // try from 00ecb624 to 00ecb62f has its CatchHandler @ 00ecbb74 */\n  FUN_00eccf90(param_1 + 0x4d9,0x14);\n                    /* try { // try from 00ecb634 to 00ecb63f has its CatchHandler @ 00ecbb5c */\n  FUN_00eccf90(param_1 + 0x4de,0x14);\n                    /* try { // try from 00ecb644 to 00ecb64f has its CatchHandler @ 00ecbb54 */\n  FUN_00eccf90(param_1 + 0x4e3,10);\n                    /* try { // try from 00ecb654 to 00ecb65f has its CatchHandler @ 00ecbb3c */\n  FUN_00eccf90(param_1 + 0x4e8,10);\n                    /* try { // try from 00ecb664 to 00ecb66f has its CatchHandler @ 00ecbb34 */\n  FUN_00eccf90(param_1 + 0x4ed,10);\n                    /* try { // try from 00ecb674 to 00ecb67f has its CatchHandler @ 00ecbb1c */\n  FUN_00eccf90(param_1 + 0x4f2,10);\n  *(undefined4 *)(param_1 + 0x4fb) \u003d 0x3f800000;\n  *(undefined4 *)(param_1 + 0x4fc) \u003d 0;\n  param_1[0x4f8] \u003d 0;\n  param_1[0x4f7] \u003d 0;\n  param_1[0x4fa] \u003d 0;\n  param_1[0x4f9] \u003d 0;\n  memset(param_1 + 0x4fd,0,0x7a0);\n                    /* try { // try from 00ecb6b4 to 00ecb6d7 has its CatchHandler @ 00eccebc */\n  FUN_00ed473c(param_1 + 0x5f1);\n  FUN_00ed473c(param_1 + 0x604);\n  *(undefined2 *)(param_1 + 0x617) \u003d 0;\n  puVar33 \u003d (undefined1 *)__wrap__Znwm(0xa0);\n  puVar7 \u003d puVar33 + 0x28;\n  *puVar33 \u003d 0;\n  *(undefined8 *)(puVar33 + 8) \u003d 0;\n  *(undefined8 *)(puVar33 + 0x10) \u003d 0;\n  *(undefined8 *)(puVar33 + 0x18) \u003d 1;\n  *(undefined8 *)(puVar33 + 0x20) \u003d 0;\n                    /* try { // try from 00ecb6f0 to 00ecb6f7 has its CatchHandler @ 00ecbb04 */\n  FUN_00ed22d4(puVar7);\n  uStack_1f8 \u003d 0;\n  uStack_200 \u003d 0;\n  uStack_210 \u003d 0;\n  puStack_228 \u003d (undefined8 *)0x0;\n  ppuStack_230 \u003d (undefined8 **)0x0;\n  uStack_218 \u003d 0;\n  uStack_220 \u003d 0;\n  puStack_1d8 \u003d (undefined8 *)0x0;\n  puStack_1e0 \u003d (undefined1 *)0x0;\n  puStack_1c8 \u003d (undefined8 *)0x0;\n  uStack_1d0 \u003d 0;\n  puStack_1b8 \u003d (undefined8 *)0x0;\n  puStack_1c0 \u003d (undefined8 *)0x0;\n  puStack_1a8 \u003d (undefined8 *)0x0;\n  uStack_1b0 \u003d 0;\n  puStack_198 \u003d (undefined8 *)0x0;\n  plStack_1a0 \u003d (long *)0x0;\n  puStack_188 \u003d (undefined8 *)0x0;\n  uStack_190 \u003d 0;\n  puStack_1e8 \u003d (undefined8 *)0x0;\n  uStack_1f0 \u003d (undefined1 *)0x0;\n  uStack_238 \u003d 0;\n  uStack_240 \u003d 0;\n  _ZN6unifex6detail20ScopedAsyncStackRootC1ENS_9frame_ptrENS_15instruction_ptrE(\u0026puStack_228,0,0);\n  puStack_c8 \u003d \u0026uStack_200;\n  uStack_238 \u003d 0;\n  uStack_d0 \u003d 0;\n  puStack_c0 \u003d \u0026uStack_1f0;\n  uStack_b0 \u003d 1;\n  uStack_a8 \u003d 0;\n  puStack_98 \u003d \u0026uStack_e0;\n  uStack_e0 \u003d 0;\n  pcStack_a0 \u003d FUN_00ed24fc;\n                    /* try { // try from 00ecb774 to 00ecb77f has its CatchHandler @ 00ecbb00 */\n  ppuStack_230 \u003d \u0026puStack_228;\n  puStack_228 \u003d \u0026uStack_240;\n  puStack_d8 \u003d puVar7;\n  puStack_b8 \u003d \u0026uStack_240;\n  puStack_90 \u003d puVar7;\n  _ZN6unifex18_manual_event_loop7context7enqueueEPNS0_9task_baseE(puVar7,\u0026uStack_a8);\n                    /* try { // try from 00ecb780 to 00ecb787 has its CatchHandler @ 00ecbab4 */\n  _ZN6unifex18_manual_event_loop7context3runEv(\u0026uStack_1f0);\n  *ppuStack_230 \u003d (undefined8 *)0x0;\n  ppuStack_230 \u003d (undefined8 **)0x0;\n  _ZN6unifex6detail20ScopedAsyncStackRootD1Ev(\u0026puStack_228);\n  if ((int)uStack_1f8 - 1U \u003c 2) {\n    _ZNSt6__ndk118condition_variableD1Ev(\u0026puStack_1c8);\n    _ZNSt6__ndk15mutexD1Ev(\u0026uStack_1f0);\n    if ((int)uStack_1f8 \u003d\u003d 3) {\n      __wrap__ZNSt13exception_ptrD1Ev(\u0026uStack_200);\n    }\n    puVar7 \u003d DAT_0285d2c8;\n    DAT_0285d2c8 \u003d puVar33;\n    if (puVar7 \u003d\u003d (undefined1 *)0x0) {\n      if (*(long *)(lVar9 + 0x28) \u003d\u003d lStack_70) {\n        return;\n      }\n    }\n    else {\n      uStack_f0 \u003d 0;\n      uStack_e8 \u003d 0;\n      uStack_1f8 \u003d 0;\n      uStack_200 \u003d 0;\n      puStack_c8 \u003d (undefined8 *)0x0;\n      uStack_d0 \u003d 0;\n      puStack_b8 \u003d (undefined8 *)0x0;\n      puStack_c0 \u003d (undefined8 *)0x0;\n      uStack_a8 \u003d 0;\n      uStack_b0 \u003d 0;\n      puStack_98 \u003d (undefined8 *)0x0;\n      pcStack_a0 \u003d (code *)0x0;\n      uStack_88 \u003d 0;\n      puStack_90 \u003d (undefined1 *)0x0;\n      uStack_78 \u003d 0;\n      uStack_80 \u003d 0;\n      puStack_d8 \u003d (undefined1 *)0x0;\n      uStack_e0 \u003d 0;\n      uStack_210 \u003d 0;\n      puStack_228 \u003d (undefined8 *)0x0;\n      ppuStack_230 \u003d (undefined8 **)0x0;\n      uStack_218 \u003d 0;\n      uStack_220 \u003d 0;\n      uStack_238 \u003d 0;\n      uStack_240 \u003d 0;\n      _ZN6unifex6detail20ScopedAsyncStackRootC1ENS_9frame_ptrENS_15instruction_ptrE\n                (\u0026puStack_228,0,0);\n      uStack_238 \u003d 0;\n      puStack_1c0 \u003d \u0026uStack_e0;\n      puStack_198 \u003d (undefined8 *)0x0;\n      puStack_188 \u003d (undefined8 *)0x0;\n      uStack_190 \u003d 0;\n      puStack_178 \u003d (undefined8 *)0x0;\n      uStack_180 \u003d 0;\n      puStack_168 \u003d (undefined8 *)0x0;\n      uStack_170 \u003d 0;\n      puStack_158 \u003d (undefined8 *)0x0;\n      uStack_160 \u003d 0;\n      uStack_150 \u003d 0;\n      uStack_1d0 \u003d uStack_e8;\n      puStack_1d8 \u003d (undefined8 *)uStack_f0;\n      puStack_1c8 \u003d \u0026uStack_200;\n      plStack_1a0 \u003d \u0026uStack_1f0;\n      puStack_1e8 \u003d (undefined8 *)0x0;\n      uStack_1b0 \u003d 1;\n      puStack_1a8 \u003d (undefined8 *)puVar7;\n      ppuStack_230 \u003d \u0026puStack_228;\n      puStack_228 \u003d \u0026uStack_240;\n      uStack_1f0 \u003d puVar7 + 0x18;\n      puStack_1e0 \u003d puVar7 + 0x20;\n      puStack_1b8 \u003d \u0026uStack_240;\n      uVar34 \u003d FUN_00ec8420(1,puVar7 + 0x18);\n      if (uVar34 \u003c 2) {\n        _ZN6unifex2v15_amre24async_manual_reset_event3setEv(puVar7 + 0x20);\n      }\n      _ZN6unifex19inplace_stop_source12request_stopEv(puVar7);\n      plVar10 \u003d plStack_1a0;\n      lVar35 \u003d *plStack_1a0;\n      plVar1 \u003d plStack_1a0 + 2;\n      plVar8 \u003d plStack_1a0 + 9;\n      plStack_1a0[0xb] \u003d (long)plStack_1a0;\n      *(undefined4 *)(plStack_1a0 + 0xc) \u003d 1;\n      plVar2 \u003d plStack_1a0 + 9;\n      plStack_1a0[10] \u003d plStack_1a0[3];\n      *plVar2 \u003d *plVar1;\n      plVar10[0xd] \u003d lVar35;\n      plVar10[0xe] \u003d (long)plVar8;\n      *(undefined4 *)(plVar10 + 8) \u003d 2;\n      uVar34 \u003d FUN_00ec8420(1,lVar35);\n      if (uVar34 \u003c 2) {\n        _ZN6unifex2v15_amre24async_manual_reset_event3setEv(lVar35 + 8);\n      }\n      puVar12 \u003d (undefined8 *)plVar10[0xe];\n      *(undefined4 *)(puVar12 + 3) \u003d 0;\n      puVar12[5] \u003d FUN_00ed2ef4;\n      puVar12[6] \u003d *puVar12;\n      uVar40 \u003d *(undefined8 *)(puVar12[2] + 0x30);\n      puVar12[7] \u003d 0;\n      puVar12[8] \u003d FUN_00ed2f18;\n      puVar12[9] \u003d puVar12;\n      puVar12[10] \u003d puVar12 + 7;\n      puVar12[0xb] \u003d uVar40;\n      *(undefined4 *)(puVar12 + 3) \u003d 2;\n      _ZN6unifex2v15_amre24async_manual_reset_event13start_or_waitERNS1_8_op_baseERS2_(puVar12 + 4);\n                    /* try { // try from 00ecb940 to 00ecb947 has its CatchHandler @ 00ecba6c */\n      _ZN6unifex18_manual_event_loop7context3runEv(\u0026uStack_e0);\n      *ppuStack_230 \u003d (undefined8 *)0x0;\n      ppuStack_230 \u003d (undefined8 **)0x0;\n      _ZN6unifex6detail20ScopedAsyncStackRootD1Ev(\u0026puStack_228);\n      if (1 \u003c (int)uStack_1f8 - 1U) {\n        if ((int)uStack_1f8 \u003d\u003d 3) {\n          __wrap__ZNSt13exception_ptrC1ERKS_(\u0026uStack_1f0,\u0026uStack_200);\n                    /* try { // try from 00ecba40 to 00ecba47 has its CatchHandler @ 00ecba4c */\n          __wrap__ZSt17rethrow_exceptionSt13exception_ptr(\u0026uStack_1f0);\n        }\n        goto LAB_00ecba48;\n      }\n      _ZNSt6__ndk118condition_variableD1Ev(\u0026puStack_b8);\n      _ZNSt6__ndk15mutexD1Ev(\u0026uStack_e0);\n      if ((int)uStack_1f8 \u003d\u003d 3) {\n        __wrap__ZNSt13exception_ptrD1Ev(\u0026uStack_200);\n      }\n      FUN_00ed2358(puVar7 + 0x28);\n      _ZN6unifex19inplace_stop_sourceD1Ev(puVar7);\n      if (*(long *)(lVar9 + 0x28) \u003d\u003d lStack_70) {\n                    /* WARNING: Subroutine does not return */\n        __wrap__ZdlPv(puVar7);\n      }\n    }\n  }\n  else {\n    if ((int)uStack_1f8 !\u003d 3) {\nLAB_00ecba48:\n                    /* WARNING: Subroutine does not return */\n      __wrap__ZSt9terminatev();\n    }\n    __wrap__ZNSt13exception_ptrC1ERKS_(\u0026uStack_e0,\u0026uStack_200);\n                    /* try { // try from 00ecba20 to 00ecba27 has its CatchHandler @ 00ecba5c */\n    __wrap__ZSt17rethrow_exceptionSt13exception_ptr(\u0026uStack_e0);\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    }
+  ],
+  "analysis_complete": true,
+  "syntax_tree_requested": false,
+  "decompiler_payload_limit_mib": 64,
+  "processed_count": 1
+}
