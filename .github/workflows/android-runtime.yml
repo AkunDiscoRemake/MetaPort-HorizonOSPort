@@ -28,6 +28,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
+      - name: Free space for the emulator userdata image on the disposable runner
+        run: |
+          # Only unused preinstalled CI tools; never runs on a user's phone.
+          # QEMU requires 7372.80 MB for userdata even with disk-size=2048M.
+          sudo rm -rf /usr/share/dotnet /opt/hostedtoolcache/CodeQL
+          df -h "$HOME"
       - name: Install pinned build toolchain
         run: |
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'emulator' 'system-images;android-${{ matrix.api }};google_apis;x86_64'
@@ -53,7 +59,7 @@ jobs:
           API: ${{ matrix.api }}
         run: |
           mkdir -p local-analysis/android-runtime
-          # Stop the bounded boot logger; the emulator action already stopped the device.
+          # Stop the bounded boot logger; the supervisor already stopped the device.
           if [ -f local-analysis/android-runtime/boot-logger.pid ]; then
             kill "$(cat local-analysis/android-runtime/boot-logger.pid)" 2>/dev/null || true
           fi

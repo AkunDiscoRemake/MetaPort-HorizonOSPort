@@ -100,3 +100,18 @@ this ELF dependency. The runtime workflow now explicitly installs Ubuntu's
 `libpulse0`; this addresses the observed missing dependency, but a new successful
 boot and all five instrumented cases are still required before declaring the
 runtime gate passed. Earlier RAM/KVM/timeout adjustments did not resolve it.
+
+
+### Second confirmed boot blocker: userdata disk space
+
+Run `36881685354` used the directly supervised emulator. Both APIs exited before
+boot with `Not enough space to create userdata partition`: available 6823.51 MB
+(API 29) / 6467.31 MB (API 35), required 7372.80 MB. Setting the AVD data partition
+to 2048M did not reduce the system image's actual requirement. The CI workflow now
+removes unused preinstalled .NET and CodeQL directories on the disposable runner.
+No phone storage or bootloader is touched. Runtime success still requires new
+JUnit evidence. The supervisor captures at most 1 MiB of host output and detects
+process exit immediately, rather than waiting out a ten/fifteen-minute deadline.
+
+The EGL ownership case also checks ARCore's camera-context guard without creating
+an ARCore Session: this exercises real EGL contexts, **not camera or depth**.
