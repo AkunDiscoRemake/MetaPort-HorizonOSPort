@@ -1,0 +1,1585 @@
+{
+  "tool": "Ghidra 11.3.2",
+  "scope": "At most 24 registry/string-reference functions; not complete hand algorithm recovery",
+  "image_base": "00100000",
+  "program_sha256": "a83d12685803d32eae269c7d8b9b168c614fc9dcccefd03b9aa8e3250803afa5",
+  "firmware_executed": false,
+  "original_source_recovered": false,
+  "selection_status": "SELECTED",
+  "string_references": [],
+  "functions": [
+    {
+      "ghidra_address": "00101000",
+      "elf_address": 4096,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1000",
+      "name": "__on_dlclose",
+      "analysis_no_return": false,
+      "listing_body_address_count": 12,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4096,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4100,
+          "assembly": "adr x0,0x102000"
+        },
+        {
+          "elf_address": 4104,
+          "assembly": "b 0x001014e0"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "__cxa_finalize",
+          "ghidra_address": "001014e0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid __on_dlclose(void)\n\n{\n  __cxa_finalize(\u0026PTR_LOOP_00102000);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101010",
+      "elf_address": 4112,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1010",
+      "name": "__emutls_unregister_key",
+      "analysis_no_return": false,
+      "listing_body_address_count": 4,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4112,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid __emutls_unregister_key(void)\n\n{\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101030",
+      "elf_address": 4144,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1030",
+      "name": "isOCalEnabled",
+      "analysis_no_return": false,
+      "listing_body_address_count": 72,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4144,
+          "assembly": "stp x29,x30,[sp, #-0x10]!"
+        },
+        {
+          "elf_address": 4148,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 4152,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4156,
+          "assembly": "adr x0,0x100aff"
+        },
+        {
+          "elf_address": 4160,
+          "assembly": "bl 0x001011e0"
+        },
+        {
+          "elf_address": 4164,
+          "assembly": "and w8,w0,#0xffff"
+        },
+        {
+          "elf_address": 4168,
+          "assembly": "mov w9,#0x100"
+        },
+        {
+          "elf_address": 4172,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4176,
+          "assembly": "adr x0,0x100bf5"
+        },
+        {
+          "elf_address": 4180,
+          "assembly": "cmp w8,#0x100"
+        },
+        {
+          "elf_address": 4184,
+          "assembly": "csel w8,w8,w9,hi"
+        },
+        {
+          "elf_address": 4188,
+          "assembly": "tst w8,#0xff"
+        },
+        {
+          "elf_address": 4192,
+          "assembly": "cset w1,ne"
+        },
+        {
+          "elf_address": 4196,
+          "assembly": "bl 0x001014f0"
+        },
+        {
+          "elf_address": 4200,
+          "assembly": "tst w0,#0xff"
+        },
+        {
+          "elf_address": 4204,
+          "assembly": "cset w0,ne"
+        },
+        {
+          "elf_address": 4208,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 4212,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "property_get_bool",
+          "ghidra_address": "001014f0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* OVR::Tracking::FeatureChecks::isOCalEnabled() */\n\nbool OVR::Tracking::FeatureChecks::isOCalEnabled(void)\n\n{\n  char cVar1;\n  ushort uVar2;\n  char *in_x1;\n  \n  uVar2 \u003d (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n                    (\"ro.device.feature.tracking.ocal.active\",in_x1);\n  if (uVar2 \u003c 0x101) {\n    uVar2 \u003d 0;\n  }\n  cVar1 \u003d property_get_bool(\"persist.vendor.ovr.tracking.ocal\",(uVar2 \u0026 0xff) !\u003d 0);\n  return cVar1 !\u003d \u0027\\0\u0027;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101080",
+      "elf_address": 4224,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1080",
+      "name": "isDynamicMipiClockSwitchingDisabled",
+      "analysis_no_return": false,
+      "listing_body_address_count": 140,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4224,
+          "assembly": "sub sp,sp,#0x60"
+        },
+        {
+          "elf_address": 4228,
+          "assembly": "stp x29,x30,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4232,
+          "assembly": "str x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 4236,
+          "assembly": "add x29,sp,#0x40"
+        },
+        {
+          "elf_address": 4240,
+          "assembly": "mrs x19,tpidr_el0"
+        },
+        {
+          "elf_address": 4244,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4248,
+          "assembly": "adr x0,0x100a88"
+        },
+        {
+          "elf_address": 4252,
+          "assembly": "ldr x8,[x19, #0x28]"
+        },
+        {
+          "elf_address": 4256,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4260,
+          "assembly": "bl 0x001011e0"
+        },
+        {
+          "elf_address": 4264,
+          "assembly": "adrp x8,0x100000"
+        },
+        {
+          "elf_address": 4268,
+          "assembly": "add x8,x8,#0xbc9"
+        },
+        {
+          "elf_address": 4272,
+          "assembly": "and w10,w0,#0xffff"
+        },
+        {
+          "elf_address": 4276,
+          "assembly": "ldp q0,q1,[x8]"
+        },
+        {
+          "elf_address": 4280,
+          "assembly": "mov w9,#0x100"
+        },
+        {
+          "elf_address": 4284,
+          "assembly": "cmp w10,#0x100"
+        },
+        {
+          "elf_address": 4288,
+          "assembly": "csel w9,w10,w9,hi"
+        },
+        {
+          "elf_address": 4292,
+          "assembly": "tst w9,#0xff"
+        },
+        {
+          "elf_address": 4296,
+          "assembly": "mov x0,sp"
+        },
+        {
+          "elf_address": 4300,
+          "assembly": "cset w1,eq"
+        },
+        {
+          "elf_address": 4304,
+          "assembly": "stp q0,q1,[sp]"
+        },
+        {
+          "elf_address": 4308,
+          "assembly": "ldur q0,[x8, #0x1c]"
+        },
+        {
+          "elf_address": 4312,
+          "assembly": "stur q0,[sp, #0x1c]"
+        },
+        {
+          "elf_address": 4316,
+          "assembly": "bl 0x001014f0"
+        },
+        {
+          "elf_address": 4320,
+          "assembly": "ldr x8,[x19, #0x28]"
+        },
+        {
+          "elf_address": 4324,
+          "assembly": "tst w0,#0xff"
+        },
+        {
+          "elf_address": 4328,
+          "assembly": "cset w0,ne"
+        },
+        {
+          "elf_address": 4332,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4336,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 4340,
+          "assembly": "b.ne 0x00101108"
+        },
+        {
+          "elf_address": 4344,
+          "assembly": "ldr x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 4348,
+          "assembly": "ldp x29,x30,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4352,
+          "assembly": "add sp,sp,#0x60"
+        },
+        {
+          "elf_address": 4356,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 4360,
+          "assembly": "bl 0x00101580"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "property_get_bool",
+          "ghidra_address": "001014f0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "00101580",
+          "external": false,
+          "analysis_no_return": true
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* OVR::Tracking::FeatureChecks::isDynamicMipiClockSwitchingDisabled() */\n\nvoid OVR::Tracking::FeatureChecks::isDynamicMipiClockSwitchingDisabled(void)\n\n{\n  long lVar1;\n  char cVar2;\n  ushort uVar3;\n  char *in_x1;\n  char local_60 [8];\n  char acStack_58 [8];\n  char acStack_50 [8];\n  char acStack_48 [4];\n  char local_44 [4];\n  char acStack_40 [4];\n  char acStack_3c [20];\n  long local_28;\n  \n  lVar1 \u003d tpidr_el0;\n  local_28 \u003d *(long *)(lVar1 + 0x28);\n  uVar3 \u003d (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n                    (\"ro.device.feature.tracking.dynamic_mipi_clock_switching.available\",in_x1);\n  if (uVar3 \u003c 0x101) {\n    uVar3 \u003d 0;\n  }\n  acStack_58[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[8];\n  acStack_58[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[9];\n  acStack_58[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[10];\n  acStack_58[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0xb];\n  acStack_58[4] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0xc];\n  acStack_58[5] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0xd];\n  acStack_58[6] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0xe];\n  acStack_58[7] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0xf];\n  local_60[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0];\n  local_60[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[1];\n  local_60[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[2];\n  local_60[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[3];\n  local_60[4] \u003d s_persist_vendor_camera_disable_dy_00100bc9[4];\n  local_60[5] \u003d s_persist_vendor_camera_disable_dy_00100bc9[5];\n  local_60[6] \u003d s_persist_vendor_camera_disable_dy_00100bc9[6];\n  local_60[7] \u003d s_persist_vendor_camera_disable_dy_00100bc9[7];\n  acStack_48[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x18];\n  acStack_48[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x19];\n  acStack_48[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x1a];\n  acStack_48[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x1b];\n  acStack_50[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x10];\n  acStack_50[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x11];\n  acStack_50[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x12];\n  acStack_50[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x13];\n  acStack_50[4] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x14];\n  acStack_50[5] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x15];\n  acStack_50[6] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x16];\n  acStack_50[7] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x17];\n  acStack_3c[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x24];\n  acStack_3c[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x25];\n  acStack_3c[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x26];\n  acStack_3c[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x27];\n  acStack_3c[4] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x28];\n  acStack_3c[5] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x29];\n  acStack_3c[6] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x2a];\n  acStack_3c[7] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x2b];\n  local_44[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x1c];\n  local_44[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x1d];\n  local_44[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x1e];\n  local_44[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x1f];\n  acStack_40[0] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x20];\n  acStack_40[1] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x21];\n  acStack_40[2] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x22];\n  acStack_40[3] \u003d s_persist_vendor_camera_disable_dy_00100bc9[0x23];\n  cVar2 \u003d property_get_bool(local_60,(uVar3 \u0026 0xff) \u003d\u003d 0);\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_28) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail(cVar2 !\u003d \u0027\\0\u0027);\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101110",
+      "elf_address": 4368,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1110",
+      "name": "forceStatsdLogging",
+      "analysis_no_return": false,
+      "listing_body_address_count": 112,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4368,
+          "assembly": "sub sp,sp,#0x50"
+        },
+        {
+          "elf_address": 4372,
+          "assembly": "stp x29,x30,[sp, #0x30]"
+        },
+        {
+          "elf_address": 4376,
+          "assembly": "str x19,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4380,
+          "assembly": "add x29,sp,#0x30"
+        },
+        {
+          "elf_address": 4384,
+          "assembly": "adrp x8,0x100000"
+        },
+        {
+          "elf_address": 4388,
+          "assembly": "add x8,x8,#0xba5"
+        },
+        {
+          "elf_address": 4392,
+          "assembly": "mrs x19,tpidr_el0"
+        },
+        {
+          "elf_address": 4396,
+          "assembly": "ldp q0,q1,[x8]"
+        },
+        {
+          "elf_address": 4400,
+          "assembly": "ldr x9,[x19, #0x28]"
+        },
+        {
+          "elf_address": 4404,
+          "assembly": "mov w8,#0x7374"
+        },
+        {
+          "elf_address": 4408,
+          "assembly": "movk w8,#0x64, LSL #16"
+        },
+        {
+          "elf_address": 4412,
+          "assembly": "mov x0,sp"
+        },
+        {
+          "elf_address": 4416,
+          "assembly": "mov w1,wzr"
+        },
+        {
+          "elf_address": 4420,
+          "assembly": "stur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4424,
+          "assembly": "str w8,[sp, #0x20]"
+        },
+        {
+          "elf_address": 4428,
+          "assembly": "stp q0,q1,[sp]"
+        },
+        {
+          "elf_address": 4432,
+          "assembly": "bl 0x001014f0"
+        },
+        {
+          "elf_address": 4436,
+          "assembly": "ldr x8,[x19, #0x28]"
+        },
+        {
+          "elf_address": 4440,
+          "assembly": "tst w0,#0xff"
+        },
+        {
+          "elf_address": 4444,
+          "assembly": "cset w0,ne"
+        },
+        {
+          "elf_address": 4448,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4452,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 4456,
+          "assembly": "b.ne 0x0010117c"
+        },
+        {
+          "elf_address": 4460,
+          "assembly": "ldr x19,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4464,
+          "assembly": "ldp x29,x30,[sp, #0x30]"
+        },
+        {
+          "elf_address": 4468,
+          "assembly": "add sp,sp,#0x50"
+        },
+        {
+          "elf_address": 4472,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 4476,
+          "assembly": "bl 0x00101580"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "property_get_bool",
+          "ghidra_address": "001014f0",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "00101580",
+          "external": false,
+          "analysis_no_return": true
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* OVR::Tracking::FeatureChecks::forceStatsdLogging() */\n\nvoid OVR::Tracking::FeatureChecks::forceStatsdLogging(void)\n\n{\n  long lVar1;\n  char cVar2;\n  char local_50 [8];\n  char acStack_48 [8];\n  char acStack_40 [8];\n  char acStack_38 [8];\n  undefined4 local_30;\n  long local_28;\n  \n  lVar1 \u003d tpidr_el0;\n  local_28 \u003d *(long *)(lVar1 + 0x28);\n  local_30 \u003d 0x647374;\n  acStack_48 \u003d (char  [8])s_persist_ovr_tracking_forceusesta_00100ba5._8_8_;\n  local_50 \u003d (char  [8])s_persist_ovr_tracking_forceusesta_00100ba5._0_8_;\n  acStack_38 \u003d (char  [8])s_persist_ovr_tracking_forceusesta_00100ba5._24_8_;\n  acStack_40 \u003d (char  [8])s_persist_ovr_tracking_forceusesta_00100ba5._16_8_;\n  cVar2 \u003d property_get_bool(local_50,0);\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_28) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail(cVar2 !\u003d \u0027\\0\u0027);\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101180",
+      "elf_address": 4480,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1180",
+      "name": "isInsideOutBodyTrackingSupported",
+      "analysis_no_return": false,
+      "listing_body_address_count": 52,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4480,
+          "assembly": "stp x29,x30,[sp, #-0x10]!"
+        },
+        {
+          "elf_address": 4484,
+          "assembly": "mov x29,sp"
+        },
+        {
+          "elf_address": 4488,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4492,
+          "assembly": "adr x0,0x100b62"
+        },
+        {
+          "elf_address": 4496,
+          "assembly": "bl 0x001011e0"
+        },
+        {
+          "elf_address": 4500,
+          "assembly": "and w8,w0,#0xffff"
+        },
+        {
+          "elf_address": 4504,
+          "assembly": "mov w9,#0x100"
+        },
+        {
+          "elf_address": 4508,
+          "assembly": "cmp w8,#0x100"
+        },
+        {
+          "elf_address": 4512,
+          "assembly": "csel w8,w8,w9,hi"
+        },
+        {
+          "elf_address": 4516,
+          "assembly": "tst w8,#0xff"
+        },
+        {
+          "elf_address": 4520,
+          "assembly": "cset w0,eq"
+        },
+        {
+          "elf_address": 4524,
+          "assembly": "ldp x29,x30,[sp], #0x10"
+        },
+        {
+          "elf_address": 4528,
+          "assembly": "ret"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* OVR::Tracking::FeatureChecks::isInsideOutBodyTrackingSupported() */\n\nbool OVR::Tracking::FeatureChecks::isInsideOutBodyTrackingSupported(void)\n\n{\n  ushort uVar1;\n  char *in_x1;\n  \n  uVar1 \u003d (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n                    (\"ro.device.feature.tracking.inside_out_body_tracking.disabled\",in_x1);\n  if (uVar1 \u003c 0x101) {\n    uVar1 \u003d 0;\n  }\n  return (uVar1 \u0026 0xff) \u003d\u003d 0;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001011c0",
+      "elf_address": 4544,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x11c0",
+      "name": "defaultControllerType",
+      "analysis_no_return": false,
+      "listing_body_address_count": 4,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4544,
+          "assembly": "b 0x00101340"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* OVR::Tracking::FeatureChecks::defaultControllerType() */\n\nvoid __thiscall OVR::Tracking::FeatureChecks::defaultControllerType(FeatureChecks *this)\n\n{\n  long lVar1;\n  bool bVar2;\n  long lVar3;\n  size_t __n;\n  long *in_x8;\n  char *__s;\n  undefined1 *__dest;\n  ulong auStack_60 [2];\n  char *pcStack_50;\n  long lStack_48;\n  \n  lVar1 \u003d tpidr_el0;\n  lStack_48 \u003d *(long *)(lVar1 + 0x28);\n  auStack_60[0] \u003d 0;\n  auStack_60[1] \u003d 0;\n  pcStack_50 \u003d (char *)0x0;\n  lVar3 \u003d __system_property_find(\"ro.device.feature.tracking.default_controller_type\");\n  if ((lVar3 \u003d\u003d 0) ||\n     (__system_property_read_callback\n                (lVar3,(anonymous_namespace)::\n                       GetProp\u003cstd::optional\u003cstd::string\u003e\u003e(char_const*,char_const*)::\n                       {lambda(void*,char_const*,char_const*,unsigned_int)#1}::__invoke,auStack_60),\n     (auStack_60[0] \u0026 1) \u003d\u003d 0)) {\n    bVar2 \u003d false;\n    __s \u003d (char *)((ulong)auStack_60 | 1);\n    if (*(char *)((ulong)auStack_60 | 1) \u003d\u003d \u0027\\0\u0027) goto LAB_00101404;\nLAB_001013b8:\n    *in_x8 \u003d 0;\n    in_x8[1] \u003d 0;\n    *(undefined1 *)(in_x8 + 3) \u003d 0;\n    in_x8[2] \u003d 0;\n    __n \u003d strlen(__s);\n    if (0xffffffffffffffef \u003c __n) {\n      std::__basic_string_common\u003ctrue\u003e::__throw_length_error();\n      goto LAB_00101490;\n    }\n    if (__n \u003c 0x17) {\n      __dest \u003d (undefined1 *)((long)in_x8 + 1);\n      *(char *)in_x8 \u003d (char)((int)__n \u003c\u003c 1);\n      if (__n !\u003d 0) goto LAB_00101430;\n    }\n    else {\n      __dest \u003d (undefined1 *)operator_new((__n | 0xf) + 1);\n      *in_x8 \u003d (__n | 0xf) + 2;\n      in_x8[1] \u003d __n;\n      in_x8[2] \u003d (long)__dest;\nLAB_00101430:\n      memcpy(__dest,__s,__n);\n    }\n    __dest[__n] \u003d 0;\n    *(undefined1 *)(in_x8 + 3) \u003d 1;\n    if ((auStack_60[0] \u0026 1) !\u003d 0) {\nLAB_00101458:\n      operator_delete(pcStack_50);\n    }\n  }\n  else {\n    bVar2 \u003d true;\n    __s \u003d pcStack_50;\n    if (*pcStack_50 !\u003d \u0027\\0\u0027) goto LAB_001013b8;\nLAB_00101404:\n    *(undefined1 *)in_x8 \u003d 0;\n    *(undefined1 *)(in_x8 + 3) \u003d 0;\n    if (bVar2) goto LAB_00101458;\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d lStack_48) {\n    return;\n  }\nLAB_00101490:\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001011d0",
+      "elf_address": 4560,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x11d0",
+      "name": "feature_ocal_active",
+      "analysis_no_return": false,
+      "listing_body_address_count": 12,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4560,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4564,
+          "assembly": "adr x0,0x100aff"
+        },
+        {
+          "elf_address": 4568,
+          "assembly": "b 0x001011e0"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* oculus::sysprop::FeatureDefs::feature_ocal_active() */\n\nvoid oculus::sysprop::FeatureDefs::feature_ocal_active(void)\n\n{\n  char *in_x1;\n  \n  (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n            (\"ro.device.feature.tracking.ocal.active\",in_x1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001011e0",
+      "elf_address": 4576,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x11e0",
+      "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+      "analysis_no_return": false,
+      "listing_body_address_count": 300,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4576,
+          "assembly": "sub sp,sp,#0x60"
+        },
+        {
+          "elf_address": 4580,
+          "assembly": "stp x29,x30,[sp, #0x20]"
+        },
+        {
+          "elf_address": 4584,
+          "assembly": "str x23,[sp, #0x30]"
+        },
+        {
+          "elf_address": 4588,
+          "assembly": "stp x22,x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4592,
+          "assembly": "stp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 4596,
+          "assembly": "add x29,sp,#0x20"
+        },
+        {
+          "elf_address": 4600,
+          "assembly": "mrs x21,tpidr_el0"
+        },
+        {
+          "elf_address": 4604,
+          "assembly": "ldr x8,[x21, #0x28]"
+        },
+        {
+          "elf_address": 4608,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4612,
+          "assembly": "stp xzr,xzr,[sp]"
+        },
+        {
+          "elf_address": 4616,
+          "assembly": "str xzr,[sp, #0x10]"
+        },
+        {
+          "elf_address": 4620,
+          "assembly": "bl 0x00101500"
+        },
+        {
+          "elf_address": 4624,
+          "assembly": "cbz x0,0x0010123c"
+        },
+        {
+          "elf_address": 4628,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4632,
+          "assembly": "adr x1,0x1014a0"
+        },
+        {
+          "elf_address": 4636,
+          "assembly": "mov x2,sp"
+        },
+        {
+          "elf_address": 4640,
+          "assembly": "mov x20,sp"
+        },
+        {
+          "elf_address": 4644,
+          "assembly": "bl 0x00101510"
+        },
+        {
+          "elf_address": 4648,
+          "assembly": "ldrb w8,[sp]"
+        },
+        {
+          "elf_address": 4652,
+          "assembly": "ldr x19,[sp, #0x10]"
+        },
+        {
+          "elf_address": 4656,
+          "assembly": "tbnz w8,#0x0,0x00101250"
+        },
+        {
+          "elf_address": 4660,
+          "assembly": "orr x20,x20,#0x1"
+        },
+        {
+          "elf_address": 4664,
+          "assembly": "b 0x00101248"
+        },
+        {
+          "elf_address": 4668,
+          "assembly": "mov x8,sp"
+        },
+        {
+          "elf_address": 4672,
+          "assembly": "mov x19,xzr"
+        },
+        {
+          "elf_address": 4676,
+          "assembly": "orr x20,x8,#0x1"
+        },
+        {
+          "elf_address": 4680,
+          "assembly": "mov w22,#0x1"
+        },
+        {
+          "elf_address": 4684,
+          "assembly": "b 0x00101258"
+        },
+        {
+          "elf_address": 4688,
+          "assembly": "mov w22,wzr"
+        },
+        {
+          "elf_address": 4692,
+          "assembly": "mov x20,x19"
+        },
+        {
+          "elf_address": 4696,
+          "assembly": "adrp x0,0x100000"
+        },
+        {
+          "elf_address": 4700,
+          "assembly": "add x0,x0,#0xb28"
+        },
+        {
+          "elf_address": 4704,
+          "assembly": "mov x1,x20"
+        },
+        {
+          "elf_address": 4708,
+          "assembly": "bl 0x00101530"
+        },
+        {
+          "elf_address": 4712,
+          "assembly": "cbz w0,0x001012b8"
+        },
+        {
+          "elf_address": 4716,
+          "assembly": "adrp x0,0x100000"
+        },
+        {
+          "elf_address": 4720,
+          "assembly": "add x0,x0,#0xb2a"
+        },
+        {
+          "elf_address": 4724,
+          "assembly": "mov x1,x20"
+        },
+        {
+          "elf_address": 4728,
+          "assembly": "bl 0x00101530"
+        },
+        {
+          "elf_address": 4732,
+          "assembly": "cbz w0,0x001012b8"
+        },
+        {
+          "elf_address": 4736,
+          "assembly": "adrp x0,0x100000"
+        },
+        {
+          "elf_address": 4740,
+          "assembly": "add x0,x0,#0xb26"
+        },
+        {
+          "elf_address": 4744,
+          "assembly": "mov x1,x20"
+        },
+        {
+          "elf_address": 4748,
+          "assembly": "bl 0x00101530"
+        },
+        {
+          "elf_address": 4752,
+          "assembly": "cbz w0,0x001012f8"
+        },
+        {
+          "elf_address": 4756,
+          "assembly": "adrp x0,0x100000"
+        },
+        {
+          "elf_address": 4760,
+          "assembly": "add x0,x0,#0xb9f"
+        },
+        {
+          "elf_address": 4764,
+          "assembly": "mov x1,x20"
+        },
+        {
+          "elf_address": 4768,
+          "assembly": "bl 0x00101530"
+        },
+        {
+          "elf_address": 4772,
+          "assembly": "cmp w0,#0x0"
+        },
+        {
+          "elf_address": 4776,
+          "assembly": "mov w20,wzr"
+        },
+        {
+          "elf_address": 4780,
+          "assembly": "cset w23,eq"
+        },
+        {
+          "elf_address": 4784,
+          "assembly": "tbz w22,#0x0,0x001012c4"
+        },
+        {
+          "elf_address": 4788,
+          "assembly": "b 0x001012cc"
+        },
+        {
+          "elf_address": 4792,
+          "assembly": "mov w20,#0x1"
+        },
+        {
+          "elf_address": 4796,
+          "assembly": "mov w23,#0x1"
+        },
+        {
+          "elf_address": 4800,
+          "assembly": "tbnz w22,#0x0,0x001012cc"
+        },
+        {
+          "elf_address": 4804,
+          "assembly": "mov x0,x19"
+        },
+        {
+          "elf_address": 4808,
+          "assembly": "bl 0x00101540"
+        },
+        {
+          "elf_address": 4812,
+          "assembly": "ldr x8,[x21, #0x28]"
+        },
+        {
+          "elf_address": 4816,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4820,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 4824,
+          "assembly": "b.ne 0x00101308"
+        },
+        {
+          "elf_address": 4828,
+          "assembly": "orr w0,w20,w23, LSL #0x8"
+        },
+        {
+          "elf_address": 4832,
+          "assembly": "ldp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 4836,
+          "assembly": "ldr x23,[sp, #0x30]"
+        },
+        {
+          "elf_address": 4840,
+          "assembly": "ldp x22,x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4844,
+          "assembly": "ldp x29,x30,[sp, #0x20]"
+        },
+        {
+          "elf_address": 4848,
+          "assembly": "add sp,sp,#0x60"
+        },
+        {
+          "elf_address": 4852,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 4856,
+          "assembly": "mov w20,wzr"
+        },
+        {
+          "elf_address": 4860,
+          "assembly": "mov w23,#0x1"
+        },
+        {
+          "elf_address": 4864,
+          "assembly": "tbz w22,#0x0,0x001012c4"
+        },
+        {
+          "elf_address": 4868,
+          "assembly": "b 0x001012cc"
+        },
+        {
+          "elf_address": 4872,
+          "assembly": "bl 0x00101580"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "__system_property_find",
+          "ghidra_address": "00101500",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__system_property_read_callback",
+          "ghidra_address": "00101510",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "strcasecmp",
+          "ghidra_address": "00101530",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "operator.delete",
+          "ghidra_address": "00101540",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "00101580",
+          "external": false,
+          "analysis_no_return": true
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* std::optional\u003cbool\u003e (anonymous namespace)::GetProp\u003cstd::optional\u003cbool\u003e \u003e(char const*, char\n   const*) [clone .llvm.11013169316948486663] */\n\nuint (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e(char *param_1,char *param_2)\n\n{\n  long lVar1;\n  bool bVar2;\n  int iVar3;\n  long lVar4;\n  char *pcVar5;\n  uint uVar6;\n  char *__s2;\n  uint uVar7;\n  ulong local_60;\n  undefined8 uStack_58;\n  char *local_50;\n  long local_48;\n  uint uVar8;\n  \n  lVar1 \u003d tpidr_el0;\n  local_48 \u003d *(long *)(lVar1 + 0x28);\n  local_60 \u003d 0;\n  uStack_58 \u003d 0;\n  local_50 \u003d (char *)0x0;\n  lVar4 \u003d __system_property_find();\n  if (lVar4 \u003d\u003d 0) {\n    pcVar5 \u003d (char *)0x0;\n  }\n  else {\n    __system_property_read_callback\n              (lVar4,GetProp\u003cstd::optional\u003cbool\u003e\u003e(char_const*,char_const*)::\n                     {lambda(void*,char_const*,char_const*,unsigned_int)#1}::__invoke,\u0026local_60);\n    pcVar5 \u003d local_50;\n    if ((local_60 \u0026 1) !\u003d 0) {\n      bVar2 \u003d false;\n      __s2 \u003d local_50;\n      goto LAB_00101258;\n    }\n  }\n  bVar2 \u003d true;\n  __s2 \u003d (char *)((ulong)\u0026local_60 | 1);\nLAB_00101258:\n  iVar3 \u003d strcasecmp(\"1\",__s2);\n  if ((iVar3 \u003d\u003d 0) || (iVar3 \u003d strcasecmp(\"true\",__s2), iVar3 \u003d\u003d 0)) {\n    uVar6 \u003d 1;\n    uVar7 \u003d 1;\n    uVar8 \u003d 1;\n  }\n  else {\n    iVar3 \u003d strcasecmp(\"0\",__s2);\n    if (iVar3 \u003d\u003d 0) {\n      uVar6 \u003d 0;\n      uVar7 \u003d 1;\n      uVar8 \u003d 1;\n    }\n    else {\n      iVar3 \u003d strcasecmp(\"false\",__s2);\n      uVar6 \u003d 0;\n      uVar7 \u003d (uint)(iVar3 \u003d\u003d 0);\n      uVar8 \u003d (uint)(iVar3 \u003d\u003d 0);\n    }\n  }\n  if (!bVar2) {\n    operator_delete(pcVar5);\n    uVar8 \u003d uVar7;\n  }\n  if (*(long *)(lVar1 + 0x28) !\u003d local_48) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return uVar6 | uVar8 \u003c\u003c 8;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101310",
+      "elf_address": 4880,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1310",
+      "name": "feature_dynamic_mipi_clock",
+      "analysis_no_return": false,
+      "listing_body_address_count": 12,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4880,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4884,
+          "assembly": "adr x0,0x100a88"
+        },
+        {
+          "elf_address": 4888,
+          "assembly": "b 0x001011e0"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* oculus::sysprop::FeatureDefs::feature_dynamic_mipi_clock() */\n\nvoid oculus::sysprop::FeatureDefs::feature_dynamic_mipi_clock(void)\n\n{\n  char *in_x1;\n  \n  (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n            (\"ro.device.feature.tracking.dynamic_mipi_clock_switching.available\",in_x1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101320",
+      "elf_address": 4896,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1320",
+      "name": "feature_object_tracking_frameless",
+      "analysis_no_return": false,
+      "listing_body_address_count": 12,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4896,
+          "assembly": "adrp x0,0x100000"
+        },
+        {
+          "elf_address": 4900,
+          "assembly": "add x0,x0,#0xaca"
+        },
+        {
+          "elf_address": 4904,
+          "assembly": "b 0x001011e0"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* oculus::sysprop::FeatureDefs::feature_object_tracking_frameless() */\n\nvoid oculus::sysprop::FeatureDefs::feature_object_tracking_frameless(void)\n\n{\n  char *in_x1;\n  \n  (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n            (\"ro.device.feature.tracking.object_tracking.frameless\",in_x1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101330",
+      "elf_address": 4912,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1330",
+      "name": "feature_inside_out_body_tracking_disabled",
+      "analysis_no_return": false,
+      "listing_body_address_count": 12,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4912,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4916,
+          "assembly": "adr x0,0x100b62"
+        },
+        {
+          "elf_address": 4920,
+          "assembly": "b 0x001011e0"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+          "ghidra_address": "001011e0",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* oculus::sysprop::FeatureDefs::feature_inside_out_body_tracking_disabled() */\n\nvoid oculus::sysprop::FeatureDefs::feature_inside_out_body_tracking_disabled(void)\n\n{\n  char *in_x1;\n  \n  (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e\n            (\"ro.device.feature.tracking.inside_out_body_tracking.disabled\",in_x1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00101340",
+      "elf_address": 4928,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x1340",
+      "name": "feature_default_controller_type",
+      "analysis_no_return": false,
+      "listing_body_address_count": 340,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 4928,
+          "assembly": "sub sp,sp,#0x60"
+        },
+        {
+          "elf_address": 4932,
+          "assembly": "stp x29,x30,[sp, #0x20]"
+        },
+        {
+          "elf_address": 4936,
+          "assembly": "stp x24,x23,[sp, #0x30]"
+        },
+        {
+          "elf_address": 4940,
+          "assembly": "stp x22,x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 4944,
+          "assembly": "stp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 4948,
+          "assembly": "add x29,sp,#0x20"
+        },
+        {
+          "elf_address": 4952,
+          "assembly": "mrs x23,tpidr_el0"
+        },
+        {
+          "elf_address": 4956,
+          "assembly": "mov x19,x8"
+        },
+        {
+          "elf_address": 4960,
+          "assembly": "adrp x0,0x100000"
+        },
+        {
+          "elf_address": 4964,
+          "assembly": "add x0,x0,#0xb2f"
+        },
+        {
+          "elf_address": 4968,
+          "assembly": "ldr x8,[x23, #0x28]"
+        },
+        {
+          "elf_address": 4972,
+          "assembly": "stur x8,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 4976,
+          "assembly": "stp xzr,xzr,[sp]"
+        },
+        {
+          "elf_address": 4980,
+          "assembly": "str xzr,[sp, #0x10]"
+        },
+        {
+          "elf_address": 4984,
+          "assembly": "bl 0x00101500"
+        },
+        {
+          "elf_address": 4988,
+          "assembly": "cbz x0,0x001013a4"
+        },
+        {
+          "elf_address": 4992,
+          "assembly": "nop"
+        },
+        {
+          "elf_address": 4996,
+          "assembly": "adr x1,0x1014b0"
+        },
+        {
+          "elf_address": 5000,
+          "assembly": "mov x2,sp"
+        },
+        {
+          "elf_address": 5004,
+          "assembly": "mov x20,sp"
+        },
+        {
+          "elf_address": 5008,
+          "assembly": "bl 0x00101510"
+        },
+        {
+          "elf_address": 5012,
+          "assembly": "ldrb w8,[sp]"
+        },
+        {
+          "elf_address": 5016,
+          "assembly": "tbnz w8,#0x0,0x001013f4"
+        },
+        {
+          "elf_address": 5020,
+          "assembly": "orr x20,x20,#0x1"
+        },
+        {
+          "elf_address": 5024,
+          "assembly": "b 0x001013ac"
+        },
+        {
+          "elf_address": 5028,
+          "assembly": "mov x8,sp"
+        },
+        {
+          "elf_address": 5032,
+          "assembly": "orr x20,x8,#0x1"
+        },
+        {
+          "elf_address": 5036,
+          "assembly": "mov w8,wzr"
+        },
+        {
+          "elf_address": 5040,
+          "assembly": "ldrb w9,[x20]"
+        },
+        {
+          "elf_address": 5044,
+          "assembly": "cbz w9,0x00101404"
+        },
+        {
+          "elf_address": 5048,
+          "assembly": "mov x0,x20"
+        },
+        {
+          "elf_address": 5052,
+          "assembly": "stp xzr,xzr,[x19]"
+        },
+        {
+          "elf_address": 5056,
+          "assembly": "strb wzr,[x19, #0x18]"
+        },
+        {
+          "elf_address": 5060,
+          "assembly": "str xzr,[x19, #0x10]"
+        },
+        {
+          "elf_address": 5064,
+          "assembly": "bl 0x00101570"
+        },
+        {
+          "elf_address": 5068,
+          "assembly": "cmn x0,#0x10"
+        },
+        {
+          "elf_address": 5072,
+          "assembly": "b.cs 0x00101488"
+        },
+        {
+          "elf_address": 5076,
+          "assembly": "mov x21,x0"
+        },
+        {
+          "elf_address": 5080,
+          "assembly": "cmp x0,#0x17"
+        },
+        {
+          "elf_address": 5084,
+          "assembly": "b.cs 0x00101414"
+        },
+        {
+          "elf_address": 5088,
+          "assembly": "lsl w8,w21,#0x1"
+        },
+        {
+          "elf_address": 5092,
+          "assembly": "mov x22,x19"
+        },
+        {
+          "elf_address": 5096,
+          "assembly": "strb w8,[x22], #0x1"
+        },
+        {
+          "elf_address": 5100,
+          "assembly": "cbnz x21,0x00101430"
+        },
+        {
+          "elf_address": 5104,
+          "assembly": "b 0x00101440"
+        },
+        {
+          "elf_address": 5108,
+          "assembly": "ldr x20,[sp, #0x10]"
+        },
+        {
+          "elf_address": 5112,
+          "assembly": "mov w8,#0x1"
+        },
+        {
+          "elf_address": 5116,
+          "assembly": "ldrb w9,[x20]"
+        },
+        {
+          "elf_address": 5120,
+          "assembly": "cbnz w9,0x001013b8"
+        },
+        {
+          "elf_address": 5124,
+          "assembly": "strb wzr,[x19]"
+        },
+        {
+          "elf_address": 5128,
+          "assembly": "strb wzr,[x19, #0x18]"
+        },
+        {
+          "elf_address": 5132,
+          "assembly": "cbnz w8,0x00101458"
+        },
+        {
+          "elf_address": 5136,
+          "assembly": "b 0x00101460"
+        },
+        {
+          "elf_address": 5140,
+          "assembly": "orr x24,x21,#0xf"
+        },
+        {
+          "elf_address": 5144,
+          "assembly": "add x0,x24,#0x1"
+        },
+        {
+          "elf_address": 5148,
+          "assembly": "bl 0x00101560"
+        },
+        {
+          "elf_address": 5152,
+          "assembly": "add x8,x24,#0x2"
+        },
+        {
+          "elf_address": 5156,
+          "assembly": "mov x22,x0"
+        },
+        {
+          "elf_address": 5160,
+          "assembly": "str x8,[x19]"
+        },
+        {
+          "elf_address": 5164,
+          "assembly": "stp x21,x0,[x19, #0x8]"
+        },
+        {
+          "elf_address": 5168,
+          "assembly": "mov x0,x22"
+        },
+        {
+          "elf_address": 5172,
+          "assembly": "mov x1,x20"
+        },
+        {
+          "elf_address": 5176,
+          "assembly": "mov x2,x21"
+        },
+        {
+          "elf_address": 5180,
+          "assembly": "bl 0x00101590"
+        },
+        {
+          "elf_address": 5184,
+          "assembly": "mov w8,#0x1"
+        },
+        {
+          "elf_address": 5188,
+          "assembly": "strb wzr,[x22, x21, LSL ]"
+        },
+        {
+          "elf_address": 5192,
+          "assembly": "strb w8,[x19, #0x18]"
+        },
+        {
+          "elf_address": 5196,
+          "assembly": "ldrb w8,[sp]"
+        },
+        {
+          "elf_address": 5200,
+          "assembly": "and w8,w8,#0x1"
+        },
+        {
+          "elf_address": 5204,
+          "assembly": "cbz w8,0x00101460"
+        },
+        {
+          "elf_address": 5208,
+          "assembly": "ldr x0,[sp, #0x10]"
+        },
+        {
+          "elf_address": 5212,
+          "assembly": "bl 0x00101540"
+        },
+        {
+          "elf_address": 5216,
+          "assembly": "ldr x8,[x23, #0x28]"
+        },
+        {
+          "elf_address": 5220,
+          "assembly": "ldur x9,[x29, #-0x8]"
+        },
+        {
+          "elf_address": 5224,
+          "assembly": "cmp x8,x9"
+        },
+        {
+          "elf_address": 5228,
+          "assembly": "b.ne 0x00101490"
+        },
+        {
+          "elf_address": 5232,
+          "assembly": "ldp x20,x19,[sp, #0x50]"
+        },
+        {
+          "elf_address": 5236,
+          "assembly": "ldp x22,x21,[sp, #0x40]"
+        },
+        {
+          "elf_address": 5240,
+          "assembly": "ldp x24,x23,[sp, #0x30]"
+        },
+        {
+          "elf_address": 5244,
+          "assembly": "ldp x29,x30,[sp, #0x20]"
+        },
+        {
+          "elf_address": 5248,
+          "assembly": "add sp,sp,#0x60"
+        },
+        {
+          "elf_address": 5252,
+          "assembly": "ret"
+        },
+        {
+          "elf_address": 5256,
+          "assembly": "mov x0,x19"
+        },
+        {
+          "elf_address": 5260,
+          "assembly": "bl 0x00101550"
+        },
+        {
+          "elf_address": 5264,
+          "assembly": "bl 0x00101580"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "__system_property_find",
+          "ghidra_address": "00101500",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__system_property_read_callback",
+          "ghidra_address": "00101510",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "operator.delete",
+          "ghidra_address": "00101540",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__throw_length_error",
+          "ghidra_address": "00101550",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "operator.new",
+          "ghidra_address": "00101560",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "strlen",
+          "ghidra_address": "00101570",
+          "external": false,
+          "analysis_no_return": false
+        },
+        {
+          "name": "__stack_chk_fail",
+          "ghidra_address": "00101580",
+          "external": false,
+          "analysis_no_return": true
+        },
+        {
+          "name": "memcpy",
+          "ghidra_address": "00101590",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* oculus::sysprop::FeatureDefs::feature_default_controller_type() */\n\nvoid __thiscall oculus::sysprop::FeatureDefs::feature_default_controller_type(FeatureDefs *this)\n\n{\n  long lVar1;\n  bool bVar2;\n  long lVar3;\n  size_t __n;\n  long *in_x8;\n  char *__s;\n  undefined1 *__dest;\n  ulong local_60 [2];\n  char *local_50;\n  long local_48;\n  \n  lVar1 \u003d tpidr_el0;\n  local_48 \u003d *(long *)(lVar1 + 0x28);\n  local_60[0] \u003d 0;\n  local_60[1] \u003d 0;\n  local_50 \u003d (char *)0x0;\n  lVar3 \u003d __system_property_find(\"ro.device.feature.tracking.default_controller_type\");\n  if ((lVar3 \u003d\u003d 0) ||\n     (__system_property_read_callback\n                (lVar3,(anonymous_namespace)::\n                       GetProp\u003cstd::optional\u003cstd::string\u003e\u003e(char_const*,char_const*)::\n                       {lambda(void*,char_const*,char_const*,unsigned_int)#1}::__invoke,local_60),\n     (local_60[0] \u0026 1) \u003d\u003d 0)) {\n    bVar2 \u003d false;\n    __s \u003d (char *)((ulong)local_60 | 1);\n    if (*(char *)((ulong)local_60 | 1) \u003d\u003d \u0027\\0\u0027) goto LAB_00101404;\nLAB_001013b8:\n    *in_x8 \u003d 0;\n    in_x8[1] \u003d 0;\n    *(undefined1 *)(in_x8 + 3) \u003d 0;\n    in_x8[2] \u003d 0;\n    __n \u003d strlen(__s);\n    if (0xffffffffffffffef \u003c __n) {\n      std::__basic_string_common\u003ctrue\u003e::__throw_length_error();\n      goto LAB_00101490;\n    }\n    if (__n \u003c 0x17) {\n      __dest \u003d (undefined1 *)((long)in_x8 + 1);\n      *(char *)in_x8 \u003d (char)((int)__n \u003c\u003c 1);\n      if (__n !\u003d 0) goto LAB_00101430;\n    }\n    else {\n      __dest \u003d (undefined1 *)operator_new((__n | 0xf) + 1);\n      *in_x8 \u003d (__n | 0xf) + 2;\n      in_x8[1] \u003d __n;\n      in_x8[2] \u003d (long)__dest;\nLAB_00101430:\n      memcpy(__dest,__s,__n);\n    }\n    __dest[__n] \u003d 0;\n    *(undefined1 *)(in_x8 + 3) \u003d 1;\n    if ((local_60[0] \u0026 1) !\u003d 0) {\nLAB_00101458:\n      operator_delete(local_50);\n    }\n  }\n  else {\n    bVar2 \u003d true;\n    __s \u003d local_50;\n    if (*local_50 !\u003d \u0027\\0\u0027) goto LAB_001013b8;\nLAB_00101404:\n    *(undefined1 *)in_x8 \u003d 0;\n    *(undefined1 *)(in_x8 + 3) \u003d 0;\n    if (bVar2) goto LAB_00101458;\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_48) {\n    return;\n  }\nLAB_00101490:\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001014a0",
+      "elf_address": 5280,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x14a0",
+      "name": "__invoke",
+      "analysis_no_return": false,
+      "listing_body_address_count": 8,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 5280,
+          "assembly": "mov x1,x2"
+        },
+        {
+          "elf_address": 5284,
+          "assembly": "b 0x00101520"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "assign",
+          "ghidra_address": "00101520",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* __invoke(void*, char const*, char const*, unsigned int) */\n\nvoid (anonymous_namespace)::GetProp\u003cstd::optional\u003cbool\u003e\u003e(char_const*,char_const*)::\n     {lambda(void*,char_const*,char_const*,unsigned_int)#1}::__invoke\n               (void *param_1,char *param_2,char *param_3,uint param_4)\n\n{\n  std::string::assign((char *)param_1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001014b0",
+      "elf_address": 5296,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x14b0",
+      "name": "__invoke",
+      "analysis_no_return": false,
+      "listing_body_address_count": 8,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 5296,
+          "assembly": "mov x1,x2"
+        },
+        {
+          "elf_address": 5300,
+          "assembly": "b 0x00101520"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [
+        {
+          "name": "assign",
+          "ghidra_address": "00101520",
+          "external": false,
+          "analysis_no_return": false
+        }
+      ],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\n/* __invoke(void*, char const*, char const*, unsigned int) */\n\nvoid (anonymous_namespace)::GetProp\u003cstd::optional\u003cstd::string\u003e\u003e(char_const*,char_const*)::\n     {lambda(void*,char_const*,char_const*,unsigned_int)#1}::__invoke\n               (void *param_1,char *param_2,char *param_3,uint param_4)\n\n{\n  std::string::assign((char *)param_1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001014c0",
+      "elf_address": 5312,
+      "selection_evidence": "Explicit ELF address target; export status not asserted; VA 0x14c0",
+      "name": "FUN_001014c0",
+      "analysis_no_return": false,
+      "listing_body_address_count": 20,
+      "listing_limit": 1024,
+      "listing_prefix": [
+        {
+          "elf_address": 5312,
+          "assembly": "stp x16,x30,[sp, #-0x10]!"
+        },
+        {
+          "elf_address": 5316,
+          "assembly": "adrp x16,0x102000"
+        },
+        {
+          "elf_address": 5320,
+          "assembly": "ldr x17,[x16, #0x1f8]"
+        },
+        {
+          "elf_address": 5324,
+          "assembly": "add x16,x16,#0x1f8"
+        },
+        {
+          "elf_address": 5328,
+          "assembly": "br x17"
+        }
+      ],
+      "listing_prefix_truncated": false,
+      "direct_callees": [],
+      "direct_callees_truncated": false,
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_001014c0(void)\n\n{\n  (*(code *)PTR_001021f8)();\n  return;\n}\n\n"
+    }
+  ]
+}
