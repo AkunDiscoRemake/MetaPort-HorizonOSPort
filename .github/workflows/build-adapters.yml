@@ -79,6 +79,18 @@ jobs:
             port/android/adapters/src/main/cpp/hand_u8_reduce.cpp \
             -o local-analysis/native-tests/hand_u8_reduce_arm64
           qemu-aarch64 local-analysis/native-tests/hand_u8_reduce_arm64
+      - name: Test observed saturating pack outputs on host and ARM64 NEON
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_saturating_pack_test.cpp \
+            port/android/adapters/src/main/cpp/hand_saturating_pack.cpp \
+            -o local-analysis/native-tests/hand_saturating_pack_test
+          local-analysis/native-tests/hand_saturating_pack_test
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp native/tests/hand_saturating_pack_test.cpp \
+            port/android/adapters/src/main/cpp/hand_saturating_pack.cpp \
+            -o local-analysis/native-tests/hand_saturating_pack_arm64
+          qemu-aarch64 local-analysis/native-tests/hand_saturating_pack_arm64
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |

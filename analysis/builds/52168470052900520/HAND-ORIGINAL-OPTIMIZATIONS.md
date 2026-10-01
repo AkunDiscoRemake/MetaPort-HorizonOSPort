@@ -459,3 +459,33 @@ conversão de pose ARCore por palpite. A próxima seleção segue `01724fc0`.
 A suíte Python atual tem **88 testes, 1 skip**; o backend ARM64 das oito formas
 vrmpy observadas e o build Android passaram em **36794546518**. Ainda não há
 inferência de mãos completa, ganho medido no X6873 ou ZIP/Release final.
+
+## 11. Packing saturado observado: três aritméticas adaptadas
+
+`hand_saturating_pack.{hpp,cpp}` implementa os resultados numéricos de três formas
+observadas em `hand-dependencies-report.json`, em vetores de 128 bytes:
+
+| Forma | Exemplo skeleton / QNN (VA da view) | ARM64 |
+|---|---|---|
+| `.h = vpack(.w,.w):sat` | `61e70` / `39fb4` | `vqmovn_s32` |
+| `.uh = vpack(.w,.w):sat` | `119608` / `39bac` | `vqmovun_s32` |
+| `.ub = vpack(.h,.h):sat` | `61e84` / `39fc0` | `vqmovun_s16` |
+
+A ordem é importante: **Vv, o segundo argumento, preenche a metade baixa; Vu,
+o primeiro, a alta**. Não há interleaving de elementos. Essa ordem e os tipos
+são conferidos na referência QEMU v9.0.0 `mmvec/ext.idef`, linhas 419–439,
+mesmo SHA-256 `96162f9008587e2f97f1893c0632da7f9a0780e6a1dc2219cc905dac22c51717`
+citado anteriormente. Não foi implementada a variante de saída signed-byte,
+que não apareceu nas formas capturadas neste levantamento.
+
+Teste local ASan/UBSan passou: todos os 65536 valores int16, limites int32,
+valores ao redor dos thresholds de saturação, ordem de lanes/fontes, fontes
+iguais e 4096 pares de vetores determinísticos. CI foi ampliada para executar
+as mesmas verificações no backend ARM64 emulado e compilar a biblioteca Android;
+**essa nova execução ainda está pendente**.
+
+É aritmética isolada, não integração com quantização dos modelos ou emulação
+completa de instruções: flags DSP, predicados, pacotes, endianness da memória e
+ativação do kernel permanecem fora do contrato. As instruções saturadas NEON
+podem marcar FPSR.QC no ARM; isso não emula status do Hexagon. Não há ganho de
+FPS medido nem justificativa para converter QFloat em float comum.
