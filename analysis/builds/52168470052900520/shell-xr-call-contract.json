@@ -1,0 +1,231 @@
+{
+  "call_sites": [
+    {
+      "caller_elf": 17968216,
+      "api": "xrGetSystemProperties",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrEnumerateViewConfigurations",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrEnumerateViewConfigurations",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrGetViewConfigurationProperties",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrEnumerateViewConfigurationViews",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrEnumerateViewConfigurationViews",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrGetViewConfigurationProperties",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrCreateReferenceSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrCreateReferenceSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrCreateReferenceSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrCreateReferenceSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrCreateReferenceSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrCreateReferenceSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrLocateViews",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrGetInstanceProcAddr",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME",
+      "name_string_elf": 1597891,
+      "name_resolution": "UNRESOLVED_NOT_ASSUMED_SUPPORTED"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17968216,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17970948,
+      "api": "xrBeginSession",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17971320,
+      "api": "xrRequestExitSession",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 12128084,
+      "api": "xrWaitFrame",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 12128084,
+      "api": "xrLocateViews",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 12128084,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17971620,
+      "api": "xrPollEvent",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17971620,
+      "api": "xrPollEvent",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17973900,
+      "api": "xrGetInstanceProcAddr",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME",
+      "name_string_elf": 1598572,
+      "name_resolution": "UNRESOLVED_NOT_ASSUMED_SUPPORTED"
+    },
+    {
+      "caller_elf": 17973900,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17973900,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17974672,
+      "api": "xrGetReferenceSpaceBoundsRect",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17974672,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 10131180,
+      "api": "xrLocateSpace",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 10131180,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 17971132,
+      "api": "xrGetInstanceProcAddr",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME",
+      "name_string_elf": 1567407,
+      "name_resolution": "UNRESOLVED_NOT_ASSUMED_SUPPORTED"
+    },
+    {
+      "caller_elf": 12127412,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 12127412,
+      "api": "xrBeginFrame",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    },
+    {
+      "caller_elf": 12127412,
+      "api": "xrResultToString",
+      "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME"
+    }
+  ],
+  "runtime_executed": false,
+  "private_abi_validated": false,
+  "extension_support_verified": false,
+  "scope": "Direct C-like calls and hash-pinned procedure-name strings; optionality and indirect calls unresolved",
+  "library_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "evidence_sha256": "2f5584a82c9345eafc1770c01f66fdba5f713d2197020f87c8dfac94eb3d3c1c"
+}
