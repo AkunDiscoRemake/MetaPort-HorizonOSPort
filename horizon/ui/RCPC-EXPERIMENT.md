@@ -64,3 +64,19 @@ The C++ initialization guard, branch, mutex and return behavior are retained;
 this is not removal of the guard. Both source instruction checks must pass before
 any adapted file is written. The new two-site runtime outcome is not established
 by the preceding one-site run. Baseline and adapted evidence stay separate.
+
+## Broader fault window — run 36917029516
+
+After three adapted byte loads, startup still crashed in the locale constructor
+at guest block PC `0x81550`. The expanded window exposes `ldapr x8, [x21]` at
+`0x8162c`, matching the offset suggested by the host thunk's saved addresses.
+This is a **64-bit** acquire, not a byte load. The next explicit experiment adds
+only that site, replacing `0xf8bfc2a8` with `0xc8dffea8` (`ldar x8, [x21]`).
+The independent fixture adds both 64-bit forms and checks a value with nonzero
+upper 32 bits. Width and register changes are rejected by unit tests.
+
+The decoder census found 203 remaining RCpc candidates in this three-site adapted
+`libc++.so`. These are static candidates, not 203 proven runtime failures; they
+are not automatically patched. The census now stays separate from verified
+crash windows, so an optional census error cannot erase the latter. No original
+UI has rendered in the recorded run. Four-site runtime validation is pending.

@@ -21,3 +21,13 @@ class RcpcAdaptation(unittest.TestCase):
         original=bytes(original);sha=hashlib.sha256(original).hexdigest()
         for sites in (((4096,BEFORE,AFTER^1),),((4096,BEFORE,AFTER),)*2):
             with self.assertRaises(ValueError):lower_verified(original,sha,sites)
+
+    def test_wide_load_retains_width_and_registers(self):
+        original=bytearray(fixture.CrashInstructions().image())
+        before=0xf8bfc2a8;after=0xc8dffea8
+        struct.pack_into('<I',original,256,before);original=bytes(original)
+        sha=hashlib.sha256(original).hexdigest()
+        result,_=lower_verified(original,sha,((4096,before,after),))
+        self.assertEqual(struct.unpack_from('<I',result,256)[0],after)
+        self.assertEqual(result[260:],original[260:])
+        with self.assertRaises(ValueError):lower_verified(original,sha,((4096,before,0x08dffea8),))
