@@ -108,6 +108,16 @@ jobs:
             handtracking/native/src/hand_fmq_mapping.cpp \
             -o local-analysis/native-tests/hand_fmq_mapping_arm64
           qemu-aarch64 local-analysis/native-tests/hand_fmq_mapping_arm64
+      - name: Test recovered space-data byte copies on host and ARM64
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/space_data_test.cpp \
+            port/android/adapters/src/main/cpp/space_data.cpp -o local-analysis/native-tests/space_data_test
+          local-analysis/native-tests/space_data_test
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp native/tests/space_data_test.cpp \
+            port/android/adapters/src/main/cpp/space_data.cpp -o local-analysis/native-tests/space_data_arm64
+          qemu-aarch64 local-analysis/native-tests/space_data_arm64
       - name: Compile AAR, test Java and lint Android integration
         shell: bash
         run: |
