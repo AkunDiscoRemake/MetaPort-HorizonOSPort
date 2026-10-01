@@ -1,0 +1,91 @@
+# SPDX-License-Identifier: GPL-3.0-only
+"""Offline install/start baseline of UNMODIFIED VrShell, not a METAPORT release.
+
+Must run inside a network namespace with loopback as its only interface. Never
+requests credentials, grants permissions, patches signatures, or fakes services.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+import time
+from horizon.ui.prepare_shell import POLICY
+
+PACKAGE='com.oculus.vrshell'
+COMPONENT=PACKAGE+'/com.oculus.vrshell.HomeActivity'
+
+
+def offline_guard():
+    interfaces=json.loads(subprocess.check_output(['ip','-j','link','show'],text=True,timeout=10))
+    if not interfaces or any(i.get('ifname')!='lo' for i in interfaces):
+        raise RuntimeError('Refusing original APK execution outside loopback-only network namespace')
+
+
+def adb_command(adb, arguments, timeout=30):
+    # File backing bounds memory even if the guest returns very large output.
+    with tempfile.TemporaryFile() as stream:
+        try:
+            proc=subprocess.run([str(adb),'-s','emulator-5554',*arguments],
+                                stdout=stream,stderr=subprocess.STDOUT,timeout=timeout)
+            code=proc.returncode
+        except subprocess.TimeoutExpired:
+            code=124
+        stream.seek(0);raw=stream.read(65537)
+    return {'exit_code':code,'text':raw[:65536].decode(errors='replace'),
+            'truncated':len(raw)>65536}
+
+
+def inspect(apk, adb, observe_seconds=20):
+    if not 0<=observe_seconds<=30:raise ValueError('Observation budget')
+    apk=Path(apk);policy=json.loads(POLICY.read_text())
+    if not 0<apk.stat().st_size<=512*1024*1024:raise ValueError('APK bounds')
+    digest=hashlib.sha256()
+    with apk.open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
+    sha=digest.hexdigest()
+    if sha!=policy['apk_sha256']:raise ValueError('Unverified original APK')
+    offline_guard()
+    report={'apk_sha256':sha,'original_apk_unmodified':True,'network_isolated':True,
+            'installation_attempted':False,'installation_succeeded':False,
+            'activity_start_attempted':False,'port_ready':False,
+            'physical_device_tested':False,'original_ui_rendering_validated':False,
+            'hand_inference_validated':False,'remote_meta_servers_contacted':False,
+            'scope':'Original APK offline baseline; process survival does not establish a working port'}
+    call=lambda args,timeout=30:adb_command(adb,args,timeout)
+    abi=call(['shell','getprop','ro.product.cpu.abilist'])
+    report['guest_abi']=abi;report['native_bridge']=call(['shell','getprop','ro.dalvik.vm.native.bridge'])
+    if abi['exit_code']!=0 or 'arm64-v8a' not in abi['text'].strip().split(','):
+        report['result']='UNSUPPORTED_OR_UNKNOWN_GUEST_ABI';return report
+    report['installation_attempted']=True
+    install=call(['install','--no-streaming',str(apk)],180);report['install']=install
+    if install['exit_code']!=0 or 'Success' not in install['text'].splitlines():
+        report['result']='INSTALL_REJECTED';return report
+    report['installation_succeeded']=True
+    call(['shell','am','force-stop',PACKAGE]);call(['logcat','-b','crash','-c'])
+    try:
+        report['activity_start_attempted']=True
+        report['start']=call(['shell','am','start','-W','-n',COMPONENT],60)
+        time.sleep(observe_seconds)
+        report['process_after_observation']=call(['shell','pidof',PACKAGE])
+        report['crash_buffer']=call(['logcat','-b','crash','-d','-v','threadtime'])
+        report['activity_state']=call(['shell','dumpsys','activity','top'])
+        report['observation_seconds']=observe_seconds
+        report['result']='START_ATTEMPT_RECORDED_NOT_VALIDATED'
+    finally:
+        call(['shell','am','force-stop',PACKAGE])
+    return report
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--apk',required=True);p.add_argument('--output',required=True)
+    a=p.parse_args()
+    try:r=inspect(a.apk,Path(os.environ['ANDROID_HOME'])/'platform-tools/adb')
+    except Exception as error:r={'result':'EXPERIMENT_FAILED','error':str(error),'port_ready':False}
+    r.update(source_commit=os.environ.get('GITHUB_SHA'),run_id=os.environ.get('GITHUB_RUN_ID'))
+    output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True)
+    output.write_text(json.dumps(r,indent=2)+'\n')
+    raise SystemExit(1 if r['result']=='EXPERIMENT_FAILED' else 0)

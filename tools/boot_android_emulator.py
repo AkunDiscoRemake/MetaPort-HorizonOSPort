@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Supervise the disposable Android test emulator, capturing host launch failures.
 
-Never executes original Horizon firmware. A boot failure is not a test success.
+Default command runs project adapter tests only. Explicit callbacks may run an
+isolated original-APK baseline. A boot failure is never a test success.
 """
 import argparse
 import os
@@ -50,7 +51,7 @@ def wait_for_boot(process, adb, timeout):
     raise TimeoutError('Emulator boot deadline exceeded; no instrumentation executed')
 
 
-def run(api, sdk, output, boot_timeout=600):
+def run(api, sdk, output, boot_timeout=600, test_command=None):
     if api not in (29, 35) or not 1 <= boot_timeout <= 900:
         raise ValueError('Unsupported test configuration')
     sdk = Path(sdk)
@@ -80,7 +81,8 @@ def run(api, sdk, output, boot_timeout=600):
         for setting in ('window_animation_scale', 'transition_animation_scale', 'animator_duration_scale'):
             subprocess.run([str(adb), '-s', 'emulator-5554', 'shell', 'settings', 'put',
                             'global', setting, '0'], check=True, timeout=15)
-        return subprocess.run(['bash', 'tools/run_android_runtime.sh'], timeout=1250).returncode
+        return subprocess.run(test_command if test_command is not None else
+                              ['bash', 'tools/run_android_runtime.sh'], timeout=1250).returncode
     finally:
         try:
             os.killpg(process.pid, signal.SIGTERM)

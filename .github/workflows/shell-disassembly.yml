@@ -8,7 +8,7 @@ permissions:
   contents: write
 concurrency:
   group: metaport-shell-disassembly
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   analyze:
     runs-on: ubuntu-22.04

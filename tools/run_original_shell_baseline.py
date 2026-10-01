@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: GPL-3.0-only
+"""Enter only from the offline CI network namespace; uses no Meta credentials."""
+import os
+from pathlib import Path
+import sys
+import subprocess
+import signal
+from tools.boot_android_emulator import run
+from tools.probe_original_shell import offline_guard
+
+if __name__=='__main__':
+    offline_guard()  # Refuse before launching the emulator too.
+    root=Path('local-analysis/android-runtime');root.mkdir(parents=True,exist_ok=True)
+    command=[sys.executable,'-m','tools.probe_original_shell','--apk',
+             'local-analysis/original-cache/VrShell.apk',
+             '--output',str(root/'original-shell-baseline.json')]
+    try:
+        code=run(35,os.environ['ANDROID_HOME'],root,test_command=command)
+    finally:
+        pid=root/'boot-logger.pid'
+        if pid.exists():
+            try:os.kill(int(pid.read_text()),signal.SIGTERM)
+            except ProcessLookupError:pass
+        subprocess.run([str(Path(os.environ['ANDROID_HOME'])/'platform-tools/adb'),'kill-server'],
+                       timeout=15,check=False)
+    raise SystemExit(code)
