@@ -12,5 +12,5 @@ mkdir -p local-analysis/android-runtime
 } > local-analysis/android-runtime/emulator-host.txt 2>&1
 # Capture early boot errors even if the test script never starts. Bounded lifetime;
 # workflow cleanup terminates this logger after success or boot failure.
-timeout 950s adb logcat -v threadtime > local-analysis/android-runtime/boot-logcat.txt 2>&1 &
+timeout 950s "$ANDROID_HOME/platform-tools/adb" logcat -v threadtime > local-analysis/android-runtime/boot-logcat.txt 2>&1 &
 echo "$!" > local-analysis/android-runtime/boot-logger.pid
