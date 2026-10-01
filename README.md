@@ -160,3 +160,12 @@ como dependência CMake, sem duplicar implementações. **Inferência original c
 ainda NÃO PORTADA**; ZIP recovered não equivale a APK funcional.
 
 [Baixar ZIP do hand tracking com originais recuperados](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/tag/handtracking-recovered-36799154034-1)
+
+## Continuação: UI/UX original e passthrough
+
+- [Decompilação e fronteiras do port da UI original](horizon/ui/README.md)
+- [Evidências, falhas e validações desta etapa](horizon/ui/PORT-STATUS.md)
+- [Fundo de câmera físico compartilhado com ARCore](port/android/PASSTHROUGH.md)
+
+O componente de câmera passou no build Android, mas ainda não está ligado ao
+compositor Horizon; não equivale ao passthrough estéreo do Quest nem a APK pronto.

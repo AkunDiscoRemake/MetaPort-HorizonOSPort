@@ -50,3 +50,8 @@ Sem medidas de FPS/latência/temperatura não se declara otimização máxima.
 O empacotamento incidental **36802294950** passou extração/verificação, mas falhou
 na publicação da nova release; causa não confirmada (logs indisponíveis no sandbox).
 A release de hand tracking anterior **36799154034** permanece a entrega publicada.
+
+Nova execução após os tratamentos de falha e correção do filtro:
+**36803121382**, iniciada pelo commit `7e23d65`; em andamento no momento deste
+registro. O teste adicional de persistência de falhas foi validado localmente
+em `fcd118e` (91 testes da suíte AI, um ignorado, mais quatro testes UI).
