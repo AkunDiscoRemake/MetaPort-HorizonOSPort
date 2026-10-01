@@ -110,7 +110,7 @@
       "api": "xrGetInstanceProcAddr",
       "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME",
       "name_string_elf": 1597891,
-      "name_resolution": "UNRESOLVED_NOT_ASSUMED_SUPPORTED"
+      "requested_procedure": "xrEnumerateDisplayRefreshRatesFB"
     },
     {
       "caller_elf": 17968216,
@@ -167,7 +167,7 @@
       "api": "xrGetInstanceProcAddr",
       "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME",
       "name_string_elf": 1598572,
-      "name_resolution": "UNRESOLVED_NOT_ASSUMED_SUPPORTED"
+      "requested_procedure": "xrGetDisplayRefreshRateFB"
     },
     {
       "caller_elf": 17973900,
@@ -204,7 +204,7 @@
       "api": "xrGetInstanceProcAddr",
       "evidence": "DECOMPILER_CALL_CANDIDATE_NOT_RUNTIME",
       "name_string_elf": 1567407,
-      "name_resolution": "UNRESOLVED_NOT_ASSUMED_SUPPORTED"
+      "requested_procedure": "xrPerfSettingsSetPerformanceLevelEXT"
     },
     {
       "caller_elf": 12127412,
