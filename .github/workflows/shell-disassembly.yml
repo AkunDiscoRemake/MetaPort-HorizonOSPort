@@ -31,7 +31,14 @@ jobs:
           python3 -m unittest discover -s handtracking/ai/tests -v
           python3 -m unittest discover -s horizon/ui/tests -v
           mkdir -p "$WORK/reports"
+      - name: Reuse the exact original ELF, never an unverified replacement
+        id: original
+        uses: actions/cache@v4
+        with:
+          path: local-analysis/original-cache/libshell.so
+          key: original-libshell-2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0
       - name: Obtain fixed verified OTA and original images
+        if: steps.original.outputs.cache-hit != 'true'
         run: |
           curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
             --proto '=https' --proto-redir '=https' \
@@ -49,7 +56,15 @@ jobs:
         id: decompile
         timeout-minutes: 15
         run: |
-          python3 -m horizon.ui.prepare_shell --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
+          cache=local-analysis/original-cache/libshell.so
+          if [ -f "$cache" ]; then
+            # disassemble_shell and resolve_shell_xr independently verify size/hash.
+            cp "$cache" "$WORK/reports/libshell.so"
+          else
+            python3 -m horizon.ui.prepare_shell --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
+            mkdir -p "$(dirname "$cache")"
+            cp "$WORK/reports/libshell.so" "$cache"
+          fi
           python3 -m horizon.ui.disassemble_shell --library "$WORK/reports/libshell.so" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
           python3 -m horizon.ui.inspect_shell_vtables --library "$WORK/reports/libshell.so" --output "$WORK/reports/shell-vtable-windows.json" >> "$WORK/inspection.log" 2>&1
           python3 -m horizon.ui.resolve_shell_xr --library "$WORK/reports/libshell.so" --evidence analysis/builds/52168470052900520/shell-virtuals-decompilation.json --output "$WORK/reports/shell-xr-call-contract.json" >> "$WORK/inspection.log" 2>&1
