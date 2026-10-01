@@ -158,3 +158,5 @@ Esta licença não concede direitos sobre o firmware da Meta nem torna o port pr
 componentes nativos compartilhados e empacotamento verificável. O MetaPort o utiliza
 como dependência CMake, sem duplicar implementações. **Inferência original completa
 ainda NÃO PORTADA**; ZIP recovered não equivale a APK funcional.
+
+[Baixar ZIP do hand tracking com originais recuperados](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/tag/handtracking-recovered-36799154034-1)

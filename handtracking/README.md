@@ -3,6 +3,16 @@
 Subsistema separado do MetaPort, com uma única implementação compartilhada.
 **Estado: recuperação/port parcial. Não é APK, instalador ou IA de mãos pronta.**
 
+## Download publicado
+
+[ZIP com originais recuperados — 183,7 MB](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/download/handtracking-recovered-36799154034-1/MetaPort-HandTracking-recovered.zip)
+
+[Fontes — 3,1 MB](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/download/handtracking-recovered-36799154034-1/MetaPort-HandTracking-sources.zip) · [Release e SHA-256](https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/tag/handtracking-recovered-36799154034-1)
+
+Build do pacote **36799154034** e build Android **36799130880** concluídos com sucesso.
+Inclui 41 arquivos originais verificados, mais dez modelos descomprimidos. É um
+pacote de recuperação/port parcial, não um APK nem inferência funcional.
+
 ## Não contém apenas otimizações
 
 - `ai/`: ferramentas de inspeção da IA original, ETZ0/PTE/FlatBuffers, atributos,
