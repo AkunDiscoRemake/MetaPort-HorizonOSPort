@@ -91,7 +91,7 @@ def source_files():
     files={'README.md':ROOT/'handtracking/README.md', 'LICENSE':ROOT/'LICENSE',
            'horizon/input/original-contract.json':ROOT/'horizon/input/original-contract.json',
            'NOTICE.md':ROOT/'NOTICE.md', 'THIRD-PARTY-NOTICE.md':ROOT/'handtracking/distribution/THIRD-PARTY-NOTICE.md'}
-    for directory in ('handtracking','tools'):
+    for directory in ('handtracking','tools','horizon/ui'):
         for p in (ROOT/directory).rglob('*'):
             if p.is_file() and not p.is_symlink() and '__pycache__' not in p.parts and p.suffix in SOURCE_SUFFIXES:
                 files[p.relative_to(ROOT).as_posix()]=p

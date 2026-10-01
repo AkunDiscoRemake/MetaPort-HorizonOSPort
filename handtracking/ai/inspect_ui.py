@@ -9,6 +9,7 @@ import tempfile
 import zipfile
 from tools.scan_partitions import dump_entry, command, elf_report
 from handtracking.ai.inspect_original import digest, BUILD
+from horizon.ui.evidence import summarize_ux
 
 APKS = ['/priv-app/VrShell/VrShell.apk', '/priv-app/MetaSystemUI/MetaSystemUI.apk']
 INPUT_CALL = re.compile(r'nativeKeyEvent|nativeJoypadAxis|nativeOnInputDevice|nativeRequestUpdateGamepadInputMode|IHandTracking|IInputDataInjection')
@@ -67,7 +68,7 @@ def inspect(images, reconstruction, jadx, output):
             env=dict(os.environ,JAVA_OPTS='-Xmx4g')
             with (root/'jadx.log').open('w') as log:
                 try:
-                    run=subprocess.run([str(jadx),'--no-res','--threads-count','2','--decompilation-mode','restructure',
+                    run=subprocess.run([str(jadx),'--threads-count','2','--decompilation-mode','restructure',
                         '--output-dir',str(root/'generated'),str(apk)],stdout=log,stderr=subprocess.STDOUT,
                         timeout=900,env=env,check=False)
                     status='COMPLETED' if run.returncode==0 else 'COMPLETED_WITH_ERRORS'
@@ -76,6 +77,7 @@ def inspect(images, reconstruction, jadx, output):
                     status='TIMED_OUT_PARTIAL_OUTPUT';code=None
             item={'path':path,'sha256':digest(apk),'manifest':manifest,'decompiler_status':status,
                   'native_libraries':native,'exit_code':code,**summarize_sources(root/'generated'),
+                  'ux_evidence':summarize_ux(root/'generated'),
                   'log_tail':'\n'.join((root/'jadx.log').read_text(errors='replace').splitlines()[-40:])}
             report['applications'].append(item)
             (output/'ui-decompilation.json').write_text(json.dumps(report,indent=2)+'\n')

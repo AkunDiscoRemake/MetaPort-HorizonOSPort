@@ -36,6 +36,8 @@ public final class ArCoreTracking implements AutoCloseable {
     public static final String COORDINATES = "ARCORE_WORLD_FROM_PHYSICAL_CAMERA_METERS_XYZW";
     private final Thread owner = Thread.currentThread();
     private Session session;
+    private Frame latestCameraFrame;
+    private int cameraTexture;
     private final Map<Long, Anchor> anchors = new HashMap<>();
     private long nextAnchor = 1, previousTimestamp = 0, epoch = 0;
     private boolean resumed = false, textureBound = false;
@@ -89,30 +91,35 @@ public final class ArCoreTracking implements AutoCloseable {
         if (externalOesTexture <= 0 || !GLES20.glIsTexture(externalOesTexture))
             throw new IllegalArgumentException("Texture has not been created/bound by host");
         session.setCameraTextureName(externalOesTexture);
-        textureBound = true;
+        textureBound = true; cameraTexture = externalOesTexture;
+        latestCameraFrame = null;
     }
 
     public void setDisplayGeometry(int rotation, int width, int height) {
         check();
         if (rotation < 0 || rotation > 3 || width <= 0 || height <= 0) throw new IllegalArgumentException("Invalid display geometry");
         session.setDisplayGeometry(rotation, width, height);
+        latestCameraFrame = null;
     }
 
     public void resume() throws CameraNotAvailableException {
         check();
         if (resumed) return;
+        latestCameraFrame = null;
         session.resume(); resumed = true; previousTimestamp = 0; epoch++;
     }
     public void pause() {
         check();
         try { if (resumed) session.pause(); }
-        finally { resumed=false; previousTimestamp=0; epoch++; }
+        finally { latestCameraFrame=null; resumed=false; previousTimestamp=0; epoch++; }
     }
 
     public TrackingFrame update() throws CameraNotAvailableException {
         check(); requireGl();
         if (!resumed || !textureBound) throw new IllegalStateException("Resume and bind an OES camera texture first");
+        latestCameraFrame = null; // Failure must not keep an old background eligible.
         Frame frame = session.update();
+        latestCameraFrame = frame;
         Camera camera = frame.getCamera();
         long timestamp = frame.getTimestamp();
         boolean fresh = timestamp > previousTimestamp;
@@ -123,6 +130,19 @@ public final class ArCoreTracking implements AutoCloseable {
         PoseData pose = state == State.TRACKING ? poseData(camera.getPose()) : null;
         return new TrackingFrame(timestamp, epoch, fresh, state,
                 camera.getTrackingFailureReason().name(), pose);
+    }
+
+    /** Render the current camera image before the UI pass. Call update() first.
+     * No second camera owner, no CPU image conversion, no claim of stereo/depth.
+     * Host must clear its target on false, restore UI GL state and stop drawing
+     * on activity pause. Display geometry must match the background viewport.
+     */
+    public boolean drawPassthrough(PassthroughRenderer renderer, int x, int y, int width, int height) {
+        check(); requireGl();
+        if (!resumed || latestCameraFrame == null) return false;
+        if (renderer.cameraTexture() != cameraTexture)
+            throw new IllegalArgumentException("Bind this renderer's texture to this session first");
+        return renderer.draw(latestCameraFrame, x, y, width, height);
     }
 
     /** Detected plane extents. Up-facing plane is NOT automatically labelled floor. */
@@ -167,7 +187,7 @@ public final class ArCoreTracking implements AutoCloseable {
                 pause();
                 for (Anchor anchor : anchors.values()) anchor.detach();
                 anchors.clear();
-            } finally { session.close(); session=null; textureBound=false; }
+            } finally { session.close(); session=null; textureBound=false; latestCameraFrame=null; cameraTexture=0; }
         }
     }
     private static PoseData poseData(Pose pose) { return new PoseData(pose.getTranslation(), pose.getRotationQuaternion()); }
