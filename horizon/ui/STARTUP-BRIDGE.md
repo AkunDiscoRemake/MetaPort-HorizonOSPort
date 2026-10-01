@@ -89,3 +89,14 @@ enquanto o Ghidra emitiu `void` e avisos de no-return em wrappers de delete.
 `analysis/builds/52168470052900520/shell-init-abi-discrepancy.json` registra essa
 contradição. Não transformar a assinatura C-like em header utilizável sem conferir
 o descritor DEX, retorno ARM64 e comportamento dos wrappers. A causa não foi provada.
+
+## Conversores internos e primeiro componente C++ desta ponte
+
+Run **36809949550** terminou com sucesso. A análise acrescentou os quatro
+conversores espaciais e os helpers de Strata/buffer. O construtor Strata procura
+explicitamente o serviço Binder `Strata`, reforçando que não é uma janela EGL local.
+
+A cópia dos quatro payloads espaciais foi adaptada em `space_data.cpp` e ligada ao
+build Android, com testes locais ASan/UBSan passando. Veja `port/android/SPACE-DATA.md`
+para offsets, limites e diferenças da API própria em relação ao código original.
+O teste Android/ARM64-QEMU **36810507577** foi iniciado; teste físico permanece ausente.

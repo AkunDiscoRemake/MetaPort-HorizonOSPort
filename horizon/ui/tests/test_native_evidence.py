@@ -27,3 +27,11 @@ class NativeUiEvidenceTests(unittest.TestCase):
         self.assertIn('No surface control associated with window',f['c_like'])
         layer=next(f for f in self.base['functions'] if f.get('name')=='HzuStrataLayer_setBuffer')
         self.assertTrue(any(c['name']=='convertToHardwareBuffer' for c in layer['direct_callees']))
+    def test_legacy_space_copy_footprint_is_observed_in_arm64_not_pointer_guess(self):
+        f=next(f for f in self.spaces['functions'] if f.get('name')=='toHzuSpaceData')
+        instructions=[i['assembly'] for i in f['listing_prefix']]
+        self.assertFalse(f['listing_prefix_truncated'])
+        for instruction in ('cmp w9,#0x55','str x9,[x1, #0x8]',
+                            'stp x9,x10,[x1, #0x10]',
+                            'ldr s0,[x8, #0x70]','str s0,[x1, #0x78]'):
+            self.assertIn(instruction,instructions)
