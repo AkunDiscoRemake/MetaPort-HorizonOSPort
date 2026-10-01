@@ -1,0 +1,574 @@
+{
+  "windows": [
+    {
+      "constructor_elf": 17955628,
+      "address_point_elf": 39856960,
+      "slots": [
+        {
+          "slot_elf": 39856944,
+          "relative_byte_offset": -16,
+          "raw_u64": 0,
+          "candidate_target_elf": 0,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39856952,
+          "relative_byte_offset": -8,
+          "raw_u64": 39858640,
+          "candidate_target_elf": 39858640,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": false
+        },
+        {
+          "slot_elf": 39856960,
+          "relative_byte_offset": 0,
+          "raw_u64": 17967272,
+          "candidate_target_elf": 17967272,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39856968,
+          "relative_byte_offset": 8,
+          "raw_u64": 17967656,
+          "candidate_target_elf": 17967656,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39856976,
+          "relative_byte_offset": 16,
+          "raw_u64": 17967920,
+          "candidate_target_elf": 17967920,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39856984,
+          "relative_byte_offset": 24,
+          "raw_u64": 17968172,
+          "candidate_target_elf": 17968172,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39856992,
+          "relative_byte_offset": 32,
+          "raw_u64": 17968216,
+          "candidate_target_elf": 17968216,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857000,
+          "relative_byte_offset": 40,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857008,
+          "relative_byte_offset": 48,
+          "raw_u64": 17970948,
+          "candidate_target_elf": 17970948,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857016,
+          "relative_byte_offset": 56,
+          "raw_u64": 17971320,
+          "candidate_target_elf": 17971320,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857024,
+          "relative_byte_offset": 64,
+          "raw_u64": 12128084,
+          "candidate_target_elf": 12128084,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857032,
+          "relative_byte_offset": 72,
+          "raw_u64": 17973784,
+          "candidate_target_elf": 17973784,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857040,
+          "relative_byte_offset": 80,
+          "raw_u64": 17973820,
+          "candidate_target_elf": 17973820,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857048,
+          "relative_byte_offset": 88,
+          "raw_u64": 17973860,
+          "candidate_target_elf": 17973860,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857056,
+          "relative_byte_offset": 96,
+          "raw_u64": 17973852,
+          "candidate_target_elf": 17973852,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857064,
+          "relative_byte_offset": 104,
+          "raw_u64": 17973876,
+          "candidate_target_elf": 17973876,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857072,
+          "relative_byte_offset": 112,
+          "raw_u64": 17971620,
+          "candidate_target_elf": 17971620,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857080,
+          "relative_byte_offset": 120,
+          "raw_u64": 17973884,
+          "candidate_target_elf": 17973884,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857088,
+          "relative_byte_offset": 128,
+          "raw_u64": 12128020,
+          "candidate_target_elf": 12128020,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857096,
+          "relative_byte_offset": 136,
+          "raw_u64": 17974176,
+          "candidate_target_elf": 17974176,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857104,
+          "relative_byte_offset": 144,
+          "raw_u64": 17973900,
+          "candidate_target_elf": 17973900,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857112,
+          "relative_byte_offset": 152,
+          "raw_u64": 17974184,
+          "candidate_target_elf": 17974184,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857120,
+          "relative_byte_offset": 160,
+          "raw_u64": 17974396,
+          "candidate_target_elf": 17974396,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857128,
+          "relative_byte_offset": 168,
+          "raw_u64": 17974416,
+          "candidate_target_elf": 17974416,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857136,
+          "relative_byte_offset": 176,
+          "raw_u64": 17974488,
+          "candidate_target_elf": 17974488,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857144,
+          "relative_byte_offset": 184,
+          "raw_u64": 17974556,
+          "candidate_target_elf": 17974556,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857152,
+          "relative_byte_offset": 192,
+          "raw_u64": 17974564,
+          "candidate_target_elf": 17974564,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857160,
+          "relative_byte_offset": 200,
+          "raw_u64": 17974572,
+          "candidate_target_elf": 17974572,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857168,
+          "relative_byte_offset": 208,
+          "raw_u64": 17974580,
+          "candidate_target_elf": 17974580,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857176,
+          "relative_byte_offset": 216,
+          "raw_u64": 17974672,
+          "candidate_target_elf": 17974672,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857184,
+          "relative_byte_offset": 224,
+          "raw_u64": 17974600,
+          "candidate_target_elf": 17974600,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857192,
+          "relative_byte_offset": 232,
+          "raw_u64": 17974664,
+          "candidate_target_elf": 17974664,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857200,
+          "relative_byte_offset": 240,
+          "raw_u64": 17974608,
+          "candidate_target_elf": 17974608,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39857208,
+          "relative_byte_offset": 248,
+          "raw_u64": 17974636,
+          "candidate_target_elf": 17974636,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        }
+      ]
+    },
+    {
+      "constructor_elf": 14347248,
+      "address_point_elf": 39595208,
+      "slots": [
+        {
+          "slot_elf": 39595192,
+          "relative_byte_offset": -16,
+          "raw_u64": 0,
+          "candidate_target_elf": 0,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595200,
+          "relative_byte_offset": -8,
+          "raw_u64": 39595496,
+          "candidate_target_elf": 39595496,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": false
+        },
+        {
+          "slot_elf": 39595208,
+          "relative_byte_offset": 0,
+          "raw_u64": 14348724,
+          "candidate_target_elf": 14348724,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595216,
+          "relative_byte_offset": 8,
+          "raw_u64": 14349004,
+          "candidate_target_elf": 14349004,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595224,
+          "relative_byte_offset": 16,
+          "raw_u64": 28703544,
+          "candidate_target_elf": 28703544,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595232,
+          "relative_byte_offset": 24,
+          "raw_u64": 14374952,
+          "candidate_target_elf": 14374952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595240,
+          "relative_byte_offset": 32,
+          "raw_u64": 28701512,
+          "candidate_target_elf": 28701512,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595248,
+          "relative_byte_offset": 40,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595256,
+          "relative_byte_offset": 48,
+          "raw_u64": 14287844,
+          "candidate_target_elf": 14287844,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595264,
+          "relative_byte_offset": 56,
+          "raw_u64": 14349420,
+          "candidate_target_elf": 14349420,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595272,
+          "relative_byte_offset": 64,
+          "raw_u64": 14349508,
+          "candidate_target_elf": 14349508,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595280,
+          "relative_byte_offset": 72,
+          "raw_u64": 14352468,
+          "candidate_target_elf": 14352468,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595288,
+          "relative_byte_offset": 80,
+          "raw_u64": 14370524,
+          "candidate_target_elf": 14370524,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595296,
+          "relative_byte_offset": 88,
+          "raw_u64": 14371692,
+          "candidate_target_elf": 14371692,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595304,
+          "relative_byte_offset": 96,
+          "raw_u64": 14372360,
+          "candidate_target_elf": 14372360,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595312,
+          "relative_byte_offset": 104,
+          "raw_u64": 13050840,
+          "candidate_target_elf": 13050840,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595320,
+          "relative_byte_offset": 112,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595328,
+          "relative_byte_offset": 120,
+          "raw_u64": 13361584,
+          "candidate_target_elf": 13361584,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595336,
+          "relative_byte_offset": 128,
+          "raw_u64": 13654096,
+          "candidate_target_elf": 13654096,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595344,
+          "relative_byte_offset": 136,
+          "raw_u64": 11746216,
+          "candidate_target_elf": 11746216,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595352,
+          "relative_byte_offset": 144,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595360,
+          "relative_byte_offset": 152,
+          "raw_u64": 28702484,
+          "candidate_target_elf": 28702484,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595368,
+          "relative_byte_offset": 160,
+          "raw_u64": 28703488,
+          "candidate_target_elf": 28703488,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595376,
+          "relative_byte_offset": 168,
+          "raw_u64": 28703536,
+          "candidate_target_elf": 28703536,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595384,
+          "relative_byte_offset": 176,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595392,
+          "relative_byte_offset": 184,
+          "raw_u64": 13844476,
+          "candidate_target_elf": 13844476,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595400,
+          "relative_byte_offset": 192,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595408,
+          "relative_byte_offset": 200,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595416,
+          "relative_byte_offset": 208,
+          "raw_u64": 28704100,
+          "candidate_target_elf": 28704100,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595424,
+          "relative_byte_offset": 216,
+          "raw_u64": 28704344,
+          "candidate_target_elf": 28704344,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595432,
+          "relative_byte_offset": 224,
+          "raw_u64": 14287844,
+          "candidate_target_elf": 14287844,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595440,
+          "relative_byte_offset": 232,
+          "raw_u64": 10319952,
+          "candidate_target_elf": 10319952,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595448,
+          "relative_byte_offset": 240,
+          "raw_u64": 28699228,
+          "candidate_target_elf": 28699228,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        },
+        {
+          "slot_elf": 39595456,
+          "relative_byte_offset": 248,
+          "raw_u64": 14374552,
+          "candidate_target_elf": 14374552,
+          "kind": "RAW64_CANDIDATE",
+          "points_into_file_backed_executable_segment": true
+        }
+      ]
+    }
+  ],
+  "vtable_extent_validated": false,
+  "private_abi_validated": false,
+  "firmware_executed": false,
+  "scope": "Adjacent raw/RELATIVE/local ABS64 words, not proven functions; symbol interposition and packed relocations unresolved",
+  "library_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "relocations": {
+    "observed_types": {
+      "R_AARCH64_JUMP_SLOT": 1706
+    },
+    "resolved_types": {},
+    "complete_relocation_coverage": false
+  },
+  "readelf_diagnostics": "",
+  "source_evidence": "shell-platform-runtime-decompilation.json; Ghidra base 0x100000 subtracted from DAT references"
+}
