@@ -124,6 +124,36 @@
       "referencing_function_elf_va": 14196916,
       "analysis_label": "FUN_00e8e01c",
       "purpose": "ShellApp destruction"
+    },
+    {
+      "elf_address": 14198248,
+      "referencing_function_elf_va": 14198124,
+      "analysis_label": "FUN_00e8a5e8",
+      "purpose": "preferences library call_once callback"
+    },
+    {
+      "elf_address": 12469188,
+      "referencing_function_elf_va": 14033660,
+      "analysis_label": "FUN_00ce43c4",
+      "purpose": "Clay frame preparation candidate"
+    },
+    {
+      "elf_address": 14216264,
+      "referencing_function_elf_va": 14033660,
+      "analysis_label": "FUN_00e8ec48",
+      "purpose": "per-frame command handling candidate"
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeUserIdentityResponse",
+      "elf_address": 14126704,
+      "size_bytes": 268,
+      "dex_descriptor": "(Ljava/lang/String;Ljava/lang/String;Z)V"
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeOnInteractionWindowChanged",
+      "elf_address": 14154608,
+      "size_bytes": 10996,
+      "dex_descriptor": "(ILandroid/os/IBinder;Ljava/lang/String;Landroid/os/Parcel;Ljava/lang/String;III)V"
     }
   ],
   "firmware_executed": false,
