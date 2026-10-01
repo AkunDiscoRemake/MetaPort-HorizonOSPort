@@ -1,20 +1,20 @@
-name: Original Horizon UI and UX decompilation
+name: Original Meta Store and cloud client analysis
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/ui/**, handtracking/ai/inspect_ui.py, .github/workflows/ui-decompilation.yml]
+    paths: [horizon/cloud/**, .github/workflows/cloud-client-analysis.yml]
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: metaport-ui-decompilation
+  group: metaport-cloud-analysis
   cancel-in-progress: false
 jobs:
   analyze:
     runs-on: ubuntu-22.04
     timeout-minutes: 90
     env:
-      WORK: ${{ github.workspace }}/local-analysis/ui
+      WORK: ${{ github.workspace }}/local-analysis/cloud
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,11 +52,11 @@ jobs:
             'https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip' -o "$WORK/jadx.zip"
           echo "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974  $WORK/jadx.zip" | sha256sum --check --strict
           unzip -q "$WORK/jadx.zip" -d "$WORK/jadx"
-      - name: Decompile original settings and UI while recording oversized-source gaps
+      - name: Decompile original Store, identity, device auth, OCMS and social clients offline
         id: decompile
         run: |
           set +e
-          python3 -m handtracking.ai.inspect_ui --images "$WORK/images" \
+          python3 -m handtracking.ai.inspect_ui --scope cloud --images "$WORK/images" \
             --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
           code=$?
           tail -n 60 "$WORK/inspection.log"
@@ -76,7 +76,7 @@ jobs:
                   'decompile_step':os.environ['DECOMPILE_OUTCOME'],'horizon_ported':False,
                   'physical_phone_tested':False,'jadx_sha256':'545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974',
                   'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
-          (p/'reports/ui-analysis-run.json').write_text(json.dumps(report,indent=2)+'\n')
+          (p/'reports/ui-cloud-analysis-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
       - name: Publish reports only, never firmware or models
         if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
@@ -90,7 +90,7 @@ jobs:
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
-          for name in ui-decompilation ui-analysis-run; do
+          for name in ui-cloud-decompilation ui-cloud-analysis-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"
@@ -99,7 +99,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then
-            git commit -m 'Record original UI DEX decompilation evidence [skip ci]'
+            git commit -m 'Record original Meta cloud client evidence, not working services [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
@@ -108,7 +108,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ui-decompilation-reports-no-firmware
+          name: cloud-client-reports-no-firmware
           path: |
             ${{ env.WORK }}/reports/ui-*.json
           retention-days: 7
