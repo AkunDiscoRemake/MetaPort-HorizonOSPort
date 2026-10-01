@@ -358,3 +358,18 @@ compositor works. `C04c` reads `android.os.SystemProperties` through reflection;
 no root detector was established and no property setter or privileged permission
 was added. The path remains disabled in runtime experiments. Do not enable it or
 ship it as a working beta solely because it exists in the original code.
+
+## Spatial window-manager bootstrap boundary
+
+The recovered `ShellApplication` does not call native initialization merely
+because the Java activity starts: `EnsureNativeApp` checks `A0U.A0O` and logs
+“Shell is not the SpatialWindowManager role holder, skipping native initialization”.
+`ShellService.onCreate` also stops itself when this flag is false. The config
+comes from `AnonymousClass056.A00(...)`, returning `C00A`. These classes and
+`ShellSpatialWindowManagerService` are now explicit recovery targets; no role
+flag has been forced and no Android permission has been granted or forged.
+
+Correction to the previous missing-class record: the original application imports
+`com.oculus.vrshell.privateipc.updater.ShellNativeUpdaterHolder`, not the class
+at the package root previously searched. Recovery now uses that exact imported
+path. Absence at the earlier path did not establish absence from the APK.

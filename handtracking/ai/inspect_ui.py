@@ -22,9 +22,11 @@ CONTRACT = re.compile(r'\bnative\b|loadLibrary\(|ServiceManager\.|getService\(|h
 
 
 BOOTSTRAP_PATHS=tuple('sources/com/oculus/vrshell/'+name+'.java' for name in
-    ('ShellApplication','HomeActivity','MainActivity','ShellActivity','EmuShellExtension','ShellService','ShellNativeUpdaterHolder')) + (
+    ('ShellApplication','HomeActivity','MainActivity','ShellActivity','EmuShellExtension','ShellService','ShellSpatialWindowManagerService')) + (
     'sources/X/C0NY.java','sources/X/C04c.java','sources/X/C0NW.java',
-    'sources/X/C0NX.java','sources/X/AbstractC03500Nf.java')
+    'sources/X/C0NX.java','sources/X/AbstractC03500Nf.java',
+    'sources/X/C00A.java','sources/X/AnonymousClass056.java',
+    'sources/com/oculus/vrshell/privateipc/updater/ShellNativeUpdaterHolder.java')
 
 
 def summarize_bootstrap(root):

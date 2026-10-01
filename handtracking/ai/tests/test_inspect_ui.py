@@ -59,3 +59,14 @@ class UiSummaryTests(unittest.TestCase):
             with path.open('wb') as f:f.truncate(512*1024+1)
             row=summarize_sources(root)['bootstrap']['classes'][0]
             self.assertEqual(row['status'],'OVERSIZED_NOT_EMBEDDED');self.assertNotIn('source',row)
+
+    def test_native_updater_uses_actual_imported_package(self):
+        from handtracking.ai.inspect_ui import BOOTSTRAP_PATHS,summarize_bootstrap
+        relative='sources/com/oculus/vrshell/privateipc/updater/ShellNativeUpdaterHolder.java'
+        self.assertIn(relative,BOOTSTRAP_PATHS)
+        self.assertNotIn('sources/com/oculus/vrshell/ShellNativeUpdaterHolder.java',BOOTSTRAP_PATHS)
+        with tempfile.TemporaryDirectory() as root:
+            path=Path(root)/relative;path.parent.mkdir(parents=True)
+            path.write_text('class ShellNativeUpdaterHolder { native long init(); }')
+            row=next(r for r in summarize_bootstrap(root)['classes'] if r['path']==relative)
+            self.assertIn('source',row);self.assertFalse(row['runtime_validated'])
