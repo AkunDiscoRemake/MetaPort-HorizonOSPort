@@ -1,0 +1,2 @@
+# Host-only workflow syntax checks; no Android runtime dependency.
+PyYAML==6.0.2
