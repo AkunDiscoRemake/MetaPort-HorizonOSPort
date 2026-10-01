@@ -29,12 +29,16 @@ histórica, sem se transformar retroativamente em achados confirmados.
 Em VrShell há referências à UI de saída de passthrough (toast de orientação e
 recursos de ícones). Isso não estabelece o compositor, API de captura ou calibração.
 
-## Análise ampliada em andamento
+## Análise ampliada e falha registrada
 
 Run **36802376084** adiciona SystemUX, SettingsPanelApp e LibraryPanelApp, além dos
 dois primeiros APKs; inspeciona todas as bibliotecas ARM64 embarcadas dentro dos
-limites definidos. Foi iniciado antes da correção do filtro acima. Seu resultado
-precisa de revisão, especialmente chamadas nativas/Binder e erros do decompilador.
+limites definidos. Foi iniciado antes da correção do filtro acima. Falhou na inspeção e na publicação; o motivo exato da inspeção ainda não foi
+recuperado, pois o download dos logs falhou. Não foi tratado como sucesso.
+A nova execução preserva falhas por APK, permite continuar após falhas do parser
+ELF e atualiza o checkout antes de copiar relatórios para evitar conflito entre
+execuções enfileiradas. Essa correção de publicação é preventiva, não uma causa
+confirmada do erro anterior.
 
 ## Limites mantidos
 

@@ -56,35 +56,47 @@ def inspect(images, reconstruction, jadx, output):
     entries={e['path']:e for e in inventory if e['kind']=='file'}
     report={'build':BUILD,'tool':'JADX 1.5.6','firmware_executed':False,'ui_ported':False,'applications':[]}
     for path in APKS:
-        with tempfile.TemporaryDirectory(dir=output) as temp:
-            root=Path(temp);apk=root/'original.apk';dump_entry(image,entries[path],apk)
-            manifest,_=command(['aapt','dump','xmltree',str(apk),'AndroidManifest.xml'],max_output=4*1024*1024)
-            native=[]
-            with zipfile.ZipFile(apk) as archive:
-                members = [n for n in archive.namelist() if n.startswith('lib/arm64-v8a/') and n.endswith('.so')]
-                if len(members) > 64 or sum(archive.getinfo(n).file_size for n in members) > 512*1024*1024:
-                    raise ValueError('APK native library budget exceeded')
-                for index,name in enumerate(members):
-                    entry=archive.getinfo(name)
-                    if entry.file_size>128*1024*1024: raise ValueError('Native library size limit')
-                    library=root/f'library-{index}.so';library.write_bytes(archive.read(entry))
-                    native.append({'apk_member':name,**elf_report(library,deep=False)})
-            env=dict(os.environ,JAVA_OPTS='-Xmx4g')
-            with (root/'jadx.log').open('w') as log:
-                try:
-                    run=subprocess.run([str(jadx),'--threads-count','2','--decompilation-mode','restructure',
-                        '--output-dir',str(root/'generated'),str(apk)],stdout=log,stderr=subprocess.STDOUT,
-                        timeout=900,env=env,check=False)
-                    status='COMPLETED' if run.returncode==0 else 'COMPLETED_WITH_ERRORS'
-                    code=run.returncode
-                except subprocess.TimeoutExpired:
-                    status='TIMED_OUT_PARTIAL_OUTPUT';code=None
-            item={'path':path,'sha256':digest(apk),'manifest':manifest,'decompiler_status':status,
-                  'native_libraries':native,'exit_code':code,**summarize_sources(root/'generated'),
-                  'ux_evidence':summarize_ux(root/'generated'),
-                  'log_tail':'\n'.join((root/'jadx.log').read_text(errors='replace').splitlines()[-40:])}
-            report['applications'].append(item)
-            (output/'ui-decompilation.json').write_text(json.dumps(report,indent=2)+'\n')
+        try:
+            with tempfile.TemporaryDirectory(dir=output) as temp:
+                root=Path(temp);apk=root/'original.apk';dump_entry(image,entries[path],apk)
+                manifest,_=command(['aapt','dump','xmltree',str(apk),'AndroidManifest.xml'],max_output=4*1024*1024)
+                native=[]
+                with zipfile.ZipFile(apk) as archive:
+                    members = [n for n in archive.namelist() if n.startswith('lib/arm64-v8a/') and n.endswith('.so')]
+                    if len(members) > 64 or sum(archive.getinfo(n).file_size for n in members) > 512*1024*1024:
+                        raise ValueError('APK native library budget exceeded')
+                    for index,name in enumerate(members):
+                        entry=archive.getinfo(name)
+                        if entry.file_size>128*1024*1024: raise ValueError('Native library size limit')
+                        library=root/f'library-{index}.so';library.write_bytes(archive.read(entry))
+                        try:
+                            native.append({'apk_member':name,**elf_report(library,deep=False)})
+                        except (ValueError, OSError, subprocess.TimeoutExpired) as error:
+                            native.append({'apk_member':name, 'status':'ANALYSIS_FAILED',
+                                           'sha256':digest(library), 'error':str(error)[:1000]})
+                env=dict(os.environ,JAVA_OPTS='-Xmx4g')
+                with (root/'jadx.log').open('w') as log:
+                    try:
+                        run=subprocess.run([str(jadx),'--threads-count','2','--decompilation-mode','restructure',
+                            '--output-dir',str(root/'generated'),str(apk)],stdout=log,stderr=subprocess.STDOUT,
+                            timeout=900,env=env,check=False)
+                        status='COMPLETED' if run.returncode==0 else 'COMPLETED_WITH_ERRORS'
+                        code=run.returncode
+                    except subprocess.TimeoutExpired:
+                        status='TIMED_OUT_PARTIAL_OUTPUT';code=None
+                item={'path':path,'sha256':digest(apk),'manifest':manifest,'decompiler_status':status,
+                      'native_libraries':native,'exit_code':code,**summarize_sources(root/'generated'),
+                      'ux_evidence':summarize_ux(root/'generated'),
+                      'log_tail':'\n'.join((root/'jadx.log').read_text(errors='replace').splitlines()[-40:])}
+        except (ValueError, OSError, KeyError, subprocess.TimeoutExpired) as error:
+            item = {'path':path, 'decompiler_status':'ANALYSIS_FAILED',
+                    'error_type':type(error).__name__, 'error':str(error)[:2000],
+                    'runtime_validated':False, 'source_is_reconstructed_not_original':True}
+        report['applications'].append(item)
+        (output/'ui-decompilation.json').write_text(json.dumps(report,indent=2)+'\n')
+
+    if any(a['decompiler_status']=='ANALYSIS_FAILED' for a in report['applications']):
+        raise ValueError('One or more UI applications failed; see per-application evidence')
 
 
 if __name__=='__main__':
