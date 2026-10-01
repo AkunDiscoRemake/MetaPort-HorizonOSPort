@@ -21,3 +21,11 @@ class LoaderAuditTests(unittest.TestCase):
     def test_missing_metadata_not_empty_dependency_list(self):
         a=self.apk([]);del a['native_libraries'][0]['needed']
         self.assertEqual(audit(a,{})['unresolved_for_unprivileged_apk'],['libshell.so'])
+
+    def test_platform_metadata_expands_edges_but_never_means_apk_ready(self):
+        a=self.apk(['libprivate.so'])
+        platform=[{'path':'/lib64/libprivate.so','sha256':'test','needed':['libbinder.so']}]
+        r=audit(a,{},platform)
+        self.assertEqual(len(r['nodes']),3)
+        self.assertEqual(r['unresolved_for_unprivileged_apk'],['libprivate.so','libbinder.so'])
+        self.assertFalse(r['port_ready'])
