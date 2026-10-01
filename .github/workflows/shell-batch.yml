@@ -2,7 +2,7 @@ name: Original VrShell bounded 96-function batch disassembly
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/ui/prepare_shell_batch.py, .github/workflows/shell-batchs.yml]
+    paths: [horizon/ui/prepare_shell_batch.py, .github/workflows/shell-batch.yml]
   workflow_dispatch:
 permissions:
   contents: write
