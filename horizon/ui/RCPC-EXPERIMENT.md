@@ -50,3 +50,17 @@ push trigger. Manual dispatch returned an integration-permission denial; it was
 not necessary to request credentials or change branches. APKs and signing keys
 are not published. The experiment does not assert original UI, service, hand,
 compositor or hardware readiness even if the first crash is passed.
+
+## First adapted execution: run 36901717864
+
+The original locale load site was passed; the next recorded SIGILL is inside
+`__cxa_guard_acquire`, which contains another LDAPRB at ELF `0x48cb0`, word
+`0x38bfc008` (`w8, [x0]`). Control, LSE and the independent LDARB fixture passed;
+LDAPRB still crashed. The application remained nonfunctional.
+
+The next experiment expands the explicit whitelist to those **two observed
+sites**. The second replacement is `0x08dffc08` (LDARB with the same registers).
+The C++ initialization guard, branch, mutex and return behavior are retained;
+this is not removal of the guard. Both source instruction checks must pass before
+any adapted file is written. The new two-site runtime outcome is not established
+by the preceding one-site run. Baseline and adapted evidence stay separate.
