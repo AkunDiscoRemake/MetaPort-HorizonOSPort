@@ -1,0 +1,728 @@
+{
+  "selected": [
+    {
+      "elf_address": 17967272,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 0,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17967656,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 8,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17967920,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 16,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17968172,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 24,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17968216,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 32,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 10319952,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 40,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 40,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 112,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 144,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 176,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 192,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 200,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 232,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17970948,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 48,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17971320,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 56,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 12128084,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 64,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973784,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 72,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973820,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 80,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973860,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 88,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973852,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 96,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973876,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 104,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17971620,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 112,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973884,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 120,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 12128020,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 128,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974176,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 136,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17973900,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 144,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974184,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 152,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974396,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 160,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974416,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 168,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974488,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 176,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974556,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 184,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974564,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 192,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974572,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 200,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974580,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 208,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974672,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 216,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974600,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 224,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974664,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 232,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974608,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 240,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 17974636,
+      "references": [
+        {
+          "constructor_elf": 17955628,
+          "address_point_elf": 39856960,
+          "relative_byte_offset": 248,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14348724,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 0,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14349004,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 8,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28703544,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 16,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14374952,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 24,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28701512,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 32,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14287844,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 48,
+          "kind": "RAW64_CANDIDATE"
+        },
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 224,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14349420,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 56,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14349508,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 64,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14352468,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 72,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14370524,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 80,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14371692,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 88,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14372360,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 96,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 13050840,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 104,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 13361584,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 120,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 13654096,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 128,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 11746216,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 136,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28702484,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 152,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28703488,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 160,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28703536,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 168,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 13844476,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 184,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28704100,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 208,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28704344,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 216,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 28699228,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 240,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    },
+    {
+      "elf_address": 14374552,
+      "references": [
+        {
+          "constructor_elf": 14347248,
+          "address_point_elf": 39595208,
+          "relative_byte_offset": 248,
+          "kind": "RAW64_CANDIDATE"
+        }
+      ],
+      "signature_validated": false
+    }
+  ],
+  "evidence_sha256": "f32aa79d30f85ec063e16488e3dfcfb56061587f27d8acd87f934fda394531c4",
+  "firmware_executed": false,
+  "private_abi_validated": false,
+  "scope": "Constructor-adjacent executable pointer candidates; no established vtable extent"
+}
