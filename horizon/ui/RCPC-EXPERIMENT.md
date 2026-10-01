@@ -192,3 +192,10 @@ It appends original DEX bytes under fresh multidex names; no existing APK DEX or
 resources are rewritten. The exact source-image, JAR and DEX hashes are recorded.
 The class owner and runtime outcome remain unverified until that run completes.
 Adding classes does not register PreferencesManager or provide spatial services.
+
+Run **36942098540** failed during preparation; the original APK was not installed
+or launched. The archived run logs were not retrievable from this workspace
+(download requests ended with EOF), so its exact exception is not established.
+The next run preserves bounded packaging errors and inspects three fixed JARs
+from the already verified images to locate the real Vector4f definition. This
+failure path does not automatically select or append a different framework JAR.

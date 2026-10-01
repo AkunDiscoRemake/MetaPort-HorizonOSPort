@@ -49,9 +49,9 @@ def additions(original,jar):
     framework=read_dexes(jar,32*1024*1024)
     existing=set().union(*(r[3] for r in originals));new=set()
     for _,_,_,names in framework:
-        if names & (existing|new):raise ValueError('Framework class collides with existing DEX')
+        if names & (existing|new):raise ValueError('Framework class collides with existing DEX: '+', '.join(sorted(names & (existing|new))[:8]))
         if any(n.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/')) for n in names):
-            raise ValueError('Refusing framework DEX containing boot namespace definitions')
+            raise ValueError('Refusing framework DEX containing boot namespace definitions: '+', '.join(sorted(n for n in names if n.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/')))[:8]))
         new.update(names)
     if REQUIRED not in new:raise ValueError('Original Vector4f definition not found in selected JAR')
     base=max(r[0] for r in originals);members={};evidence=[]

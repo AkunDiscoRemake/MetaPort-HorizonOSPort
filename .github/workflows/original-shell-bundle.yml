@@ -132,6 +132,9 @@ jobs:
           from tools.collect_action_diagnostics import captured_files
           p=Path('local-analysis/android-runtime')/(os.environ['REPORT_STEM']+'-baseline.json')
           r=json.loads(p.read_text()) if p.exists() else {'result':'EXPERIMENT_NOT_COMPLETED','port_ready':False}
+          framework=Path('local-analysis/shell-bundle/framework-dex-inspection.json')
+          if framework.exists() and framework.stat().st_size<=65536:
+            r['framework_dex_inspection']=json.loads(framework.read_text())
           bundle=Path('local-analysis/shell-bundle/bundle.json')
           if bundle.exists() and r.get('crash_buffer'):
             from tools.shell_crash_windows import collect

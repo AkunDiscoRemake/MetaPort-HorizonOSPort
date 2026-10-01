@@ -165,7 +165,36 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
             raise ValueError('Original framework JAR inventory budget')
         jar=output/'hzos-framework.jar'
         dump_entry(images/'system_ext.img',entries[0],jar)
-        dex_members,evidence=additions(original,jar)
+        try:
+            dex_members,evidence=additions(original,jar)
+        except (ValueError,OSError,zipfile.BadZipFile) as error:
+            from horizon.ui.framework_dex import read_dexes,REQUIRED
+            inspection={'packaging_error':str(error)[:2000],'jars':[],
+                        'framework_services_ported':False,'firmware_executed':False}
+            # Locate the actual class owner in fixed, verified framework inputs.
+            # This diagnostic path never substitutes or packages another JAR.
+            for part,source in (('system_ext',JAR_PATH),
+                                ('system_ext','/framework/com.oculus.os.platform.jar'),
+                                ('system','/system/framework/framework.jar')):
+                item={'partition':part,'path':source,'source_image_sha256':recon['partitions'][part]['sha256']}
+                try:
+                    candidates=[e for e in inventory[part]['entries'] if e['path']==source and e['kind']=='file']
+                    if len(candidates)!=1 or not 0<candidates[0]['size_bytes']<=64*1024*1024:
+                        raise ValueError('Framework inspection inventory budget')
+                    target=output/(part+'-'+PurePosixPath(source).name)
+                    dump_entry(images/(part+'.img'),candidates[0],target)
+                    entries=read_dexes(target,128*1024*1024)
+                    names=set().union(*(entry[3] for entry in entries))
+                    item.update(sha256=digest(target),class_definitions=len(names),
+                                defines_required=REQUIRED in names,
+                                required_dex_members=[e[1] for e in entries if REQUIRED in e[3]],
+                                horizonos_definitions=sum(n.startswith('Lhorizonos/') for n in names),
+                                vros_definitions=sum(n.startswith('Lvros/') for n in names))
+                except (ValueError,OSError,zipfile.BadZipFile) as inspection_error:
+                    item['error']=str(inspection_error)[:2000]
+                inspection['jars'].append(item)
+            (output/'framework-dex-inspection.json').write_text(json.dumps(inspection,indent=2)+'\n')
+            raise
         evidence['source_image_sha256']=recon['partitions']['system_ext']['sha256']
         framework_evidence.append(evidence)
     unsigned=output/'shell-dependencies-unsigned.apk'
