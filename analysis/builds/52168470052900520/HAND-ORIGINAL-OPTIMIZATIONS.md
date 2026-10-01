@@ -571,3 +571,42 @@ A seleção inclui até 24 funções executáveis não-thunk detectadas automati
 por biblioteca, declara truncamento e verifica o hash dentro do Ghidra. Isso não
 significa recuperação de todas as funções reais ou ABI validada. Nenhum binário
 é executado ou publicado; os resultados dessas duas novas análises estão pendentes.
+
+
+## 13. DPE `01724fc0`: organização em pares, forward e seleção de saídas
+
+**36795978737 concluiu** e recuperou o estágio de 7616 bytes. O C-like tem aviso
+`Type propagation algorithm not settling`: nomes/tipos privados e casts packed
+não devem virar código C++ de produção sem verificação. O listing de 1024
+instruções ficou truncado; a próxima execução o amplia para 2048.
+
+Evidências do caminho, ainda sem execução de modelo:
+- Monta uma lista de índices por grupo, registra indicador 0/1 conforme há um
+  ou mais de um índice, e duplica o último índice enquanto a lista tem menos
+  de dois elementos. O uso pressupõe grupo válido/não vazio; isso **não** é
+  licença para inventar entradas quando nenhuma imagem foi capturada.
+- Processa dois índices por grupo e faz `memmove` de dados e blocos de `0xfc`
+  bytes. Existem alocações/liberações e matrizes intermediárias; não é zero-copy.
+- Um ramo testa o byte em `param_2 + 0x41`; o outro verifica tipo numérico `0x0d`
+  antes de obter o ponteiro. O getter `00c90838` será seguido. Não interpretar
+  `use_uint8_input=false` como prova de entrada float nem remover quantização.
+- Monta a string **`forward`** com os imediatos little-endian `0x77726f66` e
+  `0x647261`, depois faz dispatch virtual `+0x20` com entradas preparadas por
+  **`01724a30`**. O destino dinâmico ainda não está validado.
+- Para um só grupo, constrói intervalos diferentes para saídas por grupo e
+  por par. Comparações de bytes identificam `heatmaps_2d`, `heatmaps_depths`,
+  `per_view_img_features` e `encoder_visibility_prediction`; estes usam o
+  intervalo de dois elementos. Outras saídas usam o intervalo de um elemento.
+- Depois do forward, busca uma chave de 16 bytes copiada de Ghidra `00139915`,
+  seleciona valores e os armazena no objeto. A chave será extraída em bytes;
+  **não foi presumido que isso já comprova cache temporal ou reutilização**.
+- Encaminha resultados para **`01727140`**, próximo alvo de pós-processamento.
+
+A organização é compatível com batching fixo em pares, mas ainda não estabelece
+os tipos de câmeras, calibrações, unidades, viabilidade monocular no X6873 ou
+layout ABI. Não converte os trechos reconstruídos em poses sintéticas.
+
+**36797473252 passou por completo**, inclusive publicação com o publisher
+corrigido. Packing saturado e planner FMQ têm teste host sanitizado, execução
+ARM64 emulada e compilação AAR; a inferência original continua NOT PORTED YET.
+Suíte Python desta etapa: **90 testes, 1 skip**.

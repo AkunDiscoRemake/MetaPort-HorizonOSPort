@@ -154,7 +154,7 @@ public class TraceHandOptimizations extends GhidraScript {
                 item.put("direct_calls",calls);item.put("scan_truncated",refs.length>256);edges.add(item);
             }
             if(group.getKey().equals("inference"))
-                for(long helper:new long[]{0x161c420L,0x161c680L,0x161c820L,0x1616f20L,0x1624fc0L}) selected.add(helper);
+                for(long helper:new long[]{0x161c420L,0x161c680L,0x161c820L,0x1616f20L,0x1624fc0L,0x1624a30L,0x1627140L,0xb90838L}) selected.add(helper);
             selections.put(group.getKey(),new ArrayList<>(selected));
             StringBuilder text=new StringBuilder();
             for(long address:selected) text.append(Long.toHexString(address)).append('\n');
@@ -163,6 +163,17 @@ public class TraceHandOptimizations extends GhidraScript {
         Map<String,Object> report=new LinkedHashMap<>();
         report.put("program_sha256",SHA);report.put("firmware_executed",false);
         report.put("all_optimizations_found",false);report.put("string_reference_coverage",coverage);
+        // Fixed-length string copied by recovered 01724fc0 into an output lookup.
+        // Preserve bytes instead of guessing that this is temporal state.
+        byte[] key=new byte[16];
+        if(currentProgram.getMemory().getBytes(base.add(0x39915L),key)!=key.length)
+            throw new IllegalStateException("Incomplete DPE output lookup literal");
+        boolean printable=true;
+        for(byte b:key) if((b&255)<32 || (b&255)>126) printable=false;
+        Map<String,Object> literal=new LinkedHashMap<>();
+        literal.put("elf_address",0x39915L);literal.put("bytes_hex",HexFormat.of().formatHex(key));
+        literal.put("ascii",printable?new String(key,java.nio.charset.StandardCharsets.US_ASCII):null);
+        report.put("dpe_output_lookup_literal",literal);
         report.put("elf_pointer_functions",elfPointerFunctions);
         report.put("rtti_pointer_candidates",rttiCandidates);
         report.put("rtti_scope","Hypothesized +8 name field, at most 32 references per level and 8 adjacent pointer slots; not established vtable extent. Up to 8 unique targets per type selected. DPE candidates belong to inference, not scheduling.");
