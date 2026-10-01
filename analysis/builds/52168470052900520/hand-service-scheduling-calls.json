@@ -1,0 +1,98 @@
+{
+  "program_sha256": "a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945",
+  "roots": [
+    {
+      "name": "sched_setaffinity",
+      "address": "005f8e60",
+      "external": false,
+      "reference_count": 1,
+      "callers": [
+        {
+          "caller_name": "FUN_005df1ac",
+          "caller_elf_address": 5108140,
+          "callsite_elf_address": 5108212,
+          "selected": true
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "name": "SetTaskProfiles",
+      "address": "005fa570",
+      "external": false,
+      "reference_count": 2,
+      "callers": [
+        {
+          "caller_name": "FUN_005df1ac",
+          "caller_elf_address": 5108140,
+          "callsite_elf_address": 5108292,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df4e0",
+          "caller_elf_address": 5108960,
+          "callsite_elf_address": 5109000,
+          "selected": true
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "name": "sched_setaffinity",
+      "address": "0063f430",
+      "external": false,
+      "reference_count": 2,
+      "callers": [
+        {
+          "caller_name": "sched_setaffinity",
+          "caller_elf_address": 5213792,
+          "callsite_elf_address": 5213804,
+          "selected": true
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "name": "SetTaskProfiles",
+      "address": "00640128",
+      "external": false,
+      "reference_count": 2,
+      "callers": [
+        {
+          "caller_name": "SetTaskProfiles",
+          "caller_elf_address": 5219696,
+          "callsite_elf_address": 5219708,
+          "selected": true
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "name": "sched_setaffinity",
+      "address": "EXTERNAL:00000084",
+      "external": true,
+      "reference_count": 0,
+      "callers": [],
+      "references_truncated": false
+    },
+    {
+      "name": "SetTaskProfiles",
+      "address": "EXTERNAL:00000216",
+      "external": true,
+      "reference_count": 0,
+      "callers": [],
+      "references_truncated": false
+    }
+  ],
+  "selected_elf_addresses": [
+    4869044,
+    4869892,
+    5108140,
+    5108960,
+    5213792,
+    5219696
+  ],
+  "firmware_executed": false,
+  "hand_exclusive": false,
+  "scope": "Named scheduler/profile functions and thunks, direct call refs only; 128 refs/root, 2 new callers/root, 24 total targets. Indirect dispatch and raw syscall numbers unresolved."
+}
