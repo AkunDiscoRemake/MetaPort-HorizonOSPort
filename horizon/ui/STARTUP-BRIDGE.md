@@ -341,3 +341,20 @@ usable or faithful. Recovery now targets `EmuShellExtension`, `C0NY` and the
 `C04c` property accessor to determine whether it renders original content or
 contains test-only substitutions. No system property was changed and no emulator
 mode or fake device/hand state was enabled on that basis.
+
+## Original local compositor inspected — run 36918299399
+
+`EmuShellExtension` and `X.C0NY` were recovered, not reimplemented. The local client
+inflates original layout `0x7f0c005e`, creates real SurfaceControl-backed Surfaces,
+reparents panel layers to SurfaceViews and routes actual touch coordinates through
+`EmuShellExtension.emuNativeClick` using a ShellService native handle. That is
+more than a drawable pretending to be the Horizon UI, but it is not yet running
+in this port. The full compositor manager, surface lifecycle, native service and
+cross-user broadcast helper still require inspection and compatibility work.
+
+Its original `connect()` and `isReady()` return true without checking an external
+service: these methods alone cannot be used as proof that the original XR
+compositor works. `C04c` reads `android.os.SystemProperties` through reflection;
+no root detector was established and no property setter or privileged permission
+was added. The path remains disabled in runtime experiments. Do not enable it or
+ship it as a working beta solely because it exists in the original code.
