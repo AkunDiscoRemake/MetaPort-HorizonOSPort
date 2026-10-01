@@ -21,7 +21,7 @@ def prepare(images,reconstruction,output):
         Path('analysis/builds/52168470052900520/shell-frame-decompilation.json').read_text())
     roots+=select(blob,frame_evidence,(
         (0xd8a5e8,0xd8a56c,'preferences library call_once callback'),
-        (0xce43c4,0xd622fc,'Clay frame preparation candidate'),
+        (0xbe43c4,0xd622fc,'Clay frame preparation candidate'),
         (0xd8ec48,0xd622fc,'per-frame command handling candidate')))
     text,_=command(['readelf','--dyn-syms','-W',str(output/'libshell.so')])
     exports=select_symbols(text,[PREFIX+'nativeUserIdentityResponse',PREFIX+'nativeOnInteractionWindowChanged'])
