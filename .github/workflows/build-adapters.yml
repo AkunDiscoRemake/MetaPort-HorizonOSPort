@@ -10,6 +10,7 @@ on:
       - handtracking/tests/native/**
       - handtracking/CMakeLists.txt
       - handtracking/integration/**
+      - .github/workflows/package-handtracking.yml
       - .github/workflows/build-adapters.yml
   workflow_dispatch:
 permissions:

@@ -1,0 +1,91 @@
+name: Package MetaPort HandTracking
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths:
+      - handtracking/**
+      - .github/workflows/package-handtracking.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-handtracking-package
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/handtracking-package
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test independent subsystem and packaging safeguards
+        run: |
+          python3 -m pip install -r handtracking/ai/requirements.txt
+          python3 -m unittest discover -s handtracking/ai/tests -v
+          python3 -m unittest handtracking.distribution.test_package -v
+          cmake -S handtracking -B "$WORK/build" -DMETAPORT_HANDTRACKING_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+          cmake --build "$WORK/build" -j2
+          ctest --test-dir "$WORK/build" --output-on-failure
+          mkdir -p "$WORK/packages"
+          python3 -m handtracking.distribution.package --output "$WORK/packages/MetaPort-HandTracking-sources.zip"
+      - name: Verify standalone source ZIP outside the Git checkout
+        run: |
+          mkdir -p "$RUNNER_TEMP/handtracking-unpacked"
+          unzip -q "$WORK/packages/MetaPort-HandTracking-sources.zip" -d "$RUNNER_TEMP/handtracking-unpacked"
+          cd "$RUNNER_TEMP/handtracking-unpacked"
+          python3 -m handtracking.distribution.package --verify "$WORK/packages/MetaPort-HandTracking-sources.zip"
+          python3 -m unittest discover -s handtracking/ai/tests -v
+          python3 -m unittest handtracking.distribution.test_package -v
+          cmake -S handtracking -B "$WORK/unpacked-build" -DMETAPORT_HANDTRACKING_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+          cmake --build "$WORK/unpacked-build" -j2
+          ctest --test-dir "$WORK/unpacked-build" --output-on-failure
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MetaPort-HandTracking-sources
+          path: ${{ env.WORK }}/packages/MetaPort-HandTracking-sources.zip*
+          if-no-files-found: error
+          retention-days: 14
+      - name: Download and verify fixed original OTA
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+      - name: Reconstruct ODM and vendor without mounting or executing firmware
+        run: |
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          p=Path(os.environ['WORK'])
+          r=reconstruct(p/'firmware.zip',p/'images',selected={'odm','vendor'})
+          (p/'reconstruction.json').write_text(json.dumps(r))
+          PY
+      - name: Extract all pinned originals and build recovered ZIP
+        run: |
+          python3 -m handtracking.distribution.package \
+            --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" \
+            --recovered "$WORK/staging" --output "$WORK/packages/MetaPort-HandTracking-recovered.zip"
+          python3 -m handtracking.distribution.package --verify "$WORK/packages/MetaPort-HandTracking-recovered.zip"
+          cd "$WORK/packages"
+          sha256sum --check --strict *.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MetaPort-HandTracking-recovered
+          path: ${{ env.WORK }}/packages/MetaPort-HandTracking-recovered.zip*
+          if-no-files-found: error
+          retention-days: 14
+      - name: Publish hand-specific prerelease, explicitly not a working APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="handtracking-recovered-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          gh release create "$tag" "$WORK"/packages/*.zip "$WORK"/packages/*.sha256 \
+            --target "$GITHUB_SHA" --prerelease --latest=false \
+            --title 'MetaPort HandTracking — IA original recuperada, port parcial' \
+            --notes-file handtracking/distribution/RELEASE-NOTES.md
