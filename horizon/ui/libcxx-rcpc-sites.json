@@ -1,0 +1,1246 @@
+{
+  "library": "libc++.so",
+  "source_sha256": "9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72",
+  "evidence_run_id": "36918169876",
+  "census_library_sha256": "954c9b089c0e15545600b3d3bdf22abf8f6e1856ba17426a706205b793b61e54",
+  "sites": [
+    {
+      "pc_elf": 298160,
+      "original_word": "0x38bfc008",
+      "adapted_word": "0x8dffc08",
+      "evidence": "prior_runtime_frontier"
+    },
+    {
+      "pc_elf": 298744,
+      "original_word": "0xf8bfc100",
+      "adapted_word": "0xc8dffd00",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 298780,
+      "original_word": "0xf8bfc100",
+      "adapted_word": "0xc8dffd00",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 298864,
+      "original_word": "0xf8bfc100",
+      "adapted_word": "0xc8dffd00",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 298888,
+      "original_word": "0xf8bfc100",
+      "adapted_word": "0xc8dffd00",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 298968,
+      "original_word": "0xf8bfc100",
+      "adapted_word": "0xc8dffd00",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 350768,
+      "original_word": "0x38bfc109",
+      "adapted_word": "0x8dffd09",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 355524,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 355668,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 356244,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 356508,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 357500,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 358040,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 358452,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 358744,
+      "original_word": "0x38bfc2a8",
+      "adapted_word": "0x8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 358880,
+      "original_word": "0x38bfc2a8",
+      "adapted_word": "0x8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 359184,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 359320,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 359708,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 360340,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 360660,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 360984,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 361336,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 361688,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 362104,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 362532,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 363668,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 364308,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 366352,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 386800,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 400208,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 420852,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 421732,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 423504,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 423748,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 445764,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 447252,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 462960,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 468280,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 470868,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 471544,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 472212,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 472824,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 472868,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 473008,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 473052,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 474692,
+      "original_word": "0x38bfc268",
+      "adapted_word": "0x8dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 474820,
+      "original_word": "0x38bfc268",
+      "adapted_word": "0x8dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 475948,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 475992,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 476140,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 476184,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 477052,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 478248,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 480404,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 481096,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 481780,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 482412,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 482456,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 482596,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 482640,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 483844,
+      "original_word": "0x38bfc268",
+      "adapted_word": "0x8dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 483972,
+      "original_word": "0x38bfc268",
+      "adapted_word": "0x8dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 485120,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 485164,
+      "original_word": "0x38bfc2c8",
+      "adapted_word": "0x8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 485312,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 485356,
+      "original_word": "0x38bfc2e8",
+      "adapted_word": "0x8dffee8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 486236,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 520620,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 525264,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 529964,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "prior_runtime_frontier"
+    },
+    {
+      "pc_elf": 530164,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 530364,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 530564,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 530764,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 530956,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 531156,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 531356,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 531548,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 531740,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 531940,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 532140,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 532340,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 532540,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 532740,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 532940,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 533140,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 533340,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 533540,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 533740,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 533940,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 534140,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 534348,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 534556,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 534752,
+      "original_word": "0x38bfc328",
+      "adapted_word": "0x8dfff28",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 534800,
+      "original_word": "0xf8bfc2c8",
+      "adapted_word": "0xc8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 534968,
+      "original_word": "0x38bfc328",
+      "adapted_word": "0x8dfff28",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 535016,
+      "original_word": "0xf8bfc2c8",
+      "adapted_word": "0xc8dffec8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 535208,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 535408,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 536764,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 538148,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 538340,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 538644,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 538948,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 539252,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 539556,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 539860,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 540164,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 540468,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 540772,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 541076,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 541380,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 541908,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 542436,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 542964,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 543492,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 543796,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 544100,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 544660,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 545220,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 545524,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 548004,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 548388,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 548772,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 549156,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 549540,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 549924,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 550308,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 550692,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 551076,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 551460,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 551844,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 552228,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 552612,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 552996,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 553380,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 553764,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 554148,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 554532,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 554916,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 555300,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 555684,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 556068,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 556452,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 556836,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 557220,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 557604,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 557988,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 558372,
+      "original_word": "0xf8bfc2a8",
+      "adapted_word": "0xc8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 559508,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "prior_runtime_frontier"
+    },
+    {
+      "pc_elf": 559684,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 559812,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "prior_runtime_frontier"
+    },
+    {
+      "pc_elf": 561444,
+      "original_word": "0x38bfc128",
+      "adapted_word": "0x8dffd28",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 561912,
+      "original_word": "0xf8bfc028",
+      "adapted_word": "0xc8dffc28",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 562096,
+      "original_word": "0xf8bfc008",
+      "adapted_word": "0xc8dffc08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 562248,
+      "original_word": "0xf8bfc028",
+      "adapted_word": "0xc8dffc28",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 566896,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 567148,
+      "original_word": "0x38bfc2a8",
+      "adapted_word": "0x8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 567280,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 567532,
+      "original_word": "0x38bfc2a8",
+      "adapted_word": "0x8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 568684,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 568940,
+      "original_word": "0x38bfc2a8",
+      "adapted_word": "0x8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 569068,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 569324,
+      "original_word": "0x38bfc2a8",
+      "adapted_word": "0x8dffea8",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 574560,
+      "original_word": "0x38bfc148",
+      "adapted_word": "0x8dffd48",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 594132,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 594260,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 594644,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 594772,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 595156,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 595284,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 595796,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 595924,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 596436,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 596564,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 596708,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 596836,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 596980,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 597140,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 597300,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 597460,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 597620,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 597780,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 597940,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 598100,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 613692,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 622212,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 626184,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 626536,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 626916,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 627316,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 627716,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 628100,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 628452,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 628804,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 629156,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 632300,
+      "original_word": "0xf8bfc288",
+      "adapted_word": "0xc8dffe88",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 632356,
+      "original_word": "0xf8bfc109",
+      "adapted_word": "0xc8dffd09",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 632660,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 685168,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 685404,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 685432,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 685616,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 687928,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 688676,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    }
+  ],
+  "scope": "Explicit decoder-derived compatibility experiment; static candidates are not proven runtime failures",
+  "physical_device_validated": false
+}

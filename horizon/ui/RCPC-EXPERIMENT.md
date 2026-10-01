@@ -80,3 +80,27 @@ The decoder census found 203 remaining RCpc candidates in this three-site adapte
 are not automatically patched. The census now stays separate from verified
 crash windows, so an optional census error cannot erase the latter. No original
 UI has rendered in the recorded run. Four-site runtime validation is pending.
+
+## Inventory-based experiment after run 36918169876
+
+That run confirmed independent 64-bit LDAPR failure and LDAR success, including
+upper-word preservation, while the original app progressed to the next repeated
+locale initialization load (`0x816f4`) and still crashed. A four-site change is
+therefore not enough to cover the known translation limitation.
+
+The next experiment **changes strategy**, from one fault site per run to a fixed,
+reviewable inventory of 206 decoded byte/64-bit acquire candidates in this exact
+library. `libcxx-rcpc-sites.json` records every source/destination word and address,
+the census run and its library hash. The runtime-frontier sites and static-only
+candidates are distinguished. This is NOT proof that all 206 execute, nor a new
+claim that static disassembly establishes safety or complete compatibility.
+
+The adapter never scans and rewrites arbitrary words automatically at runtime.
+It requires the original whole-file hash, checks every explicit word against the
+input, rejects other opcodes, destination zero-register, width/register changes,
+unmapped/non-executable addresses and duplicates, then emits the adapted copy.
+Only byte or 64-bit AcquirePC-to-Acquire lowering is supported. All affected bytes
+and hashes remain declared. The original-baseline job stays unmodified; this is
+an additional, not-yet-validated translation experiment, not a physical-phone
+optimization or release. No permission/entitlement check, C++ guard branch or
+service is bypassed. Concurrent behavior and end-to-end UI still need validation.

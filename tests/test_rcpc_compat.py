@@ -31,3 +31,14 @@ class RcpcAdaptation(unittest.TestCase):
         self.assertEqual(struct.unpack_from('<I',result,256)[0],after)
         self.assertEqual(result[260:],original[260:])
         with self.assertRaises(ValueError):lower_verified(original,sha,((4096,before,0x08dffea8),))
+
+    def test_inventory_is_explicit_and_every_encoding_preserves_width(self):
+        from horizon.ui.rcpc_compat import SITES
+        self.assertEqual(len(SITES),206)
+        self.assertEqual(len(set(pc for pc,_,_ in SITES)),206)
+        for pc,before,after in SITES:
+            self.assertEqual(pc%4,0)
+            self.assertEqual(before&1023,after&1023)
+            self.assertEqual(before>>30,after>>30)
+            self.assertIn((before&0xfffffc00,after&0xfffffc00),
+                          ((0x38bfc000,0x08dffc00),(0xf8bfc000,0xc8dffc00)))

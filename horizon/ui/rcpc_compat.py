@@ -1,11 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-only
-"""Explicit observed-site RCpc -> RCsc load adaptation for translated CI only.
+"""Explicit inventory-based RCpc -> RCsc load adaptation for translated CI only.
 
 LDAR/LDARB retain an atomic acquire load with stronger ordering than LDAPRB.
 No instruction is removed, no service/check is replaced, no success is fabricated.
 This does not make the complete binary portable or validate concurrent behavior.
 """
 import hashlib
+import json
+from pathlib import Path
 import struct
 from handtracking.ai.elf_pointer_evidence import load_segments
 
@@ -13,15 +15,20 @@ ORIGINAL_SHA='9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72'
 PC=0x88ac4
 BEFORE=0x38bfc108  # ldaprb w8, [x8]
 AFTER=0x08dffd08   # ldarb w8, [x8]
-SITES=((PC,BEFORE,AFTER),
-       (0x48cb0,0x38bfc008,0x08dffc08),  # __cxa_guard_acquire: w8, [x0]
-       (0x88994,0x38bfc108,0x08dffd08),
-       (0x8162c,0xf8bfc2a8,0xc8dffea8))  # observed locale initialization, run 36903032364
+def load_sites():
+    policy=json.loads(Path(__file__).with_name('libcxx-rcpc-sites.json').read_text())
+    if policy['source_sha256']!=ORIGINAL_SHA or len(policy['sites'])!=206:
+        raise ValueError('Wrong pinned RCpc inventory')
+    return tuple((r['pc_elf'],int(r['original_word'],16),int(r['adapted_word'],16)) for r in policy['sites'])
+
+
+SITES=load_sites()
 
 
 def lower_verified(data,expected_sha=ORIGINAL_SHA,sites=SITES):
     sha=hashlib.sha256(data).hexdigest()
     if sha!=expected_sha:raise ValueError('RCpc adaptation requires exact original libc++ hash')
+    if not 1<=len(sites)<=256:raise ValueError('RCpc site budget')
     segments=load_segments(data);result=bytearray(data);changes=[];seen=set()
     for pc,before,after in sites:
         if pc in seen:raise ValueError('Duplicate RCpc site')
@@ -38,5 +45,5 @@ def lower_verified(data,expected_sha=ORIGINAL_SHA,sites=SITES):
     return bytes(result),{'library':'libc++.so','source_sha256':sha,
         'adapted_sha256':hashlib.sha256(result).hexdigest(),'sites':changes,
         'operation':'LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers',
-        'scope':'Explicit observed-site stronger-acquire instruction adaptations for CI translation',
+        'scope':'Explicit inventory-based stronger-acquire adaptations for CI; static candidates are not runtime reachability proof',
         'physical_device_validated':False,'complete_cpu_compatibility':False}
