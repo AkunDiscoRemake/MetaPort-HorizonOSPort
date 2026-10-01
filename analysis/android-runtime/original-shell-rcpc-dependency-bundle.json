@@ -5,7 +5,7 @@
     {
       "library": "libc++.so",
       "source_sha256": "9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72",
-      "adapted_sha256": "4cc6674e283a9239a37bf49437c77950fa728dcf040a843dbb1b8ca925a35ff4",
+      "adapted_sha256": "954c9b089c0e15545600b3d3bdf22abf8f6e1856ba17426a706205b793b61e54",
       "sites": [
         {
           "pc_elf": 559812,
@@ -24,9 +24,15 @@
           "file_offset": 559508,
           "original_word": "0x38bfc108",
           "adapted_word": "0x8dffd08"
+        },
+        {
+          "pc_elf": 529964,
+          "file_offset": 529964,
+          "original_word": "0xf8bfc2a8",
+          "adapted_word": "0xc8dffea8"
         }
       ],
-      "operation": "LDAPRB -> LDARB, preserving the byte load and both registers",
+      "operation": "LDAPRB/LDAPR -> LDARB/LDAR, preserving load width and both registers",
       "scope": "Explicit observed-site stronger-acquire instruction adaptations for CI translation",
       "physical_device_validated": false,
       "complete_cpu_compatibility": false
@@ -37,7 +43,7 @@
     "lib/arm64-v8a/libhzos_spaces.meta.so": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
     "lib/arm64-v8a/libhzos.meta.so": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
     "lib/arm64-v8a/libbase.so": "d3cb46a91077ab502f06997a99215996570ce04cf2fd3f67715911507d53e02c",
-    "lib/arm64-v8a/libc++.so": "4cc6674e283a9239a37bf49437c77950fa728dcf040a843dbb1b8ca925a35ff4",
+    "lib/arm64-v8a/libc++.so": "954c9b089c0e15545600b3d3bdf22abf8f6e1856ba17426a706205b793b61e54",
     "lib/arm64-v8a/libhzos_fphal.meta.so": "99b1b8b42068e3328fb62a843f0c75a46b765966a9ee690e0250d001409c0562",
     "lib/arm64-v8a/libaudioclient.so": "c143525b4b209c381b1e6bb09fa5ff1c38e1d6eeb79fc267c7518928f5fa47e9",
     "lib/arm64-v8a/libbinder.so": "b00c5ed730f1a41b51bdcf7b3aa426d0dbde15d24370709f286fc774f6efd11a",
@@ -328,7 +334,7 @@
     },
     {
       "soname": "libc++.so",
-      "sha256": "4cc6674e283a9239a37bf49437c77950fa728dcf040a843dbb1b8ca925a35ff4",
+      "sha256": "954c9b089c0e15545600b3d3bdf22abf8f6e1856ba17426a706205b793b61e54",
       "size_bytes": 727248,
       "status": "FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION",
       "partition": "system",
@@ -4321,6 +4327,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs or DEX/resource changes",
-  "signed_apk_sha256": "1bb2acc01314b36b91752ea2668d57f1157e5adf5692901cdecb2e048ea43c9b",
+  "signed_apk_sha256": "2e5ec01a59b2a945c5a69c931b0be6b47e57f4bce8bb4603ece0141e50246b9d",
   "test_certificate_not_meta_identity": true
 }
