@@ -2,7 +2,7 @@ name: Disassemble all executable sections of original libshell
 on:
   push:
     branches: [arena/01a0f02d-metaport-horizonosport]
-    paths: [horizon/ui/disassemble_shell.py, horizon/ui/tests/test_disassemble_shell.py, .github/workflows/shell-disassembly.yml]
+    paths: [horizon/ui/inspect_shell_vtables.py, horizon/ui/tests/test_shell_vtables.py, horizon/ui/disassemble_shell.py, horizon/ui/tests/test_disassemble_shell.py, .github/workflows/shell-disassembly.yml]
   workflow_dispatch:
 permissions:
   contents: write
@@ -51,6 +51,7 @@ jobs:
         run: |
           python3 -m horizon.ui.prepare_shell --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
           python3 -m horizon.ui.disassemble_shell --library "$WORK/reports/libshell.so" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
+          python3 -m horizon.ui.inspect_shell_vtables --library "$WORK/reports/libshell.so" --output "$WORK/reports/shell-vtable-windows.json" >> "$WORK/inspection.log" 2>&1
       - name: Record provenance even on analysis failure
         if: always()
         env:
@@ -80,7 +81,7 @@ jobs:
           echo "::add-mask::$auth"
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
           dest=analysis/builds/52168470052900520
-          for name in shell-full-disassembly shell-disassembly-run; do
+          for name in shell-full-disassembly shell-disassembly-run shell-vtable-windows; do
             if [ -f "$WORK/reports/$name.json" ]; then
               cp "$WORK/reports/$name.json" "$dest/$name.json"
               git add -- "$dest/$name.json"

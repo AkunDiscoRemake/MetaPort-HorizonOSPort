@@ -236,3 +236,23 @@ com flag `0x200`, e fallback `dlopen`. O nome do namespace ainda aparece como
 referência de dados; não inventar seu valor. `nativeUserIdentityResponse` converte
 as duas strings JNI e encaminha-as, com o booleano, ao objeto existente — não
 fornece autenticação por si só.
+
+## Whole-library assembly and constructor pointer windows
+
+Run `36817634049` completed the executable-section objdump listing of the pinned
+original `libshell.so`: 7,467,100 instruction rows, 405,621,691 uncompressed bytes,
+67,376,997 gzip bytes. The metadata is `shell-full-disassembly.json`; the compressed
+listing is the `original-libshell-executable-sections-not-runtime` Actions artifact
+(retained seven days). This is one ELF, not all Horizon firmware, and instruction
+rows are not proof of reachability or recovered function signatures. Subsequent
+runs also request `--disassemble-zeroes` so zero-filled ranges are not elided.
+
+`inspect_shell_vtables.py` now inspects bounded windows around constructor-derived
+candidate address points ELF `0x2602b40` and `0x25c2cc8`. It reuses the hand module's
+ELF bounds and supported relocation parser. Two preceding words and 32 following
+slots are evidence windows, **not established vtable lengths or RTTI layouts**.
+Raw integers, local ABS64 interposition, packed relocations and relative vtables
+remain unresolved. An executable-segment target is not a validated function entry
+or callable ABI. The workflow publishes `shell-vtable-windows.json`; implementing
+an original runtime bridge remains blocked on the actual signatures/lifetimes and
+platform/service dependencies, not just finding addresses.
