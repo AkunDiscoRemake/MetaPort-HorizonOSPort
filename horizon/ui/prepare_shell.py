@@ -15,11 +15,14 @@ TARGETS=['JNI_OnLoad']+[PREFIX+x for x in ('nativeInit','nativeOnDestroy','nativ
 POLICY=Path(__file__).with_name('shell-policy.json')
 
 
-def select_symbols(text):
+def select_symbols(text, targets=None):
+    targets=TARGETS if targets is None else targets
+    if not targets or len(targets)>24 or len(set(targets))!=len(targets):
+        raise ValueError("Invalid target list")
     found={}
     for line in text.splitlines():
         cols=line.split()
-        if len(cols)!=8 or not cols[0].endswith(':') or cols[7] not in TARGETS:
+        if len(cols)!=8 or not cols[0].endswith(':') or cols[7] not in targets:
             continue
         if cols[3]!='FUNC' or cols[4] not in ('GLOBAL','WEAK') or cols[6]=='UND':
             continue
@@ -27,8 +30,8 @@ def select_symbols(text):
         if address<=0 or size<=0:raise ValueError('Invalid entry point')
         if cols[7] in found:raise ValueError('Duplicate export')
         found[cols[7]]={'symbol':cols[7],'elf_address':address,'size_bytes':size}
-    if set(found)!=set(TARGETS):raise ValueError('Missing required original exports')
-    return [found[name] for name in TARGETS]
+    if set(found)!=set(targets):raise ValueError('Missing required original exports')
+    return [found[name] for name in targets]
 
 
 def executable_ranges(blob):

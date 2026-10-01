@@ -26,3 +26,8 @@ class ShellPreparationTests(unittest.TestCase):
         with self.assertRaises(ValueError):executable_ranges(b)
         b=self.elf();struct.pack_into('<Q',b,64+32,1000)
         with self.assertRaises(ValueError):executable_ranges(b)
+    def test_versioned_platform_exports_keep_exact_version(self):
+        text='1: 0000000000001000 32 FUNC GLOBAL DEFAULT 9 HzuStrata_create@@LIBHZOS_BASE'
+        self.assertEqual(select_symbols(text,['HzuStrata_create@@LIBHZOS_BASE'])[0]['elf_address'],4096)
+        with self.assertRaises(ValueError):select_symbols(text,['HzuStrata_create@@WRONG'])
+        with self.assertRaises(ValueError):select_symbols(text,[])
