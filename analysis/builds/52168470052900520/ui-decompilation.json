@@ -9958,26 +9958,6 @@
           ]
         },
         {
-          "path": "sources/X/AbstractC36731qO.java",
-          "generated_sha256": "dc71ec9ea041158898c0512a689b74ed82cf60e2e035c83b9d55822b1ee320de",
-          "has_decompiler_errors": false,
-          "matching_lines": 3,
-          "selected_lines": [
-            {
-              "line": 220,
-              "text": "at jadx.core.dex.visitors.finaly.traverser.TraverserController.processHandlerImplementations(TraverserController.java:43)"
-            },
-            {
-              "line": 221,
-              "text": "at jadx.core.dex.visitors.finaly.traverser.TraverserController.advance(TraverserController.java:156)"
-            },
-            {
-              "line": 222,
-              "text": "at jadx.core.dex.visitors.finaly.traverser.TraverserController.process(TraverserController.java:79)"
-            }
-          ]
-        },
-        {
           "path": "sources/X/AnonymousClass057.java",
           "generated_sha256": "e51cc2b15542a5a77576671ecf0fe409599271e5edefd32853aa0a8123db35c3",
           "has_decompiler_errors": false,
@@ -9991,7 +9971,7 @@
         },
         {
           "path": "sources/X/C005002q.java",
-          "generated_sha256": "5ddd94365d3f7c86a1733525982e2f6f3b5de020fdc7e005947e9d2700291f2f",
+          "generated_sha256": "b560b61f8885fc45157204d3ef6041d26cbbc2b98427738383ac90221f100d20",
           "has_decompiler_errors": false,
           "matching_lines": 1,
           "selected_lines": [
@@ -10615,12 +10595,12 @@
         },
         {
           "path": "sources/X/C200110m.java",
-          "generated_sha256": "3c6363892cd27544a61a8347c382cf13ef28e0ec0acffa03fd71b5bc04830f4e",
+          "generated_sha256": "88d3182d2f67df2cabcd2480093b2555370cce5d8d6f8aa76275513a9280f5d8",
           "has_decompiler_errors": false,
           "matching_lines": 1,
           "selected_lines": [
             {
-              "line": 456,
+              "line": 452,
               "text": "Log.e(\"DesktopManagerHandler\", \"Cannot send foreground request because native is not running\");"
             }
           ]
@@ -12634,6 +12614,18 @@
             {
               "line": 7,
               "text": "public static native void runStdFunctionImpl(long j);"
+            }
+          ]
+        },
+        {
+          "path": "sources/com/facebook/jni/kotlin/NativeFunction0.java",
+          "generated_sha256": "f5eec717ac515d487fc3ad46d038eb4cb148803aef165047817fce50e47f30b1",
+          "has_decompiler_errors": false,
+          "matching_lines": 1,
+          "selected_lines": [
+            {
+              "line": 18,
+              "text": "public native Object invoke();"
             }
           ]
         }
@@ -15871,7 +15863,7 @@
             "truncated": true
           },
           "privileged_services": {
-            "matching_lines": 59,
+            "matching_lines": 58,
             "sites": [
               {
                 "path": "sources/com/meta/codecavatar/managementservice/client/CamsClientHelperStable.java",
@@ -16035,35 +16027,27 @@
               },
               {
                 "path": "sources/X/AbstractC35081nZ.java",
-                "line": 500,
-                "start_line": 495,
-                "generated_sha256": "3b0995085ff1203e631528b1e29d9dbe793cf798e106d60fd0c87c1a51568636",
+                "line": 506,
+                "start_line": 501,
+                "generated_sha256": "669843ea2ad8774211f1c267a04944ec4ac1d3f0f53438598b3d725a63dc2980",
                 "has_decompiler_errors": false,
                 "context": "                    this.A02 = true;\n                    if (!this.A03) {\n                        String str = A0E;\n                        String strA04 = A04();\n                        AbstractC03930Pf.A0p(\"Connecting to \", strA04, str);\n                        boolean zBindService = this.A04.bindService(AnonymousClass001.A0a(strA04), this.A05, 1);\n                        this.A03 = zBindService;\n                        if (!zBindService) {\n                            InterfaceC01660Ag interfaceC01660Ag = this.A0A;\n                            interfaceC01660Ag.getValue();\n                            ((C35111nc) interfaceC01660Ag.getValue()).A02(strA04, C35111nc.A00((VolumetricWindowToken) this.A0B.getValue(), (IBinder) this.A09.getValue(), A01(this)), false);"
               },
               {
                 "path": "sources/X/AbstractC35081nZ.java",
-                "line": 561,
-                "start_line": 556,
-                "generated_sha256": "3b0995085ff1203e631528b1e29d9dbe793cf798e106d60fd0c87c1a51568636",
+                "line": 593,
+                "start_line": 588,
+                "generated_sha256": "669843ea2ad8774211f1c267a04944ec4ac1d3f0f53438598b3d725a63dc2980",
                 "has_decompiler_errors": false,
-                "context": "        } else {\n            if (!(r7 instanceof X.C0L9)) {\n                if (!(r7 instanceof X.C0Q3)) {\n                    r7.A01 = null;\n                    if (r7.A0D) {\n                        r7.A04.unbindService(r7.A05);\n                        r7.A0D = false;\n                    }\n                    r4.unlock();\n                }\n                X.C0Q3 r6 = (X.C0Q3) r7;"
+                "context": "                    }\n                    this.A01 = null;\n                    if (this.A0D) {\n                        try {\n                            try {\n                                this.A04.unbindService(this.A05);\n                            } catch (Throwable th2) {\n                                this.A0D = false;\n                                throw th2;\n                            }\n                        } catch (IllegalArgumentException e) {"
               },
               {
                 "path": "sources/X/AbstractC35081nZ.java",
-                "line": 595,
-                "start_line": 590,
-                "generated_sha256": "3b0995085ff1203e631528b1e29d9dbe793cf798e106d60fd0c87c1a51568636",
+                "line": 616,
+                "start_line": 611,
+                "generated_sha256": "669843ea2ad8774211f1c267a04944ec4ac1d3f0f53438598b3d725a63dc2980",
                 "has_decompiler_errors": false,
-                "context": "                }\n                r7.A01 = null;\n                if (r7.A0D) {\n                    try {\n                        try {\n                            r7.A04.unbindService(r7.A05);\n                        } catch (java.lang.Throwable r0) {\n                            r7.A0D = false;\n                            throw r0;\n                        }\n                    } catch (java.lang.IllegalArgumentException r2) {"
-              },
-              {
-                "path": "sources/X/AbstractC35081nZ.java",
-                "line": 620,
-                "start_line": 615,
-                "generated_sha256": "3b0995085ff1203e631528b1e29d9dbe793cf798e106d60fd0c87c1a51568636",
-                "has_decompiler_errors": false,
-                "context": "            r2 = r2;\n        }\n        r2.A07(r0);\n        r7.A01 = null;\n        if (r7.A0D) {\n            r7.A04.unbindService(r7.A05);\n            r7.A0D = false;\n        }\n        r4.unlock();\n    }\n"
+                "context": "                abstractC35081nZ = c0l9;\n            }\n            abstractC35081nZ.A07(c0lb);\n            this.A01 = null;\n            if (this.A0D) {\n                this.A04.unbindService(this.A05);\n                this.A0D = false;\n            }\n            reentrantLock.unlock();\n        } catch (Throwable th3) {\n            reentrantLock.unlock();"
               },
               {
                 "path": "sources/X/AnonymousClass070.java",
@@ -16256,6 +16240,14 @@
                 "generated_sha256": "1a26f831e3aa5f01cbdd95a087f50ed21f3957be9950f9e8e12412940e1729b5",
                 "has_decompiler_errors": false,
                 "context": "                if (runnable != null) {\n                    handler.removeCallbacks(runnable);\n                    if (this.A09) {\n                        try {\n                            try {\n                                this.A03.unbindService(this.A04);\n                            } catch (IllegalArgumentException e) {\n                                Log.d(\"ServiceConnectionClient\", \"Service was not bound during shutdown\", e);\n                            }\n                        } catch (Exception e2) {\n                            Log.w(\"ServiceConnectionClient\", \"Error unbinding service during shutdown\", e2);"
+              },
+              {
+                "path": "sources/X/C33501k3.java",
+                "line": 130,
+                "start_line": 125,
+                "generated_sha256": "1a26f831e3aa5f01cbdd95a087f50ed21f3957be9950f9e8e12412940e1729b5",
+                "has_decompiler_errors": false,
+                "context": "                            if (context2.getPackageManager().resolveService(component, 65536) != null) {\n                                try {\n                                    synchronized (c33501k3) {\n                                        Intent component2 = AnonymousClass005.A0E().setComponent(componentName2);\n                                        C11560lA.A0t(component2);\n                                        if (context2.bindService(component2, c33501k3.A04, 1)) {\n                                            c33501k3.A09 = true;\n                                            AnonymousClass000.A1B(componentName2, \"Bound to \", \"ServiceConnectionClient\", AnonymousClass004.A12());\n                                            return;\n                                        } else {\n                                            str = \"ServiceConnectionClient\";"
               }
             ],
             "truncated": true
@@ -17068,7 +17060,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 1805 of 5814 (31%)\nINFO  - progress: 1919 of 5814 (33%)\nINFO  - progress: 2017 of 5814 (34%)\nINFO  - progress: 2165 of 5814 (37%)\nINFO  - progress: 2227 of 5814 (38%)\nINFO  - progress: 2285 of 5814 (39%)\nINFO  - progress: 2370 of 5814 (40%)\nINFO  - progress: 2411 of 5814 (41%)\nINFO  - progress: 2499 of 5814 (42%)\nINFO  - progress: 2643 of 5814 (45%)\nINFO  - progress: 2752 of 5814 (47%)\nINFO  - progress: 2886 of 5814 (49%)\nINFO  - progress: 3015 of 5814 (51%)\nINFO  - progress: 3096 of 5814 (53%)\nINFO  - progress: 3208 of 5814 (55%)\nINFO  - progress: 3298 of 5814 (56%)\nINFO  - progress: 3420 of 5814 (58%)\nINFO  - progress: 3448 of 5814 (59%)\nINFO  - progress: 3561 of 5814 (61%)\nINFO  - progress: 3808 of 5814 (65%)\nINFO  - progress: 4025 of 5814 (69%)\nINFO  - progress: 4208 of 5814 (72%)\nINFO  - progress: 4287 of 5814 (73%)\nINFO  - progress: 4606 of 5814 (79%)\nINFO  - progress: 4691 of 5814 (80%)\nINFO  - progress: 4710 of 5814 (81%)\nINFO  - progress: 4884 of 5814 (84%)\nINFO  - progress: 5056 of 5814 (86%)\nINFO  - progress: 5225 of 5814 (89%)\nINFO  - progress: 5377 of 5814 (92%)\nINFO  - progress: 5571 of 5814 (95%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\n                                                             \nERROR - finished with errors, count: 148"
+      "log_tail": "INFO  - progress: 4691 of 5814 (80%)\nINFO  - progress: 4691 of 5814 (80%)\nINFO  - progress: 4735 of 5814 (81%)\nINFO  - progress: 4809 of 5814 (82%)\nINFO  - progress: 4884 of 5814 (84%)\nINFO  - progress: 4935 of 5814 (84%)\nINFO  - progress: 4976 of 5814 (85%)\nINFO  - progress: 5029 of 5814 (86%)\nINFO  - progress: 5091 of 5814 (87%)\nINFO  - progress: 5160 of 5814 (88%)\nINFO  - progress: 5225 of 5814 (89%)\nINFO  - progress: 5255 of 5814 (90%)\nINFO  - progress: 5303 of 5814 (91%)\nINFO  - progress: 5345 of 5814 (91%)\nINFO  - progress: 5420 of 5814 (93%)\nINFO  - progress: 5467 of 5814 (94%)\nINFO  - progress: 5503 of 5814 (94%)\nINFO  - progress: 5578 of 5814 (95%)\nINFO  - progress: 5622 of 5814 (96%)\nINFO  - progress: 5667 of 5814 (97%)\nINFO  - progress: 5698 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5704 of 5814 (98%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5795 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\nINFO  - progress: 5811 of 5814 (99%)\n                                                             \nERROR - finished with errors, count: 148"
     },
     {
       "path": "/priv-app/MetaSystemUI/MetaSystemUI.apk",
@@ -27142,7 +27134,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - loading ...\nINFO  - processing ...\nINFO  - progress: 0 of 6598 (0%)\nINFO  - progress: 2785 of 6598 (42%)\nINFO  - progress: 4671 of 6598 (70%)\nINFO  - progress: 4681 of 6598 (70%)\nINFO  - progress: 4716 of 6598 (71%)\nINFO  - progress: 4832 of 6598 (73%)\nINFO  - progress: 5104 of 6598 (77%)\nINFO  - progress: 5255 of 6598 (79%)\nINFO  - progress: 5435 of 6598 (82%)\nINFO  - progress: 5594 of 6598 (84%)\nINFO  - progress: 5727 of 6598 (86%)\nINFO  - progress: 5851 of 6598 (88%)\nINFO  - progress: 5962 of 6598 (90%)\nINFO  - progress: 6044 of 6598 (91%)\nINFO  - progress: 6153 of 6598 (93%)\nINFO  - progress: 6211 of 6598 (94%)\nINFO  - progress: 6247 of 6598 (94%)\nINFO  - progress: 6332 of 6598 (95%)\nINFO  - progress: 6420 of 6598 (97%)\nINFO  - progress: 6520 of 6598 (98%)\nINFO  - progress: 6593 of 6598 (99%)\n                                                             \nERROR - finished with errors, count: 23"
+      "log_tail": "INFO  - progress: 4908 of 6598 (74%)\nINFO  - progress: 4991 of 6598 (75%)\nINFO  - progress: 5116 of 6598 (77%)\nINFO  - progress: 5170 of 6598 (78%)\nINFO  - progress: 5216 of 6598 (79%)\nINFO  - progress: 5262 of 6598 (79%)\nINFO  - progress: 5336 of 6598 (80%)\nINFO  - progress: 5379 of 6598 (81%)\nINFO  - progress: 5447 of 6598 (82%)\nINFO  - progress: 5483 of 6598 (83%)\nINFO  - progress: 5567 of 6598 (84%)\nINFO  - progress: 5614 of 6598 (85%)\nINFO  - progress: 5693 of 6598 (86%)\nINFO  - progress: 5718 of 6598 (86%)\nINFO  - progress: 5761 of 6598 (87%)\nINFO  - progress: 5816 of 6598 (88%)\nINFO  - progress: 5867 of 6598 (88%)\nINFO  - progress: 5913 of 6598 (89%)\nINFO  - progress: 5958 of 6598 (90%)\nINFO  - progress: 5982 of 6598 (90%)\nINFO  - progress: 6002 of 6598 (90%)\nINFO  - progress: 6053 of 6598 (91%)\nINFO  - progress: 6094 of 6598 (92%)\nINFO  - progress: 6116 of 6598 (92%)\nINFO  - progress: 6171 of 6598 (93%)\nINFO  - progress: 6188 of 6598 (93%)\nINFO  - progress: 6211 of 6598 (94%)\nINFO  - progress: 6227 of 6598 (94%)\nINFO  - progress: 6251 of 6598 (94%)\nINFO  - progress: 6305 of 6598 (95%)\nINFO  - progress: 6332 of 6598 (95%)\nINFO  - progress: 6377 of 6598 (96%)\nINFO  - progress: 6429 of 6598 (97%)\nINFO  - progress: 6457 of 6598 (97%)\nINFO  - progress: 6477 of 6598 (98%)\nINFO  - progress: 6523 of 6598 (98%)\nINFO  - progress: 6547 of 6598 (99%)\nINFO  - progress: 6574 of 6598 (99%)\n                                                             \nERROR - finished with errors, count: 23"
     },
     {
       "path": "/priv-app/SystemUX/SystemUX.apk",
@@ -31032,7 +31024,7 @@
         },
         {
           "path": "sources/com/oculus/navigator/common/graphql/NavigatorGraphQLExecutor.java",
-          "generated_sha256": "0af5d0e5c1bfd53c3dd035a58baca0aa3fe58030a5607a0310918ab306d35552",
+          "generated_sha256": "9fe8783de562aa2466ce3ea43c57a080a6fb9527b54d3884415875a84d355e0b",
           "has_decompiler_errors": true,
           "matching_lines": 6,
           "selected_lines": [
@@ -31053,11 +31045,11 @@
               "text": "interfaceC41661trPlus = navigatorCoroutineExceptionHandlerA00.plus(new C10F(str2));"
             },
             {
-              "line": 249,
+              "line": 260,
               "text": "NavigatorCoroutineExceptionHandler navigatorCoroutineExceptionHandlerA00 = NavigatorCoroutineExceptionHandler.Companion.A00();"
             },
             {
-              "line": 250,
+              "line": 261,
               "text": "AnonymousClass121 anonymousClass121A02 = AbstractC37891nU.A02(null, navigatorCoroutineExceptionHandlerA00 != null ? navigatorCoroutineExceptionHandlerA00.plus(new C10F(str)) : interfaceC41661tr, new C36381ky(this, null, 21), interfaceC20130wv, 2);"
             }
           ]
@@ -32560,16 +32552,16 @@
         },
         {
           "path": "sources/X/AnonymousClass269.java",
-          "generated_sha256": "cdab2d3d1f6eb993d67dfb41c08990dcf252be44bd901c8150015a46b5237ccc",
+          "generated_sha256": "feb1560f389f166ce861412b5495253b6570174ba4b55a886dfcabf90c163412",
           "has_decompiler_errors": false,
           "matching_lines": 2,
           "selected_lines": [
             {
-              "line": 73,
+              "line": 74,
               "text": "AbstractC51732Zl.A03(context, AnonymousClass000.A0v(sbA12, \"Exception while updating native version: \", AnonymousClass005.A12()));"
             },
             {
-              "line": 74,
+              "line": 75,
               "text": "C12870j6.A0A(\"DeviceConfigVersionInfoManager\", \"Exception while updating native version: %s\", sbA12);"
             }
           ]
@@ -35493,7 +35485,7 @@
             "truncated": true
           },
           "settings_capabilities": {
-            "matching_lines": 257,
+            "matching_lines": 263,
             "sites": [
               {
                 "path": "sources/com/oculus/common/activetaskbarhelper/android/AnytimeUIInCallService.java",
@@ -37908,7 +37900,7 @@
                 "path": "sources/X/AbstractC32911eo.java",
                 "line": 26,
                 "start_line": 21,
-                "generated_sha256": "40cd7b050747b83de6ddb2e238a95ec2f14ffa468ba44c1f1ef2696309b0366e",
+                "generated_sha256": "3bfbd84a7d7583dc48bbd586fd4fabfb629dc16567c23767985c0ff03553fbd1",
                 "has_decompiler_errors": false,
                 "context": "        ReentrantLock reentrantLock = this.A03;\n        reentrantLock.lock();\n        try {\n            this.A01 = true;\n            if (this.A00 == C2CU.A00) {\n                if (this.A04.bindService(AnonymousClass002.A0a(\"com.oculus.vrshell.shellsdk.IShellSDKService\"), this.A05, 1)) {\n                    this.A00 = C2CU.A01;\n                } else {\n                    Log.e(\"ShellSDKIPCBaseManager\", \"Failed to connect to com.oculus.vrshell.shellsdk.IShellSDKService\");\n                }\n            }"
               },
@@ -37916,7 +37908,7 @@
                 "path": "sources/X/AbstractC32911eo.java",
                 "line": 45,
                 "start_line": 40,
-                "generated_sha256": "40cd7b050747b83de6ddb2e238a95ec2f14ffa468ba44c1f1ef2696309b0366e",
+                "generated_sha256": "3bfbd84a7d7583dc48bbd586fd4fabfb629dc16567c23767985c0ff03553fbd1",
                 "has_decompiler_errors": false,
                 "context": "        try {\n            C32841eh c32841eh = (C32841eh) this;\n            c32841eh.A02(new C26831Mp(c32841eh, 8));\n            if (this.A00 == C2CU.A0C) {\n                try {\n                    this.A04.unbindService(this.A05);\n                    this.A00 = C2CU.A00;\n                    this.A01 = false;\n                    c32841eh.A03 = null;\n                    c32841eh.A02 = null;\n                    c32841eh.A01 = null;"
               },
@@ -39016,7 +39008,7 @@
         "source_coverage_complete": false,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 2402 of 7819 (30%)\nINFO  - progress: 2537 of 7819 (32%)\nINFO  - progress: 2787 of 7819 (35%)\nINFO  - progress: 3012 of 7819 (38%)\nINFO  - progress: 3195 of 7819 (40%)\nINFO  - progress: 3241 of 7819 (41%)\nINFO  - progress: 3382 of 7819 (43%)\nINFO  - progress: 3418 of 7819 (43%)\nINFO  - progress: 3475 of 7819 (44%)\nINFO  - progress: 3535 of 7819 (45%)\nINFO  - progress: 3710 of 7819 (47%)\nINFO  - progress: 3710 of 7819 (47%)\nINFO  - progress: 3741 of 7819 (47%)\nINFO  - progress: 3778 of 7819 (48%)\nINFO  - progress: 3886 of 7819 (49%)\nINFO  - progress: 3976 of 7819 (50%)\nINFO  - progress: 4235 of 7819 (54%)\nINFO  - progress: 4316 of 7819 (55%)\nINFO  - progress: 4433 of 7819 (56%)\nINFO  - progress: 4815 of 7819 (61%)\nINFO  - progress: 5069 of 7819 (64%)\nINFO  - progress: 5337 of 7819 (68%)\nINFO  - progress: 5594 of 7819 (71%)\nINFO  - progress: 5848 of 7819 (74%)\nINFO  - progress: 5886 of 7819 (75%)\nINFO  - progress: 5959 of 7819 (76%)\nINFO  - progress: 6176 of 7819 (78%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6533 of 7819 (83%)\nINFO  - progress: 6797 of 7819 (86%)\nINFO  - progress: 6918 of 7819 (88%)\nINFO  - progress: 7039 of 7819 (90%)\nINFO  - progress: 7211 of 7819 (92%)\nINFO  - progress: 7297 of 7819 (93%)\nINFO  - progress: 7514 of 7819 (96%)\nINFO  - progress: 7669 of 7819 (98%)\nINFO  - progress: 7780 of 7819 (99%)\n                                                             \nERROR - finished with errors, count: 259"
+      "log_tail": "INFO  - progress: 6152 of 7819 (78%)\nINFO  - progress: 6175 of 7819 (78%)\nINFO  - progress: 6256 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6267 of 7819 (80%)\nINFO  - progress: 6294 of 7819 (80%)\nINFO  - progress: 6411 of 7819 (81%)\nINFO  - progress: 6480 of 7819 (82%)\nINFO  - progress: 6667 of 7819 (85%)\nINFO  - progress: 6763 of 7819 (86%)\nINFO  - progress: 6843 of 7819 (87%)\nINFO  - progress: 6896 of 7819 (88%)\nINFO  - progress: 6907 of 7819 (88%)\nINFO  - progress: 6959 of 7819 (89%)\nINFO  - progress: 6990 of 7819 (89%)\nINFO  - progress: 6999 of 7819 (89%)\nINFO  - progress: 7060 of 7819 (90%)\nINFO  - progress: 7103 of 7819 (90%)\nINFO  - progress: 7145 of 7819 (91%)\nINFO  - progress: 7198 of 7819 (92%)\nINFO  - progress: 7214 of 7819 (92%)\nINFO  - progress: 7238 of 7819 (92%)\nINFO  - progress: 7260 of 7819 (92%)\nINFO  - progress: 7386 of 7819 (94%)\nINFO  - progress: 7413 of 7819 (94%)\nINFO  - progress: 7418 of 7819 (94%)\nINFO  - progress: 7506 of 7819 (95%)\nINFO  - progress: 7593 of 7819 (97%)\nINFO  - progress: 7669 of 7819 (98%)\nINFO  - progress: 7694 of 7819 (98%)\nINFO  - progress: 7720 of 7819 (98%)\nINFO  - progress: 7749 of 7819 (99%)\nINFO  - progress: 7779 of 7819 (99%)\nINFO  - progress: 7786 of 7819 (99%)\nINFO  - progress: 7816 of 7819 (99%)\n                                                             \nERROR - finished with errors, count: 259"
     },
     {
       "path": "/priv-app/SettingsPanelApp/SettingsPanelApp.apk",
@@ -46067,33 +46059,33 @@
               },
               {
                 "path": "sources/com/oculus/adminpin/AdminPinDialogViewKt.java",
-                "line": 311,
-                "start_line": 306,
-                "generated_sha256": "223ec59dfdbee48d17962b5df62fc54dde78a91e0a5ef422b616364003fb660a",
+                "line": 322,
+                "start_line": 317,
+                "generated_sha256": "3852cc40c471eaf1ae0dbbc3cc7678b5866e5390902f830a9b53b77f0758578b",
                 "has_decompiler_errors": true,
                 "context": "            if (i3 != 0) {\n                interfaceC15180sC2 = InterfaceC15180sC.A00;\n            }\n            boolean z = true;\n            InterfaceC15180sC interfaceC15180sCA00 = C10I.A00(C10Q.A04, interfaceC15180sC2.AN5(C10I.A02));\n            if ((iA0O & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) != 32 && ((iA0O & 64) == 0 || !c1e6.A6P(c15x))) {\n                z = false;\n            }\n            Object objAKO = c1e6.AKO();\n            if (z || objAKO == C22871Fa.A00) {\n                objAKO = new C06740bY(c15x, 22);"
               },
               {
                 "path": "sources/com/oculus/adminpin/AdminPinDialogViewKt.java",
-                "line": 381,
-                "start_line": 376,
-                "generated_sha256": "223ec59dfdbee48d17962b5df62fc54dde78a91e0a5ef422b616364003fb660a",
+                "line": 392,
+                "start_line": 387,
+                "generated_sha256": "3852cc40c471eaf1ae0dbbc3cc7678b5866e5390902f830a9b53b77f0758578b",
                 "has_decompiler_errors": true,
                 "context": "            Object objAKO = c1e6.AKO();\n            if (zA1M || objAKO == C22871Fa.A00) {\n                objAKO = new C0VW(function1, c0mg, c005906c, 9);\n                c1e6.ANx(objAKO);\n            }\n            AbstractC199911x.A00(null, null, c196410oA00, c196410oA01, null, c19500zz, null, c1e6, interfaceC15180sC2, (Function1) objAKO, (iA0O & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) | 1769472, 0, 924, false, false);\n        }\n        C33211j6 c33211j6A82 = c1e6.A82();\n        if (c33211j6A82 != null) {\n            c33211j6A82.A06 = new C04620Ri(interfaceC15180sC2, c005906c, c0mg, function1, i2, i, 1);\n        }"
               },
               {
                 "path": "sources/com/oculus/adminpin/AdminPinDialogViewKt.java",
-                "line": 415,
-                "start_line": 410,
-                "generated_sha256": "223ec59dfdbee48d17962b5df62fc54dde78a91e0a5ef422b616364003fb660a",
+                "line": 426,
+                "start_line": 421,
+                "generated_sha256": "3852cc40c471eaf1ae0dbbc3cc7678b5866e5390902f830a9b53b77f0758578b",
                 "has_decompiler_errors": true,
                 "context": "            InterfaceC15180sC interfaceC15180sCA01 = AbstractC16250ty.A01(c1e6, interfaceC15180sCA00);\n            C32761iF.A0J(c1e6, c32761iF);\n            C1E7.A03(c1e6, c1xzA0R, interfaceC29821dQA05, interfaceC15180sCA01, iA0E);\n            AbstractC22411Dc.A01(c1e6, c23631Ih, AbstractC17130vS.A03(c1e6), null, null, AbstractC18600xy.A00(c1e6, com.oculus.panelapp.settings.R.string._name_removed__res_0x7f0f0011), null, null, 0, 3, 0, 0, 384, 0, 4024, false);\n            int i2 = iA0O & 14;\n            A01(c15x, c1e6, C1DO.A02(c0sB, 0.0f, 32.0f), c005906c, (iA0O & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) | i2 | 384 | 64, 0);\n            InterfaceC15180sC interfaceC15180sCA03 = C1DO.A03(c0sB, 0.0f, 0.0f, 0.0f, 12.0f);\n            int i3 = iA0O & 896;\n            boolean zA1M = AnonymousClass002.A1M(i3, 256);\n            Object objAKO = c1e6.AKO();\n            if (zA1M || objAKO == C22871Fa.A00) {"
               },
               {
                 "path": "sources/com/oculus/adminpin/AdminPinDialogViewKt.java",
-                "line": 489,
-                "start_line": 484,
-                "generated_sha256": "223ec59dfdbee48d17962b5df62fc54dde78a91e0a5ef422b616364003fb660a",
+                "line": 500,
+                "start_line": 495,
+                "generated_sha256": "3852cc40c471eaf1ae0dbbc3cc7678b5866e5390902f830a9b53b77f0758578b",
                 "has_decompiler_errors": true,
                 "context": "            int iA02 = C32761iF.A02(c32761iF);\n            InterfaceC29821dQ interfaceC29821dQA05 = C32761iF.A05(c32761iF);\n            InterfaceC15180sC interfaceC15180sCA02 = AbstractC16250ty.A01(c1e6, interfaceC15180sCA01);\n            C32761iF.A0J(c1e6, c32761iF);\n            C1E7.A03(c1e6, c1xzA0e, interfaceC29821dQA05, interfaceC15180sCA02, iA02);\n            C32761iF.A0R(c32761iF, C18340xY.A00, c1e6, interfaceC51572cS, ((iA0X >> 6) & R.styleable.AppCompatTheme_toolbarNavigationButtonStyle) | 6);\n        }\n        C33211j6 c33211j6A82 = c1e6.A82();\n        if (c33211j6A82 != null) {\n            c33211j6A82.A06 = new C17200vZ(str, c0mg, interfaceC51572cS, i, z);\n        }"
               },
@@ -47511,7 +47503,7 @@
                 "path": "sources/X/C2IR.java",
                 "line": 77,
                 "start_line": 72,
-                "generated_sha256": "9d8b79e1dc5bb60d2c0bc2ffe74f1cbe42e839f43fd158afc9e6bba9ba8ea32c",
+                "generated_sha256": "a33230d3da7ab525c19a2421fb2c7a3a1a796692c6bc8e4680089460f296f201",
                 "has_decompiler_errors": false,
                 "context": "                    this.A02 = true;\n                    if (!this.A03) {\n                        String strA04 = A04();\n                        Intent intent = new Intent(strA04);\n                        intent.setPackage(\"com.oculus.vrshell\");\n                        boolean zBindService = this.A04.bindService(intent, this.A05, 1);\n                        this.A03 = zBindService;\n                        if (!zBindService) {\n                            InterfaceC49212Vo interfaceC49212Vo = this.A0A;\n                            interfaceC49212Vo.getValue();\n                            ((C2IT) interfaceC49212Vo.getValue()).A02(strA04, C2IT.A00((VolumetricWindowToken) this.A0B.getValue(), (IBinder) this.A09.getValue(), A00(this)), false);"
               },
@@ -47519,7 +47511,7 @@
                 "path": "sources/X/C2IR.java",
                 "line": 113,
                 "start_line": 108,
-                "generated_sha256": "9d8b79e1dc5bb60d2c0bc2ffe74f1cbe42e839f43fd158afc9e6bba9ba8ea32c",
+                "generated_sha256": "a33230d3da7ab525c19a2421fb2c7a3a1a796692c6bc8e4680089460f296f201",
                 "has_decompiler_errors": false,
                 "context": "            A05();\n            this.A01 = null;\n            if (this.A0C) {\n                try {\n                    try {\n                        this.A04.unbindService(this.A05);\n                    } catch (Throwable th) {\n                        this.A0C = false;\n                        throw th;\n                    }\n                } catch (IllegalArgumentException e) {"
               },
@@ -48427,7 +48419,7 @@
         "source_coverage_complete": false,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 0 of 9792 (0%)\nINFO  - progress: 612 of 9792 (6%)\nINFO  - progress: 863 of 9792 (8%)\nINFO  - progress: 1835 of 9792 (18%)\nINFO  - progress: 2200 of 9792 (22%)\nINFO  - progress: 2462 of 9792 (25%)\nINFO  - progress: 2771 of 9792 (28%)\nINFO  - progress: 2903 of 9792 (29%)\nINFO  - progress: 3285 of 9792 (33%)\nINFO  - progress: 3878 of 9792 (39%)\nINFO  - progress: 4409 of 9792 (45%)\nINFO  - progress: 4773 of 9792 (48%)\nINFO  - progress: 5239 of 9792 (53%)\nINFO  - progress: 5672 of 9792 (57%)\nINFO  - progress: 5936 of 9792 (60%)\nINFO  - progress: 6166 of 9792 (62%)\nINFO  - progress: 6326 of 9792 (64%)\nINFO  - progress: 6606 of 9792 (67%)\nINFO  - progress: 7062 of 9792 (72%)\nINFO  - progress: 7444 of 9792 (76%)\nINFO  - progress: 7765 of 9792 (79%)\nINFO  - progress: 8030 of 9792 (82%)\nINFO  - progress: 8203 of 9792 (83%)\nINFO  - progress: 8385 of 9792 (85%)\nINFO  - progress: 8532 of 9792 (87%)\nINFO  - progress: 8761 of 9792 (89%)\nINFO  - progress: 8824 of 9792 (90%)\nINFO  - progress: 8929 of 9792 (91%)\nINFO  - progress: 9073 of 9792 (92%)\nINFO  - progress: 9180 of 9792 (93%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9260 of 9792 (94%)\nINFO  - progress: 9380 of 9792 (95%)\nINFO  - progress: 9478 of 9792 (96%)\nINFO  - progress: 9594 of 9792 (97%)\nINFO  - progress: 9703 of 9792 (99%)\nINFO  - progress: 9759 of 9792 (99%)\nINFO  - progress: 9778 of 9792 (99%)\n                                                             \nERROR - finished with errors, count: 249"
+      "log_tail": "INFO  - progress: 8771 of 9792 (89%)\nINFO  - progress: 8842 of 9792 (90%)\nINFO  - progress: 8867 of 9792 (90%)\nINFO  - progress: 8920 of 9792 (91%)\nINFO  - progress: 8944 of 9792 (91%)\nINFO  - progress: 8997 of 9792 (91%)\nINFO  - progress: 9092 of 9792 (92%)\nINFO  - progress: 9122 of 9792 (93%)\nINFO  - progress: 9162 of 9792 (93%)\nINFO  - progress: 9181 of 9792 (93%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9208 of 9792 (94%)\nINFO  - progress: 9228 of 9792 (94%)\nINFO  - progress: 9244 of 9792 (94%)\nINFO  - progress: 9289 of 9792 (94%)\nINFO  - progress: 9356 of 9792 (95%)\nINFO  - progress: 9383 of 9792 (95%)\nINFO  - progress: 9404 of 9792 (96%)\nINFO  - progress: 9455 of 9792 (96%)\nINFO  - progress: 9478 of 9792 (96%)\nINFO  - progress: 9502 of 9792 (97%)\nINFO  - progress: 9547 of 9792 (97%)\nINFO  - progress: 9591 of 9792 (97%)\nINFO  - progress: 9612 of 9792 (98%)\nINFO  - progress: 9656 of 9792 (98%)\nINFO  - progress: 9692 of 9792 (98%)\nINFO  - progress: 9723 of 9792 (99%)\nINFO  - progress: 9739 of 9792 (99%)\nINFO  - progress: 9755 of 9792 (99%)\nINFO  - progress: 9761 of 9792 (99%)\nINFO  - progress: 9767 of 9792 (99%)\nINFO  - progress: 9773 of 9792 (99%)\nINFO  - progress: 9778 of 9792 (99%)\nINFO  - progress: 9788 of 9792 (99%)\nINFO  - progress: 9790 of 9792 (99%)\nINFO  - progress: 9791 of 9792 (99%)\n                                                             \nERROR - finished with errors, count: 249"
     },
     {
       "path": "/priv-app/LibraryPanelApp/LibraryPanelApp.apk",
@@ -54892,7 +54884,7 @@
                 "path": "sources/com/oculus/navigator/library/data/collectionitemorder/impl/CollectionItemOrderRepositoryImpl.java",
                 "line": 49,
                 "start_line": 44,
-                "generated_sha256": "b8b3133df3a495f760e6478085b698cf186cd5ace56bb8b94219e5c2d1bc9a7b",
+                "generated_sha256": "56ee3aa1b432e0ef62d34b0ecd62c83642a6823861f0001bf41943c109962bf9",
                 "has_decompiler_errors": true,
                 "context": "import X.C30231Tc;\nimport X.C30271Tg;\nimport X.C43001z5;\nimport X.EnumC16870ob;\nimport X.InterfaceC17020ot;\nimport com.oculus.navitem.common.impl.NavigationItemRepositoryImpl;\nimport com.oculus.userdata.hidden.impl.HiddenAppsRepositoryImpl;\nimport com.oculus.userdata.order.impl.ItemOrderLocalDataSourceImpl;\nimport com.oculus.userdata.order.impl.ItemOrderRepositoryImpl;\nimport java.util.ArrayList;\nimport java.util.Collection;"
               },
@@ -54900,15 +54892,15 @@
                 "path": "sources/com/oculus/navigator/library/data/collectionitemorder/impl/CollectionItemOrderRepositoryImpl.java",
                 "line": 1502,
                 "start_line": 1497,
-                "generated_sha256": "b8b3133df3a495f760e6478085b698cf186cd5ace56bb8b94219e5c2d1bc9a7b",
+                "generated_sha256": "56ee3aa1b432e0ef62d34b0ecd62c83642a6823861f0001bf41943c109962bf9",
                 "has_decompiler_errors": true,
                 "context": "        C05L.A00(objA00);\n        C28551La c28551La3 = collectionItemOrderRepositoryImpl.A00;\n        c2o5.A01 = collectionItemOrderRepositoryImpl;\n        c2o5.A02 = str;\n        c2o5.A00 = 1;\n        objA00 = NavigationItemRepositoryImpl.A00(c28551La3, str, c2o5);\n        if (objA00 == enumC16870ob) {\n            return enumC16870ob;\n        }\n        c1Nt = (C1Nt) objA00;\n        Object obj6 = c1Nt != null ? c1Nt.A06 : null;"
               },
               {
                 "path": "sources/com/oculus/navigator/library/data/collectionitemorder/impl/CollectionItemOrderRepositoryImpl.java",
-                "line": 1887,
-                "start_line": 1882,
-                "generated_sha256": "b8b3133df3a495f760e6478085b698cf186cd5ace56bb8b94219e5c2d1bc9a7b",
+                "line": 1896,
+                "start_line": 1891,
+                "generated_sha256": "56ee3aa1b432e0ef62d34b0ecd62c83642a6823861f0001bf41943c109962bf9",
                 "has_decompiler_errors": true,
                 "context": "                return C05C.A00;\n            }\n            C05L.A00(objA00);\n            C28551La c28551La = collectionItemOrderRepositoryImpl.A00;\n            C2OA.A01(collectionItemOrderRepositoryImpl, str, c2oaA00, 1);\n            objA00 = NavigationItemRepositoryImpl.A00(c28551La, str, c2oaA00);\n            if (objA00 == enumC16870ob) {\n                return enumC16870ob;\n            }\n            C1Nt c1Nt = (C1Nt) objA00;\n            if (c1Nt != null) {"
               },
@@ -55012,7 +55004,7 @@
                 "path": "sources/com/oculus/userdata/imagecache/impl/ImageCacheRepositoryImpl.java",
                 "line": 33,
                 "start_line": 28,
-                "generated_sha256": "74249825407703939bc1a574a201073b18e2e04f61e5e246580c5c28272923d0",
+                "generated_sha256": "e6d45f404090fa39c05e6fee6358657d439e858855d766bf675b9bd5f1fc731a",
                 "has_decompiler_errors": true,
                 "context": "import X.InterfaceC09970dC;\nimport X.InterfaceC17020ot;\nimport X.InterfaceC30781Vt;\nimport X.InterfaceC42871yk;\nimport com.meta.libraries.appmanager.AppManagerClient;\nimport com.oculus.navigation.appmanagerclient.impl.AppManagerClientWrapperImpl;\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.concurrent.ConcurrentHashMap;"
               },
@@ -55936,7 +55928,7 @@
             "truncated": true
           },
           "privileged_services": {
-            "matching_lines": 35,
+            "matching_lines": 34,
             "sites": [
               {
                 "path": "sources/com/meta/libraries/appmanager/AppManagerClient.java",
@@ -56020,35 +56012,27 @@
               },
               {
                 "path": "sources/X/AnonymousClass230.java",
-                "line": 87,
-                "start_line": 82,
-                "generated_sha256": "4a2d04c8bd8afd901b62e724ec98d9c2a45c15b7c74ab93d6fa9aba3b91906aa",
+                "line": 93,
+                "start_line": 88,
+                "generated_sha256": "c67ebc73870ad9bf61a40bca64c245904296814e136fb383cbd883395398e1e0",
                 "has_decompiler_errors": false,
                 "context": "                    this.A02 = true;\n                    if (!this.A03) {\n                        String strA04 = A04();\n                        Intent intent = new Intent(strA04);\n                        intent.setPackage(\"com.oculus.vrshell\");\n                        boolean zBindService = this.A04.bindService(intent, this.A05, 1);\n                        this.A03 = zBindService;\n                        if (!zBindService) {\n                            C2HY c2hy = this.A0A;\n                            c2hy.getValue();\n                            ((AnonymousClass233) c2hy.getValue()).A02(strA04, AnonymousClass233.A00((VolumetricWindowToken) this.A0B.getValue(), (IBinder) this.A09.getValue(), A01(this)), false);"
               },
               {
                 "path": "sources/X/AnonymousClass230.java",
-                "line": 142,
-                "start_line": 137,
-                "generated_sha256": "4a2d04c8bd8afd901b62e724ec98d9c2a45c15b7c74ab93d6fa9aba3b91906aa",
+                "line": 170,
+                "start_line": 165,
+                "generated_sha256": "c67ebc73870ad9bf61a40bca64c245904296814e136fb383cbd883395398e1e0",
                 "has_decompiler_errors": false,
-                "context": "        } else {\n            if (!(r7 instanceof X.C29541Pz)) {\n                if (!(r7 instanceof X.C1Pg)) {\n                    r7.A01 = null;\n                    if (r7.A0C) {\n                        r7.A04.unbindService(r7.A05);\n                        r7.A0C = false;\n                    }\n                    r4.unlock();\n                }\n                X.C1Pg r6 = (X.C1Pg) r7;"
+                "context": "                    }\n                    this.A01 = null;\n                    if (this.A0C) {\n                        try {\n                            try {\n                                this.A04.unbindService(this.A05);\n                            } catch (Throwable th2) {\n                                this.A0C = false;\n                                throw th2;\n                            }\n                        } catch (IllegalArgumentException e) {"
               },
               {
                 "path": "sources/X/AnonymousClass230.java",
-                "line": 174,
-                "start_line": 169,
-                "generated_sha256": "4a2d04c8bd8afd901b62e724ec98d9c2a45c15b7c74ab93d6fa9aba3b91906aa",
+                "line": 193,
+                "start_line": 188,
+                "generated_sha256": "c67ebc73870ad9bf61a40bca64c245904296814e136fb383cbd883395398e1e0",
                 "has_decompiler_errors": false,
-                "context": "                }\n                r7.A01 = null;\n                if (r7.A0C) {\n                    try {\n                        try {\n                            r7.A04.unbindService(r7.A05);\n                        } catch (java.lang.Throwable r0) {\n                            r7.A0C = false;\n                            throw r0;\n                        }\n                    } catch (java.lang.IllegalArgumentException r2) {"
-              },
-              {
-                "path": "sources/X/AnonymousClass230.java",
-                "line": 199,
-                "start_line": 194,
-                "generated_sha256": "4a2d04c8bd8afd901b62e724ec98d9c2a45c15b7c74ab93d6fa9aba3b91906aa",
-                "has_decompiler_errors": false,
-                "context": "            r2 = r2;\n        }\n        r2.A07(r0);\n        r7.A01 = null;\n        if (r7.A0C) {\n            r7.A04.unbindService(r7.A05);\n            r7.A0C = false;\n        }\n        r4.unlock();\n    }\n"
+                "context": "                anonymousClass230 = c29541Pz;\n            }\n            anonymousClass230.A07(c29511Pw);\n            this.A01 = null;\n            if (this.A0C) {\n                this.A04.unbindService(this.A05);\n                this.A0C = false;\n            }\n            reentrantLock.unlock();\n        } catch (Throwable th3) {\n            reentrantLock.unlock();"
               },
               {
                 "path": "sources/X/C1Yo.java",
@@ -57029,7 +57013,7 @@
         "source_coverage_complete": true,
         "resource_inventory_truncated": true
       },
-      "log_tail": "INFO  - progress: 357 of 6369 (5%)\nINFO  - progress: 655 of 6369 (10%)\nINFO  - progress: 1020 of 6369 (16%)\nINFO  - progress: 1222 of 6369 (19%)\nINFO  - progress: 1491 of 6369 (23%)\nINFO  - progress: 1650 of 6369 (25%)\nINFO  - progress: 1806 of 6369 (28%)\nINFO  - progress: 1901 of 6369 (29%)\nINFO  - progress: 1947 of 6369 (30%)\nINFO  - progress: 2048 of 6369 (32%)\nINFO  - progress: 2272 of 6369 (35%)\nINFO  - progress: 2575 of 6369 (40%)\nINFO  - progress: 2768 of 6369 (43%)\nINFO  - progress: 2861 of 6369 (44%)\nINFO  - progress: 2884 of 6369 (45%)\nINFO  - progress: 2940 of 6369 (46%)\nINFO  - progress: 2958 of 6369 (46%)\nINFO  - progress: 2997 of 6369 (47%)\nINFO  - progress: 3085 of 6369 (48%)\nINFO  - progress: 3129 of 6369 (49%)\nINFO  - progress: 3254 of 6369 (51%)\nINFO  - progress: 3293 of 6369 (51%)\nINFO  - progress: 3425 of 6369 (53%)\nINFO  - progress: 3556 of 6369 (55%)\nINFO  - progress: 3733 of 6369 (58%)\nINFO  - progress: 3805 of 6369 (59%)\nINFO  - progress: 4211 of 6369 (66%)\nINFO  - progress: 4443 of 6369 (69%)\nINFO  - progress: 4594 of 6369 (72%)\nINFO  - progress: 4658 of 6369 (73%)\nINFO  - progress: 4966 of 6369 (77%)\nINFO  - progress: 5113 of 6369 (80%)\nINFO  - progress: 5330 of 6369 (83%)\nINFO  - progress: 5436 of 6369 (85%)\nINFO  - progress: 5608 of 6369 (88%)\nINFO  - progress: 5789 of 6369 (90%)\nINFO  - progress: 6036 of 6369 (94%)\nINFO  - progress: 6286 of 6369 (98%)\n                                                             \nERROR - finished with errors, count: 319"
+      "log_tail": "INFO  - progress: 4127 of 6369 (64%)\nINFO  - progress: 4246 of 6369 (66%)\nINFO  - progress: 4303 of 6369 (67%)\nINFO  - progress: 4335 of 6369 (68%)\nINFO  - progress: 4356 of 6369 (68%)\nINFO  - progress: 4455 of 6369 (69%)\nINFO  - progress: 4487 of 6369 (70%)\nINFO  - progress: 4549 of 6369 (71%)\nINFO  - progress: 4590 of 6369 (72%)\nINFO  - progress: 4633 of 6369 (72%)\nINFO  - progress: 4633 of 6369 (72%)\nINFO  - progress: 4644 of 6369 (72%)\nINFO  - progress: 4693 of 6369 (73%)\nINFO  - progress: 4803 of 6369 (75%)\nINFO  - progress: 4930 of 6369 (77%)\nINFO  - progress: 5056 of 6369 (79%)\nINFO  - progress: 5058 of 6369 (79%)\nINFO  - progress: 5100 of 6369 (80%)\nINFO  - progress: 5224 of 6369 (82%)\nINFO  - progress: 5297 of 6369 (83%)\nINFO  - progress: 5330 of 6369 (83%)\nINFO  - progress: 5389 of 6369 (84%)\nINFO  - progress: 5423 of 6369 (85%)\nINFO  - progress: 5475 of 6369 (85%)\nINFO  - progress: 5499 of 6369 (86%)\nINFO  - progress: 5558 of 6369 (87%)\nINFO  - progress: 5577 of 6369 (87%)\nINFO  - progress: 5629 of 6369 (88%)\nINFO  - progress: 5709 of 6369 (89%)\nINFO  - progress: 5761 of 6369 (90%)\nINFO  - progress: 5804 of 6369 (91%)\nINFO  - progress: 5856 of 6369 (91%)\nINFO  - progress: 5941 of 6369 (93%)\nINFO  - progress: 6050 of 6369 (94%)\nINFO  - progress: 6133 of 6369 (96%)\nINFO  - progress: 6182 of 6369 (97%)\nINFO  - progress: 6260 of 6369 (98%)\nINFO  - progress: 6333 of 6369 (99%)\n                                                             \nERROR - finished with errors, count: 319"
     }
   ],
   "scope": "ui"
