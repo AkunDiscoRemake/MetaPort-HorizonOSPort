@@ -33,3 +33,13 @@ class UiSummaryTests(unittest.TestCase):
             self.assertEqual([a['path'] for a in report['applications']],apps)
             self.assertTrue(all(a['decompiler_status']=='ANALYSIS_FAILED' for a in report['applications']))
             self.assertFalse(report['ui_ported'])
+
+    def test_oversized_generated_class_is_explicit_partial_coverage(self):
+        with tempfile.TemporaryDirectory() as root:
+            path=Path(root)/'Huge.java'
+            with path.open('wb') as f: f.truncate(4*1024*1024+1)
+            (Path(root)/'Small.java').write_text('native void onHand();')
+            report=summarize_sources(root)
+            self.assertFalse(report['source_coverage_complete'])
+            self.assertEqual(report['skipped_oversized_sources'][0]['path'],'Huge.java')
+            self.assertEqual(report['native_declarations_total'],1)

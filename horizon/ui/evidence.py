@@ -5,6 +5,10 @@ from pathlib import Path
 import re
 
 CATEGORIES = {
+    'cloud_identity': r'OAuth|access_token|refresh_token|AccountManager|IdentityManagement|DeviceAuth',
+    'cloud_store_entitlements': r'entitlement|purchase|billing|StoreService|PackageInstaller|OCMS',
+    'settings_capabilities': r'DeviceConfig|Settings\.(?:Secure|Global|System)|setComponentEnabledSetting|setSystemProperty',
+    'depth_runtime': r'DepthImage|DepthSensor|depthMap|depthTexture|environmentDepth|depthEstimat',
     'passthrough': r'passthrough(?!ShellCommand|HierarchyChangeListener)|seeThrough|environmentBlend',
     'composition': r'SurfaceControl|SurfaceTexture|SurfaceView|TextureView|EGL|Compositor|setLayer|swapchain',
     'panels_navigation': r'PanelManager|PanelService|ShellCommand|launchPanel|showPanel|navigation|backStack',
@@ -21,7 +25,8 @@ def summarize_ux(root):
     result = {'ui_ported': False, 'runtime_validated': False,
               'scope': 'Bounded lexical candidates, not resolved call graph or complete UI recovery',
               'categories': {k: {'matching_lines': 0, 'sites': [], 'truncated': False} for k in PATTERNS},
-              'resource_files': [], 'resource_files_total': 0}
+              'resource_files': [], 'resource_files_total': 0,
+              'skipped_oversized_files': [], 'source_coverage_complete': True}
     files = sorted(root.rglob('*'))
     if len(files) > 150000:
         raise ValueError('Generated file count limit')
@@ -32,7 +37,10 @@ def summarize_ux(root):
         if path.suffix not in ('.java', '.xml'):
             continue
         if path.stat().st_size > 4 * 1024 * 1024:
-            raise ValueError('Generated file size limit')
+            result['skipped_oversized_files'].append({'path':path.relative_to(root).as_posix(),
+                                                    'size_bytes':path.stat().st_size})
+            result['source_coverage_complete'] = False
+            continue
         raw = path.read_bytes()
         sha = hashlib.sha256(raw).hexdigest()
         relative = path.relative_to(root).as_posix()

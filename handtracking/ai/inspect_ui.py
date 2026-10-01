@@ -14,6 +14,9 @@ from horizon.ui.evidence import summarize_ux
 APKS = ['/priv-app/VrShell/VrShell.apk', '/priv-app/MetaSystemUI/MetaSystemUI.apk',
         '/priv-app/SystemUX/SystemUX.apk', '/priv-app/SettingsPanelApp/SettingsPanelApp.apk',
         '/priv-app/LibraryPanelApp/LibraryPanelApp.apk']
+CLOUD_APKS = ['/app/Store/Store.apk', '/priv-app/IdentityManagement/IdentityManagement.apk',
+              '/priv-app/DeviceAuthServer/DeviceAuthServer.apk', '/priv-app/OCMS/OCMS.apk',
+              '/app/SocialPlatform/SocialPlatform.apk']
 INPUT_CALL = re.compile(r'nativeKeyEvent|nativeJoypadAxis|nativeOnInputDevice|nativeRequestUpdateGamepadInputMode|IHandTracking|IInputDataInjection')
 CONTRACT = re.compile(r'\bnative\b|loadLibrary\(|ServiceManager\.|getService\(|hand.?track|controller|onKeyEvent|onGenericMotionEvent|onHand|MemoryBroker', re.I)
 
@@ -23,11 +26,16 @@ def summarize_sources(root):
     if len(files) > 100000: raise ValueError('Source count limit')
     result = {'generated_java_files': len(files), 'files_with_decompiler_errors': 0,
               'native_declarations_total': 0, 'contracts': [], 'input_call_sites': [],
-              'source_is_reconstructed_not_original': True, 'runtime_validated': False}
+              'source_is_reconstructed_not_original': True, 'runtime_validated': False,
+              'skipped_oversized_sources': [], 'source_coverage_complete': True}
     # Prefer the original UI namespaces, not unrelated dependencies' controller names.
     files.sort(key=lambda p: (0 if any(x in str(p) for x in ('/com/oculus/','/com/meta/')) else 1 if 'systemui' in str(p).lower() else 2, str(p)))
     for path in files:
-        if path.stat().st_size > 4*1024*1024: raise ValueError('Generated source size limit')
+        if path.stat().st_size > 4*1024*1024:
+            result['skipped_oversized_sources'].append({'path':str(path.relative_to(root)),
+                'size_bytes':path.stat().st_size, 'sha256':digest(path)})
+            result['source_coverage_complete'] = False
+            continue
         text = path.read_text(errors='replace')
         failed = bool(re.search(r'JADX ERROR|Method not decompiled:', text))
         result['files_with_decompiler_errors'] += int(failed)
@@ -47,7 +55,7 @@ def summarize_sources(root):
     return result
 
 
-def inspect(images, reconstruction, jadx, output):
+def inspect(images, reconstruction, jadx, output, scope="ui"):
     output=Path(output);output.mkdir(parents=True, exist_ok=True)
     partition='system_ext';image=Path(images)/(partition+'.img')
     expected=json.loads(Path(reconstruction).read_text())['partitions'][partition]['sha256']
@@ -55,7 +63,9 @@ def inspect(images, reconstruction, jadx, output):
     inventory=json.loads(Path(f'analysis/builds/{BUILD}/static-analysis.json').read_text())['partitions'][partition]['entries']
     entries={e['path']:e for e in inventory if e['kind']=='file'}
     report={'build':BUILD,'tool':'JADX 1.5.6','firmware_executed':False,'ui_ported':False,'applications':[]}
-    for path in APKS:
+    if scope not in ("ui", "cloud"): raise ValueError("Unknown analysis scope")
+    report["scope"] = scope
+    for path in (APKS if scope == "ui" else CLOUD_APKS):
         try:
             with tempfile.TemporaryDirectory(dir=output) as temp:
                 root=Path(temp);apk=root/'original.apk';dump_entry(image,entries[path],apk)
@@ -93,7 +103,7 @@ def inspect(images, reconstruction, jadx, output):
                     'error_type':type(error).__name__, 'error':str(error)[:2000],
                     'runtime_validated':False, 'source_is_reconstructed_not_original':True}
         report['applications'].append(item)
-        (output/'ui-decompilation.json').write_text(json.dumps(report,indent=2)+'\n')
+        (output/('ui-decompilation.json' if scope == 'ui' else 'ui-cloud-decompilation.json')).write_text(json.dumps(report,indent=2)+'\n')
 
     if any(a['decompiler_status']=='ANALYSIS_FAILED' for a in report['applications']):
         raise ValueError('One or more UI applications failed; see per-application evidence')
@@ -102,4 +112,5 @@ def inspect(images, reconstruction, jadx, output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('images','reconstruction','jadx','output'): p.add_argument('--'+name,required=True)
-    a=p.parse_args();inspect(a.images,a.reconstruction,Path(a.jadx).resolve(),a.output)
+    p.add_argument('--scope', choices=('ui','cloud'), default='ui')
+    a=p.parse_args();inspect(a.images,a.reconstruction,Path(a.jadx).resolve(),a.output,a.scope)

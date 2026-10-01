@@ -6,9 +6,9 @@ class OriginalInputEvidenceTests(unittest.TestCase):
     def test_original_joypad_signature_and_axes_match_captured_call_site(self):
         c=json.loads(Path('horizon/input/original-contract.json').read_text())
         r=json.loads(Path('analysis/builds/52168470052900520/ui-decompilation.json').read_text())
-        apk=r['applications'][0]
+        apk=next(a for a in r['applications'] if a['path']=='/priv-app/VrShell/VrShell.apk')
         self.assertEqual(c['vr_shell_sha256'],apk['sha256'])
-        self.assertEqual(c['libshell_sha256'],apk['native_libraries'][0]['sha256'])
+        self.assertEqual(c['libshell_sha256'],next(n for n in apk['native_libraries'] if n['apk_member']=='lib/arm64-v8a/libshell.so')['sha256'])
         evidence=c['joypad']['evidence']
         self.assertIn(evidence,apk['input_call_sites'])
         for arg in c['joypad']['arguments'][:6]:

@@ -38,3 +38,19 @@ class EvidenceTests(unittest.TestCase):
             r=summarize_ux(d)['categories']['passthrough']
             self.assertEqual(r['sites'][0]['path'], 'ZBehavior.java')
             self.assertEqual(r['matching_lines'], LIMIT+2)
+
+    def test_cloud_and_depth_are_candidates_not_working_services(self):
+        with tempfile.TemporaryDirectory() as root:
+            (Path(root)/'Client.java').write_text('OAuth();\nentitlement();\nSettings.Secure.getInt();\ndepthTexture();')
+            r=summarize_ux(root)
+            for k in ('cloud_identity','cloud_store_entitlements','settings_capabilities','depth_runtime'):
+                self.assertEqual(r['categories'][k]['matching_lines'],1)
+            self.assertFalse(r['runtime_validated'])
+    def test_oversized_resource_does_not_hide_other_files(self):
+        with tempfile.TemporaryDirectory() as root:
+            with (Path(root)/'huge.xml').open('wb') as f: f.truncate(4*1024*1024+1)
+            (Path(root)/'small.xml').write_text('<objectAnimator propertyName="alpha"/>')
+            r=summarize_ux(root)
+            self.assertFalse(r['source_coverage_complete'])
+            self.assertEqual(len(r['skipped_oversized_files']),1)
+            self.assertEqual(r['resource_files_total'],1)
