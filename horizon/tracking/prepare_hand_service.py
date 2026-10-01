@@ -40,9 +40,9 @@ def prepare(images,reconstruction,output):
     sections,_=command(['readelf','-SW',str(binary)])
     report=service_targets(binary.read_bytes(),sections)
     report['program_sha256']=SERVICE_SHA
-    # FMQ grantor mapper recovered by run 36794645662.
+    # Two remaining scheduler/profile wrappers recorded but not selected by run 36795978696.
     # TraceHandService appends bounded direct callers of scheduler entrypoints.
-    helpers=(0x4a5134,)
+    helpers=(0x4df424,0x4df598)
     (output/'service-functions.txt').write_text(''.join(f'{address:x}\n' for address in helpers))
     (output/'service-strings.json').write_text(json.dumps(report['selected'],indent=2)+'\n')
     (output/'hand-service-targets.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -35,16 +35,17 @@ public class TraceHandService extends GhidraScript {
         for(String line:Files.readAllLines(functions)) if(!line.isBlank())
             selected.add(Long.parseUnsignedLong(line.trim(),16));
         if(selected.size()>24) throw new IllegalArgumentException("Function budget");
+        // Prioritize the next measured frontier, not the same imported thunks.
+        // These wrappers/factory were recovered in run 36795978696. ELF VAs only.
+        for(long elf:new long[]{0x1b5ddcL,0x4df130L,0x4df3fcL,0x4df474L,0x4df570L,
+                               0x4df1acL,0x4df4e0L}) {
+            Function f=getFunctionAt(base.add(elf));
+            if(f!=null) roots.put(f.getEntryPoint(),f);
+        }
         var internal=currentProgram.getFunctionManager().getFunctions(true);
         while(internal.hasNext()) {monitor.checkCancelled();consider(internal.next());}
         var external=currentProgram.getFunctionManager().getExternalFunctions();
         while(external.hasNext()) {monitor.checkCancelled();consider(external.next());}
-        // Callers of the priority/profile applicators and hand-service constructor
-        // recovered in run 36794645662; addresses are ELF VAs, not callable ABI.
-        for(long elf:new long[]{0x4df1acL,0x4df4e0L,0x4a2ce8L}) {
-            Function f=getFunctionAt(base.add(elf));
-            if(f!=null) roots.put(f.getEntryPoint(),f);
-        }
         List<Map<String,Object>> evidence=new ArrayList<>();
         for(Function root:roots.values()) {
             monitor.checkCancelled();var refs=getReferencesTo(root.getEntryPoint());
@@ -58,13 +59,26 @@ public class TraceHandService extends GhidraScript {
                 Function caller=getFunctionContaining(ref.getFromAddress());
                 if(caller==null || caller.isExternal()) continue;
                 long address=caller.getEntryPoint().subtract(base);
-                if(added.size()<2 && selected.size()<24 && selected.add(address)) added.add(address);
+                if(!caller.isThunk() && added.size()<2 && selected.size()<24 && selected.add(address)) added.add(address);
                 Map<String,Object> call=new LinkedHashMap<>();
                 call.put("caller_name",caller.getName());call.put("caller_elf_address",address);
                 call.put("callsite_elf_address",ref.getFromAddress().subtract(base));
+                call.put("caller_is_thunk",caller.isThunk());
                 call.put("selected",selected.contains(address));callers.add(call);
             }
             row.put("callers",callers);row.put("references_truncated",refs.length>128);evidence.add(row);
+        }
+        // Selection can grow after a root is visited; report final membership.
+        for(var row:evidence) {
+            @SuppressWarnings("unchecked")
+            var calls=(List<Map<String,Object>>)row.get("callers");
+            int omitted=0;
+            for(var call:calls) {
+                boolean included=selected.contains((Long)call.get("caller_elf_address"));
+                call.put("selected",included);
+                if(!included && !Boolean.TRUE.equals(call.get("caller_is_thunk"))) omitted++;
+            }
+            row.put("unselected_non_thunk_callsite_count",omitted);
         }
         StringBuilder text=new StringBuilder();
         for(long address:selected) text.append(Long.toHexString(address)).append('\n');
