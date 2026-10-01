@@ -41,7 +41,7 @@ def run(library,output):
         raise ValueError('Unpinned original library')
     executable_ranges(blob)
     target=output/'libshell-executable-sections.asm.gz'
-    command=['aarch64-linux-gnu-objdump','--disassemble','--wide','--demangle',str(library)]
+    command=['aarch64-linux-gnu-objdump','--disassemble','--disassemble-zeroes','--wide','--demangle',str(library)]
     version=subprocess.check_output([command[0],'--version'],text=True).splitlines()[0]
     with tempfile.TemporaryFile() as errors:
         process=subprocess.Popen(command,stdout=subprocess.PIPE,stderr=errors)
@@ -58,7 +58,7 @@ def run(library,output):
         for block in iter(lambda:data.read(1024*1024),b''):digest.update(block)
     report={'library_sha256':policy['library_sha256'],'tool':version,
             'command':command,'listing_sha256':digest.hexdigest(),'gzip_bytes':target.stat().st_size,
-            **counts,'firmware_executed':False,'runtime_validated':False,'all_horizon_disassembled':False,
+            **counts,'zero_runs_requested':True,'firmware_executed':False,'runtime_validated':False,'all_horizon_disassembled':False,
             'scope':'All sections selected by objdump --disassemble in this single original ELF; data directives and unreachable code may appear',
             'license_note':'Original Meta code disassembly is not relicensed under the project GPL',
             'stderr_prefix':diagnostic}
