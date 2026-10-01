@@ -5,7 +5,7 @@ from pathlib import Path
 import re
 
 CATEGORIES = {
-    'passthrough': r'passthrough|passThrough|seeThrough|environmentBlend',
+    'passthrough': r'passthrough(?!ShellCommand|HierarchyChangeListener)|seeThrough|environmentBlend',
     'composition': r'SurfaceControl|SurfaceTexture|SurfaceView|TextureView|EGL|Compositor|setLayer|swapchain',
     'panels_navigation': r'PanelManager|PanelService|ShellCommand|launchPanel|showPanel|navigation|backStack',
     'ux_animation': r'propertyName|interpolator|<set\b|<alpha\b|<translate\b|ObjectAnimator|ValueAnimator|AnimatorSet|TransitionManager|SpringAnimation|Choreographer',
@@ -25,7 +25,7 @@ def summarize_ux(root):
     files = sorted(root.rglob('*'))
     if len(files) > 150000:
         raise ValueError('Generated file count limit')
-    files.sort(key=lambda p: (0 if '/com/oculus/' in str(p) or '/com/meta/' in str(p) else 1, str(p)))
+    files.sort(key=lambda p: (p.name in ('R.java', 'BuildConfig.java'), 0 if '/com/oculus/' in str(p) or '/com/meta/' in str(p) else 1, str(p)))
     for path in files:
         if not path.is_file() or path.is_symlink():
             continue

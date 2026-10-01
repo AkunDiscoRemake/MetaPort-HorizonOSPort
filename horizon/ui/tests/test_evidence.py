@@ -24,3 +24,17 @@ class EvidenceTests(unittest.TestCase):
             self.assertEqual(r['matching_lines'], LIMIT+3)
             self.assertEqual(len(r['sites']), LIMIT)
             self.assertTrue(r['truncated'])
+
+    def test_command_forwarding_is_not_camera_passthrough(self):
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d)/'Shell.java').write_text('passThroughShellCommand();\nPassThroughHierarchyChangeListener listener;\nsetPassthroughEnabled(true);')
+            r=summarize_ux(d)['categories']['passthrough']
+            self.assertEqual(r['matching_lines'], 1)
+            self.assertEqual(r['sites'][0]['line'], 3)
+    def test_resource_ids_do_not_displace_behavior_sites(self):
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d)/'R.java').write_text('int passthrough_id;\n'*(LIMIT+1))
+            (Path(d)/'ZBehavior.java').write_text('setPassthroughEnabled(true);')
+            r=summarize_ux(d)['categories']['passthrough']
+            self.assertEqual(r['sites'][0]['path'], 'ZBehavior.java')
+            self.assertEqual(r['matching_lines'], LIMIT+2)
