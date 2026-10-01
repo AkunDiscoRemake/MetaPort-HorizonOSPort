@@ -89,3 +89,14 @@ de crash do código do renderer. A nova tentativa força KVM, fixa RAM/heap/disc
 desativa Vulkan (a suíte usa GLES), amplia o limite de boot para 900s e captura
 logcat desde o boot. Essas medidas são diagnóstico/mitigação, não confirmação da
 causa do timeout.
+
+
+### Confirmed emulator loader failure (run 36817044003)
+
+The captured host diagnostics for both API 29 and 35 report that the emulator's
+`qemu-system-x86_64` cannot load `libpulse.so.0`. The failure occurs even for the
+`emulator -version` probe, before instrumentation. `-noaudio` does not eliminate
+this ELF dependency. The runtime workflow now explicitly installs Ubuntu's
+`libpulse0`; this addresses the observed missing dependency, but a new successful
+boot and all five instrumented cases are still required before declaring the
+runtime gate passed. Earlier RAM/KVM/timeout adjustments did not resolve it.
