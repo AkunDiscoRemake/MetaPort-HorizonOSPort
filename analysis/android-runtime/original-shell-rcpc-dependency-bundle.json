@@ -9,7 +9,7 @@
         {
           "source_member": "classes.dex",
           "apk_member": "classes2.dex",
-          "sha256": "d9906047f5e3d4679d2ec8dd69878cd4a724f2e92fb927674b4230aa2e103606",
+          "sha256": "d48305ee6d1e1a0219ba8bd3db964cbdcb25931b52d58d9ac4c6f11d4b73599e",
           "size_bytes": 1887592,
           "class_definitions": 1940,
           "source_dex_sha256": "081de5d2d6401c4d9e45c88260cb451cbb3e0b376effff08b3f31488b54582c6",
@@ -129,7 +129,7 @@
             "Landroid/hardware/common/bootclasspath/fmq/SynchronizedReadWrite;",
             "Landroid/hardware/common/bootclasspath/fmq/UnsynchronizedWrite;"
           ],
-          "derived_payload_sha256": "33c19d28f3e9689ad94edcf23be2b6cb870a9d28ae2b40ca488f470cf3c93b5d",
+          "derived_payload_sha256": "416dfdee43deb81dff67a86f02be3a9fd409c7115e4323587df29697ef00bf9a",
           "scope": "Class selection and canonical disassembly equality, not ART or ABI validation"
         }
       ],
@@ -4123,7 +4123,7 @@
     "lib/arm64-v8a/android.hidl.token@1.0.so": "809b0142715d6c318a263e50729a6db9fc423e4737a16921f3503bc5bd325346",
     "lib/arm64-v8a/libdl_android.so": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
     "lib/arm64-v8a/ld-android.so": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac",
-    "classes2.dex": "d9906047f5e3d4679d2ec8dd69878cd4a724f2e92fb927674b4230aa2e103606"
+    "classes2.dex": "d48305ee6d1e1a0219ba8bd3db964cbdcb25931b52d58d9ac4c6f11d4b73599e"
   },
   "nodes": [
     {
@@ -8362,6 +8362,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
-  "signed_apk_sha256": "19a677c296ba1458fe02c38b3dfe7b56930ecccec8e0e5d122a28bcaa65674a5",
+  "signed_apk_sha256": "b02470e5edc77b005469054107296356ab32d1aa2e32b396152eef7c91bbd85e",
   "test_certificate_not_meta_identity": true
 }
