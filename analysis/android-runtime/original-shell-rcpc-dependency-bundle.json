@@ -25,13 +25,14 @@
       "adapter": {
         "source_files": {
           "port/android/adapters/src/main/java/org/metaport/port/services/ServiceCallback.java": "7d4ea9bb458c1658d3e78f42d94ff5813206ef792d33ca62700be0c59791137c",
-          "port/android/adapters/src/main/java/org/metaport/port/services/ServiceDirectory.java": "833d264a03083a4febd22b534c9db2bce3a698c61792710a4007c8acfb0e7d63"
+          "port/android/adapters/src/main/java/org/metaport/port/services/ServiceDirectory.java": "3f1ff8eac5fb2066774cef5939da1bfdf3054afeeb44be8a29795750aa170ebe"
         },
-        "sha256": "8939d28b4dda3d0208bd26ad7819108ce15e662669a8a1e0af884dc09d691709",
+        "sha256": "1a32fe989ab5f82f1280f9803d67794b17745a76770690c129f8d54be9296f4e",
         "class_definitions": [
           "Lorg/metaport/port/services/ServiceCallback$Stub;",
           "Lorg/metaport/port/services/ServiceCallback;",
           "Lorg/metaport/port/services/ServiceDirectory$$ExternalSyntheticLambda0;",
+          "Lorg/metaport/port/services/ServiceDirectory$$ExternalSyntheticLambda1;",
           "Lorg/metaport/port/services/ServiceDirectory;"
         ],
         "scope": "Project-original local Binder transport, no service providers or firmware substitutes",
@@ -4255,7 +4256,7 @@
     "lib/arm64-v8a/ld-android.so": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac",
     "classes2.dex": "d48305ee6d1e1a0219ba8bd3db964cbdcb25931b52d58d9ac4c6f11d4b73599e",
     "classes3.dex": "157c2ac24552e0b9a4af03744322cf83e2aa6c604d16b6bfac1106c29682da01",
-    "classes4.dex": "8939d28b4dda3d0208bd26ad7819108ce15e662669a8a1e0af884dc09d691709"
+    "classes4.dex": "1a32fe989ab5f82f1280f9803d67794b17745a76770690c129f8d54be9296f4e"
   },
   "nodes": [
     {
@@ -8494,6 +8495,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
-  "signed_apk_sha256": "61a03af38bca12c395b2c695346342404729bed37f918faf91d9a1c8f937c802",
+  "signed_apk_sha256": "d514ed1725454c3971c446baad98f5d8e02eb9a6431922924280c519fccb4277",
   "test_certificate_not_meta_identity": true
 }
