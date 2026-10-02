@@ -135,3 +135,21 @@ SIGILL. The next opt-in experiment attempts to add original framework DEX from
 the pinned hzos-framework JAR, with collision/namespace/checksum checks and no
 rewriting of existing APK members. It is not a fabricated Vector4f implementation
 or a working service bridge. Still no original UI, functional beta or phone test.
+
+### Original framework dependency: current frontier
+
+Vector4f is defined by the pinned original `hzos-framework.jar` (2041 classes;
+SHA-256 b1c5111bb301daf971b658414daf8e43a0b4cdac9ecc2e94a554d0c861607e42).
+Runs 36942634549 / 36943056110 / 36943586300 did not reach application execution:
+they exposed internal DEX checksum differences and mixed Android namespace
+classes in that JAR. The latest experiment selects non-boot original definitions
+with dexlib2 and requires equal canonical baksmali output before appending them.
+This reserializes DEX indices/layout; derived framework bytes are not identical.
+Existing APK DEX/resources are still preserved, and no services are registered.
+
+Run **36944360086**, source **6b5f0fb**, was last observed after successful host-tool
+setup/compilation and during original input preparation. Its final outcome is
+**unknown**: subsequent GitHub queries failed with HTTP 401 and authenticated Git
+access stopped working. The GitHub connection in Arena needs reconnection before
+remote outcomes or further pushes can be confirmed. No functional beta, original
+UI rendering, physical-phone validation or NPU inference is established.
