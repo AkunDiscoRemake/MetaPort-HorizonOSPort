@@ -145,7 +145,9 @@ Four new instrumentation cases exercise all eleven transactions, PID/UID
 capture, field boundaries, UTF-16 data, failure-before-side-effect behavior,
 one-way callbacks, and absence of accidental provider publication. Their backend
 is explicitly a test fixture, not production focus logic. The runtime gate now
-requires sixteen owned cases per API; the new cases require a fresh CI run.
+requires sixteen owned cases per API. Run `37021605827` passed all sixteen
+on each of API 29 and API 35. Project checks (including native sanitizers) passed
+in `37021605969`; these results still do not execute the original SDK proxy.
 
 **Remaining bootstrap work:** actual focus policy and listener ownership/death
 handling; integration with the real window/session backends; original-proxy

@@ -208,3 +208,24 @@ TSan passaram; o novo componente ainda **não está ligado ao VrShell nem é um
 provedor Binder**. Política completa de foco, backends de atividades/janelas e
 permissões continuam pendentes. O último APK testado ainda termina em ANR;
 **não existe beta funcional ou inferência de mãos/NPU validada nesta etapa**.
+
+## Comunicação Binder de foco — 2026-10-02
+
+Implementado o endpoint das onze operações de `IVrFocusService`, com formatos
+`ClientStatus`/`ImmersiveApp` e callbacks one-way cruzados com os contratos Java e
+nativos recuperados. Captura PID/UID real do Binder, exige backend completo e
+verificação de acesso; entradas inválidas são rejeitadas antes de operar o estado.
+Não define classes substitutas em `oculus.internal`, não publica um serviço vazio
+e não declara foco/poses/permissões que o sistema não forneceu.
+
+- Build Android `37021606190`: passou.
+- Verificações do projeto e sanitizers nativos `37021605969`: passaram.
+- Instrumentação `37021605827`: **16 casos próprios passaram em cada API 29/35**,
+  incluindo quatro casos de protocolo; backend de teste explicitamente limitado
+  aos fixtures, não apresentado como política de foco.
+
+Ainda falta implementar a política e a posse/morte dos listeners, conectar os
+backends reais, verificar interoperabilidade com o proxy original e publicar o
+serviço antes do construtor de ShellApplication. O novo endpoint não é incluído
+no APK original nessa etapa. O bloqueio de inicialização continua sem solução e
+**não há APK original funcional**. Detalhes: `horizon/ui/FOCUS-NATIVE.md`.
