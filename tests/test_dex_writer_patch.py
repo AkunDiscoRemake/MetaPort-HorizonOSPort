@@ -17,3 +17,13 @@ class DexWriterPatchTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'pinned'):patch_writer(raw)
         for raw in (b'no anchor',(WRITER_ANCHOR*2).encode()):
             with self.assertRaisesRegex(ValueError,'anchor'):patch_writer(raw,hashlib.sha256(raw).hexdigest())
+
+    def test_explicit_default_initializer_is_not_trimmed(self):
+        from tools.prepare_dex_tools import patch_initializers, INITIALIZER_ANCHOR
+        raw=('before\n'+INITIALIZER_ANCHOR+'\nafter').encode()
+        self.assertEqual(patch_initializers(raw,hashlib.sha256(raw).hexdigest()),
+                         b'before\nreturn encodedValue != null;\nafter')
+        with self.assertRaisesRegex(ValueError,'pinned'):patch_initializers(raw)
+        for raw in (b'no anchor',(INITIALIZER_ANCHOR*2).encode()):
+            with self.assertRaisesRegex(ValueError,'anchor'):
+                patch_initializers(raw,hashlib.sha256(raw).hexdigest())

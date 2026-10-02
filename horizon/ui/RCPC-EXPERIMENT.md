@@ -289,3 +289,14 @@ Boot namespaces remain excluded and selected definitions require canonical
 preservation. Runtime also logs denied non-SDK calls including Parcel string8
 and internal Preconditions/AnnotationValidations. Adding original classes does
 not grant those APIs, register platform services, or prove UI execution.
+
+Run **36954515925** correctly stopped before installation: selecting the platform
+JAR yielded 880 non-boot definitions but changed one canonical declaration,
+`BugReporter.DEBUG:Z = false` becoming `DEBUG:Z`. This is dexlib2's deliberate
+trimming of trailing default-valued static initializers, not an observed runtime
+failure of BugReporter. We retain the strict comparison instead of accepting
+that textual difference: a second SHA256-pinned host utility patch preserves
+explicit initializers, including false, integer zero and encoded null, while
+leaving absent initializers absent. An independent original/patched synthetic
+regression checks both modes. This is a serialization preservation change, not a
+change to the firmware's DEBUG setting or a bypass of platform API restrictions.

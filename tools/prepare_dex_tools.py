@@ -37,6 +37,19 @@ def patch_writer(data,expected_sha=WRITER_SHA256):
         '        offsetWriter.align();\n'+WRITER_ANCHOR).encode('utf-8')
 
 
+INITIALIZER_URL='https://raw.githubusercontent.com/JesusFreke/smali/v2.5.2/dexlib2/src/main/java/org/jf/dexlib2/writer/util/StaticInitializerUtil.java'
+INITIALIZER_SHA256='7ff3aae0c4f4d9191ef2742efd19ad9c2977ff9a3198d9793d2227a69e6b3361'
+INITIALIZER_ANCHOR='return encodedValue != null && !EncodedValueUtils.isDefaultValue(encodedValue);'
+
+
+def patch_initializers(data,expected_sha=INITIALIZER_SHA256):
+    if len(data)>64*1024 or hashlib.sha256(data).hexdigest()!=expected_sha:
+        raise ValueError('Wrong pinned StaticInitializerUtil source')
+    text=data.decode('utf-8')
+    if text.count(INITIALIZER_ANCHOR)!=1:raise ValueError('Ambiguous initializer patch anchor')
+    return text.replace(INITIALIZER_ANCHOR,'return encodedValue != null;').encode('utf-8')
+
+
 def prepare():
     ROOT.mkdir(parents=True,exist_ok=True);records=[]
     for artifact,expected in ARTIFACTS:
@@ -54,9 +67,14 @@ def prepare():
     patched=patch_writer(source)
     writer=ROOT/'patched-source/org/jf/dexlib2/writer/DexWriter.java'
     writer.parent.mkdir(parents=True,exist_ok=True);writer.write_bytes(patched)
+    with urllib.request.urlopen(INITIALIZER_URL,timeout=45) as response:
+        initializer_source=response.read(64*1024+1)
+    initializer_patch=patch_initializers(initializer_source)
+    initializer=ROOT/'patched-source/org/jf/dexlib2/writer/util/StaticInitializerUtil.java'
+    initializer.parent.mkdir(parents=True,exist_ok=True);initializer.write_bytes(initializer_patch)
     (ROOT/'classes').mkdir(exist_ok=True)
     compiled=subprocess.run(['javac','--release','11','-cp',str(ROOT/'*'),'-d',str(ROOT/'classes'),
-                    'horizon/ui/java/SelectFrameworkClasses.java','horizon/ui/java/VerifyDexWriter.java',str(writer)],capture_output=True,text=True,timeout=60)
+                    'horizon/ui/java/SelectFrameworkClasses.java','horizon/ui/java/VerifyDexWriter.java','horizon/ui/java/VerifyStaticInitializers.java',str(writer),str(initializer)],capture_output=True,text=True,timeout=60)
     if compiled.returncode:raise ValueError('Class selector compilation failed: '+compiled.stderr[-4000:])
     regression=[]
     for first,second,mode in ((ROOT/'*',ROOT/'classes','mismatch'),(ROOT/'classes',ROOT/'*','match')):
@@ -64,10 +82,18 @@ def prepare():
                                 'VerifyDexWriter',mode],capture_output=True,text=True,timeout=30)
         if checked.returncode:raise ValueError('DexWriter regression failed: '+checked.stderr[-4000:])
         regression.append(checked.stdout.strip())
+        checked=subprocess.run(['java','-Xmx256m','-cp',str(first)+':'+str(second),
+                                'VerifyStaticInitializers',mode],capture_output=True,text=True,timeout=30)
+        if checked.returncode:raise ValueError('Initializer regression failed: '+checked.stderr[-4000:])
+        regression.append(checked.stdout.strip())
     records.append({'url':WRITER_URL,'source_sha256':WRITER_SHA256,
                     'patched_source_sha256':hashlib.sha256(patched).hexdigest(),
                     'patch':'Order hidden API metadata by emitted class_def index and align its section to four bytes',
                     'regression_results':regression,'upstream_license':'BSD-3-Clause, retained in downloaded source'})
+    records.append({'url':INITIALIZER_URL,'source_sha256':INITIALIZER_SHA256,
+                    'patched_source_sha256':hashlib.sha256(initializer_patch).hexdigest(),
+                    'patch':'Preserve explicitly encoded trailing default static values',
+                    'upstream_license':'BSD-3-Clause, retained in downloaded source'})
     (ROOT/'provenance.json').write_text(json.dumps(records,indent=2)+'\n')
 
 if __name__=='__main__':
