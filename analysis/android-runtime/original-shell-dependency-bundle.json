@@ -4291,6 +4291,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
-  "signed_apk_sha256": "007ffbb037766da317e5b04d08d45db343f69e72dc41554bf7dd0b7c51fd2fb6",
+  "signed_apk_sha256": "6b8d3f237a883c5741220103b9ea25da4f1ac3da3fd48260ce2e7ae27353309b",
   "test_certificate_not_meta_identity": true
 }
