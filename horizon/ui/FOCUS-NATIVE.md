@@ -67,3 +67,27 @@ UID, duplicates, ignored states (including OpenXR-looking values), ordering,
 stopping absent clients, and concurrent updates/snapshots. ASan/UBSan and TSan
 runs pass locally. These are tests of the new reducer, **not** an original-binary
 oracle or a phone/Horizon UI validation.
+
+## Public Android window input backend
+
+`AppWindowFocusBackend` observes actual `Application.ActivityLifecycleCallbacks`,
+`ViewTreeObserver.OnWindowFocusChangeListener` and public `DisplayManager` events.
+It reports only started activities seen after registration, their actual focused
+windows, valid display IDs, component names and the process's real UID/PID.
+It never invents an outside application's identity, treats activity resume as XR
+visibility, or turns window focus into a tracking/access grant.
+
+Start it before the first activity, once an attached Application is available.
+Android's public APIs cannot enumerate activities created before registration;
+empty observations are not proof of no global foreground application. Multiple
+own windows remain separate observations rather than choosing a fabricated
+system-wide top activity. Snapshots contain no Activity/View references and their
+lists are immutable. Stop/destroy removes both old and transferred view observers;
+close unregisters lifecycle/display callbacks and emits `observing=false`.
+
+This input backend is not yet wired into the original ConnectionManager or a
+VrFocusService provider. In particular, the original shell's Application
+constructor blocks *before* activity creation: adding this backend alone does not
+resolve that bootstrap dependency. The instrumentation-only FocusTestActivity
+exists solely to exercise real Android focus/stop/resume; it is never packaged
+as the Horizon UI or a release/demo launcher.

@@ -21,9 +21,11 @@ SERVICE_CASES=frozenset((
     'existingProviderNotifiesLateSubscriberAndCannotBeReplaced',
     'unsubscribedRecipientDoesNotReceiveQueuedCallback',
     'blockedMainThreadDoesNotPreventServiceArrival'))
+WINDOW_CASES=frozenset(('realWindowFocusTracksStopAndResume','closingStopsObservationAndRejectsRestart'))
 EXPECTED_TESTS=frozenset(
     [('org.metaport.port.AdapterRuntimeTest',n) for n in EXPECTED_CASES]+
-    [('org.metaport.port.services.ServiceDirectoryTest',n) for n in SERVICE_CASES])
+    [('org.metaport.port.services.ServiceDirectoryTest',n) for n in SERVICE_CASES]+
+    [('org.metaport.port.focus.AppWindowFocusBackendTest',n) for n in WINDOW_CASES])
 
 
 def summarize(results,api):
@@ -45,7 +47,7 @@ def summarize(results,api):
             all(c['name'] and
                 not c['failed'] and not c['skipped'] for c in cases))
     return {'api':api,'abi':'x86_64','gpu_configuration':'swiftshader_indirect',
-            'tests':cases,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES)-names),
+            'tests':cases,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES|WINDOW_CASES)-names),
             'passed':passed,'original_firmware_executed':False,
             'physical_device_tested':False,'arcore_camera_or_depth_tested':False,
             'quest_hand_inference_tested':False,

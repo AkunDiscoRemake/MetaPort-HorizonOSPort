@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Instrumentation-only activity. Never included in the production adapter or original shell. -->
+    <application>
+        <activity android:name="org.metaport.port.focus.FocusTestActivity"
+            android:exported="false" android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+    </application>
+</manifest>
