@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Reserialize selected original SDK classes; compare canonical smali before use."""
 import hashlib
+import difflib
+import itertools
 import json
 from pathlib import Path
 import subprocess
@@ -19,6 +21,21 @@ def smali_inventory(root):
         rows[str(path.relative_to(root))]=hashlib.sha256(path.read_bytes()).hexdigest()
     if not rows:raise ValueError('Empty canonical disassembly')
     return rows
+
+
+def compare_smali(before_root,after_root,expected_count):
+    before=smali_inventory(before_root);after=smali_inventory(after_root)
+    if before==after and len(before)==expected_count:return before
+    changed=sorted(n for n in before.keys() & after.keys() if before[n]!=after[n])
+    detail={'expected':expected_count,'before_count':len(before),'after_count':len(after),
+            'missing':sorted(before.keys()-after.keys())[:4],
+            'added':sorted(after.keys()-before.keys())[:4],'changed_count':len(changed)}
+    if changed:
+        name=changed[0];detail['first_changed']=name
+        a=(Path(before_root)/name).read_text().splitlines()
+        b=(Path(after_root)/name).read_text().splitlines()
+        detail['diff']='\n'.join(itertools.islice(difflib.unified_diff(a,b,n=2),40))[:1200]
+    raise ValueError('Original canonical smali changed or incomplete: '+json.dumps(detail))
 
 
 def select(data):
@@ -42,8 +59,7 @@ def select(data):
         if not 112<=output.stat().st_size<=32*1024*1024:raise ValueError('Selected DEX budget')
         result=output.read_bytes()
         if definitions(result)!=set(names):raise ValueError('Wrong derived class definitions')
-        before=smali_inventory(root/'before');after=smali_inventory(root/'after')
-        if before!=after or len(before)!=len(names):raise ValueError('Original canonical smali changed or incomplete')
+        before=compare_smali(root/'before',root/'after',len(names))
         return result,{'tool':'dexlib2/baksmali 2.5.2','canonical_smali_equal':True,
                        'canonical_inventory_sha256':hashlib.sha256(json.dumps(before,sort_keys=True).encode()).hexdigest(),
                        'retained_definitions':len(names),'excluded_definitions':sorted(original-set(names)),

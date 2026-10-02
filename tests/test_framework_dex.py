@@ -78,3 +78,15 @@ class FrameworkDexTests(unittest.TestCase):
             self.assertNotEqual(before,smali_inventory(root))
             path.unlink()
             with self.assertRaises(ValueError):smali_inventory(root)
+
+    def test_comparison_reports_change_without_accepting_it(self):
+        from horizon.ui.select_framework_classes import compare_smali
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);a=root/'before';b=root/'after';a.mkdir();b.mkdir()
+            (a/'A.smali').write_text('.method original\nreturn-void\n')
+            (b/'A.smali').write_text('.method changed\nreturn-void\n')
+            with self.assertRaisesRegex(ValueError,'first_changed') as error:compare_smali(a,b,1)
+            self.assertIn('original',str(error.exception));self.assertIn('changed',str(error.exception))
+            (b/'A.smali').write_bytes((a/'A.smali').read_bytes())
+            self.assertEqual(len(compare_smali(a,b,1)),1)
+            with self.assertRaisesRegex(ValueError,'expected'):compare_smali(a,b,2)
