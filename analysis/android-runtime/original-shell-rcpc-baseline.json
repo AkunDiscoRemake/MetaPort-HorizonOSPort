@@ -38,7 +38,7 @@
     ]
   },
   "framework_dex_inspection": {
-    "packaging_error": "Original canonical smali changed or incomplete",
+    "packaging_error": "Original canonical smali changed or incomplete: {\"expected\": 1940, \"before_count\": 1940, \"after_count\": 1940, \"missing\": [], \"added\": [], \"changed_count\": 1417, \"first_changed\": \"com/google/protobuf/bootclasspath/AbstractMessageLite$Builder.smali\", \"diff\": \"--- \\n\\n+++ \\n\\n@@ -457,5 +457,5 @@\\n\\n .end method\\n \\n-.method public bridge synthetic whitelist test-api clone()Ljava/lang/Object;\\n+.method public bridge synthetic blacklist clone()Ljava/lang/Object;\\n     .registers 2\\n     .annotation system Ldalvik/annotation/Throws;\"}",
     "jars": [
       {
         "partition": "system_ext",
@@ -176,8 +176,8 @@
     "framework_services_ported": false,
     "firmware_executed": false
   },
-  "source_commit": "6b5f0fb0ca05b7c5c4eb125a5184adb076c77790",
-  "run_id": "36944360086",
+  "source_commit": "5bc49098b4239304545d9a40df9ad0dcbf5c594b",
+  "run_id": "36951491015",
   "probe_step": "skipped",
   "ci_diagnostics": []
 }
