@@ -10,6 +10,7 @@ class DexWriterPatchTests(unittest.TestCase):
         self.assertTrue(result.startswith('before\n'));self.assertTrue(result.endswith(WRITER_ANCHOR+'\nafter\n'))
         self.assertEqual(result.count('classEntries.sort'),1)
         self.assertIn('entry -> entry.getValue()',result)
+        self.assertIn('offsetWriter.align();\n'+WRITER_ANCHOR,result)
 
     def test_source_identity_and_unique_anchor_are_required(self):
         raw=WRITER_ANCHOR.encode()

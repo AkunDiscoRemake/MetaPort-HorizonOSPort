@@ -33,7 +33,8 @@ def patch_writer(data,expected_sha=WRITER_SHA256):
     if text.count(WRITER_ANCHOR)!=1:raise ValueError('Ambiguous DexWriter patch anchor')
     return text.replace(WRITER_ANCHOR,
         '        // MetaPort: preserve class_def order for hidden API metadata, not lexical order.\n'
-        '        classEntries.sort(Comparator.comparingInt(entry -> entry.getValue()));\n'+WRITER_ANCHOR).encode('utf-8')
+        '        classEntries.sort(Comparator.comparingInt(entry -> entry.getValue()));\n'
+        '        offsetWriter.align();\n'+WRITER_ANCHOR).encode('utf-8')
 
 
 def prepare():
@@ -65,7 +66,7 @@ def prepare():
         regression.append(checked.stdout.strip())
     records.append({'url':WRITER_URL,'source_sha256':WRITER_SHA256,
                     'patched_source_sha256':hashlib.sha256(patched).hexdigest(),
-                    'patch':'Order hidden API metadata by emitted class_def index',
+                    'patch':'Order hidden API metadata by emitted class_def index and align its section to four bytes',
                     'regression_results':regression,'upstream_license':'BSD-3-Clause, retained in downloaded source'})
     (ROOT/'provenance.json').write_text(json.dumps(records,indent=2)+'\n')
 

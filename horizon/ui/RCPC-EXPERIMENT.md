@@ -264,3 +264,14 @@ appended DEX. Thus packaging presence and canonical equality did not establish
 ART loading. The next probe captures filtered loader/installer logs immediately
 after install and start, without excluding non-app UIDs. It does not ignore
 verification failures or alter the Android boot class path.
+
+Run **36952973469** captured the actual ART rejection during dexopt:
+`Offset(1861525) should be aligned by 4 for maplist item of type 61440`
+(`0xf000`, hidden-API metadata). Android installation returned Success, but that
+was not successful DEX loading. The serializer now aligns the section before
+recording its offset. This adds only necessary layout padding and preserves
+original flags; it does not strip hidden-API data or disable host verification.
+The isolated regression varies one to four transient instance fields, testing
+metadata association and alignment across section-size residues. The original
+writer must reproduce a mismatch and an alignment failure; the patched writer
+must preserve exact field/method flags and four-byte alignment in every case.
