@@ -192,3 +192,19 @@ indefinidamente o provedor real de `vrfocus` ao registrar o listener de atividad
 O processo é encerrado pelo Android. A recuperação do servidor original foi
 ampliada para permitir adaptar sua lógica, sem publicar um binder vazio, fingir
 foco ou conceder permissões fictícias. **APK funcional ainda não obtido.**
+
+### Recuperação nativa e primeira lógica executável do serviço de foco
+
+Run **37007778951** decompilou as 455 funções identificadas no servidor nativo e
+110 na interface Binder, com proveniência e limites explícitos. Não significa
+que o serviço foi recompilado ou que toda a lógica inferida esteja correta.
+A cadeia nativa e as cinco dependências de sistema estão em
+`horizon/ui/FOCUS-NATIVE.md`.
+
+A lógica de estado de sessão começou a ser transposta para C++ testável,
+preservando a verificação de PID, UID observado, estados internos 0/2,
+deduplicação e os efeitos exigidos por eventos repetidos. Os testes ASan/UBSan e
+TSan passaram; o novo componente ainda **não está ligado ao VrShell nem é um
+provedor Binder**. Política completa de foco, backends de atividades/janelas e
+permissões continuam pendentes. O último APK testado ainda termina em ANR;
+**não existe beta funcional ou inferência de mãos/NPU validada nesta etapa**.
