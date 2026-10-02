@@ -15,6 +15,17 @@ EXPECTED_CASES=frozenset((
     'inputServiceLifecycleRunsOnMainThread'))
 
 
+SERVICE_CASES=frozenset((
+    'absentServiceDoesNotNotifyOrPretendReady',
+    'actualBinderReachesSubscriberExactlyOnce',
+    'existingProviderNotifiesLateSubscriberAndCannotBeReplaced',
+    'unsubscribedRecipientDoesNotReceiveQueuedCallback',
+    'blockedMainThreadDoesNotPreventServiceArrival'))
+EXPECTED_TESTS=frozenset(
+    [('org.metaport.port.AdapterRuntimeTest',n) for n in EXPECTED_CASES]+
+    [('org.metaport.port.services.ServiceDirectoryTest',n) for n in SERVICE_CASES])
+
+
 def summarize(results,api):
     files=sorted(Path(results).rglob('TEST-*.xml'))
     if not 0<len(files)<=32:raise ValueError('Missing/excessive instrumentation XML reports')
@@ -30,11 +41,11 @@ def summarize(results,api):
             raise ValueError('JUnit suite failure')
     unique={(c['class'],c['name']) for c in cases}
     names={c['name'] for c in cases}
-    passed=(names==EXPECTED_CASES and len(unique)==len(cases) and
-            all(c['class']=='org.metaport.port.AdapterRuntimeTest' and c['name'] and
+    passed=(unique==EXPECTED_TESTS and len(unique)==len(cases) and
+            all(c['name'] and
                 not c['failed'] and not c['skipped'] for c in cases))
     return {'api':api,'abi':'x86_64','gpu_configuration':'swiftshader_indirect',
-            'tests':cases,'missing_cases':sorted(EXPECTED_CASES-names),
+            'tests':cases,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES)-names),
             'passed':passed,'original_firmware_executed':False,
             'physical_device_tested':False,'arcore_camera_or_depth_tested':False,
             'quest_hand_inference_tested':False,

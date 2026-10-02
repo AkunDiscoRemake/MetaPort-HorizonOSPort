@@ -114,12 +114,18 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
             report['application_log']=call(['logcat','-b','main','-b','system','-d',
                                             '--uid='+str(uid),'-t','400','-v','threadtime'])
         report['activity_state']=call(['shell','dumpsys','activity','top'])
+        report['application_anr_recorded']=bool(re.search(
+            r'\bANR in '+re.escape(PACKAGE)+r'(?:\s|$)',report['loader_log_after_start']['text']))
+        if report['application_anr_recorded']:
+            report['anr_details']=call(['shell','dumpsys','dropbox','--print','data_app_anr'])
+
         report['observation_seconds']=observe_seconds
         crash=report['crash_buffer']
         report['application_crash_recorded']=crash['exit_code']==0 and (
             '>>> '+PACKAGE+' <<<' in crash['text'] or
             'Process: '+PACKAGE+', PID:' in crash['text'])
         report['result']=('APPLICATION_CRASH_RECORDED' if report['application_crash_recorded']
+                          else 'APPLICATION_ANR_RECORDED' if report['application_anr_recorded']
                           else 'START_ATTEMPT_RECORDED_NOT_VALIDATED')
     finally:
         call(['shell','am','force-stop',PACKAGE])

@@ -2,11 +2,11 @@
 import tempfile
 from pathlib import Path
 import unittest
-from tools.summarize_android_runtime import summarize, EXPECTED_CASES
+from tools.summarize_android_runtime import summarize, EXPECTED_CASES, EXPECTED_TESTS, SERVICE_CASES
 
 class RuntimeReportTests(unittest.TestCase):
     def fixture(self,root,extra=''):
-        cases=''.join(f'<testcase classname="org.metaport.port.AdapterRuntimeTest" name="{name}">{extra}</testcase>' for name in sorted(EXPECTED_CASES))
+        cases=''.join(f'<testcase classname="{owner}" name="{name}">{extra}</testcase>' for owner,name in sorted(EXPECTED_TESTS))
         (root/'TEST-fixture.xml').write_text('<testsuite tests="5">'+cases+'</testsuite>')
     def test_requires_executed_cases(self):
         with tempfile.TemporaryDirectory() as d:
@@ -36,3 +36,16 @@ class RuntimeReportTests(unittest.TestCase):
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/AdapterRuntimeTest.java').read_text()
         names=set(re.findall(r'@Test\(timeout=120000\) public void (\w+)',source))
         self.assertEqual(names,EXPECTED_CASES)
+
+    def test_service_cases_match_instrumented_methods(self):
+        import re
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/services/ServiceDirectoryTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),SERVICE_CASES)
+
+    def test_wrong_owner_or_missing_transport_case_cannot_pass(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d);self.fixture(p)
+            f=p/'TEST-fixture.xml'
+            f.write_text(f.read_text().replace('org.metaport.port.services.ServiceDirectoryTest','org.metaport.port.AdapterRuntimeTest'))
+            self.assertFalse(summarize(p,35)['passed'])

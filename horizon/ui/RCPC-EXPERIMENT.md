@@ -327,8 +327,25 @@ separate verified original-selection proof and recording both payload hashes.
 
 The directory is empty until an actual provider publishes an actual live binder.
 It never registers with Android servicemanager, grants system permissions, or
-returns a fake VR focus service. Delivery is queued on the main looper; duplicate
+returns a fake VR focus service. Delivery uses a dedicated callback worker, independent of the caller/main looper
+(which the original awaitService may block); duplicate
 subscriptions/publications are idempotent, unsubscribe suppresses queued events,
 and live providers cannot be replaced. Android instrumentation exercises actual
 Binder objects for these transport properties. These tests are not a Horizon UI
 or VR focus implementation test. No provider is manufactured to advance startup.
+
+Run **37002706482** compiled/packaged the explicit transport adaptation and passed
+its exact canonical-change gate. The observed outcome is now a startup ANR,
+followed by Android killing the process, not a functional launch. The original
+report's generic `START_ATTEMPT_RECORDED_NOT_VALIDATED` label did not classify ANRs;
+loader_log_after_start contains the explicit ANR. Subsequent probes classify it
+and collect bounded DropBox traces. The blocking stack is not yet established;
+no claim that the missing focus provider, translation cost, or CPU pressure alone
+caused this ANR is justified.
+
+Run **37002706166** executed all four new transport instrumentation cases without
+individual failures, but its aggregate gate rejected the additional cases because
+it still expected exactly five old cases. The gate now requires exact class/name
+pairs for both suites, plus a new blocked-main-thread test. Discovery callbacks
+move to a dedicated worker because the original awaitService can block a caller;
+this independent correctness fix is not asserted to explain the observed ANR.

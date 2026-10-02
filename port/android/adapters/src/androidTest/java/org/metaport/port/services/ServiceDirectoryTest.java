@@ -6,13 +6,18 @@ import android.os.IBinder;
 import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.Assert.*;
 
 /** Only test binders are created here; production does not manufacture service providers. */
 public final class ServiceDirectoryTest {
     private String name() { return "test." + UUID.randomUUID(); }
-    private void drain() { InstrumentationRegistry.getInstrumentation().waitForIdleSync(); }
+    private void drain() {
+        try { ServiceDirectory.CALLBACKS.submit(() -> {}).get(5,TimeUnit.SECONDS); }
+        catch (Exception failure) { throw new AssertionError(failure); }
+    }
     @Test public void absentServiceDoesNotNotifyOrPretendReady() {
         String name=name(); AtomicInteger calls=new AtomicInteger();
         ServiceCallback c=new ServiceCallback.Stub() {
@@ -51,11 +56,25 @@ public final class ServiceDirectoryTest {
         ServiceCallback c=new ServiceCallback.Stub() {
             @Override public void onRegistration(String n, IBinder b) { calls.incrementAndGet(); }
         };
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+        ServiceDirectory.CALLBACKS.execute(() -> {
             ServiceDirectory.registerForNotifications(name,c);
             ServiceDirectory.publish(name,new Binder());
             ServiceDirectory.unregisterForNotifications(name,c);
         });
-        drain(); assertEquals(0,calls.get());
+        drain(); drain(); assertEquals(0,calls.get());
     }
+    @Test public void blockedMainThreadDoesNotPreventServiceArrival() {
+        String name=name(); CountDownLatch received=new CountDownLatch(1);
+        ServiceCallback c=new ServiceCallback.Stub() {
+            @Override public void onRegistration(String n, IBinder b) { received.countDown(); }
+        };
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+            ServiceDirectory.registerForNotifications(name,c);
+            ServiceDirectory.publish(name,new Binder());
+            try { assertTrue("Callback depends on blocked main thread",received.await(3,TimeUnit.SECONDS)); }
+            catch (InterruptedException failure) { Thread.currentThread().interrupt(); throw new AssertionError(failure); }
+        });
+        ServiceDirectory.unregisterForNotifications(name,c);
+    }
+
 }

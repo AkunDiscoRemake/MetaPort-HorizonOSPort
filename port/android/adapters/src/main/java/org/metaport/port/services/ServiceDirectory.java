@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 package org.metaport.port.services;
 
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
 import java.util.ArrayList;
@@ -11,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /** Process-private discovery for actual port services. Never queries system servicemanager.
  * No services are created by this class. Missing/dead services remain unavailable.
@@ -19,7 +19,12 @@ import java.util.Objects;
 public final class ServiceDirectory {
     private static final Map<String, IBinder> SERVICES = new HashMap<>();
     private static final Map<String, List<ServiceCallback>> WATCHERS = new HashMap<>();
-    private static final Handler MAIN = new Handler(Looper.getMainLooper());
+    // BinderClient.awaitService may block the caller. Never dispatch on its main looper.
+    static final ExecutorService CALLBACKS = Executors.newSingleThreadExecutor(task -> {
+        Thread thread = new Thread(task, "MetaPortServiceCallbacks");
+        thread.setDaemon(true);
+        return thread;
+    });
     private static final int LIMIT = 64;
     private ServiceDirectory() {}
 
@@ -67,7 +72,7 @@ public final class ServiceDirectory {
             for (ServiceCallback callback : callbacks) notifyLater(name, binder, callback);
     }
     private static void notifyLater(String name, IBinder binder, ServiceCallback callback) {
-        MAIN.post(() -> {
+        CALLBACKS.execute(() -> {
             synchronized (ServiceDirectory.class) {
                 List<ServiceCallback> callbacks = WATCHERS.get(name);
                 if (checkService(name) != binder || callbacks == null || !callbacks.contains(callback)) return;
