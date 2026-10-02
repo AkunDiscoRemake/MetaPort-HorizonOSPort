@@ -39,6 +39,13 @@ def adb_command(adb, arguments, timeout=30):
             'truncated':len(raw)>65536}
 
 
+
+def loader_diagnostics(call):
+    # Capture immediately, before background system traffic displaces startup
+    # errors. Loader/installer diagnostics may be logged under a different UID.
+    return call(['logcat','-b','main','-b','system','-d','-t','1200','-v','threadtime',
+                 '--regex=vrshell|Vector4f|[Hh]idden.?[Aa][Pp][Ii]|[Dd]ex.*([Ff]ail|[Ee]rror|[Ii]nvalid|[Rr]eject)'])
+
 def package_uid(text):
     matches=re.findall(r'^package:'+re.escape(PACKAGE)+r' uid:(\d+)$',text,re.MULTILINE)
     if len(matches)!=1:return None
@@ -87,6 +94,7 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
         report['result']='UNSUPPORTED_OR_UNKNOWN_GUEST_ABI';return report
     report['installation_attempted']=True
     install=call(['install','--no-streaming',str(apk)],180);report['install']=install
+    report['loader_log_after_install']=loader_diagnostics(call)
     if install['exit_code']!=0 or 'Success' not in install['text'].splitlines():
         report['result']='INSTALL_REJECTED';return report
     report['installation_succeeded']=True
@@ -97,6 +105,7 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
     try:
         report['activity_start_attempted']=True
         report['start']=call(['shell','am','start','-W','-n',COMPONENT],60)
+        report['loader_log_after_start']=loader_diagnostics(call)
         time.sleep(observe_seconds)
         report['process_after_observation']=call(['shell','pidof',PACKAGE])
         report['crash_buffer']=call(['logcat','-b','crash','-d','-v','threadtime'])

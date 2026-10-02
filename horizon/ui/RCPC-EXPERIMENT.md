@@ -255,3 +255,12 @@ the upstream BSD license remains in the downloaded source. A separate synthetic
 inheritance fixture must reproduce the mismatch with the original writer and
 preserve both classes' exact flags with the patched writer. Full canonical smali
 comparison of the original selected framework remains mandatory after that.
+
+Run **36952121061** reproduced the unpatched serializer error in the standalone
+fixture and passed the patched fixture. All **1940** selected classes then passed
+exact canonical-smali comparison. The resulting APK installed, but its application
+still crashed resolving Vector4f, despite that definition being present in the
+appended DEX. Thus packaging presence and canonical equality did not establish
+ART loading. The next probe captures filtered loader/installer logs immediately
+after install and start, without excluding non-app UIDs. It does not ignore
+verification failures or alter the Android boot class path.

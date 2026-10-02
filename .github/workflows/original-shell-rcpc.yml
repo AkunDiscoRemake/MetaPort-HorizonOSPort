@@ -16,6 +16,7 @@ on:
       - horizon/ui/dependency-rcpc-sites.json
       - tests/test_rcpc_compat.py
       - tools/shell_crash_windows.py
+      - tools/probe_original_shell.py
       - tests/test_shell_crash_windows.py
 jobs:
   compatibility:

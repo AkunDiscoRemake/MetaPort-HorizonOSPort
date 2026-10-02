@@ -66,7 +66,12 @@ class OriginalBaseline(unittest.TestCase):
         for identity,expected in (('package:com.oculus.vrshell uid:10209',10209),('unknown',None)):
             report,calls=self.run_fixture(install='Success',code=0,uid_output=identity)
             self.assertEqual(report['application_uid'],expected)
-            logs=[c for c in calls if c[0]=='logcat' and 'main' in c]
+            main_logs=[c for c in calls if c[0]=='logcat' and 'main' in c]
+            loader=[c for c in main_logs if any(a.startswith('--regex=') for a in c)]
+            self.assertEqual(len(loader),2)
+            for c in loader:self.assertIn('1200',c);self.assertIn('-d',c)
+            self.assertIn('loader_log_after_install',report);self.assertIn('loader_log_after_start',report)
+            logs=[c for c in main_logs if c not in loader]
             if expected:
                 self.assertEqual(len(logs),1)
                 self.assertIn('--uid=10209',logs[0]);self.assertIn('400',logs[0])

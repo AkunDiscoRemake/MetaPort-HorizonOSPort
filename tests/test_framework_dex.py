@@ -90,3 +90,12 @@ class FrameworkDexTests(unittest.TestCase):
             (b/'A.smali').write_bytes((a/'A.smali').read_bytes())
             self.assertEqual(len(compare_smali(a,b,1)),1)
             with self.assertRaisesRegex(ValueError,'expected'):compare_smali(a,b,2)
+
+    def test_loader_diagnostics_do_not_filter_out_installer_uid(self):
+        from tools.probe_original_shell import loader_diagnostics
+        commands=[]
+        result=loader_diagnostics(lambda args:commands.append(args) or {'exit_code':0,'text':'loader evidence'})
+        self.assertEqual(result['text'],'loader evidence')
+        self.assertIn('-d',commands[0]);self.assertIn('1200',commands[0])
+        self.assertFalse(any(a.startswith('--uid') for a in commands[0]))
+        self.assertTrue(any(a.startswith('--regex=') for a in commands[0]))
