@@ -102,7 +102,10 @@ The backend correctly observes app activities, including that covering window;
 it must not filter these observations to make a test pass. The corrected test
 checks loss/reacquisition of the subject's component and compares the backend's
 started count against the independent instrumentation lifecycle monitor. This
-correction still requires a fresh emulator pass. Bounded JUnit failure details
+correction passed in run `37010684552`: all twelve owned cases passed on each
+of API 29 and API 35, including the independent started-activity count checks.
+This is emulator validation of the app-local backend, not original service or
+physical-phone validation. Bounded JUnit failure details
 are now retained even when the suite-level failure counter is nonzero; that
 counter still forces the gate to fail. None of this publishes a vrfocus service
 or resolves the original ShellApplication constructor ANR.
