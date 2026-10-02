@@ -34,3 +34,15 @@ class ServiceTransportTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Unexpected transport change'):verify_transport(a,b)
                 (b/'untouched/Original.smali').unlink()
                 with self.assertRaisesRegex(ValueError,'inventory'):verify_transport(a,b)
+
+    def test_anr_is_attributed_to_exact_package(self):
+        from tools.probe_original_shell import contains_application_anr
+        self.assertTrue(contains_application_anr('E ActivityManager: ANR in com.oculus.vrshell\nReason: startup'))
+        self.assertFalse(contains_application_anr('ANR in com.oculus.vrshell.other'))
+        self.assertFalse(contains_application_anr('ANR in org.metaport.port.test'))
+        self.assertFalse(contains_application_anr('Status: ok'))
+
+    def test_focus_source_selection_is_bounded_and_not_all_server_classes(self):
+        from horizon.ui.focus_contracts import focus_names
+        self.assertEqual(focus_names({'Lother/Server;','Loriginal/VrFocusService;'}),['Loriginal/VrFocusService;'])
+        with self.assertRaises(ValueError):focus_names({f'Loriginal/VrFocusService${i};' for i in range(65)})

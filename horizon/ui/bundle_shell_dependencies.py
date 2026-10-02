@@ -214,6 +214,11 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
         member=targets[0];target=member['apk_member']
         data,proof=adapt(dex_members[target]);dex_members[target]=data
         member['canonical_original_selection_verified']=member.pop('canonical_smali_equal')
+        member['original_selection_canonical_inventory_sha256']=member.pop('canonical_inventory_sha256')
+        member['pre_transport_payload_sha256']=member['derived_payload_sha256']
+        member['derived_payload_sha256']=hashlib.sha256(data[32:]).hexdigest()
+        member['scope']='Original selection verified, then exact declared app-local transport adaptation; not service implementation'
+
         member.update(canonical_smali_equal=False,transport_adaptation=proof,
                       sha256=hashlib.sha256(data).hexdigest(),size_bytes=len(data))
         adapter,adapter_proof=adapter_dex()
@@ -225,6 +230,9 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
         adapter_name=f'classes{index}.dex';dex_members[adapter_name]=adapter
         adapter_proof['apk_member']=adapter_name
         transport=[{'framework_member':target,'adaptation':proof,'adapter':adapter_proof}]
+    if app_service_transport:
+        from horizon.ui.focus_contracts import collect as collect_focus_contracts
+        collect_focus_contracts(images,inventory,recon,output/'focus-service-contracts.json')
     unsigned=output/'shell-dependencies-unsigned.apk'
     with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
         for info in src.infolist():

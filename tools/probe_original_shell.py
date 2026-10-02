@@ -46,6 +46,10 @@ def loader_diagnostics(call):
     return call(['logcat','-b','main','-b','system','-d','-t','1200','-v','threadtime',
                  '--regex=vrshell|Vector4f|[Hh]idden.?[Aa][Pp][Ii]|[Dd]ex.*([Ff]ail|[Ee]rror|[Ii]nvalid|[Rr]eject)'])
 
+def contains_application_anr(text):
+    return bool(re.search(r'\bANR in '+re.escape(PACKAGE)+r'(?:\s|$)',text))
+
+
 def package_uid(text):
     matches=re.findall(r'^package:'+re.escape(PACKAGE)+r' uid:(\d+)$',text,re.MULTILINE)
     if len(matches)!=1:return None
@@ -114,8 +118,7 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
             report['application_log']=call(['logcat','-b','main','-b','system','-d',
                                             '--uid='+str(uid),'-t','400','-v','threadtime'])
         report['activity_state']=call(['shell','dumpsys','activity','top'])
-        report['application_anr_recorded']=bool(re.search(
-            r'\bANR in '+re.escape(PACKAGE)+r'(?:\s|$)',report['loader_log_after_start']['text']))
+        report['application_anr_recorded']=contains_application_anr(report['loader_log_after_start']['text'])
         if report['application_anr_recorded']:
             report['anr_details']=call(['shell','dumpsys','dropbox','--print','data_app_anr'])
 

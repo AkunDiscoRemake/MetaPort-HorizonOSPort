@@ -172,6 +172,10 @@ jobs:
             cp local-analysis/shell-bundle/bundle.json "analysis/android-runtime/${BUNDLE_REPORT}.json"
             git add "analysis/android-runtime/${BUNDLE_REPORT}.json"
           fi
+          if [ -f local-analysis/shell-bundle/focus-service-contracts.json ]; then
+            cp local-analysis/shell-bundle/focus-service-contracts.json analysis/android-runtime/focus-service-contracts.json
+            git add analysis/android-runtime/focus-service-contracts.json
+          fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then

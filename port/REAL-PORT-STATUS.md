@@ -177,3 +177,18 @@ não simplesmente ausência de um JAR. É necessária adaptação real do víncu
 os serviços, sem desativar a proteção do Android ou fingir serviço disponível.
 O coletor passa a preservar os contratos originais dessa fronteira para essa
 adaptação. Não houve renderização original nem validação física.
+
+### Transporte sem privilégios e bloqueio confirmado
+
+A adaptação explícita de descoberta/callbacks Binder foi compilada e empacotada,
+com apenas duas classes SDK alteradas e comparação exata das substituições
+permitidas. O APK original continua sem alterações em seus DEX/recursos; o DEX
+SDK adaptado é declarado separadamente. Run **37003660349** passou dez testes
+instrumentados em cada API29/API35, inclusive callback com thread principal
+bloqueada. Isso não valida execução da UI original.
+
+Run **37003661090** confirma **ANR**: o construtor de ShellApplication espera
+indefinidamente o provedor real de `vrfocus` ao registrar o listener de atividade.
+O processo é encerrado pelo Android. A recuperação do servidor original foi
+ampliada para permitir adaptar sua lógica, sem publicar um binder vazio, fingir
+foco ou conceder permissões fictícias. **APK funcional ainda não obtido.**

@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/original-shell-rcpc.yml
       - horizon/ui/rcpc_compat.py
+      - horizon/ui/focus_contracts.py
       - horizon/ui/service_transport.py
       - horizon/ui/java/AdaptServiceTransport.java
       - port/android/adapters/src/main/java/org/metaport/port/services/**

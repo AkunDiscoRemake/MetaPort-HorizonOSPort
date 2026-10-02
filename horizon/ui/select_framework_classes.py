@@ -43,6 +43,11 @@ STARTUP_CONTRACTS=(
     'oculus/internal/osutils/BinderClient$ServiceManagerCallback.smali',
     'com/oculus/os/VrFocusManager.smali',
     'com/oculus/os/ActivityManagerUtils.smali',
+    'oculus/internal/IVrFocusService.smali',
+    'oculus/internal/IVrTopActivityListener.smali',
+    'oculus/internal/IVrFocusListener.smali',
+    'oculus/internal/ClientStatus.smali',
+    'oculus/internal/ImmersiveApp.smali',
 )
 
 

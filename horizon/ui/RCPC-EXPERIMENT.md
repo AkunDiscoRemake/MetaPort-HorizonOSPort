@@ -349,3 +349,19 @@ it still expected exactly five old cases. The gate now requires exact class/name
 pairs for both suites, plus a new blocked-main-thread test. Discovery callbacks
 move to a dedicated worker because the original awaitService can block a caller;
 this independent correctness fix is not asserted to explain the observed ANR.
+
+Run **37003661090** establishes the blocking stack: the main thread parks in
+CompletableFuture.get → BinderClient.awaitService →
+VrFocusManager.registerVrTopActivityListener → ShellApplication constructor line
+153. The VR-focus provider is actually missing. Scheduling callbacks differently
+cannot create that provider and did not fix the ANR. Both API29/API35 adapter
+instrumentation jobs in **37003660349** passed the exact ten required cases,
+including delivery while the main thread waits. That proves transport behavior,
+not the missing service or UI.
+
+Recovery now also selects VR-focus server definitions from the fixed original
+oculus-system-services/horizonos-services JAR paths in verified system_ext, and
+preserves the corresponding SDK interfaces/value types. This server DEX is
+analysis-only, never installed or substituted for Android system_server. The
+purpose is to port the original service logic with an explicit app-scoped
+backend, not register an empty binder or return fictional focus/tracking grants.
