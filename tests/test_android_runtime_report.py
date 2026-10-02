@@ -67,3 +67,10 @@ class RuntimeReportTests(unittest.TestCase):
             self.assertFalse(r['passed']);self.assertTrue(r['suite_failed'])
             self.assertEqual(len(r['tests']),len(EXPECTED_TESTS))
             self.assertEqual(r['tests'][0]['failure_detail'],'x'*8192)
+
+    def test_focus_wire_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import FOCUS_WIRE_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/protocol/VrFocusEndpointTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),FOCUS_WIRE_CASES)

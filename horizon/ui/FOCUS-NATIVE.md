@@ -109,3 +109,47 @@ physical-phone validation. Bounded JUnit failure details
 are now retained even when the suite-level failure counter is nonzero; that
 counter still forces the gate to fail. None of this publishes a vrfocus service
 or resolves the original ShellApplication constructor ANR.
+
+## Binder endpoint and callback codec
+
+`focus/protocol/VrFocusEndpoint.java` now decodes all eleven original transactions,
+using the original interface descriptor and Android's public `Binder`/`Parcel`.
+It captures the actual Binder caller PID/UID and requires a backend implementing
+**every** operation and an operation-specific access check. There are no default
+successful operations or provider publication. `FocusWire` writes the original
+sized parcelables and one-way callbacks without defining duplicate classes in
+`oculus.internal` or replacing the bundled SDK.
+
+The field order is cross-checked against both pinned Java smali and the native
+interface (not inferred from a component's flattened name):
+
+- `ClientStatus`: size, PID, hasFocus (32-bit boolean).
+- `ImmersiveApp`: size, packageName (UTF-16), PID, UID, isTopActivity.
+- Typed-object presence is **outside** the sized payload.
+- Top callback: transaction 1, one-way, string followed by typed ImmersiveApp.
+- Focus callback: transaction 1, one-way, int.
+
+`python3 -m horizon.ui.focus_wire_contract` checks the hashes of five Java
+contracts and five inferred native functions, and checks each of the eleven
+transaction IDs against the recovered native switch. Evidence is already in
+`original-shell-rcpc-dependency-bundle.json` and `focus-native-interface.json`.
+This does **not** execute the original SDK proxy or native daemon.
+
+Intentional app-local hardening: PID/result vectors are bounded to 4096 entries;
+null required listeners/vectors, truncated integers, one-way service requests
+and trailing bytes are rejected before invoking policy operations. The native
+argumentless methods do not all enforce trailing-data rejection, so this is not
+a claim of byte-for-byte acceptance of every malformed original request.
+
+Four new instrumentation cases exercise all eleven transactions, PID/UID
+capture, field boundaries, UTF-16 data, failure-before-side-effect behavior,
+one-way callbacks, and absence of accidental provider publication. Their backend
+is explicitly a test fixture, not production focus logic. The runtime gate now
+requires sixteen owned cases per API; the new cases require a fresh CI run.
+
+**Remaining bootstrap work:** actual focus policy and listener ownership/death
+handling; integration with the real window/session backends; original-proxy
+interoperability; publication before ShellApplication construction. The endpoint
+is not packaged into or published to the original shell yet. No constructor wait
+is bypassed, no XR/hand/tracking grants are fabricated, and no functional APK is
+claimed.
