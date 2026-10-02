@@ -1,0 +1,129 @@
+name: Original native VR focus service recovery (not a runtime)
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [horizon/ui/prepare_focus_native.py, horizon/ui/ghidra/RecoverFocusNative.java, .github/workflows/focus-native.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-focus-native
+  cancel-in-progress: true
+jobs:
+  analyze:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 50
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/focus-native
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install host-only parsers and test metadata inspection
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
+          python3 -m pip install -r handtracking/ai/requirements.txt
+          python3 -m unittest discover -s handtracking/ai/tests -v
+          python3 -m unittest discover -s horizon/ui/tests -v
+          mkdir -p "$WORK/reports"
+      - name: Obtain fixed verified OTA and original images
+        run: |
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          p=Path(os.environ['WORK'])
+          r=reconstruct(p/'firmware.zip',p/'images',selected={'system_ext'})
+          (p/'reconstruction.json').write_text(json.dumps(r))
+          PY
+      - name: Extract pinned original ELF and executable startup symbols
+        run: |
+          python3 -m horizon.ui.prepare_focus_native --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
+      - name: Install pinned static decompiler
+        run: |
+          curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
+            --proto '=https' --proto-redir '=https' \
+            'https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3.2_build/ghidra_11.3.2_PUBLIC_20250415.zip' -o "$WORK/ghidra.zip"
+          echo "99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2  $WORK/ghidra.zip" | sha256sum --check --strict
+          unzip -q "$WORK/ghidra.zip" -d "$WORK"
+      - name: Recover native service implementation and Binder marshalling
+        id: decompile
+        run: |
+          mkdir -p "$WORK/project"
+          python3 - <<'PYCODE'
+          import json,os,subprocess
+          from pathlib import Path
+          p=Path(os.environ['WORK'])
+          records=json.loads((p/'reports/focus-native-inputs.json').read_text())['inputs']
+          for index,record in enumerate(records):
+            out=p/'reports'/('focus-native-server.json' if index==0 else 'focus-native-interface.json')
+            args=[str(p/'ghidra_11.3.2_PUBLIC/support/analyzeHeadless'),str(p/'project'),'Focus'+str(index),
+                  '-import',str(p/'reports'/record['host_file']),'-max-cpu','2','-analysisTimeoutPerFile','600',
+                  '-scriptPath',str(Path(os.environ['GITHUB_WORKSPACE'])/'horizon/ui/ghidra'),
+                  '-postScript','RecoverFocusNative.java',str(out),record['sha256'],'-deleteProject']
+            with (p/'inspection.log').open('a') as log:
+              subprocess.run(args,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=1800)
+            r=json.loads(out.read_text())
+            assert r['program_sha256'].lower()==record['sha256'] and r['firmware_executed'] is False
+            assert r.get('processed_count',0)>0
+          PYCODE
+      - name: Record provenance even on analysis failure
+        if: always()
+        env:
+          DECOMPILE_OUTCOME: ${{ steps.decompile.outcome }}
+        run: |
+          mkdir -p "$WORK/reports"
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ['WORK'])
+          log=p/'inspection.log'
+          report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
+                  'decompile_step':os.environ['DECOMPILE_OUTCOME'],'horizon_ported':False,
+                  'physical_phone_tested':False,'ghidra_sha256':'99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2',
+                  'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
+          (p/'reports/focus-native-run.json').write_text(json.dumps(report,indent=2)+'\n')
+          PY
+      - name: Publish reports only, never firmware or models
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Refresh before copying outputs: queued runs may start on an older
+          # report and otherwise conflict when rebasing a replacement JSON file.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          dest=analysis/builds/52168470052900520
+          for name in focus-native-inputs focus-native-server focus-native-interface focus-native-run; do
+            if [ -f "$WORK/reports/$name.json" ]; then
+              cp "$WORK/reports/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original native focus recovery, not a working service [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: focus-native-reports-no-firmware
+          path: |
+            ${{ env.WORK }}/reports/focus-native-*.json
+          retention-days: 7

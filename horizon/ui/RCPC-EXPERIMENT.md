@@ -379,3 +379,16 @@ Binder interface and init contract. None of those files is executed or added to
 the APK. The required work is adapting the original native service implementation
 and its platform interactions, not installing another Java helper or publishing
 a nonfunctional placeholder binder. The latest runtime still has the same ANR.
+
+The extracted native owner is SHA256
+`14289b0fca87a4b4fbcd1e0b1a06cd8035ebf8686551f86a3517ad08deaea418`,
+ELF AArch64 PIE, entry 0xf000, BuildId fa0439ad2d45433bca3973b5e648233a.
+Its native Binder interface is SHA256
+`949bebe7639f07ec86c818456a41c403e6a946ed9073b162b3d46ee29291916c`.
+Imports include defaultServiceManager, BnVrFocusService, process identity helpers,
+libhzos.meta, libosutils, full protobuf and package-manager AIDL. It is not an
+ordinary JNI shared library. A separate static recovery workflow now decompiles
+both pinned files; it does not repeatedly launch the APK with the already-known
+missing provider, execute the daemon, strip its PIE flag, or grant root. Recovery
+records each inferred function's status and direct-call targets, with time/text
+budgets and explicit omissions. Ghidra output is not yet compilable port source.
