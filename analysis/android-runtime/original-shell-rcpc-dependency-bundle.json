@@ -1,6 +1,44 @@
 {
   "source_apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
   "source_ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "app_service_transport": [
+    {
+      "framework_member": "classes3.dex",
+      "adaptation": {
+        "source_sha256": "222fb84643e23b4f5848d33139c07f0fb6490c46c33d968dc831275cf426c533",
+        "adapted_sha256": "157c2ac24552e0b9a4af03744322cf83e2aa6c604d16b6bfac1106c29682da01",
+        "changed_classes": [
+          "oculus/internal/osutils/BinderClient$ServiceManagerCallback.smali",
+          "oculus/internal/osutils/BinderClient.smali"
+        ],
+        "descriptor_mapping": {
+          "Landroid/os/IServiceCallback;": "Lorg/metaport/port/services/ServiceCallback;",
+          "Landroid/os/IServiceCallback$Stub;": "Lorg/metaport/port/services/ServiceCallback$Stub;",
+          "Landroid/os/ServiceManager;": "Lorg/metaport/port/services/ServiceDirectory;"
+        },
+        "exact_declared_changes_verified": true,
+        "original_firmware_code_unmodified": false,
+        "system_service_access_granted": false,
+        "vrfocus_service_implemented": false,
+        "scope": "App-local service discovery only; missing providers remain unavailable"
+      },
+      "adapter": {
+        "source_files": {
+          "port/android/adapters/src/main/java/org/metaport/port/services/ServiceCallback.java": "7d4ea9bb458c1658d3e78f42d94ff5813206ef792d33ca62700be0c59791137c",
+          "port/android/adapters/src/main/java/org/metaport/port/services/ServiceDirectory.java": "833d264a03083a4febd22b534c9db2bce3a698c61792710a4007c8acfb0e7d63"
+        },
+        "sha256": "8939d28b4dda3d0208bd26ad7819108ce15e662669a8a1e0af884dc09d691709",
+        "class_definitions": [
+          "Lorg/metaport/port/services/ServiceCallback$Stub;",
+          "Lorg/metaport/port/services/ServiceCallback;",
+          "Lorg/metaport/port/services/ServiceDirectory$$ExternalSyntheticLambda0;",
+          "Lorg/metaport/port/services/ServiceDirectory;"
+        ],
+        "scope": "Project-original local Binder transport, no service providers or firmware substitutes",
+        "apk_member": "classes4.dex"
+      }
+    }
+  ],
   "framework_dex_additions": [
     {
       "source_path": "/framework/hzos-framework.jar",
@@ -148,8 +186,8 @@
         {
           "source_member": "classes.dex",
           "apk_member": "classes3.dex",
-          "sha256": "222fb84643e23b4f5848d33139c07f0fb6490c46c33d968dc831275cf426c533",
-          "size_bytes": 763672,
+          "sha256": "157c2ac24552e0b9a4af03744322cf83e2aa6c604d16b6bfac1106c29682da01",
+          "size_bytes": 763760,
           "class_definitions": 880,
           "source_dex_sha256": "e58088cc39f3494bddde87b80828eb0d6ee36aeedc7d530d1f2eaa0b7ba02913",
           "source_checksum_hex": "21826274",
@@ -162,7 +200,6 @@
           ],
           "instruction_and_data_bytes_unchanged": false,
           "tool": "dexlib2/baksmali 2.5.2",
-          "canonical_smali_equal": true,
           "canonical_inventory_sha256": "23ef40498e0515fa24eb45ad5b4a6d6f4959329e1b97dc7861f54f432671dfad",
           "startup_contracts": [
             {
@@ -203,7 +240,27 @@
             "Landroid/hidl/base/V1_0/IBase;"
           ],
           "derived_payload_sha256": "d8b2835dd90904ee658f104991d14bd354491ec0175a4008f3cfe1977a05e189",
-          "scope": "Class selection and canonical disassembly equality, not ART or ABI validation"
+          "scope": "Class selection and canonical disassembly equality, not ART or ABI validation",
+          "canonical_original_selection_verified": true,
+          "canonical_smali_equal": false,
+          "transport_adaptation": {
+            "source_sha256": "222fb84643e23b4f5848d33139c07f0fb6490c46c33d968dc831275cf426c533",
+            "adapted_sha256": "157c2ac24552e0b9a4af03744322cf83e2aa6c604d16b6bfac1106c29682da01",
+            "changed_classes": [
+              "oculus/internal/osutils/BinderClient$ServiceManagerCallback.smali",
+              "oculus/internal/osutils/BinderClient.smali"
+            ],
+            "descriptor_mapping": {
+              "Landroid/os/IServiceCallback;": "Lorg/metaport/port/services/ServiceCallback;",
+              "Landroid/os/IServiceCallback$Stub;": "Lorg/metaport/port/services/ServiceCallback$Stub;",
+              "Landroid/os/ServiceManager;": "Lorg/metaport/port/services/ServiceDirectory;"
+            },
+            "exact_declared_changes_verified": true,
+            "original_firmware_code_unmodified": false,
+            "system_service_access_granted": false,
+            "vrfocus_service_implemented": false,
+            "scope": "App-local service discovery only; missing providers remain unavailable"
+          }
         }
       ],
       "required_definition": "Lcom/oculus/os/ActivityManagerUtils;",
@@ -4197,7 +4254,8 @@
     "lib/arm64-v8a/libdl_android.so": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
     "lib/arm64-v8a/ld-android.so": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac",
     "classes2.dex": "d48305ee6d1e1a0219ba8bd3db964cbdcb25931b52d58d9ac4c6f11d4b73599e",
-    "classes3.dex": "222fb84643e23b4f5848d33139c07f0fb6490c46c33d968dc831275cf426c533"
+    "classes3.dex": "157c2ac24552e0b9a4af03744322cf83e2aa6c604d16b6bfac1106c29682da01",
+    "classes4.dex": "8939d28b4dda3d0208bd26ad7819108ce15e662669a8a1e0af884dc09d691709"
   },
   "nodes": [
     {
@@ -8436,6 +8494,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
-  "signed_apk_sha256": "538d55f2e605a8d1d8443f8b7e2fc2eaa645e7735fda51ddbaa66c518ce390e3",
+  "signed_apk_sha256": "61a03af38bca12c395b2c695346342404729bed37f918faf91d9a1c8f937c802",
   "test_certificate_not_meta_identity": true
 }
