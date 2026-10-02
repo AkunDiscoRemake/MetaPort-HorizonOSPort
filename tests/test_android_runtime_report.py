@@ -28,7 +28,9 @@ class RuntimeReportTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             p=Path(d);self.fixture(p)
             f=p/'TEST-fixture.xml';f.write_text(f.read_text().replace('tests="5"','tests="5" errors="1"'))
-            with self.assertRaises(ValueError):summarize(p,29)
+            r=summarize(p,29)
+            self.assertFalse(r['passed']);self.assertTrue(r['suite_failed'])
+            self.assertEqual(len(r['tests']),len(EXPECTED_TESTS))
 
     def test_expected_cases_match_instrumented_methods(self):
         import re
@@ -56,3 +58,12 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/AppWindowFocusBackendTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test\(timeout=120000\) public void (\w+)',source)),WINDOW_CASES)
+
+    def test_failure_details_survive_suite_failure_and_are_bounded(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d);self.fixture(p,'<failure>'+'x'*9000+'</failure>')
+            f=p/'TEST-fixture.xml';f.write_text(f.read_text().replace('tests="5"','tests="5" failures="12"'))
+            r=summarize(p,29)
+            self.assertFalse(r['passed']);self.assertTrue(r['suite_failed'])
+            self.assertEqual(len(r['tests']),len(EXPECTED_TESTS))
+            self.assertEqual(r['tests'][0]['failure_detail'],'x'*8192)

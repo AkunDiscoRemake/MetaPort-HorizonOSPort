@@ -91,3 +91,18 @@ constructor blocks *before* activity creation: adding this backend alone does no
 resolve that bootstrap dependency. The instrumentation-only FocusTestActivity
 exists solely to exercise real Android focus/stop/resume; it is never packaged
 as the Horizon UI or a release/demo launcher.
+
+### Window instrumentation investigation (2026-10-02)
+
+Run `37009434351` executed all twelve owned cases on API 29 and 35, but
+`realWindowFocusTracksStopAndResume` failed on both. The failure was the test's
+assumption that stopping the subject leaves zero started app activities:
+AndroidX ActivityScenario opens its own covering Activity to stop the subject.
+The backend correctly observes app activities, including that covering window;
+it must not filter these observations to make a test pass. The corrected test
+checks loss/reacquisition of the subject's component and compares the backend's
+started count against the independent instrumentation lifecycle monitor. This
+correction still requires a fresh emulator pass. Bounded JUnit failure details
+are now retained even when the suite-level failure counter is nonzero; that
+counter still forces the gate to fail. None of this publishes a vrfocus service
+or resolves the original ShellApplication constructor ANR.

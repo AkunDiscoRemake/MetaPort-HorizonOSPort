@@ -2,6 +2,9 @@
 package org.metaport.port.focus;
 
 import android.app.Application;
+import android.app.Activity;
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
+import androidx.test.runner.lifecycle.Stage;
 import android.os.Process;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ActivityScenario;
@@ -32,6 +35,16 @@ public final class AppWindowFocusBackendTest {
         Application application=(Application)InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
         return new AppWindowFocusBackend(application,listener);
     }
+    private static void assertActualStartedCount(AppWindowFocusBackend backend) {
+        main(() -> {
+            Application application=(Application)InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
+            int count=0;
+            for (Stage stage : new Stage[]{Stage.STARTED,Stage.RESUMED,Stage.PAUSED})
+                for (Activity activity : ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(stage))
+                    if (activity.getApplication()==application) count++;
+            assertEquals(count,backend.snapshot().observedStartedActivities);
+        });
+    }
     @Test(timeout=120000) public void realWindowFocusTracksStopAndResume() throws Exception {
         LinkedBlockingQueue<AppWindowFocusBackend.Snapshot> events = new LinkedBlockingQueue<>();
         AppWindowFocusBackend backend = backend(events::add);
@@ -45,10 +58,15 @@ public final class AppWindowFocusBackendTest {
             assertThrows(UnsupportedOperationException.class,() -> first.focusedWindows.clear());
             events.clear();
             scenario.moveToState(Lifecycle.State.CREATED);
-            await(events,s -> s.observing && s.observedStartedActivities==0 && s.focusedWindows.isEmpty());
+            // ActivityScenario stops the subject by opening another real Activity.
+            // The backend must observe that covering window, not pretend the app is empty.
+            assertEquals(Lifecycle.State.CREATED,scenario.getState());
+            await(events,s -> s.observing && s.focusedWindows.stream().noneMatch(w -> w.component.equals(window.component)));
+            assertActualStartedCount(backend);
             events.clear();
             scenario.moveToState(Lifecycle.State.RESUMED);
-            await(events,s -> s.observing && !s.focusedWindows.isEmpty());
+            await(events,s -> s.observing && s.focusedWindows.stream().anyMatch(w -> w.component.equals(window.component)));
+            assertActualStartedCount(backend);
         } finally { main(backend::close); }
     }
     @Test(timeout=120000) public void closingStopsObservationAndRejectsRestart() throws Exception {

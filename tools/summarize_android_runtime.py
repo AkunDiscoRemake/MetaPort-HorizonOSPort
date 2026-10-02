@@ -32,22 +32,26 @@ def summarize(results,api):
     files=sorted(Path(results).rglob('TEST-*.xml'))
     if not 0<len(files)<=32:raise ValueError('Missing/excessive instrumentation XML reports')
     cases=[]
+    suite_failed=False
     for path in files:
         if path.stat().st_size>2*1024*1024:raise ValueError('JUnit report size limit')
         tree=ET.parse(path).getroot()
         for case in tree.iter('testcase'):
+            failure=case.find('failure')
+            if failure is None:failure=case.find('error')
             cases.append({'class':case.get('classname'),'name':case.get('name'),
                           'failed':case.find('failure') is not None or case.find('error') is not None,
-                          'skipped':case.find('skipped') is not None})
+                          'skipped':case.find('skipped') is not None,
+                          'failure_detail':''.join(failure.itertext())[:8192] if failure is not None else None})
         if any(int(s.get('failures','0')) or int(s.get('errors','0')) for s in tree.iter('testsuite')):
-            raise ValueError('JUnit suite failure')
+            suite_failed=True
     unique={(c['class'],c['name']) for c in cases}
     names={c['name'] for c in cases}
-    passed=(unique==EXPECTED_TESTS and len(unique)==len(cases) and
+    passed=(not suite_failed and unique==EXPECTED_TESTS and len(unique)==len(cases) and
             all(c['name'] and
                 not c['failed'] and not c['skipped'] for c in cases))
     return {'api':api,'abi':'x86_64','gpu_configuration':'swiftshader_indirect',
-            'tests':cases,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES|WINDOW_CASES)-names),
+            'tests':cases,'suite_failed':suite_failed,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES|WINDOW_CASES)-names),
             'passed':passed,'original_firmware_executed':False,
             'physical_device_tested':False,'arcore_camera_or_depth_tested':False,
             'quest_hand_inference_tested':False,
