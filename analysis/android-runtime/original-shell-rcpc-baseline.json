@@ -2,7 +2,7 @@
   "result": "EXPERIMENT_NOT_COMPLETED",
   "port_ready": false,
   "framework_dex_inspection": {
-    "packaging_error": "Refusing framework DEX containing boot namespace definitions: Landroid/app/VrosSystemServiceRegistry$$ExternalSyntheticLambda0;, Landroid/app/VrosSystemServiceRegistry$10;, Landroid/app/VrosSystemServiceRegistry$11;, Landroid/app/VrosSystemServiceRegistry$12;, Landroid/app/VrosSystemServiceRegistry$13;, Landroid/app/VrosSystemServiceRegistry$14;, Landroid/app/VrosSystemServiceRegistry$15;, Landroid/app/VrosSystemServiceRegistry$16;",
+    "packaging_error": "Refusing framework DEX containing boot namespace definitions: Landroid/companion/virtualcamera/CameraPosition;, Landroid/companion/virtualcamera/CameraSource;, Landroid/companion/virtualcamera/Format;, Landroid/companion/virtualcamera/ICaptureResultConsumer$Default;, Landroid/companion/virtualcamera/ICaptureResultConsumer$Stub$Proxy;, Landroid/companion/virtualcamera/ICaptureResultConsumer$Stub;, Landroid/companion/virtualcamera/ICaptureResultConsumer;, Landroid/companion/virtualcamera/IVirtualCameraCallback$Default;",
     "jars": [
       {
         "partition": "system_ext",
@@ -140,8 +140,8 @@
     "framework_services_ported": false,
     "firmware_executed": false
   },
-  "source_commit": "08358e1e7879e5780de419abac8c256427f41163",
-  "run_id": "36943056110",
+  "source_commit": "f8214bdcd47cebd0911797f7db3e9f545ef021c3",
+  "run_id": "36943586300",
   "probe_step": "skipped",
   "ci_diagnostics": []
 }
