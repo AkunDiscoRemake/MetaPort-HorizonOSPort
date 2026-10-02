@@ -8,6 +8,7 @@ on:
       - horizon/ui/framework_dex.py
       - horizon/ui/select_framework_classes.py
       - horizon/ui/java/SelectFrameworkClasses.java
+      - horizon/ui/java/VerifyDexWriter.java
       - tools/prepare_dex_tools.py
       - tests/test_framework_dex.py
       - horizon/ui/libcxx-rcpc-sites.json

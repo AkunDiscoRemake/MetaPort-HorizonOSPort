@@ -237,3 +237,21 @@ values, with downloaded SHA-256 recorded. They are not bundled as runtime stubs.
 Local Java compilation was unavailable; compilation, canonical comparison and ART
 execution still require the next Actions result. Setup failures are now preserved
 as bounded JSON so unavailable blob-log downloads cannot conceal their cause.
+
+## Canonical mismatch: hidden-API metadata class association
+
+Run **36951491015** found 1940 selected classes on each side, with 1417 differing
+smali files. Its first difference changed `whitelist test-api` to `blacklist`
+on `AbstractMessageLite$Builder.clone()`. The guard correctly stopped packaging.
+Inspection of pinned dexlib2 2.5.2 DexWriter source shows that `writeClass` emits
+superclasses/interfaces first, but the hidden-API offset table was written using
+the preexisting lexical class list. The host-only patch sorts that list by the
+actual emitted class_def index before writing the metadata. It does not remove
+flags, loosen comparisons or change Android's hidden API enforcement.
+
+The exact upstream source SHA-256 is
+`7a15d75536dd7cee9d3ee65c02de9ddcdbec81456fb5fc0f0fbf4a5828e0f972`;
+the upstream BSD license remains in the downloaded source. A separate synthetic
+inheritance fixture must reproduce the mismatch with the original writer and
+preserve both classes' exact flags with the patched writer. Full canonical smali
+comparison of the original selected framework remains mandatory after that.
