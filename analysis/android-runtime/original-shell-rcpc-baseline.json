@@ -1,8 +1,44 @@
 {
   "result": "EXPERIMENT_NOT_COMPLETED",
   "port_ready": false,
+  "dex_tools_setup": {
+    "runtime_ported": false,
+    "prepared": true,
+    "artifacts": [
+      {
+        "url": "https://repo.maven.apache.org/maven2/org/smali/dexlib2/2.5.2/dexlib2-2.5.2.jar",
+        "published_sha1": "8b664182af455b0757a7f59a42020fa5608c7d0e",
+        "sha256": "5a5c8982d8bd7d6e3bb1a0713049e3c78b719ec32b20f6b619885cec30a0dd61"
+      },
+      {
+        "url": "https://repo.maven.apache.org/maven2/org/smali/baksmali/2.5.2/baksmali-2.5.2.jar",
+        "published_sha1": "1375ac2ff5531e14c308c0342703d9842602388f",
+        "sha256": "1ed236266d7dc4907aade0b19a34f77efac25342b63c8ace52e579039941b389"
+      },
+      {
+        "url": "https://repo.maven.apache.org/maven2/org/smali/util/2.5.2/util-2.5.2.jar",
+        "published_sha1": "8aca9e1ca27ac0f6b9d42a1bbd95cde9bb5e0e12",
+        "sha256": "4f580a9cff3ebb83cb3fd20bec88e37e4f183796ca652732992611620282daea"
+      },
+      {
+        "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/27.1-android/guava-27.1-android.jar",
+        "published_sha1": "a80ef47421d6607e749f8b7282dd7dee61adfea7",
+        "sha256": "686404f2d1d4d221911f96bd627ff60dac2226a5dfa6fb8ba517073eb97ec0ef"
+      },
+      {
+        "url": "https://repo.maven.apache.org/maven2/com/beust/jcommander/1.64/jcommander-1.64.jar",
+        "published_sha1": "456a985ac9b12d34820e4d5de063b2c2fc43ed5a",
+        "sha256": "156be736199c990321d9ff77090b199629cfc9865e2d6c13f7cd291bb1641817"
+      },
+      {
+        "url": "https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+        "published_sha1": "25ea2e8b0c338a877313bd4672d3fe056ea78f0d",
+        "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+      }
+    ]
+  },
   "framework_dex_inspection": {
-    "packaging_error": "Refusing framework DEX containing boot namespace definitions: Landroid/companion/virtualcamera/CameraPosition;, Landroid/companion/virtualcamera/CameraSource;, Landroid/companion/virtualcamera/Format;, Landroid/companion/virtualcamera/ICaptureResultConsumer$Default;, Landroid/companion/virtualcamera/ICaptureResultConsumer$Stub$Proxy;, Landroid/companion/virtualcamera/ICaptureResultConsumer$Stub;, Landroid/companion/virtualcamera/ICaptureResultConsumer;, Landroid/companion/virtualcamera/IVirtualCameraCallback$Default;",
+    "packaging_error": "Original canonical smali changed or incomplete",
     "jars": [
       {
         "partition": "system_ext",
@@ -140,8 +176,8 @@
     "framework_services_ported": false,
     "firmware_executed": false
   },
-  "source_commit": "f8214bdcd47cebd0911797f7db3e9f545ef021c3",
-  "run_id": "36943586300",
+  "source_commit": "6b5f0fb0ca05b7c5c4eb125a5184adb076c77790",
+  "run_id": "36944360086",
   "probe_step": "skipped",
   "ci_diagnostics": []
 }
