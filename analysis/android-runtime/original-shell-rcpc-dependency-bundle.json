@@ -139,6 +139,52 @@
       "framework_registry_registration_performed": false,
       "scope": "Original framework classes with explicit header normalization or canonical-smali-checked class selection; not service registration",
       "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "source_path": "/framework/com.oculus.os.platform.jar",
+      "source_jar_sha256": "9659b2f81dd6ba59c4ea549e0229717e2a22e6cc31369b5735ddc4b90d495285",
+      "members": [
+        {
+          "source_member": "classes.dex",
+          "apk_member": "classes3.dex",
+          "sha256": "222fb84643e23b4f5848d33139c07f0fb6490c46c33d968dc831275cf426c533",
+          "size_bytes": 763672,
+          "class_definitions": 880,
+          "source_dex_sha256": "e58088cc39f3494bddde87b80828eb0d6ee36aeedc7d530d1f2eaa0b7ba02913",
+          "source_checksum_hex": "21826274",
+          "source_signature_hex": "7d658fce7469bd251cfcec23895e587258626f2c",
+          "header_checksums_recomputed": true,
+          "payload_sha256": "3e109b84d4668f50ec065cc07e5cbee6b50c22d88ded5b37183d67970a5698ba",
+          "changed_byte_range": [
+            8,
+            32
+          ],
+          "instruction_and_data_bytes_unchanged": false,
+          "tool": "dexlib2/baksmali 2.5.2",
+          "canonical_smali_equal": true,
+          "canonical_inventory_sha256": "23ef40498e0515fa24eb45ad5b4a6d6f4959329e1b97dc7861f54f432671dfad",
+          "retained_definitions": 880,
+          "excluded_definitions": [
+            "Landroid/app/OculusSystemServiceRegistry$1;",
+            "Landroid/app/OculusSystemServiceRegistry$2;",
+            "Landroid/app/OculusSystemServiceRegistry$3;",
+            "Landroid/app/OculusSystemServiceRegistry;",
+            "Landroid/hidl/base/V1_0/DebugInfo$Architecture;",
+            "Landroid/hidl/base/V1_0/DebugInfo;",
+            "Landroid/hidl/base/V1_0/IBase$Proxy;",
+            "Landroid/hidl/base/V1_0/IBase$Stub;",
+            "Landroid/hidl/base/V1_0/IBase;"
+          ],
+          "derived_payload_sha256": "d8b2835dd90904ee658f104991d14bd354491ec0175a4008f3cfe1977a05e189",
+          "scope": "Class selection and canonical disassembly equality, not ART or ABI validation"
+        }
+      ],
+      "required_definition": "Lcom/oculus/os/ActivityManagerUtils;",
+      "original_dex_members_unchanged": true,
+      "framework_services_ported": false,
+      "framework_registry_registration_performed": false,
+      "scope": "Original framework classes with explicit header normalization or canonical-smali-checked class selection; not service registration",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
     }
   ],
   "instruction_adaptations": [
@@ -4123,7 +4169,8 @@
     "lib/arm64-v8a/android.hidl.token@1.0.so": "809b0142715d6c318a263e50729a6db9fc423e4737a16921f3503bc5bd325346",
     "lib/arm64-v8a/libdl_android.so": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
     "lib/arm64-v8a/ld-android.so": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac",
-    "classes2.dex": "d48305ee6d1e1a0219ba8bd3db964cbdcb25931b52d58d9ac4c6f11d4b73599e"
+    "classes2.dex": "d48305ee6d1e1a0219ba8bd3db964cbdcb25931b52d58d9ac4c6f11d4b73599e",
+    "classes3.dex": "222fb84643e23b4f5848d33139c07f0fb6490c46c33d968dc831275cf426c533"
   },
   "nodes": [
     {
@@ -8362,6 +8409,6 @@
   "namespace_and_symbol_versions_verified": false,
   "port_ready": false,
   "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
-  "signed_apk_sha256": "b02470e5edc77b005469054107296356ab32d1aa2e32b396152eef7c91bbd85e",
+  "signed_apk_sha256": "91401c475e92e1fb826be6b374ec8045cabe072d7e4dcd4250920cbcf5565548",
   "test_certificate_not_meta_identity": true
 }
