@@ -14,6 +14,10 @@ from horizon.ui.dex_contract import Dex
 JAR_PATH='/framework/hzos-framework.jar'
 JAR_SHA256='b1c5111bb301daf971b658414daf8e43a0b4cdac9ecc2e94a554d0c861607e42'
 REQUIRED='Lhorizonos/graphics/Vector4f;'
+FRAMEWORK_INPUTS=((JAR_PATH,JAR_SHA256,REQUIRED),
+    ('/framework/com.oculus.os.platform.jar',
+     '9659b2f81dd6ba59c4ea549e0229717e2a22e6cc31369b5735ddc4b90d495285',
+     'Lcom/oculus/os/ActivityManagerUtils;'))
 
 
 def definitions(data):
@@ -66,10 +70,19 @@ def forbidden_boot_definition(name):
     return name.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/','Lcom/android/','Lorg/xml/','Lorg/w3c/'))
 
 
-def additions(original,jar,converter=None):
+def additions(original,jar,converter=None,*,prior_members=None,source_path=JAR_PATH,required=REQUIRED):
     """Add selected original framework classes; never replace existing APK definitions."""
     originals=read_dexes(original,256*1024*1024)
     framework=read_dexes(jar,32*1024*1024,normalize_framework=True)
+    prior_members=prior_members or {}
+    prior_names=set()
+    prior_indices=[]
+    for member,data in prior_members.items():
+        match=re.fullmatch(r'classes([2-9]|[1-9][0-9]+)\.dex',member)
+        if not match:raise ValueError('Invalid prior DEX member')
+        names=definitions(data)
+        if names & prior_names:raise ValueError('Duplicate prior DEX definitions')
+        prior_names.update(names);prior_indices.append(int(match[1]))
     selected=[]
     for index,source,data,names,metadata in framework:
         if any(forbidden_boot_definition(n) for n in names) and converter is not None:
@@ -80,22 +93,25 @@ def additions(original,jar,converter=None):
             data=result;names=expected;metadata={**metadata,**proof}
         selected.append((index,source,data,names,metadata))
     framework=selected
-    existing=set().union(*(r[3] for r in originals));new=set()
+    existing=set().union(*(r[3] for r in originals))
+    if existing & prior_names or set(prior_indices) & {r[0] for r in originals}:
+        raise ValueError('Prior DEX collides with original APK')
+    existing.update(prior_names);new=set()
     for _,_,_,names,_ in framework:
         if names & (existing|new):raise ValueError('Framework class collides with existing DEX: '+', '.join(sorted(names & (existing|new))[:8]))
         if any(forbidden_boot_definition(n) for n in names):
             raise ValueError('Refusing framework DEX containing boot namespace definitions: '+', '.join(sorted(n for n in names if forbidden_boot_definition(n))[:8]))
         new.update(names)
-    if REQUIRED not in new:raise ValueError('Original Vector4f definition not found in selected JAR')
-    base=max(r[0] for r in originals);members={};evidence=[]
+    if required not in new:raise ValueError('Required original definition not found in selected JAR: '+required)
+    base=max([r[0] for r in originals]+prior_indices);members={};evidence=[]
     if base+len(framework)>128:raise ValueError('Combined DEX index budget')
     for offset,(_,source,data,names,metadata) in enumerate(framework,1):
         target=f'classes{base+offset}.dex';members[target]=data
         evidence.append({'source_member':source,'apk_member':target,
                          'sha256':hashlib.sha256(data).hexdigest(),'size_bytes':len(data),
                          'class_definitions':len(names),**metadata})
-    return members,{'source_path':JAR_PATH,'source_jar_sha256':hashlib.sha256(jar.read_bytes()).hexdigest(),
-                    'members':evidence,'required_definition':REQUIRED,
+    return members,{'source_path':source_path,'source_jar_sha256':hashlib.sha256(jar.read_bytes()).hexdigest(),
+                    'members':evidence,'required_definition':required,
                     'original_dex_members_unchanged':True,'framework_services_ported':False,
                     'framework_registry_registration_performed':False,
                     'scope':'Original framework classes with explicit header normalization or canonical-smali-checked class selection; not service registration'}

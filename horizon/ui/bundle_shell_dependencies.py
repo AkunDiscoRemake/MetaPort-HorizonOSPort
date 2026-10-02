@@ -159,16 +159,21 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
                                status='FIRMWARE_LIBRARY_WITH_EXPLICIT_RCPC_ADAPTATION')
     dex_members={};framework_evidence=[]
     if framework_dex:
-        from horizon.ui.framework_dex import JAR_PATH,JAR_SHA256,additions
-        entries=[e for e in inventory['system_ext']['entries'] if e['path']==JAR_PATH and e['kind']=='file']
-        if len(entries)!=1 or not 0<entries[0]['size_bytes']<=8*1024*1024:
-            raise ValueError('Original framework JAR inventory budget')
-        jar=output/'hzos-framework.jar'
-        dump_entry(images/'system_ext.img',entries[0],jar)
-        if digest(jar)!=JAR_SHA256:raise ValueError('Wrong pinned hzos framework JAR')
+        from horizon.ui.framework_dex import JAR_PATH,FRAMEWORK_INPUTS,additions
         try:
             from horizon.ui.select_framework_classes import select
-            dex_members,evidence=additions(original,jar,converter=select)
+            for source_path,source_sha,required in FRAMEWORK_INPUTS:
+                entries=[e for e in inventory['system_ext']['entries'] if e['path']==source_path and e['kind']=='file']
+                if len(entries)!=1 or not 0<entries[0]['size_bytes']<=8*1024*1024:
+                    raise ValueError('Original framework JAR inventory budget: '+source_path)
+                jar=output/PurePosixPath(source_path).name
+                dump_entry(images/'system_ext.img',entries[0],jar)
+                if digest(jar)!=source_sha:raise ValueError('Wrong pinned framework JAR: '+source_path)
+                members,evidence=additions(original,jar,converter=select,prior_members=dex_members,
+                                           source_path=source_path,required=required)
+                dex_members.update(members)
+                evidence['source_image_sha256']=recon['partitions']['system_ext']['sha256']
+                framework_evidence.append(evidence)
         except (ValueError,OSError,zipfile.BadZipFile) as error:
             from horizon.ui.framework_dex import read_dexes,REQUIRED
             inspection={'packaging_error':str(error)[:2000],'jars':[],
@@ -198,8 +203,6 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
                 inspection['jars'].append(item)
             (output/'framework-dex-inspection.json').write_text(json.dumps(inspection,indent=2)+'\n')
             raise
-        evidence['source_image_sha256']=recon['partitions']['system_ext']['sha256']
-        framework_evidence.append(evidence)
     unsigned=output/'shell-dependencies-unsigned.apk'
     with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
         for info in src.infolist():

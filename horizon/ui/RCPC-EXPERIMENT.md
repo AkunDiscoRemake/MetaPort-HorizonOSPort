@@ -275,3 +275,17 @@ The isolated regression varies one to four transient instance fields, testing
 metadata association and alignment across section-size residues. The original
 writer must reproduce a mismatch and an alignment failure; the patched writer
 must preserve exact field/method flags and four-byte alignment in every case.
+
+Run **36953764788** validated the alignment fix: dexopt reports `PERFORMED`
+instead of rejecting the DEX, the host regression passes, and the original
+constructor advances from line 103 (`Vector4f`) to line 144, now missing
+`com.oculus.os.ActivityManagerUtils`. This is still `APPLICATION_CRASH_RECORDED`.
+The next experiment adds the separately pinned original
+`/framework/com.oculus.os.platform.jar` (SHA256
+`9659b2f81dd6ba59c4ea549e0229717e2a22e6cc31369b5735ddc4b90d495285`,
+889 definitions in earlier verified inventory). Its required class must actually
+be present; original APK and previously added DEX classes cannot be overwritten.
+Boot namespaces remain excluded and selected definitions require canonical
+preservation. Runtime also logs denied non-SDK calls including Parcel string8
+and internal Preconditions/AnnotationValidations. Adding original classes does
+not grant those APIs, register platform services, or prove UI execution.

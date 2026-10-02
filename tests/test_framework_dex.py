@@ -38,6 +38,27 @@ class FrameworkDexTests(unittest.TestCase):
                 with zipfile.ZipFile(jar,'w') as z:z.writestr('classes.dex',class_dex(extra))
                 with self.assertRaises(ValueError):additions(apk,jar)
 
+    def test_second_framework_preserves_prior_dex_and_rejects_collisions(self):
+        with tempfile.TemporaryDirectory() as d:
+            apk=Path(d)/'a.apk';jar=Path(d)/'f.jar'
+            platform='Lcom/oculus/os/ActivityManagerUtils;'
+            prior={'classes2.dex':class_dex(REQUIRED)}
+            with zipfile.ZipFile(apk,'w') as z:z.writestr('classes.dex',class_dex('Lapp/Own;'))
+            with zipfile.ZipFile(jar,'w') as z:z.writestr('classes.dex',class_dex(platform))
+            members,evidence=additions(apk,jar,prior_members=prior,
+                                      source_path='/framework/platform.jar',required=platform)
+            self.assertEqual(set(members),{'classes3.dex'})
+            self.assertEqual(definitions(members['classes3.dex']),{platform})
+            self.assertEqual(evidence['required_definition'],platform)
+            self.assertEqual(evidence['source_path'],'/framework/platform.jar')
+            self.assertEqual(prior,{'classes2.dex':class_dex(REQUIRED)})
+            for bad in ({'classes2.dex':class_dex(platform)},
+                        {'classes.dex':class_dex(REQUIRED)},
+                        {'classes2.dex':class_dex('Lapp/Own;')},
+                        {'classes128.dex':class_dex(REQUIRED)}):
+                with self.subTest(prior=tuple(bad)),self.assertRaises(ValueError):
+                    additions(apk,jar,prior_members=bad,required=platform)
+
     def test_bad_dex_checksum_rejected(self):
         data=bytearray(class_dex(REQUIRED));data[-1]^=1
         with self.assertRaises(ValueError):definitions(bytes(data))

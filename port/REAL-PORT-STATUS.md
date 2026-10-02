@@ -153,3 +153,16 @@ setup/compilation and during original input preparation. Its final outcome is
 access stopped working. The GitHub connection in Arena needs reconnection before
 remote outcomes or further pushes can be confirmed. No functional beta, original
 UI rendering, physical-phone validation or NPU inference is established.
+
+## Estado atualizado da inicialização — alinhamento DEX corrigido
+
+Os registros anteriores de autenticação interrompida foram superados: leitura,
+commit/push e testes Actions voltaram a funcionar. Run **36952973469** identificou
+a rejeição real do DEX adicional: metadados hidden-API sem alinhamento de quatro
+bytes. A correção preserva os flags originais e passou no run **36953764788**:
+dexopt `PERFORMED`, inicialização além de `Vector4f`, mas novo crash por ausência
+de `com.oculus.os.ActivityManagerUtils`. O teste seguinte inclui o segundo JAR
+original fixado por hash, sem substituir classes do Android ou classes existentes.
+Há também chamadas privadas negadas pelo Android; serviços e permissões não são
+resolvidos simplesmente adicionando JARs. **Ainda não há beta funcional, UI
+original validada, inferência NPU ou teste no Infinix.**
