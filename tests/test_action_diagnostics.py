@@ -23,3 +23,12 @@ class CapturedDiagnostics(unittest.TestCase):
             for i in range(10):
                 d=p/str(i);d.mkdir();(d/'boot-tail.txt').write_text('boot')
             self.assertEqual(len(captured_files(p)),8)
+
+    def test_junit_failure_is_available_without_binary_artifacts(self):
+        with tempfile.TemporaryDirectory() as root:
+            p=Path(root)
+            (p/'TEST-instrumentation.xml').write_text('<failure>Activity not found</failure>')
+            (p/'unrelated.xml').write_text('not allowed')
+            rows=captured_files(p)
+            self.assertEqual(len(rows),1)
+            self.assertEqual(rows[0]['text'],'<failure>Activity not found</failure>')
