@@ -167,7 +167,8 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
         dump_entry(images/'system_ext.img',entries[0],jar)
         if digest(jar)!=JAR_SHA256:raise ValueError('Wrong pinned hzos framework JAR')
         try:
-            dex_members,evidence=additions(original,jar)
+            from horizon.ui.select_framework_classes import select
+            dex_members,evidence=additions(original,jar,converter=select)
         except (ValueError,OSError,zipfile.BadZipFile) as error:
             from horizon.ui.framework_dex import read_dexes,REQUIRED
             inspection={'packaging_error':str(error)[:2000],'jars':[],

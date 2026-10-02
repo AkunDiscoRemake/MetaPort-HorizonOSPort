@@ -63,17 +63,23 @@ def read_dexes(path,byte_limit,normalize_framework=False):
 
 
 def forbidden_boot_definition(name):
-    # This is Meta's additional registry class, NOT android.app.SystemServiceRegistry.
-    # Merely carrying it cannot register services or grant its caller privileges.
-    root='Landroid/app/VrosSystemServiceRegistry'
-    if name==root+';' or name.startswith(root+'$'):return False
-    return name.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/'))
+    return name.startswith(('Landroid/','Ljava/','Ljavax/','Ldalvik/','Lsun/','Lcom/android/','Lorg/xml/','Lorg/w3c/'))
 
 
-def additions(original,jar):
-    """Keep framework code/data unchanged, normalizing only header checksums; reject collisions."""
+def additions(original,jar,converter=None):
+    """Add selected original framework classes; never replace existing APK definitions."""
     originals=read_dexes(original,256*1024*1024)
     framework=read_dexes(jar,32*1024*1024,normalize_framework=True)
+    selected=[]
+    for index,source,data,names,metadata in framework:
+        if any(forbidden_boot_definition(n) for n in names) and converter is not None:
+            result,proof=converter(data)
+            expected={n for n in names if not forbidden_boot_definition(n)}
+            if definitions(result)!=expected or proof.get('canonical_smali_equal') is not True:
+                raise ValueError('Unverified framework class selection')
+            data=result;names=expected;metadata={**metadata,**proof}
+        selected.append((index,source,data,names,metadata))
+    framework=selected
     existing=set().union(*(r[3] for r in originals));new=set()
     for _,_,_,names,_ in framework:
         if names & (existing|new):raise ValueError('Framework class collides with existing DEX: '+', '.join(sorted(names & (existing|new))[:8]))
@@ -92,4 +98,4 @@ def additions(original,jar):
                     'members':evidence,'required_definition':REQUIRED,
                     'original_dex_members_unchanged':True,'framework_services_ported':False,
                     'framework_registry_registration_performed':False,
-                    'scope':'Original framework code/data with explicit header checksum normalization; not system service registration'}
+                    'scope':'Original framework classes with explicit header normalization or canonical-smali-checked class selection; not service registration'}

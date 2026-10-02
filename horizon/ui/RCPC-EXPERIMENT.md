@@ -221,3 +221,19 @@ Android's `SystemServiceRegistry`, `ContextImpl` or arbitrary android.* classes.
 It neither invokes that registry nor claims it can access package-private host
 framework APIs from an app loader. Other forbidden definitions still fail closed.
 Original code presence is not service registration or privilege acquisition.
+
+Run **36943586300** stopped on additional Android virtual-camera definitions in
+the same JAR. Rather than expanding namespace exceptions, the next experiment
+excludes boot namespaces (including the previously allowed Meta registry extension)
+using dexlib2 2.5.2 class selection. No class body is replaced or manually edited.
+Selected classes must have identical canonical baksmali output before/after, and
+the resulting definitions must exactly match the requested non-boot set. Reference
+indices and DEX layout are reserialized: the derived payload is **not byte-identical**.
+Canonical disassembly equality does not prove ART acceptance, ABI compatibility,
+hidden-API access or service availability. Original APK DEX/resources stay unchanged.
+
+Host tools are fetched from Maven Central using pinned published artifact SHA-1
+values, with downloaded SHA-256 recorded. They are not bundled as runtime stubs.
+Local Java compilation was unavailable; compilation, canonical comparison and ART
+execution still require the next Actions result. Setup failures are now preserved
+as bounded JSON so unavailable blob-log downloads cannot conceal their cause.

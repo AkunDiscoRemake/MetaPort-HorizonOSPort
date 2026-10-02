@@ -64,6 +64,10 @@ jobs:
           mkdir -p "$WORK" local-analysis/android-runtime
           test -e /dev/kvm
           sudo chmod 666 /dev/kvm
+      - name: Prepare pinned host-only DEX class selector
+        if: env.FRAMEWORK_DEX == 'true'
+        timeout-minutes: 5
+        run: python3 -m tools.prepare_dex_tools
       - name: Obtain the verified unmodified original APK
         timeout-minutes: 25
         run: |
@@ -132,6 +136,9 @@ jobs:
           from tools.collect_action_diagnostics import captured_files
           p=Path('local-analysis/android-runtime')/(os.environ['REPORT_STEM']+'-baseline.json')
           r=json.loads(p.read_text()) if p.exists() else {'result':'EXPERIMENT_NOT_COMPLETED','port_ready':False}
+          setup=Path('local-analysis/android-runtime/dex-tools-setup.json')
+          if setup.exists() and setup.stat().st_size<=65536:
+            r['dex_tools_setup']=json.loads(setup.read_text())
           framework=Path('local-analysis/shell-bundle/framework-dex-inspection.json')
           if framework.exists() and framework.stat().st_size<=65536:
             r['framework_dex_inspection']=json.loads(framework.read_text())

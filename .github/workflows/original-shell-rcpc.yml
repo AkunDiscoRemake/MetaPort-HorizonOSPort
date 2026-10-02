@@ -6,6 +6,9 @@ on:
       - .github/workflows/original-shell-rcpc.yml
       - horizon/ui/rcpc_compat.py
       - horizon/ui/framework_dex.py
+      - horizon/ui/select_framework_classes.py
+      - horizon/ui/java/SelectFrameworkClasses.java
+      - tools/prepare_dex_tools.py
       - tests/test_framework_dex.py
       - horizon/ui/libcxx-rcpc-sites.json
       - horizon/ui/libutils-rcpc-sites.json

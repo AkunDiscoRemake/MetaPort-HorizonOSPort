@@ -63,8 +63,18 @@ class FrameworkDexTests(unittest.TestCase):
 
     def test_meta_registry_extension_does_not_allow_host_registry_replacement(self):
         from horizon.ui.framework_dex import forbidden_boot_definition
-        self.assertFalse(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistry;'))
-        self.assertFalse(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistry$10;'))
+        self.assertTrue(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistry;'))
+        self.assertTrue(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistry$10;'))
         self.assertTrue(forbidden_boot_definition('Landroid/app/SystemServiceRegistry;'))
         self.assertTrue(forbidden_boot_definition('Landroid/app/ContextImpl;'))
         self.assertTrue(forbidden_boot_definition('Landroid/app/VrosSystemServiceRegistryOther;'))
+
+    def test_canonical_inventory_detects_changed_disassembly(self):
+        from horizon.ui.select_framework_classes import smali_inventory
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);path=root/'Vector4f.smali';path.write_text('.method original\nreturn-void\n')
+            before=smali_inventory(root)
+            path.write_text('.method changed\nreturn-void\n')
+            self.assertNotEqual(before,smali_inventory(root))
+            path.unlink()
+            with self.assertRaises(ValueError):smali_inventory(root)
