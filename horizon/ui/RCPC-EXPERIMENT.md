@@ -365,3 +365,17 @@ preserves the corresponding SDK interfaces/value types. This server DEX is
 analysis-only, never installed or substituted for Android system_server. The
 purpose is to port the original service logic with an explicit app-scoped
 backend, not register an empty binder or return fictional focus/tracking grants.
+
+Run **37004758803** recovered only VrFocusHelper and its callback from the server
+JARs: they forward state through privileged broadcasts and do not implement the
+missing vrfocus service. The existing verified firmware inventory identifies the
+actual **native** owner `/system_ext/bin/vrfocusserver` (258304 bytes). Its init
+contract `/etc/init/vrfocusserver.rc` (SHA256
+`05ba2690d48a73ccd6659fb347527a533e1fd464dfd315838c8ad7abb60b800c`)
+starts `vrfocus` with `user root`, `group root`, `group system`. Merely bundling it
+cannot grant those privileges to an ordinary phone APK. Recovery now captures
+its ELF imports/symbols and executable-section disassembly, alongside the native
+Binder interface and init contract. None of those files is executed or added to
+the APK. The required work is adapting the original native service implementation
+and its platform interactions, not installing another Java helper or publishing
+a nonfunctional placeholder binder. The latest runtime still has the same ANR.

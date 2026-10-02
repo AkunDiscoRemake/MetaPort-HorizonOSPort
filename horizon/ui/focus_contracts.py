@@ -11,7 +11,7 @@ import tempfile
 from horizon.ui.framework_dex import read_dexes
 from horizon.ui.select_framework_classes import compare_smali
 from tools.prepare_dex_tools import ROOT
-from tools.scan_partitions import dump_entry
+from tools.scan_partitions import dump_entry,command
 
 PATHS=(('system_ext','/framework/oculus-system-services.jar'),
        ('system_ext','/framework/horizonos-services.jar'))
@@ -23,12 +23,40 @@ def focus_names(names):
     return selected
 
 
+def native_contracts(images,inventory,reconstruction,root):
+    rows=[]
+    for source in ('/bin/vrfocusserver','/etc/init/vrfocusserver.rc','/lib64/libvrfocus_interface-cpp.so'):
+        row={'path':source,'partition':'system_ext',
+             'source_image_sha256':reconstruction['partitions']['system_ext']['sha256'],
+             'executed':False,'packaged_in_apk':False}
+        rows.append(row)
+        try:
+            entries=[e for e in inventory['system_ext']['entries'] if e['path']==source and e['kind']=='file']
+            if len(entries)!=1 or not 0<entries[0]['size_bytes']<=1024*1024:
+                raise ValueError('Native focus input budget')
+            target=root/Path(source).name
+            dump_entry(Path(images)/'system_ext.img',entries[0],target)
+            data=target.read_bytes();row.update(sha256=hashlib.sha256(data).hexdigest(),size_bytes=len(data))
+            if source.endswith('.rc'):
+                if len(data)>4096:raise ValueError('Init contract budget')
+                row['original_init']=data.decode('utf-8')
+            else:
+                row['elf_headers'],_=command(['readelf','-h','-d','-n','-W',str(target)],max_output=128*1024)
+                row['dynamic_symbols'],_=command(['readelf','--dyn-syms','-W',str(target)],max_output=512*1024)
+                row['disassembly'],_=command(['aarch64-linux-gnu-objdump','-d','-C','--no-show-raw-insn',str(target)],max_output=4*1024*1024)
+                row['disassembly_complete_for_executable_sections']=True
+        except (ValueError,OSError,subprocess.TimeoutExpired) as error:
+            row['error']=str(error)[:3000]
+    return rows
+
+
 def collect(images,inventory,reconstruction,output):
     report={'scope':'Original third-party server disassembly, not GPL relicensing or a runnable service',
             'firmware_executed':False,'service_implemented':False,'jars':[]}
     remaining=1024*1024
     with tempfile.TemporaryDirectory(prefix='focus-server-contracts-') as d:
         root=Path(d)
+        report['native_contracts']=native_contracts(images,inventory,reconstruction,root)
         for part,source in PATHS:
             row={'partition':part,'path':source,'source_image_sha256':reconstruction['partitions'][part]['sha256']}
             report['jars'].append(row)

@@ -46,3 +46,18 @@ class ServiceTransportTests(unittest.TestCase):
         from horizon.ui.focus_contracts import focus_names
         self.assertEqual(focus_names({'Lother/Server;','Loriginal/VrFocusService;'}),['Loriginal/VrFocusService;'])
         with self.assertRaises(ValueError):focus_names({f'Loriginal/VrFocusService${i};' for i in range(65)})
+
+    def test_native_recovery_never_executes_or_packages_daemon(self):
+        from horizon.ui.focus_contracts import native_contracts
+        paths=('/bin/vrfocusserver','/etc/init/vrfocusserver.rc','/lib64/libvrfocus_interface-cpp.so')
+        inventory={'system_ext':{'entries':[{'path':p,'kind':'file','size_bytes':4} for p in paths]}}
+        reconstruction={'partitions':{'system_ext':{'sha256':'verified-image-evidence'}}}
+        commands=[]
+        with tempfile.TemporaryDirectory() as d:
+            with patch('horizon.ui.focus_contracts.dump_entry',side_effect=lambda image,entry,target:target.write_bytes(b'test')):
+                with patch('horizon.ui.focus_contracts.command',side_effect=lambda args,**kw:(commands.append(args) or 'analysis','')):
+                    rows=native_contracts(Path(d),inventory,reconstruction,Path(d))
+        self.assertEqual(len(rows),3)
+        self.assertTrue(all(not r['executed'] and not r['packaged_in_apk'] for r in rows))
+        self.assertEqual({c[0] for c in commands},{'readelf','aarch64-linux-gnu-objdump'})
+        self.assertEqual(rows[1]['original_init'],'test')
