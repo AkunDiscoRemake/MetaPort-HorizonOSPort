@@ -120,3 +120,17 @@ class FrameworkDexTests(unittest.TestCase):
         self.assertIn('-d',commands[0]);self.assertIn('1200',commands[0])
         self.assertFalse(any(a.startswith('--uid') for a in commands[0]))
         self.assertTrue(any(a.startswith('--regex=') for a in commands[0]))
+
+    def test_recovered_contract_is_bounded_and_matches_canonical_hash(self):
+        from horizon.ui.select_framework_classes import startup_contracts, STARTUP_CONTRACTS
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);name=STARTUP_CONTRACTS[0];path=root/name
+            path.parent.mkdir(parents=True);path.write_text('original service boundary')
+            inventory={name:hashlib.sha256(path.read_bytes()).hexdigest()}
+            rows=startup_contracts(root,inventory)
+            self.assertEqual(rows[0]['original_smali'],'original service boundary')
+            self.assertEqual(startup_contracts(root,{}),[])
+            path.write_text('changed')
+            with self.assertRaisesRegex(ValueError,'Changed'):startup_contracts(root,inventory)
+            path.write_bytes(b'x'*(96*1024+1))
+            with self.assertRaisesRegex(ValueError,'budget'):startup_contracts(root,inventory)

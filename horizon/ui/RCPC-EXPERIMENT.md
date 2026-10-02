@@ -300,3 +300,15 @@ explicit initializers, including false, integer zero and encoded null, while
 leaving absent initializers absent. An independent original/patched synthetic
 regression checks both modes. This is a serialization preservation change, not a
 change to the firmware's DEBUG setting or a bypass of platform API restrictions.
+
+Run **36954885176** passes both host regressions and canonical preservation for
+**1940 + 880 original classes**. `ActivityManagerUtils` now resolves; startup
+advances to ShellApplication line 153, through VrFocusManager into
+BinderClient.ServiceManagerCallback. The actual new failure is
+`android.os.IServiceCallback$Stub.<init>()V`: the immediate loader log explicitly
+reports **hidden API linking denied**, followed by NoSuchMethodError. Do not
+misdiagnose this as another missing JAR or assume a constructor ABI change.
+The next collection retains four bounded, hash-checked original canonical
+startup contracts to design an app-scoped service adapter. It does not disable
+hidden-API enforcement, replace boot classes, fake service readiness, or supply
+an implementation of the original VR focus service. UI is still not rendered.

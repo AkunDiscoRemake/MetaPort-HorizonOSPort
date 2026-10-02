@@ -38,6 +38,31 @@ def compare_smali(before_root,after_root,expected_count):
     raise ValueError('Original canonical smali changed or incomplete: '+json.dumps(detail))
 
 
+STARTUP_CONTRACTS=(
+    'oculus/internal/osutils/BinderClient.smali',
+    'oculus/internal/osutils/BinderClient$ServiceManagerCallback.smali',
+    'com/oculus/os/VrFocusManager.smali',
+    'com/oculus/os/ActivityManagerUtils.smali',
+)
+
+
+def startup_contracts(root,inventory):
+    """Bounded original disassembly for adapting the observed service boundary."""
+    result=[]
+    for name in STARTUP_CONTRACTS:
+        if name not in inventory:continue
+        path=Path(root)/name
+        if path.is_symlink() or path.stat().st_size>96*1024:
+            raise ValueError('Startup contract source budget/symlink')
+        data=path.read_bytes()
+        if hashlib.sha256(data).hexdigest()!=inventory[name]:
+            raise ValueError('Changed startup contract disassembly')
+        result.append({'class_file':name,'canonical_sha256':inventory[name],
+                       'original_smali':data.decode('utf-8'),
+                       'scope':'Recovered original third-party code; not a service implementation or GPL relicensing'})
+    return result
+
+
 def select(data):
     original=definitions(data)
     names=sorted(n for n in original if not forbidden_boot_definition(n))
@@ -62,6 +87,7 @@ def select(data):
         before=compare_smali(root/'before',root/'after',len(names))
         return result,{'tool':'dexlib2/baksmali 2.5.2','canonical_smali_equal':True,
                        'canonical_inventory_sha256':hashlib.sha256(json.dumps(before,sort_keys=True).encode()).hexdigest(),
+                       'startup_contracts':startup_contracts(root/'before',before),
                        'retained_definitions':len(names),'excluded_definitions':sorted(original-set(names)),
                        'instruction_and_data_bytes_unchanged':False,
                        'derived_payload_sha256':hashlib.sha256(result[32:]).hexdigest(),

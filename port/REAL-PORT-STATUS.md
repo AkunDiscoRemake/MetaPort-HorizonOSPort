@@ -166,3 +166,14 @@ original fixado por hash, sem substituir classes do Android ou classes existente
 Há também chamadas privadas negadas pelo Android; serviços e permissões não são
 resolvidos simplesmente adicionando JARs. **Ainda não há beta funcional, UI
 original validada, inferência NPU ou teste no Infinix.**
+
+### Fronteira atual após os dois frameworks
+
+Run **36954885176**: 2.820 classes originais selecionadas com igualdade canônica
+(1.940 hzos + 880 plataforma Oculus). Os dois erros de classe ausente anteriores
+foram superados. O crash atual ocorre no construtor de `IServiceCallback.Stub`,
+chamado por `BinderClient`/`VrFocusManager`; o log confirma bloqueio de API privada,
+não simplesmente ausência de um JAR. É necessária adaptação real do vínculo com
+os serviços, sem desativar a proteção do Android ou fingir serviço disponível.
+O coletor passa a preservar os contratos originais dessa fronteira para essa
+adaptação. Não houve renderização original nem validação física.
