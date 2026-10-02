@@ -5,6 +5,9 @@ on:
     paths:
       - .github/workflows/original-shell-rcpc.yml
       - horizon/ui/rcpc_compat.py
+      - horizon/ui/service_transport.py
+      - horizon/ui/java/AdaptServiceTransport.java
+      - port/android/adapters/src/main/java/org/metaport/port/services/**
       - horizon/ui/framework_dex.py
       - horizon/ui/select_framework_classes.py
       - horizon/ui/java/SelectFrameworkClasses.java

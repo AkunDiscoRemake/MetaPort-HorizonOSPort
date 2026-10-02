@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Bundle verified ORIGINAL native dependencies for an offline load experiment.
 
-No DEX/resource patches, forged services, Meta signing identity, or runtime claims.
+Original APK DEX/resources stay unchanged. Optional SDK transport adaptation is explicit.
+No forged services, Meta signing identity, or runtime claims.
 Missing/ambiguous libraries remain explicit. A dependency closure is not a port.
 """
 import argparse
@@ -71,7 +72,8 @@ def compare_apks(original,modified,added):
             if member_digest(dst,targets[name])!=sha:raise ValueError('Added library hash mismatch')
 
 
-def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_dex=False):
+def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_dex=False,app_service_transport=False):
+    if app_service_transport and not framework_dex:raise ValueError("Service transport requires original frameworks")
     images=Path(images);original=Path(original);output=Path(output);output.mkdir(parents=True,exist_ok=True)
     policy=json.loads(POLICY.read_text());recon=json.loads(Path(reconstruction).read_text())
     if digest(original)!=policy['apk_sha256'] or recon['source_zip_sha256']!=policy['ota_sha256']:
@@ -203,6 +205,26 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
                 inspection['jars'].append(item)
             (output/'framework-dex-inspection.json').write_text(json.dumps(inspection,indent=2)+'\n')
             raise
+    transport=[]
+    if app_service_transport:
+        from horizon.ui.service_transport import adapt,adapter_dex
+        from horizon.ui.framework_dex import definitions,read_dexes
+        targets=[m for e in framework_evidence if e['source_path']=='/framework/com.oculus.os.platform.jar' for m in e['members']]
+        if len(targets)!=1:raise ValueError('Ambiguous original transport DEX')
+        member=targets[0];target=member['apk_member']
+        data,proof=adapt(dex_members[target]);dex_members[target]=data
+        member['canonical_original_selection_verified']=member.pop('canonical_smali_equal')
+        member.update(canonical_smali_equal=False,transport_adaptation=proof,
+                      sha256=hashlib.sha256(data).hexdigest(),size_bytes=len(data))
+        adapter,adapter_proof=adapter_dex()
+        originals=read_dexes(original,256*1024*1024)
+        existing=set().union(*(r[3] for r in originals),*(definitions(d) for d in dex_members.values()))
+        if definitions(adapter)&existing:raise ValueError('Adapter class collision')
+        index=max([r[0] for r in originals]+[int(n[7:-4]) for n in dex_members])+1
+        if index>128:raise ValueError('Adapter DEX index budget')
+        adapter_name=f'classes{index}.dex';dex_members[adapter_name]=adapter
+        adapter_proof['apk_member']=adapter_name
+        transport=[{'framework_member':target,'adaptation':proof,'adapter':adapter_proof}]
     unsigned=output/'shell-dependencies-unsigned.apk'
     with zipfile.ZipFile(original) as src,zipfile.ZipFile(unsigned,'w') as dst:
         for info in src.infolist():
@@ -215,7 +237,7 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
             added[member]=hashlib.sha256(data).hexdigest()
     compare_apks(original,unsigned,added)
     report={'source_apk_sha256':policy['apk_sha256'],'source_ota_sha256':policy['ota_sha256'],
-            'framework_dex_additions':framework_evidence,'instruction_adaptations':adaptations,'original_native_dependencies_unmodified':not adaptations,
+            'app_service_transport':transport,'framework_dex_additions':framework_evidence,'instruction_adaptations':adaptations,'original_native_dependencies_unmodified':not adaptations,
             'added_members':added,'nodes':rows,'edges':edges,'unresolved':unresolved,
             'original_members_unchanged':True,'original_signatures_removed':True,
             'namespace_and_symbol_versions_verified':False,'port_ready':False,
@@ -229,4 +251,5 @@ if __name__=='__main__':
     for name in ('images','reconstruction','original','output'):p.add_argument('--'+name,required=True)
     p.add_argument('--rcpc-compat',action='store_true')
     p.add_argument('--framework-dex',action='store_true')
-    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output,a.rcpc_compat,a.framework_dex)
+    p.add_argument('--app-service-transport',action='store_true')
+    a=p.parse_args();prepare(a.images,a.reconstruction,a.original,a.output,a.rcpc_compat,a.framework_dex,a.app_service_transport)

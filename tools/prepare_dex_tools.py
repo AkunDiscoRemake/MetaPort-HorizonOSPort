@@ -74,7 +74,7 @@ def prepare():
     initializer.parent.mkdir(parents=True,exist_ok=True);initializer.write_bytes(initializer_patch)
     (ROOT/'classes').mkdir(exist_ok=True)
     compiled=subprocess.run(['javac','--release','11','-cp',str(ROOT/'*'),'-d',str(ROOT/'classes'),
-                    'horizon/ui/java/SelectFrameworkClasses.java','horizon/ui/java/VerifyDexWriter.java','horizon/ui/java/VerifyStaticInitializers.java',str(writer),str(initializer)],capture_output=True,text=True,timeout=60)
+                    'horizon/ui/java/SelectFrameworkClasses.java','horizon/ui/java/AdaptServiceTransport.java','horizon/ui/java/VerifyDexWriter.java','horizon/ui/java/VerifyStaticInitializers.java',str(writer),str(initializer)],capture_output=True,text=True,timeout=60)
     if compiled.returncode:raise ValueError('Class selector compilation failed: '+compiled.stderr[-4000:])
     regression=[]
     for first,second,mode in ((ROOT/'*',ROOT/'classes','mismatch'),(ROOT/'classes',ROOT/'*','match')):

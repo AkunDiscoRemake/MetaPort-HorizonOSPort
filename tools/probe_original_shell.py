@@ -80,6 +80,7 @@ def inspect(apk, adb, observe_seconds=20, original=None, bundle_manifest=None):
             'source_apk_sha256':policy['apk_sha256'],'original_members_unchanged':True,
             'instruction_adaptations':bundle.get('instruction_adaptations',[]) if bundle else [],
             'bundled_library_count':sum(n.startswith('lib/') for n in bundle['added_members']) if bundle else 0,
+            'app_service_transport':bundle.get('app_service_transport',[]) if bundle else [],
             'framework_dex_additions':bundle.get('framework_dex_additions',[]) if bundle else [],'network_isolated':True,
             'installation_attempted':False,'installation_succeeded':False,
             'activity_start_attempted':False,'port_ready':False,

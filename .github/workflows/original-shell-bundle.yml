@@ -67,7 +67,9 @@ jobs:
       - name: Prepare pinned host-only DEX class selector
         if: env.FRAMEWORK_DEX == 'true'
         timeout-minutes: 5
-        run: python3 -m tools.prepare_dex_tools
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+          python3 -m tools.prepare_dex_tools
       - name: Obtain the verified unmodified original APK
         timeout-minutes: 25
         run: |
@@ -87,6 +89,7 @@ jobs:
           extra=()
           if [ "$RCPC_COMPAT" = true ]; then extra+=(--rcpc-compat); fi
           if [ "$FRAMEWORK_DEX" = true ]; then extra+=(--framework-dex); fi
+          if [ "$FRAMEWORK_DEX" = true ] && [ "$RCPC_COMPAT" = true ]; then extra+=(--app-service-transport); fi
           python3 -m horizon.ui.bundle_shell_dependencies "${extra[@]}" --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle
           rm -rf "$WORK/images" "$WORK/firmware.zip"
       - name: Verify cached APK too and install the test image

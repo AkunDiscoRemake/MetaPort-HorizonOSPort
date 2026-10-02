@@ -312,3 +312,23 @@ The next collection retains four bounded, hash-checked original canonical
 startup contracts to design an app-scoped service adapter. It does not disable
 hidden-API enforcement, replace boot classes, fake service readiness, or supply
 an implementation of the original VR focus service. UI is still not rendered.
+
+## App-local service transport experiment
+
+The confirmed non-SDK denial is addressed with a distinct, opt-in
+`--app-service-transport` adaptation. Only the original BinderClient and its
+ServiceManagerCallback change: three type descriptors route discovery/callbacks
+to project-owned, process-private classes using public Binder APIs. The two
+original canonical class hashes are pinned; every other class must be identical,
+and changed classes must match precisely the declared descriptor substitutions.
+Original APK DEX/resources remain unchanged. The platform framework report now
+explicitly marks `canonical_smali_equal: false` after adaptation, retaining the
+separate verified original-selection proof and recording both payload hashes.
+
+The directory is empty until an actual provider publishes an actual live binder.
+It never registers with Android servicemanager, grants system permissions, or
+returns a fake VR focus service. Delivery is queued on the main looper; duplicate
+subscriptions/publications are idempotent, unsubscribe suppresses queued events,
+and live providers cannot be replaced. Android instrumentation exercises actual
+Binder objects for these transport properties. These tests are not a Horizon UI
+or VR focus implementation test. No provider is manufactured to advance startup.
