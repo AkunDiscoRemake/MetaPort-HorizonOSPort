@@ -6,7 +6,6 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.util.Log;
 import org.metaport.port.focus.protocol.FocusWire;
-import org.metaport.port.focus.protocol.VrFocusEndpoint.Caller;
 
 /**
  * In-process bootstrap that publishes the ported {@link VrFocusService} into
@@ -33,8 +32,7 @@ public final class VrFocusBootstrap {
         final int myUid = Process.myUid();
         VrFocusService service = VrFocusService.createBeforeApplication(
                 (permission, pid, uid) -> pid == myPid && uid == myUid);
-        Caller selfCaller = new Caller(myPid, myUid, true);
-        service.setAppState(selfCaller, myPid, 0);
+        service.setOwnProcessAppState(0);
         long now = SystemClock.elapsedRealtime();
         service.evaluateOwnProcess(
                 0,

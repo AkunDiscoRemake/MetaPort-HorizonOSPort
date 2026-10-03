@@ -66,10 +66,12 @@ def adapter_dex():
     sources=service_sources+focus_sources
     with tempfile.TemporaryDirectory(prefix='service-adapter-') as d:
         root=Path(d);classes=root/'classes';classes.mkdir();out=root/'dex';out.mkdir()
-        subprocess.run(['javac','--release','8','-classpath',str(android),'-d',str(classes),
-            *map(str,sources)],check=True,timeout=60,capture_output=True)
-        subprocess.run([str(sdk/'build-tools/35.0.0/d8'),'--min-api','29','--lib',str(android),
-            '--output',str(out),*map(str,sorted(classes.rglob('*.class')))],check=True,timeout=60,capture_output=True)
+        run=subprocess.run(['javac','--release','8','-classpath',str(android),'-d',str(classes),
+            *map(str,sources)],timeout=60,capture_output=True,text=True)
+        if run.returncode:raise ValueError('Adapter javac failed: '+run.stderr[-4000:])
+        run=subprocess.run([str(sdk/'build-tools/35.0.0/d8'),'--min-api','29','--lib',str(android),
+            '--output',str(out),*map(str,sorted(classes.rglob('*.class')))],timeout=60,capture_output=True,text=True)
+        if run.returncode:raise ValueError('Adapter d8 failed: '+run.stderr[-4000:])
         if {p.name for p in out.iterdir()}!={'classes.dex'}:raise ValueError('Adapter DEX output set')
         data=(out/'classes.dex').read_bytes();names=definitions(data)
         if not names or any(not n.startswith(('Lorg/metaport/port/services/','Lorg/metaport/port/focus/')) for n in names):
@@ -87,12 +89,13 @@ def focus_native_lib(output_so):
     cpp_sources=sorted(cpp_dir.glob('*.cpp'))+sorted((ht_dir/'src').glob('*.cpp'))
     headers=sorted(cpp_dir.glob('*.hpp'))+sorted((ht_dir/'include').rglob('*.hpp'))
     output_so=Path(output_so);output_so.parent.mkdir(parents=True,exist_ok=True)
-    subprocess.run([str(clang),'-std=c++17','-shared','-fPIC','-O2',
+    run=subprocess.run([str(clang),'-std=c++17','-shared','-fPIC','-O2',
         '-Wall','-Wextra','-Werror','-static-libstdc++','-Wl,--no-undefined',
         '-Wl,-soname,libmetaport_adapters.so','-Wl,-z,max-page-size=16384',
         '-I',str(ht_dir/'include'),*map(str,cpp_sources),
         '-landroid','-llog','-lEGL','-lGLESv2','-o',str(output_so)],
-        check=True,timeout=120,capture_output=True)
+        timeout=120,capture_output=True,text=True)
+    if run.returncode:raise ValueError('Adapter clang++ failed: '+run.stderr[-4000:])
     data=output_so.read_bytes()
     return {'apk_member':'lib/arm64-v8a/libmetaport_adapters.so',
             'sha256':hashlib.sha256(data).hexdigest(),'size_bytes':len(data),

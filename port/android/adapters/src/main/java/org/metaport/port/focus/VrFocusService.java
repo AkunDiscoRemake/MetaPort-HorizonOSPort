@@ -248,6 +248,25 @@ public final class VrFocusService implements VrFocusEndpoint.Backend, AutoClosea
         }
     }
 
+    public void setOwnProcessAppState(int state) {
+        final boolean notifyTop;
+        final String topSnapshot;
+        final ImmersiveApp immersiveSnapshot;
+        synchronized (stateLock) {
+            requireOpen();
+            NativeFocusClient.Registration reg = client.registration();
+            NativeFocusClient.AppStateSnapshot snap = client.applyAppState(reg.pid, state);
+            notifyTop = snap.notifyTopActivity;
+            topSnapshot = topActivity;
+            immersiveSnapshot = immersiveApp != null
+                    ? immersiveApp
+                    : EMPTY_IMMERSIVE_FOR_TOP_LISTENER;
+        }
+        if (notifyTop) {
+            listeners.notifyTopChanged(topSnapshot, immersiveSnapshot);
+        }
+    }
+
     @Override
     public ImmersiveApp getImmersiveApp(Caller caller) {
         Objects.requireNonNull(caller);

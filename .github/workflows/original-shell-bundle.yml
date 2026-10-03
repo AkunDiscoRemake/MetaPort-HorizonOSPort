@@ -90,7 +90,7 @@ jobs:
           if [ "$RCPC_COMPAT" = true ]; then extra+=(--rcpc-compat); fi
           if [ "$FRAMEWORK_DEX" = true ]; then extra+=(--framework-dex); fi
           if [ "$FRAMEWORK_DEX" = true ] && [ "$RCPC_COMPAT" = true ]; then extra+=(--app-service-transport); fi
-          python3 -m horizon.ui.bundle_shell_dependencies "${extra[@]}" --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle
+          python3 -m horizon.ui.bundle_shell_dependencies "${extra[@]}" --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle 2>local-analysis/android-runtime/bundle-stderr.txt
           rm -rf "$WORK/images" "$WORK/firmware.zip"
       - name: Verify cached APK too and install the test image
         timeout-minutes: 12
