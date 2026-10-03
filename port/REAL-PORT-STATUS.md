@@ -376,3 +376,32 @@ status de foco observado. Ainda faltam composição coerente das entradas,
 conversão/cache/liveness completos, binding da avaliação e backend/publicação
 Binder antes de Application. **Não há APK original funcional nem correção do
 ANR original nesta alteração.**
+
+## Avaliação completa do núcleo de foco pelo JNI — 2026-10-03
+
+Fonte **4153a8b** liga seleção imersiva, decisão e bookkeeping do núcleo C++ ao
+JNI, por um transporte interno validado e limitado (não é o Parcel ABI Meta).
+Retorna aplicativo selecionado, nome superior, decisões ordenadas, histórico e
+estado do próprio registro. Tipos ainda não consultados ficam explicitamente
+**desconhecidos**, por uma máscara separada; não são tratados como perda de foco.
+Consulta apenas de outros clientes não transforma o registro próprio inicial
+em estado observado. Não há cadastro implícito nem concessão de permissões.
+
+Validação da fonte:
+- Projeto/regressão/nativo **37130802378**, sucesso; **20 casos com sanitizadores**.
+  O decodificador inclui truncamentos, limites, UTF-8 e 10 mil mutações controladas.
+- Build Android ARM64 **37130802346**, sucesso.
+- Runtime **37130802416**, sucesso: **33 testes próprios em cada API 29 e 35**.
+  Agora os testes executam a avaliação/seleção e o histórico C++ via JNI, além do
+  registro. Verificam ambos os tipos, canais distintos, ordenação/deduplicação,
+  precedência de background, entradas inválidas sem alteração do estado,
+  Unicode e fechamento concorrente. A fonte anterior 9d6edd7 não é usada como
+  validação final deste marco.
+
+Os novos frames são **fixtures identificadas como tal**, não observações do
+Horizon original nem grants reais. A API de avaliação é interna/package-private:
+ainda não há produtor Android de todos os canais/metadados normalizados coerentes.
+As observações próprias existentes não são substituídas por dados inventados.
+Faltam composição/normalização/liveness completos, backend Binder e publicação
+antes de Application. **O ANR original permanece, e ainda não há APK funcional
+com a interface original nem validação no Infinix.**

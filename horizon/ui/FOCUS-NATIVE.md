@@ -494,3 +494,10 @@ Readback also includes an own-client **evaluated-types mask**. An unqueried type
 remains unknown, not an observed loss; a query containing only other identities
 does not enable own-client evaluated-state access. The focus mask alone is
 bookkeeping, never a substitute for those per-type validity bits or decision rows.
+
+Evaluation transport validation, source **4153a8b**: project/native **37130802378**
+passed with 20 native sanitizer cases; arm64 Android build **37130802346** passed;
+runtime **37130802416** passed 33 owned cases on each API 29/35. Unlike the earlier
+registration-only stage, these Android cases execute the C++ evaluation/selection
+and history through JNI, using explicitly constructed fixtures. They do not
+execute the original daemon, prove complete observation inputs or fix startup.
