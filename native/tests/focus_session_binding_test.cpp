@@ -3,7 +3,7 @@
 #include <cassert>
 using namespace metaport::focus;
 static packet::Request request() {
-    return {true,FocusType::Type1,{},{{{10,100},{}}},
+    return {true,false,FocusType::Type1,{},{{{10,100},{}}},
         DecisionInputs{{},{},{},{},std::nullopt,std::nullopt,std::nullopt,true},
         ImmersiveInputs{{},{{{10,100},"fixture","ordinary","fixture"}},{},"fixture"}};
 }

@@ -120,12 +120,61 @@ public final class NativeFocusClient implements AutoCloseable {
         byte[] result=nativeEvaluateSession(handle,observed.sourceToken,observed.generation,frame.encode());
         return new SessionEvaluation(observed.generation,FocusPolicyResult.decode(result));
     }
+    static final class WindowSnapshot {
+        private final long token,source;
+        final long generation;
+        final boolean known;
+        private WindowSnapshot(long token,long[] values) {
+            if (values==null || values.length!=3 || values[0]<=0 || values[1]<=0 || (values[2]!=0 && values[2]!=1))
+                throw new IllegalStateException("Invalid window observation");
+            this.token=token;source=values[0];generation=values[1];known=values[2]==1;
+        }
+    }
+    static final class ObservedEvaluation {
+        final long sessionGeneration,windowGeneration;
+        final FocusPolicyResult policy;
+        private ObservedEvaluation(long session,long window,FocusPolicyResult policy) {
+            sessionGeneration=session;windowGeneration=window;this.policy=policy;
+        }
+    }
+    synchronized long attachWindowSource() { requireOpen();return nativeAttachWindow(handle); }
+    synchronized void detachWindowSource(long source) { if (handle!=0) nativeDetachWindow(handle,source); }
+    synchronized boolean isClosed() { return handle==0; }
+    synchronized WindowSnapshot observeWindow(long source,AppWindowFocusBackend.Snapshot snapshot) {
+        requireOpen();java.util.Objects.requireNonNull(snapshot);
+        int[] identity=nativeIdentity(handle);
+        boolean primaryWindow=false;
+        for (AppWindowFocusBackend.FocusedWindow window:snapshot.focusedWindows) {
+            if (window.pid!=identity[0] || window.uid!=identity[1] || window.displayId<0)
+                throw new IllegalArgumentException("Foreign window identity");
+            if (window.displayId==android.view.Display.DEFAULT_DISPLAY) primaryWindow=true;
+        }
+        // An empty/closed/late-started observer cannot establish absence of global
+        // window focus. Preserve unknown instead of injecting a fabricated null.
+        boolean positive=snapshot.observing && primaryWindow;
+        return new WindowSnapshot(handle,nativeObserveWindow(handle,source,positive));
+    }
+    synchronized ObservedEvaluation evaluateWithObservedInputs(FocusPolicyFrame frame,
+            AppStateSnapshot session,WindowSnapshot window) {
+        requireOpen();java.util.Objects.requireNonNull(frame);
+        java.util.Objects.requireNonNull(session);java.util.Objects.requireNonNull(window);
+        if (session.sourceToken!=handle || window.token!=handle) throw new IllegalArgumentException("Foreign input snapshot");
+        if (!session.known || !window.known) throw new IllegalStateException("Required input unavailable");
+        byte[] value=nativeEvaluateObserved(handle,session.sourceToken,session.generation,
+                window.source,window.generation,frame.encode());
+        return new ObservedEvaluation(session.generation,window.generation,FocusPolicyResult.decode(value));
+    }
     private void requireOpen() {
         if (handle==0) throw new IllegalStateException("Closed native focus client");
     }
     @Override public synchronized void close() {
         if (handle!=0) { nativeDestroy(handle); handle=0; }
     }
+    private static native long nativeAttachWindow(long handle);
+    private static native long[] nativeObserveWindow(long handle,long source,boolean positive);
+    private static native void nativeDetachWindow(long handle,long source);
+    private static native byte[] nativeEvaluateObserved(long handle,long sourceToken,long sessionGeneration,
+            long windowSource,long windowGeneration,byte[] packet);
     private static native long[] nativeAppState(long handle,int callerPid,int callerUid,int requestedPid,int state);
     private static native long[] nativeAppStateSnapshot(long handle);
     private static native byte[] nativeEvaluate(long handle,byte[] packet);

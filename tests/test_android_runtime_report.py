@@ -121,3 +121,10 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/FocusSessionBindingTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),SESSION_BINDING_CASES)
+
+    def test_window_binding_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import WINDOW_BINDING_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/NativeWindowFocusInputTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test\(timeout=120000\) public void (\w+)',source)),WINDOW_BINDING_CASES)

@@ -595,3 +595,37 @@ all passed. Runtime executed 42 owned cases per API 29/35; native sanitizers
 executed 21 cases. The race test bypasses the Java monitor for native updates.
 These are owned adapter/policy tests with explicit remaining-channel fixtures,
 not original firmware, physical-device or complete-provider validation.
+
+## Positive own-window input bound to native evaluation (2026-10-03)
+
+`NativeWindowFocusInput` relays real `AppWindowFocusBackend` callbacks/polls to
+`NativeFocusClient`. It accepts positive own-process focused-window evidence on
+Android's `Display.DEFAULT_DISPLAY` only. It does **not** claim global window
+ownership, convert Activity lifecycle into XR state, or derive main-display focus.
+The existing raw observer retains its other-display observations; this adapter's
+scope is deliberately narrower. An empty, late-started or closed observer leaves
+the channel **unknown**, not an observed absence of focus.
+
+A native `WindowObservation` tracks one exclusive source, non-reused source
+numbers and monotonically advancing observation generations. Refreshing or
+closing invalidates previous observations; an old source cannot detach its
+replacement. Java owns observer lifecycle on the main thread; closing the native
+client first is handled by detaching the observer when it next reports/polls.
+There are no notifications under native/client locks.
+
+`FocusPolicyFrame.forObservedInputs` uses internal tag `MPFO` and delegates both
+rendering and the window-client input. Other packet paths reject this tag rather
+than reading its empty slots as observations. `evaluateWithObservedInputs` checks
+both session and window provenance/generations under the native registry lock,
+then supplies the actual own identity for the window channel before evaluating.
+It still requires explicit independent activity/panel/top/display/permission and
+normalized metadata inputs. This is consistency of delivered observations, not
+an atomic lock on Android WindowManager or proof of complete input coverage.
+
+Host sanitizers include source ownership/invalidation (22 native cases total).
+Three new Android cases exercise actual Activity windows through JNI, show type
+0 receiving window focus without inventing type 1 session/display eligibility,
+check stale/closed/replaced observers and late-start unknown state, and exercise
+thread ownership and client-close cleanup. The strict gate requires 45 owned
+cases per API. The window source is real; remaining policy channels/metadata in
+these tests are fixtures. No Binder provider/original-app publication is added.

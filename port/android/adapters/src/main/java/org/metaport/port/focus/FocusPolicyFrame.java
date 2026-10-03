@@ -43,7 +43,7 @@ final class FocusPolicyFrame {
                      Client window,boolean mainDisplayFocus,Metadata[] rendering,Metadata[] liveMetadata,
                      Metadata[] foregroundLookups,String primaryDisplayTop) {
         this(type,observedEpochMillis,requested,activities,panels,topClients,allTopClients,window,
-                mainDisplayFocus,rendering,liveMetadata,foregroundLookups,primaryDisplayTop,false);
+                mainDisplayFocus,rendering,liveMetadata,foregroundLookups,primaryDisplayTop,0);
     }
     // Rendering is delegated, not asserted empty. A distinct wire tag prevents this
     // packet from being accidentally evaluated through the unbound fixture path.
@@ -53,17 +53,23 @@ final class FocusPolicyFrame {
                      Metadata[] foregroundLookups,String primaryDisplayTop) {
         return new FocusPolicyFrame(type,observedEpochMillis,requested,activities,panels,topClients,
                 allTopClients,window,mainDisplayFocus,new Metadata[0],liveMetadata,
-                foregroundLookups,primaryDisplayTop,true);
+                foregroundLookups,primaryDisplayTop,1);
+    }
+    static FocusPolicyFrame forObservedInputs(int type,long observedEpochMillis,Request[] requested,
+                     Client[] activities,Client[] panels,Client[] topClients,Client[] allTopClients,
+                     boolean mainDisplayFocus,Metadata[] liveMetadata,Metadata[] foregroundLookups,String primaryDisplayTop) {
+        return new FocusPolicyFrame(type,observedEpochMillis,requested,activities,panels,topClients,
+                allTopClients,null,mainDisplayFocus,new Metadata[0],liveMetadata,foregroundLookups,primaryDisplayTop,2);
     }
     private FocusPolicyFrame(int type,long observedEpochMillis,Request[] requested,
                      Client[] activities,Client[] panels,Client[] topClients,Client[] allTopClients,
                      Client window,boolean mainDisplayFocus,Metadata[] rendering,Metadata[] liveMetadata,
-                     Metadata[] foregroundLookups,String primaryDisplayTop,boolean sessionRendering) {
+                     Metadata[] foregroundLookups,String primaryDisplayTop,int binding) {
         if (type<0 || type>1 || observedEpochMillis<0 || observedEpochMillis>9223372036854L)
             throw new IllegalArgumentException("Invalid type or observation timestamp");
         ByteBuffer out=ByteBuffer.allocate(MAX_BYTES).order(ByteOrder.LITTLE_ENDIAN);
         try {
-            out.putInt(sessionRendering?0x5346504d:0x3146504d).putInt(type).putLong(observedEpochMillis);
+            out.putInt(binding==2?0x4f46504d:binding==1?0x5346504d:0x3146504d).putInt(type).putLong(observedEpochMillis);
             count(out,Objects.requireNonNull(requested).length);
             for (Request row:requested) {
                 Objects.requireNonNull(row);
