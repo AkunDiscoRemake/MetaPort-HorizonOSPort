@@ -4,6 +4,86 @@
   "private_abi_validated": false,
   "service_implemented": false,
   "scope": "Ghidra inferred functions/prototypes, not original source or validated recompilation; indirect calls remain unresolved",
+  "connection_manager_vtable": [
+    {
+      "slot": 0,
+      "slot_elf_address": 231720,
+      "relocated_pointer": "121290",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 135824,
+      "name": "~ConnectionManager",
+      "resolved_elf_address": 135824,
+      "resolved_name": "~ConnectionManager"
+    },
+    {
+      "slot": 1,
+      "slot_elf_address": 231728,
+      "relocated_pointer": "121510",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 136464,
+      "name": "~ConnectionManager",
+      "resolved_elf_address": 136464,
+      "resolved_name": "~ConnectionManager"
+    },
+    {
+      "slot": 2,
+      "slot_elf_address": 231736,
+      "relocated_pointer": "121540",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 136512,
+      "name": "getClientsWithForegroundActivity",
+      "resolved_elf_address": 136512,
+      "resolved_name": "getClientsWithForegroundActivity"
+    },
+    {
+      "slot": 3,
+      "slot_elf_address": 231744,
+      "relocated_pointer": "121590",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 136592,
+      "name": "getClientsCurrentlyRendering",
+      "resolved_elf_address": 136592,
+      "resolved_name": "getClientsCurrentlyRendering"
+    },
+    {
+      "slot": 4,
+      "slot_elf_address": 231752,
+      "relocated_pointer": "1215e0",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 136672,
+      "name": "getClientWithWindowFocus",
+      "resolved_elf_address": 136672,
+      "resolved_name": "getClientWithWindowFocus"
+    },
+    {
+      "slot": 5,
+      "slot_elf_address": 231760,
+      "relocated_pointer": "121600",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 136704,
+      "name": "getClientsWithTopActivities",
+      "resolved_elf_address": 136704,
+      "resolved_name": "getClientsWithTopActivities"
+    },
+    {
+      "slot": 6,
+      "slot_elf_address": 231768,
+      "relocated_pointer": "121740",
+      "target_is_executable": true,
+      "exact_function_entry": true,
+      "target_elf_address": 137024,
+      "name": "getAllClientsWithTopActivities",
+      "resolved_elf_address": 137024,
+      "resolved_name": "getAllClientsWithTopActivities"
+    }
+  ],
+  "vtable_scope": "Static relocated address-point slots only; not runtime dispatch or system-service availability proof",
   "identified_function_count": 455,
   "function_cap": 512,
   "analysis_complete": true,
