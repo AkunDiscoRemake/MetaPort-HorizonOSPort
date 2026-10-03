@@ -70,3 +70,29 @@ class UiSummaryTests(unittest.TestCase):
             path.write_text('class ShellNativeUpdaterHolder { native long init(); }')
             row=next(r for r in summarize_bootstrap(root)['classes'] if r['path']==relative)
             self.assertIn('source',row);self.assertFalse(row['runtime_validated'])
+
+    def test_archive_ui_tree_includes_sources_and_resources_and_excludes_native_libs(self):
+        import zipfile
+        from handtracking.ai.inspect_ui import archive_ui_tree
+        with tempfile.TemporaryDirectory() as root:
+            gen=Path(root)/'gen'
+            (gen/'sources/com/oculus/vrshell').mkdir(parents=True)
+            (gen/'sources/com/oculus/vrshell/HomeActivity.java').write_text('class HomeActivity {}')
+            (gen/'resources/res/layout').mkdir(parents=True)
+            (gen/'resources/AndroidManifest.xml').write_text('<manifest/>')
+            (gen/'resources/res/layout/main.xml').write_text('<FrameLayout/>')
+            (gen/'resources/lib/arm64-v8a').mkdir(parents=True)
+            (gen/'resources/lib/arm64-v8a/libshell.so').write_bytes(b'\x7fELF')
+            zip_path=Path(root)/'ui.zip'
+            with zipfile.ZipFile(zip_path,'w',compression=zipfile.ZIP_DEFLATED) as zf:
+                counts=archive_ui_tree(zf,'VrShell',gen,manifest_text='N: android=http://schemas.android.com/apk/res/android')
+            self.assertEqual(counts['java_files_archived'],1)
+            self.assertEqual(counts['resource_files_archived'],2)
+            with zipfile.ZipFile(zip_path,'r') as zf:
+                names=set(zf.namelist())
+            self.assertIn('VrShell/sources/com/oculus/vrshell/HomeActivity.java',names)
+            self.assertIn('VrShell/resources/AndroidManifest.xml',names)
+            self.assertIn('VrShell/resources/res/layout/main.xml',names)
+            self.assertIn('VrShell/aapt-manifest-xmltree.txt',names)
+            self.assertNotIn('VrShell/resources/lib/arm64-v8a/libshell.so',names)
+

@@ -45,6 +45,7 @@ jobs:
           r=reconstruct(p/'firmware.zip',p/'images',selected={'system_ext'})
           (p/'reconstruction.json').write_text(json.dumps(r))
           PY
+          rm -f "$WORK/firmware.zip"
       - name: Install hash-pinned JADX from official release
         run: |
           curl --fail --location --retry 3 --max-time 600 --max-filesize 268435456 \
@@ -57,7 +58,9 @@ jobs:
         run: |
           set +e
           python3 -m handtracking.ai.inspect_ui --images "$WORK/images" \
-            --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
+            --reconstruction "$WORK/reconstruction.json" --jadx "$WORK/jadx/bin/jadx" \
+            --output "$WORK/reports" \
+            --zip-output "$WORK/reports/MetaPort-HorizonOS-v2.7-Complete-UI-Decompiled.zip" > "$WORK/inspection.log" 2>&1
           code=$?
           tail -n 60 "$WORK/inspection.log"
           exit "$code"
@@ -104,6 +107,27 @@ jobs:
             echo "::add-mask::$auth"
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport
+          fi
+      - name: Upload Complete UI Decompilation ZIP to GitHub Release
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ZIP="$WORK/reports/MetaPort-HorizonOS-v2.7-Complete-UI-Decompiled.zip"
+          if [ ! -f "$ZIP" ]; then
+            echo "Complete UI decompilation zip not found; skipping upload"
+            exit 0
+          fi
+          python3 -m tools.prepare_release_notes \
+            --build-dir "$WORK/reports" \
+            --ui-zip "$ZIP"
+          TAG="v2.7.0-cardboard-port"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ZIP" "$WORK/reports/ui-decompilation.json" --clobber
+            gh release edit "$TAG" \
+              --title "MetaPort Horizon OS v2.7 — Original VrShell.apk Bundle, Complete UI Decompilation & VrFocus Port" \
+              --notes-file "$WORK/reports/RELEASE-NOTES.md"
           fi
       - uses: actions/upload-artifact@v4
         if: always()
