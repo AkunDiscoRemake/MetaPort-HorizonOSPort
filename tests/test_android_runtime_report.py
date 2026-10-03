@@ -100,3 +100,10 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         rules=(root/'port/android/adapters/consumer-rules.pro').read_text()
         self.assertIn('-keep class org.metaport.port.focus.NativeFocusClient { *; }',rules)
+
+    def test_policy_evaluation_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import POLICY_EVALUATION_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/FocusPolicyEvaluationTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),POLICY_EVALUATION_CASES)

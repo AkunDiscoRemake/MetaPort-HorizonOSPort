@@ -445,3 +445,47 @@ Instrumentation executed 28 owned cases per API 29/35, including real native
 registration/current-record lookup. Evaluation/selection and original firmware
 are still not exercised by these Android cases. Consumer rules retain JNI names;
 that rule is checked by host regression, not a minified consumer runtime test.
+
+## JNI evaluation transport (2026-10-03)
+
+`NativeFocusClient` now has package-private evaluation bindings using immutable
+`FocusPolicyFrame`/`FocusPolicyResult` packets. The native implementation decodes
+all channels before calling the same `FocusPolicyCore::evaluate` used by host
+tests. It returns the derived top name, selected immersive app, ordered decision
+rows, registered own-client focus mask, and ten-entry diagnostic history.
+Background masks describe already-resolved trusted metadata; this is **not** a
+permission-grant API. No Binder method accepts these packets. Other requested
+identities are not implicitly installed in the bookkeeping ledger.
+
+This is a new **internal transport**, not Meta's parcel ABI: versioned little-endian
+32-bit words, epoch-millisecond timestamps (0..9223372036854), length-prefixed
+standard UTF-8, maximum 64 KiB per packet, 256 rows per list, 1024 bytes per text.
+Boolean tags must be 0/1; masks 0..3; focus types 0/1. A nullable window means an
+explicitly observed absence; nullable foreground metadata entries mean failed
+lookups. Required channel arrays cannot be null. Null/invalid/oversized/truncated
+packets, invalid UTF-8 and trailing bytes are rejected before mutation. No
+externally supplied immersive PID/top client can override the selector.
+Java serialization freezes array contents and rejects malformed UTF-16; standard
+UTF-8 (including NUL and supplementary characters) is preserved without JNI's
+modified-UTF-8 string conversion. The result lists are immutable copies.
+
+The registered client's initial empty bookkeeping set remains unavailable as an
+evaluated status until a valid evaluation runs. Evaluation and native handle
+lookup/destruction share the registry lock. Invalid input cannot change the
+previous decision state. Allocation/delivery failure **after** a valid evaluation
+can leave that evaluation committed; no cross-JNI transaction guarantee is made.
+No external callbacks run during these operations.
+
+Host ASan/UBSan now includes the packet decoder: truncation at every boundary,
+invalid counts/types/masks/timestamps, UTF-8 edge cases, signed integer roundtrip,
+and 10,000 deterministic packet mutations. Five Android instrumentation cases
+exercise the actual JNI evaluation and readback, channel distinctions, both focus
+types, ordered deduplication, background override ordering, selector/history,
+Unicode, invalid-packet state preservation and evaluation/close concurrency.
+The strict Android report gate requires **33 owned cases per API**.
+
+**Still not a production observer/provider:** no Android component yet assembles
+all the required coherent channels or normalized metadata. Frames in the new
+instrumentation tests are deliberately labeled fixtures, not phone observations,
+permissions or tracking grants. The production Binder backend/pre-Application
+publication remain absent. This does not fix the original constructor ANR.
