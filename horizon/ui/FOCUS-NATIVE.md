@@ -374,3 +374,34 @@ Bookkeeping validation, source **d4de4df**: project/native **37124230529** passe
 with 19 sanitizer cases; arm64 Android build **37124230516** passed; adapter
 runtime **37124230539** passed 21 owned tests on each API 29/35. These Android
 instrumentation tests do not invoke the ledger/coordinator or original firmware.
+
+## Own-process Android metadata observations (2026-10-03)
+
+`AppProcessMetadataBackend` now reads real public Android API observations for
+its own process: `Process.myPid/myUid`, `Application.getProcessName`, application
+package, `PackageManager.getPackagesForUid`, and `Context.checkPermission` for
+`horizonos.permission.ACCESS_BACKGROUND_HEAD_TRACKING` and
+`horizonos.permission.ACCESS_BACKGROUND_INPUT_TRACKING`. Those permission names
+are present in original ClientManager initialization `0xf0d0`; the builder
+`0x10aa0` asks for process UID/name, UID packages and permission checks.
+
+This backend returns **raw permission results**, not background-access grants or
+proof of Meta authorization. It never declares those permissions, adds an
+allowlist or substitutes grants when they are absent. Results are freshly read;
+missing package metadata or an application/UID mismatch fails explicitly. The
+immutable result includes monotonic start/end observation times; Android calls
+are sequential, not a globally atomic snapshot. No UI, poses or clients are
+invented. Its scope is the current process; it cannot observe arbitrary PIDs.
+
+Important remaining differences: the original name normalization helper is not
+ported, so `androidProcessName` is deliberately not called `process_name_for_top`.
+Original `getClientInfo` (`0x118e0`) copies a PID-indexed cached record on UID match,
+refreshing the returned process name; UID mismatch erases the cache entry. It
+must not be confused with this uncached public-API reader. Full metadata-cache
+lifecycle, original package selection/allowlists, policy input assembly and
+JNI/Binder integration remain unimplemented. A Context is required, so this
+reader alone does not resolve bootstrap before Application construction.
+
+Three new instrumentation cases exercise real own-process metadata, immutable
+snapshots, actual permission results and explicit rejection of mismatched context
+identity. The strict Android report gate now requires 24 owned cases per API.
