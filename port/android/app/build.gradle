@@ -1,0 +1,53 @@
+plugins { id 'com.android.application' }
+
+def emulatorTests = providers.gradleProperty('metaportEmulatorTests').orElse('false').get()
+if (!(emulatorTests in ['true', 'false'])) throw new GradleException('metaportEmulatorTests must be true or false')
+
+android {
+    namespace 'org.metaport.horizonos'
+    compileSdk 35
+    ndkVersion '27.2.12479018'
+    defaultConfig {
+        applicationId 'org.metaport.horizonos'
+        minSdk 29
+        targetSdk 35
+        versionCode 20700
+        versionName '2.7.0-metaport'
+        ndk { abiFilters(emulatorTests == 'true' ? 'x86_64' : 'arm64-v8a') }
+    }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', '../../branding/android-res']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+    packaging {
+        jniLibs {
+            useLegacyPackaging false
+        }
+    }
+    lint {
+        abortOnError true
+        disable 'UnusedResources', 'ClickableViewAccessibility', 'SetTextI18n', 'DefaultLocale'
+    }
+}
+
+androidComponents {
+    beforeVariants(selector().withBuildType('release')) { variant ->
+        if (emulatorTests == 'true') variant.enable = false
+    }
+}
+
+dependencies {
+    implementation project(':adapters')
+    implementation 'com.google.ar:core:1.48.0'
+}

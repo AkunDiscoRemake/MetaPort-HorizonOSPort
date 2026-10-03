@@ -516,3 +516,23 @@ regras recuperadas de `/system_ext/bin/vrfocusserver`:
   binários**, e a porta de instrumentação Android passa a exigir **49 testes
   próprios por API 29 e 35**.
 
+## Backend `VrFocusService` (`0x29210..0x2dd60`) e APK Funcional ARM64 VRBox/Cardboard — 2026-10-03
+
+- `port/android/adapters/src/main/java/org/metaport/port/focus/VrFocusService.java`
+  integra `VrFocusEndpoint`, `FocusListeners`, `NativeFocusClient` e
+  `NativeWindowFocusInput` implementando `VrFocusEndpoint.Backend` para as 11
+  transações Binder de `oculus.internal.IVrFocusService` (`0x29210..0x2dd60`),
+  incluindo construção pré-`Application.onCreate()` (`createBeforeApplication`),
+  publicação explícita em `ServiceDirectory` (`"vrfocus"`), `ImmersiveApp("", 0, 0, false)`
+  default em `notifyTopActivityListeners` (`0x2a7e0`) e `EX_NULL_POINTER` (`-4`)
+  em `getImmersiveApp` quando ausente (`0x2c660`).
+- `port/android/app` (`org.metaport.horizonos`) compila o APK instalável ARM64
+  (`MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk`, `minSdk 29`, `targetSdk 35`,
+  alinhamento ELF de 16 KiB) integrando renderização estereoscópica OpenGL ES
+  Left/Right Eye para VRBox/Cardboard (`StereoCardboardView`), rastreamento 3DoF
+  via `NativeSensors` (100 Hz NDK), suporte a `JoyConInput` e `ArCoreTracking`,
+  serviço `vrfocus` ativo em `ServiceDirectory`, painéis espaciais interativos
+  (`VrShell` Home, `LibraryPanelApp`, `SystemUX` Quick Settings, calibração
+  óptica IPD/FOV, diagnósticos nativos e ponte para `com.oculus.vrshell`) e
+  créditos explícitos `"Meta Horizon OS v2.7 — Meta Platforms, Inc."`.
+

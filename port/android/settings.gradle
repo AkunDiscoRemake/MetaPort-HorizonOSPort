@@ -4,4 +4,4 @@ dependencyResolutionManagement {
     repositories { google(); mavenCentral() }
 }
 rootProject.name = 'MetaPortAdapters'
-include ':adapters'
+include ':adapters', ':app'

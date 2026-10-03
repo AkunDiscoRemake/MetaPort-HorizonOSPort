@@ -200,5 +200,79 @@ public class FocusDisplayAndMetadataJniTest {
             assertEquals(1, client.getClientMetadata(
                     observed.uid, observed.pid, observed.androidProcessName).currentFocusMask);
         }
+
+        // End-to-end VrFocusService (0x29210..0x2dd60) wire & policy verification.
+        try (VrFocusService service = VrFocusService.createBeforeApplication((perm, pid, uid) -> true)) {
+            service.attachMetadataContext(context());
+            final java.util.List<String> topEvents = new java.util.ArrayList<>();
+            final java.util.List<Integer> focusEvents = new java.util.ArrayList<>();
+            android.os.Binder topListener = new android.os.Binder() {
+                @Override protected boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) {
+                    data.enforceInterface("oculus.internal.IVrTopActivityListener");
+                    String top = data.readString();
+                    assertEquals(1, data.readInt());
+                    data.readInt(); // parcelable size
+                    String pkg = data.readString();
+                    int pid = data.readInt();
+                    int uid = data.readInt();
+                    int isTop = data.readInt();
+                    topEvents.add(top + "|" + pkg + ":" + pid + ":" + uid + ":" + isTop);
+                    return true;
+                }
+            };
+            android.os.Binder focusListener = new android.os.Binder() {
+                @Override protected boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) {
+                    data.enforceInterface("oculus.internal.IVrFocusListener");
+                    focusEvents.add(data.readInt());
+                    return true;
+                }
+            };
+            android.os.Parcel data = android.os.Parcel.obtain(), reply = android.os.Parcel.obtain();
+            try {
+                // Register top activity listener (code 4) and focus listener (code 2).
+                data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                data.writeStrongBinder(topListener);
+                assertTrue(service.endpoint().transact(4, data, reply, 0));
+                reply.readException();
+                assertEquals(1, reply.readInt());
+                data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
+
+                data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                data.writeStrongBinder(focusListener);
+                data.writeInt(0);
+                assertTrue(service.endpoint().transact(2, data, reply, 0));
+                reply.readException();
+                assertEquals(1, reply.readInt());
+                assertTrue(topEvents.isEmpty());
+                assertTrue(focusEvents.isEmpty());
+
+                // Initial getImmersiveApp (code 7) throws NullPointerException (-4 EX_NULL_POINTER, 0x2c660).
+                data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
+                data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                assertTrue(service.endpoint().transact(7, data, reply, 0));
+                assertThrows(NullPointerException.class, reply::readException);
+
+                // setAppState(myPid, 2) (code 6, 0x2c450) notifies top listener with default ImmersiveApp("",0,0,false) (0x2a7e0).
+                data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
+                data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                data.writeInt(Process.myPid());
+                data.writeInt(2);
+                assertTrue(service.endpoint().transact(6, data, reply, 0));
+                reply.readException();
+                assertTrue(service.isSessionRendering());
+                assertEquals(Collections.singletonList("|:0:0:0"), topEvents);
+
+                // Evaluating own process as active com.oculus.vrshell grants HEAD focus and updates ImmersiveApp.
+                assertTrue(service.evaluateOwnProcess(
+                        0, 2000L, "com.oculus.vrshell", "com.oculus.vrshell",
+                        false, false, true, false, true, true, true));
+                assertEquals(Collections.singletonList(0), focusEvents);
+                assertEquals("com.oculus.vrshell|com.oculus.vrshell:" + Process.myPid() + ":" + Process.myUid() + ":1",
+                        topEvents.get(topEvents.size() - 1));
+            } finally {
+                data.recycle();
+                reply.recycle();
+            }
+        }
     }
 }

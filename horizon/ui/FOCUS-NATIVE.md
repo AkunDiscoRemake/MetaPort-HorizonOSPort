@@ -714,3 +714,26 @@ ASan+UBSan and TSan). Four new Android instrumentation cases in
 `FocusDisplayAndMetadataJniTest` raise the strict runtime gate to 49 owned
 cases per API.
 
+## `VrFocusService` backend & Cardboard/VRBox Host Runtime (`0x29210..0x2dd60`)
+
+`port/android/adapters/src/main/java/org/metaport/port/focus/VrFocusService.java`
+wires `VrFocusEndpoint`, `FocusListeners`, `NativeFocusClient`, and
+`NativeWindowFocusInput` into an executable `VrFocusEndpoint.Backend`:
+- Enforces `horizonos.permission.READ_FOCUS_STATE` on transactions `1..5, 7..9`
+  and `horizonos.permission.GRANT_TRACKING_SERVICE_ACCESS_TO_DISPLAY` on
+  transactions `10..11` with `callingUid == 1041` (`AID_AUDIOSERVER`) bypass
+  (`0x219f0`).
+- Enforces `callingPid == pid` on `setAppState(pid, state)` (`0x2c450`) and
+  dispatches `notifyTopActivityListeners` (`0x2a7e0`) when `state == 0` or `2`,
+  constructing default `ImmersiveApp("", 0, 0, false)` when no immersive app is
+  active.
+- Returns `null` from `getImmersiveApp` when no immersive app is active so
+  `VrFocusEndpoint` emits `-4` (`EX_NULL_POINTER`, `0x2c660`), matching
+  `VrFocusManager.getImmersiveApp()`.
+- Supports pre-`Application.onCreate()` construction via
+  `VrFocusService.createBeforeApplication(...)` and explicit opt-in publication
+  via `publishToDirectory()`.
+- `port/android/app` (`org.metaport.horizonos`) packages the stereoscopic
+  VRBox/Cardboard OpenGL ES runtime (`StereoCardboardView`, `HorizonPortActivity`,
+  `HorizonPortApplication`) linked against `:adapters` (`libmetaport_adapters.so`).
+
