@@ -516,23 +516,37 @@ regras recuperadas de `/system_ext/bin/vrfocusserver`:
   binários**, e a porta de instrumentação Android passa a exigir **49 testes
   próprios por API 29 e 35**.
 
-## Backend `VrFocusService` (`0x29210..0x2dd60`) e APK Funcional ARM64 VRBox/Cardboard — 2026-10-03
+## Backend `VrFocusService` (`0x29210..0x2dd60`) integrado ao `VrShell.apk` original (`com.oculus.vrshell`) — 2026-10-03
 
 - `port/android/adapters/src/main/java/org/metaport/port/focus/VrFocusService.java`
-  integra `VrFocusEndpoint`, `FocusListeners`, `NativeFocusClient` e
-  `NativeWindowFocusInput` implementando `VrFocusEndpoint.Backend` para as 11
-  transações Binder de `oculus.internal.IVrFocusService` (`0x29210..0x2dd60`),
-  incluindo construção pré-`Application.onCreate()` (`createBeforeApplication`),
-  publicação explícita em `ServiceDirectory` (`"vrfocus"`), `ImmersiveApp("", 0, 0, false)`
-  default em `notifyTopActivityListeners` (`0x2a7e0`) e `EX_NULL_POINTER` (`-4`)
-  em `getImmersiveApp` quando ausente (`0x2c660`).
-- `port/android/app` (`org.metaport.horizonos`) compila o APK instalável ARM64
-  (`MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk`, `minSdk 29`, `targetSdk 35`,
-  alinhamento ELF de 16 KiB) integrando renderização estereoscópica OpenGL ES
-  Left/Right Eye para VRBox/Cardboard (`StereoCardboardView`), rastreamento 3DoF
-  via `NativeSensors` (100 Hz NDK), suporte a `JoyConInput` e `ArCoreTracking`,
-  serviço `vrfocus` ativo em `ServiceDirectory`, painéis espaciais interativos
-  (`VrShell` Home, `LibraryPanelApp`, `SystemUX` Quick Settings, calibração
-  óptica IPD/FOV, diagnósticos nativos e ponte para `com.oculus.vrshell`) e
-  créditos explícitos `"Meta Horizon OS v2.7 — Meta Platforms, Inc."`.
+  e `VrFocusBootstrap.java` integram `VrFocusEndpoint`, `FocusListeners`,
+  `NativeFocusClient` e `NativeWindowFocusInput` implementando
+  `VrFocusEndpoint.Backend` para as 11 transações Binder de
+  `oculus.internal.IVrFocusService` (`0x29210..0x2dd60`), incluindo construção
+  pré-`Application.onCreate()` (`createBeforeApplication`), publicação em
+  `ServiceDirectory` (`"vrfocus"`), `ImmersiveApp("", 0, 0, false)` default em
+  `notifyTopActivityListeners` (`0x2a7e0`) e `EX_NULL_POINTER` (`-4`) em
+  `getImmersiveApp` quando ausente (`0x2c660`).
+- `horizon/ui/service_transport.py` e `horizon/ui/bundle_shell_dependencies.py`
+  empacotam `org.metaport.port.services.*` + `org.metaport.port.focus.**` em
+  `classes4.dex` (SHA-256 `b527be94bb5b23e73c32425610df2761d7eb330bc89179d97f5069a3ff8d311c`)
+  e compilam `lib/arm64-v8a/libmetaport_adapters.so` (SHA-256
+  `e184c96150076554e9f5d0eb463087f1701465fcde18c3dbbece46633b7a00ff`, alinhamento
+  ELF de 16 KiB) diretamente dentro do **`VrShell.apk` original (`com.oculus.vrshell`,
+  `MetaPort-HorizonOS-v2.7-VrShell-Bundled-arm64.apk`, `103.055.501` bytes,
+  SHA-256 `2c31f2fddbd7f507f73a4b9cbc9054a05e8f67fb450adc2f20f0a52d638b111e`)**,
+  preservando `classes.dex`, `AndroidManifest.xml`, `resources.arsc` e todos os
+  assets originais bit-a-bit (`compare_apks` verificado). O aplicativo substituto
+  anterior (`org.metaport.horizonos`) foi removido do repositório e da release.
+- Validação concluída:
+  - Projeto/regressão/nativo **37153822661**, sucesso (**26 binários** C++ com ASan/UBSan e TSan).
+  - Build Android ARM64 **37153822667**, sucesso (`metaport-android-adapters-arm64.aar`, SHA-256 `d278a29e94b45cc7c41fd1d873ecd7b7e10983f44e50bf07584ca167e1d13b2e`).
+  - Runtime de adaptadores **37153822623**, sucesso (**49/49 testes** em API 29 e **49/49 testes** em API 35).
+  - Probe offline do `VrShell.apk` original empacotado **37153822753** (`analysis/android-runtime/original-shell-rcpc-baseline.json`):
+    - **O bloqueio anterior em `ShellApplication.<init>(:153)` (`VrFocusManager.registerVrTopActivityListener` -> `BinderClient.awaitService("vrfocus")`) foi integralmente superado!**
+    - `ShellApplication.<init>()` concluiu e retornou sem ANR.
+    - `ShellApplication.attachBaseContext(Context)` concluiu.
+    - `Instrumentation.callApplicationOnCreate` entrou em `ShellApplication.onCreate()` e concluiu `SoLoader.init()` (`C44472Av.A00(this)`).
+    - A fronteira de inicialização do `com.oculus.vrshell` original avançou para `ShellApplication.onCreate(:20)` -> `X.0bJ.A03(:28)` -> `com.oculus.os.PreferencesManager.getInteger(PreferencesManager.java:120)` -> `oculus.internal.PreferencesManagerInternal.getInteger(PreferencesManagerInternal.java:258)` -> `oculus.internal.osutils.BinderClient.awaitService`.
+
 
