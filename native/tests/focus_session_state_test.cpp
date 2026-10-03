@@ -7,6 +7,7 @@ using namespace metaport::focus;
 int main() {
     SessionState state;
     assert(state.snapshot().empty());
+    assert(!state.contains({10001,20}));
     const auto rejected = state.apply(10, 11, std::nullopt, 0);
     assert(rejected.access == Access::CallingPidMismatch && !rejected.notify_top_activity);
     assert(state.snapshot().empty());
@@ -19,6 +20,8 @@ int main() {
     const auto visible = state.apply(20, 20, 10001, 0);
     assert(visible.membership_changed && visible.notify_top_activity);
     assert(visible.report_immersive_app_update && !visible.refresh_activity_state);
+    assert(state.contains({10001,20}));
+    assert(!state.contains({10002,20}));
     const auto again = state.apply(20, 20, 10001, 0);
     assert(!again.membership_changed && again.notify_top_activity && again.report_immersive_app_update);
     for (int code : {-1, 1, 3, 4, 5, 6, 7, 8, 2147483647}) {
@@ -33,6 +36,7 @@ int main() {
     assert((snapshot == std::vector<Client>{{10001,20},{10001,21},{10002,19}}));
     const auto stop = state.apply(20, 20, 10001, 2);
     assert(stop.membership_changed && stop.refresh_activity_state && stop.notify_top_activity);
+    assert(!state.contains({10001,20}));
     const auto stop_again = state.apply(20, 20, 10001, 2);
     assert(!stop_again.membership_changed && stop_again.refresh_activity_state);
     assert(stop_again.notify_top_activity && stop_again.report_immersive_app_update);
@@ -45,6 +49,7 @@ int main() {
         for (int n=0; n<1000; ++n) {
             concurrent.apply(100+i,100+i,10001,0);
             concurrent.snapshot();
+            assert(concurrent.contains({10001,100+i}));
             concurrent.apply(100+i,100+i,10001,2);
         }
     });

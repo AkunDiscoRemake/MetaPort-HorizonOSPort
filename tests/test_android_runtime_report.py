@@ -107,3 +107,10 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/FocusPolicyEvaluationTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),POLICY_EVALUATION_CASES)
+
+    def test_bootstrap_session_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import BOOTSTRAP_SESSION_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/FocusBootstrapAndSessionTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),BOOTSTRAP_SESSION_CASES)

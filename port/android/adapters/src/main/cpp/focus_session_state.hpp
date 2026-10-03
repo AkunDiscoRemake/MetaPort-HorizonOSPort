@@ -56,6 +56,11 @@ public:
         return effects;
     }
 
+    bool contains(Client client) const {
+        std::lock_guard<std::mutex> lock(mutex_);
+        return visible_.count(client)!=0;
+    }
+
     std::vector<Client> snapshot() const {
         std::lock_guard<std::mutex> lock(mutex_);
         return {visible_.begin(), visible_.end()};

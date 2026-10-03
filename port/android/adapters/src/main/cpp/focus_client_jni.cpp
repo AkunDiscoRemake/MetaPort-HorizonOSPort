@@ -13,6 +13,8 @@ struct Entry {
     const Client identity;
     FocusPolicyCore core;
     int evaluated_types=0;
+    metaport::focus::SessionState session;
+    jlong session_generation=0;
     explicit Entry(Client client):identity(client) { core.install_client_record(client); }
 };
 // Opaque, non-reused tokens, not Java-supplied raw pointers. The lock spans each
@@ -149,4 +151,65 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeCurrentFocusMask(JNIEnv* en
         fail(env,"java/lang/IllegalStateException","Native focus read failed");
     }
     return 0;
+}
+
+namespace {
+void fill_session(JNIEnv* env,jlongArray output,const Entry& entry,int effects) {
+    const jlong values[]={entry.session_generation,entry.session_generation!=0,
+        entry.session.contains(entry.identity),effects,entry.identity.pid,entry.identity.uid};
+    env->SetLongArrayRegion(output,0,6,values);
+}
+}
+extern "C" JNIEXPORT jlongArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeAppState(
+        JNIEnv* env,jclass,jlong token,jint caller_pid,jint caller_uid,jint requested_pid,jint state) {
+    try {
+        // This bridge deliberately supports only its own process. Captured Binder
+        // identity is not silently substituted with the server's identity.
+        if (caller_pid!=getpid() || static_cast<uid_t>(caller_uid)!=getuid() || requested_pid!=caller_pid) {
+            fail(env,"java/lang/SecurityException","Foreign app-state identity is unsupported");return nullptr;
+        }
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");return nullptr;
+        }
+        auto& entry=*it->second;
+        const bool recognized=state==0 || state==2;
+        if (recognized && entry.session_generation==std::numeric_limits<jlong>::max()) {
+            fail(env,"java/lang/IllegalStateException","App-state generation exhausted");return nullptr;
+        }
+        auto output=env->NewLongArray(6);if (!output) return nullptr;
+        const auto effects=entry.session.apply(caller_pid,requested_pid,static_cast<std::int32_t>(getuid()),state);
+        if (effects.access!=metaport::focus::Access::Allowed) {
+            fail(env,"java/lang/SecurityException","App-state identity mismatch");return nullptr;
+        }
+        if (recognized) ++entry.session_generation;
+        const int mask=(effects.membership_changed?1:0)|(effects.refresh_activity_state?2:0)
+                      |(effects.notify_top_activity?4:0)|(effects.report_immersive_app_update?8:0);
+        fill_session(env,output,entry,mask);return output;
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native app-state allocation failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native app-state update failed");
+    }
+    return nullptr;
+}
+extern "C" JNIEXPORT jlongArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeAppStateSnapshot(JNIEnv* env,jclass,jlong token) {
+    try {
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");return nullptr;
+        }
+        auto output=env->NewLongArray(6);
+        if (output) fill_session(env,output,*it->second,0);
+        return output;
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native app-state read failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native app-state read failed");
+    }
+    return nullptr;
 }

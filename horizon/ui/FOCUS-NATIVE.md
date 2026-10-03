@@ -501,3 +501,43 @@ runtime **37130802416** passed 33 owned cases on each API 29/35. Unlike the earl
 registration-only stage, these Android cases execute the C++ evaluation/selection
 and history through JNI, using explicitly constructed fixtures. They do not
 execute the original daemon, prove complete observation inputs or fix startup.
+
+## Context-free core bring-up and service-state JNI (2026-10-03)
+
+`NativeFocusClient.createBeforeApplication()` creates an own-process native core
+using public OS PID/UID APIs, independently checked in native code. It does not
+require Context or infer package names, permission results or focus. Metadata
+reads fail explicitly until `attachMetadataContext` succeeds with matching real
+identity. Attaching/replacing that reader never reinstalls the native client,
+resets the ledger or resets service-state observations.
+
+The JNI entry now owns the recovered `SessionState` reducer as well as the policy
+core. Internal `applyAppState` receives the actual Binder caller PID/UID (or the
+endpoint's immutable caller captured before dispatch), checks its own-process
+scope and requested PID, then uses native `getuid()` as the observed UID. It
+accepts only service-local 0/2 as membership-changing/notification-generating
+states; other numbers remain ignored. No Activity lifecycle callback is mapped
+onto these codes, and they are not OpenXR enum values.
+
+Readback distinguishes **unknown** (no recognized event received) from observed
+visible/stopped membership. An adapter-local generation advances for every
+recognized event, including duplicates; it is not an original service field.
+Required refresh/top-notification/report effects are returned explicitly; a
+future backend still must execute them in recovered order outside locks. Reading
+state does not replay effects. No policy evaluation or permission grant is
+triggered by state reports; last evaluation bookkeeping is not a fresh OS status.
+The SessionState `contains` lookup avoids allocation during this readback.
+
+An instrumentation-only AppComponentFactory creates the core before calling
+`super.instantiateApplication`. The test Application records identity availability
+inside its constructor with `getBaseContext()==null`; the factory releases its
+fixture core afterward. This changes **only the test APK manifest**, not the
+original Horizon app or the production adapter manifest, and publishes no Binder.
+Five new Android cases cover this ordering, late metadata attach, reducer effects,
+identity denial without mutation, and independent-core/close concurrency. The
+strict runtime gate now requires 38 owned cases per API; CI validation is pending.
+
+This removes Context as a prerequisite for native core allocation, not the
+remaining prerequisite of a complete policy/backend before original Application
+construction. There is still no original service publication, complete coherent
+observer, automatic effects consumer or successful original startup.

@@ -43,10 +43,16 @@ POLICY_EVALUATION_CASES=frozenset(('nativeDecisionsAndLedgerUseBothTypesAndOrder
     'malformedPacketsDoNotMutateEvaluatedState',
     'missingChannelsBudgetsAndUnicodeAreExplicit',
     'concurrentEvaluationAndCloseKeepNativeStateSafe'))
+BOOTSTRAP_SESSION_CASES=frozenset(('applicationConstructorHadNativeIdentityBeforeContextAttachment',
+    'lateMetadataAttachmentPreservesNativeStateWithoutGrantingFocus',
+    'serviceStateCodesPreserveRequiredEffectsIncludingDuplicates',
+    'appStateIdentityDenialCannotMutateNativeMembership',
+    'appStateCloseAndIndependentCoresDoNotLeakMembership'))
 EXPECTED_TESTS=frozenset(
     [('org.metaport.port.focus.AppProcessMetadataBackendTest',n) for n in PROCESS_METADATA_CASES]+
     [('org.metaport.port.focus.NativeFocusClientTest',n) for n in NATIVE_FOCUS_CASES]+
     [('org.metaport.port.focus.FocusPolicyEvaluationTest',n) for n in POLICY_EVALUATION_CASES]+
+    [('org.metaport.port.focus.FocusBootstrapAndSessionTest',n) for n in BOOTSTRAP_SESSION_CASES]+
     [('org.metaport.port.AdapterRuntimeTest',n) for n in EXPECTED_CASES]+
     [('org.metaport.port.services.ServiceDirectoryTest',n) for n in SERVICE_CASES]+
     [('org.metaport.port.focus.AppWindowFocusBackendTest',n) for n in WINDOW_CASES]+
@@ -77,7 +83,7 @@ def summarize(results,api):
             all(c['name'] and
                 not c['failed'] and not c['skipped'] for c in cases))
     return {'api':api,'abi':'x86_64','gpu_configuration':'swiftshader_indirect',
-            'tests':cases,'suite_failed':suite_failed,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES|WINDOW_CASES|FOCUS_WIRE_CASES|FOCUS_LISTENER_CASES|PROCESS_METADATA_CASES|NATIVE_FOCUS_CASES|POLICY_EVALUATION_CASES)-names),
+            'tests':cases,'suite_failed':suite_failed,'missing_cases':sorted((EXPECTED_CASES|SERVICE_CASES|WINDOW_CASES|FOCUS_WIRE_CASES|FOCUS_LISTENER_CASES|PROCESS_METADATA_CASES|NATIVE_FOCUS_CASES|POLICY_EVALUATION_CASES|BOOTSTRAP_SESSION_CASES)-names),
             'passed':passed,'original_firmware_executed':False,
             'physical_device_tested':False,'arcore_camera_or_depth_tested':False,
             'quest_hand_inference_tested':False,
