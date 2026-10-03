@@ -3,8 +3,10 @@ package org.metaport.port.focus;
 
 import android.app.Application;
 import android.os.Process;
+import android.os.SystemClock;
 import android.util.Log;
 import org.metaport.port.focus.protocol.FocusWire;
+import org.metaport.port.focus.protocol.VrFocusEndpoint.Caller;
 
 /**
  * In-process bootstrap that publishes the ported {@link VrFocusService} into
@@ -14,8 +16,7 @@ import org.metaport.port.focus.protocol.FocusWire;
  */
 public final class VrFocusBootstrap {
     private static final String TAG = "MetaPortVrFocus";
-    private static final String SHELL_PROCESS = "com.oculus.vrshell";
-    private static final String SHELL_HOME_ACTIVITY = "com.oculus.vrshell.HomeActivity";
+    private static final String SHELL_PACKAGE = "com.oculus.vrshell";
     private static VrFocusService instance;
 
     private VrFocusBootstrap() {}
@@ -25,26 +26,40 @@ public final class VrFocusBootstrap {
             return;
         }
         String processName = Application.getProcessName();
-        if (processName == null || !processName.startsWith(SHELL_PROCESS)) {
+        if (processName == null || !processName.startsWith(SHELL_PACKAGE)) {
             return;
         }
-        VrFocusService service = VrFocusService.createBeforeApplication(true, true, true, true);
-        int myPid = Process.myPid();
-        service.client().applyAppState(myPid, 0);
-        service.evaluateOwnProcessFocus(
-                SHELL_PROCESS,
-                SHELL_HOME_ACTIVITY,
+        final int myPid = Process.myPid();
+        final int myUid = Process.myUid();
+        VrFocusService service = VrFocusService.createBeforeApplication(
+                (permission, pid, uid) -> pid == myPid && uid == myUid);
+        Caller selfCaller = new Caller(myPid, myUid, true);
+        service.setAppState(selfCaller, myPid, 0);
+        long now = SystemClock.elapsedRealtime();
+        service.evaluateOwnProcess(
+                0,
+                now,
+                SHELL_PACKAGE,
+                processName,
                 true,
                 true,
                 true,
-                0);
-        service.evaluateOwnProcessFocus(
-                SHELL_PROCESS,
-                SHELL_HOME_ACTIVITY,
+                false,
+                true,
+                true,
+                true);
+        service.evaluateOwnProcess(
+                1,
+                now,
+                SHELL_PACKAGE,
+                processName,
                 true,
                 true,
                 true,
-                1);
+                false,
+                true,
+                true,
+                true);
         service.publishToDirectory();
         instance = service;
         Log.i(TAG, "Published ported VrFocusService to ServiceDirectory(" + name
