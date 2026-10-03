@@ -14,8 +14,8 @@ HAND=('hand_palette','hand_material','hand_arena_layout','hand_u8_reduce','hand_
 def run(output):
     output=Path(output).resolve();output.mkdir(parents=True,exist_ok=True)
     results=[]
-    for sanitizer,names in (('address,undefined',('sample_cache','input_router','space_data','focus_session_state')+HAND),
-                            ('thread',('sample_cache','input_router','focus_session_state'))):
+    for sanitizer,names in (('address,undefined',('sample_cache','input_router','space_data','focus_session_state','focus_decision')+HAND),
+                            ('thread',('sample_cache','input_router','focus_session_state','focus_decision'))):
         for name in names:
             sources=[f'native/tests/{name}_test.cpp']
             if name in HAND:sources=[f'handtracking/tests/native/{name}_test.cpp',f'handtracking/native/src/{name}.cpp']

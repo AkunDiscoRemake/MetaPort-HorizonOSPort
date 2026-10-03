@@ -33,8 +33,8 @@ public final class VrFocusEndpointTest {
         public ImmersiveApp getImmersiveApp(VrFocusEndpoint.Caller c){called();return APP;}
         public String getTopActivity(VrFocusEndpoint.Caller c){called();return "fixture.top";}
         public String[] getForegroundApps(VrFocusEndpoint.Caller c){called();return new String[]{"fixture.a","fixture.b"};}
-        public void grantTrackingServiceAccess(VrFocusEndpoint.Caller c,int pid){called();assertEquals(7,pid);}
-        public void revokeTrackingServiceAccess(VrFocusEndpoint.Caller c,int pid){called();assertEquals(7,pid);}
+        public void grantTrackingServiceAccess(VrFocusEndpoint.Caller c,int displayId){called();assertEquals(7,displayId);}
+        public void revokeTrackingServiceAccess(VrFocusEndpoint.Caller c,int displayId){called();assertEquals(7,displayId);}
     }
     private static void readApp(Parcel p) {
         assertEquals(1,p.readInt()); int start=p.dataPosition(); int size=p.readInt();

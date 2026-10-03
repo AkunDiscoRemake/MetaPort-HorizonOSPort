@@ -32,8 +32,8 @@ public final class VrFocusEndpoint extends Binder {
         ImmersiveApp getImmersiveApp(Caller caller);
         String getTopActivity(Caller caller);
         String[] getForegroundApps(Caller caller);
-        void grantTrackingServiceAccess(Caller caller, int pid);
-        void revokeTrackingServiceAccess(Caller caller, int pid);
+        void grantTrackingServiceAccess(Caller caller, int displayId);
+        void revokeTrackingServiceAccess(Caller caller, int displayId);
     }
     private final Backend backend;
     private static final int MAX_CLIENTS=4096;

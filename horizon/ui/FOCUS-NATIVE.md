@@ -200,3 +200,56 @@ build `37120394700` and project/native checks `37120394643` also passed.
 This component does not implement focus policy, publish a provider, or resolve
 the original constructor ANR. Integration with the endpoint and policy remains
 required before the original shell can use it.
+
+## Executable focus decision kernel
+
+`focus_decision.hpp` reconstructs the normal (non-permissive) decision portion
+of `computeFocusState` (`0x25460`). This is **not the complete FocusPolicy**:
+`getImmersiveApp`, metadata/permission resolution, backend observation and
+ClientManager state commits remain separate, unconnected requirements.
+
+Recovered operations now executable against explicit trusted snapshots:
+
+| Step | Type 0 | Type 1 |
+|---|---|---|
+| Base eligible identities | foreground activity, foreground panel, ConnectionManager slot 5 | same |
+| Additional identities | window focus, resolved top activity, ConnectionManager slot 6 | none from these sources |
+| Immersive adjustment | none | first queried metadata identity matching immersive PID is inserted/erased according to main-display focus |
+| Final override | observed background access for type 0 | observed background access for type 1 |
+| Output | one result per resolved distinct UID/PID, signed UID then PID order | same |
+
+The kernel deliberately keeps **virtual slots 5 and 6 unnamed**: their complete
+vtable-to-provider binding still needs verification, not a guess based on nearby
+function names. Slot 2's foreground-activity and slot 4's window-focus meanings
+are independently supported by `FocusPolicy::dump` (`0x23cc0`). Background-access
+metadata is distinguished from current-focus bookkeeping by the same dump.
+
+`getClientSet` (`0x265e0`) omits failed metadata lookups and deduplicates exact
+UID/PID identities. Its comparator (`0x26ac0`) and the decision code establish
+that input PID ordering/duplicates are not preserved in the output. The kernel
+accepts only already-resolved metadata and retains the first record for each
+identity. The immersive comparison uses PID only to select the **first sorted
+queried record**, then uses that record's UID/PID for the set operation. Authorized
+background access runs afterward and can override main-display removal.
+
+Instruction checks include `0x25b2c`/`0x25b30` (queried PID match), `0x260cc` and
+`0x260f0` (background type lookup), and `0x26350`/`0x26358` (result PID/bool stores).
+Native C and assembly provenance are pinned by `test_focus_decision_evidence.py`.
+No debug-permissive property fallback is implemented or enabled. Unknown backend
+feeds must not be passed as empty observations; the inputs have no default
+constructor, and no production backend constructs this full snapshot yet.
+
+Each result also requires the original ClientManager gained/lost bookkeeping
+(slot 3/4) even on repeated queries. Returning rows alone does not execute those
+side effects. Inputs are never updated in-place and the kernel retains no state.
+Tests cover both branches, identity mismatch, ordering, duplicates, override
+precedence, immersive absence/mismatch, invalid types and concurrent read-only
+queries. ASan/UBSan and TSan passed locally; native suite now has 15 cases.
+This is reconstructed-code testing, not comparison with a running original.
+
+**Corrected semantic label:** Binder operations 10/11, grant/revoke tracking
+service access, take a **display ID**, not a PID. Native `0x21880`/`0x21b20` log
+`displayId` and maintain display access; the endpoint/backend parameter names and
+fixtures now reflect this without changing the wire format or granting access.
+
+The Binder provider is still unpublished and the original constructor ANR remains.
