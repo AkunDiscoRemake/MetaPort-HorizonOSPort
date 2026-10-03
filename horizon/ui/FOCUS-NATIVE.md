@@ -155,3 +155,46 @@ interoperability; publication before ShellApplication construction. The endpoint
 is not packaged into or published to the original shell yet. No constructor wait
 is bypassed, no XR/hand/tracking grants are fabricated, and no functional APK is
 claimed.
+
+## Listener ownership and death lifecycle
+
+`FocusListeners` implements the next service component: real Binder death links,
+actual calling PID/UID capture, permission-policy injection (no permissive
+default), duplicate registration, and caller-wide removal for each channel.
+Registration itself emits **no callback**. Source offsets: focus register/unregister
+`0x2b8a0`/`0x2bd40`, top register/unregister `0x2bf40`/`0x2c320`, death notifier
+`0x2ab10`, removal `0x2acc0`, notification `0x2a620`. Inferred C hashes are pinned
+by `tests/test_focus_listener_evidence.py`.
+
+An important recovered detail: `onVrFocusChanged(int)` carries the **focus type**
+(the map key, 0 or 1), not a granted/denied boolean, PID, or XR session state.
+The original notification method does not compute focus; clients must query the
+policy afterward. The owned registry preserves this invalidation behavior and
+signed type/PID ordering, including duplicate callbacks within each PID vector.
+
+Deliberate public-API lifecycle adaptations, not exact daemon equivalence:
+
+- Limits: 256 registrations total, 64 per PID/channel; UID guards against stale
+  PID ownership. Permission checks run before type validation, as in the daemon.
+- Reserve before `linkToDeath`, activate only after successful linking while
+  alive. Death, close or unregistration during linking cannot resurrect an entry.
+- Death removes **all** registrations of that exact Binder. Recovered native
+  removal erases the first match per focus channel and the first top match per
+  death invocation; the port does not retain dead duplicates between invocations.
+- Binder linking, unlinking and callbacks execute outside the registry lock.
+  Unregistration cancels not-yet-admitted snapshot entries; a delivery already
+  admitted can finish afterward. There is no claim of a quiescent-return barrier.
+- Recipient exceptions are counted and isolated; actual DeadObjectException
+  also removes the dead Binder. Close unlinks and releases all registrations.
+
+Five additional instrumentation tests cover duplicate/type routing, top payload,
+permission refusal, budgets, cancellation during linking, callback reentrancy
+across threads, exception isolation, and **actual death of a separate test-only
+Android service process**. The disposable process never belongs to the user or
+original firmware and is absent from production manifests. Gate: 21 owned cases
+per API. New runtime results are pending; simulated link-race fixtures are not
+presented as real Binder death evidence.
+
+This component does not implement focus policy, publish a provider, or resolve
+the original constructor ANR. Integration with the endpoint and policy remains
+required before the original shell can use it.

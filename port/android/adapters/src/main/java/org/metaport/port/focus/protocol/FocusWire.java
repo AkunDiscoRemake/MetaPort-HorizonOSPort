@@ -56,11 +56,11 @@ public final class FocusWire {
             if (!listener.transact(1,data,null,IBinder.FLAG_ONEWAY)) throw new RemoteException("Top-activity callback unsupported");
         } finally { data.recycle(); }
     }
-    public static void notifyFocus(IBinder listener, int focus) throws RemoteException {
+    public static void notifyFocus(IBinder listener, int focusType) throws RemoteException {
         Objects.requireNonNull(listener);
         Parcel data=Parcel.obtain();
         try {
-            data.writeInterfaceToken(FOCUS_LISTENER); data.writeInt(focus);
+            data.writeInterfaceToken(FOCUS_LISTENER); data.writeInt(focusType);
             if (!listener.transact(1,data,null,IBinder.FLAG_ONEWAY)) throw new RemoteException("Focus callback unsupported");
         } finally { data.recycle(); }
     }

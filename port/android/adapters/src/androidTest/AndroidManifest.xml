@@ -3,5 +3,7 @@
     <application>
         <activity android:name="org.metaport.port.focus.FocusTestActivity"
             android:exported="false" android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+        <service android:name="org.metaport.port.focus.protocol.RemoteListenerService"
+            android:exported="false" android:process=":focus_listener_test" />
     </application>
 </manifest>

@@ -74,3 +74,10 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/protocol/VrFocusEndpointTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),FOCUS_WIRE_CASES)
+
+    def test_listener_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import FOCUS_LISTENER_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/protocol/FocusListenersTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),FOCUS_LISTENER_CASES)
