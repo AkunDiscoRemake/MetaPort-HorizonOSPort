@@ -227,40 +227,67 @@ public class FocusDisplayAndMetadataJniTest {
                     return true;
                 }
             };
-            android.os.Parcel data = android.os.Parcel.obtain(), reply = android.os.Parcel.obtain();
             try {
                 // Register top activity listener (code 4) and focus listener (code 2).
-                data.writeInterfaceToken("oculus.internal.IVrFocusService");
-                data.writeStrongBinder(topListener);
-                assertTrue(service.endpoint().transact(4, data, reply, 0));
-                reply.readException();
-                assertEquals(1, reply.readInt());
-                data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
-
-                data.writeInterfaceToken("oculus.internal.IVrFocusService");
-                data.writeStrongBinder(focusListener);
-                data.writeInt(0);
-                assertTrue(service.endpoint().transact(2, data, reply, 0));
-                reply.readException();
-                assertEquals(1, reply.readInt());
+                {
+                    android.os.Parcel data = android.os.Parcel.obtain(), reply = android.os.Parcel.obtain();
+                    try {
+                        data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                        data.writeStrongBinder(topListener);
+                        assertTrue(service.endpoint().transact(4, data, reply, 0));
+                        reply.readException();
+                        assertEquals(1, reply.readInt());
+                    } finally {
+                        data.recycle();
+                        reply.recycle();
+                    }
+                }
+                {
+                    android.os.Parcel data = android.os.Parcel.obtain(), reply = android.os.Parcel.obtain();
+                    try {
+                        data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                        data.writeStrongBinder(focusListener);
+                        data.writeInt(0);
+                        assertTrue(service.endpoint().transact(2, data, reply, 0));
+                        reply.readException();
+                        assertEquals(1, reply.readInt());
+                    } finally {
+                        data.recycle();
+                        reply.recycle();
+                    }
+                }
                 assertTrue(topEvents.isEmpty());
                 assertTrue(focusEvents.isEmpty());
 
                 // Initial getImmersiveApp (code 7) throws NullPointerException (-4 EX_NULL_POINTER, 0x2c660).
-                data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
-                data.writeInterfaceToken("oculus.internal.IVrFocusService");
-                assertThrows(NullPointerException.class, () -> {
-                    assertTrue(service.endpoint().transact(7, data, reply, 0));
-                    reply.readException();
-                });
+                {
+                    android.os.Parcel data = android.os.Parcel.obtain(), reply = android.os.Parcel.obtain();
+                    try {
+                        data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                        assertThrows(NullPointerException.class, () -> {
+                            assertTrue(service.endpoint().transact(7, data, reply, 0));
+                            reply.readException();
+                        });
+                    } finally {
+                        data.recycle();
+                        reply.recycle();
+                    }
+                }
 
                 // setAppState(myPid, 0) (code 6, ServiceAppState::Visible, 0x2c450) marks session rendering and notifies top listener with default ImmersiveApp("",0,0,false) (0x2a7e0).
-                data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
-                data.writeInterfaceToken("oculus.internal.IVrFocusService");
-                data.writeInt(Process.myPid());
-                data.writeInt(0);
-                assertTrue(service.endpoint().transact(6, data, reply, 0));
-                reply.readException();
+                {
+                    android.os.Parcel data = android.os.Parcel.obtain(), reply = android.os.Parcel.obtain();
+                    try {
+                        data.writeInterfaceToken("oculus.internal.IVrFocusService");
+                        data.writeInt(Process.myPid());
+                        data.writeInt(0);
+                        assertTrue(service.endpoint().transact(6, data, reply, 0));
+                        reply.readException();
+                    } finally {
+                        data.recycle();
+                        reply.recycle();
+                    }
+                }
                 assertTrue(service.isSessionRendering());
                 assertEquals(Collections.singletonList("|:0:0:0"), topEvents);
 
@@ -273,9 +300,6 @@ public class FocusDisplayAndMetadataJniTest {
                         topEvents.get(topEvents.size() - 1));
             } catch (android.os.RemoteException e) {
                 throw new AssertionError(e);
-            } finally {
-                data.recycle();
-                reply.recycle();
             }
         }
     }
