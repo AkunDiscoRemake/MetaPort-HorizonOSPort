@@ -548,3 +548,43 @@ all passed. Instrumentation executed 38 owned cases per API 29/35, including the
 constructor-time identity proof with no base Context. This supersedes the pending
 CI note above, not the original-app/bootstrap/provider limitations. Service-state
 inputs in these cases are explicit fixtures, not an executed original SDK session.
+
+## Session-bound rendering input (2026-10-03)
+
+ARM64 confirms that `getClientsCurrentlyRendering` (`0x21590`, instruction
+`215b0`) reads the same `ConnectionManager +0x170` set updated by visible/stopping
+at `22580`/`225d4`. `tests/test_focus_session_binding_evidence.py` pins both C
+functions and those instructions. Session membership is therefore connected to
+**rendering only**, not to any foreground/window/top/display/permission channel.
+
+`FocusPolicyFrame.forSession` marks rendering as delegated with internal packet
+tag `MPFS` (`0x5346504d`), distinct from the fully explicit `MPF1` packet. The
+unbound evaluator rejects delegated packets rather than treating their empty
+wire slot as an empty observation. `evaluateWithSession` checks that the snapshot
+belongs to this native token and was produced after a recognized service event.
+Native code repeats provenance/generation checks under the same registry lock
+used by session updates and destruction, then supplies the actual membership to
+`focus_session_binding.hpp` and evaluates without releasing that lock.
+
+This path is explicitly own-process scoped. It requires exactly one resolved
+live metadata record for the registered identity, rejects foreign identities in
+all feeds and inconsistent resolved foreground metadata, and rejects an explicit
+rendering list. Other channels, process-name normalization and resolved permission
+masks must still come from a complete trusted producer. Stopping keeps live
+metadata: the original shell fallback may still select the shell, and independent
+window/foreground observations may still affect focus. No automatic grant or
+forced loss is derived from session visibility alone.
+
+The returned evaluation identifies the session generation used. Duplicate
+recognized events advance it and invalidate old observations; ignored state codes
+do not. Unknown, foreign or stale session observations fail before policy/history
+mutation. This is coherence for **one channel**, not an atomic Android snapshot,
+not freshness of other feeds, and not execution of the reducer's required effects.
+Historical bookkeeping is still not current OS authorization.
+
+Host sanitizers now include session binding (21 native cases total). Four new
+Android cases cover selection/stop/shell-fallback behavior, stale/foreign snapshot
+rejection, missing/inconsistent metadata and a native race where updates bypass
+the Java monitor. The runtime gate requires 42 owned cases per API. Instrumentation
+uses explicit remaining-channel/metadata fixtures; production assembly, effects
+consumption and Binder publication remain incomplete. Original startup is unchanged.

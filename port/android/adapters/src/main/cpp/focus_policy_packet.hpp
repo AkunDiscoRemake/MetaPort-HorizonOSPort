@@ -7,7 +7,7 @@ namespace metaport::focus::packet {
 // Internal JNI transport, NOT the original Binder ABI. Decode completely before
 // mutating policy state. Values must originate in a trusted observation producer.
 constexpr std::size_t max_bytes=65536, max_rows=256, max_text=1024;
-constexpr std::int32_t request_magic=0x3146504d, result_magic=0x3152504d;
+constexpr std::int32_t request_magic=0x3146504d, session_request_magic=0x5346504d, result_magic=0x3152504d;
 inline void require(bool valid) { if (!valid) throw std::invalid_argument("Invalid focus policy packet"); }
 inline bool utf8(const std::string& text) {
     std::size_t i=0;
@@ -72,6 +72,7 @@ public:
     void finish() const { require(position_==data_.size()); }
 };
 struct Request {
+    bool session_rendering;
     FocusType type;
     std::chrono::system_clock::time_point timestamp;
     std::vector<ClientMetadata> requested;
@@ -79,7 +80,8 @@ struct Request {
     ImmersiveInputs immersive;
 };
 inline Request decode(const std::vector<std::uint8_t>& bytes) {
-    Reader reader(bytes);require(reader.integer()==request_magic);
+    Reader reader(bytes);const auto magic=reader.integer();
+    require(magic==request_magic || magic==session_request_magic);
     auto type=reader.integer();require(type==0 || type==1);
     const auto timestamp=std::chrono::system_clock::time_point(std::chrono::milliseconds(reader.timestamp()));
     std::vector<ClientMetadata> requested;
@@ -104,7 +106,7 @@ inline Request decode(const std::vector<std::uint8_t>& bytes) {
         else foreground.push_back(std::nullopt);
     }
     auto primary=reader.text();reader.finish();
-    return {static_cast<FocusType>(type),timestamp,std::move(requested),
+    return {magic==session_request_magic,static_cast<FocusType>(type),timestamp,std::move(requested),
         DecisionInputs{std::move(activities),std::move(panels),std::move(top),std::move(all_top),
                        window,std::nullopt,std::nullopt,display},
         ImmersiveInputs{std::move(rendering),std::move(live),std::move(foreground),std::move(primary)}};

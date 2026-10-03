@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 #include "focus_immersive.hpp"
 #include "focus_policy_packet.hpp"
+#include "focus_session_binding.hpp"
 #include <jni.h>
 #include <unistd.h>
 #include <limits>
@@ -100,8 +101,9 @@ int current_mask(const Entry& entry) {
     return mask;
 }
 }
-extern "C" JNIEXPORT jbyteArray JNICALL
-Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluate(JNIEnv* env,jclass,jlong token,jbyteArray input) {
+namespace {
+jbyteArray evaluate_packet(JNIEnv* env,jlong token,jbyteArray input,bool session_bound,
+                           jlong source_token,jlong generation) {
     using namespace metaport::focus;
     try {
         if (!input) throw std::invalid_argument("Missing focus snapshot");
@@ -111,6 +113,7 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluate(JNIEnv* env,jclass
         if (size) env->GetByteArrayRegion(input,0,size,reinterpret_cast<jbyte*>(bytes.data()));
         if (env->ExceptionCheck()) return nullptr;
         auto request=packet::decode(bytes); // All validation before policy mutation.
+        packet::require(request.session_rendering==session_bound);
         std::lock_guard<std::mutex> lock(registry_mutex);
         auto it=registry.find(token);
         if (it==registry.end()) {
@@ -118,6 +121,14 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluate(JNIEnv* env,jclass
             return nullptr;
         }
         auto& entry=*it->second;
+        if (session_bound) {
+            packet::require(source_token==token);
+            if (generation<=0 || generation!=entry.session_generation) {
+                fail(env,"java/lang/IllegalStateException","Stale or unavailable session observation");
+                return nullptr;
+            }
+            bind_own_session_rendering(request,entry.identity,entry.session.contains(entry.identity));
+        }
         auto result=entry.core.evaluate(request.type,request.requested,request.immersive,
                                        std::move(request.decisions),request.timestamp);
         for (const auto& row:result.decisions)
@@ -135,6 +146,16 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluate(JNIEnv* env,jclass
         fail(env,"java/lang/IllegalStateException","Native focus evaluation failed");
     }
     return nullptr;
+}
+} // namespace
+extern "C" JNIEXPORT jbyteArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluate(JNIEnv* env,jclass,jlong token,jbyteArray input) {
+    return evaluate_packet(env,token,input,false,0,0);
+}
+extern "C" JNIEXPORT jbyteArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluateSession(
+        JNIEnv* env,jclass,jlong token,jlong source_token,jlong generation,jbyteArray input) {
+    return evaluate_packet(env,token,input,true,source_token,generation);
 }
 extern "C" JNIEXPORT jint JNICALL
 Java_org_metaport_port_focus_NativeFocusClient_nativeCurrentFocusMask(JNIEnv* env,jclass,jlong token) {

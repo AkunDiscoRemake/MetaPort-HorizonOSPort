@@ -42,11 +42,28 @@ final class FocusPolicyFrame {
                      Client[] activities,Client[] panels,Client[] topClients,Client[] allTopClients,
                      Client window,boolean mainDisplayFocus,Metadata[] rendering,Metadata[] liveMetadata,
                      Metadata[] foregroundLookups,String primaryDisplayTop) {
+        this(type,observedEpochMillis,requested,activities,panels,topClients,allTopClients,window,
+                mainDisplayFocus,rendering,liveMetadata,foregroundLookups,primaryDisplayTop,false);
+    }
+    // Rendering is delegated, not asserted empty. A distinct wire tag prevents this
+    // packet from being accidentally evaluated through the unbound fixture path.
+    static FocusPolicyFrame forSession(int type,long observedEpochMillis,Request[] requested,
+                     Client[] activities,Client[] panels,Client[] topClients,Client[] allTopClients,
+                     Client window,boolean mainDisplayFocus,Metadata[] liveMetadata,
+                     Metadata[] foregroundLookups,String primaryDisplayTop) {
+        return new FocusPolicyFrame(type,observedEpochMillis,requested,activities,panels,topClients,
+                allTopClients,window,mainDisplayFocus,new Metadata[0],liveMetadata,
+                foregroundLookups,primaryDisplayTop,true);
+    }
+    private FocusPolicyFrame(int type,long observedEpochMillis,Request[] requested,
+                     Client[] activities,Client[] panels,Client[] topClients,Client[] allTopClients,
+                     Client window,boolean mainDisplayFocus,Metadata[] rendering,Metadata[] liveMetadata,
+                     Metadata[] foregroundLookups,String primaryDisplayTop,boolean sessionRendering) {
         if (type<0 || type>1 || observedEpochMillis<0 || observedEpochMillis>9223372036854L)
             throw new IllegalArgumentException("Invalid type or observation timestamp");
         ByteBuffer out=ByteBuffer.allocate(MAX_BYTES).order(ByteOrder.LITTLE_ENDIAN);
         try {
-            out.putInt(0x3146504d).putInt(type).putLong(observedEpochMillis);
+            out.putInt(sessionRendering?0x5346504d:0x3146504d).putInt(type).putLong(observedEpochMillis);
             count(out,Objects.requireNonNull(requested).length);
             for (Request row:requested) {
                 Objects.requireNonNull(row);

@@ -114,3 +114,10 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/FocusBootstrapAndSessionTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),BOOTSTRAP_SESSION_CASES)
+
+    def test_session_binding_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import SESSION_BINDING_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/FocusSessionBindingTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),SESSION_BINDING_CASES)

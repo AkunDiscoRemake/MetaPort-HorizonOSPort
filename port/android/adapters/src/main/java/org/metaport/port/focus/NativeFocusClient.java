@@ -70,9 +70,11 @@ public final class NativeFocusClient implements AutoCloseable {
         final long generation;
         final boolean known;
         private final boolean visible;
+        private final long sourceToken;
         final int pid,uid;
         final boolean membershipChanged,refreshActivityState,notifyTopActivity,reportImmersiveUpdate;
-        private AppStateSnapshot(long[] value) {
+        private AppStateSnapshot(long sourceToken,long[] value) {
+            this.sourceToken=sourceToken;
             if (value==null || value.length!=6 || value[0]<0 || (value[1]!=0 && value[1]!=1)
                     || (value[2]!=0 && value[2]!=1) || value[3]<0 || value[3]>15)
                 throw new IllegalStateException("Invalid native app-state snapshot");
@@ -90,17 +92,33 @@ public final class NativeFocusClient implements AutoCloseable {
     // These are service-local 0/2 values, never Android Activity or OpenXR enums.
     synchronized AppStateSnapshot applyAppState(int requestedPid,int state) {
         requireOpen();
-        return new AppStateSnapshot(nativeAppState(handle,Binder.getCallingPid(),Binder.getCallingUid(),requestedPid,state));
+        return new AppStateSnapshot(handle,nativeAppState(handle,Binder.getCallingPid(),Binder.getCallingUid(),requestedPid,state));
     }
     // For a future endpoint backend: retain the identity captured before dispatch
     // rather than reading Binder identity again on a worker thread.
     synchronized AppStateSnapshot applyAppState(
             org.metaport.port.focus.protocol.VrFocusEndpoint.Caller caller,int requestedPid,int state) {
         requireOpen();java.util.Objects.requireNonNull(caller);
-        return new AppStateSnapshot(nativeAppState(handle,caller.pid,caller.uid,requestedPid,state));
+        return new AppStateSnapshot(handle,nativeAppState(handle,caller.pid,caller.uid,requestedPid,state));
     }
     synchronized AppStateSnapshot appStateSnapshot() {
-        requireOpen();return new AppStateSnapshot(nativeAppStateSnapshot(handle));
+        requireOpen();return new AppStateSnapshot(handle,nativeAppStateSnapshot(handle));
+    }
+    static final class SessionEvaluation {
+        final long sessionGeneration;
+        final FocusPolicyResult policy;
+        private SessionEvaluation(long generation,FocusPolicyResult result) {
+            sessionGeneration=generation;policy=result;
+        }
+    }
+    // Only the session/rendering channel is bound here. The remaining frame must
+    // still contain coherent, resolved observations; no complete producer exists yet.
+    synchronized SessionEvaluation evaluateWithSession(FocusPolicyFrame frame,AppStateSnapshot observed) {
+        requireOpen();java.util.Objects.requireNonNull(frame);java.util.Objects.requireNonNull(observed);
+        if (observed.sourceToken!=handle) throw new IllegalArgumentException("Foreign session snapshot");
+        if (!observed.known) throw new IllegalStateException("No recognized service app-state event");
+        byte[] result=nativeEvaluateSession(handle,observed.sourceToken,observed.generation,frame.encode());
+        return new SessionEvaluation(observed.generation,FocusPolicyResult.decode(result));
     }
     private void requireOpen() {
         if (handle==0) throw new IllegalStateException("Closed native focus client");
@@ -111,6 +129,7 @@ public final class NativeFocusClient implements AutoCloseable {
     private static native long[] nativeAppState(long handle,int callerPid,int callerUid,int requestedPid,int state);
     private static native long[] nativeAppStateSnapshot(long handle);
     private static native byte[] nativeEvaluate(long handle,byte[] packet);
+    private static native byte[] nativeEvaluateSession(long handle,long sourceToken,long generation,byte[] packet);
     private static native int nativeCurrentFocusMask(long handle);
     private static native long nativeCreate(int pid, int uid);
     private static native int[] nativeIdentity(long handle);
