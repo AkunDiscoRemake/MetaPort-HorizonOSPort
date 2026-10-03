@@ -129,19 +129,14 @@ jobs:
           mkdir -p local-analysis/android-build
           set +e
           gradle -p port/android :adapters:assembleRelease :adapters:testReleaseUnitTest \
-            :adapters:lintRelease :app:assembleRelease :app:lintRelease --stacktrace >local-analysis/android-build/gradle.log 2>&1
+            :adapters:lintRelease --stacktrace >local-analysis/android-build/gradle.log 2>&1
           result=$?
           export BUILD_EXIT="$result"
           set -e
-          if [ "$result" -eq 0 ] && [ -f port/android/app/build/outputs/apk/release/app-release.apk ]; then
-            "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose port/android/app/build/outputs/apk/release/app-release.apk
-            cp port/android/app/build/outputs/apk/release/app-release.apk local-analysis/android-build/MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk
-          fi
           python3 - <<'PY'
           import hashlib, json, os, pathlib, struct, zipfile, xml.etree.ElementTree as ET
           root = pathlib.Path('local-analysis/android-build')
           aar = pathlib.Path('port/android/adapters/build/outputs/aar/adapters-release.aar')
-          apk = root/'MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk'
           tests = []
           for path in pathlib.Path('port/android/adapters/build/test-results').glob('**/TEST-*.xml'):
               suite=ET.parse(path).getroot()
@@ -151,7 +146,7 @@ jobs:
           result = {'source_commit':os.environ['GITHUB_SHA'],
                     'run_id':os.environ['GITHUB_RUN_ID'],
                     'gradle_exit_code':int(os.environ['BUILD_EXIT']),
-                    'physical_device_tested':False, 'horizon_integration':'VRFOCUS_SERVICE_AND_CARDBOARD_HOST_PORTED',
+                    'physical_device_tested':False, 'horizon_integration':'VRFOCUS_SERVICE_PORTED_FOR_ORIGINAL_VRSHELL',
                     'java_tests':tests,
                     'error_summary': '\n'.join(err_lines[:40]),
                     'log_tail': '\n'.join(log_lines[-160:])}
@@ -173,18 +168,6 @@ jobs:
                       native.append({'path':name,'machine':'AArch64','load_segment_alignment_bytes':[p[7] for p in loads],
                                      'sha256':hashlib.sha256(blob).hexdigest()})
               result['native_libraries']=native
-          if apk.exists():
-              with zipfile.ZipFile(apk) as archive:
-                  assert 'lib/arm64-v8a/libmetaport_adapters.so' in archive.namelist()
-                  blob=archive.read('lib/arm64-v8a/libmetaport_adapters.so')
-                  assert blob[:6]==b'\x7fELF\x02\x01' and struct.unpack_from('<H',blob,18)[0]==183
-              result['apk']={
-                  'file_name':apk.name,
-                  'package_name':'org.metaport.horizonos',
-                  'version_name':'2.7.0-metaport',
-                  'size_bytes':apk.stat().st_size,
-                  'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),
-              }
           (root/'build-report.json').write_text(json.dumps(result,indent=2)+'\n')
           print(json.dumps(result,indent=2))
           PY
@@ -194,13 +177,6 @@ jobs:
         with:
           name: metaport-android-adapters-arm64
           path: port/android/adapters/build/outputs/aar/adapters-release.aar
-          if-no-files-found: error
-          retention-days: 7
-      - name: Store functional ARM64 Cardboard/VRBox runtime APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: metaport-horizonos-apk-arm64
-          path: local-analysis/android-build/MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk
           if-no-files-found: error
           retention-days: 7
       - name: Store build and test evidence
@@ -244,7 +220,7 @@ jobs:
             done
             test "$published" = 1
           fi
-      - name: Publish functional ARM64 APK and AAR to GitHub Releases
+      - name: Publish AAR and source closure to GitHub Releases
         if: success() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -254,16 +230,14 @@ jobs:
           python3 -m handtracking.distribution.package --output local-analysis/android-build/metaport-handtracking-sources.zip
           (
             cd local-analysis/android-build
-            sha256sum MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk \
-              metaport-android-adapters-arm64.aar \
+            sha256sum metaport-android-adapters-arm64.aar \
               metaport-handtracking-sources.zip \
               build-report.json > SHA256SUMS.txt
           )
           python3 -m tools.prepare_release_notes --build-dir local-analysis/android-build
           TAG="v2.7.0-cardboard-port"
-          TITLE="MetaPort Horizon OS v2.7 — Functional ARM64 VRBox/Cardboard APK & VrFocus Service Port"
+          TITLE="MetaPort Horizon OS v2.7 — Original VrShell.apk (com.oculus.vrshell) Bundle & VrFocus Port"
           ASSETS=(
-            local-analysis/android-build/MetaPort-HorizonOS-v2.7-Cardboard-Runtime-arm64.apk
             local-analysis/android-build/metaport-android-adapters-arm64.aar
             local-analysis/android-build/metaport-handtracking-sources.zip
             local-analysis/android-build/build-report.json

@@ -4,3 +4,4 @@
 -keep class org.metaport.port.JoyConInput { *; }
 -keep class org.metaport.port.focus.NativeFocusClient { *; }
 -keep class org.metaport.port.focus.VrFocusService { *; }
+-keep class org.metaport.port.focus.VrFocusBootstrap { *; }

@@ -207,12 +207,12 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
             raise
     transport=[]
     if app_service_transport:
-        from horizon.ui.service_transport import adapt,adapter_dex
+        import horizon.ui.service_transport as st_mod
         from horizon.ui.framework_dex import definitions,read_dexes
         targets=[m for e in framework_evidence if e['source_path']=='/framework/com.oculus.os.platform.jar' for m in e['members']]
         if len(targets)!=1:raise ValueError('Ambiguous original transport DEX')
         member=targets[0];target=member['apk_member']
-        data,proof=adapt(dex_members[target]);dex_members[target]=data
+        data,proof=st_mod.adapt(dex_members[target]);dex_members[target]=data
         member['canonical_original_selection_verified']=member.pop('canonical_smali_equal')
         member['original_selection_canonical_inventory_sha256']=member.pop('canonical_inventory_sha256')
         member['pre_transport_payload_sha256']=member['derived_payload_sha256']
@@ -221,7 +221,7 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
 
         member.update(canonical_smali_equal=False,transport_adaptation=proof,
                       sha256=hashlib.sha256(data).hexdigest(),size_bytes=len(data))
-        adapter,adapter_proof=adapter_dex()
+        adapter,adapter_proof=st_mod.adapter_dex()
         originals=read_dexes(original,256*1024*1024)
         existing=set().union(*(r[3] for r in originals),*(definitions(d) for d in dex_members.values()))
         if definitions(adapter)&existing:raise ValueError('Adapter class collision')
@@ -229,6 +229,12 @@ def prepare(images,reconstruction,original,output,rcpc_compat=False,framework_de
         if index>128:raise ValueError('Adapter DEX index budget')
         adapter_name=f'classes{index}.dex';dex_members[adapter_name]=adapter
         adapter_proof['apk_member']=adapter_name
+        native_builder=getattr(st_mod,'focus_native_lib',None)
+        if native_builder is not None:
+            native_so=libs/'libmetaport_adapters.so'
+            native_proof=native_builder(native_so)
+            added['lib/arm64-v8a/libmetaport_adapters.so']=native_proof['sha256']
+            adapter_proof['native_library']=native_proof
         transport=[{'framework_member':target,'adaptation':proof,'adapter':adapter_proof}]
     if app_service_transport:
         from horizon.ui.focus_contracts import collect as collect_focus_contracts

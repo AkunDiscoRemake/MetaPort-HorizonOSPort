@@ -57,9 +57,13 @@ def adapt(data):
 
 def adapter_dex():
     sdk=Path(os.environ['ANDROID_HOME']);android=sdk/'platforms/android-35/android.jar'
-    sources=sorted(Path('port/android/adapters/src/main/java/org/metaport/port/services').glob('*.java'))
-    if {p.name for p in sources}!={'ServiceCallback.java','ServiceDirectory.java'}:
+    service_sources=sorted(Path('port/android/adapters/src/main/java/org/metaport/port/services').glob('*.java'))
+    if {p.name for p in service_sources}!={'ServiceCallback.java','ServiceDirectory.java'}:
         raise ValueError('Unexpected transport adapter source set')
+    focus_sources=sorted(Path('port/android/adapters/src/main/java/org/metaport/port/focus').rglob('*.java'))
+    if not focus_sources:
+        raise ValueError('Missing focus service adapter sources')
+    sources=service_sources+focus_sources
     with tempfile.TemporaryDirectory(prefix='service-adapter-') as d:
         root=Path(d);classes=root/'classes';classes.mkdir();out=root/'dex';out.mkdir()
         subprocess.run(['javac','--release','8','-classpath',str(android),'-d',str(classes),
@@ -68,8 +72,29 @@ def adapter_dex():
             '--output',str(out),*map(str,sorted(classes.rglob('*.class')))],check=True,timeout=60,capture_output=True)
         if {p.name for p in out.iterdir()}!={'classes.dex'}:raise ValueError('Adapter DEX output set')
         data=(out/'classes.dex').read_bytes();names=definitions(data)
-        if not names or any(not n.startswith('Lorg/metaport/port/services/') for n in names):
+        if not names or any(not n.startswith(('Lorg/metaport/port/services/','Lorg/metaport/port/focus/')) for n in names):
             raise ValueError('Unexpected adapter definitions')
         return data,{'source_files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},
                      'sha256':hashlib.sha256(data).hexdigest(),'class_definitions':sorted(names),
-                     'scope':'Project-original local Binder transport, no service providers or firmware substitutes'}
+                     'scope':'Project-original local Binder transport and ported vrfocus service provider'}
+
+
+def focus_native_lib(output_so):
+    sdk=Path(os.environ['ANDROID_HOME'])
+    clang=sdk/'ndk/27.2.12479018/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++'
+    cpp_dir=Path('port/android/adapters/src/main/cpp')
+    ht_dir=Path('handtracking/native')
+    cpp_sources=sorted(cpp_dir.glob('*.cpp'))+sorted((ht_dir/'src').glob('*.cpp'))
+    headers=sorted(cpp_dir.glob('*.hpp'))+sorted((ht_dir/'include').rglob('*.hpp'))
+    output_so=Path(output_so);output_so.parent.mkdir(parents=True,exist_ok=True)
+    subprocess.run([str(clang),'-std=c++17','-shared','-fPIC','-O2',
+        '-Wall','-Wextra','-Werror','-static-libstdc++','-Wl,--no-undefined',
+        '-Wl,-soname,libmetaport_adapters.so','-Wl,-z,max-page-size=16384',
+        '-I',str(ht_dir/'include'),*map(str,cpp_sources),
+        '-landroid','-llog','-lEGL','-lGLESv2','-o',str(output_so)],
+        check=True,timeout=120,capture_output=True)
+    data=output_so.read_bytes()
+    return {'apk_member':'lib/arm64-v8a/libmetaport_adapters.so',
+            'sha256':hashlib.sha256(data).hexdigest(),'size_bytes':len(data),
+            'source_files':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in cpp_sources+headers},
+            'scope':'Ported ARM64 native vrfocus policy core and hardware adapters'}

@@ -32,8 +32,21 @@ public final class ServiceDirectory {
         if (name == null || !name.matches("[A-Za-z0-9_.-]{1,128}"))
             throw new IllegalArgumentException("Invalid local service name");
     }
+    private static void bootstrapIfAvailable(String name) {
+        if (!"vrfocus".equals(name) || SERVICES.get(name) != null) return;
+        try {
+            Class.forName("org.metaport.port.focus.VrFocusBootstrap")
+                    .getMethod("ensurePublished", String.class)
+                    .invoke(null, name);
+        } catch (ClassNotFoundException ignored) {
+            // Optional shell bootstrap not bundled.
+        } catch (Throwable failure) {
+            Log.e("MetaPortServiceDirectory", "Failed to bootstrap service: " + name, failure);
+        }
+    }
     public static synchronized IBinder checkService(String name) {
         name(name);
+        bootstrapIfAvailable(name);
         IBinder binder = SERVICES.get(name);
         return binder != null && binder.isBinderAlive() ? binder : null;
     }

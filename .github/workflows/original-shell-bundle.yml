@@ -66,9 +66,9 @@ jobs:
           sudo chmod 666 /dev/kvm
       - name: Prepare pinned host-only DEX class selector
         if: env.FRAMEWORK_DEX == 'true'
-        timeout-minutes: 5
+        timeout-minutes: 8
         run: |
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018'
           python3 -m tools.prepare_dex_tools
       - name: Obtain the verified unmodified original APK
         timeout-minutes: 25
@@ -185,6 +185,36 @@ jobs:
               if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then exit 0; fi
             done
             exit 1
+          fi
+      - name: Upload bundled original VrShell APK to GitHub Release
+        if: always() && env.RCPC_COMPAT == 'true' && env.FRAMEWORK_DEX == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ ! -f local-analysis/shell-bundle/signed.apk ]; then
+            echo "signed.apk not found; skipping release upload"
+            exit 0
+          fi
+          mkdir -p local-analysis/release-vrshell
+          cp local-analysis/shell-bundle/signed.apk local-analysis/release-vrshell/MetaPort-HorizonOS-v2.7-VrShell-Bundled-arm64.apk
+          cp "analysis/android-runtime/${BUNDLE_REPORT}.json" "local-analysis/release-vrshell/${BUNDLE_REPORT}.json"
+          cp "analysis/android-runtime/${REPORT_STEM}-baseline.json" "local-analysis/release-vrshell/${REPORT_STEM}-baseline.json"
+          (cd local-analysis/release-vrshell && sha256sum MetaPort-HorizonOS-v2.7-VrShell-Bundled-arm64.apk "${BUNDLE_REPORT}.json" "${REPORT_STEM}-baseline.json" > SHA256SUMS.txt)
+          python3 -m tools.prepare_release_notes \
+            --build-dir local-analysis/release-vrshell \
+            --bundle-report "local-analysis/release-vrshell/${BUNDLE_REPORT}.json" \
+            --vrshell-apk local-analysis/release-vrshell/MetaPort-HorizonOS-v2.7-VrShell-Bundled-arm64.apk
+          TAG="v2.7.0-cardboard-port"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" \
+              local-analysis/release-vrshell/MetaPort-HorizonOS-v2.7-VrShell-Bundled-arm64.apk \
+              "local-analysis/release-vrshell/${BUNDLE_REPORT}.json" \
+              "local-analysis/release-vrshell/${REPORT_STEM}-baseline.json" \
+              --clobber
+            gh release edit "$TAG" \
+              --title "MetaPort Horizon OS v2.7 — Original VrShell.apk (com.oculus.vrshell) Bundle & VrFocus Port" \
+              --notes-file local-analysis/release-vrshell/RELEASE-NOTES.md
           fi
       - uses: actions/upload-artifact@v4
         if: always()

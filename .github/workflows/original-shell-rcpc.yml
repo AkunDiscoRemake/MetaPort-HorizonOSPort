@@ -7,8 +7,12 @@ on:
       - horizon/ui/rcpc_compat.py
       - horizon/ui/focus_contracts.py
       - horizon/ui/service_transport.py
+      - horizon/ui/bundle_shell_dependencies.py
       - horizon/ui/java/AdaptServiceTransport.java
       - port/android/adapters/src/main/java/org/metaport/port/services/**
+      - port/android/adapters/src/main/java/org/metaport/port/focus/**
+      - port/android/adapters/src/main/cpp/**
+      - .github/workflows/original-shell-bundle.yml
       - horizon/ui/framework_dex.py
       - horizon/ui/select_framework_classes.py
       - horizon/ui/java/SelectFrameworkClasses.java
