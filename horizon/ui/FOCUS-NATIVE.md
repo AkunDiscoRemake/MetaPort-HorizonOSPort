@@ -588,3 +588,10 @@ rejection, missing/inconsistent metadata and a native race where updates bypass
 the Java monitor. The runtime gate requires 42 owned cases per API. Instrumentation
 uses explicit remaining-channel/metadata fixtures; production assembly, effects
 consumption and Binder publication remain incomplete. Original startup is unchanged.
+
+Session-bound evaluation validation, source **d9fa72c**: project/native
+**37133198483**, arm64 Android build **37133198509**, and runtime **37133198738**
+all passed. Runtime executed 42 owned cases per API 29/35; native sanitizers
+executed 21 cases. The race test bypasses the Java monitor for native updates.
+These are owned adapter/policy tests with explicit remaining-channel fixtures,
+not original firmware, physical-device or complete-provider validation.

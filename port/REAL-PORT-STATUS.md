@@ -434,3 +434,32 @@ Binder incompleto. A criação antecipada do núcleo está verificada, mas ainda
 faltam produtor coerente completo, normalização/metadados/liveness, consumidor
 de efeitos e backend/publicação do serviço original. **O ANR original permanece;
 ainda não há APK funcional com Horizon original nem validação no Infinix.**
+
+## Estado de sessão alimentando renderização/seleção — 2026-10-03
+
+Fonte **d9fa72c** conecta a participação do próprio processo no estado de sessão
+à entrada de clientes em renderização da seleção imersiva. A correspondência
+foi confirmada no ARM64: getter e transições usam o conjunto +0x170. Nenhuma
+atividade/janela/display/permissão é derivada desse estado.
+
+A avaliação vinculada exige observação reconhecida, pertencente à mesma
+instância, e confere sua geração sob o bloqueio nativo que protege atualizações.
+Observações antigas, de outra instância ou metadados incompatíveis são rejeitados
+antes de alterar a política. O formato interno distingue renderização delegada
+de uma observação explicitamente vazia. As demais entradas continuam obrigatórias.
+A regra original de seleção do shell permanece válida mesmo após parar rendering;
+o evento sozinho não força perda de foco nem concede rastreamento.
+
+Validação concluída:
+- Projeto/regressão/nativo **37133198483**, sucesso; **21 casos com sanitizadores**.
+- Build Android ARM64 **37133198509**, sucesso.
+- Runtime **37133198738**, sucesso: **42 testes próprios por API 29 e 35**,
+  incluindo a ligação sessão/seleção, rejeição de estado antigo/de outra instância,
+  metadados ausentes/inconsistentes e concorrência exercitando o bloqueio nativo
+  sem depender apenas do monitor Java.
+
+Isso garante coerência do canal de sessão, não de todas as observações Android.
+Os demais canais/metadados nos novos testes são fixtures explícitas. Ainda faltam
+produtor completo de observações, normalização/metadados/liveness, execução dos
+efeitos e backend/publicação Binder. **O ANR original permanece e ainda não há
+APK funcional com Horizon original ou validação física no Infinix.**
