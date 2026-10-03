@@ -170,7 +170,16 @@ public:
             foreground_activities && (on_main_display || on_secondary_display);
         const bool in_all_top_activities = foreground_activities;
 
-        const bool fg_changed = update_set(foreground_activities_, client, in_foreground_activities);
+        bool fg_changed = false;
+        if (in_foreground_activities) {
+            foreground_activities_.push_back(client);
+            fg_changed = true;
+        } else {
+            const auto new_end =
+                std::remove(foreground_activities_.begin(), foreground_activities_.end(), client);
+            fg_changed = new_end != foreground_activities_.end();
+            foreground_activities_.erase(new_end, foreground_activities_.end());
+        }
         const bool top_changed = update_set(top_activity_clients_, client, in_top_activities);
         const bool all_top_changed = update_set(all_top_activity_clients_, client, in_all_top_activities);
 
@@ -181,6 +190,46 @@ public:
             fg_changed,
             top_changed,
         };
+    }
+
+    // ConnectionManager::refreshImmersiveStates (0x1a4c0):
+    // Removes any client from foreground_activities_ (+0x70) whose process no longer has
+    // a top activity on display 0 (getMatchedDisplaysForProcess(pid, {0}) empty).
+    template <typename OnMainDisplayPredicate>
+    bool refresh_immersive_states(OnMainDisplayPredicate&& on_main_display) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        const auto new_end = std::remove_if(
+            foreground_activities_.begin(),
+            foreground_activities_.end(),
+            [&](const Client& client) { return !on_main_display(client.pid); });
+        const bool changed = new_end != foreground_activities_.end();
+        foreground_activities_.erase(new_end, foreground_activities_.end());
+        return changed;
+    }
+
+    // ConnectionManager::maybeUpdateActivityState (0x22660):
+    // Iterates all_top_activity_clients_ (+0x130, std::set<Client> in (uid, pid) order),
+    // stops at the first client where has_foreground_activity(client) is true (227c0..2280c),
+    // and appends it to foreground_activities_ (+0x70) if not already present (22820..22878).
+    template <typename HasForegroundActivityPredicate>
+    bool maybe_update_activity_state(HasForegroundActivityPredicate&& has_foreground_activity) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        std::optional<Client> candidate;
+        for (const auto& client : all_top_activity_clients_) {
+            if (has_foreground_activity(client)) {
+                candidate = client;
+                break;
+            }
+        }
+        if (!candidate.has_value()) {
+            return false;
+        }
+        if (std::find(foreground_activities_.begin(), foreground_activities_.end(), *candidate) !=
+            foreground_activities_.end()) {
+            return false;
+        }
+        foreground_activities_.push_back(*candidate);
+        return true;
     }
 
     // ConnectionManager::onForegroundServicesChanged (0x20860):
@@ -202,11 +251,39 @@ public:
 
     std::vector<Client> clients_with_foreground_activity() const {
         std::lock_guard<std::mutex> lock(mutex_);
-        return {foreground_activities_.begin(), foreground_activities_.end()};
+        return foreground_activities_;
+    }
+
+    // ConnectionManager::getClientsWithForegroundActivity (0x21540 -> 0x22000):
+    // Prunes dead PIDs in-place while preserving vector insertion order.
+    template <typename IsAlivePredicate>
+    std::vector<Client> clients_with_foreground_activity(IsAlivePredicate&& is_alive) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        const auto new_end = std::remove_if(
+            foreground_activities_.begin(),
+            foreground_activities_.end(),
+            [&](const Client& client) { return !is_alive(client.pid); });
+        foreground_activities_.erase(new_end, foreground_activities_.end());
+        return foreground_activities_;
     }
 
     std::vector<Client> clients_with_foreground_panel_service() const {
         std::lock_guard<std::mutex> lock(mutex_);
+        return {foreground_panels_.begin(), foreground_panels_.end()};
+    }
+
+    // ConnectionManager::getClientsWithForegroundPanelApp (0x224c0 -> 0x21de0):
+    // Prunes dead PIDs from the std::set<Client> and returns surviving clients in (uid, pid) order.
+    template <typename IsAlivePredicate>
+    std::vector<Client> clients_with_foreground_panel_service(IsAlivePredicate&& is_alive) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        for (auto it = foreground_panels_.begin(); it != foreground_panels_.end();) {
+            if (!is_alive(it->pid)) {
+                it = foreground_panels_.erase(it);
+            } else {
+                ++it;
+            }
+        }
         return {foreground_panels_.begin(), foreground_panels_.end()};
     }
 
@@ -240,7 +317,7 @@ private:
     mutable std::mutex mutex_;
     bool main_display_focus_;
     std::set<std::int32_t> active_displays_;
-    std::set<Client> foreground_activities_;
+    std::vector<Client> foreground_activities_;
     std::set<Client> foreground_panels_;
     std::set<Client> top_activity_clients_;
     std::set<Client> all_top_activity_clients_;

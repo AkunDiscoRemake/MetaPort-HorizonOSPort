@@ -487,3 +487,32 @@ A ligação não deduz foco do display, estado XR, permissões ou foco de outros
 processos. Faltam cobertura/observações completas, normalização/metadados/liveness,
 consumo dos efeitos e backend/publicação Binder. **O ANR original permanece;
 ainda não há APK funcional com interface original nem validação no Infinix.**
+
+## Cache de metadados `ClientManager` e redutores de acesso/display — 2026-10-03
+
+`focus_client_metadata.hpp` e `focus_display_access.hpp` portam para C++/JNI as
+regras recuperadas de `/system_ext/bin/vrfocusserver`:
+- `ClientManager` (`0xf0d0`, `0x10aa0`, `0x118e0`, `0x12bc0`, `0x12de0`, `0x13400`):
+  desambiguação de pacote por UID único vs. múltiplos pacotes com prefixo antes
+  de `':'` (`0x10dec..0x10f4c`), override `"system_server"` ->
+  `"android.uid.system:1000"` (`0x10fdc..0x11084`), concessão de foco em segundo
+  plano para `uid == 0`, permissões `ACCESS_BACKGROUND_{HEAD,INPUT}_TRACKING`,
+  pacotes `com.oculus.{vrshell,guardian,systemdriver}` (`DAT_0013d1c8`) e daemons
+  `/system/bin/audioserver`@1041 e `/system_ext/bin/mrsystemservice`@1000
+  (`DAT_0013d1e0`), cache indexado por PID com invalidação em divergência de UID
+  (`0x11af8`), atualização de `metadata_process_name` na cópia retornada em
+  cache hit (`0x11a60`) e poda de processos mortos em `getSnapshot` (`0x13400`).
+- `DisplayTrackingAccessState` (`0xf5e0`, `0x15480`, `0x182e0`, `0x1a4c0`,
+  `0x20860`, `0x20cc0`, `0x21540..0x22660`, `0x22d50`, `0x265d0`, `0x2cb90`,
+  `0x2ccc0`, `0x2dd60`): bypass de `checkCallingPermission` para `callingUid == 1041`
+  (`AID_AUDIOSERVER`), estado inicial `main_display_focus_ = true` e
+  `active_displays_ = {0}`, máscaras `2`/`0` de `IDisplayManager` nas transições
+  `1 -> 2` e `2 -> 1`, `onDisplayEvent(id, 3)` revogando apenas displays
+  secundários, vetor `foreground_activities_` (`+0x70`) preservando ordem de
+  inserção para `getTopActivityClient` (`rbegin()`), `refreshImmersiveStates`
+  (`0x1a4c0`), `maybeUpdateActivityState` (`0x22660`) e sincronização de
+  `current_focus` no cache durante `evaluate_packet` (`0x25460`).
+- A suíte nativa com sanitizadores (ASan/UBSan e TSan) passa a executar **26
+  binários**, e a porta de instrumentação Android passa a exigir **49 testes
+  próprios por API 29 e 35**.
+

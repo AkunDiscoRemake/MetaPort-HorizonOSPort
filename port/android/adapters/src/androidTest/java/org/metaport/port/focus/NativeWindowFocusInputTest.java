@@ -18,12 +18,19 @@ public final class NativeWindowFocusInputTest {
     private static Application app() {
         return (Application)InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
     }
-    private static void awaitPositive(LinkedBlockingQueue<NativeFocusClient.WindowSnapshot> events) throws Exception {
+    private static void awaitPositive(
+            ActivityScenario<FocusTestActivity> scenario,
+            LinkedBlockingQueue<NativeFocusClient.WindowSnapshot> events,
+            AtomicReference<NativeWindowFocusInput> input) throws Exception {
         long end=System.nanoTime()+TimeUnit.SECONDS.toNanos(20);
         while (System.nanoTime()<end) {
             NativeFocusClient.WindowSnapshot item=events.poll(Math.max(1,end-System.nanoTime()),TimeUnit.NANOSECONDS);
             if (item==null) break;
-            if (item.known) return;
+            if (!item.known) continue;
+            AtomicReference<Boolean> focused=new AtomicReference<>(false);
+            scenario.onActivity(activity->focused.set(
+                    activity.hasWindowFocus() && input.get().snapshot().known));
+            if (focused.get()) return;
         }
         throw new AssertionError("No actual positive own-window observation");
     }
@@ -47,7 +54,7 @@ public final class NativeWindowFocusInputTest {
                 input.get().start();
             });
             try (ActivityScenario<FocusTestActivity> scenario=ActivityScenario.launch(FocusTestActivity.class)) {
-                awaitPositive(events);
+                awaitPositive(scenario,events,input);
                 main(()->{
                     NativeFocusClient.WindowSnapshot window=input.get().snapshot();assertTrue(window.known);
                     NativeFocusClient.ObservedEvaluation result=client.evaluateWithObservedInputs(frame(0),stopped,window);
@@ -69,7 +76,7 @@ public final class NativeWindowFocusInputTest {
             AtomicReference<NativeWindowFocusInput> input=new AtomicReference<>();
             main(()->{ input.set(new NativeWindowFocusInput(app(),client,events::add));input.get().start(); });
             try (ActivityScenario<FocusTestActivity> scenario=ActivityScenario.launch(FocusTestActivity.class)) {
-                awaitPositive(events);
+                awaitPositive(scenario,events,input);
                 AtomicReference<NativeFocusClient.WindowSnapshot> old=new AtomicReference<>();
                 main(()->{
                     old.set(input.get().snapshot());
@@ -83,8 +90,12 @@ public final class NativeWindowFocusInputTest {
                     input.set(new NativeWindowFocusInput(app(),client,events::add));input.get().start();
                     assertFalse(input.get().snapshot().known);
                 });
-                events.clear();scenario.moveToState(Lifecycle.State.CREATED);scenario.moveToState(Lifecycle.State.RESUMED);
-                awaitPositive(events);
+                scenario.moveToState(Lifecycle.State.CREATED);
+                assertEquals(Lifecycle.State.CREATED,scenario.getState());
+                events.clear();
+                scenario.moveToState(Lifecycle.State.RESUMED);
+                assertEquals(Lifecycle.State.RESUMED,scenario.getState());
+                awaitPositive(scenario,events,input);
                 main(()->{
                     NativeFocusClient.WindowSnapshot fresh=input.get().snapshot();assertTrue(fresh.known);
                     assertThrows(IllegalStateException.class,()->client.evaluateWithObservedInputs(frame(0),session,old.get()));
@@ -102,7 +113,7 @@ public final class NativeWindowFocusInputTest {
             main(()->{ input.set(new NativeWindowFocusInput(app(),client,events::add));input.get().start(); });
             assertThrows(IllegalStateException.class,()->input.get().snapshot());
             try (ActivityScenario<FocusTestActivity> scenario=ActivityScenario.launch(FocusTestActivity.class)) {
-                awaitPositive(events);client.close();
+                awaitPositive(scenario,events,input);client.close();
                 scenario.moveToState(Lifecycle.State.CREATED);
                 main(()->{
                     assertThrows(IllegalStateException.class,()->input.get().snapshot());

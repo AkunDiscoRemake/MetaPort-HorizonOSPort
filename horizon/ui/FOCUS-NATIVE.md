@@ -692,15 +692,25 @@ classification rules (`0xf5e0`, `0x15480`, `0x182e0`, `0x20860`, `0x20cc0`,
   (`182f8: cmp w2, #0x3`) and revokes non-zero displays without modifying
   `main_display_focus_`.
 - `onForegroundActivitiesChanged` (`0x20cc0`) classifies `matching_displays`
-  into `foreground_activities` (`fg && on_display_0`), `top_activity_clients`
-  (`fg && (on_display_0 || on_secondary_tracked_display)`), and
-  `all_top_activity_clients` (`fg`), emitting `report_immersive_app_update` and
-  `notify_top_activity` when the respective sets change; `onForegroundServicesChanged`
-  (`0x20860`) updates `foreground_panels` (`serviceTypes != 0`).
+  into `foreground_activities_` (`+0x70`, `std::vector<Client>` with `push_back`
+  when `fg && on_display_0` so `getTopActivityClient` `rbegin()` selects the
+  newest main-display foreground client, and `std::remove` otherwise),
+  `top_activity_clients_` (`+0xf0`, `std::set<Client>`,
+  `fg && (on_display_0 || on_secondary_tracked_display)`), and
+  `all_top_activity_clients_` (`+0x130`, `std::set<Client>`, `fg`), emitting
+  `report_immersive_app_update` and `notify_top_activity` when the respective
+  collections change; `refreshImmersiveStates` (`0x1a4c0`) prunes
+  `foreground_activities_` entries no longer on display `0`;
+  `maybeUpdateActivityState` (`0x22660`) scans `all_top_activity_clients_` in
+  `(uid, pid)` order for the first client with a foreground activity and appends
+  it to `foreground_activities_` if absent; `onForegroundServicesChanged`
+  (`0x20860`) updates `foreground_panels_` (`+0xb0`, `serviceTypes != 0`).
 
-`NativeFocusClient` exposes package-private JNI bindings for both reducers.
-Host sanitizers now execute 26 cases (adding `focus_client_metadata` and
-`focus_display_access` under both ASan+UBSan and TSan). Four new Android
-instrumentation cases in `FocusDisplayAndMetadataJniTest` raise the strict
-runtime gate to 49 owned cases per API.
+`NativeFocusClient` exposes package-private JNI bindings for both reducers and
+synchronizes `ClientManager::addCurrentFocus` / `removeCurrentFocus` (`0x25460`
+-> `0x12bc0`/`0x12de0`) during `evaluate_packet`. Host sanitizers now execute
+26 cases (adding `focus_client_metadata` and `focus_display_access` under both
+ASan+UBSan and TSan). Four new Android instrumentation cases in
+`FocusDisplayAndMetadataJniTest` raise the strict runtime gate to 49 owned
+cases per API.
 

@@ -100,11 +100,45 @@ int main() {
     // foreground_activities changes (true), top_activities stays true (false).
     auto e_sec_to_main = state.on_foreground_activities_changed(c_sec, true, {0});
     assert((e_sec_to_main == ForegroundActivityEffects{true, false, false, true, false}));
+    assert((state.clients_with_foreground_activity() == std::vector<Client>{c_main, c_sec}));
+
+    // Foreground activities vector (+0x70) preserves insertion/recency order even when a
+    // client with a lower UID enters foreground later (so getTopActivityClient rbegin()
+    // selects the newest foreground client, not the highest UID).
+    const Client c_low_uid{10005, 505};
+    state.on_foreground_activities_changed(c_low_uid, true, {0});
+    assert((state.clients_with_foreground_activity() == std::vector<Client>{c_main, c_sec, c_low_uid}));
+    assert(state.clients_with_foreground_activity().back() == c_low_uid);
+
+    // Duplicate main-display foreground event appends again; leaving main display removes ALL copies.
+    state.on_foreground_activities_changed(c_main, true, {0});
+    assert((state.clients_with_foreground_activity() == std::vector<Client>{c_main, c_sec, c_low_uid, c_main}));
+    auto e_main_removed = state.on_foreground_activities_changed(c_main, false, {});
+    assert(e_main_removed.foreground_activities_changed);
+    assert((state.clients_with_foreground_activity() == std::vector<Client>{c_sec, c_low_uid}));
+
+    // refreshImmersiveStates (0x1a4c0): removes clients whose PID is no longer on display 0.
+    assert(state.refresh_immersive_states([&](std::int32_t pid) { return pid == c_low_uid.pid; }));
+    assert((state.clients_with_foreground_activity() == std::vector<Client>{c_low_uid}));
+    assert(!state.refresh_immersive_states([&](std::int32_t) { return true; }));
+
+    // maybeUpdateActivityState (0x22660): scans all_top_activity_clients_ (+0x130) in (uid, pid)
+    // order, stops at the first client where has_foreground_activity is true, and appends to
+    // foreground_activities_ (+0x70) only if not already present.
+    assert(!state.maybe_update_activity_state([&](const Client& c) { return c == c_low_uid; }));
+    assert(state.maybe_update_activity_state([&](const Client& c) { return c == c_sec || c == c_untracked; }));
+    assert((state.clients_with_foreground_activity() == std::vector<Client>{c_low_uid, c_sec}));
+
+    // Liveness-pruned getters (0x21540 -> 0x22000 and 0x224c0 -> 0x21de0).
+    assert((state.clients_with_foreground_activity([&](std::int32_t pid) { return pid != c_low_uid.pid; }) ==
+            std::vector<Client>{c_sec}));
 
     // Panel service (0x20860): service_types != 0 inserts, 0 erases.
     assert(state.on_foreground_services_changed(c_main, 1));
     assert(!state.on_foreground_services_changed(c_main, 4));
-    assert((state.clients_with_foreground_panel_service() == std::vector<Client>{c_main}));
+    assert(state.on_foreground_services_changed(c_sec, 2));
+    assert((state.clients_with_foreground_panel_service([&](std::int32_t pid) { return pid != c_sec.pid; }) ==
+            std::vector<Client>{c_main}));
     assert(state.on_foreground_services_changed(c_main, 0));
     assert(state.clients_with_foreground_panel_service().empty());
 

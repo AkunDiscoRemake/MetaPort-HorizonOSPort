@@ -146,8 +146,11 @@ jbyteArray evaluate_packet(JNIEnv* env,jlong token,jbyteArray input,bool session
         }
         auto result=entry.core.evaluate(request.type,request.requested,request.immersive,
                                        std::move(request.decisions),request.timestamp);
-        for (const auto& row:result.decisions)
+        for (const auto& row:result.decisions) {
             if (row.identity==entry.identity) entry.evaluated_types|=1<<static_cast<int>(row.type);
+            if (row.has_focus) entry.metadata_cache.add_current_focus(row.identity,row.type);
+            else entry.metadata_cache.remove_current_focus(row.identity,row.type);
+        }
         auto encoded=packet::encode(result,current_mask(entry),entry.evaluated_types,entry.core.history());
         auto output=env->NewByteArray(static_cast<jsize>(encoded.size()));
         if (output) env->SetByteArrayRegion(output,0,static_cast<jsize>(encoded.size()),

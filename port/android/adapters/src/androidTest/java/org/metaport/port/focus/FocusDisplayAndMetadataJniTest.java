@@ -179,6 +179,26 @@ public class FocusDisplayAndMetadataJniTest {
             assertEquals(observed.applicationPackage, resolved.packageName);
             assertEquals(0, resolved.allowedBackgroundMask);
             assertEquals(0, resolved.currentFocusMask);
+
+            // Evaluating policy updates ClientManager cached current_focus (0x25460 -> 0x12bc0/0x12de0).
+            FocusPolicyFrame.Client self = new FocusPolicyFrame.Client(observed.uid, observed.pid);
+            FocusPolicyFrame.Metadata meta = new FocusPolicyFrame.Metadata(
+                    self, resolved.packageName, resolved.metadataProcessName, resolved.packageName);
+            FocusPolicyFrame grantedFrame = new FocusPolicyFrame(
+                    0, 1000L,
+                    new FocusPolicyFrame.Request[]{new FocusPolicyFrame.Request(self, resolved.allowedBackgroundMask)},
+                    new FocusPolicyFrame.Client[]{self},
+                    new FocusPolicyFrame.Client[0],
+                    new FocusPolicyFrame.Client[]{self},
+                    new FocusPolicyFrame.Client[]{self},
+                    self, true,
+                    new FocusPolicyFrame.Metadata[]{meta},
+                    new FocusPolicyFrame.Metadata[]{meta},
+                    new FocusPolicyFrame.Metadata[]{meta},
+                    resolved.packageName);
+            assertTrue(client.evaluate(grantedFrame).decisions.get(0).focused);
+            assertEquals(1, client.getClientMetadata(
+                    observed.uid, observed.pid, observed.androidProcessName).currentFocusMask);
         }
     }
 }
