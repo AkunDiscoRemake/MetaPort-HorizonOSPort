@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
+#include "focus_client_metadata.hpp"
+#include "focus_display_access.hpp"
 #include "focus_immersive.hpp"
 #include "focus_policy_packet.hpp"
 #include "focus_session_binding.hpp"
@@ -18,6 +20,9 @@ struct Entry {
     metaport::focus::SessionState session;
     jlong session_generation=0;
     metaport::focus::WindowObservation window;
+    metaport::focus::ClientMetadataCache metadata_cache;
+    metaport::focus::DisplayTrackingAccessState display_access;
+    jlong display_access_generation=1;
     explicit Entry(Client client):identity(client) { core.install_client_record(client); }
 };
 // Opaque, non-reused tokens, not Java-supplied raw pointers. The lock spans each
@@ -288,4 +293,222 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeDetachWindow(JNIEnv* env,jc
     } catch (const std::exception&) {
         fail(env,"java/lang/IllegalStateException","Cannot detach native window source");
     }
+}
+
+namespace {
+jintArray encode_display_access(JNIEnv* env,const Entry& entry,const metaport::focus::DisplayAccessEffects& effects) {
+    const auto displays=entry.display_access.active_displays();
+    const jsize header=6;
+    auto output=env->NewIntArray(header+static_cast<jsize>(displays.size()));
+    if (!output) return nullptr;
+    const auto gen_bits=static_cast<std::uint64_t>(entry.display_access_generation);
+    std::vector<jint> values;
+    values.reserve(static_cast<std::size_t>(header)+displays.size());
+    values.push_back(static_cast<jint>(gen_bits&0xffffffffu));
+    values.push_back(static_cast<jint>((gen_bits>>32)&0xffffffffu));
+    values.push_back(effects.main_display_focus?1:0);
+    values.push_back(effects.tracked_displays_changed?1:0);
+    values.push_back(effects.register_display_callback_mask.has_value()?1:0);
+    values.push_back(effects.register_display_callback_mask.value_or(0));
+    for (auto d:displays) values.push_back(d);
+    env->SetIntArrayRegion(output,0,static_cast<jsize>(values.size()),values.data());
+    return output;
+}
+jbyteArray encode_client_metadata(JNIEnv* env,const std::optional<metaport::focus::ClientMetadataRecord>& record) {
+    metaport::focus::packet::Writer writer;
+    writer.integer(record.has_value()?1:0);
+    if (record.has_value()) {
+        writer.identity(record->identity);
+        writer.text(record->package_name);
+        writer.text(record->metadata_process_name);
+        writer.integer(record->allowed_background_mask());
+        writer.integer(record->current_focus_mask());
+    }
+    auto output=env->NewByteArray(static_cast<jsize>(writer.bytes.size()));
+    if (output) env->SetByteArrayRegion(output,0,static_cast<jsize>(writer.bytes.size()),
+                                        reinterpret_cast<const jbyte*>(writer.bytes.data()));
+    return output;
+}
+} // namespace
+
+extern "C" JNIEXPORT jintArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeDisplayAccess(
+        JNIEnv* env,jclass,jlong token,jint calling_uid,jboolean permission_granted,jint display_id,jboolean grant) {
+    try {
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");
+            return nullptr;
+        }
+        auto& entry=*it->second;
+        if (entry.display_access_generation==std::numeric_limits<jlong>::max()) {
+            fail(env,"java/lang/IllegalStateException","Display access generation exhausted");
+            return nullptr;
+        }
+        const auto effects=grant==JNI_TRUE
+            ? entry.display_access.grant_tracking_service_access(calling_uid,permission_granted==JNI_TRUE,display_id)
+            : entry.display_access.revoke_tracking_service_access(calling_uid,permission_granted==JNI_TRUE,display_id);
+        if (effects.status!=metaport::focus::DisplayAccessStatus::Allowed) {
+            fail(env,"java/lang/SecurityException","Display tracking access denied");
+            return nullptr;
+        }
+        ++entry.display_access_generation;
+        return encode_display_access(env,entry,effects);
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native display access allocation failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native display access update failed");
+    }
+    return nullptr;
+}
+
+extern "C" JNIEXPORT jintArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeDisplayEvent(
+        JNIEnv* env,jclass,jlong token,jint display_id,jint event) {
+    try {
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");
+            return nullptr;
+        }
+        auto& entry=*it->second;
+        if (event==metaport::focus::kDisplayRemovedEvent &&
+            entry.display_access_generation==std::numeric_limits<jlong>::max()) {
+            fail(env,"java/lang/IllegalStateException","Display access generation exhausted");
+            return nullptr;
+        }
+        const auto effects=entry.display_access.on_display_event(display_id,event);
+        if (event==metaport::focus::kDisplayRemovedEvent) ++entry.display_access_generation;
+        return encode_display_access(env,entry,effects);
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native display event allocation failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native display event failed");
+    }
+    return nullptr;
+}
+
+extern "C" JNIEXPORT jintArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeDisplayAccessSnapshot(
+        JNIEnv* env,jclass,jlong token) {
+    try {
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");
+            return nullptr;
+        }
+        const auto& entry=*it->second;
+        metaport::focus::DisplayAccessEffects current{
+            metaport::focus::DisplayAccessStatus::Allowed,
+            entry.display_access.main_display_focus(),
+            false,
+            std::nullopt,
+        };
+        return encode_display_access(env,entry,current);
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native display access read allocation failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native display access read failed");
+    }
+    return nullptr;
+}
+
+extern "C" JNIEXPORT jbyteArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeBuildClientMetadata(
+        JNIEnv* env,jclass,jlong token,jbyteArray input) {
+    using namespace metaport::focus;
+    try {
+        if (!input) throw std::invalid_argument("Missing client metadata observation");
+        const auto size=env->GetArrayLength(input);
+        if (size>static_cast<jsize>(packet::max_bytes)) throw std::invalid_argument("Metadata observation too large");
+        std::vector<std::uint8_t> bytes(static_cast<std::size_t>(size));
+        if (size) env->GetByteArrayRegion(input,0,size,reinterpret_cast<jbyte*>(bytes.data()));
+        if (env->ExceptionCheck()) return nullptr;
+        packet::Reader reader(bytes);
+        ClientProcessObservation obs;
+        obs.pid=reader.integer();
+        const bool has_uid=reader.boolean();
+        const std::int32_t raw_uid=reader.integer();
+        if (has_uid) obs.uid=raw_uid;
+        obs.process_name_true=reader.text();
+        const auto pkg_count=reader.count();
+        obs.packages_for_uid.reserve(pkg_count);
+        for (std::size_t i=0;i<pkg_count;++i) obs.packages_for_uid.push_back(reader.text());
+        obs.has_background_head_permission=reader.boolean();
+        obs.has_background_input_permission=reader.boolean();
+        reader.finish();
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");
+            return nullptr;
+        }
+        auto resolved=it->second->metadata_cache.build_client_info(obs);
+        return encode_client_metadata(env,resolved);
+    } catch (const std::invalid_argument&) {
+        fail(env,"java/lang/IllegalArgumentException","Invalid client metadata observation");
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native client metadata allocation failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native client metadata build failed");
+    }
+    return nullptr;
+}
+
+extern "C" JNIEXPORT jbyteArray JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeGetClientMetadata(
+        JNIEnv* env,jclass,jlong token,jint uid,jint pid,jbyteArray refreshed_process_name_utf8) {
+    using namespace metaport::focus;
+    try {
+        if (!refreshed_process_name_utf8) throw std::invalid_argument("Missing refreshed process name");
+        const auto size=env->GetArrayLength(refreshed_process_name_utf8);
+        if (size>static_cast<jsize>(packet::max_text)) throw std::invalid_argument("Process name too large");
+        std::string refreshed(static_cast<std::size_t>(size),'\0');
+        if (size) env->GetByteArrayRegion(refreshed_process_name_utf8,0,size,reinterpret_cast<jbyte*>(refreshed.data()));
+        if (env->ExceptionCheck()) return nullptr;
+        packet::require(packet::utf8(refreshed));
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");
+            return nullptr;
+        }
+        auto looked_up=it->second->metadata_cache.get_client_info(Client{uid,pid},std::move(refreshed));
+        return encode_client_metadata(env,looked_up);
+    } catch (const std::invalid_argument&) {
+        fail(env,"java/lang/IllegalArgumentException","Invalid client metadata lookup");
+    } catch (const std::bad_alloc&) {
+        fail(env,"java/lang/OutOfMemoryError","Native client metadata lookup allocation failed");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native client metadata lookup failed");
+    }
+    return nullptr;
+}
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_org_metaport_port_focus_NativeFocusClient_nativeUpdateCachedCurrentFocus(
+        JNIEnv* env,jclass,jlong token,jint uid,jint pid,jint focus_type,jboolean focused) {
+    using namespace metaport::focus;
+    try {
+        if (focus_type!=0 && focus_type!=1) throw std::invalid_argument("Invalid focus type");
+        std::lock_guard<std::mutex> lock(registry_mutex);
+        auto it=registry.find(token);
+        if (it==registry.end()) {
+            fail(env,"java/lang/IllegalStateException","Unknown or closed native focus client");
+            return JNI_FALSE;
+        }
+        const auto type=static_cast<FocusType>(focus_type);
+        const bool updated=focused==JNI_TRUE
+            ? it->second->metadata_cache.add_current_focus(Client{uid,pid},type)
+            : it->second->metadata_cache.remove_current_focus(Client{uid,pid},type);
+        return updated?JNI_TRUE:JNI_FALSE;
+    } catch (const std::invalid_argument&) {
+        fail(env,"java/lang/IllegalArgumentException","Invalid focus type");
+    } catch (const std::exception&) {
+        fail(env,"java/lang/IllegalStateException","Native cached current-focus update failed");
+    }
+    return JNI_FALSE;
 }

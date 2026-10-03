@@ -164,12 +164,133 @@ public final class NativeFocusClient implements AutoCloseable {
                 window.source,window.generation,frame.encode());
         return new ObservedEvaluation(session.generation,window.generation,FocusPolicyResult.decode(value));
     }
+    static final class DisplayAccessSnapshot {
+        final long generation;
+        final boolean mainDisplayFocus;
+        final boolean trackedDisplaysChanged;
+        final Integer registerDisplayCallbackMask;
+        final int[] activeDisplays;
+        private DisplayAccessSnapshot(int[] values) {
+            if (values==null || values.length<6) throw new IllegalStateException("Invalid native display access snapshot");
+            long low=Integer.toUnsignedLong(values[0]),high=Integer.toUnsignedLong(values[1]);
+            generation=low|(high<<32);
+            if (generation<=0 || (values[2]!=0 && values[2]!=1) || (values[3]!=0 && values[3]!=1)
+                    || (values[4]!=0 && values[4]!=1))
+                throw new IllegalStateException("Invalid native display access snapshot");
+            mainDisplayFocus=values[2]==1;
+            trackedDisplaysChanged=values[3]==1;
+            registerDisplayCallbackMask=values[4]==1?Integer.valueOf(values[5]):null;
+            activeDisplays=java.util.Arrays.copyOfRange(values,6,values.length);
+        }
+    }
+    synchronized DisplayAccessSnapshot displayAccessSnapshot() {
+        requireOpen();return new DisplayAccessSnapshot(nativeDisplayAccessSnapshot(handle));
+    }
+    synchronized DisplayAccessSnapshot grantTrackingServiceAccess(
+            int callingUid,boolean permissionCacheGranted,int displayId) {
+        requireOpen();return new DisplayAccessSnapshot(
+                nativeDisplayAccess(handle,callingUid,permissionCacheGranted,displayId,true));
+    }
+    synchronized DisplayAccessSnapshot revokeTrackingServiceAccess(
+            int callingUid,boolean permissionCacheGranted,int displayId) {
+        requireOpen();return new DisplayAccessSnapshot(
+                nativeDisplayAccess(handle,callingUid,permissionCacheGranted,displayId,false));
+    }
+    synchronized DisplayAccessSnapshot onDisplayEvent(int displayId,int event) {
+        requireOpen();return new DisplayAccessSnapshot(nativeDisplayEvent(handle,displayId,event));
+    }
+    static final class CachedClientMetadata {
+        final int uid,pid;
+        final String packageName,metadataProcessName;
+        final int allowedBackgroundMask,currentFocusMask;
+        private CachedClientMetadata(int uid,int pid,String packageName,String metadataProcessName,
+                                     int allowedBackgroundMask,int currentFocusMask) {
+            this.uid=uid;this.pid=pid;this.packageName=packageName;
+            this.metadataProcessName=metadataProcessName;
+            this.allowedBackgroundMask=allowedBackgroundMask;
+            this.currentFocusMask=currentFocusMask;
+        }
+        static CachedClientMetadata decode(byte[] encoded) {
+            if (encoded==null || encoded.length<4) throw new IllegalStateException("Invalid native metadata reply");
+            java.nio.ByteBuffer in=java.nio.ByteBuffer.wrap(encoded).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+            int present=in.getInt();
+            if (present==0) {
+                if (in.hasRemaining()) throw new IllegalStateException("Trailing metadata reply bytes");
+                return null;
+            }
+            if (present!=1) throw new IllegalStateException("Invalid metadata presence tag");
+            int uid=in.getInt(),pid=in.getInt();
+            String pkg=readUtf8(in),proc=readUtf8(in);
+            int allowed=in.getInt(),current=in.getInt();
+            if (in.hasRemaining() || allowed<0 || allowed>3 || current<0 || current>3)
+                throw new IllegalStateException("Invalid native metadata reply");
+            return new CachedClientMetadata(uid,pid,pkg,proc,allowed,current);
+        }
+        private static String readUtf8(java.nio.ByteBuffer in) {
+            if (in.remaining()<4) throw new IllegalStateException("Truncated metadata string");
+            int size=in.getInt();
+            if (size<0 || size>FocusPolicyFrame.MAX_TEXT || size>in.remaining())
+                throw new IllegalStateException("Invalid metadata string length");
+            byte[] bytes=new byte[size];in.get(bytes);
+            return new String(bytes,java.nio.charset.StandardCharsets.UTF_8);
+        }
+    }
+    synchronized CachedClientMetadata buildClientMetadata(
+            int pid,Integer uid,String processNameTrue,java.util.List<String> packagesForUid,
+            boolean backgroundHeadGranted,boolean backgroundInputGranted) {
+        requireOpen();
+        java.util.Objects.requireNonNull(processNameTrue);
+        java.util.Objects.requireNonNull(packagesForUid);
+        if (packagesForUid.size()>FocusPolicyFrame.MAX_ROWS)
+            throw new IllegalArgumentException("Package list budget exceeded");
+        java.nio.ByteBuffer out=java.nio.ByteBuffer.allocate(FocusPolicyFrame.MAX_BYTES)
+                .order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        out.putInt(pid).putInt(uid!=null?1:0).putInt(uid!=null?uid:0);
+        putUtf8(out,processNameTrue);
+        out.putInt(packagesForUid.size());
+        for (String pkg:packagesForUid) putUtf8(out,pkg);
+        out.putInt(backgroundHeadGranted?1:0).putInt(backgroundInputGranted?1:0);
+        byte[] packet=java.util.Arrays.copyOf(out.array(),out.position());
+        return CachedClientMetadata.decode(nativeBuildClientMetadata(handle,packet));
+    }
+    synchronized CachedClientMetadata getClientMetadata(int uid,int pid,String refreshedProcessNameTrue) {
+        requireOpen();
+        byte[] utf8=encodeUtf8(refreshedProcessNameTrue);
+        return CachedClientMetadata.decode(nativeGetClientMetadata(handle,uid,pid,utf8));
+    }
+    synchronized boolean updateCachedCurrentFocus(int uid,int pid,int focusType,boolean focused) {
+        requireOpen();
+        return nativeUpdateCachedCurrentFocus(handle,uid,pid,focusType,focused);
+    }
+    private static byte[] encodeUtf8(String value) {
+        java.util.Objects.requireNonNull(value);
+        if (value.length()>FocusPolicyFrame.MAX_TEXT) throw new IllegalArgumentException("Text budget exceeded");
+        try {
+            java.nio.ByteBuffer utf8=java.nio.charset.StandardCharsets.UTF_8.newEncoder()
+                    .onMalformedInput(java.nio.charset.CodingErrorAction.REPORT)
+                    .onUnmappableCharacter(java.nio.charset.CodingErrorAction.REPORT)
+                    .encode(java.nio.CharBuffer.wrap(value));
+            if (utf8.remaining()>FocusPolicyFrame.MAX_TEXT) throw new IllegalArgumentException("UTF-8 budget exceeded");
+            byte[] bytes=new byte[utf8.remaining()];utf8.get(bytes);return bytes;
+        } catch (java.nio.charset.CharacterCodingException error) {
+            throw new IllegalArgumentException("Invalid UTF-16 input",error);
+        }
+    }
+    private static void putUtf8(java.nio.ByteBuffer out,String value) {
+        byte[] bytes=encodeUtf8(value);out.putInt(bytes.length);out.put(bytes);
+    }
     private void requireOpen() {
         if (handle==0) throw new IllegalStateException("Closed native focus client");
     }
     @Override public synchronized void close() {
         if (handle!=0) { nativeDestroy(handle); handle=0; }
     }
+    private static native int[] nativeDisplayAccess(long handle,int callingUid,boolean permissionGranted,int displayId,boolean grant);
+    private static native int[] nativeDisplayEvent(long handle,int displayId,int event);
+    private static native int[] nativeDisplayAccessSnapshot(long handle);
+    private static native byte[] nativeBuildClientMetadata(long handle,byte[] packet);
+    private static native byte[] nativeGetClientMetadata(long handle,int uid,int pid,byte[] refreshedProcessNameUtf8);
+    private static native boolean nativeUpdateCachedCurrentFocus(long handle,int uid,int pid,int focusType,boolean focused);
     private static native long nativeAttachWindow(long handle);
     private static native long[] nativeObserveWindow(long handle,long source,boolean positive);
     private static native void nativeDetachWindow(long handle,long source);

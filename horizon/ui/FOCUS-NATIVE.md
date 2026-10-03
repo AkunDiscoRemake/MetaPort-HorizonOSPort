@@ -636,3 +636,71 @@ executed 45 owned cases per API 29/35, including real Activity window callbacks
 through native evaluation; native sanitizers executed 22 cases. Other unintegrated
 inputs in these cases remain explicit fixtures; this is not original firmware,
 physical-device or full-provider validation.
+
+## ClientManager metadata cache and display tracking access reducers (2026-10-03)
+
+`focus_client_metadata.hpp` ports the recovered `ClientManager` metadata builder,
+PID-indexed cache, UID-mismatch eviction, and liveness pruning from
+`/system_ext/bin/vrfocusserver` (`0xf0d0`, `0x10aa0`, `0x118e0`, `0x12bc0`,
+`0x12de0`, `0x13400`):
+- Missing `uid` (`Process::getProcessUid` returning `nullopt`) returns `nullopt`
+  without inserting a cache entry.
+- Single-package UIDs assign `c_str_prefix(packages_for_uid[0])` to
+  `package_name`. Multi-package UIDs (`size >= 2`) split `metadata_process_name`
+  at `':'` (`0x10dec`), compare `c_str_prefix(prefix)` against each UID package
+  (`strzcmp16` at `0x10ed8`), and on match copy the full `metadata_process_name`
+  (preserving any `:suffix` as at `0x10f4c`) into `package_name`.
+- Exact `"system_server"` overrides `package_name` to `"android.uid.system:1000"`
+  (`0x10fdc..0x11084`).
+- `allowed_background_focus` grants Type 0 (`ACCESS_BACKGROUND_HEAD_TRACKING`)
+  and Type 1 (`ACCESS_BACKGROUND_INPUT_TRACKING`) when `uid == 0` (`0x110b8`) or
+  the corresponding permission check is true, and grants `{Type0, Type1}` when
+  `package_name` is in `{"com.oculus.vrshell", "com.oculus.guardian",
+  "com.oculus.systemdriver"}` (`DAT_0013d1c8`) or `(metadata_process_name, uid)`
+  matches `{("/system/bin/audioserver", 1041),
+  ("/system_ext/bin/mrsystemservice", 1000)}` (`DAT_0013d1e0`).
+- `getClientInfo` (`0x118e0`) looks up `pid` under `mutex_`, erases the entry and
+  returns `nullopt` on UID mismatch (`0x11af8`), and on UID match returns a copy
+  whose `metadata_process_name` is refreshed (`0x11a60`) without mutating the
+  cached map entry. `buildClientInfo` (`0x10aa0`) delegates to `getClientInfo`
+  first (preserving `current_focus` on hit and evicting stale UIDs on mismatch)
+  before emplacing a newly built record. `getSnapshot` (`0x13400`) prunes dead
+  PIDs (`!isProcessAlive(pid)`) under `mutex_` and returns `(uid, pid)`-sorted
+  records.
+
+`focus_display_access.hpp` ports the recovered `VrFocusService`,
+`ConnectionManager`, and `FocusPolicy` display tracking access and activity/panel
+classification rules (`0xf5e0`, `0x15480`, `0x182e0`, `0x20860`, `0x20cc0`,
+`0x21540..0x21740`, `0x21880`, `0x21b20`, `0x22d50`, `0x265d0`, `0x2cb90`,
+`0x2ccc0`, `0x2dd60`, `0x2ff60`):
+- `checkCallingPermission` (`0x2dd60`) allows `callingUid == 1041` (`0x411`,
+  `DAT_0013d298`) directly while `callingUid == 0` still goes through
+  `PermissionCache::checkCallingPermission` (`2dd78: cbz w0, 2de38`).
+- `FocusPolicy` initializes `main_display_focus_ = true` (`0x22d50`);
+  `ConnectionManager` seeds `active_displays_ = {0}` (`0x15480`).
+- `grantTrackingServiceAccess` (`0x2cb90`) and `revokeTrackingServiceAccess`
+  (`0x2ccc0`) require `horizonos.permission.GRANT_TRACKING_SERVICE_ACCESS_TO_DISPLAY`.
+  On `displayId == 0`, they call `FocusPolicy::setMainDisplayFocus(true/false)`
+  (`0x265d0`) while `ConnectionManager::grant/revokeTrackingServiceAccess(0)`
+  (`0x21880`/`0x21b20`) returns immediately (`0` stays in `active_displays_` and
+  no display-callback mask is emitted). On non-zero `displayId`, they insert or
+  erase `displayId` in `active_displays_` and emit
+  `IDisplayManager::registerCallbackWithEventMask` mask `2` on transition
+  `size 1 -> 2` (`0x21960..0x21a14`) and mask `0` on transition `size -> 1`
+  (`0x21c40..0x21d08`).
+- `DisplayManagerCallback::onDisplayEvent` (`0x182e0`) acts only on `event == 3`
+  (`182f8: cmp w2, #0x3`) and revokes non-zero displays without modifying
+  `main_display_focus_`.
+- `onForegroundActivitiesChanged` (`0x20cc0`) classifies `matching_displays`
+  into `foreground_activities` (`fg && on_display_0`), `top_activity_clients`
+  (`fg && (on_display_0 || on_secondary_tracked_display)`), and
+  `all_top_activity_clients` (`fg`), emitting `report_immersive_app_update` and
+  `notify_top_activity` when the respective sets change; `onForegroundServicesChanged`
+  (`0x20860`) updates `foreground_panels` (`serviceTypes != 0`).
+
+`NativeFocusClient` exposes package-private JNI bindings for both reducers.
+Host sanitizers now execute 26 cases (adding `focus_client_metadata` and
+`focus_display_access` under both ASan+UBSan and TSan). Four new Android
+instrumentation cases in `FocusDisplayAndMetadataJniTest` raise the strict
+runtime gate to 49 owned cases per API.
+
