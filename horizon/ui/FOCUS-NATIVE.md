@@ -541,3 +541,10 @@ This removes Context as a prerequisite for native core allocation, not the
 remaining prerequisite of a complete policy/backend before original Application
 construction. There is still no original service publication, complete coherent
 observer, automatic effects consumer or successful original startup.
+
+Context-free bring-up validation completed for source **fd9767b**: project/native
+**37131841181**, Android arm64 build **37131841135**, and runtime **37131841147**
+all passed. Instrumentation executed 38 owned cases per API 29/35, including the
+constructor-time identity proof with no base Context. This supersedes the pending
+CI note above, not the original-app/bootstrap/provider limitations. Service-state
+inputs in these cases are explicit fixtures, not an executed original SDK session.

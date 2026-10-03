@@ -405,3 +405,32 @@ As observações próprias existentes não são substituídas por dados inventad
 Faltam composição/normalização/liveness completos, backend Binder e publicação
 antes de Application. **O ANR original permanece, e ainda não há APK funcional
 com a interface original nem validação no Infinix.**
+
+## Núcleo anterior à Application e eventos de sessão via JNI — 2026-10-03
+
+Fonte **fd9767b** permite criar o núcleo nativo com identidade real do próprio
+processo **sem Context**. O leitor de metadados pode ser anexado depois, sem
+reinstalar o registro ou apagar estado. Até isso acontecer, metadados continuam
+explicitamente indisponíveis — nenhum pacote, permissão ou foco é presumido.
+
+O JNI agora liga os eventos locais de serviço 0/2 ao reducer nativo existente,
+com verificação de PID/UID e opção de preservar o Caller capturado pelo endpoint
+antes de despacho assíncrono. O estado diferencia desconhecido de visível/parado,
+preserva efeitos exigidos em eventos duplicados e não transforma esses eventos
+em decisões de foco. Os efeitos ainda precisam de um consumidor de backend real.
+
+Validação da fonte:
+- Projeto/regressão/nativo **37131841181**, sucesso; 20 casos com sanitizadores.
+- Build Android ARM64 **37131841135**, sucesso.
+- Runtime **37131841147**, sucesso: **38 testes próprios em cada API 29 e 35**.
+  O teste com AppComponentFactory confirmou identidade disponível no núcleo JNI
+  **dentro do construtor da Application de teste, com base Context ainda nulo**.
+  Também passaram anexação tardia, eventos/duplicatas, rejeição de identidade e
+  fechamento/isolamento entre instâncias.
+
+A factory/Application modificadas pertencem somente ao APK de instrumentação;
+o manifesto da aplicação original não foi alterado nem foi publicado um serviço
+Binder incompleto. A criação antecipada do núcleo está verificada, mas ainda
+faltam produtor coerente completo, normalização/metadados/liveness, consumidor
+de efeitos e backend/publicação do serviço original. **O ANR original permanece;
+ainda não há APK funcional com Horizon original nem validação no Infinix.**
