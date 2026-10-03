@@ -463,3 +463,27 @@ Os demais canais/metadados nos novos testes são fixtures explícitas. Ainda fal
 produtor completo de observações, normalização/metadados/liveness, execução dos
 efeitos e backend/publicação Binder. **O ANR original permanece e ainda não há
 APK funcional com Horizon original ou validação física no Infinix.**
+
+## Janela Android real alimentando a avaliação nativa — 2026-10-03
+
+Fonte **132d33b** liga callbacks/polls reais de `AppWindowFocusBackend` ao núcleo
+C++ por `NativeWindowFocusInput`. A ligação confirma apenas janela focada do
+próprio processo no display principal Android. Observador vazio, tardio ou fechado
+mantém o canal desconhecido; não produz uma falsa observação de ausência global.
+Sessão e janela têm fontes/gerações verificadas juntas sob o bloqueio nativo;
+observações antigas e de fontes encerradas/substituídas não podem ser usadas.
+
+Validação da fonte:
+- Projeto/regressão/nativo **37134190221**, sucesso; **22 casos com sanitizadores**.
+- Build Android ARM64 **37134190220**, sucesso.
+- Runtime **37134190224**, sucesso: **45 testes próprios por API 29 e 35**.
+  Os novos testes lançam uma Activity real, observam sua janela e executam a
+  avaliação pelo JNI. Cobrem versões antigas, substituição/fechamento da fonte,
+  início tardio, obrigação de thread principal e fechamento do cliente nativo.
+
+O canal de janela desses testes é real. Os demais canais/metadados ainda não
+integrados continuam fixtures declaradas, e não foi executado o Horizon original.
+A ligação não deduz foco do display, estado XR, permissões ou foco de outros
+processos. Faltam cobertura/observações completas, normalização/metadados/liveness,
+consumo dos efeitos e backend/publicação Binder. **O ANR original permanece;
+ainda não há APK funcional com interface original nem validação no Infinix.**

@@ -629,3 +629,10 @@ check stale/closed/replaced observers and late-start unknown state, and exercise
 thread ownership and client-close cleanup. The strict gate requires 45 owned
 cases per API. The window source is real; remaining policy channels/metadata in
 these tests are fixtures. No Binder provider/original-app publication is added.
+
+Own-window binding validation, source **132d33b**: project/native **37134190221**,
+arm64 build **37134190220**, and runtime **37134190224** all passed. Runtime
+executed 45 owned cases per API 29/35, including real Activity window callbacks
+through native evaluation; native sanitizers executed 22 cases. Other unintegrated
+inputs in these cases remain explicit fixtures; this is not original firmware,
+physical-device or full-provider validation.
