@@ -95,3 +95,8 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/NativeFocusClientTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),NATIVE_FOCUS_CASES)
+
+    def test_native_focus_jni_names_survive_consumer_shrinking(self):
+        root=Path(__file__).resolve().parents[1]
+        rules=(root/'port/android/adapters/consumer-rules.pro').read_text()
+        self.assertIn('-keep class org.metaport.port.focus.NativeFocusClient { *; }',rules)
