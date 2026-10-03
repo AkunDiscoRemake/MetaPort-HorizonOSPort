@@ -12,6 +12,8 @@ PolicyEvaluation FocusPolicyCore::evaluate(FocusType type, const std::vector<Cli
         inputs.top_activity_client=top ? std::optional<Client>(top->identity) : std::nullopt;
         inputs.immersive_pid=selected ? std::optional<std::int32_t>(selected->identity.pid) : std::nullopt;
         auto rows=decide_focus(type,requested,inputs); // Reject invalid types before state changes.
+        auto next_focus=focus_;
+        next_focus.apply(rows); // Apply every row, even repeated queries.
         PolicyEvaluation evaluation{top ? top->package_name : immersive.primary_display_top,
                                     selected,std::move(rows)};
         // Native history compares PID ONLY, not package/UID/top flag. Empty
@@ -21,8 +23,21 @@ PolicyEvaluation FocusPolicyCore::evaluate(FocusType type, const std::vector<Cli
             if (history_.size()>10) history_.pop_back();
         }
         current_=std::move(selected);
+        focus_.swap(next_focus);
         return evaluation;
     }
+void FocusPolicyCore::install_client_record(Client client) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    focus_.install(client);
+}
+void FocusPolicyCore::erase_client_record(Client client) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    focus_.erase(client);
+}
+std::optional<std::set<FocusType>> FocusPolicyCore::current_focus(Client client) const {
+    std::lock_guard<std::mutex> lock(mutex_);
+    return focus_.current(client);
+}
 std::optional<ImmersiveApp> FocusPolicyCore::current() const {
         std::lock_guard<std::mutex> lock(mutex_);return current_;
     }

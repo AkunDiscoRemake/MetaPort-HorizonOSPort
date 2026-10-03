@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 #pragma once
+#include "focus_current.hpp"
 #include "focus_decision.hpp"
 #include <chrono>
 #include <deque>
@@ -92,17 +93,22 @@ struct PolicyEvaluation {
 
 // Combines selection with the decision kernel and bounded diagnostic history.
 // Still requires trustworthy, coherent inputs; no Binder publication, synthetic
-// observations, process-liveness probing or ClientManager side-effect execution.
+// observations or process-liveness probing. Bookkeeping only touches explicitly
+// installed records; the real metadata provider remains unimplemented.
 class FocusPolicyCore final {
 public:
     PolicyEvaluation evaluate(FocusType type, const std::vector<ClientMetadata>& requested,
                               const ImmersiveInputs& immersive, DecisionInputs inputs,
                               std::chrono::system_clock::time_point observed_at);
+    void install_client_record(Client client);
+    void erase_client_record(Client client);
+    std::optional<std::set<FocusType>> current_focus(Client client) const;
     std::optional<ImmersiveApp> current() const;
     std::vector<ImmersiveHistoryRecord> history() const;
 
 private:
     mutable std::mutex mutex_;
+    CurrentFocusLedger focus_;
     std::optional<ImmersiveApp> current_;
     std::deque<ImmersiveHistoryRecord> history_;
 };

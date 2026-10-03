@@ -342,3 +342,30 @@ the arm64 NDK coordinator translation unit; adapter runtime **37122883673**
 passed all 21 owned cases on each API 29/35. The instrumentation still does not
 invoke the new coordinator or original daemon. This supersedes the pending
 validation note above, not the integration limitations.
+
+## Current-focus bookkeeping (2026-10-03)
+
+`focus_current.hpp` implements the set mutations recovered from ClientManager
+`addCurrentFocus` (ELF `0x12bc0`) and `removeCurrentFocus` (`0x12de0`). Both look
+up the metadata cache by PID, then compare UID before inserting/erasing the focus
+type. Missing records and UID mismatches do nothing; repeated operations are
+idempotent. The focus-type set is separate from background-access permissions.
+ARM64 `12bfc` loads identity PID at +4; `12d20`/`12d24`/`12d28` and
+`12f38`/`12f3c`/`12f40` confirm the UID checks. Digests and instruction assertions
+are in `tests/test_focus_current_evidence.py`.
+
+`FocusPolicyCore::evaluate` now applies every decision row to a staged ledger
+under its existing mutex and commits it with the selected current app/history.
+No change-event optimization skips repeated queries. Record installation and
+removal are explicit adapter lifecycle operations, not implementations of
+`buildClientInfo`/`getClientInfo` or Android process observation. Installing a
+new/rebuilt record clears its bookkeeping; callers must not reinstall on every
+lookup and must invalidate records on process death/reuse, including reuse of
+both PID and UID. Erasing with a different UID cannot delete a replacement.
+
+Only the externally serialized helper and the core's locked accessors expose
+this state. Accessors return copies; absence is distinct from an installed empty
+set. Decisions never auto-create records and current-focus bookkeeping never
+grants permission. The real metadata/liveness backend, Binder/JNI bridge and
+pre-Application service publication remain unimplemented. No original daemon
+execution or resolution of the constructor ANR is claimed.

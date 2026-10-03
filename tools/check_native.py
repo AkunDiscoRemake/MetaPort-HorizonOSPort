@@ -14,12 +14,12 @@ HAND=('hand_palette','hand_material','hand_arena_layout','hand_u8_reduce','hand_
 def run(output):
     output=Path(output).resolve();output.mkdir(parents=True,exist_ok=True)
     results=[]
-    for sanitizer,names in (('address,undefined',('sample_cache','input_router','space_data','focus_session_state','focus_decision','focus_immersive')+HAND),
-                            ('thread',('sample_cache','input_router','focus_session_state','focus_decision','focus_immersive'))):
+    for sanitizer,names in (('address,undefined',('sample_cache','input_router','space_data','focus_session_state','focus_decision','focus_immersive','focus_current')+HAND),
+                            ('thread',('sample_cache','input_router','focus_session_state','focus_decision','focus_immersive','focus_current'))):
         for name in names:
             sources=[f'native/tests/{name}_test.cpp']
             if name in HAND:sources=[f'handtracking/tests/native/{name}_test.cpp',f'handtracking/native/src/{name}.cpp']
-            elif name=='focus_immersive':sources.append('port/android/adapters/src/main/cpp/focus_immersive.cpp')
+            elif name in ('focus_immersive','focus_current'):sources.append('port/android/adapters/src/main/cpp/focus_immersive.cpp')
             elif name=='space_data':sources.append('port/android/adapters/src/main/cpp/space_data.cpp')
             tag=f'{name}-{sanitizer.replace(",","-")}'
             binary=output/tag
