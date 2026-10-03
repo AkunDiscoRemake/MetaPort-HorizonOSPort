@@ -1,0 +1,4 @@
+<resources>
+    <string name="metaport_demo_app_name" translatable="false">MetaPort official demo by ahambolota</string>
+    <color name="metaport_demo_icon_background">#FFFFFF</color>
+</resources>

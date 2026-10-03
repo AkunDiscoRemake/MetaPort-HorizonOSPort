@@ -1,0 +1,11 @@
+{
+  "repository": "facebookincubator/oculus-linux-kernel",
+  "commit": "8f32bdea05abf85dd10d6202963f7e9bdc55c717",
+  "publication_build": "5227074.3810.520",
+  "kernel_version": "5.10.240",
+  "firmware_build_under_analysis": "52168470052900520",
+  "exact_firmware_source_match": false,
+  "reason": "Official Quest 3 source snapshot at 5.10.240; no exact firmware-build publication found in the 50 commits returned for the Quest 3 public history.",
+  "scope": "guest hardware adaptation research; not bit-identical firmware rebuild",
+  "host_target": "unprivileged Android APK; no phone flashing"
+}

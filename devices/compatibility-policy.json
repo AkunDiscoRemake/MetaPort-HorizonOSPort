@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "PRELIMINARY_NOT_DEVICE_VALIDATED",
+  "universal_compatibility_claimed": false,
+  "functional_horizon_apk_available": false,
+  "physically_validated_models": [],
+  "adapter_build_baseline": {
+    "android_min_api": 29,
+    "abis": ["arm64-v8a"],
+    "scope": "Existing adapter library only, not proof that original Horizon works on this Android version"
+  },
+  "planning_targets_not_measured_minima": {
+    "entry": {"physical_ram_gib": 6, "free_storage_gib": 4, "display_short_edge_px": 1080, "display_refresh_hz": 60},
+    "recommended": {"physical_ram_gib": 12, "free_storage_gib": 8, "display_short_edge_px": 1080, "display_refresh_hz": 90},
+    "recommended_android_api": 34,
+    "ram_expansion_is_not_physical_ram": true,
+    "display_refresh_is_not_render_fps": true,
+    "final_apk_size_and_peak_memory_measured": false
+  },
+  "features": {
+    "six_dof": {"requires": ["ARCore ready on exact device/OS", "camera consent", "successful session tracking"], "unsupported_behavior": "Unavailable; never label orientation-only tracking as 6DoF"},
+    "depth": {"requires": ["ARCore depth support queried per mode", "real depth image available"], "unsupported_behavior": "Depth unavailable; no fabricated distances or claimed occlusion"},
+    "passthrough": {"requires": ["same ARCore camera session", "working external OES texture and EGL context", "camera unobstructed by holder"], "unsupported_behavior": "Unavailable; never retain an old image as live camera"},
+    "quest_hand_inference": {"requires": ["original runtime/delegate port", "validated camera calibration and tensor conversion", "numerical reference comparison"], "current_status": "NOT_PORTED"},
+    "meta_cloud": {"requires": ["original client integration", "authorized server authentication", "real entitlement and device support"], "current_status": "NOT_PORTED"}
+  },
+  "deployment": {"root_required": false, "bootloader_unlock_required": false, "root_detection": false, "device_identity_spoofing": false, "automatic_telemetry": false},
+  "verification_sources": ["https://developers.google.com/ar/devices", "https://developers.google.com/ar/develop/java/depth/developer-guide"]
+}

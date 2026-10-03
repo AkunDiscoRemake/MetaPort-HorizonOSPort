@@ -1,0 +1,344 @@
+{
+  "tool": "Ghidra 11.3.2",
+  "scope": "At most 24 registry/string-reference functions; not complete hand algorithm recovery",
+  "image_base": "00100000",
+  "program_sha256": "8d35fa75639bc9322b6e0d21014d4e2112c542a75402018c6ecf45099555bd13",
+  "firmware_executed": false,
+  "original_source_recovered": false,
+  "selection_status": "SELECTED",
+  "string_references": [
+    {
+      "elf_address": 176423,
+      "text": "HandTracker",
+      "direct_reference_count": 21,
+      "reference_addresses": [
+        "001b789c",
+        "001b799c",
+        "001b3dd8",
+        "001b7f20",
+        "001b3f6c",
+        "001b3f44",
+        "001b4044",
+        "001b8038",
+        "001b766c",
+        "001b77a8",
+        "001b48f4",
+        "001b4a94",
+        "001b4ab8",
+        "001b2fb8",
+        "001b4544",
+        "001b45a0"
+      ]
+    },
+    {
+      "elf_address": 193852,
+      "text": "HandPoseFilter",
+      "direct_reference_count": 1,
+      "reference_addresses": [
+        "0023db10"
+      ]
+    },
+    {
+      "elf_address": 193704,
+      "text": "HandPoseSampler",
+      "direct_reference_count": 18,
+      "reference_addresses": [
+        "001c7124",
+        "001c7164",
+        "001c520c",
+        "001c5234",
+        "001c54c8",
+        "001c592c",
+        "001c5b6c",
+        "001c5b94",
+        "001c7248",
+        "001c744c",
+        "001c7474",
+        "001c7818",
+        "001c7b2c",
+        "001c7b54",
+        "001c79f0",
+        "001c4fbc"
+      ]
+    },
+    {
+      "elf_address": 189832,
+      "text": "HandPosePrediction",
+      "direct_reference_count": 1,
+      "reference_addresses": [
+        "0023dad0"
+      ]
+    },
+    {
+      "elf_address": 164864,
+      "text": "Couldn\u0027t delete HandTracker version %lx",
+      "direct_reference_count": 1,
+      "reference_addresses": [
+        "001b3f74"
+      ]
+    },
+    {
+      "elf_address": 174537,
+      "text": "oculus.internal.tracking.IHandTrackingService",
+      "direct_reference_count": 2,
+      "reference_addresses": [
+        "001d1b18",
+        "0023db30"
+      ]
+    },
+    {
+      "elf_address": 181968,
+      "text": "oculus.internal.tracking.IHandTrackingService/default",
+      "direct_reference_count": 1,
+      "reference_addresses": [
+        "001b3b8c"
+      ]
+    },
+    {
+      "elf_address": 166892,
+      "text": "arvr/libraries/tracking_clients/HandPosePrediction.cpp",
+      "direct_reference_count": 3,
+      "reference_addresses": [
+        "001b9c64",
+        "001b9ff4",
+        "001b9488"
+      ]
+    },
+    {
+      "elf_address": 156150,
+      "text": "arvr/first-party/sdks/internal/HandProcessing/HandPoseSamplerImplLegacy.cpp",
+      "direct_reference_count": 2,
+      "reference_addresses": [
+        "001bb65c",
+        "001bc22c"
+      ]
+    },
+    {
+      "elf_address": 163752,
+      "text": "arvr/first-party/sdks/internal/HandProcessing/HandPoseSamplerImplUpsampled.cpp",
+      "direct_reference_count": 2,
+      "reference_addresses": [
+        "001c4d24",
+        "001c61e4"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "ghidra_address": "0017f3d0",
+      "elf_address": 521168,
+      "selection_evidence": "Defined dynamic export; ELF VA 0x7f3d0",
+      "name": "createControllerTrackingFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid * createControllerTrackingFbs(int param_1)\n\n{\n  void *pvVar1;\n  \n  if (param_1 \u003d\u003d 1) {\n    pvVar1 \u003d operator_new(0x250);\n    FUN_0017f434();\n  }\n  else {\n    __android_log_buf_print\n              (0x10,6,\"TSAccess\",\"%s: version %d not supported\",\"createControllerTrackingFbs\",\n               param_1);\n    pvVar1 \u003d (void *)0x0;\n  }\n  return pvVar1;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00184584",
+      "elf_address": 542084,
+      "selection_evidence": "Defined dynamic export; ELF VA 0x84584",
+      "name": "createInputInjectionFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid * createInputInjectionFbs(int param_1)\n\n{\n  void *pvVar1;\n  \n  if (param_1 \u003d\u003d 1) {\n    pvVar1 \u003d operator_new(0x1e0);\n    FUN_001845e8();\n  }\n  else {\n    __android_log_buf_print\n              (0x10,6,\"TSAccess\",\"%s: version %d not supported\",\"createInputInjectionFbs\",param_1);\n    pvVar1 \u003d (void *)0x0;\n  }\n  return pvVar1;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00199b48",
+      "elf_address": 629576,
+      "selection_evidence": "Defined dynamic export; ELF VA 0x99b48",
+      "name": "createControllerInputFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nlong * createControllerInputFbs(long param_1)\n\n{\n  long *plVar1;\n  \n  if (999 \u003c param_1) {\n    plVar1 \u003d (long *)FUN_00199cc8(param_1);\n    return plVar1;\n  }\n  if (param_1 \u003d\u003d 1) {\n    plVar1 \u003d (long *)operator_new(0xe8);\n    memset(plVar1,0,0xe8);\n    *plVar1 \u003d (long)(PTR_DAT_0023b238 + 0x10);\n    FUN_00199f10(plVar1 + 1);\n    *plVar1 \u003d (long)\u0026PTR_FUN_002327c0;\n  }\n  else {\n    __android_log_print(6,\"Controllers\",\n                        \"%s version %ld not supported. Max supported version is %ld. And min supported version is %ld.\"\n                        ,\"ControllerInput\",param_1,1,1);\n    plVar1 \u003d (long *)0x0;\n  }\n  return plVar1;\n}\n\n"
+    },
+    {
+      "ghidra_address": "00199bf0",
+      "elf_address": 629744,
+      "selection_evidence": "Defined dynamic export; ELF VA 0x99bf0",
+      "name": "destroyControllerInputFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid destroyControllerInputFbs(long param_1,long *param_2)\n\n{\n  long lVar1;\n  \n  if (param_1 \u003c 1000) {\n    if (param_2 \u003d\u003d (long *)0x0) {\n      return;\n    }\n    if (param_1 !\u003d 1) {\n                    /* WARNING: Subroutine does not return */\n      __android_log_assert\n                (0,\"Controllers\",\n                 \"%s version %ld not supported. Max supported version is %ld. And min supported version is %ld.\"\n                 ,\"ControllerInput\",param_1,1,1);\n    }\n    lVar1 \u003d 4;\n  }\n  else {\n    if (param_2 \u003d\u003d (long *)0x0) {\n      return;\n    }\n    if (param_1 - 0x3f1U \u003c 0xfffffffffffffff9) {\n                    /* WARNING: Subroutine does not return */\n      __android_log_assert\n                (0,\"Controllers\",\n                 \"%s version %ld not supported. Max supported version is %ld. And min supported version is %ld.\"\n                 ,\"ExperimentalControllerInput\",param_1,0x3f0,0x3ea);\n    }\n    if (6 \u003c param_1 - 0x3eaU) {\n                    /* WARNING: Subroutine does not return */\n      __android_log_assert\n                (0,\"Controllers\",\"Couldn\\\u0027t delete Experimental ControllerInput version %lx\",param_1\n                );\n    }\n    lVar1 \u003d *(long *)(\u0026DAT_0012e300 + (param_1 - 0x3eaU) * 8);\n  }\n                    /* WARNING: Could not recover jumptable at 0x00199c50. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n  (**(code **)(*param_2 + lVar1 * 8))(param_2);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001a2690",
+      "elf_address": 665232,
+      "selection_evidence": "Defined dynamic export; ELF VA 0xa2690",
+      "name": "createControllersFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nlong * createControllersFbs(long param_1)\n\n{\n  long *plVar1;\n  undefined *puVar2;\n  \n  if (param_1 - 8U \u003c 0xfffffffffffffffa) {\n    __android_log_print(6,\"Controllers\",\n                        \"%s version %ld not supported. Max supported version is %ld. And min supported version is %ld.\"\n                        ,\"Controllers\",param_1,7,2);\n    return (long *)0x0;\n  }\n  switch(param_1) {\n  case 2:\n    plVar1 \u003d (long *)operator_new(0x128);\n    FUN_001a2910(plVar1 + 1);\n    *plVar1 \u003d (long)\u0026PTR_FUN_00232830;\n    plVar1[0x24] \u003d (long)\u0026PTR_FUN_00232860;\n    return plVar1;\n  case 3:\n    plVar1 \u003d (long *)operator_new(0x128);\n    FUN_001a2910(plVar1 + 1);\n    puVar2 \u003d PTR_DAT_0023b2c8 + 0x40;\n    *plVar1 \u003d (long)(PTR_DAT_0023b2c8 + 0x10);\n    plVar1[0x24] \u003d (long)puVar2;\n    return plVar1 + 0x24;\n  case 4:\n  case 5:\n    plVar1 \u003d (long *)operator_new(0x120);\n    FUN_001a2910(plVar1 + 1);\n    puVar2 \u003d \u0026DAT_002328f0;\n    break;\n  case 6:\n    plVar1 \u003d (long *)operator_new(0x120);\n    FUN_001a2910(plVar1 + 1);\n    puVar2 \u003d \u0026DAT_00232928;\n    break;\n  case 7:\n    plVar1 \u003d (long *)operator_new(0x120);\n    FUN_001a2910(plVar1 + 1);\n    puVar2 \u003d \u0026DAT_00232960;\n    break;\n  default:\n    __android_log_print(6,\"Controllers\",\"Couldn\\\u0027t find Controllers version %lx\",param_1);\n    return (long *)0x0;\n  }\n  *plVar1 \u003d (long)(puVar2 + 0x10);\n  return plVar1;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001a27f4",
+      "elf_address": 665588,
+      "selection_evidence": "Defined dynamic export; ELF VA 0xa27f4",
+      "name": "destroyControllersFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid destroyControllersFbs(long param_1,void *param_2)\n\n{\n  long lVar1;\n  void *pvVar2;\n  \n  if (param_2 \u003d\u003d (void *)0x0) {\n    return;\n  }\n  if (0xfffffffffffffff9 \u003c param_1 - 8U) {\n    lVar1 \u003d 8;\n    pvVar2 \u003d param_2;\n    if ((3 \u003c param_1 - 4U) \u0026\u0026 (param_1 !\u003d 2)) {\n      if (param_1 !\u003d 3) {\n                    /* WARNING: Subroutine does not return */\n        __android_log_assert(0,\"Controllers\",\"Couldn\\\u0027t delete Controllers version %lx\",param_1);\n      }\n      pvVar2 \u003d (void *)((long)param_2 + -0x120);\n      lVar1 \u003d -0x118;\n    }\n    FUN_001a5298((long)param_2 + lVar1);\n    operator_delete(pvVar2);\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __android_log_assert\n            (0,\"Controllers\",\n             \"%s version %ld not supported. Max supported version is %ld. And min supported version is %ld.\"\n             ,\"Controllers\",param_1,7,2);\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b3db8",
+      "elf_address": 736696,
+      "selection_evidence": "Defined dynamic export; ELF VA 0xb3db8",
+      "name": "createHandTrackerFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nlong * createHandTrackerFbs(long param_1)\n\n{\n  undefined *puVar1;\n  long *__s;\n  \n  if (param_1 - 0xfU \u003c 0xfffffffffffffffc) {\n    __android_log_print(6,\"HandTracker\",\n                        \"%s version %d not supported. Max supported version is %d. And min supported version is %d.\"\n                        ,\"Hands\",param_1,0xe,0xb);\nswitchD_001b3e24_default:\n    __s \u003d (long *)0x0;\n  }\n  else {\n    switch(param_1) {\n    case 0xb:\n      __s \u003d (long *)operator_new(0x1f0);\n      memset(__s,0,0x1f0);\n      FUN_001b3b48(__s + 2);\n      puVar1 \u003d PTR_DAT_0023b4d0;\n      break;\n    case 0xc:\n      __s \u003d (long *)operator_new(0x1f0);\n      memset(__s,0,0x1f0);\n      FUN_001b3b48(__s + 2);\n      puVar1 \u003d PTR_DAT_0023b4d8;\n      break;\n    case 0xd:\n      __s \u003d (long *)operator_new(0x1f0);\n      memset(__s,0,0x1f0);\n      FUN_001b3b48(__s + 2);\n      puVar1 \u003d PTR_DAT_0023b4e0;\n      break;\n    case 0xe:\n      __s \u003d (long *)operator_new(0x1f0);\n      memset(__s,0,0x1f0);\n      FUN_001b3b48(__s + 2);\n      puVar1 \u003d PTR_DAT_0023b4e8;\n      break;\n    default:\n      goto switchD_001b3e24_default;\n    }\n    *__s \u003d (long)(puVar1 + 0x10);\n  }\n  return __s;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b3eec",
+      "elf_address": 737004,
+      "selection_evidence": "Defined dynamic export; ELF VA 0xb3eec",
+      "name": "destroyHandTrackerFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid destroyHandTrackerFbs(long param_1,void *param_2)\n\n{\n  if (param_2 \u003d\u003d (void *)0x0) {\n    return;\n  }\n  if (0xfffffffffffffffb \u003c param_1 - 0xfU) {\n    if (param_1 - 0xbU \u003c 4) {\n      FUN_001b3d78((long)param_2 + 0x10);\n      operator_delete(param_2);\n      return;\n    }\n                    /* WARNING: Subroutine does not return */\n    __android_log_assert(0,\"HandTracker\",\"Couldn\\\u0027t delete HandTracker version %lx\",param_1);\n  }\n                    /* WARNING: Subroutine does not return */\n  __android_log_assert\n            (0,\"HandTracker\",\n             \"%s version %d not supported. Max supported version is %d. And min supported version is %d.\"\n             ,\"Hands\",param_1,0xe,0xb);\n}\n\n"
+    },
+    {
+      "ghidra_address": "001d84d0",
+      "elf_address": 885968,
+      "selection_evidence": "Defined dynamic export; ELF VA 0xd84d0",
+      "name": "createTrackingInjectionManagerFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid * createTrackingInjectionManagerFbs(long param_1)\n\n{\n  void *pvVar1;\n  \n  if (param_1 \u003d\u003d 1) {\n    pvVar1 \u003d operator_new(0x18);\n    FUN_001d858c();\n  }\n  else {\n    __android_log_print(6,\"TrackingInjectionManager\",\n                        \"%s version %d not supported. Max supported version is %d. And min supported version is %d.\"\n                        ,\"TrackingInjectionManager\",param_1,1,1);\n    pvVar1 \u003d (void *)0x0;\n  }\n  return pvVar1;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001d8534",
+      "elf_address": 886068,
+      "selection_evidence": "Defined dynamic export; ELF VA 0xd8534",
+      "name": "destroyTrackingInjectionManagerFbs",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid destroyTrackingInjectionManagerFbs(long param_1,long *param_2)\n\n{\n  if (param_2 \u003d\u003d (long *)0x0) {\n    return;\n  }\n  if (param_1 \u003d\u003d 1) {\n                    /* WARNING: Could not recover jumptable at 0x001d855c. Too many branches */\n                    /* WARNING: Treating indirect jump as call */\n    (**(code **)(*param_2 + 0x18))(param_2);\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __android_log_assert\n            (0,\"TrackingInjectionManager\",\n             \"%s version %d not supported. Max supported version is %d. And min supported version is %d.\"\n             ,\"TrackingInjectionManager\",param_1,1,1);\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b781c",
+      "elf_address": 751644,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b781c",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nundefined4 FUN_001b781c(long param_1,uint param_2)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  undefined4 uVar4;\n  long local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    (**(code **)(*local_48 + 0x40))(\u0026local_50,local_48,param_2 \u0026 1);\n    if (local_50 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_50);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        uVar4 \u003d 1;\n        goto LAB_001b78b4;\n      }\n    }\n    __android_log_print(6,\"HandTracker\",\"Failed to set fmm enabled %d\",param_2 \u0026 1);\n  }\n  uVar4 \u003d 0;\nLAB_001b78b4:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_38) {\n    return uVar4;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b7910",
+      "elf_address": 751888,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b7910",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nundefined4 FUN_001b7910(long param_1,char param_2,undefined1 param_3)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  undefined4 uVar4;\n  long local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    (**(code **)(*local_48 + 0x48))(\u0026local_50,local_48,(int)param_2,param_3);\n    if (local_50 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_50);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        uVar4 \u003d 1;\n        goto LAB_001b79bc;\n      }\n    }\n    __android_log_print(6,\"HandTracker\",\"Failed to set microgesture mode %d, frequencey %d\",\n                        (int)param_2,param_3);\n  }\n  uVar4 \u003d 0;\nLAB_001b79bc:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_38) {\n    return uVar4;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b7e68",
+      "elf_address": 753256,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b7e68",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nint FUN_001b7e68(long param_1,undefined8 *param_2)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  int iVar4;\n  long local_78;\n  undefined8 local_70;\n  undefined8 uStack_68;\n  undefined8 local_58;\n  undefined4 local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    local_58 \u003d param_2[2];\n    local_50 \u003d *(undefined4 *)(param_2 + 3);\n    uStack_68 \u003d param_2[1];\n    local_70 \u003d *param_2;\n    (**(code **)(*local_48 + 0x50))(\u0026local_78,local_48,\u0026local_58,\u0026local_70);\n    if (local_78 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_78);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        iVar4 \u003d 1;\n        goto LAB_001b7f00;\n      }\n    }\n  }\n  iVar4 \u003d 0;\nLAB_001b7f00:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (iVar4 \u003d\u003d 0) {\n    __android_log_print(6,\"HandTracker\",\"Failed to set surface keyboard pose\");\n  }\n  if (*(long *)(lVar1 + 0x28) !\u003d local_38) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return iVar4;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b3f84",
+      "elf_address": 737156,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b3f84",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_001b3f84(byte *param_1)\n\n{\n  long lVar1;\n  undefined *puVar2;\n  long lVar3;\n  int iVar4;\n  char *pcVar5;\n  byte *pbVar6;\n  byte *pbVar7;\n  undefined8 *puVar8;\n  long *plVar9;\n  byte *local_60;\n  long local_58;\n  \n  puVar2 \u003d PTR_DAT_0023b4c0;\n  lVar1 \u003d tpidr_el0;\n  local_58 \u003d *(long *)(lVar1 + 0x28);\n  std::recursive_mutex::lock();\n  local_60 \u003d param_1;\n  FUN_0017ea24(puVar2,\u0026local_60);\n  FUN_001b4b10(param_1 + 0x198);\n  std::mutex::lock();\n  if (*(long **)(param_1 + 0x110) !\u003d (long *)0x0) {\n    (**(code **)(**(long **)(param_1 + 0x110) + 0x10))(\u0026local_60);\n    iVar4 \u003d FUN_0017e564(param_1 + 0xe0,local_60,*(undefined8 *)(param_1 + 0x188),param_1);\n    FUN_0016fb80(\u0026local_60,0);\n    if (iVar4 !\u003d 0) {\n      pcVar5 \u003d strerror(-iVar4);\n      __android_log_print(6,\"HandTracker\",\"BinderClientNDK: unlinkToDeath failed with error %s\",\n                          pcVar5);\n    }\n    plVar9 \u003d *(long **)(param_1 + 0x118);\n    param_1[0x110] \u003d 0;\n    param_1[0x111] \u003d 0;\n    param_1[0x112] \u003d 0;\n    param_1[0x113] \u003d 0;\n    param_1[0x114] \u003d 0;\n    param_1[0x115] \u003d 0;\n    param_1[0x116] \u003d 0;\n    param_1[0x117] \u003d 0;\n    param_1[0x118] \u003d 0;\n    param_1[0x119] \u003d 0;\n    param_1[0x11a] \u003d 0;\n    param_1[0x11b] \u003d 0;\n    param_1[0x11c] \u003d 0;\n    param_1[0x11d] \u003d 0;\n    param_1[0x11e] \u003d 0;\n    param_1[0x11f] \u003d 0;\n    if (plVar9 !\u003d (long *)0x0) {\n      LOAcquire();\n      lVar3 \u003d plVar9[1];\n      plVar9[1] \u003d lVar3 + -1;\n      LORelease();\n      if (lVar3 \u003d\u003d 0) {\n        (**(code **)(*plVar9 + 0x10))(plVar9);\n        std::__shared_weak_count::__release_weak();\n      }\n    }\n  }\n  param_1[0x121] \u003d 1;\n  std::condition_variable::notify_all();\n  std::mutex::unlock();\n  std::recursive_mutex::unlock();\n  FUN_001b4b10(param_1 + 0x198);\n  std::mutex::~mutex((mutex *)(param_1 + 0x1a0));\n  AIBinder_DeathRecipient_delete(*(undefined8 *)(param_1 + 0x188));\n  param_1[0x188] \u003d 0;\n  param_1[0x189] \u003d 0;\n  param_1[0x18a] \u003d 0;\n  param_1[0x18b] \u003d 0;\n  param_1[0x18c] \u003d 0;\n  param_1[0x18d] \u003d 0;\n  param_1[0x18e] \u003d 0;\n  param_1[399] \u003d 0;\n  std::condition_variable::~condition_variable((condition_variable *)(param_1 + 0x150));\n  std::mutex::~mutex((mutex *)(param_1 + 0x128));\n  FUN_001b499c(param_1 + 0x110);\n  pbVar6 \u003d *(byte **)(param_1 + 0x100);\n  pbVar7 \u003d param_1 + 0xe0;\n  if (pbVar6 \u003d\u003d pbVar7) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar7 + 0x20);\nLAB_001b4110:\n    (*(code *)*puVar8)(pbVar7);\n  }\n  else if (pbVar6 !\u003d (byte *)0x0) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar6 + 0x28);\n    pbVar7 \u003d pbVar6;\n    goto LAB_001b4110;\n  }\n  pbVar6 \u003d *(byte **)(param_1 + 0xd0);\n  pbVar7 \u003d param_1 + 0xb0;\n  if (pbVar6 \u003d\u003d pbVar7) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar7 + 0x20);\nLAB_001b4144:\n    (*(code *)*puVar8)(pbVar7);\n  }\n  else if (pbVar6 !\u003d (byte *)0x0) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar6 + 0x28);\n    pbVar7 \u003d pbVar6;\n    goto LAB_001b4144;\n  }\n  pbVar6 \u003d *(byte **)(param_1 + 0xa0);\n  pbVar7 \u003d param_1 + 0x80;\n  if (pbVar6 \u003d\u003d pbVar7) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar7 + 0x20);\nLAB_001b4178:\n    (*(code *)*puVar8)(pbVar7);\n  }\n  else if (pbVar6 !\u003d (byte *)0x0) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar6 + 0x28);\n    pbVar7 \u003d pbVar6;\n    goto LAB_001b4178;\n  }\n  pbVar6 \u003d *(byte **)(param_1 + 0x70);\n  pbVar7 \u003d param_1 + 0x50;\n  if (pbVar6 \u003d\u003d pbVar7) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar7 + 0x20);\nLAB_001b41ac:\n    (*(code *)*puVar8)(pbVar7);\n  }\n  else if (pbVar6 !\u003d (byte *)0x0) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar6 + 0x28);\n    pbVar7 \u003d pbVar6;\n    goto LAB_001b41ac;\n  }\n  pbVar6 \u003d *(byte **)(param_1 + 0x40);\n  pbVar7 \u003d param_1 + 0x20;\n  if (pbVar6 \u003d\u003d pbVar7) {\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar7 + 0x20);\n  }\n  else {\n    if (pbVar6 \u003d\u003d (byte *)0x0) goto LAB_001b41e8;\n    puVar8 \u003d (undefined8 *)(*(long *)pbVar6 + 0x28);\n    pbVar7 \u003d pbVar6;\n  }\n  (*(code *)*puVar8)(pbVar7);\nLAB_001b41e8:\n  if ((*param_1 \u0026 1) !\u003d 0) {\n    operator_delete(*(void **)(param_1 + 0x10));\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_58) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b7f80",
+      "elf_address": 753536,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b7f80",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nint FUN_001b7f80(long param_1,undefined8 *param_2)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  int iVar4;\n  long local_78;\n  undefined8 local_70;\n  undefined8 uStack_68;\n  undefined8 local_58;\n  undefined4 local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    local_58 \u003d param_2[2];\n    local_50 \u003d *(undefined4 *)(param_2 + 3);\n    uStack_68 \u003d param_2[1];\n    local_70 \u003d *param_2;\n    (**(code **)(*local_48 + 0x58))(\u0026local_78,local_48,\u0026local_58,\u0026local_70);\n    if (local_78 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_78);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        iVar4 \u003d 1;\n        goto LAB_001b8018;\n      }\n    }\n  }\n  iVar4 \u003d 0;\nLAB_001b8018:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (iVar4 \u003d\u003d 0) {\n    __android_log_print(6,\"HandTracker\",\"Failed to start surface keyboard\");\n  }\n  if (*(long *)(lVar1 + 0x28) !\u003d local_38) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return iVar4;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b75f0",
+      "elf_address": 751088,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b75f0",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nundefined4 FUN_001b75f0(long param_1,undefined4 param_2)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  undefined4 uVar4;\n  long local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    (**(code **)(*local_48 + 0x30))(\u0026local_50,local_48,param_2);\n    if (local_50 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_50);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        uVar4 \u003d 1;\n        goto LAB_001b7688;\n      }\n    }\n    __android_log_print(6,\"HandTracker\",\"Failed to set tracking version %u\",param_2);\n  }\n  uVar4 \u003d 0;\nLAB_001b7688:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_38) {\n    return uVar4;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b7734",
+      "elf_address": 751412,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b7734",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nundefined4 FUN_001b7734(long param_1)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  undefined4 uVar4;\n  long local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    (**(code **)(*local_48 + 0x38))(\u0026local_50);\n    if (local_50 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_50);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        uVar4 \u003d 1;\n        goto LAB_001b77c0;\n      }\n    }\n    __android_log_print(6,\"HandTracker\",\"Failed to fmm notifications\");\n  }\n  uVar4 \u003d 0;\nLAB_001b77c0:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_38) {\n    return uVar4;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b48c4",
+      "elf_address": 739524,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b48c4",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_001b48c4(byte *param_1)\n\n{\n  long lVar1;\n  byte *pbVar2;\n  long *plVar3;\n  \n  std::mutex::lock();\n  if (param_1[0x121] !\u003d 0) {\n    pbVar2 \u003d *(byte **)(param_1 + 0x10);\n    if ((*param_1 \u0026 1) \u003d\u003d 0) {\n      pbVar2 \u003d param_1 + 1;\n    }\n    __android_log_print(5,\"HandTracker\",\"BinderClientNDK: ignoring \\\u0027%s\\\u0027 disconnect at destruction\"\n                        ,pbVar2);\n    std::mutex::unlock();\n    return;\n  }\n  plVar3 \u003d *(long **)(param_1 + 0x118);\n  param_1[0x110] \u003d 0;\n  param_1[0x111] \u003d 0;\n  param_1[0x112] \u003d 0;\n  param_1[0x113] \u003d 0;\n  param_1[0x114] \u003d 0;\n  param_1[0x115] \u003d 0;\n  param_1[0x116] \u003d 0;\n  param_1[0x117] \u003d 0;\n  param_1[0x118] \u003d 0;\n  param_1[0x119] \u003d 0;\n  param_1[0x11a] \u003d 0;\n  param_1[0x11b] \u003d 0;\n  param_1[0x11c] \u003d 0;\n  param_1[0x11d] \u003d 0;\n  param_1[0x11e] \u003d 0;\n  param_1[0x11f] \u003d 0;\n  if (plVar3 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar1 \u003d plVar3[1];\n    plVar3[1] \u003d lVar1 + -1;\n    LORelease();\n    if (lVar1 \u003d\u003d 0) {\n      (**(code **)(*plVar3 + 0x10))(plVar3);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  param_1[0x120] \u003d 0;\n  std::mutex::unlock();\n  std::condition_variable::notify_one();\n  if (*(long **)(param_1 + 0x70) !\u003d (long *)0x0) {\n    (**(code **)(**(long **)(param_1 + 0x70) + 0x30))();\n  }\n  FUN_001b46e0(param_1 + 0x198,param_1);\n  return;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b49ec",
+      "elf_address": 739820,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b49ec",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_001b49ec(char *param_1,undefined8 param_2,byte *param_3)\n\n{\n  size_t sVar1;\n  byte bVar2;\n  long lVar3;\n  undefined *puVar4;\n  byte *pbVar5;\n  int iVar6;\n  long lVar7;\n  size_t sVar8;\n  byte *pbVar9;\n  byte *local_50;\n  long local_48;\n  \n  puVar4 \u003d PTR_DAT_0023b4c0;\n  lVar3 \u003d tpidr_el0;\n  local_48 \u003d *(long *)(lVar3 + 0x28);\n  local_50 \u003d param_3;\n  std::recursive_mutex::lock();\n  lVar7 \u003d FUN_0017dfa4(puVar4,\u0026local_50);\n  pbVar5 \u003d local_50;\n  if (lVar7 \u003d\u003d 0) {\n    __android_log_print(6,\"HandTracker\",\n                        \"BinderClientNDK: Received service registration notification after destruction\"\n                       );\n  }\n  else {\n    sVar8 \u003d strlen(param_1);\n    bVar2 \u003d *pbVar5;\n    sVar1 \u003d (ulong)(bVar2 \u003e\u003e 1);\n    if ((bVar2 \u0026 1) !\u003d 0) {\n      sVar1 \u003d *(size_t *)(pbVar5 + 8);\n    }\n    if (sVar8 \u003d\u003d sVar1) {\n      iVar6 \u003d std::string::compare((ulong)pbVar5,0,(char *)0xffffffffffffffff,(ulong)param_1);\n      if (iVar6 \u003d\u003d 0) {\n        FUN_001b44c0(pbVar5,param_2);\n        goto LAB_001b4adc;\n      }\n      bVar2 \u003d *pbVar5;\n    }\n    pbVar9 \u003d *(byte **)(pbVar5 + 0x10);\n    if ((bVar2 \u0026 1) \u003d\u003d 0) {\n      pbVar9 \u003d pbVar5 + 1;\n    }\n    __android_log_print(6,\"HandTracker\",\n                        \"BinderClientNDK: Received service registration for \\\u0027%s\\\u0027, expected \\\u0027%s\\\u0027\"\n                        ,param_1,pbVar9);\n  }\nLAB_001b4adc:\n  std::recursive_mutex::unlock();\n  if (*(long *)(lVar3 + 0x28) \u003d\u003d local_48) {\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b2ee4",
+      "elf_address": 732900,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b2ee4",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_001b2ee4(long *param_1,undefined4 param_2,undefined8 param_3)\n\n{\n  undefined *puVar1;\n  long lVar2;\n  long *plVar3;\n  \n  puVar1 \u003d PTR_DAT_0023b4a0;\n  *(undefined4 *)(param_1 + 1) \u003d param_2;\n  *param_1 \u003d (long)(puVar1 + 0x10);\n  lVar2 \u003d MemoryBroker_ClientConnection_create(param_3);\n  if (lVar2 \u003d\u003d 0) {\n    *(undefined1 *)(param_1 + 2) \u003d 0;\n  }\n  else {\n    param_1[2] \u003d lVar2;\n  }\n  *(bool *)(param_1 + 3) \u003d lVar2 !\u003d 0;\n  if ((int)param_1[1] - 1U \u003c 2) {\n    lVar2 \u003d MemoryBroker_ClientConnection_acquireSubRegion(param_1[2],7,(int)param_1[1],0x13e8);\n    param_1[4] \u003d lVar2;\n    *(undefined1 *)(param_1 + 5) \u003d 1;\n    lVar2 \u003d FUN_001b9298();\n    param_1[6] \u003d lVar2;\n    plVar3 \u003d (long *)operator_new(0x28);\n    puVar1 \u003d PTR_DAT_0023b4a8;\n    plVar3[2] \u003d 0;\n    plVar3[3] \u003d lVar2;\n    param_1[7] \u003d (long)plVar3;\n    param_1[8] \u003d -1;\n    param_1[0xd] \u003d 0;\n    param_1[10] \u003d 0;\n    param_1[9] \u003d 0;\n    plVar3[4] \u003d (long)FUN_001b92c4;\n    *plVar3 \u003d (long)(puVar1 + 0x10);\n    plVar3[1] \u003d 0;\n    param_1[0xc] \u003d 0;\n    param_1[0xb] \u003d 0;\n    return;\n  }\n                    /* WARNING: Subroutine does not return */\n  __android_log_assert(0,\"HandTracker\",\"invalid handedness: %d\");\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b44c0",
+      "elf_address": 738496,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b44c0",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nulong FUN_001b44c0(byte *param_1,ulong param_2)\n\n{\n  long lVar1;\n  int iVar2;\n  long lVar3;\n  long *plVar4;\n  byte *pbVar5;\n  long local_60;\n  long *local_58;\n  ulong local_50;\n  long local_48;\n  \n  lVar1 \u003d tpidr_el0;\n  local_48 \u003d *(long *)(lVar1 + 0x28);\n  if (param_2 \u003d\u003d 0) goto LAB_001b45f0;\n  pbVar5 \u003d param_1 + 0x180;\n  iVar2 \u003d *(int *)pbVar5;\n  *(int *)pbVar5 \u003d iVar2 + 1;\n  local_60 \u003d 0;\n  local_58 \u003d (long *)0x0;\n  plVar4 \u003d *(long **)(param_1 + 0xa0);\n  local_50 \u003d param_2;\n  if (plVar4 \u003d\u003d (long *)0x0) {\n                    /* WARNING: Subroutine does not return */\n    FUN_0016fbe0(CONCAT44((int)((ulong)pbVar5 \u003e\u003e 0x20),iVar2));\n  }\n  (**(code **)(*plVar4 + 0x30))(\u0026local_60,plVar4,\u0026local_50);\n  if (local_60 \u003d\u003d 0) {\n    pbVar5 \u003d *(byte **)(param_1 + 0x10);\n    if ((*param_1 \u0026 1) \u003d\u003d 0) {\n      pbVar5 \u003d param_1 + 1;\n    }\n    __android_log_print(6,\"HandTracker\",\"BinderClientNDK: Failed to convert service type \\\u0027%s\\\u0027\",\n                        pbVar5);\nLAB_001b45bc:\n    param_2 \u003d 0;\n  }\n  else {\n    std::mutex::lock();\n    if (param_1[0x121] !\u003d 0) {\n      pbVar5 \u003d *(byte **)(param_1 + 0x10);\n      if ((*param_1 \u0026 1) \u003d\u003d 0) {\n        pbVar5 \u003d param_1 + 1;\n      }\n      __android_log_print(5,\"HandTracker\",\n                          \"BinderClientNDK: ignoring \\\u0027%s\\\u0027 new connection at destruction\",pbVar5);\nLAB_001b45b4:\n      std::mutex::unlock();\n      goto LAB_001b45bc;\n    }\n    if (*(long *)(param_1 + 0x110) !\u003d 0) {\n      __android_log_print(6,\"HandTracker\",\n                          \"BinderClientNDK: ignoring registration notification when handled already\"\n                         );\n      goto LAB_001b45b4;\n    }\n    if (local_58 !\u003d (long *)0x0) {\n      local_58[1] \u003d local_58[1] + 1;\n    }\n    plVar4 \u003d *(long **)(param_1 + 0x118);\n    *(long *)(param_1 + 0x110) \u003d local_60;\n    *(long **)(param_1 + 0x118) \u003d local_58;\n    if (plVar4 !\u003d (long *)0x0) {\n      LOAcquire();\n      lVar3 \u003d plVar4[1];\n      plVar4[1] \u003d lVar3 + -1;\n      LORelease();\n      if (lVar3 \u003d\u003d 0) {\n        (**(code **)(*plVar4 + 0x10))(plVar4);\n        std::__shared_weak_count::__release_weak();\n      }\n    }\n    FUN_0017e564(param_1 + 0xb0,param_2,*(undefined8 *)(param_1 + 0x188),param_1);\n    if (*(long *)(param_1 + 0x40) \u003d\u003d 0) {\n      param_1[0x120] \u003d 1;\n    }\n    std::mutex::unlock();\n    std::condition_variable::notify_one();\n    plVar4 \u003d *(long **)(param_1 + 0x40);\n    param_2 \u003d 1;\n    if (plVar4 !\u003d (long *)0x0) {\n      (**(code **)(*plVar4 + 0x30))(plVar4,\u0026local_60);\n      std::mutex::lock();\n      param_1[0x120] \u003d 1;\n      std::mutex::unlock();\n      std::condition_variable::notify_one();\n    }\n  }\n  if (local_58 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar3 \u003d local_58[1];\n    local_58[1] \u003d lVar3 + -1;\n    LORelease();\n    if (lVar3 \u003d\u003d 0) {\n      (**(code **)(*local_58 + 0x10))(local_58);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\nLAB_001b45f0:\n  if (*(long *)(lVar1 + 0x28) \u003d\u003d local_48) {\n    return param_2 \u0026 0xffffffff;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b8534",
+      "elf_address": 754996,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b8534",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nint FUN_001b8534(undefined4 param_1,undefined4 param_2,long param_3,undefined8 *param_4)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  int iVar4;\n  long local_88;\n  undefined8 local_80;\n  undefined8 uStack_78;\n  undefined8 local_68;\n  undefined4 local_60;\n  long *local_58;\n  long *local_50;\n  long local_48;\n  \n  lVar1 \u003d tpidr_el0;\n  local_48 \u003d *(long *)(lVar1 + 0x28);\n  local_58 \u003d (long *)0x0;\n  local_50 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_58,param_3 + 0x10);\n  if (local_58 !\u003d (long *)0x0) {\n    local_68 \u003d param_4[2];\n    local_60 \u003d *(undefined4 *)(param_4 + 3);\n    uStack_78 \u003d param_4[1];\n    local_80 \u003d *param_4;\n    (**(code **)(*local_58 + 0x68))(\u0026local_88,param_1,param_2,local_58,\u0026local_68,\u0026local_80);\n    if (local_88 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_88);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        iVar4 \u003d 1;\n        goto LAB_001b85e0;\n      }\n    }\n  }\n  iVar4 \u003d 0;\nLAB_001b85e0:\n  if (local_50 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_50[1];\n    local_50[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_50 + 0x10))(local_50);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (iVar4 \u003d\u003d 0) {\n    __android_log_print(6,\"HandTracker\",\"Failed to set surface touch pose\");\n  }\n  if (*(long *)(lVar1 + 0x28) !\u003d local_48) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return iVar4;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b8664",
+      "elf_address": 755300,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b8664",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nint FUN_001b8664(long param_1,char param_2)\n\n{\n  long lVar1;\n  long lVar2;\n  ulong uVar3;\n  int iVar4;\n  long local_50;\n  long *local_48;\n  long *local_40;\n  long local_38;\n  \n  lVar1 \u003d tpidr_el0;\n  local_38 \u003d *(long *)(lVar1 + 0x28);\n  local_48 \u003d (long *)0x0;\n  local_40 \u003d (long *)0x0;\n  FUN_001b76e4(\u0026local_48,param_1 + 0x10);\n  if (local_48 !\u003d (long *)0x0) {\n    (**(code **)(*local_48 + 0x70))(\u0026local_50,local_48,(int)param_2);\n    if (local_50 \u003d\u003d 0) {\n      AStatus_delete();\n    }\n    else {\n      uVar3 \u003d AStatus_isOk();\n      AStatus_delete(local_50);\n      if ((uVar3 \u0026 1) !\u003d 0) {\n        iVar4 \u003d 1;\n        goto LAB_001b86e0;\n      }\n    }\n  }\n  iVar4 \u003d 0;\nLAB_001b86e0:\n  if (local_40 !\u003d (long *)0x0) {\n    LOAcquire();\n    lVar2 \u003d local_40[1];\n    local_40[1] \u003d lVar2 + -1;\n    LORelease();\n    if (lVar2 \u003d\u003d 0) {\n      (**(code **)(*local_40 + 0x10))(local_40);\n      std::__shared_weak_count::__release_weak();\n    }\n  }\n  if (iVar4 \u003d\u003d 0) {\n    __android_log_print(6,\"HandTracker\",\"Failed to set surface touch active hand\");\n  }\n  if (*(long *)(lVar1 + 0x28) !\u003d local_38) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return iVar4;\n}\n\n"
+    },
+    {
+      "ghidra_address": "001b46e0",
+      "elf_address": 739040,
+      "selection_evidence": "Direct reference to string: HandTracker",
+      "name": "FUN_001b46e0",
+      "diagnostic": "",
+      "status": "DECOMPILED_NOT_VALIDATED",
+      "c_like": "\nvoid FUN_001b46e0(long *param_1,byte *param_2)\n\n{\n  long lVar1;\n  byte *pbVar2;\n  \n  std::mutex::lock();\n  if (*param_1 \u003d\u003d 0) {\n    pbVar2 \u003d *(byte **)(param_2 + 0x10);\n    if ((*param_2 \u0026 1) \u003d\u003d 0) {\n      pbVar2 \u003d param_2 + 1;\n    }\n    lVar1 \u003d AServiceManager_registerForServiceNotifications(pbVar2,PTR_FUN_0023b500,param_2);\n    if (lVar1 \u003d\u003d 0) {\n      pbVar2 \u003d param_2 + 1;\n      if ((*param_2 \u0026 1) !\u003d 0) {\n        pbVar2 \u003d *(byte **)(param_2 + 0x10);\n      }\n      __android_log_print(6,\"HandTracker\",\n                          \"BinderClientNDK: Failed to subscribe to service registration notifications for \\\u0027%s\\\u0027\"\n                          ,pbVar2);\n    }\n    *param_1 \u003d lVar1;\n  }\n  std::mutex::unlock();\n  return;\n}\n\n"
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "source_ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
+  "library_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "firmware_executed": false,
+  "runtime_loaded": false,
+  "private_service_abi_validated": false,
+  "dex_members": [
+    {
+      "member": "classes.dex",
+      "sha256": "2c78c5ba80143b62472c9ed1c3b90679c3e519cdbaa90ec58d22c4ee2cb88d2f",
+      "native_methods_in_target_class": 90
+    }
+  ],
+  "native_declarations": [
+    {
+      "name": "nativeAnchorWindow",
+      "descriptor": "(Ljava/lang/String;I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37882,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeBackgroundDesktop",
+      "descriptor": "(Ljava/lang/String;ZZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37883,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeBackgroundWindow",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37884,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeBroadcastIntent",
+      "descriptor": "([Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37885,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeCloseSystemKeyboard",
+      "descriptor": "()V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37886,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeConfigureSystemKeyboard",
+      "descriptor": "(IIZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37887,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeCreatePortal",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37888,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeDragComplete",
+      "descriptor": "()V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37889,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeDragShadow",
+      "descriptor": "(IIILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37890,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeDragStart",
+      "descriptor": "(ILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37891,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeDumpsys",
+      "descriptor": "()Ljava/lang/String;",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37892,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeForegroundDesktop",
+      "descriptor": "(IIIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37893,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeFrameCommand",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37894,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleBloomForegroundRequest",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37895,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleBloomGrabRequest",
+      "descriptor": "(Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37896,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleBreadcrumbRequest",
+      "descriptor": "(ILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37897,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleDesktopManagerCloseRequest",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37898,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleDesktopManagerForegroundRequest",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37899,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleDesktopManagerHideRequest",
+      "descriptor": "()V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37900,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleTheaterClientPreferredParams",
+      "descriptor": "(Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37901,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleTheaterRequestFromPanelId",
+      "descriptor": "(IZZLjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37902,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHandleUpdateTheaterViewDimming",
+      "descriptor": "(FZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37903,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeHideGazeTooltip",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37904,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeImageViewResponse",
+      "descriptor": "(III[I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37905,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeInit",
+      "descriptor": "(Lcom/oculus/vrshell/ShellApplication;JLjava/lang/String;Ljava/lang/String;ZZ)J",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37906,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeInjectPanelIpc",
+      "descriptor": "(ILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37907,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeJoypadAxis",
+      "descriptor": "(FFFFFFI)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37908,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeKeyEvent",
+      "descriptor": "(IIIIZZZZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37909,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeMaybeUpdatePathwayDestinationMetadata",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;IILandroid/graphics/Bitmap;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37910,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeMemoryPressureUpdate",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37911,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeMouse",
+      "descriptor": "(IFFFIFFIZILjava/lang/String;Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37912,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeNotifyIfsSurfacesChanged",
+      "descriptor": "(IFILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37913,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeNotifySurfaceCalibrationProgress",
+      "descriptor": "(IFIILhorizonos/graphics/Pose;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37914,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeNotifySurfaceKeyboardEvent",
+      "descriptor": "(IIII)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37915,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeNotifySurfaceTouchpadAudioPlay",
+      "descriptor": "(IFI)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37916,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnAppInstallCompleted",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37917,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnDensityDpiChanged",
+      "descriptor": "(II)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37918,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnDestroy",
+      "descriptor": "()V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37919,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnFocusedPanelChanged",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37920,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnInputDeviceAdded",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37921,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnInputDeviceRemoved",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37922,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnInteractionWindowChanged",
+      "descriptor": "(ILandroid/os/IBinder;Ljava/lang/String;Landroid/os/Parcel;Ljava/lang/String;III)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37923,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnLaunchContextReady",
+      "descriptor": "(Ljava/lang/String;Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37924,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnNewObservableChildVolumetricWindow",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37925,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnPersistedVolumetricWindowsRemoved",
+      "descriptor": "([Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37926,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnRemoveChildVolumetricWindow",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37927,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnServiceDisconnected",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37928,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnSizeChanged",
+      "descriptor": "(III)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37929,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOnVolumetricWindowCreated",
+      "descriptor": "(Ljava/lang/String;[Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37930,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeOpenSystemKeyboard",
+      "descriptor": "(IILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37931,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativePlayEffect",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37932,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativePlaySpatialAudio",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;IFFFLjava/lang/String;Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37933,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRefreshBloomPresentation",
+      "descriptor": "()V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37934,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRemovePortal",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37935,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRequestObservableChildVWPoseChange",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37936,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRequestUpdateGamepadInputMode",
+      "descriptor": "(Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37937,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRequestUpdateRecoveryMonitorId",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37938,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRequestVWBoundsChange",
+      "descriptor": "(Ljava/lang/String;FFF)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37939,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRequestVWLayoutParamsChange",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37940,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeRequestVWVisbilityChange",
+      "descriptor": "(Ljava/lang/String;Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37941,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSendResizePanel",
+      "descriptor": "(III)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37942,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSendSetPanelAspectRatio",
+      "descriptor": "(III)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37943,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSetBloomIsScrollable",
+      "descriptor": "(Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37944,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSetQ4bSocialEnabled",
+      "descriptor": "(Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37945,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeShowGazeTooltip",
+      "descriptor": "(Ljava/lang/String;FFLjava/lang/String;Ljava/lang/String;IJ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37946,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSpatializeWindowAtRawPose",
+      "descriptor": "(IFFFFFFF)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37947,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeStopSpatialAudio",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37948,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSuppressInputs",
+      "descriptor": "()V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37949,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSystemButtonEvent",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37950,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSystemDialogRemove",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37951,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeSystemDialogShow",
+      "descriptor": "(IIILjava/lang/String;ZZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37952,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeTeleportToCoordinates",
+      "descriptor": "(FFFFLjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37953,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeTextViewResponse",
+      "descriptor": "(III[I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37954,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeToastRemove",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37955,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeToastShow",
+      "descriptor": "(IILjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37956,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeTopActivityChanged",
+      "descriptor": "(Ljava/lang/String;ZZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37957,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeTravelDownloadComplete",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37958,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeTravelPathwayCommand",
+      "descriptor": "(ZLjava/lang/String;Ljava/lang/String;ZZLjava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37959,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUnanchorWindow",
+      "descriptor": "(Ljava/lang/String;I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37960,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdateAnimatedTTSCursorWithPanelId",
+      "descriptor": "(III)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37961,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdateCursorType",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37962,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdateInputVisibility",
+      "descriptor": "(Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37963,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdateMorphCursorScale",
+      "descriptor": "(FI)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37964,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdatePanelActiveState",
+      "descriptor": "(IZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37965,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdatePanelPictureInPictureState",
+      "descriptor": "(IZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37966,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdatePointerIcon",
+      "descriptor": "(IIFF[I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37967,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdateWindowDrawnState",
+      "descriptor": "(IZ)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37968,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUpdateWorldMovementSettings",
+      "descriptor": "(Ljava/lang/String;)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37969,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeUserIdentityResponse",
+      "descriptor": "(Ljava/lang/String;Ljava/lang/String;Z)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37970,
+      "dex_member": "classes.dex"
+    },
+    {
+      "name": "nativeValidateCallbackAppStatus",
+      "descriptor": "(I)V",
+      "access_flags": 265,
+      "static": true,
+      "method_id": 37971,
+      "dex_member": "classes.dex"
+    }
+  ],
+  "native_init_descriptor": "(Lcom/oculus/vrshell/ShellApplication;JLjava/lang/String;Ljava/lang/String;ZZ)J",
+  "arm64_return": {
+    "normal_return_register": "x0",
+    "return_width_bits": 64,
+    "returned_global_elf_va": 41267208,
+    "service_setter_writes_same_slot": true,
+    "normal_epilogue": [
+      {
+        "elf_va": 14126364,
+        "bytes": "600640f9",
+        "mnemonic": "ldr",
+        "operands": "x0, [x19, #8]",
+        "writes": [
+          "x0"
+        ]
+      },
+      {
+        "elf_va": 14126368,
+        "bytes": "881740f9",
+        "mnemonic": "ldr",
+        "operands": "x8, [x28, #0x28]",
+        "writes": [
+          "x8"
+        ]
+      },
+      {
+        "elf_va": 14126372,
+        "bytes": "a9835ef8",
+        "mnemonic": "ldur",
+        "operands": "x9, [x29, #-0x18]",
+        "writes": [
+          "x9"
+        ]
+      },
+      {
+        "elf_va": 14126376,
+        "bytes": "1f0109eb",
+        "mnemonic": "cmp",
+        "operands": "x8, x9",
+        "writes": [
+          "nzcv",
+          "x8"
+        ]
+      },
+      {
+        "elf_va": 14126380,
+        "bytes": "a1040054",
+        "mnemonic": "b.ne",
+        "operands": "#0xd78dc0",
+        "writes": []
+      },
+      {
+        "elf_va": 14126384,
+        "bytes": "f44f4ba9",
+        "mnemonic": "ldp",
+        "operands": "x20, x19, [sp, #0xb0]",
+        "writes": [
+          "x20",
+          "x19"
+        ]
+      },
+      {
+        "elf_va": 14126388,
+        "bytes": "e82b40fd",
+        "mnemonic": "ldr",
+        "operands": "d8, [sp, #0x50]",
+        "writes": [
+          "d8"
+        ]
+      },
+      {
+        "elf_va": 14126392,
+        "bytes": "f6574aa9",
+        "mnemonic": "ldp",
+        "operands": "x22, x21, [sp, #0xa0]",
+        "writes": [
+          "x22",
+          "x21"
+        ]
+      },
+      {
+        "elf_va": 14126396,
+        "bytes": "f85f49a9",
+        "mnemonic": "ldp",
+        "operands": "x24, x23, [sp, #0x90]",
+        "writes": [
+          "x24",
+          "x23"
+        ]
+      },
+      {
+        "elf_va": 14126400,
+        "bytes": "fa6748a9",
+        "mnemonic": "ldp",
+        "operands": "x26, x25, [sp, #0x80]",
+        "writes": [
+          "x26",
+          "x25"
+        ]
+      },
+      {
+        "elf_va": 14126404,
+        "bytes": "fc6f47a9",
+        "mnemonic": "ldp",
+        "operands": "x28, x27, [sp, #0x70]",
+        "writes": [
+          "x28",
+          "x27"
+        ]
+      },
+      {
+        "elf_va": 14126408,
+        "bytes": "fd7b46a9",
+        "mnemonic": "ldp",
+        "operands": "x29, x30, [sp, #0x60]",
+        "writes": [
+          "fp",
+          "lr"
+        ]
+      },
+      {
+        "elf_va": 14126412,
+        "bytes": "ff030391",
+        "mnemonic": "add",
+        "operands": "sp, sp, #0xc0",
+        "writes": [
+          "sp"
+        ]
+      },
+      {
+        "elf_va": 14126416,
+        "bytes": "c0035fd6",
+        "mnemonic": "ret",
+        "operands": "",
+        "writes": []
+      }
+    ],
+    "scope": "Normal sequential epilogue only; constructor, exceptions and runtime not executed"
+  },
+  "cleanup_windows": [
+    [
+      {
+        "elf_va": 14126420,
+        "bytes": "e01740f9",
+        "mnemonic": "ldr",
+        "operands": "x0, [sp, #0x28]",
+        "writes": [
+          "x0"
+        ]
+      },
+      {
+        "elf_va": 14126424,
+        "bytes": "b6fb6094",
+        "mnemonic": "bl",
+        "operands": "#0x25b7c30",
+        "writes": [
+          "lr"
+        ]
+      },
+      {
+        "elf_va": 14126428,
+        "bytes": "eeffff17",
+        "mnemonic": "b",
+        "operands": "#0xd78d14",
+        "writes": []
+      },
+      {
+        "elf_va": 14126432,
+        "bytes": "e02340f9",
+        "mnemonic": "ldr",
+        "operands": "x0, [sp, #0x40]",
+        "writes": [
+          "x0"
+        ]
+      },
+      {
+        "elf_va": 14126436,
+        "bytes": "b3fb6094",
+        "mnemonic": "bl",
+        "operands": "#0x25b7c30",
+        "writes": [
+          "lr"
+        ]
+      },
+      {
+        "elf_va": 14126440,
+        "bytes": "edffff17",
+        "mnemonic": "b",
+        "operands": "#0xd78d1c",
+        "writes": []
+      }
+    ]
+  ],
+  "return_type_discrepancy_resolved_for_normal_path": true,
+  "delete_wrapper": {
+    "member": "lib/arm64-v8a/libc++_shared.so",
+    "sha256": "b9220b4c909293533de96ae0ad2654d034b9abc69c419fd3f877f91c6970284c",
+    "symbol_rows": [
+      "495: 0000000000047444 0 FUNC GLOBAL DEFAULT 15 __wrap__ZdlPv"
+    ],
+    "nonreturning_claim_validated": false,
+    "elf_address": 291908,
+    "declared_size_bytes": 0,
+    "section_index": "15",
+    "status": "BOUNDED_INSTRUCTIONS_ONLY",
+    "instructions": [
+      {
+        "elf_va": 291908,
+        "bytes": "73f20014",
+        "mnemonic": "b",
+        "operands": "#0x83e10",
+        "writes": []
+      },
+      {
+        "elf_va": 291912,
+        "bytes": "ffffff17",
+        "mnemonic": "b",
+        "operands": "#0x47444",
+        "writes": []
+      },
+      {
+        "elf_va": 291916,
+        "bytes": "ffffff17",
+        "mnemonic": "b",
+        "operands": "#0x47448",
+        "writes": []
+      },
+      {
+        "elf_va": 291920,
+        "bytes": "fd7bbfa9",
+        "mnemonic": "stp",
+        "operands": "x29, x30, [sp, #-0x10]!",
+        "writes": [
+          "sp"
+        ]
+      }
+    ],
+    "window_bytes": 16,
+    "complete_body_claimed": false,
+    "tail_trace": {
+      "steps": [
+        {
+          "elf_va": 291908,
+          "kind": "B",
+          "target": 540176
+        },
+        {
+          "elf_va": 540176,
+          "kind": "PLT",
+          "got_slot": 586016
+        }
+      ],
+      "runtime_binding_verified": false,
+      "callee_returns_verified": false,
+      "status": "IMPORTED_SYMBOL",
+      "symbol": "free@LIBC",
+      "relocation_row": "000000000008f120 0000000b00000402 R_AARCH64_JUMP_SLOT 0000000000000000 free@LIBC + 0"
+    }
+  }
+}

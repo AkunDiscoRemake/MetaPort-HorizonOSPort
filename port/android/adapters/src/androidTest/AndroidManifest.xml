@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Instrumentation-only activity. Never included in the production adapter or original shell. -->
+    <application android:name="org.metaport.port.focus.FocusBootstrapTestApplication"
+        android:appComponentFactory="org.metaport.port.focus.FocusBootstrapTestFactory"
+        tools:replace="android:appComponentFactory">
+        <activity android:name="org.metaport.port.focus.FocusTestActivity"
+            android:exported="false" android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+        <service android:name="org.metaport.port.focus.protocol.RemoteListenerService"
+            android:exported="false" android:process=":focus_listener_test" />
+    </application>
+</manifest>

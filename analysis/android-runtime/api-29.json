@@ -1,0 +1,349 @@
+{
+  "api": 29,
+  "abi": "x86_64",
+  "gpu_configuration": "swiftshader_indirect",
+  "tests": [
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "sensorsRepeatedStartStopAndClosedGuards",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "inputServiceLifecycleRunsOnMainThread",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "closingOneOutputDoesNotInvalidateAnother",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "eglNativeLoadRenderPresentShaderCompileAndClose",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "rendererRejectsDifferentContextAndClosedUse",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppProcessMetadataBackendTest",
+      "name": "foreignContextAndMissingPackageMembershipAreRejected",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppProcessMetadataBackendTest",
+      "name": "selfMetadataMatchesAndroidIdentityAndPackages",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppProcessMetadataBackendTest",
+      "name": "permissionResultsAreReadFromAndroidWithoutFallbackGrants",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppWindowFocusBackendTest",
+      "name": "realWindowFocusTracksStopAndResume",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppWindowFocusBackendTest",
+      "name": "closingStopsObservationAndRejectsRestart",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "appStateIdentityDenialCannotMutateNativeMembership",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "serviceStateCodesPreserveRequiredEffectsIncludingDuplicates",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "appStateCloseAndIndependentCoresDoNotLeakMembership",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "lateMetadataAttachmentPreservesNativeStateWithoutGrantingFocus",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "applicationConstructorHadNativeIdentityBeforeContextAttachment",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "malformedPacketsDoNotMutateEvaluatedState",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "nativeImmersiveSelectionAndHistoryRoundTrip",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "nativeDecisionsAndLedgerUseBothTypesAndOrdering",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "missingChannelsBudgetsAndUnicodeAreExplicit",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "concurrentEvaluationAndCloseKeepNativeStateSafe",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "sessionRaceCommitsMatchingGenerationOrRejects",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "staleAndForeignSessionObservationsCannotCommit",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "boundFramesRequireKnownSessionAndCoherentOwnMetadata",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "sessionRenderingDrivesSelectionWithoutInventingOtherChannels",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "nativeCapacityIsBoundedAndCloseRestoresCapacity",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "realIdentityReachesNativeCoreAndRefreshPreservesRegistration",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "nativeBoundaryRejectsForgedIdentityAndStaleTokens",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "closeAndConcurrentReadsCannotUseFreedNativeState",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeWindowFocusInputTest",
+      "name": "actualWindowFeedsNativeTypeZeroWithoutInventingSessionOrDisplay",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeWindowFocusInputTest",
+      "name": "windowRelayEnforcesThreadOwnershipAndSurvivesClientClose",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeWindowFocusInputTest",
+      "name": "windowSourceVersionsAndReplacementRejectOldObservations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "callbackReentrancyCancelsLaterEntriesAndIsolatesFailure",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "actualRemoteProcessDeathRemovesAllBinderRegistrations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "denialBudgetsInvalidTypesAndCloseDoNotLeakRegistrations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "duplicatesTypesAndOwnerWideUnregisterMatchContract",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "deathDuringLinkCannotActivateStaleEntry",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "malformedAndDeniedRequestsNeverReachPolicyOperations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "constructionDoesNotPublishOrInventBackend",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "callbacksUseOriginalOneWayDescriptorsAndSizedPayload",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "allElevenTransactionsUsePinnedFieldOrder",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "blockedMainThreadDoesNotPreventServiceArrival",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "actualBinderReachesSubscriberExactlyOnce",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "absentServiceDoesNotNotifyOrPretendReady",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "existingProviderNotifiesLateSubscriberAndCannotBeReplaced",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "unsubscribedRecipientDoesNotReceiveQueuedCallback",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    }
+  ],
+  "suite_failed": false,
+  "missing_cases": [],
+  "passed": true,
+  "original_firmware_executed": false,
+  "physical_device_tested": false,
+  "arcore_camera_or_depth_tested": false,
+  "quest_hand_inference_tested": false,
+  "scope": "Our adapter instrumentation only; test APKs are not METAPORT releases",
+  "source_commit": "132d33b60b985373830677509df6cda39856b798",
+  "run_id": "37134190224",
+  "ci_diagnostics": [
+    {
+      "path": "boot-tail.txt",
+      "text": "10-03 15:46:27.650  1915  2791 D PackageManager: Clear ephemeral installer activity\n10-03 15:46:27.651  1915  2791 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE\n10-03 15:46:27.651  1915  2791 D PackageManager: Clear ephemeral installer activity\n10-03 15:46:27.653  3459  3624 I BugleRcsEngine: [66] RcsStateProvider.onMigrationComplete: Deleted transfers file: false\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: Failed to read configuration: /data/user/0/com.google.android.apps.messaging/files/rcsconfig: open failed: ENOENT (No such file or directory)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: java.io.FileNotFoundException: /data/user/0/com.google.android.apps.messaging/files/rcsconfig: open failed: ENOENT (No such file or directory)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat libcore.io.IoBridge.open(IoBridge.java:496)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat java.io.FileInputStream.<init>(FileInputStream.java:159)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat android.app.ContextImpl.openFileInput(ContextImpl.java:600)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat android.content.ContextWrapper.openFileInput(ContextWrapper.java:206)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat opj.a(SourceFile:1)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat oal.a(SourceFile:4)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat com.google.android.ims.provisioning.RcsConfigurationManager.a(SourceFile:6)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat odm.buildConferencesFileName(SourceFile:57)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat com.google.android.apps.messaging.rcsmigration.RcsStateProvider.onMigrationComplete(SourceFile:37)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat com.google.android.ims.rcsmigration.IRcsStateProvider$Stub.dispatchTransaction(SourceFile:9)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat com.google.android.aidl.BaseStub.onTransact(SourceFile:11)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat android.os.Binder.execTransactInternal(Binder.java:1021)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat android.os.Binder.execTransact(Binder.java:994)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: Caused by: android.system.ErrnoException: open failed: ENOENT (No such file or directory)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat libcore.io.Linux.open(Native Method)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat libcore.io.ForwardingOs.open(ForwardingOs.java:167)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat libcore.io.ForwardingOs.open(ForwardingOs.java:167)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat android.app.ActivityThread$AndroidOs.open(ActivityThread.java:7255)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \tat libcore.io.IoBridge.open(IoBridge.java:482)\n10-03 15:46:27.656  3459  3624 W RcsProvisioning: \t... 12 more\n10-03 15:46:27.664  5167  5308 W ogle.android.g: Long monitor contention with owner EmailBroadcastProcessorService (5309) at long android.database.sqlite.SQLiteConnection.nativePrepareStatement(long, java.lang.String)(SQLiteConnection.java:-2) waiters=0 in android.database.sqlite.SQLiteDatabase com.android.email.provider.EmailProvider.a(android.content.Context) for 511ms\n10-03 15:46:27.680  5167  5312 W ogle.android.g: Long monitor contention with owner EmailBroadcastProcessorService (5309) at long android.database.sqlite.SQLiteConnection.nativePrepareStatement(long, java.lang.String)(SQLiteConnection.java:-2) waiters=1 in android.database.sqlite.SQLiteDatabase com.android.email.provider.EmailProvider.a(android.content.Context) for 426ms\n10-03 15:46:27.712  1915  2817 W ActivityManager: Unable to start service Intent { cmp=com.google.android.gm/com.android.email.service.AttachmentService } U=0: not found\n10-03 15:46:27.756  1664  1664 D Zygote  : Forked child process 5346\n10-03 15:46:27.759  2062  3373 I aopq    : Scheduling Phenotype for a PhenotypeSyncImmediately(6, com.google.android.gms.settings.platform.boot) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]\n10-03 15:46:27.760  1915  1948 I ActivityManager: Start proc 5346:com.google.android.projection.gearhead:shared/u0a112 for broadcast {com.google.android.projection.gearhead/com.google.android.apps.auto.components.app.fzero.FzeroReceiver}\n10-03 15:46:27.763  5346  5346 I gearhead:share: Late-enabling -Xcheck:jni\n10-03 15:46:27.763  5346  5346 W gearhead:share: Unexpected CPU variant for X86 using defaults: x86_64\n10-03 15:46:27.788  2316  2703 W DynamiteModule: Local module descriptor class for providerinstaller not found.\n10-03 15:46:27.788  2316  2703 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0\n10-03 15:46:27.788  2316  2703 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.\n10-03 15:46:27.809  3269  3269 I CarrierServices: [2] bqe.a: Unbinding RcsMigrationService\n10-03 15:46:27.816  1915  2817 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE\n10-03 15:46:27.816  1915  2817 D PackageManager: Clear ephemeral installer activity\n10-03 15:46:27.843  2316  4889 I Authzen : [DeviceStateSyncManager] Device state updated successfully.\n10-03 15:46:27.850  5346  5346 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.hidl.base-V1.0-java.jar\n10-03 15:46:27.850  5346  5346 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.hidl.manager-V1.0-java.jar\n10-03 15:46:27.850  5346  5346 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.hidl.base-V1.0-java.jar\n10-03 15:46:27.860  5346  5346 I gearhead:share: The ClassLoaderContext is a special shared library.\n10-03 15:46:27.898  5346  5346 I MultiDex: VM with version 2.1.0 has multidex support\n10-03 15:46:27.898  5346  5346 I MultiDex: install\n10-03 15:46:27.898  5346  5346 I MultiDex: VM has multidex support, MultiDex support library is disabled.\n10-03 15:46:27.907  3421  5157 W d.process.medi: Verification of void com.android.org.conscrypt.ct.CTLogInfo.<init>(java.security.PublicKey, java.lang.String, java.lang.String) took 148.091ms\n10-03 15:46:27.917  2316  4034 W GetAppInfoRunnableTask: Failed to find package org.metaport.port.test\n10-03 15:46:27.921  5346  5346 W Primes  : Primes not initialized, returning default (no-op) Primes instance which will ignore all calls. Please call Primes.initialize(...) before using any Primes API.\n10-03 15:46:27.926  5346  5346 I CAR.GH  : onCreate\n10-03 15:46:27.932  2316  2703 W DynamiteModule: Local module descriptor class for providerinstaller not found.\n10-03 15:46:27.932  2316  2703 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0\n10-03 15:46:27.932  2316  2703 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.\n10-03 15:46:28.006  2062  3409 I aopq    : Scheduling Phenotype for a PhenotypeSyncImmediately(6, com.google.android.apps.maps) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]\n10-03 15:46:28.045  5195  5277 I DynamiteLoaderV2: [70] Googlecertificates\n10-03 15:46:28.047  5195  5277 W .android.chrom: Unsupported class loader\n10-03 15:46:28.065  5346  5346 I CAR.GH  : Process: SHARED_SERVICE\n10-03 15:46:28.082  2316  2703 W DynamiteModule: Local module descriptor class for providerinstaller not found.\n10-03 15:46:28.082  2316  2703 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0\n10-03 15:46:28.082  2316  2703 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.\n10-03 15:46:28.083  3421  5157 W d.process.medi: Verification of java.util.Set com.android.org.conscrypt.TrustManagerImpl$ExtendedKeyUsagePKIXCertPathChecker.getSupportedExtensions() took 120.679ms\n10-03 15:46:28.097  2062  4809 W aorl    : Phenotype platform registration failed for com.google.android.gms.settings.platform [CONTEXT service_id=204 ]\n10-03 15:46:28.097  2062  4809 W aorl    : java.util.concurrent.TimeoutException: Timed out waiting for Task\n10-03 15:46:28.097  2062  4809 W aorl    : \tat avmp.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):22)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat aorl.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat aorl.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):3)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.d(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.c(:com.google.android.gms@202414023@20.24.14 (040800-319035315):1)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat com.google.android.gms.platformconfigurator.PhenotypeConfigurationUpdateListener.onHandleIntent(:com.google.android.gms@202414023@20.24.14 (040800-319035315):16)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat qlx.onHandleIntent(:com.google.android.gms@202414023@20.24.14 (040800-319035315):4)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat cuo.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):5)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat cun.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):10)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)\n10-03 15:46:28.097  2062  4809 W aorl    : \tat java.lang.Thread.run(Thread.java:919)\n10-03 15:46:28.118  2062  3972 I aopq    : Scheduling a periodic sync task every 14400 seconds, with flex of 1800 seconds [CONTEXT service_id=51 ]\n10-03 15:46:28.146  5195  5277 W .android.chrom: Skipping duplicate class check due to unsupported classloader\n10-03 15:46:28.155  2316  2703 W DynamiteModule: Local module descriptor class for providerinstaller not found.\n10-03 15:46:28.155  2316  2703 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0\n10-03 15:46:28.155  2316  2703 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.\n10-03 15:46:28.158  2062  3409 I aopq    : Scheduling Phenotype for a PhenotypeSyncImmediately(6, com.google.android.gms.people) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]\n10-03 15:46:28.178  2316  5252 I Backup  : [GmsBackupAccountManager] Backup account not found in gmscore.\n10-03 15:46:28.242  2094  2112 I ssioncontrolle: Background young concurrent copying GC freed 17944(1046KB) AllocSpace objects, 0(0B) LOS objects, 42% free, 1560KB/2699KB, paused 24.591ms total 28.527ms\n10-03 15:46:28.249  2316  2703 W DynamiteModule: Local module descriptor class for providerinstaller not found.\n10-03 15:46:28.249  2316  2703 I DynamiteModule: Considering local module providerinstaller:0 and remote module providerinstaller:0\n10-03 15:46:28.249  2316  2703 W ProviderInstaller: Failed to load providerinstaller module: No acceptable module found. Local version is 0 and remote version is 0.\n10-03 15:46:28.253  2062  3972 I aopq    : Scheduling adaptive one off task with window [14400, 604800] in seconds [CONTEXT service_id=51 ]\n10-03 15:46:28.268  2062  3762 V Backup  : [BackupAccountNotifier] Handling new intent. Show notification: true\n10-03 15:46:28.268  5346  5346 I GAv4    : Google Analytics 17.4.49 is starting up. To enable debug logging on a device run:\n10-03 15:46:28.268  5346  5346 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG\n10-03 15:46:28.268  5346  5346 I GAv4    :   adb logcat -s GAv4\n10-03 15:46:28.329  5346  5380 W GAv4    : AnalyticsReceiver is not registered or is disabled. Register the receiver for reliable dispatching on non-Google Play devices. See http://goo.gl/8Rd3yj for instructions.\n10-03 15:46:28.341  5346  5346 E BluetoothAdapter: Bluetooth binder is null\n10-03 15:46:28.362  5195  5224 W .android.chrom: Long monitor contention with owner CrAsyncTask #1 (5277) at Hb Hc.a(android.content.Context)(PG:5) waiters=0 in boolean sl.a(java.lang.String, yl) for 1.563s\n10-03 15:46:28.367  5346  5346 I GH.CONFIG: groups:\n10-03 15:46:28.369  5346  5346 I GH.CONFIG: everyone",
+      "prefix_limit_characters": 16000
+    },
+    {
+      "path": "emulator-host.txt",
+      "text": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       146G   59G   87G  41% /\n/dev/root       146G   59G   87G  41% /\n               total        used        free      shared  buff/cache   available\nMem:           15988         619        3569          48       11798       14973\nSwap:           3071           0        3071\nAndroid emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)\nCopyright (C) 2006-2024 The Android Open Source Project and many others.\nThis program is a derivative of the QEMU CPU emulator (www.qemu.org).\n\n  This software is licensed under the terms of the GNU General Public\n  License version 2, as published by the Free Software Foundation, and\n  may be copied, distributed, and modified under those terms.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\naccel:\n0\nKVM (version 12) is installed and usable.\naccel\nPlayStore.enabled=no\nabi.type=x86_64\navd.id=<build>\navd.ini.encoding=UTF-8\navd.name=<build>\ndisk.cachePartition=yes\ndisk.cachePartition.size=66MB\ndisk.dataPartition.path=<temp>\ndisk.systemPartition.size=0\ndisk.vendorPartition.size=0\nenvironment.height=0\nenvironment.width=0\nfastboot.forceChosenSnapshotBoot=no\nfastboot.forceColdBoot=no\nfastboot.forceFastBoot=yes\nfirstboot.bootFromDownloadableSnapshot=yes\nfirstboot.bootFromLocalSnapshot=yes\nfirstboot.saveToLocalSnapshot=yes\nhw.accelerometer=yes\nhw.accelerometer_uncalibrated=yes\nhw.arc=false\nhw.audioInput=yes\nhw.audioOutput=yes\nhw.battery=yes\nhw.camera.back=emulated\nhw.camera.back.orientation=90\nhw.camera.front=none\nhw.camera.front.orientation=90\nhw.cpu.arch=x86_64\nhw.dPad=no\nhw.device.hash2=MD5:55acbc835978f326788ed66a5cd4c9a7\nhw.device.manufacturer=Google\nhw.device.name=pixel_2\nhw.display1.density=0\nhw.display1.flag=0\nhw.display1.height=0\nhw.display1.width=0\nhw.display1.xOffset=-1\nhw.display1.yOffset=-1\nhw.display2.density=0\nhw.display2.flag=0\nhw.display2.height=0\nhw.display2.width=0\nhw.display2.xOffset=-1\nhw.display2.yOffset=-1\nhw.display3.density=0\nhw.display3.flag=0\nhw.display3.height=0\nhw.display3.width=0\nhw.display3.xOffset=-1\nhw.display3.yOffset=-1\nhw.displayRegion.0.1.height=0\nhw.displayRegion.0.1.width=0\nhw.displayRegion.0.1.xOffset=-1\nhw.displayRegion.0.1.yOffset=-1\nhw.displayRegion.0.2.height=0\nhw.displayRegion.0.2.width=0\nhw.displayRegion.0.2.xOffset=-1\nhw.displayRegion.0.2.yOffset=-1\nhw.displayRegion.0.3.height=0\nhw.displayRegion.0.3.width=0\nhw.displayRegion.0.3.xOffset=-1\nhw.displayRegion.0.3.yOffset=-1\nhw.gltransport=pipe\nhw.gltransport.asg.dataRingSize=32768\nhw.gltransport.asg.writeBufferSize=1048576\nhw.gltransport.asg.writeStepSize=4096\nhw.gltransport.drawFlushInterval=800\nhw.gps=yes\nhw.gpu.enabled=no\nhw.gpu.mode=auto\nhw.gsmModem=yes\nhw.gyroscope=yes\nhw.hotplug_multi_display=no\nhw.initialOrientation=portrait\nhw.keyboard=no\nhw.keyboard.charmap=qwerty2\nhw.keyboard.lid=yes\nhw.lcd.backlight=yes\nhw.lcd.circular=false\nhw.lcd.density=420\nhw.lcd.depth=32\nhw.lcd.height=1920\nhw.lcd.transparent=false\nhw.lcd.vsync=60\nhw.lcd.width=1080\nhw.mainKeys=no\nhw.multi_display_window=no\nhw.rotaryInput=no\nhw.screen=multi-touch\nhw.sdCard=yes\nhw.sensor.hinge=no\nhw.sensor.hinge.count=0\nhw.sensor.hinge.fold_to_displayRegion.0.1_at_posture=1\nhw.sensor.hinge.resizable.config=1\nhw.sensor.hinge.sub_type=0\nhw.sensor.hinge.type=0\nhw.sensor.roll=no\nhw.sensor.roll.count=0\nhw.sensor.roll.resize_to_displayRegion.0.1_at_posture=6\nhw.sensor.roll.resize_to_displayRegion.0.2_at_posture=6\nhw.sensor.roll.resize_to_displayRegion.0.3_at_posture=6\nhw.sensors.gyroscope_uncalibrated=yes\nhw.sensors.heading=no\nhw.sensors.heart_rate=no\nhw.sensors.humidity=yes\nhw.sensors.light=yes\nhw.sensors.magnetic_field=yes\nhw.sensors.magnetic_field_uncalibrated=yes\nhw.sensors.orientation=yes\nhw.sensors.pressure=yes\nhw.sensors.proximity=yes\nhw.sensors.rgbclight=no\nhw.sensors.temperature=yes\nhw.sensors.wrist_tilt=no\nhw.touchpad0=no\nhw.touchpad0.height=400\nhw.touchpad0.width=600\nhw.trackBall=no\nhw.useext4=yes\nimage.sysdir.1=system-images/android-29/google_apis/x86_64/\nkernel.newDeviceNaming=autodetect\nkernel.supportsYaffs2=autodetect\nruntime.network.latency=none\nruntime.network.speed=full\nsdcard.size=512 MB\nshowDeviceFrame=yes\ntag.display=Google APIs\ntag.id=google_apis\ntest.delayAdbTillBootComplete=0\ntest.monitorAdb=0\ntest.quitAfterBootTimeOut=-1\nuserdata.useQcow2=no\nhw.cpu.ncore=2\nhw.ramSize=2048\nvm.heapSize=512\ndisk.dataPartition.size=2048M",
+      "prefix_limit_characters": 16000
+    },
+    {
+      "path": "emulator-output.txt",
+      "text": "INFO         | Android emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)\nINFO         | Graphics backend: gfxstream\nINFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-29/google_apis/x86_64/\nWARNING: cannnot unmap ptr 0x7f2feca01000 as it is in the protected range from 0x7f2f6ca00000 to 0x7f2fecc00000\nINFO         | Saving last run QEMU version for the AVD to 2\nWARNING      | Please update the emulator to one that supports the feature(s): Vulkan\nINFO         | Feature 'Vulkan' (21) is overridden to 'disabled'\nINFO         | Guest GLES Driver: Auto (ext controls)\nINFO         | emuglConfig_init: vulkan_mode_selected:swiftshader gles_mode_selected:swiftshader\nINFO         | Checking system compatibility:\nINFO         |   Checking: hasSufficientDiskSpace\nINFO         |      Ok: Disk space requirements to run avd: `test` are met\nINFO         |   Checking: hasSufficientHwGpu\nINFO         |      Ok: Hardware GPU compatibility checks are not required\nINFO         |   Checking: hasSufficientSystem\nINFO         |      Ok: System requirements to run avd: `test` are met\nWARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1\nWARNING      | FeatureControl is requesting a non existing feature.\nINFO         | Storing crashdata in: /tmp/android-runner/emu-crash-37.2.12.db, detection is enabled for process: 3270\nINFO         | Initializing gfxstream backend\nINFO         | startOpenglesRendererImpl: gpu info\nINFO         | \nINFO         | SharedLibrary::open for [libX11]\nINFO         | SharedLibrary::open for [libX11-xcb]\nWARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1\nINFO         | SharedLibrary::open for [libX11-xcb.so.1]\nINFO         | Graphics Adapter Vendor Google (Google Inc.)\nINFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)\nINFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)\nINFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 \nINFO         | Graphics Device Extensions N/A\nINFO         | Userspace boot properties:\nINFO         |   android.bootanim=0\nINFO         |   android.qemud=1\nINFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0\nINFO         |   androidboot.hardware=ranchu\nINFO         |   androidboot.serialno=EMULATOR37X2X12X0\nINFO         |   androidboot.vbmeta.digest=e565d59c032d8f786b6463dbea3d0c8d823a00cdec3d0e5de905a3c535fef13b\nINFO         |   androidboot.vbmeta.hash_alg=sha256\nINFO         |   androidboot.vbmeta.size=4352\nINFO         |   qemu=1\nINFO         |   qemu.avd_name=test\nINFO         |   qemu.camera_hq_edge_processing=0\nINFO         |   qemu.dalvik.vm.heapsize=512m\nINFO         |   qemu.encrypt=1\nINFO         |   qemu.gles=1\nINFO         |   qemu.gltransport=pipe\nINFO         |   qemu.gltransport.drawFlushInterval=800\nINFO         |   qemu.hwcodec.avcdec=2\nINFO         |   qemu.hwcodec.hevcdec=2\nINFO         |   qemu.hwcodec.vpxdec=2\nINFO         |   qemu.opengles.version=196608\nINFO         |   qemu.settings.system.screen_off_timeout=2147483647\nINFO         |   qemu.skin=1080x1920\nINFO         |   qemu.uirenderer=skiagl\nINFO         |   qemu.vsync=60\nINFO         |   qemu.wifi=1\nINFO         | Monitoring duration of emulator setup.\nINFO         | Setting display: 0 configuration to: 1080x1920, dpi: 420x420 \nINFO         | setDisplayActiveConfig: id:0, 1080x1920\nINFO         | emulatorSetupEnvironment: Environment scene is not required\nUSER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.\nWARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.\nWARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.\nINFO         | Boot completed in 17761 ms\nINFO         | Increasing screen off timeout, logcat buffer size to 2M.\nINFO         | Wait for emulator (pid 3270) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)\n\nUSER_INFO    | Snapshots have been disabled by the user, save request is ignored.\nINFO         | Saving snapshot 'default_boot' took 1 ms\nERROR        | stop: Not implemented\nWARNING      | Emulator client has not yet been configured.. Call configure me first!\nINFO         | removeAll",
+      "prefix_limit_characters": 16000
+    }
+  ]
+}

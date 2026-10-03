@@ -1,0 +1,155 @@
+name: Original tracking service scheduler disassembly
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [handtracking/ai/prepare_tracking_bridges.py, handtracking/ai/tests/test_tracking_bridges.py, handtracking/ai/ghidra/SelectTrackingBridge.java, handtracking/ai/ghidra/TraceHandService.java, handtracking/ai/prepare_hand_service.py, handtracking/ai/tests/test_prepare_hand_service.py, .github/workflows/hand-service.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-hand-service
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/hand-service
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Prepare verified original engine, no execution
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils
+          python3 -m unittest handtracking.ai.tests.test_prepare_hand_service handtracking.ai.tests.test_tracking_bridges -v
+          mkdir -p "$WORK/reports" "$WORK/project"
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          from handtracking.ai.prepare_hand_service import prepare
+          root=Path(os.environ['WORK'])
+          result=reconstruct(root/'firmware.zip',root/'images',selected={'odm'})
+          (root/'reconstruction.json').write_text(json.dumps(result))
+          prepare(root/'images',root/'reconstruction.json',root/'reports')
+          PY
+      - name: Install pinned static decompiler
+        run: |
+          curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
+            --proto '=https' --proto-redir '=https' \
+            'https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3.2_build/ghidra_11.3.2_PUBLIC_20250415.zip' -o "$WORK/ghidra.zip"
+          echo "99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2  $WORK/ghidra.zip" | sha256sum --check --strict
+          unzip -q "$WORK/ghidra.zip" -d "$WORK"
+      - name: Disassemble original shared service scheduling and buffer controls
+        id: decompile
+        run: |
+          "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
+            -import "$WORK/reports/trackingservice" -max-cpu 2 -analysisTimeoutPerFile 600 \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
+            -postScript TraceHandService.java "$WORK/reports/service-functions.txt" "$WORK/reports/hand-service-scheduling-calls.json" \
+            -postScript DecompileHands.java "$WORK/reports/service-functions.txt" "$WORK/reports/service-strings.json" "$WORK/reports/hand-service-decompilation.json" 1024 \
+            -deleteProject > "$WORK/ghidra.log" 2>&1
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from handtracking.ai.prepare_hand_service import SERVICE_SHA
+          r=json.loads((Path(os.environ['WORK'])/'reports/hand-service-decompilation.json').read_text())
+          assert r['program_sha256'].lower()==SERVICE_SHA
+          assert r['firmware_executed'] is False
+          assert any(f['status']=='DECOMPILED_NOT_VALIDATED' for f in r['functions'])
+          PY
+      - name: Disassemble pinned tracking host and vendor utility shims
+        id: bridges
+        run: |
+          for item in 'libhzos_trackinghost.meta.so:hand-hzos-host' 'libtrackingvendorutils.so:hand-vendor-utils'; do
+            binary=${item%%:*}
+            prefix=${item#*:}
+            "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" "$prefix" \
+              -import "$WORK/reports/$binary" -max-cpu 2 -analysisTimeoutPerFile 120 \
+              -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
+              -postScript SelectTrackingBridge.java "$WORK/reports/$prefix" \
+              -postScript DecompileHands.java "$WORK/reports/$prefix-functions.txt" "$WORK/reports/$prefix-strings.json" "$WORK/reports/$prefix-decompilation.json" 1024 \
+              -deleteProject > "$WORK/$prefix.log" 2>&1
+          done
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from handtracking.ai.prepare_tracking_bridges import BRIDGES
+          root=Path(os.environ['WORK'])/'reports'
+          for _,prefix,_,sha in BRIDGES:
+              r=json.loads((root/f'{prefix}-decompilation.json').read_text())
+              assert r['program_sha256'].lower()==sha and r['firmware_executed'] is False
+              assert any(f['status']=='DECOMPILED_NOT_VALIDATED' for f in r['functions'])
+          PY
+      - name: Record measured outcome
+        if: always()
+        env:
+          OUTCOME: ${{ steps.decompile.outcome }}
+          BRIDGES_OUTCOME: ${{ steps.bridges.outcome }}
+        run: |
+          mkdir -p "$WORK/reports"
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ['WORK']);log=p/'ghidra.log'
+          result={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
+                  'decompile_step':os.environ['OUTCOME'],'bridges_step':os.environ['BRIDGES_OUTCOME'],'horizon_ported':False,'firmware_executed':False,
+                  'analysis_timeout_seconds':600,'pointer_candidates_are_abi':False,
+                  'bridge_log_tails':{name:'\n'.join((p/f'{name}.log').read_text(errors='replace').splitlines()[-40:])
+                     for name in ('hand-hzos-host','hand-vendor-utils') if (p/f'{name}.log').exists()},
+                  'log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-80:]) if log.exists() else None}
+          (p/'reports/hand-service-run.json').write_text(json.dumps(result,indent=2)+'\n')
+          PY
+      - name: Publish evidence only, never proprietary binaries
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Refresh while the checkout is clean, before copying generated reports.
+          # Queued runs may start from a commit older than a previous report.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          dest=analysis/builds/52168470052900520
+          for name in hand-service-targets hand-service-decompilation hand-service-scheduling-calls hand-service-run hand-service-bridges hand-hzos-host-selection hand-hzos-host-decompilation hand-vendor-utils-selection hand-vendor-utils-decompilation; do
+            if [ -f "$WORK/reports/$name.json" ]; then
+              cp "$WORK/reports/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original shared tracking service evidence, not phone integration [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            published=0
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+                published=1
+                break
+              fi
+            done
+            test "$published" = 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-hand-service-evidence-no-binaries
+          path: |
+            ${{ env.WORK }}/reports/hand-service-*.json
+            ${{ env.WORK }}/reports/hand-hzos-host-*.json
+            ${{ env.WORK }}/reports/hand-vendor-utils-*.json
+          retention-days: 7

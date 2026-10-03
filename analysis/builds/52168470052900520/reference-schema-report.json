@@ -1,0 +1,334 @@
+{
+  "status": "INDEPENDENT_PUBLIC_SCHEMA_COMPARISON_NOT_RUNTIME_VALIDATION",
+  "schema_commit": "4b9d44206a99c1ce39315487599971b257a02ed8",
+  "flatc_version": "flatc version 1.12.0",
+  "model_executed": false,
+  "models": [
+    {
+      "path": "/etc/handtracking/runtime/dpe/DPEV31MG.ptez",
+      "decoded_sha256": "fa3ab2870516b227abf72eb6a74e7e66824eec83b33097b742b1239f14e9f8c4",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {},
+      "scalar_crosschecks": [],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/dpe/DPEV32MG.ptez",
+      "decoded_sha256": "721625ad93f07fee75c4205fd485fea4f61c66ad04cc07cb93b4326da9a8247b",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {},
+      "scalar_crosschecks": [],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV30.ptez",
+      "decoded_sha256": "2909080fdac438cb3056a05697d9785df05e7c2829e570bcf63ca7d73bd41128",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 5,
+        "kernel_size": 7,
+        "hidden_dim": 384,
+        "left_context": 60,
+        "featurizer_version": 4
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 5,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 7,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 384,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 60,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "featurizer_version",
+          "native_int64": 4,
+          "status": "AGREEMENT"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV31.ptez",
+      "decoded_sha256": "c17c7a9ecdb33eccf56712cd84642e6adffbd8d6737c800c4bf0f9dd5ae7118b",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 5,
+        "kernel_size": 7,
+        "hidden_dim": 384,
+        "left_context": 60,
+        "featurizer_version": 4
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 5,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 7,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 384,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 60,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "featurizer_version",
+          "native_int64": 4,
+          "status": "AGREEMENT"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_keyboard/SKBV32.ptez",
+      "decoded_sha256": "a8b5512364d1a45fef2e25f1990c1a657487c4ff68cd52ea3d3400708c0c68b4",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 5,
+        "kernel_size": 7,
+        "hidden_dim": 384,
+        "left_context": 80,
+        "featurizer_version": 4
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 5,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 7,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 384,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 80,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "featurizer_version",
+          "native_int64": 4,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV30.ptez",
+      "decoded_sha256": "8c15f49068b7b1135d70c8e887b54bf58e5013728ed60a27e98f0cd2217c2671",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 6,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 16,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 128,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 31,
+          "status": "AGREEMENT"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31.ptez",
+      "decoded_sha256": "945d5295961d582373cdeaa6fb65337938c2a1327ef2e80db2d32b8a4a13a49e",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 6,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 16,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 128,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 31,
+          "status": "AGREEMENT"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV31_Day0.ptez",
+      "decoded_sha256": "3d69b47282bac4e71686942b3d8d55d9edcfe6692ed7716874dd0cbbdc0275be",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 6,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 16,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 128,
+          "status": "AGREEMENT"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 31,
+          "status": "AGREEMENT"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV32.ptez",
+      "decoded_sha256": "3575989736ea0c1dc268536f6d70a65d56f11565ab52f5020b1d399f3b8210c4",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 6,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 16,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 128,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 31,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    },
+    {
+      "path": "/etc/handtracking/runtime/surface_touchpad/STPV32_Day0.ptez",
+      "decoded_sha256": "9600f0f6cc7051d1f08394713137c1ae40daae7c0bb90592e84f70e663beb0a4",
+      "public_schema_verifier_passed": true,
+      "flatbuffers_runtime_version": "1.12.0",
+      "model_executed": false,
+      "int_getters": {
+        "num_layers": 6,
+        "kernel_size": 16,
+        "hidden_dim": 128,
+        "left_context": 31
+      },
+      "scalar_crosschecks": [
+        {
+          "method": "num_layers",
+          "native_int64": 6,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "kernel_size",
+          "native_int64": 16,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "hidden_dim",
+          "native_int64": 128,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        },
+        {
+          "method": "left_context",
+          "native_int64": 31,
+          "status": "NATIVE_INT64_WITH_STRICT_EXTENT_WARNING"
+        }
+      ],
+      "status": "COMPARISON_COMPLETE"
+    }
+  ]
+}

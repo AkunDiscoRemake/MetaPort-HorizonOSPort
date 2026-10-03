@@ -1,0 +1,4297 @@
+{
+  "source_apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
+  "source_ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "app_service_transport": [],
+  "framework_dex_additions": [],
+  "instruction_adaptations": [],
+  "original_native_dependencies_unmodified": true,
+  "added_members": {
+    "lib/arm64-v8a/libhzos_spaces.meta.so": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
+    "lib/arm64-v8a/libhzos.meta.so": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
+    "lib/arm64-v8a/libbase.so": "d3cb46a91077ab502f06997a99215996570ce04cf2fd3f67715911507d53e02c",
+    "lib/arm64-v8a/libc++.so": "9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72",
+    "lib/arm64-v8a/libhzos_fphal.meta.so": "99b1b8b42068e3328fb62a843f0c75a46b765966a9ee690e0250d001409c0562",
+    "lib/arm64-v8a/libaudioclient.so": "c143525b4b209c381b1e6bb09fa5ff1c38e1d6eeb79fc267c7518928f5fa47e9",
+    "lib/arm64-v8a/libbinder.so": "b00c5ed730f1a41b51bdcf7b3aa426d0dbde15d24370709f286fc774f6efd11a",
+    "lib/arm64-v8a/libcamera_metadata.so": "642592001352a2f6cf2bde7f304dada3eeef747df51be6cc90cbcfa544f8586b",
+    "lib/arm64-v8a/libfmq.so": "b04bce487d3d35fe84946d631395dcf1ea8e1b43b1d9e272bbf938ba8b8a6cbb",
+    "lib/arm64-v8a/libgui.so": "4c4fc4fcfb27a06f473d63e62c2fd054d7f921c37b19b495921e4fdfc89216db",
+    "lib/arm64-v8a/libhidlbase.so": "2dde391bc8fb694f46c450ad3e545d32675c2a9f076870f2fcfaea4da613ad11",
+    "lib/arm64-v8a/libinsights.so": "b3cc138675f18c16da33cbb088e009383914e086115f31178b5adcb2c9ad77a9",
+    "lib/arm64-v8a/libjsoncpp.so": "f3702efff12555a422ace30e74245b9886ae4fa5a02066ff1aa08dda2e19fba7",
+    "lib/arm64-v8a/libnativedisplay.so": "c57ed363e40a5a6baad0583ee2f38d5df922cc6ff3015139a6a986de2007d901",
+    "lib/arm64-v8a/libnativehelper.so": "f30f5667bb20e4952ec8734dbf6b6a894f8b260d16cc7759969661636c30711e",
+    "lib/arm64-v8a/libosutils.so": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
+    "lib/arm64-v8a/libreportstatsevent.so": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
+    "lib/arm64-v8a/libui.so": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
+    "lib/arm64-v8a/libutils.so": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
+    "lib/arm64-v8a/libepsmixermessagechannel.so": "e898fcf1bb4d24a0ccf7d6243f1adac86d8099ba4a39a1ecf5acd94b45bb7387",
+    "lib/arm64-v8a/android.media.audio.common.types-V2-cpp.so": "5e1e6c5b777561c2db36d99975a78189f0d415649b2e95c09d4cfe9273ce0400",
+    "lib/arm64-v8a/audioclient-types-aidl-cpp.so": "b0109407e6679b636bdb50450aef79e71c313044096b9c5bd31dac43fee67834",
+    "lib/arm64-v8a/audioflinger-aidl-cpp.so": "b4d7734cfbca1551b25068437e4cd707fb66717ba096b6ead0e821e5eee12c46",
+    "lib/arm64-v8a/audiopolicy-aidl-cpp.so": "b5a585bcea70b14e1ccccebf6119cda43aa7265c9f679784254aac326b2d72b4",
+    "lib/arm64-v8a/spatializer-aidl-cpp.so": "c8352a7d32de66654d176ccf33cc4fb5320da9e5c2995243ab8858aad4de5442",
+    "lib/arm64-v8a/audiopolicy-types-aidl-cpp.so": "e9ad3ef0d9e9830089dff0c6261d79b9a2a15a6fee2d03787676df79a4f39c1d",
+    "lib/arm64-v8a/av-types-aidl-cpp.so": "5027d6f78955b77b2bf4c279043ff79f615cc29a4488d55a020a8820d92fa062",
+    "lib/arm64-v8a/capture_state_listener-aidl-cpp.so": "cdccc48b50600c7b9acd4dbed7d0656be22b5f5121091b928b9a5a62b2d7d984",
+    "lib/arm64-v8a/libaudio_aidl_conversion_common_cpp.so": "ef85fee06049a86d2244eecb7dca069c4b3b5f936c1531a54de020de5b3742f4",
+    "lib/arm64-v8a/libaudioclient_aidl_conversion.so": "3ba71b16e202d687178cf976ddc02b2d532986270fecce52c2fd8e4064ac18cb",
+    "lib/arm64-v8a/libaudiofoundation.so": "a517d14256391c5f79ed38de661ae11b433fefd724ca88391ba31634cced5805",
+    "lib/arm64-v8a/libaudioutils.so": "b5111fbecba1b1c7ac29424d37e366728d6b1c8519f2d62827e8ec06063d91bb",
+    "lib/arm64-v8a/libaudiopolicy.so": "34450fb726c65b5d9312c199169a665378443b49cf3065aaf6da535a5c8dbb68",
+    "lib/arm64-v8a/libaudiomanager.so": "f0645685680846fed4798b6b1d58e6fa0c252e366c97d39222e54bc11ad78190",
+    "lib/arm64-v8a/libmedia_helper.so": "923a8e682a9943fa49d9ed97e58d59252bc215b0868578b6485f0e76bff08294",
+    "lib/arm64-v8a/libmediametrics.so": "f224888f7d13782bf48fe0edea95e1924ddfd17c400ba4b39e8a35effe24e1a5",
+    "lib/arm64-v8a/libmediautils.so": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40",
+    "lib/arm64-v8a/libnblog.so": "278d5c04ace25e08a7807e35df6c20697db062ae1c80a40dd9361587a3f96baf",
+    "lib/arm64-v8a/libprocessgroup.so": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053",
+    "lib/arm64-v8a/libshmemcompat.so": "79b92b40c8d10518b657bdb7c3a83b5cc94a152f1eddf9f87057d364bee20b09",
+    "lib/arm64-v8a/framework-permission-aidl-cpp.so": "c6eae45c79aa6cce4de0b0da93c895a17aa36fed6e1f8d198c0dbe1744dbe99e",
+    "lib/arm64-v8a/packagemanager_aidl-cpp.so": "9793d2a7dc5b7c413aa7e451670432f20e4f2f4f18549b45633d4e97302b2583",
+    "lib/arm64-v8a/volumetricwindow_aidl-cpp.so": "20401099ac0b9dd705d89ecea10430716bde035aff86113e1b59896a5d870302",
+    "lib/arm64-v8a/android.hardware.graphics.common-V4-ndk.so": "2d3e696891435002c9ded6cac22d908d3f133d1fc905b38d77fdb0a2e16f88b9",
+    "lib/arm64-v8a/android.hardware.graphics.bufferqueue@1.0.so": "e5320672abd66dc7302698931396f0c90f9fcb26e91ad97cab5d6badfac7fdb8",
+    "lib/arm64-v8a/android.hardware.graphics.bufferqueue@2.0.so": "97a59ef87ddaa9283ff02a7f0cbe1d125c366e70a075d024a28f042125c52d91",
+    "lib/arm64-v8a/android.hardware.graphics.common@1.1.so": "9962487af24ac4c3b91991f11946b32f956c183225408dfb30ac904e2077c63d",
+    "lib/arm64-v8a/android.hardware.graphics.common@1.2.so": "8efff97baf46f21801636f905aec0f986cad41fe6c7512d95216fdac3d0a47a0",
+    "lib/arm64-v8a/android.hidl.token@1.0-utils.so": "a69fc675c7ebf37a78ce7f9e661f7a6319ee57d7997067e0905d7fff56ecdc2a",
+    "lib/arm64-v8a/libsync.so": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9",
+    "lib/arm64-v8a/libvndksupport.so": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168",
+    "lib/arm64-v8a/telemetryservice-aidl-cpp.so": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b",
+    "lib/arm64-v8a/libstatssocket.so": "c5318e1d8c4a2dffe1492d63959a7bb352862d48127516bd8fae8c926c70d522",
+    "lib/arm64-v8a/android.hardware.graphics.allocator-V2-ndk.so": "12dc82a2497e386a628d935a31224aa9bf64b12067a643ff90dce8b9650bdfdc",
+    "lib/arm64-v8a/android.hardware.graphics.allocator@2.0.so": "1a77a65371e50d203c6c79b6c6becc1f7f72f8dd16ffade13432c23cba793375",
+    "lib/arm64-v8a/android.hardware.graphics.allocator@3.0.so": "df4722b7ba6536eeb0a633ad2ee40846906f7b601d407f25f5805c7e437e0cfc",
+    "lib/arm64-v8a/android.hardware.graphics.allocator@4.0.so": "840059bbd5bc722c6a37b188282876388a810dfc6a8e96fea589b7b188a34d62",
+    "lib/arm64-v8a/android.hardware.graphics.mapper@2.0.so": "cf2e007300374244296529dc4371e16bc38a82d0ee1f33fa81f41f095be76ab9",
+    "lib/arm64-v8a/android.hardware.graphics.mapper@2.1.so": "a9dd5ad68dd0a3aa6b6b6183187ae9708c3362c27021050b3dd120f5434b8519",
+    "lib/arm64-v8a/android.hardware.graphics.mapper@3.0.so": "6874d9cf114d1f8ff300d3ccca3fd1da7aa237769038fd41705220316363859c",
+    "lib/arm64-v8a/android.hardware.graphics.mapper@4.0.so": "0098a7a0b2b4a43ffa27adbcb236d64ac26d891a0b6220af8354b05982c9d5a1",
+    "lib/arm64-v8a/libgralloctypes.so": "e9f9ef034c6a20e48c91a704a7b2f34b43525911a5c89d4d0d0178ed9e8dfa2c",
+    "lib/arm64-v8a/libepsmixercommon.so": "548d39336e86848e7f055b8ae61250cd57871397af6605339be76e46cd61bcf6",
+    "lib/arm64-v8a/effect-aidl-cpp.so": "c59d8f6a510205f832305c4ff1d4a6bb1a0b65363fc7262b90f607370e307259",
+    "lib/arm64-v8a/shared-file-region-aidl-cpp.so": "10544443625c4cd8fd559c5fd55a14d766c60d1501d6e1992bf2ccfb29065a27",
+    "lib/arm64-v8a/libstagefright_foundation.so": "e4eb58f96de18674517df7ca379172a0482629ef65c35eed674ef6dc608b11da",
+    "lib/arm64-v8a/libspeexresampler.so": "209cfcfd0adc5a3f02989868aa326451a37fb5048cf5a8ceb3d187ba4ba6b863",
+    "lib/arm64-v8a/mediametricsservice-aidl-cpp.so": "fec808edcef27602de8343ce9d5029e593419b3724e0a92c620ea824ecf62f1d",
+    "lib/arm64-v8a/libpermission.so": "435b47ad6d69840dba82ef1b9b67922034a3b0131359d304b482964bb35d7aed",
+    "lib/arm64-v8a/libcgrouprc.so": "030aa68d5e60183c5218af73085e0826a0c0169a84b212d87d350f8eb7621b00",
+    "lib/arm64-v8a/libshmemutil.so": "3dcd9fb89567cc695541616ddd71bdb63e2e6ff13b7c9da8e3990c0bc64b9aca",
+    "lib/arm64-v8a/android.hardware.common-V2-ndk.so": "79d9dfa83e28a1b7ed46c26ba96fe770245bccde820f6a69bc8afae348be41a3",
+    "lib/arm64-v8a/android.hardware.graphics.common@1.0.so": "9381845b861356cc4c7c993e44a12a39119db0285af34f828ecae9f1d269f288",
+    "lib/arm64-v8a/android.hardware.media@1.0.so": "90b65836ce321c119c5b072d6fb2309dfa5b2e97d2e101756fd100a0c4220a7a",
+    "lib/arm64-v8a/android.hidl.token@1.0.so": "809b0142715d6c318a263e50729a6db9fc423e4737a16921f3503bc5bd325346",
+    "lib/arm64-v8a/libdl_android.so": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
+    "lib/arm64-v8a/ld-android.so": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac"
+  },
+  "nodes": [
+    {
+      "soname": "libshell.so",
+      "sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+      "size_bytes": 41235512,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libcutils.so",
+      "sha256": "c25cbb289f154ee0aba87d7887ac715db56e627d3f7ff3ed8f3a1aadea3c30c2",
+      "size_bytes": 140536,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libjnigraphics.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libimageprocessing.so",
+      "sha256": "3fe9e2884c5985b2aa346c2fbe6eb5798e75aa97460e34c572ac23e4602f7611",
+      "size_bytes": 260984,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libopenxr_loader.so",
+      "sha256": "91134bd0b7ef3857f2e8e606cd6e644f4378126a06204e5f839fc7953b5a3985",
+      "size_bytes": 180512,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libhzos_spaces.meta.so",
+      "sha256": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
+      "size_bytes": 23528,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libhzos_spaces.meta.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libEGL.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libNativeApiManager.so",
+      "sha256": "d746999f3dda543083733eee0f04b4eee5931870223d0a73fd54c7065e36f542",
+      "size_bytes": 16376,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "sha256": "3968be4ce2e1b480940d36da5735a91d23fb590bcd5558c5c176a261ea771969",
+      "size_bytes": 114352,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libMetaXRAudioFMOD.so",
+      "sha256": "63f22e99b34b09582962497092d4f397191c4b8904905542dfcb89ea92e253f8",
+      "size_bytes": 1678976,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libfmodmerged.so",
+      "sha256": "f2c791918f585a9da23750dc850b5bcbf1c46330b6836f2f8bfdad691d5ef791",
+      "size_bytes": 1833672,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libxplat_perflogger_conversions_conversions.so",
+      "sha256": "73e1a324245f158b3b89b3ccd74b78411edf654d1066607a3873ca795b3396f7",
+      "size_bytes": 32184,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libnativewindow.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libthirdparty_utils.so",
+      "sha256": "a154d2fa3a84a8c34abc44c21b1ec20abdd1febad4cff76f89cd90d9728a8ae9",
+      "size_bytes": 27336,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "sha256": "56dc9cebffbb9f5554d612ad0596a989a2fa67d914e352e6f07c0120d9c0b8dc",
+      "size_bytes": 191320,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libthird-party_volk_volk.so",
+      "sha256": "a7dbde4c7bcc69bccf00627cb0a58012ab2932e8116241a8195445889a3966c1",
+      "size_bytes": 70848,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libovravatar2p.so",
+      "sha256": "fbe6533479d5209a8ea2b2418aeb7024bdd5b6fedfdb6ac2b212756f27525f17",
+      "size_bytes": 8342584,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libpando.so",
+      "sha256": "03da722f68aa7c4c345ceda3aa6048e925d3eeba29d1735b4c4272149da92e9d",
+      "size_bytes": 109488,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libdl.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libmediandk.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libnimble.so",
+      "sha256": "2a42a86b746f5262074a3fbe380c44fdcfb116415716fdc98805407eea042345",
+      "size_bytes": 95136,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libfolly_utils.so",
+      "sha256": "373b4cea4eb387342c9dd11975d68ebbeab75db52d4944cd78369ba52c2d93c8",
+      "size_bytes": 135136,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libproxygen.so",
+      "sha256": "bacaa1ccf4583eb2c0ae094847c4881a9b32099008dafd0e1406714f129fa53a",
+      "size_bytes": 25552,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libxplat_folly_futures_shared_promise.so",
+      "sha256": "9469acdcd015e3aa3427a25f96b28ac5b6d1fb481f7fd6acdf62485f2d07d2b3",
+      "size_bytes": 3376,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libhzos.meta.so",
+      "sha256": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
+      "size_bytes": 1056616,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libhzos.meta.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libbinder_ndk.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libz.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libnetwork.so",
+      "sha256": "77a49ae1682d9c752d74cf934d3e6516f608a7b753251384fa9291e0b0931def",
+      "size_bytes": 4724008,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libfbjni.so",
+      "sha256": "bed6538ef53bd5107109fc0a909a6cab2914cf18d64d12f3e4a8afd185fc299e",
+      "size_bytes": 59728,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libandroid.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "liblog.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libnetwork_1.so",
+      "sha256": "9ce250c27a915f2b2b83e6e042873f16b504d2ba2dc024d10ff725b3884334b2",
+      "size_bytes": 3600,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libc++_shared.so",
+      "sha256": "b9220b4c909293533de96ae0ad2654d034b9abc69c419fd3f877f91c6970284c",
+      "size_bytes": 572976,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libGLESv2.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libskia.so",
+      "sha256": "d5ccba7467b7a5460522c85e648f2b18b3c15a124f8a444b67bcac53330b60bf",
+      "size_bytes": 48432,
+      "status": "ORIGINAL_APK_MEMBER"
+    },
+    {
+      "soname": "libm.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libc.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libbase.so",
+      "sha256": "d3cb46a91077ab502f06997a99215996570ce04cf2fd3f67715911507d53e02c",
+      "size_bytes": 271104,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libbase.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libc++.so",
+      "sha256": "9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72",
+      "size_bytes": 727248,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libc++.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libhzos_fphal.meta.so",
+      "sha256": "99b1b8b42068e3328fb62a843f0c75a46b765966a9ee690e0250d001409c0562",
+      "size_bytes": 10720,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libhzos_fphal.meta.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libaaudio.so",
+      "status": "PUBLIC_NDK_CANDIDATE_NOT_SYMBOL_VERIFIED"
+    },
+    {
+      "soname": "libaudioclient.so",
+      "sha256": "c143525b4b209c381b1e6bb09fa5ff1c38e1d6eeb79fc267c7518928f5fa47e9",
+      "size_bytes": 958864,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudioclient.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libbinder.so",
+      "sha256": "b00c5ed730f1a41b51bdcf7b3aa426d0dbde15d24370709f286fc774f6efd11a",
+      "size_bytes": 892096,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libbinder.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libcamera_metadata.so",
+      "sha256": "642592001352a2f6cf2bde7f304dada3eeef747df51be6cc90cbcfa544f8586b",
+      "size_bytes": 57840,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libcamera_metadata.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libfmq.so",
+      "sha256": "b04bce487d3d35fe84946d631395dcf1ea8e1b43b1d9e272bbf938ba8b8a6cbb",
+      "size_bytes": 15160,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libfmq.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libgui.so",
+      "sha256": "4c4fc4fcfb27a06f473d63e62c2fd054d7f921c37b19b495921e4fdfc89216db",
+      "size_bytes": 1658824,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libgui.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libhidlbase.so",
+      "sha256": "2dde391bc8fb694f46c450ad3e545d32675c2a9f076870f2fcfaea4da613ad11",
+      "size_bytes": 734448,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libhidlbase.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libinsights.so",
+      "sha256": "b3cc138675f18c16da33cbb088e009383914e086115f31178b5adcb2c9ad77a9",
+      "size_bytes": 14696,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libinsights.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libjsoncpp.so",
+      "sha256": "f3702efff12555a422ace30e74245b9886ae4fa5a02066ff1aa08dda2e19fba7",
+      "size_bytes": 197552,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libjsoncpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libnativedisplay.so",
+      "sha256": "c57ed363e40a5a6baad0583ee2f38d5df922cc6ff3015139a6a986de2007d901",
+      "size_bytes": 71568,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libnativedisplay.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libnativehelper.so",
+      "sha256": "f30f5667bb20e4952ec8734dbf6b6a894f8b260d16cc7759969661636c30711e",
+      "size_bytes": 27248,
+      "status": "BUNDLED_ORIGINAL_APEX_LIBRARY",
+      "path": "/lib64/libnativehelper.so",
+      "apex_path": "/system/apex/com.android.art.apex",
+      "apex_sha256": "4614c9712f15d53b5a3c937fb7f4107fd3df7f8f6bcc9fc20ef9c32b9fd2940d",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libosutils.so",
+      "sha256": "d3748eab4fd5ae29495ebfccb012281d38b600b8c25c7a77d87242099622ef72",
+      "size_bytes": 368232,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libosutils.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libreportstatsevent.so",
+      "sha256": "146223cfb0883b4115534087f458db6dfac8d3b0c37a428da9617a29bf045c0f",
+      "size_bytes": 76984,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libreportstatsevent.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libui.so",
+      "sha256": "c3008d3fdcde3916370a47d7d8845575495480d46fa9ed25920d31e28d9e36a3",
+      "size_bytes": 365328,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libui.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libutils.so",
+      "sha256": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
+      "size_bytes": 129496,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libutils.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libepsmixermessagechannel.so",
+      "sha256": "e898fcf1bb4d24a0ccf7d6243f1adac86d8099ba4a39a1ecf5acd94b45bb7387",
+      "size_bytes": 202176,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libepsmixermessagechannel.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "android.media.audio.common.types-V2-cpp.so",
+      "sha256": "5e1e6c5b777561c2db36d99975a78189f0d415649b2e95c09d4cfe9273ce0400",
+      "size_bytes": 102328,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.media.audio.common.types-V2-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "audioclient-types-aidl-cpp.so",
+      "sha256": "b0109407e6679b636bdb50450aef79e71c313044096b9c5bd31dac43fee67834",
+      "size_bytes": 72288,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/audioclient-types-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "audioflinger-aidl-cpp.so",
+      "sha256": "b4d7734cfbca1551b25068437e4cd707fb66717ba096b6ead0e821e5eee12c46",
+      "size_bytes": 353544,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/audioflinger-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "audiopolicy-aidl-cpp.so",
+      "sha256": "b5a585bcea70b14e1ccccebf6119cda43aa7265c9f679784254aac326b2d72b4",
+      "size_bytes": 298552,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/audiopolicy-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "spatializer-aidl-cpp.so",
+      "sha256": "c8352a7d32de66654d176ccf33cc4fb5320da9e5c2995243ab8858aad4de5442",
+      "size_bytes": 101672,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/spatializer-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "audiopolicy-types-aidl-cpp.so",
+      "sha256": "e9ad3ef0d9e9830089dff0c6261d79b9a2a15a6fee2d03787676df79a4f39c1d",
+      "size_bytes": 37024,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/audiopolicy-types-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "av-types-aidl-cpp.so",
+      "sha256": "5027d6f78955b77b2bf4c279043ff79f615cc29a4488d55a020a8820d92fa062",
+      "size_bytes": 19864,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/av-types-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "capture_state_listener-aidl-cpp.so",
+      "sha256": "cdccc48b50600c7b9acd4dbed7d0656be22b5f5121091b928b9a5a62b2d7d984",
+      "size_bytes": 35640,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/capture_state_listener-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libaudio_aidl_conversion_common_cpp.so",
+      "sha256": "ef85fee06049a86d2244eecb7dca069c4b3b5f936c1531a54de020de5b3742f4",
+      "size_bytes": 237352,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudio_aidl_conversion_common_cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libaudioclient_aidl_conversion.so",
+      "sha256": "3ba71b16e202d687178cf976ddc02b2d532986270fecce52c2fd8e4064ac18cb",
+      "size_bytes": 316528,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudioclient_aidl_conversion.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libaudiofoundation.so",
+      "sha256": "a517d14256391c5f79ed38de661ae11b433fefd724ca88391ba31634cced5805",
+      "size_bytes": 264680,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudiofoundation.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libaudioutils.so",
+      "sha256": "b5111fbecba1b1c7ac29424d37e366728d6b1c8519f2d62827e8ec06063d91bb",
+      "size_bytes": 343936,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudioutils.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libaudiopolicy.so",
+      "sha256": "34450fb726c65b5d9312c199169a665378443b49cf3065aaf6da535a5c8dbb68",
+      "size_bytes": 91544,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudiopolicy.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libaudiomanager.so",
+      "sha256": "f0645685680846fed4798b6b1d58e6fa0c252e366c97d39222e54bc11ad78190",
+      "size_bytes": 21656,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libaudiomanager.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libmedia_helper.so",
+      "sha256": "923a8e682a9943fa49d9ed97e58d59252bc215b0868578b6485f0e76bff08294",
+      "size_bytes": 130520,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libmedia_helper.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libmediametrics.so",
+      "sha256": "f224888f7d13782bf48fe0edea95e1924ddfd17c400ba4b39e8a35effe24e1a5",
+      "size_bytes": 77392,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libmediametrics.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libmediautils.so",
+      "sha256": "dbeb3c3cdc453aedcefc2a5603279d4d73c26ad65c7428dd0011eb02f786ca40",
+      "size_bytes": 422256,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libmediautils.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libnblog.so",
+      "sha256": "278d5c04ace25e08a7807e35df6c20697db062ae1c80a40dd9361587a3f96baf",
+      "size_bytes": 239920,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libnblog.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libprocessgroup.so",
+      "sha256": "31b6ddc2f2153d540c5f9eabaab6a0982c172d932ecdf6e040da5ddab9069053",
+      "size_bytes": 365792,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libprocessgroup.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libshmemcompat.so",
+      "sha256": "79b92b40c8d10518b657bdb7c3a83b5cc94a152f1eddf9f87057d364bee20b09",
+      "size_bytes": 15224,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libshmemcompat.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "framework-permission-aidl-cpp.so",
+      "sha256": "c6eae45c79aa6cce4de0b0da93c895a17aa36fed6e1f8d198c0dbe1744dbe99e",
+      "size_bytes": 40016,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/framework-permission-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "packagemanager_aidl-cpp.so",
+      "sha256": "9793d2a7dc5b7c413aa7e451670432f20e4f2f4f18549b45633d4e97302b2583",
+      "size_bytes": 64760,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/packagemanager_aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "volumetricwindow_aidl-cpp.so",
+      "sha256": "20401099ac0b9dd705d89ecea10430716bde035aff86113e1b59896a5d870302",
+      "size_bytes": 31536,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/volumetricwindow_aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.common-V4-ndk.so",
+      "sha256": "2d3e696891435002c9ded6cac22d908d3f133d1fc905b38d77fdb0a2e16f88b9",
+      "size_bytes": 27840,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.common-V4-ndk.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.bufferqueue@1.0.so",
+      "sha256": "e5320672abd66dc7302698931396f0c90f9fcb26e91ad97cab5d6badfac7fdb8",
+      "size_bytes": 205664,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.bufferqueue@1.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.bufferqueue@2.0.so",
+      "sha256": "97a59ef87ddaa9283ff02a7f0cbe1d125c366e70a075d024a28f042125c52d91",
+      "size_bytes": 179368,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.bufferqueue@2.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.common@1.1.so",
+      "sha256": "9962487af24ac4c3b91991f11946b32f956c183225408dfb30ac904e2077c63d",
+      "size_bytes": 10488,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.common@1.1.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.common@1.2.so",
+      "sha256": "8efff97baf46f21801636f905aec0f986cad41fe6c7512d95216fdac3d0a47a0",
+      "size_bytes": 10520,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.common@1.2.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hidl.token@1.0-utils.so",
+      "sha256": "a69fc675c7ebf37a78ce7f9e661f7a6319ee57d7997067e0905d7fff56ecdc2a",
+      "size_bytes": 15848,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hidl.token@1.0-utils.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libsync.so",
+      "sha256": "94eb90a27f4c2ea2341ba849021d4c1d19a3debb4f3b3bda625080d9e896ffd9",
+      "size_bytes": 10624,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libsync.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libvndksupport.so",
+      "sha256": "8c185340467ecb4741096dd4cdaff2650e21c1b904a6c4e56781aaa36c6d5168",
+      "size_bytes": 10776,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libvndksupport.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "telemetryservice-aidl-cpp.so",
+      "sha256": "3a919cc83c8b01b700fa0a9bed50dbefbd448ecd64a50aaaf43e8445976a138b",
+      "size_bytes": 64440,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/telemetryservice-aidl-cpp.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "libstatssocket.so",
+      "sha256": "c5318e1d8c4a2dffe1492d63959a7bb352862d48127516bd8fae8c926c70d522",
+      "size_bytes": 27472,
+      "status": "BUNDLED_ORIGINAL_APEX_LIBRARY",
+      "path": "/lib64/libstatssocket.so",
+      "apex_path": "/system/apex/com.android.os.statsd.apex",
+      "apex_sha256": "b5d1e21d9fd97b72f333dc06eba5181628859140a31c645035186181af2f73e0",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.allocator-V2-ndk.so",
+      "sha256": "12dc82a2497e386a628d935a31224aa9bf64b12067a643ff90dce8b9650bdfdc",
+      "size_bytes": 42024,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.allocator-V2-ndk.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.allocator@2.0.so",
+      "sha256": "1a77a65371e50d203c6c79b6c6becc1f7f72f8dd16ffade13432c23cba793375",
+      "size_bytes": 83904,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.allocator@2.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.allocator@3.0.so",
+      "sha256": "df4722b7ba6536eeb0a633ad2ee40846906f7b601d407f25f5805c7e437e0cfc",
+      "size_bytes": 83936,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.allocator@3.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.allocator@4.0.so",
+      "sha256": "840059bbd5bc722c6a37b188282876388a810dfc6a8e96fea589b7b188a34d62",
+      "size_bytes": 75344,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.allocator@4.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.mapper@2.0.so",
+      "sha256": "cf2e007300374244296529dc4371e16bc38a82d0ee1f33fa81f41f095be76ab9",
+      "size_bytes": 92656,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.mapper@2.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.mapper@2.1.so",
+      "sha256": "a9dd5ad68dd0a3aa6b6b6183187ae9708c3362c27021050b3dd120f5434b8519",
+      "size_bytes": 93512,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.mapper@2.1.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.mapper@3.0.so",
+      "sha256": "6874d9cf114d1f8ff300d3ccca3fd1da7aa237769038fd41705220316363859c",
+      "size_bytes": 101832,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.mapper@3.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.mapper@4.0.so",
+      "sha256": "0098a7a0b2b4a43ffa27adbcb236d64ac26d891a0b6220af8354b05982c9d5a1",
+      "size_bytes": 124584,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.mapper@4.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libgralloctypes.so",
+      "sha256": "e9f9ef034c6a20e48c91a704a7b2f34b43525911a5c89d4d0d0178ed9e8dfa2c",
+      "size_bytes": 85968,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libgralloctypes.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libepsmixercommon.so",
+      "sha256": "548d39336e86848e7f055b8ae61250cd57871397af6605339be76e46cd61bcf6",
+      "size_bytes": 961480,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system_ext",
+      "path": "/lib64/libepsmixercommon.so",
+      "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84"
+    },
+    {
+      "soname": "effect-aidl-cpp.so",
+      "sha256": "c59d8f6a510205f832305c4ff1d4a6bb1a0b65363fc7262b90f607370e307259",
+      "size_bytes": 64440,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/effect-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "shared-file-region-aidl-cpp.so",
+      "sha256": "10544443625c4cd8fd559c5fd55a14d766c60d1501d6e1992bf2ccfb29065a27",
+      "size_bytes": 14904,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/shared-file-region-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libstagefright_foundation.so",
+      "sha256": "e4eb58f96de18674517df7ca379172a0482629ef65c35eed674ef6dc608b11da",
+      "size_bytes": 231992,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libstagefright_foundation.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libspeexresampler.so",
+      "sha256": "209cfcfd0adc5a3f02989868aa326451a37fb5048cf5a8ceb3d187ba4ba6b863",
+      "size_bytes": 23880,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libspeexresampler.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "mediametricsservice-aidl-cpp.so",
+      "sha256": "fec808edcef27602de8343ce9d5029e593419b3724e0a92c620ea824ecf62f1d",
+      "size_bytes": 35648,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/mediametricsservice-aidl-cpp.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libpermission.so",
+      "sha256": "435b47ad6d69840dba82ef1b9b67922034a3b0131359d304b482964bb35d7aed",
+      "size_bytes": 72392,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libpermission.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libcgrouprc.so",
+      "sha256": "030aa68d5e60183c5218af73085e0826a0c0169a84b212d87d350f8eb7621b00",
+      "size_bytes": 15504,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libcgrouprc.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libshmemutil.so",
+      "sha256": "3dcd9fb89567cc695541616ddd71bdb63e2e6ff13b7c9da8e3990c0bc64b9aca",
+      "size_bytes": 14616,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/libshmemutil.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.common-V2-ndk.so",
+      "sha256": "79d9dfa83e28a1b7ed46c26ba96fe770245bccde820f6a69bc8afae348be41a3",
+      "size_bytes": 15064,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.common-V2-ndk.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.graphics.common@1.0.so",
+      "sha256": "9381845b861356cc4c7c993e44a12a39119db0285af34f828ecae9f1d269f288",
+      "size_bytes": 10472,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.graphics.common@1.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hardware.media@1.0.so",
+      "sha256": "90b65836ce321c119c5b072d6fb2309dfa5b2e97d2e101756fd100a0c4220a7a",
+      "size_bytes": 10504,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hardware.media@1.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "android.hidl.token@1.0.so",
+      "sha256": "809b0142715d6c318a263e50729a6db9fc423e4737a16921f3503bc5bd325346",
+      "size_bytes": 83512,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/android.hidl.token@1.0.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "libdl_android.so",
+      "sha256": "09df72db058586723cf73ae9798ec895dbc7c922ff517514b9173634d5b971f0",
+      "size_bytes": 9928,
+      "status": "BUNDLED_ORIGINAL_APEX_LIBRARY",
+      "path": "/lib64/bionic/libdl_android.so",
+      "apex_path": "/system/apex/com.android.runtime.apex",
+      "apex_sha256": "6971181ba9942dc49e54676a3a5d9fd1b2bed41135d52767d77bfc122fc25fcc",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    },
+    {
+      "soname": "ld-android.so",
+      "sha256": "42fb940c37738712f1e3d906d712b18eef7d4d5671d2370bb533168148cab2ac",
+      "size_bytes": 9392,
+      "status": "BUNDLED_ORIGINAL_FIRMWARE_LIBRARY",
+      "partition": "system",
+      "path": "/system/lib64/ld-android.so",
+      "source_image_sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98"
+    }
+  ],
+  "edges": [
+    {
+      "from": "libshell.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libjnigraphics.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libimageprocessing.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libopenxr_loader.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libhzos_spaces.meta.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libEGL.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libNativeApiManager.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libarvr_projects_presence_service_native_server_logging_logging.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libMetaXRAudioFMOD.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libfmodmerged.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libxplat_perflogger_conversions_conversions.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libthirdparty_utils.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libthird-party_volk_volk.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libovravatar2p.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libpando.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libmediandk.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnimble.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libfolly_utils.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libproxygen.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libxplat_folly_futures_shared_promise.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libhzos.meta.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libz.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libandroid.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnetwork_1.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libGLESv2.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libskia.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "libjnigraphics.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libandroid.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libhzos_fphal.meta.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libthirdparty_utils.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libxplat_perflogger_conversions_conversions.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libxplat_perflogger_conversions_conversions.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libxplat_perflogger_conversions_conversions.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libthirdparty_utils.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libthirdparty_utils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libthirdparty_utils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libthird-party_volk_volk.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libthird-party_volk_volk.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libandroid.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libz.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libproxygen.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libproxygen.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libproxygen.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libproxygen.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libxplat_folly_futures_shared_promise.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libEGL.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libaaudio.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libaudioclient.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libcamera_metadata.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libfmq.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libgui.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libinsights.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libjsoncpp.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libnativedisplay.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libnativehelper.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libosutils.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libreportstatsevent.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libui.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libepsmixermessagechannel.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnetwork_1.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libc++_shared.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libc++_shared.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libc++.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libc++.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libc++.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libhzos_fphal.meta.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libhzos_fphal.meta.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libhzos_fphal.meta.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos_fphal.meta.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libhzos_fphal.meta.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "audioflinger-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "audiopolicy-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "spatializer-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "audiopolicy-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "av-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "capture_state_listener-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libaudio_aidl_conversion_common_cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libaudioclient_aidl_conversion.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libaudiofoundation.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libaudioutils.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libaudiopolicy.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libaudiomanager.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libmedia_helper.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libmediametrics.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libmediautils.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libnblog.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libprocessgroup.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libshmemcompat.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "framework-permission-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "packagemanager_aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "volumetricwindow_aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudioclient.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libbinder.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libcamera_metadata.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libcamera_metadata.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libcamera_metadata.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libcamera_metadata.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libcamera_metadata.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libfmq.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "android.hardware.graphics.common-V4-ndk.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "android.hardware.graphics.bufferqueue@1.0.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "android.hardware.graphics.bufferqueue@2.0.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "android.hidl.token@1.0-utils.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libEGL.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libGLESv2.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libsync.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libui.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libvndksupport.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libgui.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libvndksupport.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libhidlbase.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "telemetryservice-aidl-cpp.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libinsights.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libjsoncpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libjsoncpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libjsoncpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libjsoncpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libgui.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libui.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libEGL.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libGLESv2.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnativedisplay.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnativehelper.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnativehelper.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnativehelper.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnativehelper.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libjsoncpp.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libprocessgroup.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libosutils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libosutils.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libstatssocket.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libreportstatsevent.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.common-V4-ndk.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.allocator-V2-ndk.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.allocator@2.0.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.allocator@3.0.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.allocator@4.0.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.mapper@2.0.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.mapper@2.1.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.mapper@3.0.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "android.hardware.graphics.mapper@4.0.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libgralloctypes.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libsync.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libvndksupport.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libui.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "libvndksupport.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libutils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libepsmixercommon.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libjsoncpp.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libprocessgroup.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libepsmixermessagechannel.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.media.audio.common.types-V2-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "framework-permission-aidl-cpp.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "audioclient-types-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "av-types-aidl-cpp.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "effect-aidl-cpp.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "shared-file-region-aidl-cpp.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "framework-permission-aidl-cpp.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "audioflinger-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "audiopolicy-types-aidl-cpp.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "capture_state_listener-aidl-cpp.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "framework-permission-aidl-cpp.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "spatializer-aidl-cpp.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "audiopolicy-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "audiopolicy-types-aidl-cpp.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "spatializer-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "audiopolicy-types-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "av-types-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "capture_state_listener-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libshmemcompat.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libstagefright_foundation.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "shared-file-region-aidl-cpp.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "framework-permission-aidl-cpp.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudio_aidl_conversion_common_cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libshmemcompat.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libstagefright_foundation.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "shared-file-region-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "framework-permission-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "av-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudioclient_aidl_conversion.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libaudioclient_aidl_conversion.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libaudioutils.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libmedia_helper.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudiofoundation.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libspeexresampler.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudioutils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "audioclient-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "audioflinger-aidl-cpp.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "audiopolicy-aidl-cpp.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "audiopolicy-types-aidl-cpp.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "capture_state_listener-aidl-cpp.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libaudiofoundation.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libaudioclient_aidl_conversion.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libaudioutils.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudiopolicy.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libaudiomanager.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libmedia_helper.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libmedia_helper.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libmedia_helper.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libmedia_helper.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libmedia_helper.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libmedia_helper.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "mediametricsservice-aidl-cpp.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libmediametrics.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libaudioclient_aidl_conversion.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libaudioutils.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libpermission.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "android.hardware.graphics.bufferqueue@1.0.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "android.hidl.token@1.0-utils.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "packagemanager_aidl-cpp.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libmediautils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libaudioutils.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libmediametrics.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnblog.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "libcgrouprc.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libprocessgroup.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libshmemutil.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "shared-file-region-aidl-cpp.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libshmemcompat.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "framework-permission-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "packagemanager_aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "volumetricwindow_aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "volumetricwindow_aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "volumetricwindow_aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "volumetricwindow_aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "volumetricwindow_aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "volumetricwindow_aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.common-V4-ndk.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "android.hardware.graphics.common-V4-ndk.so",
+      "to": "android.hardware.common-V2-ndk.so"
+    },
+    {
+      "from": "android.hardware.graphics.common-V4-ndk.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.common-V4-ndk.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.common-V4-ndk.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.common-V4-ndk.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "android.hardware.media@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@1.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.bufferqueue@2.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.1.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.2.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "android.hidl.token@1.0.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hidl.token@1.0-utils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libsync.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libsync.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libsync.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libsync.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libvndksupport.so",
+      "to": "libdl_android.so"
+    },
+    {
+      "from": "libvndksupport.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libvndksupport.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libvndksupport.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libvndksupport.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libvndksupport.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "telemetryservice-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "telemetryservice-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "telemetryservice-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "telemetryservice-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "telemetryservice-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "telemetryservice-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libstatssocket.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libstatssocket.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libstatssocket.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "android.hardware.common-V2-ndk.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "android.hardware.graphics.common-V4-ndk.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator-V2-ndk.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "android.hardware.graphics.mapper@2.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@2.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "android.hardware.graphics.mapper@3.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@3.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "android.hardware.graphics.mapper@4.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.allocator@4.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "android.hardware.graphics.mapper@2.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@2.1.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@3.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "android.hardware.graphics.common@1.1.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "android.hardware.graphics.common@1.2.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.mapper@4.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "android.hardware.graphics.common-V4-ndk.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "android.hardware.graphics.mapper@4.0.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libgralloctypes.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libmediautils.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libstatssocket.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libepsmixercommon.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "android.media.audio.common.types-V2-cpp.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "shared-file-region-aidl-cpp.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "effect-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "shared-file-region-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libstagefright_foundation.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libspeexresampler.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libspeexresampler.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libspeexresampler.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libspeexresampler.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "mediametricsservice-aidl-cpp.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libpermission.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libcgrouprc.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libcgrouprc.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libcgrouprc.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libcgrouprc.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libcgrouprc.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libshmemutil.so",
+      "to": "shared-file-region-aidl-cpp.so"
+    },
+    {
+      "from": "libshmemutil.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libshmemutil.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libshmemutil.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libshmemutil.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.common-V2-ndk.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "android.hardware.common-V2-ndk.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.common-V2-ndk.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.common-V2-ndk.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.common-V2-ndk.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.graphics.common@1.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "android.hardware.graphics.common@1.0.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hardware.media@1.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "android.hidl.token@1.0.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libdl_android.so",
+      "to": "ld-android.so"
+    }
+  ],
+  "unresolved": [],
+  "original_members_unchanged": true,
+  "original_signatures_removed": true,
+  "namespace_and_symbol_versions_verified": false,
+  "port_ready": false,
+  "scope": "Verified-source dependency packaging with explicitly declared instruction adaptations; no service stubs, original DEX/resources unchanged, optional original framework DEX additions",
+  "signed_apk_sha256": "ebb884a1fa1724f8fa561b84aea23e2a5087b2ddd57cf3b3e953400aba686943",
+  "test_certificate_not_meta_identity": true
+}

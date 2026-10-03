@@ -1,0 +1,74 @@
+{
+  "program_sha256": "a83d12685803d32eae269c7d8b9b168c614fc9dcccefd03b9aa8e3250803afa5",
+  "candidate_count": 16,
+  "functions": [
+    {
+      "name": "__on_dlclose",
+      "elf_address": 4096
+    },
+    {
+      "name": "__emutls_unregister_key",
+      "elf_address": 4112
+    },
+    {
+      "name": "isOCalEnabled",
+      "elf_address": 4144
+    },
+    {
+      "name": "isDynamicMipiClockSwitchingDisabled",
+      "elf_address": 4224
+    },
+    {
+      "name": "forceStatsdLogging",
+      "elf_address": 4368
+    },
+    {
+      "name": "isInsideOutBodyTrackingSupported",
+      "elf_address": 4480
+    },
+    {
+      "name": "defaultControllerType",
+      "elf_address": 4544
+    },
+    {
+      "name": "feature_ocal_active",
+      "elf_address": 4560
+    },
+    {
+      "name": "GetProp\u003cstd::optional\u003cbool\u003e\u003e",
+      "elf_address": 4576
+    },
+    {
+      "name": "feature_dynamic_mipi_clock",
+      "elf_address": 4880
+    },
+    {
+      "name": "feature_object_tracking_frameless",
+      "elf_address": 4896
+    },
+    {
+      "name": "feature_inside_out_body_tracking_disabled",
+      "elf_address": 4912
+    },
+    {
+      "name": "feature_default_controller_type",
+      "elf_address": 4928
+    },
+    {
+      "name": "__invoke",
+      "elf_address": 5280
+    },
+    {
+      "name": "__invoke",
+      "elf_address": 5296
+    },
+    {
+      "name": "FUN_001014c0",
+      "elf_address": 5312
+    }
+  ],
+  "selection_truncated": false,
+  "firmware_executed": false,
+  "private_abi_validated": false,
+  "scope": "Up to 24 auto-discovered executable non-thunk functions; missing boundaries and indirect dispatch unresolved. Not all software optimizations."
+}

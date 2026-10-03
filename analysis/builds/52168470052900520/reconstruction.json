@@ -1,0 +1,212 @@
+{
+  "source_zip_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "partitions": {
+    "abl": {
+      "size_bytes": 536576,
+      "sha256": "9139e7ca11bbc71b4d4536c21b2dcd3f183742188758cc464cae52a84c48eb32",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "adsp": {
+      "size_bytes": 32256000,
+      "sha256": "2584f855a061b2152ecdbec126c637c908cba1fd9925db3c498e18f796b846f6",
+      "sha256_match": true,
+      "operations_verified": 16,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "aop": {
+      "size_bytes": 237568,
+      "sha256": "6db512862b13b8db6aba3b169e0c2ea11263355c58832acafff6dc769bfba58c",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "aop_config": {
+      "size_bytes": 16384,
+      "sha256": "1fe8b4da8d51a7064379533f509e298a9c00cb53a4faf05c5f379afdeb11e796",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "boot": {
+      "size_bytes": 100663296,
+      "sha256": "3159e8333a7da542015ce4e27fd2e7c10271dc51bd9b565a3fa065565a60eb60",
+      "sha256_match": true,
+      "operations_verified": 48,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "cpucp": {
+      "size_bytes": 114688,
+      "sha256": "2cf0ebb898a6fb1b15bcfc166dc9de7a03a43a2c873050cbc8c10d7e36368438",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "devcfg": {
+      "size_bytes": 61440,
+      "sha256": "09384f70ce5aa8ef5f286f5e83fa1de34c3cccc047ebbcdd90d68b7d186d8fad",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "dtbo": {
+      "size_bytes": 25165824,
+      "sha256": "6697eeaa23cf9cf3095240c32a72463877f0a942671767d882b607d7148ea064",
+      "sha256_match": true,
+      "operations_verified": 12,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "featenabler": {
+      "size_bytes": 90112,
+      "sha256": "4057304b6c9dc7cec26e85e09ae4488d24cbacd5e6ea3f7e561bfc5b3de02b81",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "hyp": {
+      "size_bytes": 1232896,
+      "sha256": "a4880ad18e80f7e6e283ad820024183c326faa545abcf99e3b83efb788e07053",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "imagefv": {
+      "size_bytes": 1060864,
+      "sha256": "564ddb817d4ed0b173e8fd18c20d026e609c4a2a5e7956937893c1c7e396bcb9",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "keymaster": {
+      "size_bytes": 380928,
+      "sha256": "f0834a93b0969d0ba04b80db27051dfe11eb511ab58b25d485ce06665757bfe3",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "odm": {
+      "size_bytes": 295993344,
+      "sha256": "682ada7a17804df126ac9989149c04d8a2f6e722b3830648940dd9ee06736a09",
+      "sha256_match": true,
+      "operations_verified": 142,
+      "filesystem_magic": "ext4-family"
+    },
+    "odm_dlkm": {
+      "size_bytes": 1454080,
+      "sha256": "476dae917727cafc36e0e16fc9dd1a9442c4dd6debe4ca53f051f68cc9b694cb",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "ext4-family"
+    },
+    "product": {
+      "size_bytes": 205205504,
+      "sha256": "52949604cd27e17718217b80564ec831b0013cff2aaf1c611c4d743cfb671b9a",
+      "sha256_match": true,
+      "operations_verified": 98,
+      "filesystem_magic": "ext4-family"
+    },
+    "qupfw": {
+      "size_bytes": 57344,
+      "sha256": "00e1a24d82801c8970e11e21152d4c468388861cd6bc7614fdc12a5539e05d2b",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "shrm": {
+      "size_bytes": 61440,
+      "sha256": "f5948866c3b2463f010ba10cc6734bce1c7a8646d25c97858e0d0bfba470089f",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "system": {
+      "size_bytes": 954920960,
+      "sha256": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+      "sha256_match": true,
+      "operations_verified": 456,
+      "filesystem_magic": "ext4-family"
+    },
+    "system_ext": {
+      "size_bytes": 1417265152,
+      "sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+      "sha256_match": true,
+      "operations_verified": 676,
+      "filesystem_magic": "ext4-family"
+    },
+    "tz": {
+      "size_bytes": 3702784,
+      "sha256": "c84eed175ec938cea99386f7584c3840a346a06e6e2b7a64966266f5b4641c0d",
+      "sha256_match": true,
+      "operations_verified": 2,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "uefi": {
+      "size_bytes": 2764800,
+      "sha256": "c336493e16f43cdd74097a6f3e92cb13dc40fe12cb10b64d5261f6d918862ee3",
+      "sha256_match": true,
+      "operations_verified": 2,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "uefisecapp": {
+      "size_bytes": 180224,
+      "sha256": "dabaa17f77039bf4c5646914d388d565806f67ad980f224fe2d77425ccf41799",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "vbmeta": {
+      "size_bytes": 8192,
+      "sha256": "8399ce7cb6b99bc7ba383ea08f477ea0bc07193efb9e8dea930e79fff131b786",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "vbmeta_system": {
+      "size_bytes": 4096,
+      "sha256": "75a2c1f5eae00fb7e2972e7b462bd1228d3849e520a76991803b523a5a63b79f",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "vendor": {
+      "size_bytes": 531582976,
+      "sha256": "c34b367c3cd22481205bbdfb11756805ddbd42c9e81ae8a89e5f44ef7867f12b",
+      "sha256_match": true,
+      "operations_verified": 254,
+      "filesystem_magic": "ext4-family"
+    },
+    "vendor_boot": {
+      "size_bytes": 100663296,
+      "sha256": "3245a8669835b11181e4a857e2a98537da1f64c4434b08170fa6bc5cb98b77ff",
+      "sha256_match": true,
+      "operations_verified": 48,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "vendor_dlkm": {
+      "size_bytes": 62337024,
+      "sha256": "05690ee455982019c54b329eaf7ae8b86ebf8c6ad02b1d1c33525c14a2af0348",
+      "sha256_match": true,
+      "operations_verified": 30,
+      "filesystem_magic": "ext4-family"
+    },
+    "xbl": {
+      "size_bytes": 1228800,
+      "sha256": "8d3811cdd4aa52c4cae6532f8229a596f409376b1e0c541db1e290437e8610bc",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    },
+    "xbl_config": {
+      "size_bytes": 172032,
+      "sha256": "a452d442d47553aff73cb7bcf080ff5f6773140c4e52a40656ac7b47a257de3e",
+      "sha256_match": true,
+      "operations_verified": 1,
+      "filesystem_magic": "UNKNOWN"
+    }
+  },
+  "firmware_executed": false,
+  "images_mounted": false,
+  "authenticity": "UNVERIFIED",
+  "port_status": "NOT PORTED YET"
+}

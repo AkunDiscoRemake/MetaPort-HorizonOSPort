@@ -1,0 +1,94 @@
+{
+  "library": "libutils.so",
+  "source_sha256": "2d7422e92852d7c62e2528ba6100f5b484dfd33c38d156613c6aaeb89b9f9167",
+  "evidence_run_id": "36924213557",
+  "census_library_sha256": "d683b611b8b3f48628a946289abd3a96b19eb78aad19393fd6d136ea9a1a1de6",
+  "sites": [
+    {
+      "pc_elf": 63584,
+      "original_word": "0xb8bfc008",
+      "adapted_word": "0x88dffc08",
+      "evidence": "prior_runtime_frontier"
+    },
+    {
+      "pc_elf": 65624,
+      "original_word": "0xb8bfc008",
+      "adapted_word": "0x88dffc08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 65712,
+      "original_word": "0xb8bfc008",
+      "adapted_word": "0x88dffc08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 65836,
+      "original_word": "0xb8bfc268",
+      "adapted_word": "0x88dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 66560,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 67396,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 74212,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 74624,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 82484,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 82816,
+      "original_word": "0x38bfc108",
+      "adapted_word": "0x8dffd08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 90128,
+      "original_word": "0xb8bfc008",
+      "adapted_word": "0x88dffc08",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 90212,
+      "original_word": "0xb8bfc268",
+      "adapted_word": "0x88dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 90384,
+      "original_word": "0xb8bfc268",
+      "adapted_word": "0x88dffe68",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    },
+    {
+      "pc_elf": 108296,
+      "original_word": "0x38bfc109",
+      "adapted_word": "0x8dffd09",
+      "evidence": "static_decoder_candidate_not_runtime_reachability"
+    }
+  ],
+  "scope": "Explicit inventory-based acquire compatibility experiment; not physical validation",
+  "physical_device_validated": false
+}

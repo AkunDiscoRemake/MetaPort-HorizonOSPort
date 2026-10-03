@@ -1,0 +1,19 @@
+{
+  "class_descriptor": "Lcom/oculus/vrshell/ShellApplication;",
+  "native_init_descriptor": "(Lcom/oculus/vrshell/ShellApplication;JLjava/lang/String;Ljava/lang/String;ZZ)J",
+  "wrapper_member": "lib/arm64-v8a/libc++_shared.so",
+  "wrapper_sha256": "b9220b4c909293533de96ae0ad2654d034b9abc69c419fd3f877f91c6970284c",
+  "wrapper_size_bytes": 572976,
+  "native_init_elf_va": 14125964,
+  "return_page_instruction": 14126224,
+  "return_load_instruction": 14126364,
+  "return_instruction": 14126416,
+  "service_setter_page_instruction": 14126612,
+  "service_setter_store_instruction": 14126620,
+  "cleanup_windows": [
+    [
+      14126420,
+      14126444
+    ]
+  ]
+}

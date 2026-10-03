@@ -1,0 +1,133 @@
+name: Disassemble all executable sections of original libshell
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [horizon/ui/resolve_shell_xr.py, horizon/ui/tests/test_resolve_shell_xr.py, tools/disassemble_original_arm64.py, horizon/ui/inspect_shell_vtables.py, horizon/ui/tests/test_shell_vtables.py, horizon/ui/disassemble_shell.py, horizon/ui/tests/test_disassemble_shell.py, .github/workflows/shell-disassembly.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-shell-disassembly
+  cancel-in-progress: true
+jobs:
+  analyze:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/shell-disassembly
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install host-only parsers and test metadata inspection
+        timeout-minutes: 8
+        run: |
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends e2fsprogs binutils-aarch64-linux-gnu aapt
+          python3 -m pip install --timeout 30 --retries 2 -r handtracking/ai/requirements.txt -r horizon/ui/abi-requirements.txt
+          python3 -m unittest discover -s handtracking/ai/tests -v
+          python3 -m unittest discover -s horizon/ui/tests -v
+          mkdir -p "$WORK/reports"
+      - name: Reuse the exact original ELF, never an unverified replacement
+        id: original
+        uses: actions/cache@v4
+        with:
+          path: local-analysis/original-cache/libshell.so
+          key: original-libshell-2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0
+      - name: Obtain fixed verified OTA and original images
+        if: steps.original.outputs.cache-hit != 'true'
+        run: |
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          p=Path(os.environ['WORK'])
+          r=reconstruct(p/'firmware.zip',p/'images',selected={'system_ext'})
+          (p/'reconstruction.json').write_text(json.dumps(r))
+          PY
+      - name: Extract pinned original and stream all executable-section assembly
+        id: decompile
+        timeout-minutes: 15
+        run: |
+          cache=local-analysis/original-cache/libshell.so
+          if [ -f "$cache" ]; then
+            # disassemble_shell and resolve_shell_xr independently verify size/hash.
+            cp "$cache" "$WORK/reports/libshell.so"
+          else
+            python3 -m horizon.ui.prepare_shell --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output "$WORK/reports"
+            mkdir -p "$(dirname "$cache")"
+            cp "$WORK/reports/libshell.so" "$cache"
+          fi
+          python3 -m horizon.ui.disassemble_shell --library "$WORK/reports/libshell.so" --output "$WORK/reports" > "$WORK/inspection.log" 2>&1
+          python3 -m horizon.ui.inspect_shell_vtables --library "$WORK/reports/libshell.so" --output "$WORK/reports/shell-vtable-windows.json" >> "$WORK/inspection.log" 2>&1
+          python3 -m horizon.ui.resolve_shell_xr --library "$WORK/reports/libshell.so" --evidence analysis/builds/52168470052900520/shell-virtuals-decompilation.json --output "$WORK/reports/shell-xr-call-contract.json" >> "$WORK/inspection.log" 2>&1
+      - name: Record provenance even on analysis failure
+        if: always()
+        env:
+          DECOMPILE_OUTCOME: ${{ steps.decompile.outcome }}
+        run: |
+          mkdir -p "$WORK/reports"
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ['WORK'])
+          log=p/'inspection.log'
+          report={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
+                  'decompile_step':os.environ['DECOMPILE_OUTCOME'],'horizon_ported':False,
+                  'physical_phone_tested':False,
+                  'tool_log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-100:]) if log.exists() else None}
+          (p/'reports/shell-disassembly-run.json').write_text(json.dumps(report,indent=2)+'\n')
+          PY
+      - name: Publish reports only, never firmware or models
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Refresh before copying outputs: queued runs may start on an older
+          # report and otherwise conflict when rebasing a replacement JSON file.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          dest=analysis/builds/52168470052900520
+          for name in shell-full-disassembly shell-disassembly-run shell-vtable-windows shell-xr-call-contract; do
+            if [ -f "$WORK/reports/$name.json" ]; then
+              cp "$WORK/reports/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original libshell executable-section listing metadata, not runtime readiness [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shell-disassembly-reports-no-firmware
+          path: |
+            ${{ env.WORK }}/reports/shell-*.json
+          retention-days: 7
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: original-libshell-executable-sections-not-runtime
+          path: |
+            ${{ env.WORK }}/reports/libshell-executable-sections.asm.gz
+            ${{ env.WORK }}/reports/shell-full-disassembly.json
+            NOTICE.md
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 7

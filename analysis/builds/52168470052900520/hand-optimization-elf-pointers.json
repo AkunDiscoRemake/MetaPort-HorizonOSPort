@@ -1,0 +1,149 @@
+{
+  "targets": [
+    {
+      "text": "N6nimble15DPEHandTracking14DPEPredictorV2E",
+      "string_elf_address": 2233552,
+      "name_pointer_count": 1,
+      "name_pointers_truncated": false,
+      "paths": [
+        {
+          "name_slot_elf": 40416720,
+          "name_pointer_kind": "RAW64_CANDIDATE",
+          "hypothetical_typeinfo_elf": 40416712,
+          "type_reference_slot_elf": 40416640,
+          "type_pointer_kind": "RAW64_CANDIDATE",
+          "type_reference_count": 1,
+          "type_references_truncated": false,
+          "executable_pointer_candidates": [
+            {
+              "slot_elf": 40416648,
+              "target_elf": 11894944,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416656,
+              "target_elf": 11894896,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416664,
+              "target_elf": 23163200,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416672,
+              "target_elf": 23163168,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416680,
+              "target_elf": 23162448,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416688,
+              "target_elf": 23162464,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416696,
+              "target_elf": 23162496,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416704,
+              "target_elf": 16343984,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416720,
+              "target_elf": 2233552,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40416760,
+              "target_elf": 0,
+              "pointer_kind": "RAW64_CANDIDATE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "NSt6__ndk110__function6__funcIZN8coretech37getHandTrackingThreadPriorityCallbackERKNS2_16PlatformServicesEE3$_0NS_9allocatorIS6_EEFvN6nimble16SchedulingConfigERKNS_12basic_stringIcNS_11char_traitsIcEENS7_IcEEEEEEE",
+      "string_elf_address": 2258053,
+      "name_pointer_count": 1,
+      "name_pointers_truncated": false,
+      "paths": [
+        {
+          "name_slot_elf": 40438696,
+          "name_pointer_kind": "RAW64_CANDIDATE",
+          "hypothetical_typeinfo_elf": 40438688,
+          "type_reference_slot_elf": 40438592,
+          "type_pointer_kind": "RAW64_CANDIDATE",
+          "type_reference_count": 1,
+          "type_references_truncated": false,
+          "executable_pointer_candidates": [
+            {
+              "slot_elf": 40438600,
+              "target_elf": 8943376,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438608,
+              "target_elf": 7088080,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438616,
+              "target_elf": 25427824,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438624,
+              "target_elf": 25427888,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438632,
+              "target_elf": 8943376,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438640,
+              "target_elf": 7088080,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438648,
+              "target_elf": 25427920,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438656,
+              "target_elf": 25428352,
+              "pointer_kind": "RAW64_CANDIDATE"
+            },
+            {
+              "slot_elf": 40438664,
+              "target_elf": 25428432,
+              "pointer_kind": "RAW64_CANDIDATE"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "private_abi_validated": false,
+  "firmware_executed": false,
+  "scope": "64-bit raw/RELATIVE/local ABS64 pointer evidence; +8 RTTI hypothesis; 16 adjacent slots not an established vtable extent",
+  "engine_sha256": "10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe",
+  "relocations": {
+    "observed_types": {
+      "R_AARCH64_JUMP_SLOT": 440
+    },
+    "resolved_types": {},
+    "complete_relocation_coverage": false
+  },
+  "readelf_diagnostics": ""
+}

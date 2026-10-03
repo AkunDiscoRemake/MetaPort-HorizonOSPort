@@ -1,0 +1,161 @@
+{
+  "selected": [
+    {
+      "symbol": "JNI_OnLoad",
+      "elf_address": 14197624,
+      "size_bytes": 144
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeInit",
+      "elf_address": 14125964,
+      "size_bytes": 636
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeOnDestroy",
+      "elf_address": 14126664,
+      "size_bytes": 40
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeFrameCommand",
+      "elf_address": 14126972,
+      "size_bytes": 2188
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativePassthroughRequest",
+      "elf_address": 14133740,
+      "size_bytes": 272
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeOnSizeChanged",
+      "elf_address": 14149264,
+      "size_bytes": 284
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeOnLaunchContextReady",
+      "elf_address": 14133372,
+      "size_bytes": 368
+    },
+    {
+      "elf_address": 14196916,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8a0b4",
+      "purpose": "thread target candidate"
+    },
+    {
+      "elf_address": 14199368,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8aa48",
+      "purpose": "pthread trampoline candidate"
+    },
+    {
+      "elf_address": 14197332,
+      "referencing_function_elf_va": 14126600,
+      "analysis_label": "FUN_00e8a254",
+      "purpose": "service destruction candidate"
+    },
+    {
+      "elf_address": 14198488,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8a6d8",
+      "purpose": "preferences symbol lookup candidate"
+    },
+    {
+      "elf_address": 14196856,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8a078",
+      "purpose": "thread lifecycle candidate"
+    },
+    {
+      "elf_address": 14029664,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e61360",
+      "purpose": "identity readiness candidate"
+    },
+    {
+      "elf_address": 14033660,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e622fc",
+      "purpose": "frame iteration candidate"
+    },
+    {
+      "elf_address": 14203764,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8bb74",
+      "purpose": "Clay construction candidate"
+    },
+    {
+      "elf_address": 14203936,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8bc20",
+      "purpose": "Clay initialization candidate"
+    },
+    {
+      "elf_address": 14204668,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8befc",
+      "purpose": "Clay startup candidate"
+    },
+    {
+      "elf_address": 14451840,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00ec8480",
+      "purpose": "platform-related construction candidate"
+    },
+    {
+      "elf_address": 14198624,
+      "referencing_function_elf_va": 14198488,
+      "analysis_label": "FUN_00e8a760",
+      "purpose": "preferences call_once callback"
+    },
+    {
+      "elf_address": 14203068,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8b8bc",
+      "purpose": "platform configuration candidate"
+    },
+    {
+      "elf_address": 14013400,
+      "referencing_function_elf_va": 14196916,
+      "analysis_label": "FUN_00e5d3d8",
+      "purpose": "ShellApp construction and frame loop"
+    },
+    {
+      "elf_address": 14213148,
+      "referencing_function_elf_va": 14196916,
+      "analysis_label": "FUN_00e8e01c",
+      "purpose": "ShellApp destruction"
+    },
+    {
+      "elf_address": 14198248,
+      "referencing_function_elf_va": 14198124,
+      "analysis_label": "FUN_00e8a5e8",
+      "purpose": "preferences library call_once callback"
+    },
+    {
+      "elf_address": 12469188,
+      "referencing_function_elf_va": 14033660,
+      "analysis_label": "FUN_00ce43c4",
+      "purpose": "Clay frame preparation candidate"
+    },
+    {
+      "elf_address": 14216264,
+      "referencing_function_elf_va": 14033660,
+      "analysis_label": "FUN_00e8ec48",
+      "purpose": "per-frame command handling candidate"
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeUserIdentityResponse",
+      "elf_address": 14126704,
+      "size_bytes": 268,
+      "dex_descriptor": "(Ljava/lang/String;Ljava/lang/String;Z)V"
+    },
+    {
+      "symbol": "Java_com_oculus_vrshell_ShellApplication_nativeOnInteractionWindowChanged",
+      "elf_address": 14154608,
+      "size_bytes": 10996,
+      "dex_descriptor": "(ILandroid/os/IBinder;Ljava/lang/String;Landroid/os/Parcel;Ljava/lang/String;III)V"
+    }
+  ],
+  "firmware_executed": false,
+  "private_abi_validated": false
+}

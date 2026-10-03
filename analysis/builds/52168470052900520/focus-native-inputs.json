@@ -1,0 +1,20 @@
+{
+  "inputs": [
+    {
+      "path": "/bin/vrfocusserver",
+      "sha256": "14289b0fca87a4b4fbcd1e0b1a06cd8035ebf8686551f86a3517ad08deaea418",
+      "size_bytes": 258304,
+      "host_file": "vrfocusserver"
+    },
+    {
+      "path": "/lib64/libvrfocus_interface-cpp.so",
+      "sha256": "949bebe7639f07ec86c818456a41c403e6a946ed9073b162b3d46ee29291916c",
+      "size_bytes": 67808,
+      "host_file": "libvrfocus_interface-cpp.so"
+    }
+  ],
+  "source_image_sha256": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+  "firmware_executed": false,
+  "apk_modified": false,
+  "scope": "Original daemon and native Binder interface, not an app service implementation"
+}

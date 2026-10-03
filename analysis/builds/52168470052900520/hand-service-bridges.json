@@ -1,0 +1,18 @@
+{
+  "modules": [
+    {
+      "path": "/lib64/libhzos_trackinghost.meta.so",
+      "report_prefix": "hand-hzos-host",
+      "size_bytes": 11072,
+      "sha256": "7a1a81acb7b42c143866c8536768465569109cb316fd26e21115972a1ab2fd28"
+    },
+    {
+      "path": "/lib64/libtrackingvendorutils.so",
+      "report_prefix": "hand-vendor-utils",
+      "size_bytes": 10832,
+      "sha256": "a83d12685803d32eae269c7d8b9b168c614fc9dcccefd03b9aa8e3250803afa5"
+    }
+  ],
+  "firmware_executed": false,
+  "private_abi_validated": false
+}

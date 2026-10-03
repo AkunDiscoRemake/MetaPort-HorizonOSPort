@@ -1,0 +1,85 @@
+{
+  "build": "52168470052900520",
+  "status": "STATICALLY_RECOVERED_PARTIAL_CONTRACT_NOT_RUNTIME_VALIDATED",
+  "source_partition": "system_ext",
+  "source_path": "/lib64/memorybrokerservice-aidl-V2-ndk.so",
+  "source_sha256": "3178fc3c4829eee5251c344916a00cb26c0953762b1fecae2106f9859eaacc82",
+  "service": "oculus.internal.tracking.IMemoryBrokerService/default",
+  "vintf_aidl_version": "2",
+  "transactions": [
+    {
+      "interface": "IMemoryBrokerService",
+      "method": "getSharedMemoryFileDescriptor",
+      "code": 1,
+      "flags": 0,
+      "code_instruction_address": "9518",
+      "transact_call_address": "9520"
+    },
+    {
+      "interface": "IMemoryBrokerService",
+      "method": "unregisterClient",
+      "code": 2,
+      "flags": 0,
+      "code_instruction_address": "9818",
+      "transact_call_address": "9820"
+    },
+    {
+      "interface": "IMemoryBrokerService",
+      "method": "registerSharedMemory",
+      "code": 3,
+      "flags": 0,
+      "code_instruction_address": "9a4c",
+      "transact_call_address": "9a54"
+    },
+    {
+      "interface": "IMemoryBrokerClient",
+      "method": "onMemoryReallocation",
+      "code": 1,
+      "flags": 0,
+      "code_instruction_address": "7660",
+      "transact_call_address": "7668"
+    }
+  ],
+  "MemoryAllocation": {
+    "descriptor": "oculus.internal.tracking.MemoryAllocation",
+    "format": "size-prefixed AIDL parcelable",
+    "write_function_address": "bc50",
+    "read_function_address": "baa0",
+    "fields_in_write_order": [
+      {
+        "kind": "nonnullable ParcelFileDescriptor",
+        "native_object_offset": 0,
+        "write_call_address": "bca0",
+        "semantic_name": "sharedMemFd (corroborated by broker diagnostics)"
+      },
+      {
+        "kind": "int32",
+        "native_object_offset": 4,
+        "write_call_address": "bcb0",
+        "semantic_name": "UNRESOLVED"
+      },
+      {
+        "kind": "int32",
+        "native_object_offset": 8,
+        "write_call_address": "bcc0",
+        "semantic_name": "UNRESOLVED"
+      },
+      {
+        "kind": "int32",
+        "native_object_offset": 12,
+        "write_call_address": "bcd0",
+        "semantic_name": "UNRESOLVED"
+      }
+    ],
+    "warning": "Native object offsets are not wire offsets. A Binder FD is not a raw serialized integer."
+  },
+  "unresolved": [
+    "three integer field semantics",
+    "shared-region pose layouts",
+    "numeric enum mappings",
+    "client identity/access policy integration",
+    "guest Binder execution",
+    "cross-domain timestamps"
+  ],
+  "runtime_bridge": "NOT PORTED YET"
+}

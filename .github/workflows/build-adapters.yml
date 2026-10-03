@@ -1,0 +1,218 @@
+name: Build Android hardware adapters
+on:
+  push:
+    branches:
+      - arena/01a0f02d-metaport-horizonosport
+    paths:
+      - port/android/**
+      - horizon/ui/generate_jni_contract.py
+      - horizon/ui/tests/test_jni_contract.py
+      - native/tests/**
+      - handtracking/native/**
+      - handtracking/tests/native/**
+      - handtracking/CMakeLists.txt
+      - handtracking/integration/**
+      - .github/workflows/package-handtracking.yml
+      - .github/workflows/build-adapters.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-adapters
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Verify original DEX-derived JNI type contract
+        run: python3 -m horizon.ui.generate_jni_contract --check
+      - name: Install pinned Android toolchain
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            'platforms;android-35' 'build-tools;35.0.0' \
+            'ndk;27.2.12479018' 'cmake;3.22.1'
+      - name: Test native sample handling with sanitizers
+        run: |
+          mkdir -p local-analysis/native-tests
+          g++ -std=c++17 -Wall -Wextra -Werror -pthread -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include native/tests/sample_cache_test.cpp \
+            -o local-analysis/native-tests/sample_cache_test
+          local-analysis/native-tests/sample_cache_test
+          g++ -std=c++17 -Wall -Wextra -Werror -pthread -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include native/tests/input_router_test.cpp \
+            -o local-analysis/native-tests/input_router_test
+          local-analysis/native-tests/input_router_test
+      - name: Test lossless hand palette packing with sanitizers
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_palette_test.cpp \
+            handtracking/native/src/hand_palette.cpp \
+            -o local-analysis/native-tests/hand_palette_test
+          local-analysis/native-tests/hand_palette_test
+      - name: Test original hand material update rule
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_material_test.cpp \
+            handtracking/native/src/hand_material.cpp \
+            -o local-analysis/native-tests/hand_material_test
+          local-analysis/native-tests/hand_material_test
+      - name: Test observed planned arena alignment
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_arena_layout_test.cpp \
+            handtracking/native/src/hand_arena_layout.cpp \
+            -o local-analysis/native-tests/hand_arena_layout_test
+          local-analysis/native-tests/hand_arena_layout_test
+      - name: Test observed integer reductions on host and emulated ARM64 NEON
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_u8_reduce_test.cpp \
+            handtracking/native/src/hand_u8_reduce.cpp \
+            -o local-analysis/native-tests/hand_u8_reduce_test
+          local-analysis/native-tests/hand_u8_reduce_test
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends g++-aarch64-linux-gnu qemu-user
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_u8_reduce_test.cpp \
+            handtracking/native/src/hand_u8_reduce.cpp \
+            -o local-analysis/native-tests/hand_u8_reduce_arm64
+          qemu-aarch64 local-analysis/native-tests/hand_u8_reduce_arm64
+      - name: Test observed saturating pack outputs on host and ARM64 NEON
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_saturating_pack_test.cpp \
+            handtracking/native/src/hand_saturating_pack.cpp \
+            -o local-analysis/native-tests/hand_saturating_pack_test
+          local-analysis/native-tests/hand_saturating_pack_test
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_saturating_pack_test.cpp \
+            handtracking/native/src/hand_saturating_pack.cpp \
+            -o local-analysis/native-tests/hand_saturating_pack_arm64
+          qemu-aarch64 local-analysis/native-tests/hand_saturating_pack_arm64
+      - name: Test page-size adaptation of original hand FMQ mapping
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_fmq_mapping_test.cpp \
+            handtracking/native/src/hand_fmq_mapping.cpp \
+            -o local-analysis/native-tests/hand_fmq_mapping_test
+          local-analysis/native-tests/hand_fmq_mapping_test
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp -Ihandtracking/native/include handtracking/tests/native/hand_fmq_mapping_test.cpp \
+            handtracking/native/src/hand_fmq_mapping.cpp \
+            -o local-analysis/native-tests/hand_fmq_mapping_arm64
+          qemu-aarch64 local-analysis/native-tests/hand_fmq_mapping_arm64
+      - name: Test recovered space-data byte copies on host and ARM64
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra -Werror -fsanitize=address,undefined -g \
+            -Iport/android/adapters/src/main/cpp native/tests/space_data_test.cpp \
+            port/android/adapters/src/main/cpp/space_data.cpp -o local-analysis/native-tests/space_data_test
+          local-analysis/native-tests/space_data_test
+          aarch64-linux-gnu-g++ -std=c++17 -O2 -Wall -Wextra -Werror -static \
+            -Iport/android/adapters/src/main/cpp native/tests/space_data_test.cpp \
+            port/android/adapters/src/main/cpp/space_data.cpp -o local-analysis/native-tests/space_data_arm64
+          qemu-aarch64 local-analysis/native-tests/space_data_arm64
+      - name: Compile AAR, test Java and lint Android integration
+        shell: bash
+        run: |
+          mkdir -p local-analysis/android-build
+          set +e
+          gradle -p port/android :adapters:assembleRelease :adapters:testReleaseUnitTest \
+            :adapters:lintRelease --stacktrace >local-analysis/android-build/gradle.log 2>&1
+          result=$?
+          export BUILD_EXIT="$result"
+          set -e
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, struct, zipfile, xml.etree.ElementTree as ET
+          root = pathlib.Path('local-analysis/android-build')
+          aar = pathlib.Path('port/android/adapters/build/outputs/aar/adapters-release.aar')
+          tests = []
+          for path in pathlib.Path('port/android/adapters/build/test-results').glob('**/TEST-*.xml'):
+              suite=ET.parse(path).getroot()
+              tests.append({k:suite.get(k) for k in ('name','tests','failures','errors','skipped')})
+          result = {'source_commit':os.environ['GITHUB_SHA'],
+                    'run_id':os.environ['GITHUB_RUN_ID'],
+                    'gradle_exit_code':int(os.environ['BUILD_EXIT']),
+                    'physical_device_tested':False, 'horizon_integration':'NOT PORTED YET',
+                    'java_tests':tests,
+                    'log_tail': '\n'.join((root/'gradle.log').read_text(errors='replace').splitlines()[-160:])}
+          if aar.exists():
+              result['aar']={'size_bytes':aar.stat().st_size,'sha256':hashlib.sha256(aar.read_bytes()).hexdigest()}
+              native=[]
+              with zipfile.ZipFile(aar) as archive:
+                  assert 'jni/arm64-v8a/libmetaport_adapters.so' in archive.namelist()
+                  for name in archive.namelist():
+                      if not name.endswith('.so'): continue
+                      blob=archive.read(name)
+                      assert blob[:6]==b'\x7fELF\x02\x01' and struct.unpack_from('<H',blob,18)[0]==183
+                      offset=struct.unpack_from('<Q',blob,32)[0]
+                      size,count=struct.unpack_from('<HH',blob,54)
+                      assert size==56
+                      loads=[struct.unpack_from('<IIQQQQQQ',blob,offset+i*size) for i in range(count)
+                             if struct.unpack_from('<I',blob,offset+i*size)[0]==1]
+                      assert loads and all(p[7]>=16384 and (p[2]-p[3])%16384==0 for p in loads)
+                      native.append({'path':name,'machine':'AArch64','load_segment_alignment_bytes':[p[7] for p in loads],
+                                     'sha256':hashlib.sha256(blob).hexdigest()})
+              result['native_libraries']=native
+          (root/'build-report.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
+          exit "$result"
+      - name: Store adapter library (not an APK or Horizon runtime)
+        uses: actions/upload-artifact@v4
+        with:
+          name: metaport-android-adapters-arm64
+          path: port/android/adapters/build/outputs/aar/adapters-release.aar
+          if-no-files-found: error
+          retention-days: 7
+      - name: Store build and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metaport-adapter-build-report
+          path: |
+            local-analysis/android-build/
+            port/android/adapters/build/reports/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Publish small build report on session branch
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ ! -f local-analysis/android-build/build-report.json ]; then exit 0; fi
+          # Refresh the clean checkout before replacing a report produced by a
+          # prior queued build. Committing first can create a same-file rebase conflict.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          mkdir -p analysis/android-build
+          cp local-analysis/android-build/build-report.json analysis/android-build/build-report.json
+          git add -- analysis/android-build/build-report.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record Android adapter build and test result [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            published=0
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+                published=1
+                break
+              fi
+            done
+            test "$published" = 1
+          fi

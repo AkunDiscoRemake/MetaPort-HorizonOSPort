@@ -1,0 +1,131 @@
+name: Android adapter runtime tests (not Horizon)
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [tools/boot_android_emulator.py, tests/test_emulator_supervisor.py, tools/prepare_emulator_diagnostics.sh, tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: metaport-android-runtime
+  cancel-in-progress: true
+jobs:
+  runtime:
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [29, 35]
+    runs-on: ubuntu-22.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Free space for the emulator userdata image on the disposable runner
+        run: |
+          # Only unused preinstalled CI tools; never runs on a user's phone.
+          # QEMU requires 7372.80 MB for userdata even with disk-size=2048M.
+          sudo rm -rf /usr/share/dotnet /opt/hostedtoolcache/CodeQL
+          df -h "$HOME"
+      - name: Install pinned build toolchain
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1' 'emulator' 'system-images;android-${{ matrix.api }};google_apis;x86_64'
+      - name: Install required emulator host shared libraries
+        run: |
+          # -noaudio does not remove the QEMU binary's ELF dependency on libpulse.
+          # Confirmed missing in diagnostics-36817044003.json on both API runners.
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpulse0
+      - name: Enable emulator acceleration
+        run: |
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Build test-only x86_64 fixtures (never release APKs)
+        run: gradle -p port/android -PmetaportEmulatorTests=true :adapters:assembleDebug :adapters:assembleDebugAndroidTest
+      - name: Execute Android JNI, sensor lifecycle, EGL and shader tests
+        env:
+          API: ${{ matrix.api }}
+        run: python3 -m tools.boot_android_emulator --api "$API"
+      - name: Capture logs and explicit scope
+        if: always()
+        env:
+          API: ${{ matrix.api }}
+        run: |
+          mkdir -p local-analysis/android-runtime
+          # Stop the bounded boot logger; the supervisor already stopped the device.
+          if [ -f local-analysis/android-runtime/boot-logger.pid ]; then
+            kill "$(cat local-analysis/android-runtime/boot-logger.pid)" 2>/dev/null || true
+          fi
+          if [ -f local-analysis/android-runtime/boot-logcat.txt ]; then
+            tail -n 100 local-analysis/android-runtime/boot-logcat.txt > local-analysis/android-runtime/boot-tail.txt
+          fi
+          python3 -m tools.summarize_android_runtime --api "$API" \
+            --results port/android/adapters/build/outputs/androidTest-results \
+            --output local-analysis/android-runtime/scope.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: adapter-runtime-api-${{ matrix.api }}-reports-only
+          path: |
+            port/android/adapters/build/reports/androidTests/
+            port/android/adapters/build/outputs/androidTest-results/
+            local-analysis/android-runtime/
+          retention-days: 7
+
+  record:
+    needs: runtime
+    if: always()
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: adapter-runtime-api-*-reports-only
+          path: local-analysis/runtime-artifacts
+      - name: Publish small per-API evidence, never test APKs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          python3 - <<'PY'
+          import json,os,pathlib
+          from tools.collect_action_diagnostics import captured_files
+          dest=pathlib.Path('analysis/android-runtime');dest.mkdir(parents=True,exist_ok=True)
+          reports=list(pathlib.Path('local-analysis/runtime-artifacts').rglob('scope.json'))
+          if not reports:raise SystemExit('No runtime evidence available')
+          seen=set()
+          for path in reports:
+              r=json.loads(path.read_text());api=r['api']
+              r['ci_diagnostics']=captured_files(path.parent)
+              assert api in (29,35) and api not in seen
+              assert r['run_id']==os.environ['GITHUB_RUN_ID']
+              assert r['source_commit']==os.environ['GITHUB_SHA']
+              assert r['original_firmware_executed'] is False
+              seen.add(api)
+              (dest/f'api-{api}.json').write_text(json.dumps(r,indent=2)+'\n')
+          PY
+          git add analysis/android-runtime
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record Android adapter instrumentation evidence, not Horizon validation [skip ci]'
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then exit 0; fi
+            done
+            exit 1
+          fi

@@ -1,0 +1,33 @@
+name: Original shell explicit RCpc compatibility experiment (not a release)
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths:
+      - .github/workflows/original-shell-rcpc.yml
+      - horizon/ui/rcpc_compat.py
+      - horizon/ui/focus_contracts.py
+      - horizon/ui/service_transport.py
+      - horizon/ui/java/AdaptServiceTransport.java
+      - port/android/adapters/src/main/java/org/metaport/port/services/**
+      - horizon/ui/framework_dex.py
+      - horizon/ui/select_framework_classes.py
+      - horizon/ui/java/SelectFrameworkClasses.java
+      - horizon/ui/java/VerifyDexWriter.java
+      - tools/prepare_dex_tools.py
+      - tests/test_framework_dex.py
+      - horizon/ui/libcxx-rcpc-sites.json
+      - horizon/ui/libutils-rcpc-sites.json
+      - horizon/ui/dependency-rcpc-sites.json
+      - tests/test_rcpc_compat.py
+      - tools/shell_crash_windows.py
+      - tools/probe_original_shell.py
+      - tests/test_shell_crash_windows.py
+jobs:
+  compatibility:
+    permissions:
+      contents: write
+    uses: ./.github/workflows/original-shell-bundle.yml
+    with:
+      android_api: '36'
+      rcpc_compat: true
+      framework_dex: true

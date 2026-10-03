@@ -1,0 +1,27 @@
+{
+  "library_sha256": "10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe",
+  "tool": "GNU objdump (GNU Binutils for Ubuntu) 2.38",
+  "command": [
+    "aarch64-linux-gnu-objdump",
+    "--disassemble",
+    "--disassemble-zeroes",
+    "--wide",
+    "--demangle",
+    "/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/local-analysis/hand-engine-disassembly/reports/libtrackingengines.so"
+  ],
+  "listing_sha256": "5a894f314670415a14a4e3ed73544f750603d9f8148f08fb3e683f6777e832ac",
+  "gzip_bytes": 71540451,
+  "text_bytes": 400473978,
+  "lines": 8279206,
+  "instruction_rows": 8277719,
+  "directive_rows": 578,
+  "zero_runs_requested": true,
+  "firmware_executed": false,
+  "runtime_validated": false,
+  "all_horizon_disassembled": false,
+  "scope": "All sections selected by objdump --disassemble in this single original ELF; data directives and unreachable code may appear",
+  "license_note": "Original Meta code disassembly is not relicensed under the project GPL",
+  "stderr_prefix": "",
+  "quest_hand_inference_executed": false,
+  "all_hand_ai_disassembled": false
+}

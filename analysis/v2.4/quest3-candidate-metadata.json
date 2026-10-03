@@ -1,0 +1,377 @@
+{
+  "sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "catalog_hash_match": true,
+  "authenticity": "UNVERIFIED",
+  "stable_channel": "UNVERIFIED",
+  "authorized_version": "UNVERIFIED",
+  "full_image": "UNVERIFIED",
+  "port_status": "NOT PORTED YET",
+  "metadata": {
+    "META-INF/com/android/metadata": {
+      "ota-property-files": "payload_metadata.bin:5750:104009,payload.bin:5750:1384286690,payload_properties.txt:1384292498:156,apex_info.pb:3180:903,care_map.pb:4130:1573,metadata:69:739,metadata.pb:876:2256                        ",
+      "ota-required-cache": "0",
+      "ota-streaming-property-files": "payload.bin:5750:1384286690,payload_properties.txt:1384292498:156,apex_info.pb:3180:903,care_map.pb:4130:1573,metadata:69:739,metadata.pb:876:2256                          ",
+      "ota-type": "AB",
+      "post-build": "oculus/eureka/eureka:14/UP1A.231005.007.A1/52168470052900520:user/abl_signing_keys:release,amss_signing_keys:release,release-keys",
+      "post-build-incremental": "52168470052900520",
+      "post-sdk-level": "34",
+      "post-security-patch-level": "2026-05-01",
+      "post-timestamp": "1781581656",
+      "pre-device": "eureka"
+    },
+    "payload_properties.txt": {
+      "FILE_HASH": "/DBWDOMUCIjngJC8jrH/d8Cd5WMEAUj2+XlW5urgqOg=",
+      "FILE_SIZE": "1384286690",
+      "METADATA_HASH": "0FET/yxd5wD4cR4sA93lKbDSyWARWgrWLJLJPgOEeYg=",
+      "METADATA_SIZE": "103742"
+    }
+  },
+  "zip_entry_count": 7,
+  "packaging_entries": {
+    "META-INF/com/android/metadata": {
+      "size_bytes": 739,
+      "compressed_bytes": 739
+    },
+    "payload_properties.txt": {
+      "size_bytes": 156,
+      "compressed_bytes": 156
+    },
+    "payload.bin": {
+      "size_bytes": 1384286690,
+      "compressed_bytes": 1384286690
+    },
+    "META-INF/com/android/otacert": {
+      "size_bytes": 1574,
+      "compressed_bytes": 1123
+    }
+  },
+  "payload_manifest": {
+    "payload_major": 2,
+    "payload_minor": 0,
+    "manifest_size_bytes": 103718,
+    "metadata_hash_match": true,
+    "metadata_signature_size_bytes": 267,
+    "signature_verification": "NOT_PERFORMED",
+    "payload_kind_declared": "FULL",
+    "partial_update_declared": false,
+    "block_size": 4096,
+    "partitions": [
+      {
+        "name": "abl",
+        "new_size_bytes": 536576,
+        "new_sha256_declared": "9139e7ca11bbc71b4d4536c21b2dcd3f183742188758cc464cae52a84c48eb32",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "adsp",
+        "new_size_bytes": 32256000,
+        "new_sha256_declared": "2584f855a061b2152ecdbec126c637c908cba1fd9925db3c498e18f796b846f6",
+        "operation_counts": {
+          "REPLACE_XZ": 16
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "aop",
+        "new_size_bytes": 237568,
+        "new_sha256_declared": "6db512862b13b8db6aba3b169e0c2ea11263355c58832acafff6dc769bfba58c",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "aop_config",
+        "new_size_bytes": 16384,
+        "new_sha256_declared": "1fe8b4da8d51a7064379533f509e298a9c00cb53a4faf05c5f379afdeb11e796",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "boot",
+        "new_size_bytes": 100663296,
+        "new_sha256_declared": "3159e8333a7da542015ce4e27fd2e7c10271dc51bd9b565a3fa065565a60eb60",
+        "operation_counts": {
+          "REPLACE_BZ": 18,
+          "REPLACE_XZ": 30
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "cpucp",
+        "new_size_bytes": 114688,
+        "new_sha256_declared": "2cf0ebb898a6fb1b15bcfc166dc9de7a03a43a2c873050cbc8c10d7e36368438",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "devcfg",
+        "new_size_bytes": 61440,
+        "new_sha256_declared": "09384f70ce5aa8ef5f286f5e83fa1de34c3cccc047ebbcdd90d68b7d186d8fad",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "dtbo",
+        "new_size_bytes": 25165824,
+        "new_sha256_declared": "6697eeaa23cf9cf3095240c32a72463877f0a942671767d882b607d7148ea064",
+        "operation_counts": {
+          "REPLACE_BZ": 11,
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "featenabler",
+        "new_size_bytes": 90112,
+        "new_sha256_declared": "4057304b6c9dc7cec26e85e09ae4488d24cbacd5e6ea3f7e561bfc5b3de02b81",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "hyp",
+        "new_size_bytes": 1232896,
+        "new_sha256_declared": "a4880ad18e80f7e6e283ad820024183c326faa545abcf99e3b83efb788e07053",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "imagefv",
+        "new_size_bytes": 1060864,
+        "new_sha256_declared": "564ddb817d4ed0b173e8fd18c20d026e609c4a2a5e7956937893c1c7e396bcb9",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "keymaster",
+        "new_size_bytes": 380928,
+        "new_sha256_declared": "f0834a93b0969d0ba04b80db27051dfe11eb511ab58b25d485ce06665757bfe3",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "odm",
+        "new_size_bytes": 295993344,
+        "new_sha256_declared": "682ada7a17804df126ac9989149c04d8a2f6e722b3830648940dd9ee06736a09",
+        "operation_counts": {
+          "REPLACE": 33,
+          "REPLACE_XZ": 109
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "odm_dlkm",
+        "new_size_bytes": 1454080,
+        "new_sha256_declared": "476dae917727cafc36e0e16fc9dd1a9442c4dd6debe4ca53f051f68cc9b694cb",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "product",
+        "new_size_bytes": 205205504,
+        "new_sha256_declared": "52949604cd27e17718217b80564ec831b0013cff2aaf1c611c4d743cfb671b9a",
+        "operation_counts": {
+          "REPLACE_BZ": 1,
+          "REPLACE_XZ": 97
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "qupfw",
+        "new_size_bytes": 57344,
+        "new_sha256_declared": "00e1a24d82801c8970e11e21152d4c468388861cd6bc7614fdc12a5539e05d2b",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "shrm",
+        "new_size_bytes": 61440,
+        "new_sha256_declared": "f5948866c3b2463f010ba10cc6734bce1c7a8646d25c97858e0d0bfba470089f",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "system",
+        "new_size_bytes": 954920960,
+        "new_sha256_declared": "a179c966d883d44acb9b65ce911a4758c01bd193347c1a24b4e696f480ab1a98",
+        "operation_counts": {
+          "REPLACE": 7,
+          "REPLACE_BZ": 3,
+          "REPLACE_XZ": 446
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "system_ext",
+        "new_size_bytes": 1417265152,
+        "new_sha256_declared": "30eeb033cbfcb3e700c09742558e104578bf3c8aac932409c6b6fc398bb17a84",
+        "operation_counts": {
+          "REPLACE": 32,
+          "REPLACE_BZ": 10,
+          "REPLACE_XZ": 634
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "tz",
+        "new_size_bytes": 3702784,
+        "new_sha256_declared": "c84eed175ec938cea99386f7584c3840a346a06e6e2b7a64966266f5b4641c0d",
+        "operation_counts": {
+          "REPLACE_XZ": 2
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "uefi",
+        "new_size_bytes": 2764800,
+        "new_sha256_declared": "c336493e16f43cdd74097a6f3e92cb13dc40fe12cb10b64d5261f6d918862ee3",
+        "operation_counts": {
+          "REPLACE_XZ": 2
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "uefisecapp",
+        "new_size_bytes": 180224,
+        "new_sha256_declared": "dabaa17f77039bf4c5646914d388d565806f67ad980f224fe2d77425ccf41799",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "vbmeta",
+        "new_size_bytes": 8192,
+        "new_sha256_declared": "8399ce7cb6b99bc7ba383ea08f477ea0bc07193efb9e8dea930e79fff131b786",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "vbmeta_system",
+        "new_size_bytes": 4096,
+        "new_sha256_declared": "75a2c1f5eae00fb7e2972e7b462bd1228d3849e520a76991803b523a5a63b79f",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "vendor",
+        "new_size_bytes": 531582976,
+        "new_sha256_declared": "c34b367c3cd22481205bbdfb11756805ddbd42c9e81ae8a89e5f44ef7867f12b",
+        "operation_counts": {
+          "REPLACE": 3,
+          "REPLACE_BZ": 1,
+          "REPLACE_XZ": 250
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "vendor_boot",
+        "new_size_bytes": 100663296,
+        "new_sha256_declared": "3245a8669835b11181e4a857e2a98537da1f64c4434b08170fa6bc5cb98b77ff",
+        "operation_counts": {
+          "REPLACE_BZ": 45,
+          "REPLACE_XZ": 3
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "vendor_dlkm",
+        "new_size_bytes": 62337024,
+        "new_sha256_declared": "05690ee455982019c54b329eaf7ae8b86ebf8c6ad02b1d1c33525c14a2af0348",
+        "operation_counts": {
+          "REPLACE_XZ": 30
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "xbl",
+        "new_size_bytes": 1228800,
+        "new_sha256_declared": "8d3811cdd4aa52c4cae6532f8229a596f409376b1e0c541db1e290437e8610bc",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      },
+      {
+        "name": "xbl_config",
+        "new_size_bytes": 172032,
+        "new_sha256_declared": "a452d442d47553aff73cb7bcf080ff5f6773140c4e52a40656ac7b47a257de3e",
+        "operation_counts": {
+          "REPLACE_XZ": 1
+        },
+        "source_dependency_declared": false,
+        "unknown_operations": false
+      }
+    ],
+    "total_new_partition_bytes_declared": 3739418624,
+    "reconstruction_verified": false,
+    "stable_channel": "UNVERIFIED",
+    "authorized_version": "UNVERIFIED",
+    "notes": [
+      "Manifest only; no operation blobs decompressed or executed.",
+      "FULL describes update format, not a bootable VM or APK.",
+      "Declared hashes are not hashes of reconstructed images."
+    ]
+  },
+  "incremental_base_declared": false,
+  "notes": [
+    "Absence of a pre-build requirement does not prove a full image.",
+    "Build fingerprints and release-keys do not alone prove a stable channel.",
+    "No partition extraction, disassembly or firmware execution performed."
+  ]
+}

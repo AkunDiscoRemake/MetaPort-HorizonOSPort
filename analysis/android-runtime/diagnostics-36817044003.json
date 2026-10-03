@@ -1,0 +1,46 @@
+{
+  "run_id": 36817044003,
+  "source_commit": "ea8cb8b13615c18b609f1480594c8e31b8d046de",
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "name": "runtime (35)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Execute Android JNI, sensor lifecycle, EGL and shader tests",
+        "Capture logs and explicit scope"
+      ],
+      "log_download_exit": 1,
+      "diagnostic_lines_unavailable": true
+    },
+    {
+      "name": "runtime (29)",
+      "conclusion": "failure",
+      "failed_steps": [
+        "Execute Android JNI, sensor lifecycle, EGL and shader tests",
+        "Capture logs and explicit scope"
+      ],
+      "log_download_exit": 1,
+      "diagnostic_lines_unavailable": true
+    },
+    {
+      "name": "record",
+      "conclusion": "success",
+      "failed_steps": []
+    }
+  ],
+  "scope": "CI diagnostics, not runtime validation",
+  "captured_files": [
+    {
+      "path": "adapter-runtime-api-29-reports-only/local-analysis/android-runtime/emulator-host.txt",
+      "text": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root        73G   66G  6.7G  91% /\n/dev/root        73G   66G  6.7G  91% /\n               total        used        free      shared  buff/cache   available\nMem:            7937         641        1530          48        5765        6931\nSwap:           3071           0        3071\n/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64: error while loading shared libraries: libpulse.so.0: cannot open shared object file: No such file or directory",
+      "prefix_limit_characters": 16000
+    },
+    {
+      "path": "adapter-runtime-api-35-reports-only/local-analysis/android-runtime/emulator-host.txt",
+      "text": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root        73G   67G  6.4G  92% /\n/dev/root        73G   67G  6.4G  92% /\n               total        used        free      shared  buff/cache   available\nMem:            7937         698        1860          49        5379        6875\nSwap:           3071           0        3071\n/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64: error while loading shared libraries: libpulse.so.0: cannot open shared object file: No such file or directory",
+      "prefix_limit_characters": 16000
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "firmware_build": "52168470052900520",
+  "ota_sha256": "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e",
+  "apk_path": "/priv-app/VrShell/VrShell.apk",
+  "apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
+  "member": "lib/arm64-v8a/libshell.so",
+  "library_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "library_size_bytes": 41235512
+}

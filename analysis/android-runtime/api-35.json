@@ -1,0 +1,349 @@
+{
+  "api": 35,
+  "abi": "x86_64",
+  "gpu_configuration": "swiftshader_indirect",
+  "tests": [
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "sensorsRepeatedStartStopAndClosedGuards",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "inputServiceLifecycleRunsOnMainThread",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "closingOneOutputDoesNotInvalidateAnother",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "eglNativeLoadRenderPresentShaderCompileAndClose",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.AdapterRuntimeTest",
+      "name": "rendererRejectsDifferentContextAndClosedUse",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppProcessMetadataBackendTest",
+      "name": "foreignContextAndMissingPackageMembershipAreRejected",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppProcessMetadataBackendTest",
+      "name": "selfMetadataMatchesAndroidIdentityAndPackages",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppProcessMetadataBackendTest",
+      "name": "permissionResultsAreReadFromAndroidWithoutFallbackGrants",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppWindowFocusBackendTest",
+      "name": "realWindowFocusTracksStopAndResume",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.AppWindowFocusBackendTest",
+      "name": "closingStopsObservationAndRejectsRestart",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "appStateIdentityDenialCannotMutateNativeMembership",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "serviceStateCodesPreserveRequiredEffectsIncludingDuplicates",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "appStateCloseAndIndependentCoresDoNotLeakMembership",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "lateMetadataAttachmentPreservesNativeStateWithoutGrantingFocus",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusBootstrapAndSessionTest",
+      "name": "applicationConstructorHadNativeIdentityBeforeContextAttachment",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "malformedPacketsDoNotMutateEvaluatedState",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "nativeImmersiveSelectionAndHistoryRoundTrip",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "nativeDecisionsAndLedgerUseBothTypesAndOrdering",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "missingChannelsBudgetsAndUnicodeAreExplicit",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusPolicyEvaluationTest",
+      "name": "concurrentEvaluationAndCloseKeepNativeStateSafe",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "sessionRaceCommitsMatchingGenerationOrRejects",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "staleAndForeignSessionObservationsCannotCommit",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "boundFramesRequireKnownSessionAndCoherentOwnMetadata",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.FocusSessionBindingTest",
+      "name": "sessionRenderingDrivesSelectionWithoutInventingOtherChannels",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "nativeCapacityIsBoundedAndCloseRestoresCapacity",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "realIdentityReachesNativeCoreAndRefreshPreservesRegistration",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "nativeBoundaryRejectsForgedIdentityAndStaleTokens",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeFocusClientTest",
+      "name": "closeAndConcurrentReadsCannotUseFreedNativeState",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeWindowFocusInputTest",
+      "name": "actualWindowFeedsNativeTypeZeroWithoutInventingSessionOrDisplay",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeWindowFocusInputTest",
+      "name": "windowRelayEnforcesThreadOwnershipAndSurvivesClientClose",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.NativeWindowFocusInputTest",
+      "name": "windowSourceVersionsAndReplacementRejectOldObservations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "callbackReentrancyCancelsLaterEntriesAndIsolatesFailure",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "actualRemoteProcessDeathRemovesAllBinderRegistrations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "denialBudgetsInvalidTypesAndCloseDoNotLeakRegistrations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "duplicatesTypesAndOwnerWideUnregisterMatchContract",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.FocusListenersTest",
+      "name": "deathDuringLinkCannotActivateStaleEntry",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "malformedAndDeniedRequestsNeverReachPolicyOperations",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "constructionDoesNotPublishOrInventBackend",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "callbacksUseOriginalOneWayDescriptorsAndSizedPayload",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.focus.protocol.VrFocusEndpointTest",
+      "name": "allElevenTransactionsUsePinnedFieldOrder",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "blockedMainThreadDoesNotPreventServiceArrival",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "actualBinderReachesSubscriberExactlyOnce",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "absentServiceDoesNotNotifyOrPretendReady",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "existingProviderNotifiesLateSubscriberAndCannotBeReplaced",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    },
+    {
+      "class": "org.metaport.port.services.ServiceDirectoryTest",
+      "name": "unsubscribedRecipientDoesNotReceiveQueuedCallback",
+      "failed": false,
+      "skipped": false,
+      "failure_detail": null
+    }
+  ],
+  "suite_failed": false,
+  "missing_cases": [],
+  "passed": true,
+  "original_firmware_executed": false,
+  "physical_device_tested": false,
+  "arcore_camera_or_depth_tested": false,
+  "quest_hand_inference_tested": false,
+  "scope": "Our adapter instrumentation only; test APKs are not METAPORT releases",
+  "source_commit": "132d33b60b985373830677509df6cda39856b798",
+  "run_id": "37134190224",
+  "ci_diagnostics": [
+    {
+      "path": "boot-tail.txt",
+      "text": "10-03 15:47:19.599  3900  3900 I VirtualizationService: virtualizationservice::maintenance: Failed to find a Secretkeeper instance; skipping secret management\n10-03 15:47:19.600  3900  3900 I AidlLazyServiceRegistrar: Registering service android.system.virtualizationservice\n10-03 15:47:19.600  3900  3900 I VirtualizationService: virtualizationservice: Registered Binder service android.system.virtualizationservice.\n10-03 15:47:19.762     0     0 I servicemanager: Caller(pid=3900,uid=1000,sid=u:r:virtualizationservice:s0) Could not find android.hardware.security.secretkeeper.ISecretkeeper/default in the VINTF manifest. No alternative instances declared in VINTF.\n10-03 15:47:19.769     0     0 I servicemanager: Caller(pid=3900,uid=1000,sid=u:r:virtualizationservice:s0) Could not find android.hardware.security.keymint.IRemotelyProvisionedComponent/avf in the VINTF manifest. VINTF declared instances: default.\n10-03 15:47:19.606  3867  3867 D nativeloader: InitApexLibraries:\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_adservices: libhpke_jni.so:libtflite_support_classifiers_native.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_appsearch: libicing.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_art: libartservice.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_btservices: libbluetooth_jni.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_conscrypt: libjavacrypto.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_mediaprovider: libpdfclient.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_nfcservices: libnfc_nci_jni.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_ondevicepersonalization: libfcp_cpp_dep_jni.so:libfcp_hpke_jni.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_os_statsd: libstats_jni.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_tethering: libandroid_net_connectivity_com_android_net_module_util_jni.so:libcrypto.so:libframework-connectivity-jni.so:libframework-connectivity-tiramisu-jni.so:libmainlinecronet.121.0.6167.71.so:libservice-connectivity.so:libservice-thread-jni.so:libssl.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_uwb: libuwb_uci_jni_rust.so\n10-03 15:47:19.606  3867  3867 D nativeloader:   com_android_virt: libvirtualizationservice_jni.so:libvirtualmachine_jni.so\n10-03 15:47:19.610  3900  3900 I AidlLazyServiceRegistrar: Registering service android.system.virtualizationmaintenance\n10-03 15:47:19.779     0     0 I servicemanager: Notifying android.system.virtualizationmaintenance they do (previously: don't) have clients when service is guaranteed to be in use\n10-03 15:47:19.617  3900  3900 I VirtualizationService: virtualizationservice: Registered Binder service android.system.virtualizationmaintenance.\n10-03 15:47:19.617  3900  3902 I AidlLazyServiceRegistrar: Process has 1 (of 2 available) client(s) in use after notification android.system.virtualizationmaintenance has clients: 1\n10-03 15:47:19.789     0     0 I BpBinder: onLastStrongRef automatically unlinking death recipients:\n10-03 15:47:19.647   362   383 I netd    : tetherGetStats() -> {[]} <0.70ms>\n10-03 15:47:19.649  3867  3867 D CompatChangeReporter: Compat change id reported: 202956589; UID 10197; state: ENABLED\n10-03 15:47:19.650  3900  3902 I VirtualizationService: virtualizationservice::aidl: ignoring packageRemoved(user_id=0, app_id=10209)\n10-03 15:47:19.823     0     0 I logd    : logdr: UID=2000 GID=2000 PID=3904 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns\n10-03 15:47:19.681  1399  3619 I Blockstore: [DataStoreImpl] Clearing all the Blockstore Data for package org.metaport.port.test [CONTEXT service_id=258 ]\n10-03 15:47:19.682  1399  3619 I Blockstore: [DataStoreImpl] Clearing all the Blockstore Data for 1 packages [CONTEXT service_id=258 ]\n10-03 15:47:19.687  1399  3619 I Blockstore: [DataStoreImpl] Removing Blockstore data for packages [org.metaport.port.test] [CONTEXT service_id=258 ]\n10-03 15:47:19.708  3290  3505 W BugleRcs: getAvailableProvisioningIds: accessing uninitialized provisioning identities.\n10-03 15:47:19.708  3290  3505 W BugleRcs: getAvailableProvisioningIds: accessing uninitialized provisioning identities.\n10-03 15:47:19.709  3290  3505 I BugleRcsEngine: CommonRcsProvisioningChangeListenerHandler.notifyListener : Notify RcsProvisioningChangeListener bjbz@41ee764 onRcsProvisioningChange, SIM = redacted-pii:sim_id[chars:35,last3:97)], available rcs provisioning ids  =  [CONTEXT log_prefix=\"RcsProvisioningManager\" thread_id=65 ]\n10-03 15:47:19.737  1084  1094 V MmsProvider: accessRestricted=false\n10-03 15:47:19.739  1084  1084 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)\n10-03 15:47:19.739   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 10135, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.740  3855  3855 D nativeloader: InitLlndkLibrariesProduct: libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libRS.so:libandroid_net.so:libapexsupport.so:libbinder_ndk.so:libc.so:libcgrouprc.so:libclang_rt.asan-x86_64-android.so:libcom.android.tethering.connectivity_native.so:libdl.so:libft2.so:liblog.so:libm.so:libmediandk.so:libnativewindow.so:libneuralnetworks.so:libselinux.so:libsync.so:libvendorsupport.so:libvndksupport.so:libvulkan.so\n10-03 15:47:19.740  3855  3855 D nativeloader: Configuring product-clns-8 for unbundled product apk /product/priv-app/PrebuiltBugle/PrebuiltBugle.apk. target_sdk_version=35, uses_libraries=, library_path=/product/priv-app/PrebuiltBugle/lib/x86_64:/product/priv-app/PrebuiltBugle/PrebuiltBugle.apk!/lib/x86_64:/product/lib64:/system/product/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.apps.messaging:/product/lib64:/system/product/lib64\n10-03 15:47:19.740  3855  3855 D nativeloader: InitVndkspLibrariesProduct: VNDK is deprecated with product\n10-03 15:47:19.740  3855  3855 D CompatChangeReporter: Compat change id reported: 202956589; UID 10135; state: ENABLED\n10-03 15:47:19.742  1084  1084 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found\n10-03 15:47:19.742   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_SMS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.745   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_SMS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.745   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_WAP_PUSH, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.745   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = SEND_SMS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.745   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.747  1084  1084 D CarrierSvcBindHelper: onPackageModified: com.google.android.apps.wellbeing\n10-03 15:47:19.747  1084  1300 D ImsResolver: maybeAddedImsService, packageName: com.google.android.apps.messaging\n10-03 15:47:19.747  1084  1084 D CarrierSvcBindHelper: No carrier app for: 0\n10-03 15:47:19.750  1084  1084 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)\n10-03 15:47:19.750   565  2177 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 10135, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.755  1084  1084 E CellBroadcastUtils: getDefaultCellBroadcastReceiverPackageName: no package found\n10-03 15:47:19.755   565  1933 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_SMS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.755   565  1933 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_SMS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.755   565  1933 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = RECEIVE_WAP_PUSH, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.755   565  1933 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = SEND_SMS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.755   565  1933 W AppOpService: Ignored setUidMode call for runtime permission app op: uid = 1001, code = READ_CELL_BROADCASTS, mode = allow, callingUid = 1001, oldMode = allow\n10-03 15:47:19.763  3855  3855 V GraphicsEnvironment: Currently set values for:\n10-03 15:47:19.763  3855  3855 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]\n10-03 15:47:19.763  3855  3855 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]\n10-03 15:47:19.763  3855  3855 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0\n10-03 15:47:19.763  3855  3855 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.\n10-03 15:47:19.767  3855  3855 I MultiDex: Installing application\n10-03 15:47:19.767  3855  3855 I MultiDex: VM with version 2.1.0 has multidex support\n10-03 15:47:19.767  3855  3855 I MultiDex: VM has multidex support, MultiDex support library is disabled.\n10-03 15:47:19.772  1084  1300 D ImsResolver: maybeAddedImsService, packageName: com.google.android.apps.wellbeing\n10-03 15:47:19.800  1084  1094 V MmsProvider: accessRestricted=false\n10-03 15:47:19.807  3867  3867 V GraphicsEnvironment: Currently set values for:\n10-03 15:47:19.807  3867  3867 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]\n10-03 15:47:19.807  3867  3867 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]\n10-03 15:47:19.807  3867  3867 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0\n10-03 15:47:19.812  3867  3867 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.\n10-03 15:47:19.817   565   889 D ShortcutService: received package broadcast intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x45000010 (has extras) }\n10-03 15:47:19.817   565   889 D ShortcutService: changing package: com.google.android.apps.messaging userId0\n10-03 15:47:19.817   565   889 D ShortcutService: handlePackageChanged: com.google.android.apps.messaging user=0\n10-03 15:47:19.817   565   889 D ShortcutService: rescanPackageIfNeeded 0@com.google.android.apps.messaging, forceRescan=true , isNewApp=false\n10-03 15:47:19.831  1433  1693 I AiAiEcho: [pnb-agg] Reload pnb aggregation on events deleted\n10-03 15:47:19.831  1433  1693 I AiAiEcho: [pnb-agg] pnb aggregation disabled.\n10-03 15:47:19.843  1433  1870 I AiAiEcho: EchoSearch: WidgetFetcherImpl is initialized with [33] widgets [reason=package removed for userId: 0]\n10-03 15:47:19.884  3855  3855 D PrimesLoggerHolder: Primes instant initialization\n10-03 15:47:19.891   565   889 E system_server: No package ID 7f found for resource ID 0x7f0803ff.\n10-03 15:47:19.891   565   889 E system_server: No package ID 7f found for resource ID 0x7f1510ad.\n10-03 15:47:19.891   565   889 E system_server: No package ID 7f found for resource ID 0x7f1510ad.\n10-03 15:47:19.891   565   889 E system_server: No package ID 7f found for resource ID 0x7f1510ac.\n10-03 15:47:19.891   565   889 D ShortcutService: Package com.google.android.apps.messaging has 1 manifest shortcut(s), and 2 share target(s)\n10-03 15:47:19.891   565   889 D ShortcutService: Package com.google.android.apps.messaging updated, version 235003880 -> 235003880\n10-03 15:47:19.891   565   889 D ShortcutService: Package com.google.android.apps.messaging: publishing manifest shortcuts\n10-03 15:47:19.892   565   889 D ShortcutService: received package broadcast intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package: flg=0x45000010 (has extras) }\n10-03 15:47:19.892   565   889 D ShortcutService: changing package: com.google.android.apps.wellbeing userId0\n10-03 15:47:19.892   565   889 D ShortcutService: handlePackageChanged: com.google.android.apps.wellbeing user=0\n10-03 15:47:19.892   565   889 D ShortcutService: rescanPackageIfNeeded 0@com.google.android.apps.wellbeing, forceRescan=true , isNewApp=true\n10-03 15:47:19.893   565   889 D ShortcutService: Package com.google.android.apps.wellbeing has 0 manifest shortcut(s), and 0 share target(s)\n10-03 15:47:19.907  1399  2717 W SQLiteLog: (28) double-quoted string literal: \"org.metaport.port.test\"\n10-03 15:47:19.908   565  1933 W ActivityManager: Slow operation: 76ms so far, now at finishAttachApplicationInner: after mServices.attachApplicationLocked\n10-03 15:47:19.908   565  1933 W ActivityManager: Slow operation: 76ms so far, now at finishAttachApplicationInner: after dispatching broadcasts\n10-03 15:47:19.965  2193  2229 W GoogleCertificates: GoogleCertificates has been initialized already\n10-03 15:47:19.986  1399  3937 I Icing   : doRemovePackageData org.metaport.port.test\n10-03 15:47:20.008  3855  3855 I dfmd    : SslGuard completed installation.\n10-03 15:47:20.019   565   996 D CompatChangeReporter: Compat change id reported: 297989574; UID 1000; state: ENABLED\n10-03 15:47:20.019  1212  3625 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_REMOVED [CONTEXT service_id=17 ]",
+      "prefix_limit_characters": 16000
+    },
+    {
+      "path": "emulator-host.txt",
+      "text": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       146G   60G   87G  41% /\n/dev/root       146G   60G   87G  41% /\n               total        used        free      shared  buff/cache   available\nMem:           15988         639        4458          48       10891       14954\nSwap:           3071           0        3071\nAndroid emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)\nCopyright (C) 2006-2024 The Android Open Source Project and many others.\nThis program is a derivative of the QEMU CPU emulator (www.qemu.org).\n\n  This software is licensed under the terms of the GNU General Public\n  License version 2, as published by the Free Software Foundation, and\n  may be copied, distributed, and modified under those terms.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\naccel:\n0\nKVM (version 12) is installed and usable.\naccel\nPlayStore.enabled=no\nabi.type=x86_64\navd.id=<build>\navd.ini.encoding=UTF-8\navd.name=<build>\ndisk.cachePartition=yes\ndisk.cachePartition.size=66MB\ndisk.dataPartition.path=<temp>\ndisk.systemPartition.size=0\ndisk.vendorPartition.size=0\nenvironment.height=0\nenvironment.width=0\nfastboot.forceChosenSnapshotBoot=no\nfastboot.forceColdBoot=no\nfastboot.forceFastBoot=yes\nfirstboot.bootFromDownloadableSnapshot=yes\nfirstboot.bootFromLocalSnapshot=yes\nfirstboot.saveToLocalSnapshot=yes\nhw.accelerometer=yes\nhw.accelerometer_uncalibrated=yes\nhw.arc=false\nhw.audioInput=yes\nhw.audioOutput=yes\nhw.battery=yes\nhw.camera.back=emulated\nhw.camera.back.orientation=90\nhw.camera.front=none\nhw.camera.front.orientation=90\nhw.cpu.arch=x86_64\nhw.dPad=no\nhw.device.hash2=MD5:55acbc835978f326788ed66a5cd4c9a7\nhw.device.manufacturer=Google\nhw.device.name=pixel_2\nhw.display1.density=0\nhw.display1.flag=0\nhw.display1.height=0\nhw.display1.width=0\nhw.display1.xOffset=-1\nhw.display1.yOffset=-1\nhw.display2.density=0\nhw.display2.flag=0\nhw.display2.height=0\nhw.display2.width=0\nhw.display2.xOffset=-1\nhw.display2.yOffset=-1\nhw.display3.density=0\nhw.display3.flag=0\nhw.display3.height=0\nhw.display3.width=0\nhw.display3.xOffset=-1\nhw.display3.yOffset=-1\nhw.displayRegion.0.1.height=0\nhw.displayRegion.0.1.width=0\nhw.displayRegion.0.1.xOffset=-1\nhw.displayRegion.0.1.yOffset=-1\nhw.displayRegion.0.2.height=0\nhw.displayRegion.0.2.width=0\nhw.displayRegion.0.2.xOffset=-1\nhw.displayRegion.0.2.yOffset=-1\nhw.displayRegion.0.3.height=0\nhw.displayRegion.0.3.width=0\nhw.displayRegion.0.3.xOffset=-1\nhw.displayRegion.0.3.yOffset=-1\nhw.gltransport=pipe\nhw.gltransport.asg.dataRingSize=32768\nhw.gltransport.asg.writeBufferSize=1048576\nhw.gltransport.asg.writeStepSize=4096\nhw.gltransport.drawFlushInterval=800\nhw.gps=yes\nhw.gpu.enabled=no\nhw.gpu.mode=auto\nhw.gsmModem=yes\nhw.gyroscope=yes\nhw.hotplug_multi_display=no\nhw.initialOrientation=portrait\nhw.keyboard=no\nhw.keyboard.charmap=qwerty2\nhw.keyboard.lid=yes\nhw.lcd.backlight=yes\nhw.lcd.circular=false\nhw.lcd.density=420\nhw.lcd.depth=32\nhw.lcd.height=1920\nhw.lcd.transparent=false\nhw.lcd.vsync=60\nhw.lcd.width=1080\nhw.mainKeys=no\nhw.multi_display_window=no\nhw.rotaryInput=no\nhw.screen=multi-touch\nhw.sdCard=yes\nhw.sensor.hinge=no\nhw.sensor.hinge.count=0\nhw.sensor.hinge.fold_to_displayRegion.0.1_at_posture=1\nhw.sensor.hinge.resizable.config=1\nhw.sensor.hinge.sub_type=0\nhw.sensor.hinge.type=0\nhw.sensor.roll=no\nhw.sensor.roll.count=0\nhw.sensor.roll.resize_to_displayRegion.0.1_at_posture=6\nhw.sensor.roll.resize_to_displayRegion.0.2_at_posture=6\nhw.sensor.roll.resize_to_displayRegion.0.3_at_posture=6\nhw.sensors.gyroscope_uncalibrated=yes\nhw.sensors.heading=no\nhw.sensors.heart_rate=no\nhw.sensors.humidity=yes\nhw.sensors.light=yes\nhw.sensors.magnetic_field=yes\nhw.sensors.magnetic_field_uncalibrated=yes\nhw.sensors.orientation=yes\nhw.sensors.pressure=yes\nhw.sensors.proximity=yes\nhw.sensors.rgbclight=no\nhw.sensors.temperature=yes\nhw.sensors.wrist_tilt=no\nhw.touchpad0=no\nhw.touchpad0.height=400\nhw.touchpad0.width=600\nhw.trackBall=no\nhw.useext4=yes\nimage.sysdir.1=system-images/android-35/google_apis/x86_64/\nkernel.newDeviceNaming=autodetect\nkernel.supportsYaffs2=autodetect\nruntime.network.latency=none\nruntime.network.speed=full\nsdcard.size=512 MB\nshowDeviceFrame=yes\ntag.display=Google APIs\ntag.id=google_apis\ntest.delayAdbTillBootComplete=0\ntest.monitorAdb=0\ntest.quitAfterBootTimeOut=-1\nuserdata.useQcow2=no\nhw.cpu.ncore=2\nhw.ramSize=2048\nvm.heapSize=512\ndisk.dataPartition.size=2048M",
+      "prefix_limit_characters": 16000
+    },
+    {
+      "path": "emulator-output.txt",
+      "text": "INFO         | Android emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)\nINFO         | Graphics backend: gfxstream\nINFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-35/google_apis/x86_64/\nINFO         | Saving last run QEMU version for the AVD to 2\nINFO         | Feature 'Vulkan' (21) is overridden to 'disabled'\nINFO         | Increasing RAM size to 2560MB\nINFO         | Guest GLES Driver: Auto (ext controls)\nINFO         | emuglConfig_init: vulkan_mode_selected:swiftshader gles_mode_selected:swiftshader\nINFO         | Checking system compatibility:\nINFO         |   Checking: hasSufficientDiskSpace\nINFO         |      Ok: Disk space requirements to run avd: `test` are met\nINFO         |   Checking: hasSufficientHwGpu\nINFO         |      Ok: Hardware GPU compatibility checks are not required\nINFO         |   Checking: hasSufficientSystem\nINFO         |      Ok: System requirements to run avd: `test` are met\nWARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1\nINFO         | Storing crashdata in: /tmp/android-runner/emu-crash-37.2.12.db, detection is enabled for process: 3520\nINFO         | Initializing gfxstream backend\nINFO         | startOpenglesRendererImpl: gpu info\nINFO         | \nINFO         | SharedLibrary::open for [libX11]\nINFO         | SharedLibrary::open for [libX11-xcb]\nWARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1\nINFO         | SharedLibrary::open for [libX11-xcb.so.1]\nINFO         | Graphics Adapter Vendor Google (Google Inc.)\nINFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)\nINFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)\nINFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 \nINFO         | Graphics Device Extensions N/A\nINFO         | Sending adb public key [QAAAAKen/T7pbydTJR0R/WYbh6muf4iXcZBg+2zyOIInMOrvwoVya2X0UNxQhZ9ZlPapme706w2Am1vXRJFIlKVn+rdY/2jva6ycwvhTRpQALVzAmY6JhX4xmVMDn5lkHcc3hoEP7e2zzF6mTxi3Ns3cqmnnk9PIludsAIKG4CVHcOTraA8TjfB5HngV7WptmGkk5+wXwRr+8islR36pda1E9XCE7qDjyJsUMdGPA/puztHZFROsz8k8yvPY38PjLIC00ZTPq9WCEjTVeIhVIXQPtylvaGrmY4tc3qeoUWr7+qFFvNVU6a9CjUZjhUZIZHd8WkGApFeoYew/F1YusM8o3EvKc9LFcUNZNxLHJ3O0vvOOZQH3QNXjUw4GBVEvbqhQpSUcC9W5ELNcA/wULY+M+uFpqmDeNItoBBPzEL58pS1UptAd71O+24BeFaYvsZi0zhoUPF+Na2iMWlDp7bX69VvesFPbjNtRo57bMuAdKT3ncH3IJ7YkFcT6MxyOZshlfJTjIEble7V6iaxE8iaXAaPVvQ+3Qy7sus4P2JwWUcuZ+m7rSxv3Di+g3xESKEnpz0eEQ7jM29W6TEeaGVmk5VEUI/I55sfhn/GouBAfiXvU74Ml+AzbYYQEygmoI6MyW1PktLRfxRjs3KyzpwpOHadWTHmZkBE/cIZxrA8E39KSZo+CogEAAQA= runner@unknown]\nINFO         | Userspace boot properties:\nINFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0\nINFO         |   androidboot.dalvik.vm.heapsize=576m\nINFO         |   androidboot.debug.hwui.renderer=skiagl\nINFO         |   androidboot.debug.sf.nobootanimation=1\nINFO         |   androidboot.hardware=ranchu\nINFO         |   androidboot.hardware.gltransport=pipe\nINFO         |   androidboot.logcat=*:V\nINFO         |   androidboot.opengles.version=196608\nINFO         |   androidboot.qemu=1\nINFO         |   androidboot.qemu.adb.pubkey=QAAAAKen/T7pbydTJR0R/WYbh6muf4iXcZBg+2zyOIInMOrvwoVya2X0UNxQhZ9ZlPapme706w2Am1vXRJFIlKVn+rdY/2jva6ycwvhTRpQALVzAmY6JhX4xmVMDn5lkHcc3hoEP7e2zzF6mTxi3Ns3cqmnnk9PIludsAIKG4CVHcOTraA8TjfB5HngV7WptmGkk5+wXwRr+8islR36pda1E9XCE7qDjyJsUMdGPA/puztHZFROsz8k8yvPY38PjLIC00ZTPq9WCEjTVeIhVIXQPtylvaGrmY4tc3qeoUWr7+qFFvNVU6a9CjUZjhUZIZHd8WkGApFeoYew/F1YusM8o3EvKc9LFcUNZNxLHJ3O0vvOOZQH3QNXjUw4GBVEvbqhQpSUcC9W5ELNcA/wULY+M+uFpqmDeNItoBBPzEL58pS1UptAd71O+24BeFaYvsZi0zhoUPF+Na2iMWlDp7bX69VvesFPbjNtRo57bMuAdKT3ncH3IJ7YkFcT6MxyOZshlfJTjIEble7V6iaxE8iaXAaPVvQ+3Qy7sus4P2JwWUcuZ+m7rSxv3Di+g3xESKEnpz0eEQ7jM29W6TEeaGVmk5VEUI/I55sfhn/GouBAfiXvU74Ml+AzbYYQEygmoI6MyW1PktLRfxRjs3KyzpwpOHadWTHmZkBE/cIZxrA8E39KSZo+CogEAAQA= runner@unknown\nINFO         |   androidboot.qemu.avd_name=test\nINFO         |   androidboot.qemu.camera_hq_edge_processing=0\nINFO         |   androidboot.qemu.camera_protocol_ver=1\nINFO         |   androidboot.qemu.cpuvulkan.version=4206592\nINFO         |   androidboot.qemu.gltransport.drawFlushInterval=800\nINFO         |   androidboot.qemu.gltransport.name=pipe\nINFO         |   androidboot.qemu.hwcodec.avcdec=2\nINFO         |   androidboot.qemu.hwcodec.hevcdec=2\nINFO         |   androidboot.qemu.hwcodec.vpxdec=2\nINFO         |   androidboot.qemu.settings.system.screen_off_timeout=2147483647\nINFO         |   androidboot.qemu.skin=1080x1920\nINFO         |   androidboot.qemu.virtiowifi=1\nINFO         |   androidboot.qemu.vsync=60\nINFO         |   androidboot.serialno=EMULATOR37X2X12X0\nINFO         |   androidboot.vbmeta.digest=b3271ba499104f4631ae3723913d5c12574e01715fce5b82d60beed097ead264\nINFO         |   androidboot.vbmeta.hash_alg=sha256\nINFO         |   androidboot.vbmeta.size=6720\nINFO         |   androidboot.veritymode=enforcing\nWARNING: cannnot unmap ptr 0x7fefc7a01000 as it is in the protected range from 0x7fef27a00000 to 0x7fefc7c00000\nINFO         | Monitoring duration of emulator setup.\nINFO         | Activated packet streamer for bluetooth emulation\nINFO         | Successfully initialized netsim WiFi\nINFO         | Setting display: 0 configuration to: 1080x1920, dpi: 420x420 \nINFO         | setDisplayActiveConfig: id:0, 1080x1920\nINFO         | emulatorSetupEnvironment: Environment scene is not required\nUSER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.\nWARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.\nWARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.\nINFO         | Boot completed in 39835 ms\nINFO         | Increasing screen off timeout, logcat buffer size to 2M.\nERROR        | Failed to find ColorBuffer: 43\nERROR        | Failed to bind to texture: invalid color buffer.\nWARNING      | Netsim Wifi ipv6:%5B::1%5D:34611 is gone due to CANCELLED\nINFO         | Wait for emulator (pid 3520) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)\n\nUSER_INFO    | Snapshots have been disabled by the user, save request is ignored.\nINFO         | Saving snapshot 'default_boot' took 1 ms\nINFO         | ipv6:%5B::1%5D:34611: Got goaway [2] err=UNAVAILABLE:GOAWAY received; Error code: 2; Debug Text: Cancelling all calls {http2_error:2}\nERROR        | stop: Not implemented\nWARNING      | Emulator client has not yet been configured.. Call configure me first!\nINFO         | removeAll",
+      "prefix_limit_characters": 16000
+    }
+  ]
+}

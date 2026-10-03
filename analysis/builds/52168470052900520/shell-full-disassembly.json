@@ -1,0 +1,25 @@
+{
+  "library_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "tool": "GNU objdump (GNU Binutils for Ubuntu) 2.38",
+  "command": [
+    "aarch64-linux-gnu-objdump",
+    "--disassemble",
+    "--disassemble-zeroes",
+    "--wide",
+    "--demangle",
+    "/home/runner/work/MetaPort-HorizonOSPort/MetaPort-HorizonOSPort/local-analysis/shell-disassembly/reports/libshell.so"
+  ],
+  "listing_sha256": "457b8322d1a71cb97d1bf0820ca0b4db4fa51cb5185b4ddaa4e1b73d7406265d",
+  "gzip_bytes": 67377250,
+  "text_bytes": 405623093,
+  "lines": 7470785,
+  "instruction_rows": 7467156,
+  "directive_rows": 0,
+  "zero_runs_requested": true,
+  "firmware_executed": false,
+  "runtime_validated": false,
+  "all_horizon_disassembled": false,
+  "scope": "All sections selected by objdump --disassemble in this single original ELF; data directives and unreachable code may appear",
+  "license_note": "Original Meta code disassembly is not relicensed under the project GPL",
+  "stderr_prefix": ""
+}

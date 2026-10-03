@@ -1,0 +1,31 @@
+{
+  "selected": [
+    {
+      "elf_address": 17955628,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_0121fb2c",
+      "purpose": "constructor for object assigned to VrPlatform slot candidate"
+    },
+    {
+      "elf_address": 12309300,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00cbd334",
+      "purpose": "Clay init status candidate"
+    },
+    {
+      "elf_address": 28699984,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_01c5ed50",
+      "purpose": "Clay start status candidate"
+    },
+    {
+      "elf_address": 14347248,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00eaebf0",
+      "purpose": "default aligned Clay object construction candidate"
+    }
+  ],
+  "evidence_sha256": "ca846e13df0b4c36497ce971a7276fe2471aaa0af611eb4eba2a2703f015369d",
+  "firmware_executed": false,
+  "scope": "C-like reference candidates; signatures and vtable layout unvalidated"
+}

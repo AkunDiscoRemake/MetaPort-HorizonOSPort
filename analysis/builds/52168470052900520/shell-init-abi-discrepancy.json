@@ -1,0 +1,21 @@
+{
+  "library_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "elf_address": 14125964,
+  "java_declaration": {
+    "line": 564,
+    "text": "public static native long nativeInit(ShellApplication shellApplication, long j, String str, String str2, boolean z, boolean z2);"
+  },
+  "java_generated_sha256": "11fdf8cd5e8256376f23074967ac12530bb06848a7b7cba0fdfb5d9d278426e2",
+  "java_source_has_decompiler_errors": false,
+  "java_declares_return": "long",
+  "native_reconstruction_declares_return": "void",
+  "callable_abi_validated": false,
+  "warning": "Original DEX and normal ARM64 epilogue agree on 64-bit return. Do not implement this JNI entry as void. Full callable service ABI, construction, exceptions and ownership remain unvalidated.",
+  "wrapped_delete_no_return_warning_observed": true,
+  "cause_confirmed": false,
+  "normal_return_type_discrepancy_resolved": true,
+  "original_dex_return": "J (Java long / JNI jlong)",
+  "normal_arm64_return": "X0, 64 bits, loaded from ELF global 0x275b008",
+  "proof_report": "shell-jni-abi-proof.json",
+  "proof_run_id": "36812160938"
+}

@@ -1,0 +1,521 @@
+{
+  "matched_count": 288,
+  "selected": [
+    {
+      "address": 470598,
+      "text": "HandTrackingExtraSensors"
+    },
+    {
+      "address": 470737,
+      "text": "[HANDTRACKINGGLUE] stopCapability"
+    },
+    {
+      "address": 474081,
+      "text": "[SurfaceInputs] HandTrackingService::startSurfaceKeyboard. T: %f %f %f, R: %f %f %f %f"
+    },
+    {
+      "address": 475996,
+      "text": "[HANDTRACKINGGLUE] standbyToRunning"
+    },
+    {
+      "address": 476032,
+      "text": "[HANDTRACKINGGLUE] handleStateChange muxMode=%s"
+    },
+    {
+      "address": 478242,
+      "text": "[HandTracking] Failed to create FMQ for hand data"
+    },
+    {
+      "address": 478718,
+      "text": "graphicsCriticalPriority"
+    },
+    {
+      "address": 478743,
+      "text": "!backgroundPriority_.has_value()"
+    },
+    {
+      "address": 480161,
+      "text": "[DevChoice] Moved hand tracking camera threads to %s"
+    },
+    {
+      "address": 480582,
+      "text": "      Likely Off-Hand Orn:  "
+    },
+    {
+      "address": 483104,
+      "text": "[SurfaceInputs] HandTrackingService::stopSurfaceKeyboard. "
+    },
+    {
+      "address": 483227,
+      "text": "HandTrackingApi"
+    },
+    {
+      "address": 483616,
+      "text": "hand"
+    },
+    {
+      "address": 488406,
+      "text": "affinity"
+    },
+    {
+      "address": 490244,
+      "text": "[HANDTRACKINGGLUE] setup"
+    },
+    {
+      "address": 492977,
+      "text": "[HANDTRACKING] Controller %lx in hand: %s, valid: %s"
+    },
+    {
+      "address": 493454,
+      "text": "[HandTracking] PermissionPal not available, permission checks will be skipped"
+    },
+    {
+      "address": 493584,
+      "text": "setHandTrackingVersion is deprecated and does nothing."
+    },
+    {
+      "address": 493816,
+      "text": "syncbossWorkerPriority"
+    },
+    {
+      "address": 499831,
+      "text": "Scheduling delayed transition to SLEEP in %lldms"
+    },
+    {
+      "address": 501273,
+      "text": "cameraStreamerPriority"
+    },
+    {
+      "address": 505059,
+      "text": "[HandTracking] resetFMMNotifications"
+    },
+    {
+      "address": 505096,
+      "text": "[HandTracking] setMicrogestureMode(%d, %d)"
+    },
+    {
+      "address": 509898,
+      "text": "controllerWorkerPriority"
+    },
+    {
+      "address": 511417,
+      "text": "[HANDTRACKINGGLUE] tearDown"
+    },
+    {
+      "address": 514548,
+      "text": "!computePriority_.has_value()"
+    },
+    {
+      "address": 514578,
+      "text": "graphicsCriticalPriority missing from config file"
+    },
+    {
+      "address": 519127,
+      "text": "backgroundPriority missing from config file"
+    },
+    {
+      "address": 519260,
+      "text": "HandTracking: Registering PAL services"
+    },
+    {
+      "address": 520487,
+      "text": "[HANDTRACKINGGLUE] suspendCapability"
+    },
+    {
+      "address": 523838,
+      "text": "[HandTracking] Permission denied for uid=%d pid=%d"
+    },
+    {
+      "address": 523889,
+      "text": "handTrackingProfileUpdate"
+    },
+    {
+      "address": 524127,
+      "text": "latencyCriticalPriority"
+    },
+    {
+      "address": 524151,
+      "text": "%s: Failed to set task profile for thread %d, priority: %d, err: %d"
+    },
+    {
+      "address": 528720,
+      "text": "elevatedPriority missing from config file"
+    },
+    {
+      "address": 533099,
+      "text": "controllerPosePriority"
+    },
+    {
+      "address": 533122,
+      "text": "elevatedPriority"
+    },
+    {
+      "address": 533139,
+      "text": "!graphicsCriticalPriority_.has_value()"
+    },
+    {
+      "address": 534799,
+      "text": "[HANDTRACKINGGLUE] resumeCapability"
+    },
+    {
+      "address": 535294,
+      "text": "      In-Hand From CT:      "
+    },
+    {
+      "address": 537775,
+      "text": "Failed to set %s thread priority for tid %u"
+    },
+    {
+      "address": 539080,
+      "text": "[HANDTRACKINGGLUE] runningToStandby"
+    },
+    {
+      "address": 543633,
+      "text": "[HANDTRACKINGGLUE] Ignoring thread pri override"
+    },
+    {
+      "address": 551505,
+      "text": "horizonos.perception.handtracking.HandTrackingState"
+    },
+    {
+      "address": 556511,
+      "text": "motionStreamerPriority"
+    },
+    {
+      "address": 559393,
+      "text": "Delayed transition to SLEEP already scheduled"
+    },
+    {
+      "address": 560855,
+      "text": "oculus.internal.tracking.IHandTrackingService"
+    },
+    {
+      "address": 561163,
+      "text": "!normalPriority_.has_value()"
+    },
+    {
+      "address": 561192,
+      "text": "!isochronousPriority_.has_value()"
+    },
+    {
+      "address": 561226,
+      "text": "%s: Failed to set affinity for thread %d, priority: %d, err: %d"
+    },
+    {
+      "address": 563635,
+      "text": "use_obj_track_cpuset"
+    },
+    {
+      "address": 563986,
+      "text": "  Device:%016lx (Handedness: %d), Controller In Hand: %i, Confident: %i, Using Hybrid CT In-Hand Status: %i, Last Active Signal: "
+    },
+    {
+      "address": 566566,
+      "text": "horizonos.perception.handtracking.IHandTrackingControl"
+    },
+    {
+      "address": 566714,
+      "text": "isochronousPriority missing from config file"
+    },
+    {
+      "address": 570445,
+      "text": "[HandTracking] setHandTrackingVersion(%d)"
+    },
+    {
+      "address": 570487,
+      "text": "[HandTracking] setFastMotionManifestSetting(%d)"
+    },
+    {
+      "address": 570535,
+      "text": "[SurfaceInputs] HandTrackingService::setSurfaceKeyboardPose. T: %f %f %f, R: %f %f %f %f"
+    },
+    {
+      "address": 570835,
+      "text": "headsetPosePriority"
+    },
+    {
+      "address": 571991,
+      "text": "[HANDTRACKINGGLUE] startCapability"
+    },
+    {
+      "address": 572026,
+      "text": "HandTrackingGlue"
+    },
+    {
+      "address": 574491,
+      "text": "handTrackingFidelityStatus"
+    },
+    {
+      "address": 574518,
+      "text": "horizonos.perception.handtracking.HandGestureState"
+    },
+    {
+      "address": 574753,
+      "text": "backgroundPriority"
+    },
+    {
+      "address": 574772,
+      "text": "latencyCriticalPriority missing from config file"
+    },
+    {
+      "address": 574922,
+      "text": "TrackingApiGlue registering HandTrackingGlue"
+    },
+    {
+      "address": 576055,
+      "text": "wake_affine_controller"
+    },
+    {
+      "address": 576325,
+      "text": "trackingPolicy"
+    },
+    {
+      "address": 578805,
+      "text": "!latencyCriticalPriority_.has_value()"
+    },
+    {
+      "address": 580353,
+      "text": "[HANDTRACKINGGLUE] standbyToSleep"
+    },
+    {
+      "address": 580387,
+      "text": "[HANDTRACKINGGLUE] HandCam thread priority: %s/%d (sysprop override=%d)"
+    },
+    {
+      "address": 583030,
+      "text": "horizonos.perception.handtracking.HandPinchState"
+    },
+    {
+      "address": 584488,
+      "text": "[HANDTRACKINGGLUE] handleMuxModeNotification"
+    },
+    {
+      "address": 584533,
+      "text": "HandTrackingStream"
+    },
+    {
+      "address": 584726,
+      "text": "wake_affine_iot"
+    },
+    {
+      "address": 587537,
+      "text": "[HandTracking] Permission check failed: %s"
+    },
+    {
+      "address": 587762,
+      "text": "computePriority"
+    },
+    {
+      "address": 587778,
+      "text": "!elevatedPriority_.has_value()"
+    },
+    {
+      "address": 588038,
+      "text": "TrackingApiGlue registering HandTrackingService"
+    },
+    {
+      "address": 589024,
+      "text": "WAKE_AFFINE"
+    },
+    {
+      "address": 589422,
+      "text": "[HANDTRACKINGGLUE] sleepToStandby"
+    },
+    {
+      "address": 592482,
+      "text": "normalPriority"
+    },
+    {
+      "address": 596305,
+      "text": "controllerStreamerPriority"
+    },
+    {
+      "address": 597978,
+      "text": "TrackingDataPostProcessor: New controllers default in-hand: %s"
+    },
+    {
+      "address": 601046,
+      "text": "normalPriority missing from config file"
+    },
+    {
+      "address": 601086,
+      "text": "setPriorityReturnErr"
+    },
+    {
+      "address": 602419,
+      "text": "HzosExt: failed to write WAKE_AFFINE to %s: %s"
+    },
+    {
+      "address": 606306,
+      "text": "isochronousPriority"
+    },
+    {
+      "address": 610361,
+      "text": "  %s Hand is %s"
+    },
+    {
+      "address": 610385,
+      "text": "horizonos.perception.handtracking.IHandTrackingOutput"
+    },
+    {
+      "address": 610748,
+      "text": "cameraWorkerPriority"
+    },
+    {
+      "address": 610769,
+      "text": "computePriority missing from config file"
+    },
+    {
+      "address": 611100,
+      "text": "HandTrackingSensors"
+    },
+    {
+      "address": 615218,
+      "text": "handTrackingPoseUpdate"
+    },
+    {
+      "address": 615241,
+      "text": "horizonos.perception.handtracking.IHandTrackingCallback"
+    },
+    {
+      "address": 615468,
+      "text": "%s: Failed to set %s priority for thread %d, priority: %d, err: %d"
+    },
+    {
+      "address": 615772,
+      "text": "HandTrackingState"
+    },
+    {
+      "address": 618936,
+      "text": "hand"
+    },
+    {
+      "address": 619176,
+      "text": "objectTrackingPolicy"
+    },
+    {
+      "address": 635947,
+      "text": "horizonos.permission.HAND_TRACKING"
+    },
+    {
+      "address": 635982,
+      "text": "persist.ovr.tracking.handtracking.use_pal"
+    },
+    {
+      "address": 637606,
+      "text": "/odm/etc/thread_priority.cfg"
+    },
+    {
+      "address": 469976,
+      "text": "ipc_SetClientEventBufferSize"
+    },
+    {
+      "address": 470425,
+      "text": "exiting haptic socket thread"
+    },
+    {
+      "address": 472365,
+      "text": "Byte size calculation and serialization were inconsistent.  This may indicate a bug in protocol buffers or it may be caused by concurrent modification of "
+    },
+    {
+      "address": 473235,
+      "text": "PERFETTO_CHECK(target_buffer > 0)"
+    },
+    {
+      "address": 473308,
+      "text": "Startup buffer reservations exhausted, dropping data source"
+    },
+    {
+      "address": 473496,
+      "text": "Buffer id allocation failed"
+    },
+    {
+      "address": 473524,
+      "text": "FreeBuffers"
+    },
+    {
+      "address": 474046,
+      "text": "failed to mmap MemoryBroker memory"
+    },
+    {
+      "address": 475326,
+      "text": "ipcCPUBufferCreateInfo"
+    },
+    {
+      "address": 475692,
+      "text": "Unexpected number of buffered haptic samples."
+    },
+    {
+      "address": 477018,
+      "text": "CHECK failed: backup_bytes_ == 0 && buffer_.get() != NULL: "
+    },
+    {
+      "address": 477148,
+      "text": "FastHexToBuffer() wants non-negative integers, not "
+    },
+    {
+      "address": 477322,
+      "text": "imageMetadataBuffers == streamTypeToBuffers->second.end()"
+    },
+    {
+      "address": 477392,
+      "text": "Failed to allocate GraphicBuffer"
+    },
+    {
+      "address": 477538,
+      "text": "PERFETTO_CHECK(task_runner_->RunsTasksOnCurrentThread())"
+    },
+    {
+      "address": 477660,
+      "text": "Configured tracing session %lu, #sources:%zu, duration:%d ms%s, #buffers:%d, total buffer size:%zu KB, total sessions:%zu, uid:%d session name: \"%s\""
+    },
+    {
+      "address": 478415,
+      "text": "[SurfaceTouchpadService] Stopping move worker thread"
+    },
+    {
+      "address": 478468,
+      "text": "[SurfaceTouchpadService] Stopping scroll worker thread"
+    },
+    {
+      "address": 479333,
+      "text": "ipc_BufferStreamDestroy"
+    },
+    {
+      "address": 479658,
+      "text": "getAttachmentAuthBufferSizes"
+    },
+    {
+      "address": 480545,
+      "text": "Buffered"
+    },
+    {
+      "address": 482043,
+      "text": "sharedMemoryProvider_.init(\"ImageBuffer\") == false"
+    },
+    {
+      "address": 482359,
+      "text": "ReadBuffers"
+    },
+    {
+      "address": 484032,
+      "text": "ipc_GetClientEventBufferSize"
+    },
+    {
+      "address": 484061,
+      "text": "ipcBufferPoolCreateInfo"
+    },
+    {
+      "address": 484085,
+      "text": "bufferPools"
+    },
+    {
+      "address": 484412,
+      "text": "starting Nosepad motion thread"
+    }
+  ],
+  "truncated": true,
+  "hand_exclusive": false,
+  "runtime_activated": false,
+  "program_sha256": "a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945"
+}

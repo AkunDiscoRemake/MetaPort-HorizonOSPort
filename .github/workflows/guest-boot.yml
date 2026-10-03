@@ -1,0 +1,138 @@
+name: Original ramdisk guest boot probe
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [guest/**, .github/workflows/guest-boot.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: guest-boot-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 55
+    env:
+      GUEST_WORK: ${{ github.workspace }}/local-analysis/guest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install isolated build and emulation tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends clang-14 lld-14 llvm-14 flex bison libssl-dev libelf-dev bc make gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi qemu-system-arm python3-pip e2fsprogs gdisk binutils-aarch64-linux-gnu aapt device-tree-compiler
+          python3 -m pip install lz4==4.4.4
+          mkdir -p "$GUEST_WORK"
+      - name: Test bounded parsers and probe classification
+        run: |
+          python3 -m unittest discover -s tests -q
+          python3 -m unittest discover -s guest/tests -v
+      - name: Cache compiled experimental kernel (no proprietary firmware)
+        id: kernel-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.GUEST_WORK }}/kernel-out/arch/arm64/boot/Image
+            ${{ env.GUEST_WORK }}/kernel-out/.config
+          key: guest-image-ubuntu22-llvm14-${{ hashFiles('guest/kernel/**') }}
+      - name: Obtain pinned official kernel source (not exact OTA source match)
+        if: steps.kernel-cache.outputs.cache-hit != 'true'
+        run: |
+          commit=$(python3 -c 'import json;print(json.load(open("guest/kernel/source.json"))["commit"])')
+          curl --fail --location --retry 3 --max-time 600 --proto '=https' --proto-redir '=https' \
+            "https://api.github.com/repos/facebookincubator/oculus-linux-kernel/tarball/$commit" -o "$GUEST_WORK/source.tar.gz"
+          mkdir -p "$GUEST_WORK/kernel-src"
+          tar -xzf "$GUEST_WORK/source.tar.gz" --strip-components=1 -C "$GUEST_WORK/kernel-src"
+      - name: Verify fixed OTA and inventory original boot ramdisks
+        id: ramdisk
+        run: |
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$GUEST_WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $GUEST_WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os, json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          root=Path(os.environ['GUEST_WORK'])
+          from guest.storage import LOGICAL
+          report=reconstruct(root/'firmware.zip',root/'images',selected=set(LOGICAL)|{'boot','vendor_boot','vbmeta','vbmeta_system'})
+          (root/'reconstruction.json').write_text(json.dumps(report))
+          PY
+          python3 -m guest.prepare_boot --images "$GUEST_WORK/images" --output "$GUEST_WORK/ramdisks"
+      - name: Inspect original boot HAL and account Store manifests offline
+        run: |
+          python3 -m guest.inspect_services --images "$GUEST_WORK/images" --output "$GUEST_WORK/integration-report.json"
+      - name: Inspect original Keystore and encrypted-storage startup dependencies
+        run: |
+          python3 -m guest.security_contract --images "$GUEST_WORK/images" \
+            --reconstruction "$GUEST_WORK/reconstruction.json" --output "$GUEST_WORK/security-contract.json"
+      - name: Assemble disposable GPT and Android logical partitions
+        id: storage
+        run: |
+          python3 -m guest.storage --images "$GUEST_WORK/images" --reconstruction "$GUEST_WORK/reconstruction.json" --output "$GUEST_WORK/storage" --userdata-mib 1024
+          sgdisk --verify "$GUEST_WORK/storage/guest-disk.raw"
+      - name: Compile official Quest kernel with virtual hardware delta
+        id: build
+        if: (success() || steps.ramdisk.outcome == 'failure') && steps.kernel-cache.outputs.cache-hit != 'true'
+        run: |
+          set +e
+          bash guest/kernel/build.sh "$GUEST_WORK/kernel-src" "$GUEST_WORK/kernel-out" guest/kernel/virt.config > "$GUEST_WORK/build.log" 2>&1
+          code=$?
+          tail -n 60 "$GUEST_WORK/build.log"
+          exit "$code"
+      - name: Probe original init with original system images (no network)
+        id: probe
+        if: success() && (steps.build.outcome == 'success' || steps.kernel-cache.outputs.cache-hit == 'true') && steps.ramdisk.outcome == 'success'
+        run: |
+          python3 -m guest.probe --kernel "$GUEST_WORK/kernel-out/arch/arm64/boot/Image" \
+            --initrd "$GUEST_WORK/ramdisks/original-initrd" --output "$GUEST_WORK/probe" \
+            --disk "$GUEST_WORK/storage/guest-disk.raw" --trace-signals
+      - name: Summarize measured outcomes even on failure
+        if: always()
+        env:
+          KERNEL_CACHE_HIT: ${{ steps.kernel-cache.outputs.cache-hit }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          RAMDISK_OUTCOME: ${{ steps.ramdisk.outcome }}
+          STORAGE_OUTCOME: ${{ steps.storage.outcome }}
+          PROBE_OUTCOME: ${{ steps.probe.outcome }}
+        run: python3 -m guest.summarize
+      - name: Publish report only to session branch
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          dest=analysis/builds/52168470052900520/guest-report.json
+          test -f "$GUEST_WORK/reports/guest-report.json"
+          cp "$GUEST_WORK/reports/guest-report.json" "$dest"
+          git add -- "$dest"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record official kernel build and original ramdisk probe outcomes [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            published=false
+            for attempt in 1 2 3; do
+              # Development or another report may advance the fixed session branch
+              # while QEMU runs. Rebase only this report commit; never force-push.
+              if ! git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport; then
+                git rebase --abort || true
+                exit 1
+              fi
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+                published=true
+                break
+              fi
+            done
+            test "$published" = true
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guest-boot-reports-no-firmware
+          path: ${{ env.GUEST_WORK }}/reports/*.json
+          retention-days: 7

@@ -1,0 +1,71 @@
+{
+  "libraries": [
+    {
+      "partition": "system_ext",
+      "path": "/lib64/libhzos.meta.so",
+      "sha256": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
+      "size_bytes": 1056616,
+      "prefix": "hzos",
+      "exports": [
+        "HzuStrata_create@@LIBHZOS_BASE",
+        "HzuStrata_destroy@@LIBHZOS_BASE",
+        "HzuStrata_createLayer@@LIBHZOS_BASE",
+        "HzuStrata_destroyLayer@@LIBHZOS_BASE",
+        "HzuStrataLayer_setBuffer@@LIBHZOS_BASE",
+        "HzuStrataLayer_setZOrder@@LIBHZOS_BASE",
+        "HzuChoreographer_create@@LIBHZOS_BASE",
+        "HzuChoreographer_destroy@@LIBHZOS_BASE",
+        "ASurfaceTexture_create@@LIBHZOS_BASE",
+        "ASurfaceTexture_updateTexImage2@@LIBHZOS_BASE",
+        "ASurfaceTexture_getCurrentHardwareBuffer@@LIBHZOS_BASE",
+        "ASurfaceTexture_release2@@LIBHZOS_BASE"
+      ],
+      "internal_call_targets": [
+        {
+          "name": "Strata",
+          "elf_address": 473328
+        },
+        {
+          "name": "convertToHardwareBuffer",
+          "elf_address": 568800
+        }
+      ]
+    },
+    {
+      "partition": "system_ext",
+      "path": "/lib64/libhzos_spaces.meta.so",
+      "sha256": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
+      "size_bytes": 23528,
+      "prefix": "hzos-spaces",
+      "exports": [
+        "HzuSpaceManager_create@@LIBHZOS_SPACES",
+        "HzuSpaceManager_destroy@@LIBHZOS_SPACES",
+        "HzuSpaceManager_createReferenceSpace@@LIBHZOS_SPACES",
+        "HzuSpaceManager_locateSpace@@LIBHZOS_SPACES",
+        "HzuSpaceManager_locateSpace2@@LIBHZOS_SPACES",
+        "HzuSpace_update@@LIBHZOS_SPACES",
+        "HzuVirtualSpace_update@@LIBHZOS_SPACES",
+        "HzuSpace_getUuid@@LIBHZOS_SPACES",
+        "HzuSpace_getParentUuid@@LIBHZOS_SPACES"
+      ],
+      "internal_call_targets": [
+        {
+          "name": "toHzuSpaceData",
+          "elf_address": 11936
+        },
+        {
+          "name": "toHzuBaseSpaceData",
+          "elf_address": 15136
+        },
+        {
+          "name": "toHzuVirtualSpaceData",
+          "elf_address": 15408
+        },
+        {
+          "name": "toHzuWindowSpaceData",
+          "elf_address": 15552
+        }
+      ]
+    }
+  ]
+}

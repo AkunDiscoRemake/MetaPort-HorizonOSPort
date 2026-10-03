@@ -1,0 +1,1285 @@
+{
+  "root": "libshell.so",
+  "source_apk_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
+  "scope": "Captured APK and supplied platform ELF edges; uncaptured library dependencies and namespaces remain unresolved",
+  "nodes": [
+    {
+      "soname": "libshell.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libcutils.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "c25cbb289f154ee0aba87d7887ac715db56e627d3f7ff3ed8f3a1aadea3c30c2",
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libcutils.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libjnigraphics.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libjnigraphics.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libimageprocessing.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "3fe9e2884c5985b2aa346c2fbe6eb5798e75aa97460e34c572ac23e4602f7611",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libopenxr_loader.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "91134bd0b7ef3857f2e8e606cd6e644f4378126a06204e5f839fc7953b5a3985",
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libopenxr_loader.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libhzos_spaces.meta.so",
+      "classification": "FIRMWARE_ELF_CAPTURED_NOT_APK_AVAILABLE",
+      "elf_sha256": "3084f8873424783e9a1719cb135c9f5b20396d4aca54e8d2b2136469758a50b0",
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libhzos_spaces.meta.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libEGL.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libEGL.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libNativeApiManager.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "d746999f3dda543083733eee0f04b4eee5931870223d0a73fd54c7065e36f542",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "3968be4ce2e1b480940d36da5735a91d23fb590bcd5558c5c176a261ea771969",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libMetaXRAudioFMOD.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "63f22e99b34b09582962497092d4f397191c4b8904905542dfcb89ea92e253f8",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libfmodmerged.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "f2c791918f585a9da23750dc850b5bcbf1c46330b6836f2f8bfdad691d5ef791",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libxplat_perflogger_conversions_conversions.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "73e1a324245f158b3b89b3ccd74b78411edf654d1066607a3873ca795b3396f7",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libnativewindow.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libnativewindow.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libthirdparty_utils.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "a154d2fa3a84a8c34abc44c21b1ec20abdd1febad4cff76f89cd90d9728a8ae9",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "56dc9cebffbb9f5554d612ad0596a989a2fa67d914e352e6f07c0120d9c0b8dc",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libthird-party_volk_volk.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "a7dbde4c7bcc69bccf00627cb0a58012ab2932e8116241a8195445889a3966c1",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libovravatar2p.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "fbe6533479d5209a8ea2b2418aeb7024bdd5b6fedfdb6ac2b212756f27525f17",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libpando.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "03da722f68aa7c4c345ceda3aa6048e925d3eeba29d1735b4c4272149da92e9d",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libdl.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/bootstrap/libdl.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libmediandk.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libmediandk.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libnimble.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "2a42a86b746f5262074a3fbe380c44fdcfb116415716fdc98805407eea042345",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libfolly_utils.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "373b4cea4eb387342c9dd11975d68ebbeab75db52d4944cd78369ba52c2d93c8",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libproxygen.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "bacaa1ccf4583eb2c0ae094847c4881a9b32099008dafd0e1406714f129fa53a",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libxplat_folly_futures_shared_promise.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "9469acdcd015e3aa3427a25f96b28ac5b6d1fb481f7fd6acdf62485f2d07d2b3",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libhzos.meta.so",
+      "classification": "FIRMWARE_ELF_CAPTURED_NOT_APK_AVAILABLE",
+      "elf_sha256": "5a72d902404e88543afd8008332655ef267482668b0eccb14a17a051c06e542c",
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libhzos.meta.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libbinder_ndk.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libbinder_ndk.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libz.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libz.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libnetwork.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "77a49ae1682d9c752d74cf934d3e6516f608a7b753251384fa9291e0b0931def",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libfbjni.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "bed6538ef53bd5107109fc0a909a6cab2914cf18d64d12f3e4a8afd185fc299e",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libandroid.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libandroid.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "liblog.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/liblog.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libnetwork_1.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "9ce250c27a915f2b2b83e6e042873f16b504d2ba2dc024d10ff725b3884334b2",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libc++_shared.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "b9220b4c909293533de96ae0ad2654d034b9abc69c419fd3f877f91c6970284c",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libGLESv2.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libGLESv2.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libskia.so",
+      "classification": "APK_BUNDLED_CAPTURED_ELF",
+      "elf_sha256": "d5ccba7467b7a5460522c85e648f2b18b3c15a124f8a444b67bcac53330b60bf",
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libm.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/bootstrap/libm.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libc.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/bootstrap/hwasan/libc.so"
+        },
+        {
+          "partition": "system",
+          "path": "/system/lib64/bootstrap/libc.so"
+        },
+        {
+          "partition": "system",
+          "path": "/system/lib64/bootstrap/scudo/libc.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libbase.so",
+      "classification": "FIRMWARE_ELF_CAPTURED_NOT_APK_AVAILABLE",
+      "elf_sha256": "d3cb46a91077ab502f06997a99215996570ce04cf2fd3f67715911507d53e02c",
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libbase.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libc++.so",
+      "classification": "FIRMWARE_ELF_CAPTURED_NOT_APK_AVAILABLE",
+      "elf_sha256": "9d8e75c1c1abdecb9dcd71602aba2fa28b30c6f6918f20d6721c164fc8196d72",
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libc++.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libhzos_fphal.meta.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libhzos_fphal.meta.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libaaudio.so",
+      "classification": "PUBLIC_NDK_CANDIDATE_NOT_DEVICE_VERIFIED",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libaaudio.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libaudioclient.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libaudioclient.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libbinder.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libbinder.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libcamera_metadata.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libcamera_metadata.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libfmq.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libfmq.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libgui.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libgui.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libhidlbase.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libhidlbase.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libinsights.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libinsights.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libjsoncpp.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libjsoncpp.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libnativedisplay.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libnativedisplay.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libnativehelper.so",
+      "classification": "NOT_LOCATED_IN_CAPTURED_INVENTORY",
+      "elf_sha256": null,
+      "firmware_candidates": [],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libosutils.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "product",
+          "path": "/lib64/libosutils.so"
+        },
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libosutils.so"
+        },
+        {
+          "partition": "vendor",
+          "path": "/lib64/libosutils.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libreportstatsevent.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libreportstatsevent.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libui.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libui.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libutils.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system",
+          "path": "/system/lib64/libutils.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    },
+    {
+      "soname": "libepsmixermessagechannel.so",
+      "classification": "FIRMWARE_ONLY_CANDIDATE",
+      "elf_sha256": null,
+      "firmware_candidates": [
+        {
+          "partition": "system_ext",
+          "path": "/lib64/libepsmixermessagechannel.so"
+        }
+      ],
+      "firmware_candidates_truncated": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "libshell.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libjnigraphics.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libimageprocessing.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libopenxr_loader.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libhzos_spaces.meta.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libEGL.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libNativeApiManager.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libarvr_projects_presence_service_native_server_logging_logging.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libMetaXRAudioFMOD.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libfmodmerged.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libxplat_perflogger_conversions_conversions.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libthirdparty_utils.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libthird-party_volk_volk.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libovravatar2p.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libpando.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libmediandk.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnimble.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libfolly_utils.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libproxygen.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libxplat_folly_futures_shared_promise.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libhzos.meta.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libz.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libandroid.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libnetwork_1.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libGLESv2.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libskia.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libshell.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libcutils.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "libjnigraphics.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libimageprocessing.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libandroid.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libopenxr_loader.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libhzos_fphal.meta.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libhzos_spaces.meta.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libNativeApiManager.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libarvr_projects_presence_service_native_server_logging_logging.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libthirdparty_utils.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libMetaXRAudioFMOD.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libfmodmerged.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libxplat_perflogger_conversions_conversions.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libxplat_perflogger_conversions_conversions.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libxplat_perflogger_conversions_conversions.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libthirdparty_utils.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libthirdparty_utils.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libthirdparty_utils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libarvr_projects_codec_avatar_prod_management_service_aidl_aidlstable-V10-cpp.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libthird-party_volk_volk.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libthird-party_volk_volk.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libandroid.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libovravatar2p.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libpando.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libz.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnimble.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libproxygen.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libfolly_utils.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libproxygen.so",
+      "to": "libnetwork.so"
+    },
+    {
+      "from": "libproxygen.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libproxygen.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libxplat_folly_futures_shared_promise.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libEGL.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libaaudio.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libaudioclient.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libbase.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libbinder.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libcamera_metadata.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libcutils.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libfmq.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libgui.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libhidlbase.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libinsights.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libjsoncpp.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libnativedisplay.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libnativehelper.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libnativewindow.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libosutils.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libreportstatsevent.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libui.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libutils.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libepsmixermessagechannel.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libhzos.meta.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libbinder_ndk.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libfbjni.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libnetwork.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libfbjni.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libnetwork_1.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libc++_shared.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libc++_shared.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "libc++_shared.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libskia.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "liblog.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libc++.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libbase.so",
+      "to": "libdl.so"
+    },
+    {
+      "from": "libc++.so",
+      "to": "libc.so"
+    },
+    {
+      "from": "libc++.so",
+      "to": "libm.so"
+    },
+    {
+      "from": "libc++.so",
+      "to": "libdl.so"
+    }
+  ],
+  "unresolved_for_unprivileged_apk": [
+    "libhzos_spaces.meta.so",
+    "libhzos.meta.so",
+    "libbase.so",
+    "libc++.so",
+    "libhzos_fphal.meta.so",
+    "libaudioclient.so",
+    "libbinder.so",
+    "libcamera_metadata.so",
+    "libfmq.so",
+    "libgui.so",
+    "libhidlbase.so",
+    "libinsights.so",
+    "libjsoncpp.so",
+    "libnativedisplay.so",
+    "libnativehelper.so",
+    "libosutils.so",
+    "libreportstatsevent.so",
+    "libui.so",
+    "libutils.so",
+    "libepsmixermessagechannel.so"
+  ],
+  "symbol_versions_checked": false,
+  "java_framework_resolved": false,
+  "namespace_access_verified": false,
+  "runtime_load_tested": false,
+  "port_ready": false,
+  "source_report_sha256": "721695995130e9cb7a377b743f583f97a71eb99d0d712aad5f44e73ddc656699",
+  "platform_report_sha256": "5e65bcf43570e1eaadee759ddbdf2ee06f84a22375e0ea38aac78154e6970390",
+  "inventory_sha256": "f5c35762cc8a09f312900bdd185ca6c6db59920ecb86426a33ce5b36eb2300db"
+}

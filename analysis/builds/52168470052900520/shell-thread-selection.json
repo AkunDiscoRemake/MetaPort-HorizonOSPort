@@ -1,0 +1,39 @@
+{
+  "selected": [
+    {
+      "elf_address": 14196916,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8a0b4",
+      "purpose": "thread target candidate"
+    },
+    {
+      "elf_address": 14199368,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8aa48",
+      "purpose": "pthread trampoline candidate"
+    },
+    {
+      "elf_address": 14197332,
+      "referencing_function_elf_va": 14126600,
+      "analysis_label": "FUN_00e8a254",
+      "purpose": "service destruction candidate"
+    },
+    {
+      "elf_address": 14198488,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8a6d8",
+      "purpose": "preferences symbol lookup candidate"
+    },
+    {
+      "elf_address": 14196856,
+      "referencing_function_elf_va": 14194520,
+      "analysis_label": "FUN_00e8a078",
+      "purpose": "thread lifecycle candidate"
+    }
+  ],
+  "evidence_path": "analysis/builds/52168470052900520/shell-startup-decompilation.json",
+  "evidence_sha256": "49de55fc3eb606af7eaa0d8f0f4d8e65d4bf15cb8fe94347eb8b0c3ace88fcd9",
+  "scope": "Candidate addresses referenced by prior decompilation; not validated function signatures",
+  "firmware_executed": false,
+  "abi_validated": false
+}

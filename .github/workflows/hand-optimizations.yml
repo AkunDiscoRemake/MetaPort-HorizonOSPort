@@ -1,0 +1,132 @@
+name: Original hand optimization disassembly
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [handtracking/ai/elf_pointer_evidence.py, handtracking/ai/tests/test_elf_pointer_evidence.py, handtracking/ai/ghidra/TraceHandOptimizations.java, handtracking/ai/prepare_optimizations.py, handtracking/ai/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: metaport-hand-optimizations
+  cancel-in-progress: false
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 75
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/hand-optimizations
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Prepare verified original engine, no execution
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends e2fsprogs binutils
+          python3 -m unittest handtracking.ai.tests.test_prepare_optimizations handtracking.ai.tests.test_elf_pointer_evidence -v
+          mkdir -p "$WORK/reports" "$WORK/project"
+          curl --fail --location --retry 3 --max-time 1200 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          from handtracking.ai.prepare_input import prepare
+          root=Path(os.environ['WORK'])
+          result=reconstruct(root/'firmware.zip',root/'images',selected={'odm'})
+          (root/'reconstruction.json').write_text(json.dumps(result))
+          prepare(root/'images',root/'reconstruction.json',root/'reports')
+          PY
+          python3 -m handtracking.ai.prepare_optimizations "$WORK/reports"
+          python3 -m handtracking.ai.elf_pointer_evidence "$WORK/reports"
+      - name: Install pinned static decompiler
+        run: |
+          curl --fail --location --retry 3 --max-time 600 --max-filesize 1073741824 \
+            --proto '=https' --proto-redir '=https' \
+            'https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.3.2_build/ghidra_11.3.2_PUBLIC_20250415.zip' -o "$WORK/ghidra.zip"
+          echo "99d45035bdcc3d6627e7b1232b7b379905a9fad76c772c920602e2b5d8b2dac2  $WORK/ghidra.zip" | sha256sum --check --strict
+          unzip -q "$WORK/ghidra.zip" -d "$WORK"
+      - name: Disassemble inference, memory and temporal optimization candidates
+        id: decompile
+        run: |
+          "$WORK/ghidra_11.3.2_PUBLIC/support/analyzeHeadless" "$WORK/project" Input \
+            -import "$WORK/reports/libtrackingengines.so" -max-cpu 2 -analysisTimeoutPerFile 900 \
+            -scriptPath "$GITHUB_WORKSPACE/handtracking/ai/ghidra" \
+            -postScript TraceHandOptimizations.java "$WORK/reports/optimization-all-strings.json" "$WORK/reports" \
+            -postScript DecompileHands.java "$WORK/reports/inference-functions.txt" "$WORK/reports/inference-strings.json" "$WORK/reports/hand-optimization-inference.json" 2048 \
+            -postScript DecompileHands.java "$WORK/reports/memory-functions.txt" "$WORK/reports/memory-strings.json" "$WORK/reports/hand-optimization-memory.json" \
+            -postScript DecompileHands.java "$WORK/reports/temporal-functions.txt" "$WORK/reports/temporal-strings.json" "$WORK/reports/hand-optimization-temporal.json" \
+            -deleteProject > "$WORK/ghidra.log" 2>&1
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          from handtracking.ai.prepare_input import ENGINE_SHA
+          for group in ('inference','memory','temporal'):
+            r=json.loads((Path(os.environ['WORK'])/f'reports/hand-optimization-{group}.json').read_text())
+            assert r['program_sha256'].lower()==ENGINE_SHA
+            assert r['firmware_executed'] is False
+            if group=='inference':
+              assert any(f['status']=='DECOMPILED_NOT_VALIDATED' for f in r['functions'])
+          PY
+      - name: Record measured outcome
+        if: always()
+        env:
+          OUTCOME: ${{ steps.decompile.outcome }}
+        run: |
+          mkdir -p "$WORK/reports"
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path(os.environ['WORK']);log=p/'ghidra.log'
+          result={'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],
+                  'decompile_step':os.environ['OUTCOME'],'horizon_ported':False,'firmware_executed':False,
+                  'analysis_timeout_seconds':900,'pointer_candidates_are_abi':False,
+                  'log_tail':'\n'.join(log.read_text(errors='replace').splitlines()[-80:]) if log.exists() else None}
+          (p/'reports/hand-optimization-run.json').write_text(json.dumps(result,indent=2)+'\n')
+          PY
+      - name: Publish evidence only, never proprietary binaries
+        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Refresh while the checkout is clean, before copying generated reports.
+          # Queued runs may start from a commit older than a previous report.
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          dest=analysis/builds/52168470052900520
+          for name in hand-optimization-targets hand-optimization-elf-pointers hand-optimization-coverage hand-optimization-inference hand-optimization-memory hand-optimization-temporal hand-optimization-run; do
+            if [ -f "$WORK/reports/$name.json" ]; then
+              cp "$WORK/reports/$name.json" "$dest/$name.json"
+              git add -- "$dest/$name.json"
+            fi
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original hand optimization candidates, not runtime validation [skip ci]'
+            auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+            echo "::add-mask::$auth"
+            published=0
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+                published=1
+                break
+              fi
+            done
+            test "$published" = 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-hand-optimization-evidence-no-binaries
+          path: ${{ env.WORK }}/reports/hand-optimization-*.json
+          retention-days: 7

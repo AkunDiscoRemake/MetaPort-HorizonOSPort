@@ -1,0 +1,265 @@
+{
+  "program_sha256": "a6474bc3710558a26827a5165556a99cd998b013233072eefe4edf2b6b2f1945",
+  "roots": [
+    {
+      "name": "FUN_002b5ddc",
+      "address": "002b5ddc",
+      "external": false,
+      "reference_count": 3,
+      "callers": [
+        {
+          "caller_name": "FUN_002af150",
+          "caller_elf_address": 1765712,
+          "callsite_elf_address": 1773340,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "FUN_005df130",
+      "address": "005df130",
+      "external": false,
+      "reference_count": 4,
+      "callers": [
+        {
+          "caller_name": "FUN_005df108",
+          "caller_elf_address": 5107976,
+          "callsite_elf_address": 5108012,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df184",
+          "caller_elf_address": 5108100,
+          "callsite_elf_address": 5108136,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "FUN_005df3fc",
+      "address": "005df3fc",
+      "external": false,
+      "reference_count": 2,
+      "callers": [],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "FUN_005df474",
+      "address": "005df474",
+      "external": false,
+      "reference_count": 4,
+      "callers": [
+        {
+          "caller_name": "FUN_005df44c",
+          "caller_elf_address": 5108812,
+          "callsite_elf_address": 5108848,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df4b8",
+          "caller_elf_address": 5108920,
+          "callsite_elf_address": 5108956,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "FUN_005df570",
+      "address": "005df570",
+      "external": false,
+      "reference_count": 2,
+      "callers": [],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "FUN_005df1ac",
+      "address": "005df1ac",
+      "external": false,
+      "reference_count": 5,
+      "callers": [
+        {
+          "caller_name": "FUN_005df130",
+          "caller_elf_address": 5108016,
+          "callsite_elf_address": 5108036,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df3fc",
+          "caller_elf_address": 5108732,
+          "callsite_elf_address": 5108768,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df424",
+          "caller_elf_address": 5108772,
+          "callsite_elf_address": 5108808,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "FUN_005df4e0",
+      "address": "005df4e0",
+      "external": false,
+      "reference_count": 5,
+      "callers": [
+        {
+          "caller_name": "FUN_005df474",
+          "caller_elf_address": 5108852,
+          "callsite_elf_address": 5108868,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df570",
+          "caller_elf_address": 5109104,
+          "callsite_elf_address": 5109140,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df598",
+          "caller_elf_address": 5109144,
+          "callsite_elf_address": 5109180,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "sched_setaffinity",
+      "address": "005f8e60",
+      "external": false,
+      "reference_count": 1,
+      "callers": [
+        {
+          "caller_name": "FUN_005df1ac",
+          "caller_elf_address": 5108140,
+          "callsite_elf_address": 5108212,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "SetTaskProfiles",
+      "address": "005fa570",
+      "external": false,
+      "reference_count": 2,
+      "callers": [
+        {
+          "caller_name": "FUN_005df1ac",
+          "caller_elf_address": 5108140,
+          "callsite_elf_address": 5108292,
+          "caller_is_thunk": false,
+          "selected": true
+        },
+        {
+          "caller_name": "FUN_005df4e0",
+          "caller_elf_address": 5108960,
+          "callsite_elf_address": 5109000,
+          "caller_is_thunk": false,
+          "selected": true
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "sched_setaffinity",
+      "address": "0063f430",
+      "external": false,
+      "reference_count": 2,
+      "callers": [
+        {
+          "caller_name": "sched_setaffinity",
+          "caller_elf_address": 5213792,
+          "callsite_elf_address": 5213804,
+          "caller_is_thunk": true,
+          "selected": false
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "SetTaskProfiles",
+      "address": "00640128",
+      "external": false,
+      "reference_count": 2,
+      "callers": [
+        {
+          "caller_name": "SetTaskProfiles",
+          "caller_elf_address": 5219696,
+          "callsite_elf_address": 5219708,
+          "caller_is_thunk": true,
+          "selected": false
+        }
+      ],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "sched_setaffinity",
+      "address": "EXTERNAL:00000084",
+      "external": true,
+      "reference_count": 0,
+      "callers": [],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    },
+    {
+      "name": "SetTaskProfiles",
+      "address": "EXTERNAL:00000216",
+      "external": true,
+      "reference_count": 0,
+      "callers": [],
+      "references_truncated": false,
+      "unselected_non_thunk_callsite_count": 0
+    }
+  ],
+  "realtime_header_literal": {
+    "elf_address": 469056,
+    "bytes_hex": "00000000010000000100000000000000"
+  },
+  "selected_elf_addresses": [
+    5108772,
+    5109144,
+    1765712,
+    5107976,
+    5108100,
+    5108812,
+    5108920,
+    5108016,
+    5108732,
+    5108852,
+    5109104,
+    5108140,
+    5108960
+  ],
+  "firmware_executed": false,
+  "hand_exclusive": false,
+  "scope": "Named scheduler/profile functions and thunks, direct call refs only; 128 refs/root, 2 new callers/root, 24 total targets. Indirect dispatch and raw syscall numbers unresolved."
+}

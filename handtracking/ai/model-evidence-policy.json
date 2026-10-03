@@ -1,0 +1,48 @@
+{
+  "build": "52168470052900520",
+  "scope": "Fixed-corpus metadata regression only; not model execution or camera compatibility",
+  "models": {
+    "/etc/handtracking/runtime/dpe/DPEV31MG.ptez": {
+      "source_sha256": "dd14c969247279bb78a1d741a387cadb6dd46c7aac47447508cea814de8b3b50",
+      "decoded_sha256": "fa3ab2870516b227abf72eb6a74e7e66824eec83b33097b742b1239f14e9f8c4",
+      "attributes_sha256": "fc20fbe8394b88325989cebfe40d3c038a3bcb7c08b4012e4733a29ea87cabf8"
+    },
+    "/etc/handtracking/runtime/dpe/DPEV32MG.ptez": {
+      "source_sha256": "d4333db07519c3b953fa3b531bd3d19cb58abc65fd28f639162b62950579ab3a",
+      "decoded_sha256": "721625ad93f07fee75c4205fd485fea4f61c66ad04cc07cb93b4326da9a8247b",
+      "attributes_sha256": "99007c3f93a5879e874e8a80e71c886b62cf3be37df68aba205ebb79d22af37d"
+    },
+    "/etc/handtracking/runtime/surface_keyboard/SKBV30.ptez": {
+      "source_sha256": "941be457b231466b326591eab5d6c27aa7871eca9d71f4a72aa589d9c9a691fa",
+      "decoded_sha256": "2909080fdac438cb3056a05697d9785df05e7c2829e570bcf63ca7d73bd41128"
+    },
+    "/etc/handtracking/runtime/surface_keyboard/SKBV31.ptez": {
+      "source_sha256": "a8773b7b4f966a40014dd4a650a9eb6980aaf1c1aaf0364add42d6c012a79e0c",
+      "decoded_sha256": "c17c7a9ecdb33eccf56712cd84642e6adffbd8d6737c800c4bf0f9dd5ae7118b"
+    },
+    "/etc/handtracking/runtime/surface_keyboard/SKBV32.ptez": {
+      "source_sha256": "ac0e1f83fdc72de347394371e7e63888be9e400f0a47945d782fc50b921ede2b",
+      "decoded_sha256": "a8b5512364d1a45fef2e25f1990c1a657487c4ff68cd52ea3d3400708c0c68b4"
+    },
+    "/etc/handtracking/runtime/surface_touchpad/STPV30.ptez": {
+      "source_sha256": "e76502376f86c2410306a9aa1bd5bf14527f8024183a86d9adb8fe63aa00a0fb",
+      "decoded_sha256": "8c15f49068b7b1135d70c8e887b54bf58e5013728ed60a27e98f0cd2217c2671"
+    },
+    "/etc/handtracking/runtime/surface_touchpad/STPV31.ptez": {
+      "source_sha256": "e33f0c45da354a5d3da0e295f44130b4c3c4bdcd28bf67363cb674b7c2dc9a28",
+      "decoded_sha256": "945d5295961d582373cdeaa6fb65337938c2a1327ef2e80db2d32b8a4a13a49e"
+    },
+    "/etc/handtracking/runtime/surface_touchpad/STPV31_Day0.ptez": {
+      "source_sha256": "12b57ada3c20e731690bc7745a54cff24e83b36d824761877775690412d354d1",
+      "decoded_sha256": "3d69b47282bac4e71686942b3d8d55d9edcfe6692ed7716874dd0cbbdc0275be"
+    },
+    "/etc/handtracking/runtime/surface_touchpad/STPV32.ptez": {
+      "source_sha256": "4df3529236a336fb7f45b53b954095b9955957d2ad585593fcf1f515fc1b99a4",
+      "decoded_sha256": "3575989736ea0c1dc268536f6d70a65d56f11565ab52f5020b1d399f3b8210c4"
+    },
+    "/etc/handtracking/runtime/surface_touchpad/STPV32_Day0.ptez": {
+      "source_sha256": "75054140ec02fdd86951e4ebde39ac0baaf33080564e60d4e8bc4972383a40ed",
+      "decoded_sha256": "9600f0f6cc7051d1f08394713137c1ae40daae7c0bb90592e84f70e663beb0a4"
+    }
+  }
+}

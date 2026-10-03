@@ -1,0 +1,43 @@
+name: Project syntax and regression checks
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: ['**/*.py', '**/*.sh', '**/*.java', '**/*.cpp', '**/*.hpp', '**/*.gradle', '.github/workflows/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: metaport-project-checks
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.7'
+          cache: false
+      - name: Validate Actions syntax and expressions
+        run: |
+          go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.7
+          "$(go env GOPATH)/bin/actionlint" -shellcheck= -pyflakes=
+      - name: Install bounded static parser dependencies
+        run: python3 -m pip install -r handtracking/ai/requirements.txt -r horizon/ui/abi-requirements.txt -r tools/check-requirements.txt
+      - name: Check all Python suites, shell syntax and isolated source distribution
+        run: python3 -m tools.check_project
+      - name: Execute native memory, undefined-behavior and thread-race checks
+        run: python3 -m tools.check_native
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: project-checks-no-firmware
+          path: |
+            local-analysis/project-checks/*.json
+            local-analysis/project-checks/*.log
+            local-analysis/native-checks/*.json
+            local-analysis/native-checks/*.log
+          retention-days: 7

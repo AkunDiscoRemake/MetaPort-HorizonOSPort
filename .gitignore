@@ -1,0 +1,13 @@
+# Local system images, extracted components and generated evidence
+/artifacts/
+/local-analysis/
+__pycache__/
+*.py[cod]
+.venv/
+/build/
+# Android/NDK build products and local SDK paths
+.gradle/
+.cxx/
+**/build/
+local.properties
+*.iml

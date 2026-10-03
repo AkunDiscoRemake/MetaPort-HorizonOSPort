@@ -1,0 +1,57 @@
+{
+  "selected": [
+    {
+      "elf_address": 14029664,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e61360",
+      "purpose": "identity readiness candidate"
+    },
+    {
+      "elf_address": 14033660,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e622fc",
+      "purpose": "frame iteration candidate"
+    },
+    {
+      "elf_address": 14203764,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8bb74",
+      "purpose": "Clay construction candidate"
+    },
+    {
+      "elf_address": 14203936,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8bc20",
+      "purpose": "Clay initialization candidate"
+    },
+    {
+      "elf_address": 14204668,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8befc",
+      "purpose": "Clay startup candidate"
+    },
+    {
+      "elf_address": 14451840,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00ec8480",
+      "purpose": "platform-related construction candidate"
+    },
+    {
+      "elf_address": 14198624,
+      "referencing_function_elf_va": 14198488,
+      "analysis_label": "FUN_00e8a760",
+      "purpose": "preferences call_once callback"
+    },
+    {
+      "elf_address": 14203068,
+      "referencing_function_elf_va": 14013400,
+      "analysis_label": "FUN_00e8b8bc",
+      "purpose": "platform configuration candidate"
+    }
+  ],
+  "evidence_path": "analysis/builds/52168470052900520/shell-thread-decompilation.json",
+  "evidence_sha256": "ca846e13df0b4c36497ce971a7276fe2471aaa0af611eb4eba2a2703f015369d",
+  "scope": "Prior decompilation references only; inferred purpose and ABI unvalidated",
+  "firmware_executed": false,
+  "abi_validated": false
+}

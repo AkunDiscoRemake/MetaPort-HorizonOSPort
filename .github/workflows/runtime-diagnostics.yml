@@ -1,0 +1,50 @@
+name: Diagnose bounded Android runtime CI failures
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [.github/workflows/runtime-diagnostics.yml, tools/collect_action_diagnostics.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  checks: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    env:
+      WATCH_RUN: '37009434351'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Wait for the specific runtime run, preserving failure as failure
+        run: gh run watch "$WATCH_RUN" --exit-status --interval 30 || true
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ env.WATCH_RUN }}
+          pattern: adapter-runtime-api-*-reports-only
+          path: local-analysis/runtime-captured
+      - name: Collect bounded diagnostic lines
+        run: python3 -m tools.collect_action_diagnostics --repo "$GITHUB_REPOSITORY" --run "$WATCH_RUN" --output local-analysis/runtime-diagnostics.json --artifact-root local-analysis/runtime-captured
+      - name: Publish diagnostic metadata only
+        run: |
+          set -euo pipefail
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          mkdir -p analysis/android-runtime
+          cp local-analysis/runtime-diagnostics.json "analysis/android-runtime/diagnostics-$WATCH_RUN.json"
+          git add "analysis/android-runtime/diagnostics-$WATCH_RUN.json"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record bounded Android CI diagnostic evidence [skip ci]'
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then exit 0; fi
+            done
+            exit 1
+          fi

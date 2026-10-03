@@ -1,0 +1,99 @@
+{
+  "build": "52168470052900520",
+  "runtime_validated": false,
+  "bridge_status": "NOT PORTED YET",
+  "vr_shell_sha256": "d3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463",
+  "libshell_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "joypad": {
+    "java_class": "com.oculus.vrshell.ShellApplication",
+    "method": "nativeJoypadAxis",
+    "jni_descriptor": "(FFFFFFI)V",
+    "arguments": [
+      {
+        "name": "left_x",
+        "android_axis": 0
+      },
+      {
+        "name": "left_y",
+        "android_axis": 1
+      },
+      {
+        "name": "right_x",
+        "android_axis": 11
+      },
+      {
+        "name": "right_y",
+        "android_axis": 14
+      },
+      {
+        "name": "left_trigger",
+        "android_axis": 17
+      },
+      {
+        "name": "right_trigger",
+        "android_axis": 18
+      },
+      {
+        "name": "device_id",
+        "source": "MotionEvent.getDeviceId()"
+      }
+    ],
+    "coordinate_note": "Original passes raw Android axes. MetaPort semantic stick Y is up; do not forward it unchanged.",
+    "observed_guard": "ShellService.A00().isAlive()",
+    "quest_controller_enumeration": false,
+    "evidence": {
+      "path": "sources/X/C0Dl.java",
+      "line": 1986,
+      "start_line": 1974,
+      "generated_sha256": "9395ba0d60e035740e82447a1fffa65b01ca376bac2fe9a45a6b6236da8cfa5e",
+      "has_decompiler_errors": false,
+      "context": "            }\n            float axisValue5 = motionEvent.getAxisValue(0);\n            float axisValue6 = motionEvent.getAxisValue(1);\n            float axisValue7 = motionEvent.getAxisValue(11);\n            float axisValue8 = motionEvent.getAxisValue(14);\n            float axisValue9 = motionEvent.getAxisValue(17);\n            float axisValue10 = motionEvent.getAxisValue(18);\n            InterfaceC02260Dz interfaceC02260Dz = this.A0R;\n            int deviceId3 = motionEvent.getDeviceId();\n            ShellService shellService = (ShellService) interfaceC02260Dz;\n            if (shellService.A00().isAlive()) {\n                shellService.A00();\n                ShellApplication.nativeJoypadAxis(axisValue5, axisValue6, axisValue7, axisValue8, axisValue9, axisValue10, deviceId3);\n                return;\n            }\n            return;\n        }\n        EnumC02220Dr enumC02220DrA00 = AbstractC02230Ds.A00(motionEvent);\n        if (enumC02220DrA00 == EnumC02220Dr.A03 || enumC02220DrA00 == EnumC02220Dr.A04 || enumC02220DrA00 == EnumC02220Dr.A06) {\n            if (this.A0G) {\n                AbstractC03930Pf.A0v(\"Intercepted mouse MotionEvent \", motionEvent.toString(), \", forwarding to the native side\", A0d);\n            }\n            if (this.A0J && motionEvent.getAction() == 0) {\n                Log.i(A0d, AnonymousClass003.A0y(AnonymousClass001.A0v(\"[INPUT_LATENCY_LOG] Interecepted mouse MotionEvent, timestamp: \"), System.currentTimeMillis()));\n            }"
+    }
+  },
+  "key": {
+    "method": "nativeKeyEvent",
+    "jni_descriptor": "(IIIIZZZZ)V",
+    "complete_argument_semantics_recovered": false
+  },
+  "private_services": {
+    "manifest_sha256": "0da797a4fe52935d86e35d54c532eaf423e5a5050b2a813376dec34a987805f1",
+    "source": "/etc/vintf/manifest/hal_tracking_manifest.xml",
+    "descriptors": [
+      "oculus.internal.tracking.IHandTrackingService/default",
+      "oculus.internal.tracking.IControllerTrackingService/default",
+      "oculus.internal.virtual_input.IInputDataInjection/default",
+      "horizonos.perception.handtracking.IHandTrackingControl/default",
+      "horizonos.perception.handtracking.IHandTrackingOutput/default"
+    ],
+    "transactions_and_payloads_recovered": false,
+    "permissions_satisfied": false
+  },
+  "hand_models": {
+    "observed_backend": "boltnn",
+    "executed": false,
+    "camera_input_contract_recovered": false
+  },
+  "native_versions_observed": {
+    "engine_sha256": "10eac37188c97389dabfe7599a354d146d1e6223d849546d230796af93418ffe",
+    "client_sha256": "8d35fa75639bc9322b6e0d21014d4e2112c542a75402018c6ecf45099555bd13",
+    "registry_abi": 36,
+    "hand_tracker_factory_versions": [
+      11,
+      12,
+      13,
+      14
+    ],
+    "input_injection_factory_version": 1,
+    "controller_tracking_factory_version": 1,
+    "controller_factory_versions": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "types_vtables_payloads_validated": false,
+    "qualification": "Constants observed in reconstructed control flow, not a callable ABI definition."
+  }
+}

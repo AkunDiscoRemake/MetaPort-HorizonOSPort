@@ -1,0 +1,194 @@
+name: Original dependency bundle offline boot (not a release)
+on:
+  push:
+    branches: [arena/01a0f02d-metaport-horizonosport]
+    paths: [horizon/ui/bundle_shell_dependencies.py, horizon/ui/tests/test_shell_bundle.py, tools/shell_crash_windows.py, .github/workflows/original-shell-bundle.yml]
+  workflow_call:
+    inputs:
+      android_api:
+        type: string
+        default: '36'
+      rcpc_compat:
+        type: boolean
+        default: false
+      framework_dex:
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      android_api:
+        description: Android emulator API (translation comparison, not a phone test)
+        type: choice
+        options: ['36', '35']
+        default: '36'
+      rcpc_compat:
+        description: Explicit pinned-inventory RCpc compatibility experiment (not original native bytes)
+        type: boolean
+        default: false
+      framework_dex:
+        description: Append original hzos framework DEX without replacing existing classes
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: metaport-original-shell-${{ inputs.rcpc_compat && 'rcpc' || 'bundle' }}
+  cancel-in-progress: true
+jobs:
+  baseline:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 55
+    env:
+      WORK: ${{ github.workspace }}/local-analysis/original-bundle-work
+      TARGET_ANDROID_API: ${{ inputs.android_api || '36' }}
+      FRAMEWORK_DEX: ${{ inputs.framework_dex && 'true' || 'false' }}
+      RCPC_COMPAT: ${{ inputs.rcpc_compat && 'true' || 'false' }}
+      REPORT_STEM: ${{ inputs.rcpc_compat && 'original-shell-rcpc' || 'original-shell-bundled' }}
+      BUNDLE_REPORT: ${{ inputs.rcpc_compat && 'original-shell-rcpc-dependency-bundle' || 'original-shell-dependency-bundle' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare disposable host, not the user's phone
+        timeout-minutes: 8
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/hostedtoolcache/CodeQL
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends libpulse0 e2fsprogs iproute2 util-linux binutils binutils-aarch64-linux-gnu
+          python3 -m pip install --timeout 30 --retries 2 -r handtracking/ai/requirements.txt
+          python3 -m unittest discover -s tests -p test_original_shell_baseline.py -v
+          mkdir -p "$WORK" local-analysis/android-runtime
+          test -e /dev/kvm
+          sudo chmod 666 /dev/kvm
+      - name: Prepare pinned host-only DEX class selector
+        if: env.FRAMEWORK_DEX == 'true'
+        timeout-minutes: 5
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+          python3 -m tools.prepare_dex_tools
+      - name: Obtain the verified unmodified original APK
+        timeout-minutes: 25
+        run: |
+          curl --fail --location --retry 2 --max-time 600 --max-filesize 10737418240 \
+            --proto '=https' --proto-redir '=https' \
+            'https://files.cocaine.trade/firmware/meta/Quest%203/q3_52168470052900520.zip' -o "$WORK/firmware.zip"
+          echo "beea2e092f6239ca21af98466d9b130c22b9ab8822f411b00baf74ebb866858e  $WORK/firmware.zip" | sha256sum --check --strict
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.reconstruct_ota import reconstruct
+          p=Path(os.environ['WORK'])
+          r=reconstruct(p/'firmware.zip',p/'images',selected={'system','system_ext'})
+          (p/'reconstruction.json').write_text(json.dumps(r))
+          PY
+          python3 -m horizon.ui.prepare_shell_apk --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --output local-analysis/original-cache/VrShell.apk
+          extra=()
+          if [ "$RCPC_COMPAT" = true ]; then extra+=(--rcpc-compat); fi
+          if [ "$FRAMEWORK_DEX" = true ]; then extra+=(--framework-dex); fi
+          if [ "$FRAMEWORK_DEX" = true ] && [ "$RCPC_COMPAT" = true ]; then extra+=(--app-service-transport); fi
+          python3 -m horizon.ui.bundle_shell_dependencies "${extra[@]}" --images "$WORK/images" --reconstruction "$WORK/reconstruction.json" --original local-analysis/original-cache/VrShell.apk --output local-analysis/shell-bundle
+          rm -rf "$WORK/images" "$WORK/firmware.zip"
+      - name: Verify cached APK too and install the test image
+        timeout-minutes: 12
+        run: |
+          echo 'd3094ee3cb73ef30e151982dfe1f14e46e607a8640cf7f2e37071aeb579a6463  local-analysis/original-cache/VrShell.apk' | sha256sum --check --strict
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;35.0.0' 'platforms;android-35' 'ndk;27.2.12479018' 'emulator' 'platform-tools' "system-images;android-${TARGET_ANDROID_API};google_apis;x86_64"
+      - name: Align and sign only for this offline experiment
+        timeout-minutes: 5
+        run: |
+          keytool -genkeypair -noprompt -alias baseline -keyalg RSA -keysize 2048 -validity 30 \
+            -dname 'CN=MetaPort Offline Test,OU=Not Meta Signing Identity' \
+            -keystore "$WORK/test.p12" -storetype PKCS12 -storepass android -keypass android
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -P 16 -f 4 local-analysis/shell-bundle/shell-dependencies-unsigned.apk local-analysis/shell-bundle/aligned.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign --ks "$WORK/test.p12" --ks-key-alias baseline --ks-pass pass:android --key-pass pass:android --out local-analysis/shell-bundle/signed.apk local-analysis/shell-bundle/aligned.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose local-analysis/shell-bundle/signed.apk
+          python3 - <<'PYCODE'
+          import json
+          from pathlib import Path
+          from handtracking.ai.inspect_original import digest
+          from horizon.ui.bundle_shell_dependencies import compare_apks
+          root=Path('local-analysis/shell-bundle');p=root/'bundle.json';r=json.loads(p.read_text())
+          compare_apks('local-analysis/original-cache/VrShell.apk',root/'signed.apk',r['added_members'])
+          r.update(signed_apk_sha256=digest(root/'signed.apk'),test_certificate_not_meta_identity=True)
+          p.write_text(json.dumps(r,indent=2)+'\n')
+          PYCODE
+      - name: Build separate internal instruction fixture (not a release)
+        run: python3 -m tools.build_instruction_probe
+      - name: Probe original APK without external network or credentials
+        id: probe
+        timeout-minutes: 15
+        run: |
+          # Empty environment: no GitHub/Meta tokens inherited. Only loopback exists
+          # inside this network namespace. The Android app itself is unprivileged.
+          sudo env -i PATH="$PATH" HOME="$HOME" ANDROID_HOME="$ANDROID_HOME" JAVA_HOME="$JAVA_HOME" \
+            GITHUB_SHA="$GITHUB_SHA" GITHUB_RUN_ID="$GITHUB_RUN_ID" TARGET_ANDROID_API="$TARGET_ANDROID_API" REPORT_STEM="$REPORT_STEM" HOST_UID="$(id -u)" HOST_GID="$(id -g)" \
+            unshare --net bash -c 'ip link set lo up; exec setpriv --reuid "$HOST_UID" --regid "$HOST_GID" --clear-groups python3 -m tools.run_original_shell_baseline --bundled --api "$TARGET_ANDROID_API" --report-stem "$REPORT_STEM"'
+      - name: Preserve exact outcome, including skipped installation or launch failure
+        if: always()
+        env:
+          PROBE_OUTCOME: ${{ steps.probe.outcome }}
+        run: |
+          mkdir -p local-analysis/android-runtime
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          from tools.collect_action_diagnostics import captured_files
+          p=Path('local-analysis/android-runtime')/(os.environ['REPORT_STEM']+'-baseline.json')
+          r=json.loads(p.read_text()) if p.exists() else {'result':'EXPERIMENT_NOT_COMPLETED','port_ready':False}
+          setup=Path('local-analysis/android-runtime/dex-tools-setup.json')
+          if setup.exists() and setup.stat().st_size<=65536:
+            r['dex_tools_setup']=json.loads(setup.read_text())
+          framework=Path('local-analysis/shell-bundle/framework-dex-inspection.json')
+          if framework.exists() and framework.stat().st_size<=65536:
+            r['framework_dex_inspection']=json.loads(framework.read_text())
+          bundle=Path('local-analysis/shell-bundle/bundle.json')
+          if bundle.exists() and r.get('crash_buffer'):
+            from tools.shell_crash_windows import collect
+            try:
+              r['crash_instruction_evidence']=collect(r['crash_buffer']['text'],
+                  'local-analysis/shell-bundle/libraries',json.loads(bundle.read_text()))
+            except Exception as error:
+              r['crash_instruction_evidence']={'error':str(error),'crash_cause_proven':False}
+          r.update(source_commit=os.environ['GITHUB_SHA'],run_id=os.environ['GITHUB_RUN_ID'],
+                   probe_step=os.environ['PROBE_OUTCOME'],ci_diagnostics=captured_files(p.parent))
+          p.write_text(json.dumps(r,indent=2)+'\n')
+          PY
+      - name: Publish only bounded evidence, not an original or substitute APK
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$auth"
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          cp "local-analysis/android-runtime/${REPORT_STEM}-baseline.json" "analysis/android-runtime/${REPORT_STEM}-baseline.json"
+          git add "analysis/android-runtime/${REPORT_STEM}-baseline.json"
+          if [ -f local-analysis/shell-bundle/bundle.json ]; then
+            cp local-analysis/shell-bundle/bundle.json "analysis/android-runtime/${BUNDLE_REPORT}.json"
+            git add "analysis/android-runtime/${BUNDLE_REPORT}.json"
+          fi
+          if [ -f local-analysis/shell-bundle/focus-service-contracts.json ]; then
+            cp local-analysis/shell-bundle/focus-service-contracts.json analysis/android-runtime/focus-service-contracts.json
+            git add analysis/android-runtime/focus-service-contracts.json
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record original dependency bundle experiment, not a working port [skip ci]'
+            for attempt in 1 2 3; do
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then exit 0; fi
+            done
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: original-shell-bundle-evidence-not-a-release
+          path: local-analysis/android-runtime/
+          retention-days: 7

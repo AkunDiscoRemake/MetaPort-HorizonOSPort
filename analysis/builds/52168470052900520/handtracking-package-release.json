@@ -1,0 +1,31 @@
+{
+  "release": "https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/tag/handtracking-recovered-36799154034-1",
+  "source_commit": "5e6ce83f7b65f31e3fe6d027ba29424602377900",
+  "package_run": 36799154034,
+  "package_conclusion": "success",
+  "android_run": 36799130880,
+  "android_conclusion": "success",
+  "native_tests": 6,
+  "python_tests": 94,
+  "python_skipped": 1,
+  "original_files": 41,
+  "original_model_files": 21,
+  "decoded_model_files": 10,
+  "inference_ported": false,
+  "phone_validated": false,
+  "asset_digest_source": "GitHub Release API",
+  "assets": [
+    {
+      "name": "MetaPort-HandTracking-recovered.zip",
+      "size_bytes": 183701432,
+      "sha256": "c084bdee4373e8b0154968b88b96040e5ade8d9f60d22f0a5b0c023e62c0eb5a",
+      "url": "https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/download/handtracking-recovered-36799154034-1/MetaPort-HandTracking-recovered.zip"
+    },
+    {
+      "name": "MetaPort-HandTracking-sources.zip",
+      "size_bytes": 3096426,
+      "sha256": "8b5f27f9abd3f7867375472b14d1a12d3fda795007ab48cd534760647b51d859",
+      "url": "https://github.com/AkunDiscoRemake/MetaPort-HorizonOSPort/releases/download/handtracking-recovered-36799154034-1/MetaPort-HandTracking-sources.zip"
+    }
+  ]
+}

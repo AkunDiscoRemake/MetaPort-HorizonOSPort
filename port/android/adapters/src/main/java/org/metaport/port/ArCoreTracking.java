@@ -1,0 +1,294 @@
+package org.metaport.port;
+
+import android.Manifest;
+import android.media.Image;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.opengl.EGL14;
+import android.opengl.EGLContext;
+import android.opengl.GLES20;
+import android.os.Looper;
+
+import com.google.ar.core.Anchor;
+import com.google.ar.core.ArCoreApk;
+import com.google.ar.core.Camera;
+import com.google.ar.core.Config;
+import com.google.ar.core.Frame;
+import com.google.ar.core.Plane;
+import com.google.ar.core.Pose;
+import com.google.ar.core.Session;
+import com.google.ar.core.TrackingState;
+import com.google.ar.core.exceptions.CameraNotAvailableException;
+import com.google.ar.core.exceptions.UnavailableException;
+import com.google.ar.core.exceptions.NotYetAvailableException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/** Genuine ARCore camera-world tracking producer. No Horizon ABI has been fabricated.
+ * Host owns permission UI, foreground lifecycle, OES texture and render thread.
+ * Do NOT open Camera2 separately while this session owns the camera.
+ */
+public final class ArCoreTracking implements AutoCloseable {
+    public enum Availability { READY, INSTALL_REQUIRED, UNSUPPORTED, UNKNOWN }
+    public enum DepthMode { OFF, AUTOMATIC, RAW }
+    public enum DepthResult { DISABLED, NO_CAMERA_FRAME, NOT_YET_AVAILABLE, DELIVERED }
+    private DepthMode depthMode = DepthMode.OFF;
+    public enum State { TRACKING, PAUSED, STOPPED }
+    public static final String CLOCK_DOMAIN = "ARCORE_FRAME_TIMESTAMP";
+    public static final String COORDINATES = "ARCORE_WORLD_FROM_PHYSICAL_CAMERA_METERS_XYZW";
+    private final Thread owner = Thread.currentThread();
+    private Session session;
+    private Frame latestCameraFrame;
+    private int cameraTexture;
+    private EGLContext cameraContext;
+    private final Map<Long, Anchor> anchors = new HashMap<>();
+    private long nextAnchor = 1, previousTimestamp = 0, epoch = 0;
+    private boolean resumed = false, textureBound = false;
+
+    public static Availability availability(Context context) {
+        switch (ArCoreApk.getInstance().checkAvailability(context)) {
+            case SUPPORTED_INSTALLED: return Availability.READY;
+            case SUPPORTED_NOT_INSTALLED:
+            case SUPPORTED_APK_TOO_OLD: return Availability.INSTALL_REQUIRED;
+            case UNSUPPORTED_DEVICE_NOT_CAPABLE: return Availability.UNSUPPORTED;
+            default: return Availability.UNKNOWN; // Includes async detection in progress.
+        }
+    }
+
+    /** Explicit host-initiated installation prompt. Returns false while install is pending. */
+    public static boolean requestInstallation(Activity activity, boolean userRequested)
+            throws UnavailableException {
+        if (Looper.myLooper() != Looper.getMainLooper()) throw new IllegalStateException("Installation UI requires main thread");
+        return ArCoreApk.getInstance().requestInstall(activity, userRequested) == ArCoreApk.InstallStatus.INSTALLED;
+    }
+
+    public ArCoreTracking(Context context) throws UnavailableException {
+        if (context.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+            throw new SecurityException("Host must obtain CAMERA permission first");
+        if (availability(context) != Availability.READY)
+            throw new IllegalStateException("ARCore is not ready; do not synthesize tracking");
+        session = new Session(context.getApplicationContext());
+        try {
+            Config config = new Config(session);
+            config.setPlaneFindingMode(Config.PlaneFindingMode.HORIZONTAL_AND_VERTICAL);
+            config.setUpdateMode(Config.UpdateMode.LATEST_CAMERA_IMAGE);
+            config.setFocusMode(Config.FocusMode.AUTO);
+            session.configure(config);
+        } catch (RuntimeException e) {
+            session.close(); session = null; throw e;
+        }
+    }
+
+    private void check() {
+        if (Thread.currentThread() != owner) throw new IllegalStateException("Use owning render thread");
+        if (session == null) throw new IllegalStateException("Closed");
+    }
+    private void requireGl() {
+        if (EGL14.eglGetCurrentContext().equals(EGL14.EGL_NO_CONTEXT))
+            throw new IllegalStateException("A current GLES context is required");
+    }
+
+    // Package-visible so the actual EGL ownership guard can be instrumented
+    // without fabricating an ARCore Session or claiming camera/depth execution.
+    static void requireCameraContext(EGLContext expected) {
+        EGLContext current = EGL14.eglGetCurrentContext();
+        if (expected == null || current.equals(EGL14.EGL_NO_CONTEXT) || !current.equals(expected))
+            throw new IllegalStateException("Rebind camera texture after EGL context change");
+    }
+
+    /** OES texture must belong to the current render context; call again after context recreation. */
+    public void setCameraTexture(int externalOesTexture) {
+        check(); requireGl();
+        if (externalOesTexture <= 0 || !GLES20.glIsTexture(externalOesTexture))
+            throw new IllegalArgumentException("Texture has not been created/bound by host");
+        session.setCameraTextureName(externalOesTexture);
+        textureBound = true; cameraTexture = externalOesTexture;
+        cameraContext = EGL14.eglGetCurrentContext();
+        latestCameraFrame = null;
+    }
+
+    public void setDisplayGeometry(int rotation, int width, int height) {
+        check();
+        if (rotation < 0 || rotation > 3 || width <= 0 || height <= 0) throw new IllegalArgumentException("Invalid display geometry");
+        session.setDisplayGeometry(rotation, width, height);
+        latestCameraFrame = null;
+    }
+
+    private static Config.DepthMode arDepthMode(DepthMode mode) {
+        switch (mode) {
+            case AUTOMATIC: return Config.DepthMode.AUTOMATIC;
+            case RAW: return Config.DepthMode.RAW_DEPTH_ONLY;
+            default: return Config.DepthMode.DISABLED;
+        }
+    }
+    public boolean supportsDepth(DepthMode mode) {
+        check();
+        if (mode == null) throw new IllegalArgumentException("Missing depth mode");
+        return mode == DepthMode.OFF || session.isDepthModeSupported(arDepthMode(mode));
+    }
+    /** Explicit opt-in, only while paused. Unsupported is NOT replaced by fake depth. */
+    public void configureDepth(DepthMode mode) {
+        check();
+        if (resumed) throw new IllegalStateException("Pause before configuring depth");
+        if (!supportsDepth(mode)) throw new UnsupportedOperationException("ARCore depth mode unavailable");
+        Config config = session.getConfig();
+        config.setDepthMode(arDepthMode(mode)); session.configure(config);
+        depthMode = mode; latestCameraFrame = null;
+    }
+    @FunctionalInterface public interface DepthConsumer {
+        /** Borrowed images: valid only during this call. Do not close, retain or
+         * access asynchronously. RAW confidence is 0..255; AUTOMATIC confidence
+         * is null, not fabricated. Millimeters use image row/pixel strides.
+         * Depth timestamp may differ from color; never assume synchronization.
+         */
+        void accept(Image millimeters, Image confidence, long colorTimestampNs, long epoch);
+    }
+    /** No Java image copy; images closed even if the consumer throws. RAW depth
+     * can be sparse/repeated across color frames. No Quest sensor/algorithm claim.
+     */
+    public DepthResult withDepth(DepthConsumer consumer) {
+        check();
+        if (consumer == null) throw new IllegalArgumentException("Missing consumer");
+        if (depthMode == DepthMode.OFF) return DepthResult.DISABLED;
+        if (!resumed || latestCameraFrame == null || latestCameraFrame.getTimestamp() == 0)
+            return DepthResult.NO_CAMERA_FRAME;
+        Image depth;
+        try {
+            depth = depthMode == DepthMode.RAW ? latestCameraFrame.acquireRawDepthImage16Bits()
+                    : latestCameraFrame.acquireDepthImage16Bits();
+        } catch (NotYetAvailableException e) { return DepthResult.NOT_YET_AVAILABLE; }
+        try (Image ownedDepth = depth) {
+            if (depthMode == DepthMode.RAW) {
+                Image confidence;
+                try { confidence = latestCameraFrame.acquireRawDepthConfidenceImage(); }
+                catch (NotYetAvailableException e) { return DepthResult.NOT_YET_AVAILABLE; }
+                try (Image ownedConfidence = confidence) {
+                    if (depth.getTimestamp() != confidence.getTimestamp() ||
+                        depth.getWidth() != confidence.getWidth() || depth.getHeight() != confidence.getHeight())
+                        throw new IllegalStateException("Mismatched raw depth/confidence images");
+                    consumer.accept(ownedDepth, ownedConfidence, latestCameraFrame.getTimestamp(), epoch);
+                }
+            } else consumer.accept(ownedDepth, null, latestCameraFrame.getTimestamp(), epoch);
+        }
+        return DepthResult.DELIVERED;
+    }
+
+    public void resume() throws CameraNotAvailableException {
+        check();
+        if (resumed) return;
+        latestCameraFrame = null;
+        session.resume(); resumed = true; previousTimestamp = 0; epoch++;
+    }
+    public void pause() {
+        check();
+        try { if (resumed) session.pause(); }
+        finally { latestCameraFrame=null; resumed=false; previousTimestamp=0; epoch++; }
+    }
+
+    public TrackingFrame update() throws CameraNotAvailableException {
+        check();
+        latestCameraFrame = null; // Context loss must also invalidate the old background.
+        requireCameraContext(cameraContext);
+        if (!resumed || !textureBound) throw new IllegalStateException("Resume and bind an OES camera texture first");
+        latestCameraFrame = null; // Failure must not keep an old background eligible.
+        Frame frame = session.update();
+        latestCameraFrame = frame;
+        Camera camera = frame.getCamera();
+        long timestamp = frame.getTimestamp();
+        boolean fresh = timestamp > previousTimestamp;
+        if (timestamp > 0) previousTimestamp = timestamp;
+        State state = State.valueOf(camera.getTrackingState().name());
+        // Timestamp zero is ARCore's no-camera-frame condition, not a measured pose.
+        if (timestamp == 0 && state == State.TRACKING) state = State.PAUSED;
+        PoseData pose = state == State.TRACKING ? poseData(camera.getPose()) : null;
+        return new TrackingFrame(timestamp, epoch, fresh, state,
+                camera.getTrackingFailureReason().name(), pose);
+    }
+
+    /** Render the current camera image before the UI pass. Call update() first.
+     * No second camera owner, no CPU image conversion, no claim of stereo/depth.
+     * Host must clear its target on false, restore UI GL state and stop drawing
+     * on activity pause. Display geometry must match the background viewport.
+     */
+    public boolean drawPassthrough(PassthroughRenderer renderer, int x, int y, int width, int height) {
+        check(); requireGl();
+        if (!resumed || latestCameraFrame == null) return false;
+        requireCameraContext(cameraContext);
+        if (renderer.cameraTexture() != cameraTexture)
+            throw new IllegalArgumentException("Bind this renderer's texture to this session first");
+        return renderer.draw(latestCameraFrame, x, y, width, height);
+    }
+
+    /** Detected plane extents. Up-facing plane is NOT automatically labelled floor. */
+    public List<PlaneData> planes() {
+        check();
+        if (!resumed) throw new IllegalStateException("Paused");
+        List<PlaneData> result = new ArrayList<>();
+        for (Plane plane : session.getAllTrackables(Plane.class)) {
+            if (plane.getTrackingState() == TrackingState.TRACKING && plane.getSubsumedBy() == null)
+                result.add(new PlaneData(plane.getType().name(), poseData(plane.getCenterPose()), plane.getExtentX(), plane.getExtentZ()));
+        }
+        return result;
+    }
+
+    /** Session-local anchor at an ARCore world pose. No cloud/persistence promise. */
+    public long createAnchor(PoseData worldPose) {
+        check();
+        if (!resumed) throw new IllegalStateException("Paused");
+        if (anchors.size() >= 64) throw new IllegalStateException("Anchor budget exceeded");
+        Anchor anchor = session.createAnchor(new Pose(worldPose.positionMeters(), worldPose.quaternionXyzw()));
+        long id = nextAnchor++;
+        anchors.put(id, anchor);
+        return id;
+    }
+    public PoseData anchorPose(long id) {
+        check();
+        if (!resumed) return null;
+        Anchor anchor = anchors.get(id);
+        if (anchor == null) throw new IllegalArgumentException("Unknown anchor");
+        return anchor.getTrackingState() == TrackingState.TRACKING ? poseData(anchor.getPose()) : null;
+    }
+    public void removeAnchor(long id) {
+        check();
+        Anchor anchor = anchors.remove(id);
+        if (anchor == null) throw new IllegalArgumentException("Unknown anchor");
+        anchor.detach();
+    }
+    @Override public void close() {
+        if (Thread.currentThread() != owner) throw new IllegalStateException("Use owning render thread");
+        if (session != null) {
+            try {
+                pause();
+                for (Anchor anchor : anchors.values()) anchor.detach();
+                anchors.clear();
+            } finally { session.close(); session=null; textureBound=false; latestCameraFrame=null; cameraTexture=0; cameraContext=null; }
+        }
+    }
+    private static PoseData poseData(Pose pose) { return new PoseData(pose.getTranslation(), pose.getRotationQuaternion()); }
+
+    public static final class TrackingFrame {
+        public final long timestampNs, epoch;
+        public final boolean newCameraFrame;
+        public final State state;
+        public final String failureReason;
+        /** Null when not tracking; never a fabricated identity/zero pose. */
+        public final PoseData worldFromCamera;
+        private TrackingFrame(long timestamp, long epoch, boolean fresh, State state, String failure, PoseData pose) {
+            timestampNs=timestamp; this.epoch=epoch; newCameraFrame=fresh;
+            this.state=state; failureReason=failure; worldFromCamera=pose;
+        }
+        // No numerical confidence field: ARCore does not provide one here.
+    }
+    public static final class PlaneData {
+        public final String type;
+        public final PoseData center;
+        public final float extentXMeters, extentZMeters;
+        private PlaneData(String type, PoseData center, float x, float z) {
+            this.type=type; this.center=center; extentXMeters=x; extentZMeters=z;
+        }
+    }
+}

@@ -1,0 +1,3397 @@
+{
+  "program_sha256": "2d4c274bc81c9f545f3b5571ba57643a9696333e8f6b3a125e45682fbd96dce0",
+  "scope": "One-hop direct CALL frontier only; excludes unresolved indirect calls and tail jumps",
+  "roots": [
+    {
+      "elf_address": 14029664,
+      "function_found": true,
+      "name": "FUN_00e61360",
+      "call_instructions": 11,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14029748,
+          "instruction": "bl 0x026b6780",
+          "targets": [
+            {
+              "address": "026b6780",
+              "name": "lock",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029760,
+          "instruction": "bl 0x026b6790",
+          "targets": [
+            {
+              "address": "026b6790",
+              "name": "unlock",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029796,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029812,
+          "instruction": "bl 0x00b16da8",
+          "targets": [
+            {
+              "address": "00b16da8",
+              "name": "FUN_00b16da8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029840,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029860,
+          "instruction": "bl 0x00c7a1d4",
+          "targets": [
+            {
+              "address": "00c7a1d4",
+              "name": "FUN_00c7a1d4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029896,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029912,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029980,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029988,
+          "instruction": "bl 0x026b63c0",
+          "targets": [
+            {
+              "address": "026b63c0",
+              "name": "_Exit",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14029992,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14033660,
+      "function_found": true,
+      "name": "FUN_00e622fc",
+      "call_instructions": 442,
+      "calls_truncated": true,
+      "calls": [
+        {
+          "elf_address": 14033720,
+          "instruction": "bl 0x026bc190",
+          "targets": [
+            {
+              "address": "026bc190",
+              "name": "ATrace_isEnabled",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033752,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14033772,
+          "instruction": "bl 0x00f6f4a8",
+          "targets": [
+            {
+              "address": "00f6f4a8",
+              "name": "FUN_00f6f4a8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033780,
+          "instruction": "bl 0x026b6760",
+          "targets": [
+            {
+              "address": "026b6760",
+              "name": "now",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033820,
+          "instruction": "bl 0x00b6abdc",
+          "targets": [
+            {
+              "address": "00b6abdc",
+              "name": "FUN_00b6abdc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033916,
+          "instruction": "bl 0x01cc37dc",
+          "targets": [
+            {
+              "address": "01cc37dc",
+              "name": "FUN_01cc37dc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033924,
+          "instruction": "bl 0x00e8ec48",
+          "targets": [
+            {
+              "address": "00e8ec48",
+              "name": "FUN_00e8ec48",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033976,
+          "instruction": "bl 0x00b12254",
+          "targets": [
+            {
+              "address": "00b12254",
+              "name": "FUN_00b12254",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14033996,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034012,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034036,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034052,
+          "instruction": "bl 0x00ce43c4",
+          "targets": [
+            {
+              "address": "00ce43c4",
+              "name": "FUN_00ce43c4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034108,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034140,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034144,
+          "instruction": "bl 0x026bc190",
+          "targets": [
+            {
+              "address": "026bc190",
+              "name": "ATrace_isEnabled",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034168,
+          "instruction": "bl 0x00e5d1c0",
+          "targets": [
+            {
+              "address": "00e5d1c0",
+              "name": "FUN_00e5d1c0",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034184,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034228,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034232,
+          "instruction": "bl 0x026bc190",
+          "targets": [
+            {
+              "address": "026bc190",
+              "name": "ATrace_isEnabled",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034248,
+          "instruction": "bl 0x01102898",
+          "targets": [
+            {
+              "address": "01102898",
+              "name": "FUN_01102898",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034256,
+          "instruction": "bl 0x026bc1a0",
+          "targets": [
+            {
+              "address": "026bc1a0",
+              "name": "ATrace_endSection",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034272,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034312,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034328,
+          "instruction": "bl 0x00e6119c",
+          "targets": [
+            {
+              "address": "00e6119c",
+              "name": "FUN_00e6119c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034340,
+          "instruction": "bl 0x00b16e3c",
+          "targets": [
+            {
+              "address": "00b16e3c",
+              "name": "FUN_00b16e3c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034360,
+          "instruction": "bl 0x026b8920",
+          "targets": [
+            {
+              "address": "026b8920",
+              "name": "clock_gettime",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034472,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034512,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034524,
+          "instruction": "bl 0x01303288",
+          "targets": [
+            {
+              "address": "01303288",
+              "name": "FUN_01303288",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034536,
+          "instruction": "bl 0x026bc1a0",
+          "targets": [
+            {
+              "address": "026bc1a0",
+              "name": "ATrace_endSection",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034632,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034668,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034724,
+          "instruction": "bl 0x00e8dc34",
+          "targets": [
+            {
+              "address": "00e8dc34",
+              "name": "FUN_00e8dc34",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034780,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034800,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034804,
+          "instruction": "bl 0x026bc190",
+          "targets": [
+            {
+              "address": "026bc190",
+              "name": "ATrace_isEnabled",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034832,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034844,
+          "instruction": "bl 0x026bc190",
+          "targets": [
+            {
+              "address": "026bc190",
+              "name": "ATrace_isEnabled",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034860,
+          "instruction": "bl 0x01073dc4",
+          "targets": [
+            {
+              "address": "01073dc4",
+              "name": "FUN_01073dc4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034876,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14034916,
+          "instruction": "bl 0x0121f370",
+          "targets": [
+            {
+              "address": "0121f370",
+              "name": "FUN_0121f370",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034956,
+          "instruction": "blr x8",
+          "targets": [
+            {
+              "address": "00ad7850",
+              "name": "FUN_00ad7850",
+              "eligible_local_body": true
+            },
+            {
+              "address": "00e8967c",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14034976,
+          "instruction": "blr x8",
+          "targets": [
+            {
+              "address": "00ad7850",
+              "name": "FUN_00ad7850",
+              "eligible_local_body": true
+            },
+            {
+              "address": "00e8967c",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035000,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035044,
+          "instruction": "blr x9",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035124,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035144,
+          "instruction": "bl 0x00e9c3f4",
+          "targets": [
+            {
+              "address": "00e9c3f4",
+              "name": "FUN_00e9c3f4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035176,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035224,
+          "instruction": "blr x8",
+          "targets": [
+            {
+              "address": "00ad7850",
+              "name": "FUN_00ad7850",
+              "eligible_local_body": true
+            },
+            {
+              "address": "00e8967c",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035232,
+          "instruction": "bl 0x026bc1a0",
+          "targets": [
+            {
+              "address": "026bc1a0",
+              "name": "ATrace_endSection",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035260,
+          "instruction": "bl 0x00e8e8dc",
+          "targets": [
+            {
+              "address": "00e8e8dc",
+              "name": "FUN_00e8e8dc",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035268,
+          "instruction": "bl 0x026bc1a0",
+          "targets": [
+            {
+              "address": "026bc1a0",
+              "name": "ATrace_endSection",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035280,
+          "instruction": "bl 0x0114ce6c",
+          "targets": [
+            {
+              "address": "0114ce6c",
+              "name": "FUN_0114ce6c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035304,
+          "instruction": "bl 0x00c8c278",
+          "targets": [
+            {
+              "address": "00c8c278",
+              "name": "FUN_00c8c278",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035340,
+          "instruction": "bl 0x01076344",
+          "targets": [
+            {
+              "address": "01076344",
+              "name": "FUN_01076344",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035408,
+          "instruction": "bl 0x010cda98",
+          "targets": [
+            {
+              "address": "010cda98",
+              "name": "FUN_010cda98",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035440,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035456,
+          "instruction": "bl 0x010c5338",
+          "targets": [
+            {
+              "address": "010c5338",
+              "name": "FUN_010c5338",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035464,
+          "instruction": "bl 0x01daaa18",
+          "targets": [
+            {
+              "address": "01daaa18",
+              "name": "FUN_01daaa18",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035512,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035540,
+          "instruction": "bl 0x00e5d1c0",
+          "targets": [
+            {
+              "address": "00e5d1c0",
+              "name": "FUN_00e5d1c0",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035548,
+          "instruction": "bl 0x026bc1a0",
+          "targets": [
+            {
+              "address": "026bc1a0",
+              "name": "ATrace_endSection",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035564,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035592,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035608,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035616,
+          "instruction": "bl 0x00b4c834",
+          "targets": [
+            {
+              "address": "00b4c834",
+              "name": "FUN_00b4c834",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035648,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035700,
+          "instruction": "bl 0x00b69660",
+          "targets": [
+            {
+              "address": "00b69660",
+              "name": "FUN_00b69660",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035756,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035780,
+          "instruction": "bl 0x00eb7ba4",
+          "targets": [
+            {
+              "address": "00eb7ba4",
+              "name": "FUN_00eb7ba4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035796,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14035856,
+          "instruction": "bl 0x026b6760",
+          "targets": [
+            {
+              "address": "026b6760",
+              "name": "now",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035948,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14035972,
+          "instruction": "bl 0x010cdb98",
+          "targets": [
+            {
+              "address": "010cdb98",
+              "name": "FUN_010cdb98",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036016,
+          "instruction": "bl 0x01cc5428",
+          "targets": [
+            {
+              "address": "01cc5428",
+              "name": "FUN_01cc5428",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036172,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036196,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036256,
+          "instruction": "bl 0x026b6760",
+          "targets": [
+            {
+              "address": "026b6760",
+              "name": "now",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036300,
+          "instruction": "bl 0x00b65f08",
+          "targets": [
+            {
+              "address": "00b65f08",
+              "name": "FUN_00b65f08",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036308,
+          "instruction": "bl 0x00f02eac",
+          "targets": [
+            {
+              "address": "00f02eac",
+              "name": "FUN_00f02eac",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036364,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036392,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036460,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036528,
+          "instruction": "bl 0x00ddfea4",
+          "targets": [
+            {
+              "address": "00ddfea4",
+              "name": "FUN_00ddfea4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036556,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036572,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036584,
+          "instruction": "bl 0x010040ac",
+          "targets": [
+            {
+              "address": "010040ac",
+              "name": "FUN_010040ac",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036600,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036620,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036644,
+          "instruction": "bl 0x026b6760",
+          "targets": [
+            {
+              "address": "026b6760",
+              "name": "now",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036688,
+          "instruction": "bl 0x00b65f08",
+          "targets": [
+            {
+              "address": "00b65f08",
+              "name": "FUN_00b65f08",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036712,
+          "instruction": "bl 0x00d68070",
+          "targets": [
+            {
+              "address": "00d68070",
+              "name": "FUN_00d68070",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036736,
+          "instruction": "bl 0x00d68400",
+          "targets": [
+            {
+              "address": "00d68400",
+              "name": "FUN_00d68400",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036756,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036764,
+          "instruction": "bl 0x026b6760",
+          "targets": [
+            {
+              "address": "026b6760",
+              "name": "now",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036844,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14036848,
+          "instruction": "bl 0x0100c908",
+          "targets": [
+            {
+              "address": "0100c908",
+              "name": "FUN_0100c908",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036864,
+          "instruction": "bl 0x00e8ebb0",
+          "targets": [
+            {
+              "address": "00e8ebb0",
+              "name": "FUN_00e8ebb0",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14036988,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037012,
+          "instruction": "bl 0x010c5030",
+          "targets": [
+            {
+              "address": "010c5030",
+              "name": "FUN_010c5030",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037036,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037184,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037272,
+          "instruction": "bl 0x00eaf2f4",
+          "targets": [
+            {
+              "address": "00eaf2f4",
+              "name": "FUN_00eaf2f4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037296,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037332,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037356,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037416,
+          "instruction": "blr x9",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037456,
+          "instruction": "blr x9",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037508,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037580,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037608,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14037620,
+          "instruction": "bl 0x00b16e3c",
+          "targets": [
+            {
+              "address": "00b16e3c",
+              "name": "FUN_00b16e3c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037640,
+          "instruction": "bl 0x026bc190",
+          "targets": [
+            {
+              "address": "026bc190",
+              "name": "ATrace_isEnabled",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037664,
+          "instruction": "bl 0x00b25df4",
+          "targets": [
+            {
+              "address": "00b25df4",
+              "name": "FUN_00b25df4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037672,
+          "instruction": "bl 0x026bc1a0",
+          "targets": [
+            {
+              "address": "026bc1a0",
+              "name": "ATrace_endSection",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037692,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037720,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037740,
+          "instruction": "bl 0x026b6780",
+          "targets": [
+            {
+              "address": "026b6780",
+              "name": "lock",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037776,
+          "instruction": "bl 0x026b6ce0",
+          "targets": [
+            {
+              "address": "026b6ce0",
+              "name": "wait",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037812,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037832,
+          "instruction": "bl 0x026b6790",
+          "targets": [
+            {
+              "address": "026b6790",
+              "name": "unlock",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037852,
+          "instruction": "bl 0x00b68b04",
+          "targets": [
+            {
+              "address": "00b68b04",
+              "name": "FUN_00b68b04",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037888,
+          "instruction": "bl 0x00a72f9c",
+          "targets": [
+            {
+              "address": "00a72f9c",
+              "name": "FUN_00a72f9c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037904,
+          "instruction": "bl 0x00a72f9c",
+          "targets": [
+            {
+              "address": "00a72f9c",
+              "name": "FUN_00a72f9c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14037920,
+          "instruction": "bl 0x00a72f9c",
+          "targets": [
+            {
+              "address": "00a72f9c",
+              "name": "FUN_00a72f9c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14038024,
+          "instruction": "bl 0x01ef3834",
+          "targets": [
+            {
+              "address": "01ef3834",
+              "name": "FUN_01ef3834",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14038044,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14038060,
+          "instruction": "bl 0x00b7d4e8",
+          "targets": [
+            {
+              "address": "00b7d4e8",
+              "name": "FUN_00b7d4e8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14203764,
+      "function_found": true,
+      "name": "FUN_00e8bb74",
+      "call_instructions": 3,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14203828,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14203864,
+          "instruction": "bl 0x00b5acd4",
+          "targets": [
+            {
+              "address": "00b5acd4",
+              "name": "FUN_00b5acd4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203868,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14203936,
+      "function_found": true,
+      "name": "FUN_00e8bc20",
+      "call_instructions": 4,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14204108,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14204456,
+          "instruction": "bl 0x00e96d50",
+          "targets": [
+            {
+              "address": "00e96d50",
+              "name": "FUN_00e96d50",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14204496,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14204544,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14204668,
+      "function_found": true,
+      "name": "FUN_00e8befc",
+      "call_instructions": 4,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14204832,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14204900,
+          "instruction": "bl 0x00e96d50",
+          "targets": [
+            {
+              "address": "00e96d50",
+              "name": "FUN_00e96d50",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14204940,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14204984,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14451840,
+      "function_found": true,
+      "name": "FUN_00ec8480",
+      "call_instructions": 141,
+      "calls_truncated": true,
+      "calls": [
+        {
+          "elf_address": 14451936,
+          "instruction": "bl 0x00bfce0c",
+          "targets": [
+            {
+              "address": "00bfce0c",
+              "name": "FUN_00bfce0c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14451948,
+          "instruction": "bl 0x00bfce0c",
+          "targets": [
+            {
+              "address": "00bfce0c",
+              "name": "FUN_00bfce0c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14451960,
+          "instruction": "bl 0x00bfce0c",
+          "targets": [
+            {
+              "address": "00bfce0c",
+              "name": "FUN_00bfce0c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14451972,
+          "instruction": "bl 0x00bfce0c",
+          "targets": [
+            {
+              "address": "00bfce0c",
+              "name": "FUN_00bfce0c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452004,
+          "instruction": "bl 0x00e78720",
+          "targets": [
+            {
+              "address": "00e78720",
+              "name": "FUN_00e78720",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452028,
+          "instruction": "bl 0x00e78720",
+          "targets": [
+            {
+              "address": "00e78720",
+              "name": "FUN_00e78720",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452052,
+          "instruction": "bl 0x00e78720",
+          "targets": [
+            {
+              "address": "00e78720",
+              "name": "FUN_00e78720",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452076,
+          "instruction": "bl 0x00e78720",
+          "targets": [
+            {
+              "address": "00e78720",
+              "name": "FUN_00e78720",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452100,
+          "instruction": "bl 0x00e78720",
+          "targets": [
+            {
+              "address": "00e78720",
+              "name": "FUN_00e78720",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452124,
+          "instruction": "bl 0x00e78720",
+          "targets": [
+            {
+              "address": "00e78720",
+              "name": "FUN_00e78720",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452176,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452212,
+          "instruction": "bl 0x026bcdd0",
+          "targets": [
+            {
+              "address": "026bcdd0",
+              "name": "memset",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452548,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452692,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452836,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14452980,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14453116,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14453260,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14453404,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14453552,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14453712,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14453880,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454040,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454196,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454348,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454516,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454656,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454812,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14454980,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14455140,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14455296,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14455464,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14455620,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14455768,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14455928,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456088,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456160,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456272,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456344,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456456,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456520,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456632,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456700,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456812,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14456968,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14457128,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14457272,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14457428,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14457584,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14457740,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458044,
+          "instruction": "bl 0x00ed1608",
+          "targets": [
+            {
+              "address": "00ed1608",
+              "name": "FUN_00ed1608",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458268,
+          "instruction": "bl 0x00ed1608",
+          "targets": [
+            {
+              "address": "00ed1608",
+              "name": "FUN_00ed1608",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458296,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458472,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458752,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458820,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14458932,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459000,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459108,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459264,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459332,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459432,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459592,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459660,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459772,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459836,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14459948,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460092,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460248,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460372,
+          "instruction": "bl 0x00ed1a4c",
+          "targets": [
+            {
+              "address": "00ed1a4c",
+              "name": "FUN_00ed1a4c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460456,
+          "instruction": "bl 0x00ed1a4c",
+          "targets": [
+            {
+              "address": "00ed1a4c",
+              "name": "FUN_00ed1a4c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460476,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460612,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460768,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14460844,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461000,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461148,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461288,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461428,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461588,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461736,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461796,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461904,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14461972,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462084,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462244,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462404,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462560,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462700,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462828,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14462988,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463140,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463288,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463356,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463464,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463532,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463648,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463804,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14463956,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464172,
+          "instruction": "bl 0x00ed1e90",
+          "targets": [
+            {
+              "address": "00ed1e90",
+              "name": "FUN_00ed1e90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464320,
+          "instruction": "bl 0x00ed1e90",
+          "targets": [
+            {
+              "address": "00ed1e90",
+              "name": "FUN_00ed1e90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464340,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464556,
+          "instruction": "bl 0x00eccf90",
+          "targets": [
+            {
+              "address": "00eccf90",
+              "name": "FUN_00eccf90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464572,
+          "instruction": "bl 0x00eccf90",
+          "targets": [
+            {
+              "address": "00eccf90",
+              "name": "FUN_00eccf90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464588,
+          "instruction": "bl 0x00eccf90",
+          "targets": [
+            {
+              "address": "00eccf90",
+              "name": "FUN_00eccf90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464604,
+          "instruction": "bl 0x00eccf90",
+          "targets": [
+            {
+              "address": "00eccf90",
+              "name": "FUN_00eccf90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464620,
+          "instruction": "bl 0x00eccf90",
+          "targets": [
+            {
+              "address": "00eccf90",
+              "name": "FUN_00eccf90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464636,
+          "instruction": "bl 0x00eccf90",
+          "targets": [
+            {
+              "address": "00eccf90",
+              "name": "FUN_00eccf90",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464684,
+          "instruction": "bl 0x026bcdd0",
+          "targets": [
+            {
+              "address": "026bcdd0",
+              "name": "memset",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464696,
+          "instruction": "bl 0x00ed473c",
+          "targets": [
+            {
+              "address": "00ed473c",
+              "name": "FUN_00ed473c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464708,
+          "instruction": "bl 0x00ed473c",
+          "targets": [
+            {
+              "address": "00ed473c",
+              "name": "FUN_00ed473c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464724,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464756,
+          "instruction": "bl 0x00ed22d4",
+          "targets": [
+            {
+              "address": "00ed22d4",
+              "name": "FUN_00ed22d4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464820,
+          "instruction": "bl 0x026b7100",
+          "targets": [
+            {
+              "address": "026b7100",
+              "name": "ScopedAsyncStackRoot",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464892,
+          "instruction": "bl 0x026b7140",
+          "targets": [
+            {
+              "address": "026b7140",
+              "name": "enqueue",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464900,
+          "instruction": "bl 0x026b70f0",
+          "targets": [
+            {
+              "address": "026b70f0",
+              "name": "run",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464920,
+          "instruction": "bl 0x026b7150",
+          "targets": [
+            {
+              "address": "026b7150",
+              "name": "~ScopedAsyncStackRoot",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464948,
+          "instruction": "bl 0x026b67f0",
+          "targets": [
+            {
+              "address": "026b67f0",
+              "name": "~condition_variable",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464956,
+          "instruction": "bl 0x026b6800",
+          "targets": [
+            {
+              "address": "026b6800",
+              "name": "~mutex",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14464976,
+          "instruction": "bl 0x026bb960",
+          "targets": [
+            {
+              "address": "026bb960",
+              "name": "__wrap__ZNSt13exception_ptrD1Ev",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465068,
+          "instruction": "bl 0x026b7100",
+          "targets": [
+            {
+              "address": "026b7100",
+              "name": "ScopedAsyncStackRoot",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465176,
+          "instruction": "bl 0x00ec8420",
+          "targets": [
+            {
+              "address": "00ec8420",
+              "name": "FUN_00ec8420",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465196,
+          "instruction": "bl 0x026b7180",
+          "targets": [
+            {
+              "address": "026b7180",
+              "name": "set",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465204,
+          "instruction": "bl 0x026b7190",
+          "targets": [
+            {
+              "address": "026b7190",
+              "name": "request_stop",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465256,
+          "instruction": "bl 0x00ec8420",
+          "targets": [
+            {
+              "address": "00ec8420",
+              "name": "FUN_00ec8420",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465272,
+          "instruction": "bl 0x026b7180",
+          "targets": [
+            {
+              "address": "026b7180",
+              "name": "set",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465340,
+          "instruction": "bl 0x026b71b0",
+          "targets": [
+            {
+              "address": "026b71b0",
+              "name": "start_or_wait",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14465348,
+          "instruction": "bl 0x026b70f0",
+          "targets": [
+            {
+              "address": "026b70f0",
+              "name": "run",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14198624,
+      "function_found": true,
+      "name": "FUN_00e8a760",
+      "call_instructions": 3,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14198656,
+          "instruction": "bl 0x00e8a56c",
+          "targets": [
+            {
+              "address": "00e8a56c",
+              "name": "FUN_00e8a56c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14198668,
+          "instruction": "bl 0x026b6880",
+          "targets": [
+            {
+              "address": "026b6880",
+              "name": "dlerror",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14198684,
+          "instruction": "bl 0x026b6890",
+          "targets": [
+            {
+              "address": "026b6890",
+              "name": "dlsym",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    },
+    {
+      "elf_address": 14203068,
+      "function_found": true,
+      "name": "FUN_00e8b8bc",
+      "call_instructions": 18,
+      "calls_truncated": false,
+      "calls": [
+        {
+          "elf_address": 14203184,
+          "instruction": "bl 0x01222a4c",
+          "targets": [
+            {
+              "address": "01222a4c",
+              "name": "FUN_01222a4c",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203336,
+          "instruction": "bl 0x026b7c60",
+          "targets": [
+            {
+              "address": "026b7c60",
+              "name": "__wrap__Znwm",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203384,
+          "instruction": "bl 0x026bcdc0",
+          "targets": [
+            {
+              "address": "026bcdc0",
+              "name": "memcpy",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203404,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203444,
+          "instruction": "bl 0x026b7c30",
+          "targets": [
+            {
+              "address": "026b7c30",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203460,
+          "instruction": "bl 0x026b6a50",
+          "targets": [
+            {
+              "address": "026b6a50",
+              "name": "ThreadScope",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203464,
+          "instruction": "bl 0x026b6a60",
+          "targets": [
+            {
+              "address": "026b6a60",
+              "name": "current",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203484,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14203504,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14203540,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14203556,
+          "instruction": "bl 0x00d902c8",
+          "targets": [
+            {
+              "address": "00d902c8",
+              "name": "FUN_00d902c8",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203576,
+          "instruction": "blr x8",
+          "targets": [],
+          "unresolved": true
+        },
+        {
+          "elf_address": 14203592,
+          "instruction": "bl 0x026b6a70",
+          "targets": [
+            {
+              "address": "026b6a70",
+              "name": "~ThreadScope",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203624,
+          "instruction": "bl 0x026b6a80",
+          "targets": [
+            {
+              "address": "026b6a80",
+              "name": "WithClassLoader",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203688,
+          "instruction": "blr x8",
+          "targets": [
+            {
+              "address": "00ad7850",
+              "name": "FUN_00ad7850",
+              "eligible_local_body": true
+            },
+            {
+              "address": "00e8967c",
+              "name": "__wrap__ZdlPv",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203740,
+          "instruction": "bl 0x00b624c4",
+          "targets": [
+            {
+              "address": "00b624c4",
+              "name": "FUN_00b624c4",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203748,
+          "instruction": "bl 0x00b80e48",
+          "targets": [
+            {
+              "address": "00b80e48",
+              "name": "FUN_00b80e48",
+              "eligible_local_body": true
+            }
+          ],
+          "unresolved": false
+        },
+        {
+          "elf_address": 14203752,
+          "instruction": "bl 0x026bcdb0",
+          "targets": [
+            {
+              "address": "026bcdb0",
+              "name": "__stack_chk_fail",
+              "eligible_local_body": false
+            }
+          ],
+          "unresolved": false
+        }
+      ]
+    }
+  ],
+  "selected_functions": 24,
+  "selection_cap": 24,
+  "firmware_executed": false,
+  "jni_abi_validated": false,
+  "surface_lifecycle_ported": false
+}
