@@ -254,11 +254,11 @@ public class FocusDisplayAndMetadataJniTest {
                     reply.readException();
                 });
 
-                // setAppState(myPid, 2) (code 6, 0x2c450) notifies top listener with default ImmersiveApp("",0,0,false) (0x2a7e0).
+                // setAppState(myPid, 0) (code 6, ServiceAppState::Visible, 0x2c450) marks session rendering and notifies top listener with default ImmersiveApp("",0,0,false) (0x2a7e0).
                 data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
                 data.writeInterfaceToken("oculus.internal.IVrFocusService");
                 data.writeInt(Process.myPid());
-                data.writeInt(2);
+                data.writeInt(0);
                 assertTrue(service.endpoint().transact(6, data, reply, 0));
                 reply.readException();
                 assertTrue(service.isSessionRendering());

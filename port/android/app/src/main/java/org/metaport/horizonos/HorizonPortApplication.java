@@ -156,10 +156,10 @@ public final class HorizonPortApplication extends Application {
             Parcel data = Parcel.obtain();
             Parcel reply = Parcel.obtain();
             try {
-                // Transaction 6: setAppState(myPid, resumed ? 2 : 0)
+                // Transaction 6: setAppState(myPid, resumed ? 0 (Visible) : 2 (Stopping))
                 data.writeInterfaceToken(FocusWire.SERVICE);
                 data.writeInt(Process.myPid());
-                data.writeInt(resumed ? 2 : 0);
+                data.writeInt(resumed ? 0 : 2);
                 if (binder.transact(6, data, reply, 0)) {
                     reply.readException();
                     wireTransactions.incrementAndGet();
