@@ -88,3 +88,10 @@ class RuntimeReportTests(unittest.TestCase):
         root=Path(__file__).resolve().parents[1]
         source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/AppProcessMetadataBackendTest.java').read_text()
         self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),PROCESS_METADATA_CASES)
+
+    def test_native_focus_cases_match_instrumented_methods(self):
+        import re
+        from tools.summarize_android_runtime import NATIVE_FOCUS_CASES
+        root=Path(__file__).resolve().parents[1]
+        source=(root/'port/android/adapters/src/androidTest/java/org/metaport/port/focus/NativeFocusClientTest.java').read_text()
+        self.assertEqual(set(re.findall(r'@Test public void (\w+)',source)),NATIVE_FOCUS_CASES)

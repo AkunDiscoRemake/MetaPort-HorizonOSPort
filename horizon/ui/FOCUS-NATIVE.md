@@ -411,3 +411,30 @@ Android arm64 build **37125874981**, and adapter instrumentation **37125874971**
 all passed. Runtime executed 24 owned cases per API 29/35, including the three
 new metadata-reader cases. Neither original firmware nor the new native policy
 coordinator was invoked by these instrumentation cases.
+
+## Own-client JNI registration (2026-10-03)
+
+`NativeFocusClient` now takes the observed own PID/UID from
+`AppProcessMetadataBackend` and registers that identity in a real native
+`FocusPolicyCore` ledger. `focus_client_jni.cpp` independently checks `getpid()`
+and `getuid()` before registration. Raw permission results and Android process
+names are deliberately NOT converted into grants or normalized policy metadata.
+`observeMetadata()` refreshes real Android observations without reinstalling the
+record (which would clear its current-focus bookkeeping).
+
+JNI uses a mutex-protected registry of opaque, non-reused positive tokens rather
+than dereferencing Java-supplied pointers. It caps live instances at 32, rejects
+unknown/closed tokens, makes destruction idempotent, and translates C++ allocation
+and standard exceptions into Java exceptions. Java methods serialize reads and
+close; each instance owns an independent core. This is not a global provider.
+There are no callbacks under the registry lock or invented focus decisions.
+
+Four new instrumentation cases require actual JNI execution: own identity round
+trip/refresh, forged identity and stale-token rejection, close/read concurrency,
+and bounded capacity/reclamation. The strict Android gate now requires 28 cases.
+These exercise core registration/current-record lookup, **not evaluate/selection**.
+An installed empty focus set is never returned as an observed service status.
+
+Remaining: complete metadata conversion/cache/liveness, coherent observation
+assembly, policy evaluation bindings, Binder service backend and pre-Application
+publication. No constructor-ANR fix or functional original Horizon APK is claimed.
