@@ -11,6 +11,7 @@ import java.util.Objects;
  * Not classes in oculus.internal: never shadows the bundled original SDK.
  */
 public final class FocusWire {
+    public static final String NAME = "vrfocus";
     public static final String SERVICE = "oculus.internal.IVrFocusService";
     public static final String TOP_LISTENER = "oculus.internal.IVrTopActivityListener";
     public static final String FOCUS_LISTENER = "oculus.internal.IVrFocusListener";
