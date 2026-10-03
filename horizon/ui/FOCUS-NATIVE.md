@@ -267,3 +267,71 @@ build `37121443238` succeeded; Android regression `37121443260` passed the exist
 C++ decision kernel: its execution coverage is the separate 15-case host native
 suite, including ASan/UBSan and TSan. No original-policy execution or private
 service interoperability is inferred from these green checks.
+
+## Immersive selection, history and decision-core connection
+
+`focus_immersive.hpp` now implements the stable-snapshot selection rules from
+`getImmersiveApp` (`0x22f40`), with `getTopActivityClient` (`0x26760`),
+`getTopActivity` (`0x23b60`), `getPackageAsImmersiveApp` (`0x282e0`), exact process
+name comparison (`0x27f50`) and ten-entry history (`0x28080`). `FocusPolicyCore`
+connects the selected PID/top client to `decide_focus`; it overwrites externally
+supplied immersive/top-client decision inputs instead of trusting stale values.
+
+Selection priority, in original rendering-list order:
+
+1. Rendering exception process matching the focused window's **PID** (not UID).
+2. First rendering exception process, regardless of window focus.
+3. The first UID/PID-sorted live metadata entry for **com.oculus.vrshell**, if its
+   observed process name matches the top name or the top name is that package.
+4. First rendering process whose observed process name exactly matches the top.
+5. No immersive app. A formerly selected app is not retained just because alive.
+
+The exception set is exactly `system_server`, `com.oculus.vralertservice`,
+`com.oculus.os.vrlockscreen`, `com.android.settings`; this is a classification of
+already observed clients, not creation of system identities. The decompiler
+incorrectly gives `hasTopActivityException` a void return. Assembly `0x27dc4`
+confirms `cset w0,ne` (membership true), and `0x230cc`/`0x23228` branch on true.
+The shell-package lookup argument was also omitted from inferred C: `0x2330c`
+loads literal data at `0x7d9f`, the same literal used by the explicitly decoded
+`String16("com.oculus.vrshell")` comparison at `0x23450`/`0x23458`.
+
+Top activity uses the last successful foreground metadata lookup's package name,
+otherwise the primary-display fallback. Exception checks use metadata process
+names; top matching uses the separately observed result of
+`Process::getProcessName(pid,true)`. No component flattening, suffix stripping or
+package-name substitution is guessed. Normalization/observation remains a backend
+requirement. Original ClientManager snapshots prune dead processes (`0x13400`);
+the helper requires already-filtered inputs and does not pretend to probe PIDs.
+
+The original selection marks the chosen ImmersiveApp `isTopActivity=true` even
+for an exception that does not match the actual top name. This internal policy
+flag is preserved, **not** represented as proof of Android window focus or an
+Android permission/tracking grant.
+
+History records only nonempty selections when PID differs from the newest
+record. UID/package/flag changes with the same PID do not add a record. Empty
+selections clear current state but do not add a history gap; returning to the same
+PID still does not duplicate the history entry. History is diagnostic, not a
+source of permission, liveness or focus. Callers supply actual system-clock
+observation times; tests supply explicit fixture timestamps. State/history updates
+are mutex-serialized, return copies, and invoke no Binder/backend code under lock.
+
+Tests cover priority, exact exception names, PID-only matching, shell fallback,
+reverse foreground lookup, current-state clearing, PID-only history deduplication,
+10-record eviction, invalid-type nonmutation, concurrent updates/readers, and
+selection feeding the existing type-1 decision path. ASan/UBSan and TSan passed
+locally; the native suite now has **17 cases**. Evidence hashes and key instructions
+are guarded by `tests/test_focus_immersive_evidence.py`.
+
+Scope remains reconstructed helper execution, **not original-binary parity**.
+The coherent-snapshot API does not reproduce races between repeated live process
+queries in the daemon. OS/process observations, metadata/permission resolution,
+ClientManager gained/lost commits and Binder/bootstrap integration remain absent.
+No vrfocus provider is published and no original APK is made functional by this
+change alone.
+
+`FocusPolicyCore`'s stateful implementation is in `focus_immersive.cpp`, shared
+by the host sanitizer executable and the Android CMake library target. Thus the
+NDK build checks the actual coordinator implementation, rather than merely
+shipping an unused header. Android compile/runtime validation is pending for
+this change; existing instrumentation does not call this C++ policy yet.
