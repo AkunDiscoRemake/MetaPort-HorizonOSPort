@@ -301,3 +301,26 @@ coerentes; não as coleta do Android. Faltam o backend real de metadados/permiss
 o bookkeeping de ganho/perda de foco, a ligação Binder/JNI e a publicação antes
 da construção de Application. O ANR original não foi resolvido nesta alteração;
 não foi publicado serviço vazio nem inventado estado de foco/rastreamento.
+
+## Ganho/perda de foco por cliente — 2026-10-03
+
+Fonte **d4de4df** implementa o bookkeeping recuperado de `addCurrentFocus`
+(`0x12bc0`) e `removeCurrentFocus` (`0x12de0`), agora aplicado pelo coordenador
+nativo a cada linha de decisão. O cache usa PID com conferência de UID;
+operações repetidas são idempotentes e os dois tipos permanecem independentes.
+O estado de foco não altera permissões. Cadastros não são criados por consultas:
+instalação/invalidação explícitas ainda precisam vir do backend real de metadados
+e ciclo de vida de processos. Reinstalação de um registro limpa seu foco antigo.
+
+Validação da fonte:
+- Projeto/nativo **37124230529**, sucesso; **19 casos com sanitizadores**, incluindo
+  estado, UID divergente, substituição/reuso, decisões repetidas e concorrência.
+- Build Android ARM64 **37124230516**, sucesso.
+- Runtime dos adaptadores **37124230539**, sucesso, **21 testes próprios em cada
+  API 29 e 35**. Não executa o novo ledger/coordenador nem firmware original.
+
+Isso substitui a pendência de implementação das mutações do conjunto de foco,
+não a pendência de integração com o ClientManager/backend Android real. Ainda
+faltam observações coerentes, metadados/permissões, ponte Binder/JNI e publicação
+pré-Application. **O ANR original permanece; não há APK funcional com Horizon
+original nem validação física no Infinix.**

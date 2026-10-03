@@ -369,3 +369,8 @@ set. Decisions never auto-create records and current-focus bookkeeping never
 grants permission. The real metadata/liveness backend, Binder/JNI bridge and
 pre-Application service publication remain unimplemented. No original daemon
 execution or resolution of the constructor ANR is claimed.
+
+Bookkeeping validation, source **d4de4df**: project/native **37124230529** passed
+with 19 sanitizer cases; arm64 Android build **37124230516** passed; adapter
+runtime **37124230539** passed 21 owned tests on each API 29/35. These Android
+instrumentation tests do not invoke the ledger/coordinator or original firmware.
