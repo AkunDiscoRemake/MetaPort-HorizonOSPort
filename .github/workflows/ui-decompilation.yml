@@ -115,20 +115,20 @@ jobs:
         run: |
           set -euo pipefail
           ZIP="$WORK/reports/MetaPort-HorizonOS-v2.7-Complete-UI-Decompiled.zip"
-          if [ ! -f "$ZIP" ]; then
-            echo "Complete UI decompilation zip not found; skipping upload"
-            exit 0
-          fi
+          test -f "$ZIP"
           python3 -m tools.prepare_release_notes \
             --build-dir "$WORK/reports" \
             --ui-zip "$ZIP"
           TAG="v2.7.0-cardboard-port"
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$ZIP" "$WORK/reports/ui-decompilation.json" --clobber
-            gh release edit "$TAG" \
-              --title "MetaPort Horizon OS v2.7 — Original VrShell.apk Bundle, Complete UI Decompilation & VrFocus Port" \
-              --notes-file "$WORK/reports/RELEASE-NOTES.md"
-          fi
+          gh release upload "$TAG" \
+            "$ZIP" \
+            "$WORK/reports/ui-decompilation.json" \
+            --clobber \
+            --repo "${{ github.repository }}"
+          gh release edit "$TAG" \
+            --title "MetaPort Horizon OS v2.7 — Original VrShell.apk Bundle, Complete UI Decompilation & VrFocus Port" \
+            --notes-file "$WORK/reports/RELEASE-NOTES.md" \
+            --repo "${{ github.repository }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

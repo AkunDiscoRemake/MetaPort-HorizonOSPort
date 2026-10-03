@@ -222,6 +222,18 @@ def inspect(images, reconstruction, jadx, output, scope="ui", zip_output=None):
         if zf is not None:
             zf.close()
 
+    if zip_output is not None and Path(zip_output).exists():
+        zip_path = Path(zip_output)
+        report['complete_ui_zip'] = {
+            'filename': zip_path.name,
+            'size_bytes': zip_path.stat().st_size,
+            'sha256': digest(zip_path),
+            'modules': zip_manifest['modules'],
+        }
+        (output / ('ui-decompilation.json' if scope == 'ui' else 'ui-cloud-decompilation.json')).write_text(
+            json.dumps(report, indent=2) + '\n'
+        )
+
     if any(a['decompiler_status']=='ANALYSIS_FAILED' for a in report['applications']):
         raise ValueError('One or more UI applications failed; see per-application evidence')
 

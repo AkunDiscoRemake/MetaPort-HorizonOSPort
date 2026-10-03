@@ -39,16 +39,20 @@ def generate(build_dir, bundle_report_path=None, vrshell_apk_path=None, ui_zip_p
     vrshell_size_str = f'`{vrshell_size}` bytes (~103.1 MB)' if vrshell_size else '~103.1 MB'
 
     ui_zip = Path(ui_zip_path) if ui_zip_path else None
-    ui_zip_size_str = (
-        f'`{ui_zip.stat().st_size}` bytes'
-        if ui_zip and ui_zip.exists()
-        else 'incluído nos assets da release'
-    )
-    ui_zip_sha_str = (
-        f'`{_sha256_file(ui_zip)}`'
-        if ui_zip and ui_zip.exists()
-        else 'ver `ui-decompilation.json`'
-    )
+    ui_report_file = root / 'ui-decompilation.json'
+    if not ui_report_file.exists():
+        ui_report_file = Path('analysis/builds/52168470052900520/ui-decompilation.json')
+    ui_report = json.loads(ui_report_file.read_text()) if ui_report_file.exists() else {}
+    ui_zip_meta = ui_report.get('complete_ui_zip', {})
+    if ui_zip and ui_zip.exists():
+        ui_zip_size_str = f'`{ui_zip.stat().st_size}` bytes'
+        ui_zip_sha_str = f'`{_sha256_file(ui_zip)}`'
+    elif ui_zip_meta.get('size_bytes') and ui_zip_meta.get('sha256'):
+        ui_zip_size_str = f"`{ui_zip_meta['size_bytes']}` bytes"
+        ui_zip_sha_str = f"`{ui_zip_meta['sha256']}`"
+    else:
+        ui_zip_size_str = 'incluído nos assets da release'
+        ui_zip_sha_str = 'ver `ui-decompilation.json`'
 
     lines = [
         '# MetaPort Horizon OS v2.7 — Original `VrShell.apk` (`com.oculus.vrshell`) Bundle, Complete UI Decompilation & VrFocus Service Port',
