@@ -324,3 +324,28 @@ não a pendência de integração com o ClientManager/backend Android real. Aind
 faltam observações coerentes, metadados/permissões, ponte Binder/JNI e publicação
 pré-Application. **O ANR original permanece; não há APK funcional com Horizon
 original nem validação física no Infinix.**
+
+## Metadados reais do próprio processo Android — 2026-10-03
+
+Fonte **d27c633** adiciona `AppProcessMetadataBackend`: PID/UID reais, nome do
+processo fornecido pelo Android, pacote da aplicação, pacotes associados ao UID
+e verificações reais das duas permissões de background identificadas no daemon.
+Não há concessão automática: os resultados de permissão são valores brutos do
+Android, não autorização Meta nem grants enviados ao núcleo. Metadados ausentes
+e divergência entre pacote/UID falham explicitamente. A leitura é limitada ao
+próprio processo, sem consulta a PID arbitrário; não é um observador global.
+
+Validação concluída da fonte:
+- Projeto/regressão/nativo **37125874985**, sucesso.
+- Build Android ARM64 **37125874981**, sucesso.
+- Runtime **37125874971**, sucesso: **24 testes próprios por API 29 e 35**,
+  incluindo três novos casos para identidade/pacotes, resultados de permissão
+  e rejeição de contexto incompatível. A execução é de adaptadores próprios,
+  não do firmware original ou do Infinix.
+
+O leitor ainda não está ligado ao coordenador C++/Binder. Seu nome de processo
+Android não foi equiparado sem prova ao helper privado original. Também exige
+Context, portanto não resolve sozinho a publicação pré-Application. Faltam o
+cache/lifecycle completo de metadados, composição coerente das entradas de foco
+e bootstrap do serviço. **Ainda não há APK original funcional; o ANR de espera
+pelo serviço de foco permanece.**

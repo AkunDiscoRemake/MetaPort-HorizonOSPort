@@ -405,3 +405,9 @@ reader alone does not resolve bootstrap before Application construction.
 Three new instrumentation cases exercise real own-process metadata, immutable
 snapshots, actual permission results and explicit rejection of mismatched context
 identity. The strict Android report gate now requires 24 owned cases per API.
+
+Own-process reader validation, source **d27c633**: project/native **37125874985**,
+Android arm64 build **37125874981**, and adapter instrumentation **37125874971**
+all passed. Runtime executed 24 owned cases per API 29/35, including the three
+new metadata-reader cases. Neither original firmware nor the new native policy
+coordinator was invoked by these instrumentation cases.
