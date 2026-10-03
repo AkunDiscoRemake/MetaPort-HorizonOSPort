@@ -335,3 +335,10 @@ by the host sanitizer executable and the Android CMake library target. Thus the
 NDK build checks the actual coordinator implementation, rather than merely
 shipping an unused header. Android compile/runtime validation is pending for
 this change; existing instrumentation does not call this C++ policy yet.
+
+Validation completed for source **d87e1a5**: project/native run **37122883668**
+passed (17 native sanitizer cases); Android build **37122883654** passed with
+the arm64 NDK coordinator translation unit; adapter runtime **37122883673**
+passed all 21 owned cases on each API 29/35. The instrumentation still does not
+invoke the new coordinator or original daemon. This supersedes the pending
+validation note above, not the integration limitations.

@@ -276,3 +276,28 @@ consulta serviços privados, não inventa observações ausentes e não aplica s
 as alterações de estado do ClientManager. Ainda faltam seleção/histórico do app
 imersivo, produtores reais dos dados e integração do serviço antes do construtor
 original. **O bloqueio de inicialização permanece; não há APK original funcional.**
+
+## Seleção imersiva ligada ao núcleo de foco — 2026-10-03
+
+Fonte **d87e1a5** implementa `focus_immersive.hpp/.cpp`: prioridades de seleção
+recuperadas do daemon, resolução do cliente superior, lookup ordenado do shell
+e histórico diagnóstico de dez entradas. O coordenador usa a seleção para
+alimentar o núcleo de decisão, sem aceitar um PID imersivo externo obsoleto.
+A implementação compilada é compartilhada entre o alvo Android e os testes
+nativos. Oito funções recuperadas e instruções ARM64 específicas sustentam os
+contratos; detalhes e limites em `horizon/ui/FOCUS-NATIVE.md`.
+
+Validação concluída:
+- Projeto/regressão/nativo **37122883668**, sucesso; **17 casos nativos** com
+  ASan/UBSan/TSan, incluindo seleção, histórico e concorrência.
+- Build Android **37122883654**, sucesso, incluindo compilação NDK arm64 da
+  implementação e testes Java/lint.
+- Runtime dos adaptadores **37122883673**, sucesso: **21 testes próprios por
+  API 29 e 35**, em x86_64. Não executam o novo coordenador C++ nem o daemon
+  original; não são validação do Horizon ou do Infinix.
+
+**Ainda não há APK original funcional.** O seletor consome observações explícitas
+coerentes; não as coleta do Android. Faltam o backend real de metadados/permissões,
+o bookkeeping de ganho/perda de foco, a ligação Binder/JNI e a publicação antes
+da construção de Application. O ANR original não foi resolvido nesta alteração;
+não foi publicado serviço vazio nem inventado estado de foco/rastreamento.
