@@ -21,7 +21,7 @@ int main() {
         assert(decide_focus(type,{},empty()).empty());
     }
     auto input=empty();input.foreground_activities={a,a};input.foreground_panels={b};
-    input.connection_slot_5={c};input.connection_slot_6={d};input.window_focus=e;input.top_activity_client=f;
+    input.top_activity_clients={c};input.all_top_activity_clients={d};input.window_focus=e;input.top_activity_client=f;
     for (const auto& row:decide_focus(FocusType::Type0,clients,input)) assert(row.has_focus);
     auto type1=decide_focus(FocusType::Type1,clients,input);
     for (auto client:{a,b,c}) assert(focused(type1,client));

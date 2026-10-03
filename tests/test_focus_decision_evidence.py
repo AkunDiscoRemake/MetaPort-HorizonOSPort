@@ -38,3 +38,21 @@ class FocusDecisionEvidence(unittest.TestCase):
                             '26350:\tstr\tw9, [x8, #8]',
                             '26358:\tstrb\tw9, [x8, #12]'):
             self.assertIn(instruction,asm)
+
+    def test_exact_connection_vtable_binds_each_input_feed(self):
+        report=json.loads((ROOT/'analysis/builds/52168470052900520/focus-native-server.json').read_text())
+        slots=report['connection_manager_vtable']
+        expected={2:(0x21540,'getClientsWithForegroundActivity'),
+                  3:(0x21590,'getClientsCurrentlyRendering'),
+                  4:(0x215e0,'getClientWithWindowFocus'),
+                  5:(0x21600,'getClientsWithTopActivities'),
+                  6:(0x21740,'getAllClientsWithTopActivities')}
+        self.assertEqual([row['slot'] for row in slots],list(range(7)))
+        functions={f['elf_address']:f['name'] for f in report['functions']}
+        for slot,(offset,name) in expected.items():
+            row=slots[slot]
+            self.assertTrue(row['target_is_executable']);self.assertTrue(row['exact_function_entry'])
+            self.assertEqual(row['slot_elf_address'],0x38928+slot*8)
+            self.assertEqual(row['target_elf_address'],offset)
+            self.assertEqual(row['resolved_elf_address'],offset)
+            self.assertEqual(row['resolved_name'],name);self.assertEqual(functions[offset],name)

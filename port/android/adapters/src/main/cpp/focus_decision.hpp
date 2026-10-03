@@ -18,19 +18,20 @@ struct DecisionInputs {
     // No default constructor: all input channels and the display-focus state
     // must be supplied deliberately. A missing backend is not an empty feed.
     DecisionInputs(std::vector<Client> activities, std::vector<Client> panels,
-                   std::vector<Client> slot5, std::vector<Client> slot6,
+                   std::vector<Client> top_clients, std::vector<Client> all_top_clients,
                    std::optional<Client> window, std::optional<Client> top,
                    std::optional<std::int32_t> immersive, bool display_focus)
         : foreground_activities(std::move(activities)), foreground_panels(std::move(panels)),
-          connection_slot_5(std::move(slot5)), connection_slot_6(std::move(slot6)),
+          top_activity_clients(std::move(top_clients)), all_top_activity_clients(std::move(all_top_clients)),
           window_focus(window), top_activity_client(top), immersive_pid(immersive),
           main_display_focus(display_focus) {}
 
     std::vector<Client> foreground_activities;
     std::vector<Client> foreground_panels;
-    // Keep unresolved vtable feeds explicit instead of guessing their providers.
-    std::vector<Client> connection_slot_5;
-    std::vector<Client> connection_slot_6;
+    // Exact slots 5/6 verified in native recovery run 37121195806.
+    // These are distinct observed sets; do not alias one to the other.
+    std::vector<Client> top_activity_clients;
+    std::vector<Client> all_top_activity_clients;
     std::optional<Client> window_focus;
     std::optional<Client> top_activity_client;
     std::optional<std::int32_t> immersive_pid;
@@ -64,11 +65,11 @@ inline std::vector<FocusDecision> decide_focus(
     };
     add(inputs.foreground_activities);
     add(inputs.foreground_panels);
-    add(inputs.connection_slot_5);
+    add(inputs.top_activity_clients);
     if (type == FocusType::Type0) {
         if (inputs.window_focus) eligible.insert(*inputs.window_focus);
         if (inputs.top_activity_client) eligible.insert(*inputs.top_activity_client);
-        add(inputs.connection_slot_6);
+        add(inputs.all_top_activity_clients);
     } else if (inputs.immersive_pid) {
         // Native code matches the immersive PID against the sorted queried
         // metadata, then uses THAT record's UID. Do not silently use an app UID.

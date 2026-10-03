@@ -212,17 +212,24 @@ Recovered operations now executable against explicit trusted snapshots:
 
 | Step | Type 0 | Type 1 |
 |---|---|---|
-| Base eligible identities | foreground activity, foreground panel, ConnectionManager slot 5 | same |
-| Additional identities | window focus, resolved top activity, ConnectionManager slot 6 | none from these sources |
+| Base eligible identities | foreground activity, foreground panel, clients with top activities (slot 5) | same |
+| Additional identities | window focus, resolved top activity, all clients with top activities (slot 6) | none from these sources |
 | Immersive adjustment | none | first queried metadata identity matching immersive PID is inserted/erased according to main-display focus |
 | Final override | observed background access for type 0 | observed background access for type 1 |
 | Output | one result per resolved distinct UID/PID, signed UID then PID order | same |
 
-The kernel deliberately keeps **virtual slots 5 and 6 unnamed**: their complete
-vtable-to-provider binding still needs verification, not a guess based on nearby
-function names. Slot 2's foreground-activity and slot 4's window-focus meanings
-are independently supported by `FocusPolicy::dump` (`0x23cc0`). Background-access
-metadata is distinguished from current-focus bookkeeping by the same dump.
+Run **37121195806** resolved the exact relocated ConnectionManager vtable at
+ELF `0x38928`, using exact executable function entries rather than nearest symbol
+labels. Slot 5 targets `getClientsWithTopActivities` (`0x21600`); slot 6 targets
+`getAllClientsWithTopActivities` (`0x21740`). They expose distinct sets at object
+`+0xf0` and `+0x130` and must not be aliased. The kernel fields now use those
+verified meanings. Slots 2/3/4 were also confirmed: foreground activities,
+currently rendering clients, window focus. Rendering clients (slot 3) are **not**
+a direct input to this decision method. This resolves the virtual-call names,
+not the unported event sources/permissions that populate their sets.
+
+Foreground/window meanings and background-access versus current-focus metadata
+are independently supported by `FocusPolicy::dump` (`0x23cc0`).
 
 `getClientSet` (`0x265e0`) omits failed metadata lookups and deduplicates exact
 UID/PID identities. Its comparator (`0x26ac0`) and the decision code establish
