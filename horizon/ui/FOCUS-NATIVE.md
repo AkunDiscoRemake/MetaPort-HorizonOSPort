@@ -260,3 +260,10 @@ service access, take a **display ID**, not a PID. Native `0x21880`/`0x21b20` log
 fixtures now reflect this without changing the wire format or granting access.
 
 The Binder provider is still unpublished and the original constructor ANR remains.
+
+Validation of source `17faea6`: project/native checks `37121443278` and Android
+build `37121443238` succeeded; Android regression `37121443260` passed the existing
+21 owned cases on each API 29/35. Those Android cases do not execute the new
+C++ decision kernel: its execution coverage is the separate 15-case host native
+suite, including ASan/UBSan and TSan. No original-policy execution or private
+service interoperability is inferred from these green checks.

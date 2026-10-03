@@ -250,3 +250,29 @@ A política de foco ainda não está implementada/conectada; o registro exige um
 política de acesso fornecida pelo serviço e não concede permissões por padrão.
 Este componente não publica `vrfocus` nem elimina a espera do construtor original.
 **Ainda não há APK original funcional.**
+
+## Núcleo de decisão de foco — 2026-10-03
+
+Implementado `focus_decision.hpp`: combina as fontes originais de clientes,
+separa os tipos 0/1, aplica a prioridade do aplicativo imersivo/foco do display e
+só depois o acesso autorizado em segundo plano. Preserva identidade UID/PID,
+ordenação, deduplicação e resultados negativos. Não habilita modo permissivo.
+
+O run `37121195806` confirmou os destinos exatos da vtable original: as entradas
+5/6 são `getClientsWithTopActivities` e `getAllClientsWithTopActivities`, não
+fontes intercambiáveis. O código e os testes agora usam esses vínculos comprovados
+estaticamente. Corrigido também o nome do argumento de grant/revoke de rastreamento:
+é **displayId**, não PID; isso não altera o protocolo nem concede acesso.
+
+- Suíte nativa local: **15 casos passaram**, incluindo o novo núcleo sob
+  ASan/UBSan e TSan; nenhum binário original foi executado nesses testes.
+- Projeto/sanitizers no CI `37121443278`: passou.
+- Build Android `37121443238`: passou.
+- Regressão Android `37121443260`: **21 casos próprios por API 29/35 passaram**.
+  Esses testes Android não exercitam o novo núcleo C++ nem a política Meta original.
+
+O núcleo exige snapshots completos e metadados já resolvidos/autorizados; não
+consulta serviços privados, não inventa observações ausentes e não aplica sozinho
+as alterações de estado do ClientManager. Ainda faltam seleção/histórico do app
+imersivo, produtores reais dos dados e integração do serviço antes do construtor
+original. **O bloqueio de inicialização permanece; não há APK original funcional.**
