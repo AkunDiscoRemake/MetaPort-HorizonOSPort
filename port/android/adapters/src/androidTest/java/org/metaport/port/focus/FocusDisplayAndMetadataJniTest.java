@@ -249,8 +249,10 @@ public class FocusDisplayAndMetadataJniTest {
                 // Initial getImmersiveApp (code 7) throws NullPointerException (-4 EX_NULL_POINTER, 0x2c660).
                 data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
                 data.writeInterfaceToken("oculus.internal.IVrFocusService");
-                assertTrue(service.endpoint().transact(7, data, reply, 0));
-                assertThrows(NullPointerException.class, reply::readException);
+                assertThrows(NullPointerException.class, () -> {
+                    assertTrue(service.endpoint().transact(7, data, reply, 0));
+                    reply.readException();
+                });
 
                 // setAppState(myPid, 2) (code 6, 0x2c450) notifies top listener with default ImmersiveApp("",0,0,false) (0x2a7e0).
                 data.setDataPosition(0); data.setDataSize(0); reply.setDataPosition(0); reply.setDataSize(0);
