@@ -1,7 +1,7 @@
 name: Original hand presentation resources
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [handtracking/ai/hand_presentation.py, handtracking/ai/tests/test_hand_presentation.py, .github/workflows/hand-presentation.yml]
   workflow_dispatch:
 permissions:
@@ -40,7 +40,7 @@ jobs:
           inspect(root/'images',root/'reconstruction.json',root/'reports')
           PY
       - name: Publish evidence only, never proprietary binaries
-        if: success() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: success() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -58,8 +58,8 @@ jobs:
             git commit -m 'Record original hand presentation contract evidence [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport
           fi
       - uses: actions/upload-artifact@v4
         if: always()

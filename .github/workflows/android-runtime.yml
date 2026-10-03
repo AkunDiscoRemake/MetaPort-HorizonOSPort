@@ -1,7 +1,7 @@
 name: Android adapter runtime tests (not Horizon)
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [tools/boot_android_emulator.py, tests/test_emulator_supervisor.py, tools/prepare_emulator_diagnostics.sh, tools/summarize_android_runtime.py, tests/test_android_runtime_report.py, tools/run_android_runtime.sh, port/android/**, handtracking/native/**, .github/workflows/android-runtime.yml]
   workflow_dispatch:
 permissions:
@@ -100,7 +100,7 @@ jobs:
           set -euo pipefail
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a1027e-metaport-horizonosport
           python3 - <<'PY'
           import json,os,pathlib
           from tools.collect_action_diagnostics import captured_files
@@ -124,8 +124,8 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m 'Record Android adapter instrumentation evidence, not Horizon validation [skip ci]'
             for attempt in 1 2 3; do
-              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then exit 0; fi
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then exit 0; fi
             done
             exit 1
           fi

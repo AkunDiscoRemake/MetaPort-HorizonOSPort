@@ -1,7 +1,7 @@
 name: Original ramdisk guest boot probe
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [guest/**, .github/workflows/guest-boot.yml]
   workflow_dispatch:
 permissions:
@@ -100,7 +100,7 @@ jobs:
           PROBE_OUTCOME: ${{ steps.probe.outcome }}
         run: python3 -m guest.summarize
       - name: Publish report only to session branch
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -119,11 +119,11 @@ jobs:
             for attempt in 1 2 3; do
               # Development or another report may advance the fixed session branch
               # while QEMU runs. Rebase only this report commit; never force-push.
-              if ! git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport; then
+              if ! git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport; then
                 git rebase --abort || true
                 exit 1
               fi
-              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then
                 published=true
                 break
               fi

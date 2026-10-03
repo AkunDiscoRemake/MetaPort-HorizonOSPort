@@ -1,7 +1,7 @@
 name: Package MetaPort HandTracking
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths:
       - handtracking/**
       - .github/workflows/package-handtracking.yml

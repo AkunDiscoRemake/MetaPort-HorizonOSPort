@@ -1,7 +1,7 @@
 name: Focused original hand input conversion
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [handtracking/ai/validate_input_report.py, handtracking/ai/tests/test_validate_input_report.py, handtracking/ai/prepare_input.py, handtracking/ai/tests/test_prepare_input.py, handtracking/ai/ghidra/DecompileHandInput.java, .github/workflows/hand-input.yml]
   workflow_dispatch:
 permissions:
@@ -77,7 +77,7 @@ jobs:
           (p/'reports/hand-input-run.json').write_text(json.dumps(result,indent=2)+'\n')
           PY
       - name: Publish evidence only, never proprietary binaries
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -95,8 +95,8 @@ jobs:
             git commit -m 'Record focused original hand input evidence [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport
           fi
       - uses: actions/upload-artifact@v4
         if: always()

@@ -1,7 +1,7 @@
 name: Original native VR focus service recovery (not a runtime)
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [horizon/ui/prepare_focus_native.py, horizon/ui/ghidra/RecoverFocusNative.java, .github/workflows/focus-native.yml]
   workflow_dispatch:
 permissions:
@@ -94,7 +94,7 @@ jobs:
           (p/'reports/focus-native-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
       - name: Publish reports only, never firmware or models
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -103,7 +103,7 @@ jobs:
           # report and otherwise conflict when rebasing a replacement JSON file.
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a1027e-metaport-horizonosport
           dest=analysis/builds/52168470052900520
           for name in focus-native-inputs focus-native-server focus-native-interface focus-native-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
@@ -117,8 +117,8 @@ jobs:
             git commit -m 'Record original native focus recovery, not a working service [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport
           fi
       - uses: actions/upload-artifact@v4
         if: always()

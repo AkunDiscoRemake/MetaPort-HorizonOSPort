@@ -3,7 +3,7 @@ name: Analyze firmware candidate
 on:
   push:
     branches:
-      - arena/01a0f02d-metaport-horizonosport
+      - arena/01a1027e-metaport-horizonosport
     paths:
       - .github/workflows/fetch-firmware.yml
       - tools/inspect_ota.py
@@ -94,7 +94,7 @@ jobs:
             --reconstruction-report "$RUNNER_TEMP/report/reconstruction.json" \
             --output "$RUNNER_TEMP/report/static-analysis.json"
       - name: Publish metadata report to session branch (never firmware)
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -120,7 +120,7 @@ jobs:
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
             git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" \
-              push origin HEAD:arena/01a0f02d-metaport-horizonosport
+              push origin HEAD:arena/01a1027e-metaport-horizonosport
           fi
       - name: Store analysis reports (no firmware)
         if: always()

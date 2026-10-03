@@ -1,7 +1,7 @@
 name: Original dependency bundle offline boot (not a release)
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [horizon/ui/bundle_shell_dependencies.py, horizon/ui/tests/test_shell_bundle.py, tools/shell_crash_windows.py, .github/workflows/original-shell-bundle.yml]
   workflow_call:
     inputs:
@@ -165,7 +165,7 @@ jobs:
           set -euo pipefail
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a1027e-metaport-horizonosport
           cp "local-analysis/android-runtime/${REPORT_STEM}-baseline.json" "analysis/android-runtime/${REPORT_STEM}-baseline.json"
           git add "analysis/android-runtime/${REPORT_STEM}-baseline.json"
           if [ -f local-analysis/shell-bundle/bundle.json ]; then
@@ -181,8 +181,8 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m 'Record original dependency bundle experiment, not a working port [skip ci]'
             for attempt in 1 2 3; do
-              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then exit 0; fi
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then exit 0; fi
             done
             exit 1
           fi

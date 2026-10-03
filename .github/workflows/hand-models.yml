@@ -1,7 +1,7 @@
 name: Original compressed hand model inspection
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [handtracking/ai/ptez.py, handtracking/ai/validate_models.py, handtracking/ai/model-evidence-policy.json, handtracking/ai/tests/test_validate_models.py, handtracking/ai/tests/test_reference_fixture.py, handtracking/ai/requirements.txt, handtracking/ai/reference_probe.cpp, handtracking/ai/compare_reference.py, handtracking/ai/pte_constants.py, handtracking/ai/tests/test_pte_constants.py, handtracking/ai/pte_schema.py, handtracking/ai/tests/test_pte_schema.py, handtracking/ai/tests/test_ptez.py, .github/workflows/hand-models.yml]
   workflow_dispatch:
 permissions:
@@ -90,7 +90,7 @@ jobs:
           (p/'reports/model-analysis-run.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
       - name: Publish reports only, never firmware or models
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -108,8 +108,8 @@ jobs:
             git commit -m 'Record original compressed hand model inspection [skip ci]'
             auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
             echo "::add-mask::$auth"
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport
-            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport
+            git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport
           fi
       - uses: actions/upload-artifact@v4
         if: always()

@@ -2,7 +2,7 @@ name: Build Android hardware adapters
 on:
   push:
     branches:
-      - arena/01a0f02d-metaport-horizonosport
+      - arena/01a1027e-metaport-horizonosport
     paths:
       - port/android/**
       - horizon/ui/generate_jni_contract.py
@@ -186,7 +186,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
       - name: Publish small build report on session branch
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -196,7 +196,7 @@ jobs:
           # prior queued build. Committing first can create a same-file rebase conflict.
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a1027e-metaport-horizonosport
           mkdir -p analysis/android-build
           cp local-analysis/android-build/build-report.json analysis/android-build/build-report.json
           git add -- analysis/android-build/build-report.json
@@ -208,8 +208,8 @@ jobs:
             echo "::add-mask::$auth"
             published=0
             for attempt in 1 2 3; do
-              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
-              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then
                 published=1
                 break
               fi

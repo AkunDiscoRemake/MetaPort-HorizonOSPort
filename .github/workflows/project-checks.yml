@@ -1,7 +1,7 @@
 name: Project syntax and regression checks
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: ['**/*.py', '**/*.sh', '**/*.java', '**/*.cpp', '**/*.hpp', '**/*.gradle', '.github/workflows/**']
   workflow_dispatch:
 permissions:

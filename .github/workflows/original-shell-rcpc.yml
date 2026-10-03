@@ -1,7 +1,7 @@
 name: Original shell explicit RCpc compatibility experiment (not a release)
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths:
       - .github/workflows/original-shell-rcpc.yml
       - horizon/ui/rcpc_compat.py

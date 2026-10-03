@@ -1,7 +1,7 @@
 name: Original hand optimization disassembly
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [handtracking/ai/elf_pointer_evidence.py, handtracking/ai/tests/test_elf_pointer_evidence.py, handtracking/ai/ghidra/TraceHandOptimizations.java, handtracking/ai/prepare_optimizations.py, handtracking/ai/tests/test_prepare_optimizations.py, .github/workflows/hand-optimizations.yml]
   workflow_dispatch:
 permissions:
@@ -91,7 +91,7 @@ jobs:
           (p/'reports/hand-optimization-run.json').write_text(json.dumps(result,indent=2)+'\n')
           PY
       - name: Publish evidence only, never proprietary binaries
-        if: always() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: always() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -100,7 +100,7 @@ jobs:
           # Queued runs may start from a commit older than a previous report.
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a1027e-metaport-horizonosport
           dest=analysis/builds/52168470052900520
           for name in hand-optimization-targets hand-optimization-elf-pointers hand-optimization-coverage hand-optimization-inference hand-optimization-memory hand-optimization-temporal hand-optimization-run; do
             if [ -f "$WORK/reports/$name.json" ]; then
@@ -116,8 +116,8 @@ jobs:
             echo "::add-mask::$auth"
             published=0
             for attempt in 1 2 3; do
-              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
-              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then
                 published=1
                 break
               fi

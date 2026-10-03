@@ -1,7 +1,7 @@
 name: Original hand service and DSP dependencies
 on:
   push:
-    branches: [arena/01a0f02d-metaport-horizonosport]
+    branches: [arena/01a1027e-metaport-horizonosport]
     paths: [handtracking/ai/task_profile_evidence.py, handtracking/ai/tests/test_task_profile_evidence.py, handtracking/ai/hvx_evidence.py, handtracking/ai/tests/test_hvx_evidence.py, handtracking/ai/inspect_hand_dependencies.py, handtracking/ai/tests/test_hand_dependencies.py, .github/workflows/hand-dependencies.yml]
   workflow_dispatch:
 permissions:
@@ -40,7 +40,7 @@ jobs:
           inspect(root/'images',root/'reconstruction.json',root/'reports/hand-dependencies-report.json',disassemble=True)
           PY
       - name: Publish evidence only, never proprietary binaries
-        if: success() && github.ref == 'refs/heads/arena/01a0f02d-metaport-horizonosport'
+        if: success() && github.ref == 'refs/heads/arena/01a1027e-metaport-horizonosport'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -49,7 +49,7 @@ jobs:
           # Queued runs may start from a commit older than a previous report.
           auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           echo "::add-mask::$auth"
-          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a0f02d-metaport-horizonosport
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --ff-only origin arena/01a1027e-metaport-horizonosport
           dest=analysis/builds/52168470052900520
           for name in hand-dependencies-report; do
             if [ -f "$WORK/reports/$name.json" ]; then
@@ -65,8 +65,8 @@ jobs:
             echo "::add-mask::$auth"
             published=0
             for attempt in 1 2 3; do
-              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a0f02d-metaport-horizonosport || exit 1
-              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a0f02d-metaport-horizonosport; then
+              git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" pull --rebase origin arena/01a1027e-metaport-horizonosport || exit 1
+              if git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $auth" push origin HEAD:arena/01a1027e-metaport-horizonosport; then
                 published=1
                 break
               fi
