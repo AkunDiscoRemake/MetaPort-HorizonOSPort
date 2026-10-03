@@ -438,3 +438,10 @@ An installed empty focus set is never returned as an observed service status.
 Remaining: complete metadata conversion/cache/liveness, coherent observation
 assembly, policy evaluation bindings, Binder service backend and pre-Application
 publication. No constructor-ANR fix or functional original Horizon APK is claimed.
+
+JNI registration validation, source **304f8fb**: project/native **37129323107**,
+Android arm64 build **37129323137**, and runtime **37129323142** all passed.
+Instrumentation executed 28 owned cases per API 29/35, including real native
+registration/current-record lookup. Evaluation/selection and original firmware
+are still not exercised by these Android cases. Consumer rules retain JNI names;
+that rule is checked by host regression, not a minified consumer runtime test.

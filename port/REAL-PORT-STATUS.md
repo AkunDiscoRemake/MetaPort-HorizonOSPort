@@ -349,3 +349,30 @@ Context, portanto não resolve sozinho a publicação pré-Application. Faltam o
 cache/lifecycle completo de metadados, composição coerente das entradas de foco
 e bootstrap do serviço. **Ainda não há APK original funcional; o ANR de espera
 pelo serviço de foco permanece.**
+
+## Registro real de identidade Android no núcleo nativo — 2026-10-03
+
+Fonte **304f8fb** liga a identidade observada por `AppProcessMetadataBackend` ao
+registro de cliente do `FocusPolicyCore` via `NativeFocusClient`. O JNI confere
+novamente PID/UID usando `getpid/getuid`, usa tokens opacos não reutilizados,
+limita instâncias a 32 e protege lookup/destruição contra concorrência. Fechar é
+idempotente; atualizar observações não reinstala nem limpa o registro. Regras de
+consumo preservam nomes JNI ao aplicar shrinking em aplicativos consumidores.
+
+Validação da fonte:
+- Projeto/regressão/nativo **37129323107**, sucesso.
+- Build Android ARM64 **37129323137**, sucesso.
+- Runtime **37129323142**, sucesso: **28 testes próprios em cada API 29 e 35**,
+  incluindo execução JNI real de cadastro/consulta, rejeição de identidade
+  adulterada/tokens obsoletos, fechamento concorrente e limite/recuperação de
+  capacidade. Os runs anteriores da fonte e82ee6c foram substituídos; não são
+  utilizados como evidência final.
+
+A ligação transporta **identidade**, não converte permissões em grants nem nomes
+Android em metadados normalizados. Cada instância possui seu próprio núcleo;
+não há provedor global. Os testes chamam registro/consulta do ledger nativo, mas
+não a avaliação/seleção completa. Um conjunto inicial vazio não é exposto como
+status de foco observado. Ainda faltam composição coerente das entradas,
+conversão/cache/liveness completos, binding da avaliação e backend/publicação
+Binder antes de Application. **Não há APK original funcional nem correção do
+ANR original nesta alteração.**
