@@ -489,3 +489,8 @@ all the required coherent channels or normalized metadata. Frames in the new
 instrumentation tests are deliberately labeled fixtures, not phone observations,
 permissions or tracking grants. The production Binder backend/pre-Application
 publication remain absent. This does not fix the original constructor ANR.
+
+Readback also includes an own-client **evaluated-types mask**. An unqueried type
+remains unknown, not an observed loss; a query containing only other identities
+does not enable own-client evaluated-state access. The focus mask alone is
+bookkeeping, never a substitute for those per-type validity bits or decision rows.

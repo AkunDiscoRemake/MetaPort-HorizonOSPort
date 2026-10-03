@@ -44,6 +44,8 @@ public final class NativeFocusClient implements AutoCloseable {
         requireOpen();
         return FocusPolicyResult.decode(nativeEvaluate(handle,java.util.Objects.requireNonNull(frame).encode()));
     }
+    // Diagnostic bookkeeping only. Check result.registeredClientEvaluatedTypes before
+    // interpreting a clear bit: a type never queried for this client is still unknown.
     synchronized int currentFocusMask() { requireOpen();return nativeCurrentFocusMask(handle); }
     private void requireOpen() {
         if (handle==0) throw new IllegalStateException("Closed native focus client");

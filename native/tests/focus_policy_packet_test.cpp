@@ -26,11 +26,11 @@ int main() {
     FocusPolicyCore core;core.install_client_record({10,100});
     auto result=core.evaluate(decoded.type,decoded.requested,decoded.immersive,decoded.decisions,decoded.timestamp);
     assert(result.decisions.size()==1 && result.decisions[0].has_focus);
-    auto encoded=packet::encode(result,1,core.history());
+    auto encoded=packet::encode(result,1,1,core.history());
     packet::Reader reader(encoded);assert(reader.integer()==packet::result_magic);
     assert(reader.text().empty());assert(!reader.boolean());assert(reader.count()==1);
     assert((reader.identity()==Client{10,100}));assert(reader.integer()==0);assert(reader.boolean());
-    assert(reader.integer()==1);assert(reader.count()==0);reader.finish();
+    assert(reader.integer()==1);assert(reader.integer()==1);assert(reader.count()==0);reader.finish();
     for(std::size_t i=0;i<bytes.size();++i) invalid({bytes.begin(),bytes.begin()+i});
     auto changed=bytes;changed.push_back(0);invalid(changed);
     for(std::size_t offset:{0U,4U,16U,28U}) {

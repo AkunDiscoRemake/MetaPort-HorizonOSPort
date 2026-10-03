@@ -37,6 +37,13 @@ public class FocusPolicyEvaluationTest {
     @Test public void nativeDecisionsAndLedgerUseBothTypesAndOrdering() {
         try (NativeFocusClient client=new NativeFocusClient(context())) {
             assertThrows(IllegalStateException.class,client::currentFocusMask);
+            FocusPolicyFrame othersOnly=new FocusPolicyFrame(0,1234,
+                    new FocusPolicyFrame.Request[]{request(new FocusPolicyFrame.Client(-1,55),1)},
+                    none,none,none,none,null,false,noMetadata,noMetadata,noMetadata,"");
+            assertEquals(0,client.evaluate(othersOnly).registeredClientEvaluatedTypes);
+            assertThrows(IllegalStateException.class,client::currentFocusMask);
+            FocusPolicyResult first=client.evaluate(frame(0,0,false,false,self,noMetadata,noMetadata,noMetadata,""));
+            assertEquals(1,first.registeredClientEvaluatedTypes);
             assertTrue(client.evaluate(frame(0,0,false,false,self,noMetadata,noMetadata,noMetadata,""))
                     .decisions.get(0).focused);
             assertFalse(client.evaluate(frame(1,0,false,false,self,noMetadata,noMetadata,noMetadata,""))
@@ -68,6 +75,7 @@ public class FocusPolicyEvaluationTest {
             assertEquals(2,result.decisions.size());assertEquals(-1,result.decisions.get(0).uid);
             assertTrue(result.decisions.get(0).focused);assertFalse(result.decisions.get(1).focused);
             assertEquals(1,result.registeredClientFocusMask);
+            assertEquals(3,result.registeredClientEvaluatedTypes);
             assertThrows(UnsupportedOperationException.class,result.decisions::clear);
         }
     }

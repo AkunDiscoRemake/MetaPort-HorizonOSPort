@@ -12,7 +12,7 @@ using metaport::focus::FocusPolicyCore;
 struct Entry {
     const Client identity;
     FocusPolicyCore core;
-    bool evaluated=false;
+    int evaluated_types=0;
     explicit Entry(Client client):identity(client) { core.install_client_record(client); }
 };
 // Opaque, non-reused tokens, not Java-supplied raw pointers. The lock spans each
@@ -118,8 +118,9 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeEvaluate(JNIEnv* env,jclass
         auto& entry=*it->second;
         auto result=entry.core.evaluate(request.type,request.requested,request.immersive,
                                        std::move(request.decisions),request.timestamp);
-        entry.evaluated=true;
-        auto encoded=packet::encode(result,current_mask(entry),entry.core.history());
+        for (const auto& row:result.decisions)
+            if (row.identity==entry.identity) entry.evaluated_types|=1<<static_cast<int>(row.type);
+        auto encoded=packet::encode(result,current_mask(entry),entry.evaluated_types,entry.core.history());
         auto output=env->NewByteArray(static_cast<jsize>(encoded.size()));
         if (output) env->SetByteArrayRegion(output,0,static_cast<jsize>(encoded.size()),
                                            reinterpret_cast<const jbyte*>(encoded.data()));
@@ -138,7 +139,7 @@ Java_org_metaport_port_focus_NativeFocusClient_nativeCurrentFocusMask(JNIEnv* en
     try {
         std::lock_guard<std::mutex> lock(registry_mutex);
         auto it=registry.find(token);
-        if (it==registry.end() || !it->second->evaluated) {
+        if (it==registry.end() || !it->second->evaluated_types) {
             fail(env,"java/lang/IllegalStateException","No evaluated focus state");return 0;
         }
         return current_mask(*it->second);

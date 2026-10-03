@@ -132,7 +132,7 @@ public:
     void identity(Client value) { integer(value.uid);integer(value.pid); }
     void app(const ImmersiveApp& value) { identity(value.identity);text(value.package_name);integer(value.is_top_activity); }
 };
-inline std::vector<std::uint8_t> encode(const PolicyEvaluation& result,int own_focus_mask,
+inline std::vector<std::uint8_t> encode(const PolicyEvaluation& result,int own_focus_mask,int evaluated_types,
                                       const std::vector<ImmersiveHistoryRecord>& history) {
     Writer writer;writer.bytes.reserve(max_bytes);writer.integer(result_magic);writer.text(result.top_activity);
     writer.integer(result.immersive.has_value());if (result.immersive) writer.app(*result.immersive);
@@ -140,7 +140,7 @@ inline std::vector<std::uint8_t> encode(const PolicyEvaluation& result,int own_f
     for (const auto& row:result.decisions) {
         writer.identity(row.identity);writer.integer(static_cast<int>(row.type));writer.integer(row.has_focus);
     }
-    writer.integer(own_focus_mask);require(history.size()<=10);writer.integer(static_cast<std::int32_t>(history.size()));
+    writer.integer(own_focus_mask);writer.integer(evaluated_types);require(history.size()<=10);writer.integer(static_cast<std::int32_t>(history.size()));
     for (const auto& row:history) { writer.timestamp(row.timestamp);writer.app(row.app); }
     return std::move(writer.bytes);
 }

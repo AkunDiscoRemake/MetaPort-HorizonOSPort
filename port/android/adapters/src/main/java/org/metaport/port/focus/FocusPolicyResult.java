@@ -27,7 +27,9 @@ final class FocusPolicyResult {
     final String topActivity;
     final App immersive;
     final List<Decision> decisions;
+    // A clear focus bit is not a loss observation unless its evaluated-types bit is set.
     final int registeredClientFocusMask;
+    final int registeredClientEvaluatedTypes;
     final List<History> history;
     private FocusPolicyResult(ByteBuffer in) {
         require(in.getInt()==0x3152504d);
@@ -39,6 +41,8 @@ final class FocusPolicyResult {
         }
         decisions=Collections.unmodifiableList(rows);
         registeredClientFocusMask=in.getInt();require(registeredClientFocusMask>=0 && registeredClientFocusMask<=3);
+        registeredClientEvaluatedTypes=in.getInt();require(registeredClientEvaluatedTypes>=0 && registeredClientEvaluatedTypes<=3);
+        require((registeredClientFocusMask & ~registeredClientEvaluatedTypes)==0);
         count=count(in,10);List<History> entries=new ArrayList<>();
         for (int i=0;i<count;i++) {
             long time=in.getLong();require(time>=0 && time<=9223372036854L);
