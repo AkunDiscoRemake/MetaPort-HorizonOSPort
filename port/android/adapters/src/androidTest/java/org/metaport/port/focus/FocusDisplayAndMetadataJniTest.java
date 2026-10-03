@@ -269,6 +269,8 @@ public class FocusDisplayAndMetadataJniTest {
                 assertEquals(Collections.singletonList(0), focusEvents);
                 assertEquals("com.oculus.vrshell|com.oculus.vrshell:" + Process.myPid() + ":" + Process.myUid() + ":1",
                         topEvents.get(topEvents.size() - 1));
+            } catch (android.os.RemoteException e) {
+                throw new AssertionError(e);
             } finally {
                 data.recycle();
                 reply.recycle();
