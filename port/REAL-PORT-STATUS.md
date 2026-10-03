@@ -229,3 +229,24 @@ backends reais, verificar interoperabilidade com o proxy original e publicar o
 serviço antes do construtor de ShellApplication. O novo endpoint não é incluído
 no APK original nessa etapa. O bloqueio de inicialização continua sem solução e
 **não há APK original funcional**. Detalhes: `horizon/ui/FOCUS-NATIVE.md`.
+
+## Posse e encerramento de listeners — 2026-10-03
+
+`FocusListeners` agora registra listeners por PID/tipo com UID real, conserva
+registros duplicados, remove o grupo do chamador no cancelamento e observa morte
+real de Binder. As chamadas aos clientes ocorrem sem segurar a trava do registro;
+falha de um cliente não interrompe os demais. Não há callback inicial inventado.
+O argumento de `onVrFocusChanged` é o **tipo alterado (0/1)**, não uma concessão de
+foco — comportamento recuperado do método nativo `notifyListeners`.
+
+- Build Android `37120394700`: passou.
+- Verificações do projeto/nativas `37120394643`: passaram.
+- Instrumentação `37120394692`: **21 casos próprios por API 29/35 passaram**,
+  incluindo limpeza após morte real de um processo Android separado, apenas no
+  APK de teste do emulador. Nenhum processo do usuário é encerrado.
+
+Limites e diferenças intencionais do daemon estão em `horizon/ui/FOCUS-NATIVE.md`.
+A política de foco ainda não está implementada/conectada; o registro exige uma
+política de acesso fornecida pelo serviço e não concede permissões por padrão.
+Este componente não publica `vrfocus` nem elimina a espera do construtor original.
+**Ainda não há APK original funcional.**

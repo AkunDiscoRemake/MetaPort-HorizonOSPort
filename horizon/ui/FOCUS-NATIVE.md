@@ -192,8 +192,10 @@ permission refusal, budgets, cancellation during linking, callback reentrancy
 across threads, exception isolation, and **actual death of a separate test-only
 Android service process**. The disposable process never belongs to the user or
 original firmware and is absent from production manifests. Gate: 21 owned cases
-per API. New runtime results are pending; simulated link-race fixtures are not
-presented as real Binder death evidence.
+per API. Run `37120394692` passed all 21 on both API 29 and API 35, including
+`actualRemoteProcessDeathRemovesAllBinderRegistrations`. The simulated link-race
+case is separate and is not presented as real Binder death evidence. Android
+build `37120394700` and project/native checks `37120394643` also passed.
 
 This component does not implement focus policy, publish a provider, or resolve
 the original constructor ANR. Integration with the endpoint and policy remains
