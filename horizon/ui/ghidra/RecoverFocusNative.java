@@ -28,6 +28,34 @@ public class RecoverFocusNative extends GhidraScript {
         report.put("private_abi_validated",false);
         report.put("service_implemented",false);
         report.put("scope","Ghidra inferred functions/prototypes, not original source or validated recompilation; indirect calls remain unresolved");
+        if (args[1].equals("14289b0fca87a4b4fbcd1e0b1a06cd8035ebf8686551f86a3517ad08deaea418")) {
+            // Exact address point recovered in the pinned ConnectionManager constructor.
+            // Follow only real function pointers; never label by nearest exported symbol.
+            List<Map<String,Object>> slots=new ArrayList<>();
+            for (int slot=0;slot<7;slot++) {
+                var address=currentProgram.getImageBase().add(0x38928L+8L*slot);
+                long pointer=currentProgram.getMemory().getLong(address);
+                var target=currentProgram.getAddressFactory().getDefaultAddressSpace().getAddress(pointer);
+                var block=currentProgram.getMemory().getBlock(target);
+                Function entry=currentProgram.getFunctionManager().getFunctionAt(target);
+                Map<String,Object> row=new LinkedHashMap<>();slots.add(row);
+                row.put("slot",slot);row.put("slot_elf_address",0x38928L+8L*slot);
+                row.put("relocated_pointer",Long.toUnsignedString(pointer,16));
+                row.put("target_is_executable",block!=null && block.isExecute());
+                row.put("exact_function_entry",entry!=null);
+                if (entry!=null && block!=null && block.isExecute()) {
+                    row.put("target_elf_address",target.subtract(currentProgram.getImageBase()));
+                    row.put("name",entry.getName());
+                    Function resolved=entry.isThunk() ? entry.getThunkedFunction(true) : entry;
+                    if (resolved!=null) {
+                        row.put("resolved_elf_address",resolved.getEntryPoint().subtract(currentProgram.getImageBase()));
+                        row.put("resolved_name",resolved.getName());
+                    }
+                }
+            }
+            report.put("connection_manager_vtable",slots);
+            report.put("vtable_scope","Static relocated address-point slots only; not runtime dispatch or system-service availability proof");
+        }
         List<Function> functions=new ArrayList<>();
         var iterator=currentProgram.getFunctionManager().getFunctions(true);
         while(iterator.hasNext()) {
